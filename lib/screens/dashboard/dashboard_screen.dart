@@ -24,6 +24,7 @@ class DashboardScreen extends StatelessWidget {
     final auditPartial = state.auditPartialCount;
     final auditComplete = state.auditCompleteCount;
     final auditHighPriorityOpen = state.auditHighPriorityOpenCount;
+    final profileStatus = state.companyProfileStatus;
 
     final greenCount = state.knowledgeEntries
         .where((e) => e.riskLevel == RiskLevel.green)
@@ -115,6 +116,16 @@ class DashboardScreen extends StatelessWidget {
                   value: '$auditHighPriorityOpen',
                   icon: Icons.priority_high,
                   color: auditHighPriorityOpen > 0 ? Colors.red : Colors.green,
+                ),
+                StatCard(
+                  label: l.statCompanyProfile,
+                  value: _profileStatusLabel(l, profileStatus),
+                  icon: Icons.business_outlined,
+                  color: switch (profileStatus) {
+                    CompanyProfileStatus.complete => Colors.green,
+                    CompanyProfileStatus.partial => Colors.orange,
+                    CompanyProfileStatus.incomplete => Colors.red,
+                  },
                 ),
               ];
               return GridView.builder(
@@ -335,6 +346,14 @@ class _RiskBar extends StatelessWidget {
       child: Container(height: 12, color: color),
     );
   }
+}
+
+String _profileStatusLabel(AppLocalizations l, CompanyProfileStatus status) {
+  return switch (status) {
+    CompanyProfileStatus.complete => l.companyProfileComplete,
+    CompanyProfileStatus.partial => l.companyProfilePartial,
+    CompanyProfileStatus.incomplete => l.companyProfileIncomplete,
+  };
 }
 
 class _RiskLegend extends StatelessWidget {

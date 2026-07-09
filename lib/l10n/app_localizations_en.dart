@@ -140,6 +140,30 @@ class AppLocalizationsEn extends AppLocalizations {
   String get fieldAddress => 'Address';
 
   @override
+  String get fieldCountry => 'Country';
+
+  @override
+  String get fieldPrimaryLanguage => 'Primary Language';
+
+  @override
+  String get fieldSupportEmail => 'Support E-Mail';
+
+  @override
+  String get fieldSupportPhone => 'Support Phone';
+
+  @override
+  String get fieldFacebook => 'Facebook';
+
+  @override
+  String get fieldInstagram => 'Instagram';
+
+  @override
+  String get fieldYoutube => 'YouTube';
+
+  @override
+  String get fieldTelegram => 'Telegram';
+
+  @override
   String get fieldTitle => 'Title';
 
   @override
@@ -193,6 +217,56 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get companyProducts => 'Products & Services';
+
+  @override
+  String get companyCoreSubtitle =>
+      'Business core for audit, knowledge base, bot, and external channels';
+
+  @override
+  String get companyProfileSection => 'Company Profile';
+
+  @override
+  String get companyContactWebSection => 'Contact & Web';
+
+  @override
+  String get companySocialSection => 'Social / Channels';
+
+  @override
+  String get companyBusinessRulesSection => 'Business Rules';
+
+  @override
+  String get companyInternalNotesSection => 'Internal Notes';
+
+  @override
+  String get companyNoSocialLinks =>
+      'No social or channel links maintained yet.';
+
+  @override
+  String get companyNoInternalNotes => 'No internal notes maintained yet.';
+
+  @override
+  String get companyBrandVoice => 'Brand Voice / Tone';
+
+  @override
+  String get companyDoNotSay => 'Do-not-say / No-Go Rules';
+
+  @override
+  String get companyAllowedSupportTopics => 'Allowed Support Topics';
+
+  @override
+  String get companyEscalationNotes => 'Escalation Notes';
+
+  @override
+  String get companyDisclaimerText => 'Disclaimer Text';
+
+  @override
+  String get companyProfileComplete => 'Complete';
+
+  @override
+  String get companyProfilePartial => 'Partial';
+
+  @override
+  String get companyProfileIncomplete => 'Incomplete';
 
   @override
   String get auditTitle => 'Audit';
@@ -511,6 +585,9 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get statAuditHighPriorityOpen => 'High-Priority Gaps';
+
+  @override
+  String get statCompanyProfile => 'Company Profile';
 
   @override
   String get statReviewOpen => 'Open for Review';

@@ -1,11 +1,14 @@
 import 'package:flutter/widgets.dart';
 import '../models/business_audit.dart';
+import '../models/business_rules.dart';
 import '../models/company.dart';
 import '../models/company_workspace.dart';
 import '../models/product_or_service.dart';
 import '../models/knowledge_entry.dart';
 import '../models/bot_question_log.dart';
 import 'mock_data.dart';
+
+enum CompanyProfileStatus { incomplete, partial, complete }
 
 class AppState extends ChangeNotifier {
   List<CompanyWorkspace> companies = MockData.companyWorkspaces
@@ -35,12 +38,14 @@ class AppState extends ChangeNotifier {
   List<BotQuestionLog> get selectedBotLogs => selectedWorkspace.botLogs;
   List<BusinessAuditItem> get selectedAuditItems =>
       selectedWorkspace.auditItems;
+  BusinessRules get selectedBusinessRules => selectedWorkspace.businessRules;
 
   Company get company => selectedCompany;
   List<ProductOrService> get products => selectedProducts;
   List<KnowledgeEntry> get knowledgeEntries => selectedKnowledgeEntries;
   List<BotQuestionLog> get botLogs => selectedBotLogs;
   List<BusinessAuditItem> get auditItems => selectedAuditItems;
+  BusinessRules get businessRules => selectedBusinessRules;
 
   void selectCompany(String companyId) {
     if (selectedCompanyId == companyId) return;
@@ -53,6 +58,13 @@ class AppState extends ChangeNotifier {
 
   void updateCompany(Company updated) {
     _updateSelectedWorkspace(selectedWorkspace.copyWith(company: updated));
+    notifyListeners();
+  }
+
+  void updateBusinessRules(BusinessRules updated) {
+    _updateSelectedWorkspace(
+      selectedWorkspace.copyWith(businessRules: updated),
+    );
     notifyListeners();
   }
 
@@ -145,6 +157,26 @@ class AppState extends ChangeNotifier {
             item.status != AuditItemStatus.complete,
       )
       .length;
+
+  CompanyProfileStatus get companyProfileStatus {
+    final c = company;
+    final checks = [
+      c.name.isNotEmpty,
+      c.description.isNotEmpty,
+      c.industry.isNotEmpty,
+      c.country.isNotEmpty,
+      c.primaryLanguage.isNotEmpty,
+      c.website.isNotEmpty,
+      c.email.isNotEmpty,
+      c.socialLinks.values.any((value) => value.trim().isNotEmpty),
+      businessRules.brandVoice.isNotEmpty,
+      businessRules.allowedSupportTopics.isNotEmpty,
+    ];
+    final complete = checks.where((check) => check).length;
+    if (complete >= 8) return CompanyProfileStatus.complete;
+    if (complete >= 4) return CompanyProfileStatus.partial;
+    return CompanyProfileStatus.incomplete;
+  }
 
   // 0.0 - 1.0; weighted by priority, with partial items counting halfway.
   double get auditScore {

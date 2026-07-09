@@ -344,6 +344,54 @@ abstract class AppLocalizations {
   /// **'Adresse'**
   String get fieldAddress;
 
+  /// No description provided for @fieldCountry.
+  ///
+  /// In de, this message translates to:
+  /// **'Land'**
+  String get fieldCountry;
+
+  /// No description provided for @fieldPrimaryLanguage.
+  ///
+  /// In de, this message translates to:
+  /// **'Primäre Sprache'**
+  String get fieldPrimaryLanguage;
+
+  /// No description provided for @fieldSupportEmail.
+  ///
+  /// In de, this message translates to:
+  /// **'Support-E-Mail'**
+  String get fieldSupportEmail;
+
+  /// No description provided for @fieldSupportPhone.
+  ///
+  /// In de, this message translates to:
+  /// **'Support-Telefon'**
+  String get fieldSupportPhone;
+
+  /// No description provided for @fieldFacebook.
+  ///
+  /// In de, this message translates to:
+  /// **'Facebook'**
+  String get fieldFacebook;
+
+  /// No description provided for @fieldInstagram.
+  ///
+  /// In de, this message translates to:
+  /// **'Instagram'**
+  String get fieldInstagram;
+
+  /// No description provided for @fieldYoutube.
+  ///
+  /// In de, this message translates to:
+  /// **'YouTube'**
+  String get fieldYoutube;
+
+  /// No description provided for @fieldTelegram.
+  ///
+  /// In de, this message translates to:
+  /// **'Telegram'**
+  String get fieldTelegram;
+
   /// No description provided for @fieldTitle.
   ///
   /// In de, this message translates to:
@@ -445,6 +493,102 @@ abstract class AppLocalizations {
   /// In de, this message translates to:
   /// **'Produkte & Leistungen'**
   String get companyProducts;
+
+  /// No description provided for @companyCoreSubtitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Business Core für Audit, Wissensbasis, Bot und externe Kanäle'**
+  String get companyCoreSubtitle;
+
+  /// No description provided for @companyProfileSection.
+  ///
+  /// In de, this message translates to:
+  /// **'Firmenprofil'**
+  String get companyProfileSection;
+
+  /// No description provided for @companyContactWebSection.
+  ///
+  /// In de, this message translates to:
+  /// **'Kontakt & Web'**
+  String get companyContactWebSection;
+
+  /// No description provided for @companySocialSection.
+  ///
+  /// In de, this message translates to:
+  /// **'Social / Kanäle'**
+  String get companySocialSection;
+
+  /// No description provided for @companyBusinessRulesSection.
+  ///
+  /// In de, this message translates to:
+  /// **'Business Rules'**
+  String get companyBusinessRulesSection;
+
+  /// No description provided for @companyInternalNotesSection.
+  ///
+  /// In de, this message translates to:
+  /// **'Interne Notizen'**
+  String get companyInternalNotesSection;
+
+  /// No description provided for @companyNoSocialLinks.
+  ///
+  /// In de, this message translates to:
+  /// **'Noch keine Social- oder Kanal-Links gepflegt.'**
+  String get companyNoSocialLinks;
+
+  /// No description provided for @companyNoInternalNotes.
+  ///
+  /// In de, this message translates to:
+  /// **'Noch keine internen Notizen gepflegt.'**
+  String get companyNoInternalNotes;
+
+  /// No description provided for @companyBrandVoice.
+  ///
+  /// In de, this message translates to:
+  /// **'Brand Voice / Tonalität'**
+  String get companyBrandVoice;
+
+  /// No description provided for @companyDoNotSay.
+  ///
+  /// In de, this message translates to:
+  /// **'Do-not-say / No-Go-Regeln'**
+  String get companyDoNotSay;
+
+  /// No description provided for @companyAllowedSupportTopics.
+  ///
+  /// In de, this message translates to:
+  /// **'Erlaubte Support-Themen'**
+  String get companyAllowedSupportTopics;
+
+  /// No description provided for @companyEscalationNotes.
+  ///
+  /// In de, this message translates to:
+  /// **'Eskalationshinweise'**
+  String get companyEscalationNotes;
+
+  /// No description provided for @companyDisclaimerText.
+  ///
+  /// In de, this message translates to:
+  /// **'Disclaimer-Text'**
+  String get companyDisclaimerText;
+
+  /// No description provided for @companyProfileComplete.
+  ///
+  /// In de, this message translates to:
+  /// **'Vollständig'**
+  String get companyProfileComplete;
+
+  /// No description provided for @companyProfilePartial.
+  ///
+  /// In de, this message translates to:
+  /// **'Teilweise'**
+  String get companyProfilePartial;
+
+  /// No description provided for @companyProfileIncomplete.
+  ///
+  /// In de, this message translates to:
+  /// **'Unvollständig'**
+  String get companyProfileIncomplete;
 
   /// No description provided for @auditTitle.
   ///
@@ -1003,6 +1147,12 @@ abstract class AppLocalizations {
   /// In de, this message translates to:
   /// **'High-Priority-Lücken'**
   String get statAuditHighPriorityOpen;
+
+  /// No description provided for @statCompanyProfile.
+  ///
+  /// In de, this message translates to:
+  /// **'Firmenprofil'**
+  String get statCompanyProfile;
 
   /// No description provided for @statReviewOpen.
   ///

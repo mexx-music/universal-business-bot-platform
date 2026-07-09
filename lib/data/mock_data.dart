@@ -1,4 +1,5 @@
 import '../models/business_audit.dart';
+import '../models/business_rules.dart';
 import '../models/company.dart';
 import '../models/company_workspace.dart';
 import '../models/product_or_service.dart';
@@ -14,10 +15,19 @@ class MockData {
         'HB Cure verbindet ein biometrisches Messgerät mit einer mobilen App, '
         'die Nutzern hilft, ihre Körperwerte zu verfolgen und ihr persönliches Wohlbefinden '
         'besser zu verstehen – einfach, sicher und datenschutzkonform nach EU-DSGVO.',
+    country: 'Österreich',
+    primaryLanguage: 'de',
     website: 'https://www.hbcure.at',
     email: 'support@hbcure.at',
     phone: '+43 720 123 456',
     address: 'Wiedner Hauptstraße 10, 1040 Wien',
+    socialLinks: {
+      'website': 'https://www.hbcure.at',
+      'instagram': 'https://instagram.com/hbcure',
+      'facebook': 'https://facebook.com/hbcure',
+    },
+    internalNotes:
+        'Pilotdaten für regulierte Wellness-/Health-Kommunikation. Medizinische Aussagen strikt prüfen.',
   );
 
   static final List<ProductOrService> products = [
@@ -459,10 +469,19 @@ class MockData {
         'SchnurrPurr entwickelt ruhige digitale Begleiter und weiche Komfortprodukte '
         'für entspannte Pausen im Alltag. Die Angebote helfen beim Abschalten, '
         'bei kleinen Routinen und beim bewussten Umgang mit Erholungszeiten.',
+    country: 'Österreich',
+    primaryLanguage: 'de',
     website: 'https://www.schnurrpurr.example',
     email: 'support@schnurrpurr.example',
     phone: '+43 720 987 654',
     address: 'Schottenfeldgasse 22, 1070 Wien',
+    socialLinks: {
+      'website': 'https://www.schnurrpurr.example',
+      'instagram': 'https://instagram.com/schnurrpurr',
+      'youtube': 'https://youtube.com/@schnurrpurr',
+    },
+    internalNotes:
+        'Demo-Workspace für App- und Komfortprodukt-Kommunikation ohne medizinische Versprechen.',
   );
 
   static final List<ProductOrService> schnurrPurrProducts = [
@@ -790,6 +809,28 @@ class MockData {
     ),
   ];
 
+  static const BusinessRules hbCureBusinessRules = BusinessRules(
+    brandVoice:
+        'Sachlich, beruhigend und präzise. Keine dramatischen Versprechen, klare Support-Verweise.',
+    doNotSay: [
+      'Keine Heilversprechen',
+      'Keine Diagnosen',
+      'Keine Aussagen, die ärztliche Beratung ersetzen',
+      'Keine Medikamenten- oder Therapieempfehlungen',
+    ],
+    allowedSupportTopics: [
+      'App-Nutzung',
+      'Geräteverbindung',
+      'Akku und Pflege',
+      'Preise und Support',
+      'Datenschutz auf allgemeiner Ebene',
+    ],
+    escalationNotes:
+        'Medizinische, rechtliche oder sicherheitskritische Fragen an qualifizierte Fachstellen oder Support eskalieren.',
+    disclaimerText:
+        'Allgemeine Informationen ersetzen keine medizinische Beratung.',
+  );
+
   static final List<BusinessAuditItem> schnurrPurrAuditItems = [
     BusinessAuditItem(
       id: 'sp-a1',
@@ -888,6 +929,27 @@ class MockData {
     ),
   ];
 
+  static const BusinessRules schnurrPurrBusinessRules = BusinessRules(
+    brandVoice:
+        'Ruhig, freundlich und alltagsnah. Fokus auf Nutzung, Komfort und Support.',
+    doNotSay: [
+      'Keine Heilversprechen',
+      'Keine Diagnose- oder Therapieaussagen',
+      'Keine Garantie für Schlaf, Stressreduktion oder Gesundheit',
+    ],
+    allowedSupportTopics: [
+      'Relax-App Nutzung',
+      'Pausenroutinen',
+      'Kissenpflege',
+      'Support und App-Version',
+      'Benachrichtigungseinstellungen',
+    ],
+    escalationNotes:
+        'Bei gesundheitlichen oder rechtlichen Fragen an professionelle Beratung verweisen.',
+    disclaimerText:
+        'SchnurrPurr bietet Komfort- und Entspannungsinformationen, keine medizinische Beratung.',
+  );
+
   static final List<CompanyWorkspace> companyWorkspaces = [
     CompanyWorkspace(
       company: company,
@@ -895,6 +957,7 @@ class MockData {
       knowledgeEntries: knowledgeEntries,
       botLogs: botLogs,
       auditItems: hbCureAuditItems,
+      businessRules: hbCureBusinessRules,
     ),
     CompanyWorkspace(
       company: schnurrPurrCompany,
@@ -902,6 +965,7 @@ class MockData {
       knowledgeEntries: schnurrPurrKnowledgeEntries,
       botLogs: schnurrPurrBotLogs,
       auditItems: schnurrPurrAuditItems,
+      businessRules: schnurrPurrBusinessRules,
     ),
   ];
 }

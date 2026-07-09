@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../../data/app_state.dart';
 import '../../l10n/app_localizations.dart';
 import '../../l10n/label_helpers.dart';
+import '../../models/business_rules.dart';
 import '../../models/company.dart';
 import '../../models/product_or_service.dart';
 
@@ -13,35 +14,116 @@ class CompanyScreen extends StatelessWidget {
     final state = AppState.of(context);
     final l = AppLocalizations.of(context)!;
     final theme = Theme.of(context);
+    final company = state.company;
+    final rules = state.businessRules;
 
     return Scaffold(
       body: ListView(
         padding: const EdgeInsets.all(24),
         children: [
-          Row(
-            children: [
-              Text(
-                l.companyTitle,
-                style: theme.textTheme.headlineMedium?.copyWith(
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              const Spacer(),
-              FilledButton.tonal(
-                onPressed: () => _showEditDialog(context, state, l),
-                child: Row(
-                  children: [
-                    const Icon(Icons.edit_outlined, size: 18),
-                    const SizedBox(width: 8),
-                    Text(l.btnEdit),
-                  ],
-                ),
-              ),
-            ],
+          Text(
+            l.companyTitle,
+            style: theme.textTheme.headlineMedium?.copyWith(
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          const SizedBox(height: 4),
+          Text(
+            l.companyCoreSubtitle,
+            style: theme.textTheme.bodyMedium?.copyWith(
+              color: theme.colorScheme.onSurfaceVariant,
+            ),
           ),
           const SizedBox(height: 24),
-          _CompanyInfoCard(company: state.company),
-          const SizedBox(height: 24),
+          _SectionCard(
+            title: l.companyProfileSection,
+            icon: Icons.business_outlined,
+            onEdit: () => _showProfileDialog(context, state),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                _Header(company: company),
+                const SizedBox(height: 18),
+                Text(company.shortDescription),
+                const SizedBox(height: 16),
+                Wrap(
+                  spacing: 10,
+                  runSpacing: 10,
+                  children: [
+                    _InfoChip(
+                      icon: Icons.category_outlined,
+                      label: company.category,
+                    ),
+                    _InfoChip(
+                      icon: Icons.public,
+                      label: company.country.isEmpty ? '-' : company.country,
+                    ),
+                    _InfoChip(
+                      icon: Icons.translate,
+                      label: company.primaryLanguage.toUpperCase(),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+          _SectionCard(
+            title: l.companyContactWebSection,
+            icon: Icons.contact_mail_outlined,
+            onEdit: () => _showContactDialog(context, state),
+            child: Column(
+              children: [
+                _InfoRow(icon: Icons.language, label: company.website),
+                _InfoRow(
+                  icon: Icons.email_outlined,
+                  label: company.supportEmail,
+                ),
+                _InfoRow(
+                  icon: Icons.phone_outlined,
+                  label: company.supportPhone.isEmpty
+                      ? '-'
+                      : company.supportPhone,
+                ),
+                _InfoRow(
+                  icon: Icons.location_on_outlined,
+                  label: company.address,
+                ),
+              ],
+            ),
+          ),
+          _SectionCard(
+            title: l.companySocialSection,
+            icon: Icons.share_outlined,
+            onEdit: () => _showSocialDialog(context, state),
+            child: company.socialLinks.isEmpty
+                ? _EmptyText(text: l.companyNoSocialLinks)
+                : Wrap(
+                    spacing: 8,
+                    runSpacing: 8,
+                    children: company.socialLinks.entries
+                        .where((entry) => entry.value.trim().isNotEmpty)
+                        .map(
+                          (entry) =>
+                              _SocialChip(label: entry.key, url: entry.value),
+                        )
+                        .toList(),
+                  ),
+          ),
+          _SectionCard(
+            title: l.companyBusinessRulesSection,
+            icon: Icons.rule_outlined,
+            onEdit: () => _showBusinessRulesDialog(context, state),
+            child: _BusinessRulesView(rules: rules),
+          ),
+          _SectionCard(
+            title: l.companyInternalNotesSection,
+            icon: Icons.sticky_note_2_outlined,
+            onEdit: () => _showInternalNotesDialog(context, state),
+            child: company.internalNotes.trim().isEmpty
+                ? _EmptyText(text: l.companyNoInternalNotes)
+                : Text(company.internalNotes),
+          ),
+          const SizedBox(height: 8),
           Text(
             l.companyProducts,
             style: theme.textTheme.titleMedium?.copyWith(
@@ -55,77 +137,160 @@ class CompanyScreen extends StatelessWidget {
     );
   }
 
-  void _showEditDialog(
-    BuildContext context,
-    AppState state,
-    AppLocalizations l,
-  ) {
+  void _showProfileDialog(BuildContext context, AppState state) {
     showDialog<void>(
       context: context,
-      builder: (_) => _EditCompanyDialog(state: state),
+      builder: (_) => _EditProfileDialog(state: state),
+    );
+  }
+
+  void _showContactDialog(BuildContext context, AppState state) {
+    showDialog<void>(
+      context: context,
+      builder: (_) => _EditContactDialog(state: state),
+    );
+  }
+
+  void _showSocialDialog(BuildContext context, AppState state) {
+    showDialog<void>(
+      context: context,
+      builder: (_) => _EditSocialDialog(state: state),
+    );
+  }
+
+  void _showBusinessRulesDialog(BuildContext context, AppState state) {
+    showDialog<void>(
+      context: context,
+      builder: (_) => _EditBusinessRulesDialog(state: state),
+    );
+  }
+
+  void _showInternalNotesDialog(BuildContext context, AppState state) {
+    showDialog<void>(
+      context: context,
+      builder: (_) => _EditInternalNotesDialog(state: state),
     );
   }
 }
 
-class _CompanyInfoCard extends StatelessWidget {
-  final Company company;
+class _SectionCard extends StatelessWidget {
+  final String title;
+  final IconData icon;
+  final Widget child;
+  final VoidCallback onEdit;
 
-  const _CompanyInfoCard({required this.company});
+  const _SectionCard({
+    required this.title,
+    required this.icon,
+    required this.child,
+    required this.onEdit,
+  });
 
   @override
   Widget build(BuildContext context) {
+    final l = AppLocalizations.of(context)!;
     final theme = Theme.of(context);
     return Card(
+      margin: const EdgeInsets.only(bottom: 14),
       child: Padding(
-        padding: const EdgeInsets.all(24),
+        padding: const EdgeInsets.all(20),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Row(
               children: [
-                CircleAvatar(
-                  radius: 28,
-                  backgroundColor: theme.colorScheme.primaryContainer,
-                  child: Icon(
-                    Icons.business,
-                    size: 28,
-                    color: theme.colorScheme.onPrimaryContainer,
+                Icon(icon, color: theme.colorScheme.primary),
+                const SizedBox(width: 10),
+                Expanded(
+                  child: Text(
+                    title,
+                    style: theme.textTheme.titleMedium?.copyWith(
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ),
-                const SizedBox(width: 16),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      company.name,
-                      style: theme.textTheme.titleLarge?.copyWith(
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    Text(
-                      company.industry,
-                      style: theme.textTheme.bodyMedium?.copyWith(
-                        color: theme.colorScheme.primary,
-                      ),
-                    ),
-                  ],
+                TextButton.icon(
+                  onPressed: onEdit,
+                  icon: const Icon(Icons.edit_outlined, size: 18),
+                  label: Text(l.btnEdit),
                 ),
               ],
             ),
-            const SizedBox(height: 20),
-            const Divider(),
-            const SizedBox(height: 16),
-            Text(company.description, style: theme.textTheme.bodyMedium),
-            const SizedBox(height: 20),
-            _InfoRow(icon: Icons.language, label: company.website),
-            const SizedBox(height: 8),
-            _InfoRow(icon: Icons.email_outlined, label: company.email),
-            const SizedBox(height: 8),
-            _InfoRow(icon: Icons.phone_outlined, label: company.phone),
-            const SizedBox(height: 8),
-            _InfoRow(icon: Icons.location_on_outlined, label: company.address),
+            const SizedBox(height: 14),
+            child,
           ],
         ),
+      ),
+    );
+  }
+}
+
+class _Header extends StatelessWidget {
+  final Company company;
+
+  const _Header({required this.company});
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    return Row(
+      children: [
+        CircleAvatar(
+          radius: 28,
+          backgroundColor: theme.colorScheme.primaryContainer,
+          child: Icon(
+            Icons.business,
+            size: 28,
+            color: theme.colorScheme.onPrimaryContainer,
+          ),
+        ),
+        const SizedBox(width: 16),
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                company.companyName,
+                style: theme.textTheme.titleLarge?.copyWith(
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              Text(
+                company.industry,
+                style: theme.textTheme.bodyMedium?.copyWith(
+                  color: theme.colorScheme.primary,
+                ),
+              ),
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class _InfoChip extends StatelessWidget {
+  final IconData icon;
+  final String label;
+
+  const _InfoChip({required this.icon, required this.label});
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 7),
+      decoration: BoxDecoration(
+        color: theme.colorScheme.surfaceContainerHighest,
+        borderRadius: BorderRadius.circular(6),
+      ),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Icon(icon, size: 15, color: theme.colorScheme.onSurfaceVariant),
+          const SizedBox(width: 6),
+          Text(label, style: theme.textTheme.labelMedium),
+        ],
       ),
     );
   }
@@ -139,18 +304,138 @@ class _InfoRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 9),
+      child: Row(
+        children: [
+          Icon(
+            icon,
+            size: 18,
+            color: Theme.of(context).colorScheme.onSurfaceVariant,
+          ),
+          const SizedBox(width: 10),
+          Flexible(
+            child: Text(label, style: Theme.of(context).textTheme.bodyMedium),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _SocialChip extends StatelessWidget {
+  final String label;
+  final String url;
+
+  const _SocialChip({required this.label, required this.url});
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    return Chip(
+      avatar: const Icon(Icons.link, size: 16),
+      label: Text('$label · $url'),
+      labelStyle: theme.textTheme.labelSmall,
+    );
+  }
+}
+
+class _BusinessRulesView extends StatelessWidget {
+  final BusinessRules rules;
+
+  const _BusinessRulesView({required this.rules});
+
+  @override
+  Widget build(BuildContext context) {
+    final l = AppLocalizations.of(context)!;
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Icon(
-          icon,
-          size: 18,
-          color: Theme.of(context).colorScheme.onSurfaceVariant,
+        _RuleBlock(title: l.companyBrandVoice, text: rules.brandVoice),
+        _RuleList(title: l.companyDoNotSay, items: rules.doNotSay),
+        _RuleList(
+          title: l.companyAllowedSupportTopics,
+          items: rules.allowedSupportTopics,
         ),
-        const SizedBox(width: 10),
-        Flexible(
-          child: Text(label, style: Theme.of(context).textTheme.bodyMedium),
+        _RuleBlock(
+          title: l.companyEscalationNotes,
+          text: rules.escalationNotes,
         ),
+        if (rules.disclaimerText != null && rules.disclaimerText!.isNotEmpty)
+          _RuleBlock(
+            title: l.companyDisclaimerText,
+            text: rules.disclaimerText!,
+          ),
       ],
+    );
+  }
+}
+
+class _RuleBlock extends StatelessWidget {
+  final String title;
+  final String text;
+
+  const _RuleBlock({required this.title, required this.text});
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 12),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(title, style: theme.textTheme.labelLarge),
+          const SizedBox(height: 3),
+          Text(text.isEmpty ? '-' : text),
+        ],
+      ),
+    );
+  }
+}
+
+class _RuleList extends StatelessWidget {
+  final String title;
+  final List<String> items;
+
+  const _RuleList({required this.title, required this.items});
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 12),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(title, style: theme.textTheme.labelLarge),
+          const SizedBox(height: 6),
+          if (items.isEmpty)
+            const Text('-')
+          else
+            Wrap(
+              spacing: 8,
+              runSpacing: 8,
+              children: items.map((item) => Chip(label: Text(item))).toList(),
+            ),
+        ],
+      ),
+    );
+  }
+}
+
+class _EmptyText extends StatelessWidget {
+  final String text;
+
+  const _EmptyText({required this.text});
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      text,
+      style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+        color: Theme.of(context).colorScheme.onSurfaceVariant,
+      ),
     );
   }
 }
@@ -213,19 +498,80 @@ class _ProductCard extends StatelessWidget {
   }
 }
 
-class _EditCompanyDialog extends StatefulWidget {
+class _EditProfileDialog extends StatefulWidget {
   final AppState state;
 
-  const _EditCompanyDialog({required this.state});
+  const _EditProfileDialog({required this.state});
 
   @override
-  State<_EditCompanyDialog> createState() => _EditCompanyDialogState();
+  State<_EditProfileDialog> createState() => _EditProfileDialogState();
 }
 
-class _EditCompanyDialogState extends State<_EditCompanyDialog> {
+class _EditProfileDialogState extends State<_EditProfileDialog> {
   late final TextEditingController _name;
   late final TextEditingController _industry;
   late final TextEditingController _description;
+  late final TextEditingController _country;
+  late final TextEditingController _primaryLanguage;
+
+  @override
+  void initState() {
+    super.initState();
+    final c = widget.state.company;
+    _name = TextEditingController(text: c.name);
+    _industry = TextEditingController(text: c.industry);
+    _description = TextEditingController(text: c.description);
+    _country = TextEditingController(text: c.country);
+    _primaryLanguage = TextEditingController(text: c.primaryLanguage);
+  }
+
+  @override
+  void dispose() {
+    _name.dispose();
+    _industry.dispose();
+    _description.dispose();
+    _country.dispose();
+    _primaryLanguage.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final l = AppLocalizations.of(context)!;
+    return _EditDialogScaffold(
+      title: l.companyProfileSection,
+      children: [
+        _field(l.fieldCompanyName, _name),
+        _field(l.fieldIndustry, _industry),
+        _field(l.fieldDescription, _description, maxLines: 4),
+        _field(l.fieldCountry, _country),
+        _field(l.fieldPrimaryLanguage, _primaryLanguage),
+      ],
+      onSave: () {
+        widget.state.updateCompany(
+          widget.state.company.copyWith(
+            name: _name.text.trim(),
+            industry: _industry.text.trim(),
+            description: _description.text.trim(),
+            country: _country.text.trim(),
+            primaryLanguage: _primaryLanguage.text.trim(),
+          ),
+        );
+      },
+    );
+  }
+}
+
+class _EditContactDialog extends StatefulWidget {
+  final AppState state;
+
+  const _EditContactDialog({required this.state});
+
+  @override
+  State<_EditContactDialog> createState() => _EditContactDialogState();
+}
+
+class _EditContactDialogState extends State<_EditContactDialog> {
   late final TextEditingController _website;
   late final TextEditingController _email;
   late final TextEditingController _phone;
@@ -235,20 +581,14 @@ class _EditCompanyDialogState extends State<_EditCompanyDialog> {
   void initState() {
     super.initState();
     final c = widget.state.company;
-    _name = TextEditingController(text: c.name);
-    _industry = TextEditingController(text: c.industry);
-    _description = TextEditingController(text: c.description);
     _website = TextEditingController(text: c.website);
     _email = TextEditingController(text: c.email);
-    _phone = TextEditingController(text: c.phone);
+    _phone = TextEditingController(text: c.supportPhone);
     _address = TextEditingController(text: c.address);
   }
 
   @override
   void dispose() {
-    _name.dispose();
-    _industry.dispose();
-    _description.dispose();
     _website.dispose();
     _email.dispose();
     _phone.dispose();
@@ -259,23 +599,233 @@ class _EditCompanyDialogState extends State<_EditCompanyDialog> {
   @override
   Widget build(BuildContext context) {
     final l = AppLocalizations.of(context)!;
-    return AlertDialog(
-      title: Text(l.companyEditDialogTitle),
-      content: SizedBox(
-        width: 480,
-        child: SingleChildScrollView(
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              _field(l.fieldCompanyName, _name),
-              _field(l.fieldIndustry, _industry),
-              _field(l.fieldDescription, _description, maxLines: 3),
-              _field(l.fieldWebsite, _website),
-              _field(l.fieldEmail, _email),
-              _field(l.fieldPhone, _phone),
-              _field(l.fieldAddress, _address),
-            ],
+    return _EditDialogScaffold(
+      title: l.companyContactWebSection,
+      children: [
+        _field(l.fieldWebsite, _website),
+        _field(l.fieldSupportEmail, _email),
+        _field(l.fieldSupportPhone, _phone),
+        _field(l.fieldAddress, _address),
+      ],
+      onSave: () {
+        widget.state.updateCompany(
+          widget.state.company.copyWith(
+            website: _website.text.trim(),
+            email: _email.text.trim(),
+            phone: _phone.text.trim(),
+            address: _address.text.trim(),
           ),
+        );
+      },
+    );
+  }
+}
+
+class _EditSocialDialog extends StatefulWidget {
+  final AppState state;
+
+  const _EditSocialDialog({required this.state});
+
+  @override
+  State<_EditSocialDialog> createState() => _EditSocialDialogState();
+}
+
+class _EditSocialDialogState extends State<_EditSocialDialog> {
+  late final TextEditingController _website;
+  late final TextEditingController _facebook;
+  late final TextEditingController _instagram;
+  late final TextEditingController _youtube;
+  late final TextEditingController _telegram;
+
+  @override
+  void initState() {
+    super.initState();
+    final links = widget.state.company.socialLinks;
+    _website = TextEditingController(text: links['website'] ?? '');
+    _facebook = TextEditingController(text: links['facebook'] ?? '');
+    _instagram = TextEditingController(text: links['instagram'] ?? '');
+    _youtube = TextEditingController(text: links['youtube'] ?? '');
+    _telegram = TextEditingController(text: links['telegram'] ?? '');
+  }
+
+  @override
+  void dispose() {
+    _website.dispose();
+    _facebook.dispose();
+    _instagram.dispose();
+    _youtube.dispose();
+    _telegram.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final l = AppLocalizations.of(context)!;
+    return _EditDialogScaffold(
+      title: l.companySocialSection,
+      children: [
+        _field(l.fieldWebsite, _website),
+        _field(l.fieldFacebook, _facebook),
+        _field(l.fieldInstagram, _instagram),
+        _field(l.fieldYoutube, _youtube),
+        _field(l.fieldTelegram, _telegram),
+      ],
+      onSave: () {
+        widget.state.updateCompany(
+          widget.state.company.copyWith(
+            socialLinks: {
+              'website': _website.text.trim(),
+              'facebook': _facebook.text.trim(),
+              'instagram': _instagram.text.trim(),
+              'youtube': _youtube.text.trim(),
+              'telegram': _telegram.text.trim(),
+            },
+          ),
+        );
+      },
+    );
+  }
+}
+
+class _EditBusinessRulesDialog extends StatefulWidget {
+  final AppState state;
+
+  const _EditBusinessRulesDialog({required this.state});
+
+  @override
+  State<_EditBusinessRulesDialog> createState() =>
+      _EditBusinessRulesDialogState();
+}
+
+class _EditBusinessRulesDialogState extends State<_EditBusinessRulesDialog> {
+  late final TextEditingController _brandVoice;
+  late final TextEditingController _doNotSay;
+  late final TextEditingController _allowedSupportTopics;
+  late final TextEditingController _escalationNotes;
+  late final TextEditingController _disclaimerText;
+
+  @override
+  void initState() {
+    super.initState();
+    final rules = widget.state.businessRules;
+    _brandVoice = TextEditingController(text: rules.brandVoice);
+    _doNotSay = TextEditingController(text: rules.doNotSay.join('\n'));
+    _allowedSupportTopics = TextEditingController(
+      text: rules.allowedSupportTopics.join('\n'),
+    );
+    _escalationNotes = TextEditingController(text: rules.escalationNotes);
+    _disclaimerText = TextEditingController(text: rules.disclaimerText ?? '');
+  }
+
+  @override
+  void dispose() {
+    _brandVoice.dispose();
+    _doNotSay.dispose();
+    _allowedSupportTopics.dispose();
+    _escalationNotes.dispose();
+    _disclaimerText.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final l = AppLocalizations.of(context)!;
+    return _EditDialogScaffold(
+      title: l.companyBusinessRulesSection,
+      children: [
+        _field(l.companyBrandVoice, _brandVoice, maxLines: 3),
+        _field(l.companyDoNotSay, _doNotSay, maxLines: 5),
+        _field(
+          l.companyAllowedSupportTopics,
+          _allowedSupportTopics,
+          maxLines: 5,
+        ),
+        _field(l.companyEscalationNotes, _escalationNotes, maxLines: 4),
+        _field(l.companyDisclaimerText, _disclaimerText, maxLines: 3),
+      ],
+      onSave: () {
+        widget.state.updateBusinessRules(
+          BusinessRules(
+            brandVoice: _brandVoice.text.trim(),
+            doNotSay: _lines(_doNotSay.text),
+            allowedSupportTopics: _lines(_allowedSupportTopics.text),
+            escalationNotes: _escalationNotes.text.trim(),
+            disclaimerText: _disclaimerText.text.trim().isEmpty
+                ? null
+                : _disclaimerText.text.trim(),
+          ),
+        );
+      },
+    );
+  }
+}
+
+class _EditInternalNotesDialog extends StatefulWidget {
+  final AppState state;
+
+  const _EditInternalNotesDialog({required this.state});
+
+  @override
+  State<_EditInternalNotesDialog> createState() =>
+      _EditInternalNotesDialogState();
+}
+
+class _EditInternalNotesDialogState extends State<_EditInternalNotesDialog> {
+  late final TextEditingController _internalNotes;
+
+  @override
+  void initState() {
+    super.initState();
+    _internalNotes = TextEditingController(
+      text: widget.state.company.internalNotes,
+    );
+  }
+
+  @override
+  void dispose() {
+    _internalNotes.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final l = AppLocalizations.of(context)!;
+    return _EditDialogScaffold(
+      title: l.companyInternalNotesSection,
+      children: [
+        _field(l.companyInternalNotesSection, _internalNotes, maxLines: 6),
+      ],
+      onSave: () {
+        widget.state.updateCompany(
+          widget.state.company.copyWith(
+            internalNotes: _internalNotes.text.trim(),
+          ),
+        );
+      },
+    );
+  }
+}
+
+class _EditDialogScaffold extends StatelessWidget {
+  final String title;
+  final List<Widget> children;
+  final VoidCallback onSave;
+
+  const _EditDialogScaffold({
+    required this.title,
+    required this.children,
+    required this.onSave,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final l = AppLocalizations.of(context)!;
+    return AlertDialog(
+      title: Text(title),
+      content: SizedBox(
+        width: 520,
+        child: SingleChildScrollView(
+          child: Column(mainAxisSize: MainAxisSize.min, children: children),
         ),
       ),
       actions: [
@@ -285,17 +835,7 @@ class _EditCompanyDialogState extends State<_EditCompanyDialog> {
         ),
         FilledButton(
           onPressed: () {
-            widget.state.updateCompany(
-              widget.state.company.copyWith(
-                name: _name.text,
-                industry: _industry.text,
-                description: _description.text,
-                website: _website.text,
-                email: _email.text,
-                phone: _phone.text,
-                address: _address.text,
-              ),
-            );
+            onSave();
             Navigator.of(context).pop();
           },
           child: Text(l.btnSave),
@@ -303,19 +843,27 @@ class _EditCompanyDialogState extends State<_EditCompanyDialog> {
       ],
     );
   }
+}
 
-  Widget _field(String label, TextEditingController ctrl, {int maxLines = 1}) {
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 12),
-      child: TextField(
-        controller: ctrl,
-        maxLines: maxLines,
-        decoration: InputDecoration(
-          labelText: label,
-          border: const OutlineInputBorder(),
-          isDense: true,
-        ),
+Widget _field(String label, TextEditingController ctrl, {int maxLines = 1}) {
+  return Padding(
+    padding: const EdgeInsets.only(bottom: 12),
+    child: TextField(
+      controller: ctrl,
+      maxLines: maxLines,
+      decoration: InputDecoration(
+        labelText: label,
+        border: const OutlineInputBorder(),
+        isDense: true,
       ),
-    );
-  }
+    ),
+  );
+}
+
+List<String> _lines(String value) {
+  return value
+      .split('\n')
+      .map((line) => line.trim())
+      .where((line) => line.isNotEmpty)
+      .toList();
 }
