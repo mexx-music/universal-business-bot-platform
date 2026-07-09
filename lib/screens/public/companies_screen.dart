@@ -92,87 +92,111 @@ class _CompanySelectionCard extends StatelessWidget {
       child: InkWell(
         borderRadius: BorderRadius.circular(12),
         onTap: onSelect,
-        child: Padding(
-          padding: const EdgeInsets.all(18),
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              CircleAvatar(
-                backgroundColor: accent.withAlpha(25),
-                child: Icon(
-                  isSchnurrPurr
-                      ? Icons.spa_outlined
-                      : Icons.health_and_safety_outlined,
-                  color: accent,
+        child: LayoutBuilder(
+          builder: (context, constraints) {
+            final compact = constraints.maxWidth < 560;
+            final content = Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                CircleAvatar(
+                  backgroundColor: accent.withAlpha(25),
+                  child: Icon(
+                    isSchnurrPurr
+                        ? Icons.spa_outlined
+                        : Icons.health_and_safety_outlined,
+                    color: accent,
+                  ),
                 ),
-              ),
-              const SizedBox(width: 14),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      children: [
-                        Expanded(
-                          child: Text(
-                            company.name,
-                            style: theme.textTheme.titleMedium?.copyWith(
-                              fontWeight: FontWeight.bold,
+                const SizedBox(width: 14),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        children: [
+                          Expanded(
+                            child: Text(
+                              company.name,
+                              style: theme.textTheme.titleMedium?.copyWith(
+                                fontWeight: FontWeight.bold,
+                              ),
                             ),
                           ),
-                        ),
-                        if (selected)
-                          Icon(
-                            Icons.check_circle,
-                            color: theme.colorScheme.primary,
-                            size: 20,
-                          ),
-                      ],
-                    ),
-                    const SizedBox(height: 2),
-                    Text(
-                      company.industry,
-                      style: theme.textTheme.bodySmall?.copyWith(
-                        color: theme.colorScheme.primary,
+                          if (selected)
+                            Icon(
+                              Icons.check_circle,
+                              color: theme.colorScheme.primary,
+                              size: 20,
+                            ),
+                        ],
                       ),
-                    ),
-                    const SizedBox(height: 8),
-                    Text(
-                      company.description,
-                      maxLines: 2,
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                    const SizedBox(height: 12),
-                    Wrap(
-                      spacing: 8,
-                      runSpacing: 8,
-                      children: [
-                        _CountChip(
-                          icon: Icons.fact_check_outlined,
-                          label: l.companyAuditScore(auditScore),
+                      const SizedBox(height: 2),
+                      Text(
+                        company.industry,
+                        style: theme.textTheme.bodySmall?.copyWith(
+                          color: theme.colorScheme.primary,
                         ),
-                        _CountChip(
-                          icon: Icons.library_books_outlined,
-                          label: l.companyKnowledgeCount(
-                            workspace.knowledgeEntries.length,
+                      ),
+                      const SizedBox(height: 8),
+                      Text(
+                        company.description,
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                      const SizedBox(height: 12),
+                      Wrap(
+                        spacing: 8,
+                        runSpacing: 8,
+                        children: [
+                          _CountChip(
+                            icon: Icons.fact_check_outlined,
+                            label: l.companyAuditScore(auditScore),
                           ),
+                          _CountChip(
+                            icon: Icons.library_books_outlined,
+                            label: l.companyKnowledgeCount(
+                              workspace.knowledgeEntries.length,
+                            ),
+                          ),
+                          _CountChip(
+                            icon: Icons.rate_review_outlined,
+                            label: l.companyOpenReviewCount(openReviews),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            );
+
+            return Padding(
+              padding: const EdgeInsets.all(18),
+              child: compact
+                  ? Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        content,
+                        const SizedBox(height: 14),
+                        FilledButton.tonal(
+                          onPressed: onSelect,
+                          child: Text(l.companySelectButton),
                         ),
-                        _CountChip(
-                          icon: Icons.rate_review_outlined,
-                          label: l.companyOpenReviewCount(openReviews),
+                      ],
+                    )
+                  : Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Expanded(child: content),
+                        const SizedBox(width: 12),
+                        FilledButton.tonal(
+                          onPressed: onSelect,
+                          child: Text(l.companySelectButton),
                         ),
                       ],
                     ),
-                  ],
-                ),
-              ),
-              const SizedBox(width: 12),
-              FilledButton.tonal(
-                onPressed: onSelect,
-                child: Text(l.companySelectButton),
-              ),
-            ],
-          ),
+            );
+          },
         ),
       ),
     );

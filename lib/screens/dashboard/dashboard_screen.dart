@@ -535,41 +535,69 @@ class _RecommendationCard extends StatelessWidget {
       margin: const EdgeInsets.only(bottom: 10),
       child: Padding(
         padding: const EdgeInsets.all(16),
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            CircleAvatar(
-              backgroundColor: resolvedColor.withAlpha(28),
-              child: Icon(resolvedIcon, color: resolvedColor, size: 20),
-            ),
-            const SizedBox(width: 14),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    resolvedTitle,
-                    style: theme.textTheme.titleSmall?.copyWith(
-                      fontWeight: FontWeight.bold,
-                    ),
+        child: LayoutBuilder(
+          builder: (context, constraints) {
+            final compact = constraints.maxWidth < 460;
+            final textBlock = Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  resolvedTitle,
+                  style: theme.textTheme.titleSmall?.copyWith(
+                    fontWeight: FontWeight.bold,
                   ),
-                  const SizedBox(height: 4),
-                  Text(
-                    resolvedDescription,
-                    style: theme.textTheme.bodySmall?.copyWith(
-                      color: theme.colorScheme.onSurfaceVariant,
-                    ),
+                ),
+                const SizedBox(height: 4),
+                Text(
+                  resolvedDescription,
+                  style: theme.textTheme.bodySmall?.copyWith(
+                    color: theme.colorScheme.onSurfaceVariant,
                   ),
-                ],
-              ),
-            ),
-            const SizedBox(width: 12),
-            if (resolvedOnTap != null)
-              TextButton(
-                onPressed: resolvedOnTap,
-                child: Text(resolvedActionLabel),
-              ),
-          ],
+                ),
+              ],
+            );
+
+            final action = resolvedOnTap == null
+                ? null
+                : TextButton(
+                    onPressed: resolvedOnTap,
+                    child: Text(resolvedActionLabel),
+                  );
+
+            return Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                CircleAvatar(
+                  backgroundColor: resolvedColor.withAlpha(28),
+                  child: Icon(resolvedIcon, color: resolvedColor, size: 20),
+                ),
+                const SizedBox(width: 14),
+                Expanded(
+                  child: compact
+                      ? Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            textBlock,
+                            if (action != null) ...[
+                              const SizedBox(height: 8),
+                              action,
+                            ],
+                          ],
+                        )
+                      : Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Expanded(child: textBlock),
+                            if (action != null) ...[
+                              const SizedBox(width: 12),
+                              action,
+                            ],
+                          ],
+                        ),
+                ),
+              ],
+            );
+          },
         ),
       ),
     );

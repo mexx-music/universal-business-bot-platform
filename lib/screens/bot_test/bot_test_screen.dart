@@ -176,7 +176,7 @@ class _BotTestScreenState extends State<BotTestScreen> {
         .toList();
     final match = _findBestMatch(text, safeEntries);
     final answer = match != null
-        ? _formatAnswer(match, config)
+        ? _formatAnswer(match, config, l)
         : config.escalateNoMatch && config.handoverMessage.trim().isNotEmpty
         ? config.handoverMessage
         : l.botTestNoMatch;
@@ -282,11 +282,17 @@ class _BotTestScreenState extends State<BotTestScreen> {
     return bestScore >= 2 ? best : null;
   }
 
-  String _formatAnswer(KnowledgeEntry entry, BotConfiguration config) {
+  String _formatAnswer(
+    KnowledgeEntry entry,
+    BotConfiguration config,
+    AppLocalizations l,
+  ) {
     return switch (config.answerStyle) {
       BotAnswerStyle.short => _firstSentence(entry.content),
       BotAnswerStyle.balanced => entry.content,
-      BotAnswerStyle.detailed => '${entry.content}\n\nQuelle: ${entry.source}',
+      BotAnswerStyle.detailed =>
+        '${entry.content}\n\n${l.fieldSource}: '
+            '${entry.source}',
     };
   }
 

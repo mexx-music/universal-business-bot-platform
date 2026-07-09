@@ -57,14 +57,17 @@ class BotSettingsScreen extends StatelessWidget {
           _SettingsCard(
             title: l.botSettingsLanguage,
             icon: Icons.translate_outlined,
-            child: SegmentedButton<String>(
-              segments: [
-                ButtonSegment(value: 'de', label: Text(l.languageGerman)),
-                ButtonSegment(value: 'en', label: Text(l.languageEnglish)),
-              ],
-              selected: {config.defaultLanguage},
-              onSelectionChanged: (values) => state.updateBotConfiguration(
-                config.copyWith(defaultLanguage: values.first),
+            child: SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: SegmentedButton<String>(
+                segments: [
+                  ButtonSegment(value: 'de', label: Text(l.languageGerman)),
+                  ButtonSegment(value: 'en', label: Text(l.languageEnglish)),
+                ],
+                selected: {config.defaultLanguage},
+                onSelectionChanged: (values) => state.updateBotConfiguration(
+                  config.copyWith(defaultLanguage: values.first),
+                ),
               ),
             ),
           ),
@@ -241,14 +244,17 @@ class _SegmentedEnum<T> extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SegmentedButton<T>(
-      segments: values
-          .map(
-            (value) => ButtonSegment(value: value, label: Text(label(value))),
-          )
-          .toList(),
-      selected: {value},
-      onSelectionChanged: (selection) => onChanged(selection.first),
+    return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      child: SegmentedButton<T>(
+        segments: values
+            .map(
+              (value) => ButtonSegment(value: value, label: Text(label(value))),
+            )
+            .toList(),
+        selected: {value},
+        onSelectionChanged: (selection) => onChanged(selection.first),
+      ),
     );
   }
 }

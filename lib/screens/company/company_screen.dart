@@ -332,9 +332,18 @@ class _SocialChip extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final screenWidth = MediaQuery.sizeOf(context).width;
+    final maxLabelWidth = screenWidth < 480 ? screenWidth - 112 : 360.0;
     return Chip(
       avatar: const Icon(Icons.link, size: 16),
-      label: Text('$label · $url'),
+      label: ConstrainedBox(
+        constraints: BoxConstraints(maxWidth: maxLabelWidth),
+        child: Text(
+          '$label · $url',
+          maxLines: 1,
+          overflow: TextOverflow.ellipsis,
+        ),
+      ),
       labelStyle: theme.textTheme.labelSmall,
     );
   }

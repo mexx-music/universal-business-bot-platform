@@ -24,28 +24,56 @@ class LandingScreen extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Row(
-                    children: [
-                      Icon(
-                        Icons.hub_rounded,
-                        color: theme.colorScheme.primary,
-                        size: 32,
-                      ),
-                      const SizedBox(width: 10),
-                      Text(
-                        l.appName,
-                        style: theme.textTheme.titleLarge?.copyWith(
-                          color: theme.colorScheme.primary,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      const Spacer(),
-                      TextButton.icon(
+                  LayoutBuilder(
+                    builder: (context, constraints) {
+                      final compact = constraints.maxWidth < 520;
+                      final brand = Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Icon(
+                            Icons.hub_rounded,
+                            color: theme.colorScheme.primary,
+                            size: 32,
+                          ),
+                          const SizedBox(width: 10),
+                          Flexible(
+                            child: Text(
+                              l.appName,
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                              style: theme.textTheme.titleLarge?.copyWith(
+                                color: theme.colorScheme.primary,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
+                        ],
+                      );
+                      final companyButton = TextButton.icon(
                         onPressed: () => context.go('/companies'),
                         icon: const Icon(Icons.business_outlined, size: 18),
                         label: Text(l.companySelectTitle),
-                      ),
-                    ],
+                      );
+
+                      if (compact) {
+                        return Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            brand,
+                            const SizedBox(height: 8),
+                            companyButton,
+                          ],
+                        );
+                      }
+
+                      return Row(
+                        children: [
+                          Expanded(child: brand),
+                          const SizedBox(width: 16),
+                          companyButton,
+                        ],
+                      );
+                    },
                   ),
                   const SizedBox(height: 52),
                   Text(
