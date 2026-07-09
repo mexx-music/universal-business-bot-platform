@@ -20,6 +20,10 @@ class DashboardScreen extends StatelessWidget {
         .length;
     final redirects = state.botLogs.where((log) => log.redirected).length;
     final auditPct = (state.auditScore * 100).round();
+    final auditMissing = state.auditMissingCount;
+    final auditPartial = state.auditPartialCount;
+    final auditComplete = state.auditCompleteCount;
+    final auditHighPriorityOpen = state.auditHighPriorityOpenCount;
 
     final greenCount = state.knowledgeEntries
         .where((e) => e.riskLevel == RiskLevel.green)
@@ -87,6 +91,30 @@ class DashboardScreen extends StatelessWidget {
                       : auditPct >= 50
                       ? Colors.orange
                       : Colors.red,
+                ),
+                StatCard(
+                  label: l.statAuditMissing,
+                  value: '$auditMissing',
+                  icon: Icons.cancel_outlined,
+                  color: auditMissing > 0 ? Colors.red : Colors.green,
+                ),
+                StatCard(
+                  label: l.statAuditPartial,
+                  value: '$auditPartial',
+                  icon: Icons.pending_outlined,
+                  color: auditPartial > 0 ? Colors.orange : Colors.green,
+                ),
+                StatCard(
+                  label: l.statAuditComplete,
+                  value: '$auditComplete',
+                  icon: Icons.check_circle_outline,
+                  color: Colors.green,
+                ),
+                StatCard(
+                  label: l.statAuditHighPriorityOpen,
+                  value: '$auditHighPriorityOpen',
+                  icon: Icons.priority_high,
+                  color: auditHighPriorityOpen > 0 ? Colors.red : Colors.green,
                 ),
               ];
               return GridView.builder(

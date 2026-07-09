@@ -40,6 +40,7 @@
     }
   },
 
+  "navHome": "Startseite",
   "navDashboard": "Dashboard",
   "navCompany": "Firma",
   "navAudit": "Audit",
@@ -148,6 +149,57 @@
       "count": { "type": "int" }
     }
   },
+  "auditBusinessSubtitle": "Business-Status und Bot-Bereitschaft · {companyName}",
+  "@auditBusinessSubtitle": {
+    "placeholders": {
+      "companyName": { "type": "String" }
+    }
+  },
+  "auditBusinessStatusTitle": "Status-Erhebung",
+  "auditItemsComplete": "vollständig",
+  "auditMissingCount": "{count} fehlt",
+  "@auditMissingCount": {
+    "placeholders": {
+      "count": { "type": "int" }
+    }
+  },
+  "auditPartialCount": "{count} teilweise",
+  "@auditPartialCount": {
+    "placeholders": {
+      "count": { "type": "int" }
+    }
+  },
+  "auditCompleteCount": "{count} vollständig",
+  "@auditCompleteCount": {
+    "placeholders": {
+      "count": { "type": "int" }
+    }
+  },
+  "auditHighPriorityOpenCount": "{count} High-Priority offen",
+  "@auditHighPriorityOpenCount": {
+    "placeholders": {
+      "count": { "type": "int" }
+    }
+  },
+  "auditAreaCompanyProfile": "Firmenprofil",
+  "auditAreaWebsite": "Website / Webauftritt",
+  "auditAreaProducts": "Produkte / Dienstleistungen",
+  "auditAreaSupportKnowledge": "FAQ / Supportwissen",
+  "auditAreaTrustMaterial": "Rezensionen / Vertrauensmaterial",
+  "auditAreaSocialPresence": "Social Media / Außenwirkung",
+  "auditAreaSources": "Quellen / Dokumente",
+  "auditAreaRiskRules": "Risiko / No-Go-Regeln",
+  "auditAreaBotReadiness": "Bot-Bereitschaft",
+  "auditStatusMissing": "Fehlt",
+  "auditStatusPartial": "Teilweise",
+  "auditStatusComplete": "Vollständig",
+  "auditPriorityLow": "Niedrig",
+  "auditPriorityMedium": "Mittel",
+  "auditPriorityHigh": "Hoch",
+  "auditNote": "Notiz",
+  "auditRecommendation": "Empfehlung",
+  "auditEditNote": "Notiz bearbeiten",
+  "auditNoteHint": "Interne Notiz zu diesem Auditpunkt …",
 
   "knowledgeTitle": "Wissensbasis",
   "knowledgeEntryCount": "{count} Einträge",
@@ -225,6 +277,10 @@
   "statOpenRequests": "Offene Anfragen",
   "statRedirects": "Weiterleitungen",
   "statAuditScore": "Audit-Score",
+  "statAuditMissing": "Audit fehlt",
+  "statAuditPartial": "Audit teilweise",
+  "statAuditComplete": "Audit vollständig",
+  "statAuditHighPriorityOpen": "High-Priority-Lücken",
   "statReviewOpen": "Offen zur Prüfung",
   "dashboardRiskTitle": "Wissensbasis nach Risikostufe",
   "knowledgeRisk": "Risikostufe",

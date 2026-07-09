@@ -99,7 +99,7 @@ class LandingScreen extends StatelessWidget {
                   const SizedBox(height: 14),
                   LayoutBuilder(
                     builder: (context, constraints) {
-                      final isWide = constraints.maxWidth >= 760;
+                      final isWide = constraints.maxWidth >= 900;
                       return GridView.builder(
                         shrinkWrap: true,
                         physics: const NeverScrollableScrollPhysics(),
@@ -107,7 +107,7 @@ class LandingScreen extends StatelessWidget {
                           crossAxisCount: isWide ? 2 : 1,
                           crossAxisSpacing: 16,
                           mainAxisSpacing: 16,
-                          mainAxisExtent: 238,
+                          mainAxisExtent: isWide ? 286 : 260,
                         ),
                         itemCount: state.companies.length,
                         itemBuilder: (context, index) => _DemoCompanyCard(
@@ -230,22 +230,36 @@ class _DemoCompanyCard extends StatelessWidget {
                 style: theme.textTheme.bodyMedium,
               ),
               const Spacer(),
-              Row(
+              Wrap(
+                spacing: 18,
+                runSpacing: 12,
+                crossAxisAlignment: WrapCrossAlignment.center,
                 children: [
-                  _MiniMetric(
-                    value: workspace.products.length,
-                    label: l.companyProducts,
+                  SizedBox(
+                    width: 120,
+                    child: _MiniMetric(
+                      value: workspace.products.length,
+                      label: l.companyProducts,
+                    ),
                   ),
-                  const SizedBox(width: 10),
-                  _MiniMetric(
-                    value: workspace.knowledgeEntries.length,
-                    label: l.statKnowledgeEntries,
+                  SizedBox(
+                    width: 120,
+                    child: _MiniMetric(
+                      value: workspace.knowledgeEntries.length,
+                      label: l.statKnowledgeEntries,
+                    ),
                   ),
-                  const Spacer(),
-                  FilledButton.icon(
-                    onPressed: onOpen,
-                    icon: const Icon(Icons.open_in_new, size: 18),
-                    label: Text(l.landingOpenDemo),
+                  ConstrainedBox(
+                    constraints: const BoxConstraints(maxWidth: 210),
+                    child: FilledButton.icon(
+                      onPressed: onOpen,
+                      icon: const Icon(Icons.open_in_new, size: 18),
+                      label: Text(
+                        l.landingOpenDemo,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ),
                   ),
                 ],
               ),

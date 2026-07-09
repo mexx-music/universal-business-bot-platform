@@ -224,6 +224,12 @@ abstract class AppLocalizations {
   /// **'{count} Logs'**
   String companyLogCount(int count);
 
+  /// No description provided for @navHome.
+  ///
+  /// In de, this message translates to:
+  /// **'Startseite'**
+  String get navHome;
+
   /// No description provided for @navDashboard.
   ///
   /// In de, this message translates to:
@@ -590,6 +596,162 @@ abstract class AppLocalizations {
   /// **'{count} Testanfragen'**
   String auditDescTestCount(int count);
 
+  /// No description provided for @auditBusinessSubtitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Business-Status und Bot-Bereitschaft · {companyName}'**
+  String auditBusinessSubtitle(String companyName);
+
+  /// No description provided for @auditBusinessStatusTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Status-Erhebung'**
+  String get auditBusinessStatusTitle;
+
+  /// No description provided for @auditItemsComplete.
+  ///
+  /// In de, this message translates to:
+  /// **'vollständig'**
+  String get auditItemsComplete;
+
+  /// No description provided for @auditMissingCount.
+  ///
+  /// In de, this message translates to:
+  /// **'{count} fehlt'**
+  String auditMissingCount(int count);
+
+  /// No description provided for @auditPartialCount.
+  ///
+  /// In de, this message translates to:
+  /// **'{count} teilweise'**
+  String auditPartialCount(int count);
+
+  /// No description provided for @auditCompleteCount.
+  ///
+  /// In de, this message translates to:
+  /// **'{count} vollständig'**
+  String auditCompleteCount(int count);
+
+  /// No description provided for @auditHighPriorityOpenCount.
+  ///
+  /// In de, this message translates to:
+  /// **'{count} High-Priority offen'**
+  String auditHighPriorityOpenCount(int count);
+
+  /// No description provided for @auditAreaCompanyProfile.
+  ///
+  /// In de, this message translates to:
+  /// **'Firmenprofil'**
+  String get auditAreaCompanyProfile;
+
+  /// No description provided for @auditAreaWebsite.
+  ///
+  /// In de, this message translates to:
+  /// **'Website / Webauftritt'**
+  String get auditAreaWebsite;
+
+  /// No description provided for @auditAreaProducts.
+  ///
+  /// In de, this message translates to:
+  /// **'Produkte / Dienstleistungen'**
+  String get auditAreaProducts;
+
+  /// No description provided for @auditAreaSupportKnowledge.
+  ///
+  /// In de, this message translates to:
+  /// **'FAQ / Supportwissen'**
+  String get auditAreaSupportKnowledge;
+
+  /// No description provided for @auditAreaTrustMaterial.
+  ///
+  /// In de, this message translates to:
+  /// **'Rezensionen / Vertrauensmaterial'**
+  String get auditAreaTrustMaterial;
+
+  /// No description provided for @auditAreaSocialPresence.
+  ///
+  /// In de, this message translates to:
+  /// **'Social Media / Außenwirkung'**
+  String get auditAreaSocialPresence;
+
+  /// No description provided for @auditAreaSources.
+  ///
+  /// In de, this message translates to:
+  /// **'Quellen / Dokumente'**
+  String get auditAreaSources;
+
+  /// No description provided for @auditAreaRiskRules.
+  ///
+  /// In de, this message translates to:
+  /// **'Risiko / No-Go-Regeln'**
+  String get auditAreaRiskRules;
+
+  /// No description provided for @auditAreaBotReadiness.
+  ///
+  /// In de, this message translates to:
+  /// **'Bot-Bereitschaft'**
+  String get auditAreaBotReadiness;
+
+  /// No description provided for @auditStatusMissing.
+  ///
+  /// In de, this message translates to:
+  /// **'Fehlt'**
+  String get auditStatusMissing;
+
+  /// No description provided for @auditStatusPartial.
+  ///
+  /// In de, this message translates to:
+  /// **'Teilweise'**
+  String get auditStatusPartial;
+
+  /// No description provided for @auditStatusComplete.
+  ///
+  /// In de, this message translates to:
+  /// **'Vollständig'**
+  String get auditStatusComplete;
+
+  /// No description provided for @auditPriorityLow.
+  ///
+  /// In de, this message translates to:
+  /// **'Niedrig'**
+  String get auditPriorityLow;
+
+  /// No description provided for @auditPriorityMedium.
+  ///
+  /// In de, this message translates to:
+  /// **'Mittel'**
+  String get auditPriorityMedium;
+
+  /// No description provided for @auditPriorityHigh.
+  ///
+  /// In de, this message translates to:
+  /// **'Hoch'**
+  String get auditPriorityHigh;
+
+  /// No description provided for @auditNote.
+  ///
+  /// In de, this message translates to:
+  /// **'Notiz'**
+  String get auditNote;
+
+  /// No description provided for @auditRecommendation.
+  ///
+  /// In de, this message translates to:
+  /// **'Empfehlung'**
+  String get auditRecommendation;
+
+  /// No description provided for @auditEditNote.
+  ///
+  /// In de, this message translates to:
+  /// **'Notiz bearbeiten'**
+  String get auditEditNote;
+
+  /// No description provided for @auditNoteHint.
+  ///
+  /// In de, this message translates to:
+  /// **'Interne Notiz zu diesem Auditpunkt …'**
+  String get auditNoteHint;
+
   /// No description provided for @knowledgeTitle.
   ///
   /// In de, this message translates to:
@@ -817,6 +979,30 @@ abstract class AppLocalizations {
   /// In de, this message translates to:
   /// **'Audit-Score'**
   String get statAuditScore;
+
+  /// No description provided for @statAuditMissing.
+  ///
+  /// In de, this message translates to:
+  /// **'Audit fehlt'**
+  String get statAuditMissing;
+
+  /// No description provided for @statAuditPartial.
+  ///
+  /// In de, this message translates to:
+  /// **'Audit teilweise'**
+  String get statAuditPartial;
+
+  /// No description provided for @statAuditComplete.
+  ///
+  /// In de, this message translates to:
+  /// **'Audit vollständig'**
+  String get statAuditComplete;
+
+  /// No description provided for @statAuditHighPriorityOpen.
+  ///
+  /// In de, this message translates to:
+  /// **'High-Priority-Lücken'**
+  String get statAuditHighPriorityOpen;
 
   /// No description provided for @statReviewOpen.
   ///

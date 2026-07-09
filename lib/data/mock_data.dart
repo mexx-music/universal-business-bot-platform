@@ -1,3 +1,4 @@
+import '../models/business_audit.dart';
 import '../models/company.dart';
 import '../models/company_workspace.dart';
 import '../models/product_or_service.dart';
@@ -690,18 +691,217 @@ class MockData {
     ),
   ];
 
+  static final List<BusinessAuditItem> hbCureAuditItems = [
+    BusinessAuditItem(
+      id: 'hb-a1',
+      area: AuditArea.companyProfile,
+      title: 'Firmenprofil vollständig',
+      description:
+          'Name, Branche, Beschreibung und Kontaktwege sind für den Workspace gepflegt.',
+      status: AuditItemStatus.complete,
+      priority: AuditPriority.medium,
+      recommendation:
+          'Regelmäßig prüfen, ob Kontakt- und Supportdaten noch aktuell sind.',
+    ),
+    BusinessAuditItem(
+      id: 'hb-a2',
+      area: AuditArea.website,
+      title: 'Website vorhanden',
+      description:
+          'Ein Webauftritt ist vorhanden und kann als primäre Außenquelle genutzt werden.',
+      status: AuditItemStatus.complete,
+      priority: AuditPriority.medium,
+      note: 'Website ist im Firmenprofil hinterlegt.',
+    ),
+    BusinessAuditItem(
+      id: 'hb-a3',
+      area: AuditArea.products,
+      title: 'Produkte und Leistungen erfasst',
+      description:
+          'App, Messgerät und Support-Angebot sind als strukturierte Angebote angelegt.',
+      status: AuditItemStatus.complete,
+      priority: AuditPriority.medium,
+    ),
+    BusinessAuditItem(
+      id: 'hb-a4',
+      area: AuditArea.supportKnowledge,
+      title: 'FAQ und Supportwissen ausbauen',
+      description:
+          'Grundlegende FAQ sind vorhanden, aber typische Supportfälle und Troubleshooting sollten noch vertieft werden.',
+      status: AuditItemStatus.partial,
+      priority: AuditPriority.high,
+      recommendation:
+          'Top-20-Supportfragen ergänzen und mit sicheren Antworten freigeben.',
+    ),
+    BusinessAuditItem(
+      id: 'hb-a5',
+      area: AuditArea.trustMaterial,
+      title: 'Rezensionen auf Website vorhanden',
+      description:
+          'Website-Trustsignale sind vorhanden; externe Bewertungskanäle sind noch nicht vollständig abgebildet.',
+      status: AuditItemStatus.partial,
+      priority: AuditPriority.medium,
+      recommendation:
+          'Zentrale Review-Quellen und zulässige Zitate als Quellen dokumentieren.',
+    ),
+    BusinessAuditItem(
+      id: 'hb-a6',
+      area: AuditArea.socialPresence,
+      title: 'Social Reviews schwach',
+      description:
+          'Social Proof und externe Community-Signale sind nur teilweise sichtbar.',
+      status: AuditItemStatus.partial,
+      priority: AuditPriority.low,
+      recommendation:
+          'Öffentliche Profile, Bewertungsplattformen und erlaubte Kurzreferenzen sammeln.',
+    ),
+    BusinessAuditItem(
+      id: 'hb-a7',
+      area: AuditArea.sources,
+      title: 'Quellen und Dokumente strukturieren',
+      description:
+          'Mehrere Wissensquellen sind vorhanden, aber Handbücher, Datenschutz und Website-Inhalte sollten klar getrennt werden.',
+      status: AuditItemStatus.partial,
+      priority: AuditPriority.medium,
+      recommendation:
+          'Quellen pro Themenbereich prüfen und fehlende Dokumentreferenzen ergänzen.',
+    ),
+    BusinessAuditItem(
+      id: 'hb-a8',
+      area: AuditArea.riskRules,
+      title: 'No-Go-Regeln für medizinische Aussagen',
+      description:
+          'Rote Regeln sind für Heilversprechen, Diagnosen und Medikamentenersatz erforderlich.',
+      status: AuditItemStatus.partial,
+      priority: AuditPriority.high,
+      recommendation:
+          'No-Go-Regeln erweitern und regelmäßig gegen Bot-Testlogs prüfen.',
+    ),
+    BusinessAuditItem(
+      id: 'hb-a9',
+      area: AuditArea.botReadiness,
+      title: 'Bot-Bereitschaft',
+      description:
+          'Der Bot kann sichere Basisfragen beantworten, braucht aber mehr Review-Abdeckung vor breiterem Einsatz.',
+      status: AuditItemStatus.partial,
+      priority: AuditPriority.high,
+      recommendation:
+          'Offene Review-Fälle in Wissenseinträge überführen und Testabdeckung erhöhen.',
+    ),
+  ];
+
+  static final List<BusinessAuditItem> schnurrPurrAuditItems = [
+    BusinessAuditItem(
+      id: 'sp-a1',
+      area: AuditArea.companyProfile,
+      title: 'Firmenprofil angelegt',
+      description:
+          'Basisdaten und Kontaktwege sind vorhanden, Positionierung kann noch präzisiert werden.',
+      status: AuditItemStatus.partial,
+      priority: AuditPriority.medium,
+      recommendation:
+          'Beschreibung mit klaren Produkt- und Supportgrenzen ergänzen.',
+    ),
+    BusinessAuditItem(
+      id: 'sp-a2',
+      area: AuditArea.website,
+      title: 'Website vorhanden',
+      description:
+          'Ein Webauftritt ist hinterlegt; Detailseiten und Supportpfade sind noch nicht vollständig beschrieben.',
+      status: AuditItemStatus.partial,
+      priority: AuditPriority.medium,
+    ),
+    BusinessAuditItem(
+      id: 'sp-a3',
+      area: AuditArea.products,
+      title: 'App- und Produktinfos teilweise',
+      description:
+          'Relax App und Kissen sind angelegt, aber Spezifikationen, Preise und Pflegehinweise sollten konsistenter werden.',
+      status: AuditItemStatus.partial,
+      priority: AuditPriority.high,
+      recommendation:
+          'Produktdatenblatt für App-Funktionen und Kissenpflege ergänzen.',
+    ),
+    BusinessAuditItem(
+      id: 'sp-a4',
+      area: AuditArea.supportKnowledge,
+      title: 'Supportwissen teilweise',
+      description:
+          'FAQ zur App, Nutzung und Support sind vorhanden; Rückgaben, Bestellung und technische Fehler fehlen noch.',
+      status: AuditItemStatus.partial,
+      priority: AuditPriority.high,
+      recommendation:
+          'Supportwissen für Kauf, Nutzung, Konto und technische Probleme ergänzen.',
+    ),
+    BusinessAuditItem(
+      id: 'sp-a5',
+      area: AuditArea.trustMaterial,
+      title: 'Rezensionen und Trustmaterial fehlen',
+      description:
+          'Für externe Glaubwürdigkeit fehlen dokumentierte Rezensionen, Testimonials oder Pressestimmen.',
+      status: AuditItemStatus.missing,
+      priority: AuditPriority.medium,
+      recommendation:
+          'Erlaubte Rezensionen und kurze Trust-Quellen sammeln und als Quellen ablegen.',
+    ),
+    BusinessAuditItem(
+      id: 'sp-a6',
+      area: AuditArea.socialPresence,
+      title: 'Social und Community ausbaufähig',
+      description:
+          'Community- und Social-Media-Signale sind für den Demo-Workspace noch kaum dokumentiert.',
+      status: AuditItemStatus.partial,
+      priority: AuditPriority.low,
+      recommendation:
+          'Öffentliche Kanäle und häufige Community-Fragen strukturiert erfassen.',
+    ),
+    BusinessAuditItem(
+      id: 'sp-a7',
+      area: AuditArea.sources,
+      title: 'Quellenbasis erweitern',
+      description:
+          'App-Hilfe und Produktdaten sind vorhanden, aber Website-, Pflege- und Supportquellen sollten sauber getrennt werden.',
+      status: AuditItemStatus.partial,
+      priority: AuditPriority.medium,
+    ),
+    BusinessAuditItem(
+      id: 'sp-a8',
+      area: AuditArea.riskRules,
+      title: 'No-Go-Regeln für Wellness-Kommunikation',
+      description:
+          'Regeln gegen Heilversprechen und Diagnosen sind vorhanden, sollten aber für Entspannungs- und Schlaf-Fragen präzisiert werden.',
+      status: AuditItemStatus.partial,
+      priority: AuditPriority.high,
+      recommendation:
+          'Grenzen für Wellness-Aussagen und Support-Verweise klarer dokumentieren.',
+    ),
+    BusinessAuditItem(
+      id: 'sp-a9',
+      area: AuditArea.botReadiness,
+      title: 'Bot-Bereitschaft',
+      description:
+          'Der Bot kann Basisfragen beantworten, ist aber vor Marketing-Ausbau noch nicht vollständig abgesichert.',
+      status: AuditItemStatus.partial,
+      priority: AuditPriority.high,
+      recommendation:
+          'Review-Fälle schließen, FAQ erweitern und rote Regeln mit Testfragen prüfen.',
+    ),
+  ];
+
   static final List<CompanyWorkspace> companyWorkspaces = [
     CompanyWorkspace(
       company: company,
       products: products,
       knowledgeEntries: knowledgeEntries,
       botLogs: botLogs,
+      auditItems: hbCureAuditItems,
     ),
     CompanyWorkspace(
       company: schnurrPurrCompany,
       products: schnurrPurrProducts,
       knowledgeEntries: schnurrPurrKnowledgeEntries,
       botLogs: schnurrPurrBotLogs,
+      auditItems: schnurrPurrAuditItems,
     ),
   ];
 }

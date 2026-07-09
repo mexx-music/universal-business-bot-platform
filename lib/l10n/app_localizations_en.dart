@@ -80,6 +80,9 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
+  String get navHome => 'Home';
+
+  @override
   String get navDashboard => 'Dashboard';
 
   @override
@@ -279,6 +282,94 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
+  String auditBusinessSubtitle(String companyName) {
+    return 'Business status and bot readiness · $companyName';
+  }
+
+  @override
+  String get auditBusinessStatusTitle => 'Status Assessment';
+
+  @override
+  String get auditItemsComplete => 'complete';
+
+  @override
+  String auditMissingCount(int count) {
+    return '$count missing';
+  }
+
+  @override
+  String auditPartialCount(int count) {
+    return '$count partial';
+  }
+
+  @override
+  String auditCompleteCount(int count) {
+    return '$count complete';
+  }
+
+  @override
+  String auditHighPriorityOpenCount(int count) {
+    return '$count high-priority open';
+  }
+
+  @override
+  String get auditAreaCompanyProfile => 'Company Profile';
+
+  @override
+  String get auditAreaWebsite => 'Website / Web Presence';
+
+  @override
+  String get auditAreaProducts => 'Products / Services';
+
+  @override
+  String get auditAreaSupportKnowledge => 'FAQ / Support Knowledge';
+
+  @override
+  String get auditAreaTrustMaterial => 'Reviews / Trust Material';
+
+  @override
+  String get auditAreaSocialPresence => 'Social Media / External Presence';
+
+  @override
+  String get auditAreaSources => 'Sources / Documents';
+
+  @override
+  String get auditAreaRiskRules => 'Risk / No-Go Rules';
+
+  @override
+  String get auditAreaBotReadiness => 'Bot Readiness';
+
+  @override
+  String get auditStatusMissing => 'Missing';
+
+  @override
+  String get auditStatusPartial => 'Partial';
+
+  @override
+  String get auditStatusComplete => 'Complete';
+
+  @override
+  String get auditPriorityLow => 'Low';
+
+  @override
+  String get auditPriorityMedium => 'Medium';
+
+  @override
+  String get auditPriorityHigh => 'High';
+
+  @override
+  String get auditNote => 'Note';
+
+  @override
+  String get auditRecommendation => 'Recommendation';
+
+  @override
+  String get auditEditNote => 'Edit Note';
+
+  @override
+  String get auditNoteHint => 'Internal note for this audit item …';
+
+  @override
   String get knowledgeTitle => 'Knowledge Base';
 
   @override
@@ -408,6 +499,18 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get statAuditScore => 'Audit Score';
+
+  @override
+  String get statAuditMissing => 'Audit Missing';
+
+  @override
+  String get statAuditPartial => 'Audit Partial';
+
+  @override
+  String get statAuditComplete => 'Audit Complete';
+
+  @override
+  String get statAuditHighPriorityOpen => 'High-Priority Gaps';
 
   @override
   String get statReviewOpen => 'Open for Review';

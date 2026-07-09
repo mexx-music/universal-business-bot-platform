@@ -98,13 +98,37 @@ class AppShell extends StatelessWidget {
           return Scaffold(
             appBar: AppBar(
               title: Text(company.name),
-              actions: [
-                IconButton(
-                  tooltip: l.companySwitch,
-                  icon: const Icon(Icons.swap_horiz),
-                  onPressed: () => context.go('/companies'),
+              bottom: PreferredSize(
+                preferredSize: const Size.fromHeight(52),
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(12, 2, 12, 10),
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: SizedBox(
+                          height: 40,
+                          child: _ShellTextButton(
+                            onPressed: () => context.go('/'),
+                            icon: const Icon(Icons.home_outlined, size: 18),
+                            label: Text(l.navHome),
+                          ),
+                        ),
+                      ),
+                      const SizedBox(width: 8),
+                      Expanded(
+                        child: SizedBox(
+                          height: 40,
+                          child: _ShellTextButton(
+                            onPressed: () => context.go('/companies'),
+                            icon: const Icon(Icons.swap_horiz, size: 18),
+                            label: Text(l.companySwitch),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
-              ],
+              ),
             ),
             body: child,
             bottomNavigationBar: NavigationBar(
@@ -137,6 +161,7 @@ class AppShell extends StatelessWidget {
                     extended: extended,
                     l: l,
                     companyName: company.name,
+                    onGoHome: () => context.go('/'),
                     onSwitchCompany: () => context.go('/companies'),
                   ),
                 ),
@@ -163,12 +188,14 @@ class _AppLogo extends StatelessWidget {
   final bool extended;
   final AppLocalizations l;
   final String companyName;
+  final VoidCallback onGoHome;
   final VoidCallback onSwitchCompany;
 
   const _AppLogo({
     required this.extended,
     required this.l,
     required this.companyName,
+    required this.onGoHome,
     required this.onSwitchCompany,
   });
 
@@ -251,10 +278,24 @@ class _AppLogo extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 6),
-                TextButton.icon(
-                  onPressed: onSwitchCompany,
-                  icon: const Icon(Icons.swap_horiz, size: 16),
-                  label: Text(l.companySwitch),
+                SizedBox(
+                  width: double.infinity,
+                  height: 36,
+                  child: _ShellTextButton(
+                    onPressed: onGoHome,
+                    icon: const Icon(Icons.home_outlined, size: 16),
+                    label: Text(l.navHome),
+                  ),
+                ),
+                const SizedBox(height: 2),
+                SizedBox(
+                  width: double.infinity,
+                  height: 36,
+                  child: _ShellTextButton(
+                    onPressed: onSwitchCompany,
+                    icon: const Icon(Icons.swap_horiz, size: 16),
+                    label: Text(l.companySwitch),
+                  ),
                 ),
               ],
             ),
@@ -262,6 +303,62 @@ class _AppLogo extends StatelessWidget {
         ],
       );
     }
-    return Icon(Icons.hub_rounded, size: 28, color: theme.colorScheme.primary);
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Icon(Icons.hub_rounded, size: 28, color: theme.colorScheme.primary),
+        const SizedBox(height: 14),
+        IconButton(
+          tooltip: l.navHome,
+          onPressed: onGoHome,
+          icon: const Icon(Icons.home_outlined),
+        ),
+        IconButton(
+          tooltip: l.companySwitch,
+          onPressed: onSwitchCompany,
+          icon: const Icon(Icons.swap_horiz),
+        ),
+      ],
+    );
+  }
+}
+
+class _ShellTextButton extends StatelessWidget {
+  final VoidCallback onPressed;
+  final Widget icon;
+  final Text label;
+
+  const _ShellTextButton({
+    required this.onPressed,
+    required this.icon,
+    required this.label,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return TextButton(
+      onPressed: onPressed,
+      style: TextButton.styleFrom(
+        padding: const EdgeInsets.symmetric(horizontal: 8),
+        minimumSize: Size.zero,
+        tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisSize: MainAxisSize.max,
+        children: [
+          icon,
+          const SizedBox(width: 6),
+          Flexible(
+            child: Text(
+              label.data ?? '',
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+              style: label.style,
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/widgets.dart';
+import '../models/business_audit.dart';
 import '../models/company.dart';
 import '../models/company_workspace.dart';
 import '../models/product_or_service.dart';
@@ -13,6 +14,7 @@ class AppState extends ChangeNotifier {
           products: List.from(workspace.products),
           knowledgeEntries: List.from(workspace.knowledgeEntries),
           botLogs: List.from(workspace.botLogs),
+          auditItems: List.from(workspace.auditItems),
         ),
       )
       .toList();
@@ -31,11 +33,14 @@ class AppState extends ChangeNotifier {
   List<KnowledgeEntry> get selectedKnowledgeEntries =>
       selectedWorkspace.knowledgeEntries;
   List<BotQuestionLog> get selectedBotLogs => selectedWorkspace.botLogs;
+  List<BusinessAuditItem> get selectedAuditItems =>
+      selectedWorkspace.auditItems;
 
   Company get company => selectedCompany;
   List<ProductOrService> get products => selectedProducts;
   List<KnowledgeEntry> get knowledgeEntries => selectedKnowledgeEntries;
   List<BotQuestionLog> get botLogs => selectedBotLogs;
+  List<BusinessAuditItem> get auditItems => selectedAuditItems;
 
   void selectCompany(String companyId) {
     if (selectedCompanyId == companyId) return;
@@ -106,18 +111,79 @@ class AppState extends ChangeNotifier {
     notifyListeners();
   }
 
-  // 0.0 – 1.0; based on same weights as AuditScreen checklist
+  void updateAuditItemStatus(String id, AuditItemStatus status) {
+    _updateAuditItem(id, (item) => item.copyWith(status: status));
+  }
+
+  void updateAuditItemPriority(String id, AuditPriority priority) {
+    _updateAuditItem(id, (item) => item.copyWith(priority: priority));
+  }
+
+  void updateAuditItemNote(String id, String? note) {
+    _updateAuditItem(id, (item) {
+      final cleanNote = note?.trim();
+      return item.copyWith(
+        note: cleanNote == null || cleanNote.isEmpty ? null : cleanNote,
+      );
+    });
+  }
+
+  int get auditMissingCount =>
+      auditItems.where((item) => item.status == AuditItemStatus.missing).length;
+
+  int get auditPartialCount =>
+      auditItems.where((item) => item.status == AuditItemStatus.partial).length;
+
+  int get auditCompleteCount => auditItems
+      .where((item) => item.status == AuditItemStatus.complete)
+      .length;
+
+  int get auditHighPriorityOpenCount => auditItems
+      .where(
+        (item) =>
+            item.priority == AuditPriority.high &&
+            item.status != AuditItemStatus.complete,
+      )
+      .length;
+
+  // 0.0 - 1.0; weighted by priority, with partial items counting halfway.
   double get auditScore {
-    int score = 0;
-    if (company.name.isNotEmpty) score += 10;
-    if (company.industry.isNotEmpty) score += 10;
-    if (company.description.length >= 50) score += 10;
-    if (company.website.isNotEmpty) score += 5;
-    if (products.isNotEmpty) score += 15;
-    if (knowledgeEntries.isNotEmpty) score += 15;
-    if (knowledgeEntries.length >= 10) score += 15;
-    if (botLogs.isNotEmpty) score += 20;
-    return score / 100.0;
+    if (auditItems.isEmpty) return 0.0;
+    double score = 0;
+    double maxScore = 0;
+    for (final item in auditItems) {
+      final weight = _priorityWeight(item.priority);
+      maxScore += weight;
+      score += switch (item.status) {
+        AuditItemStatus.complete => weight,
+        AuditItemStatus.partial => weight * 0.5,
+        AuditItemStatus.missing => 0,
+      };
+    }
+    return maxScore == 0 ? 0.0 : score / maxScore;
+  }
+
+  void _updateAuditItem(
+    String id,
+    BusinessAuditItem Function(BusinessAuditItem item) update,
+  ) {
+    _updateSelectedWorkspace(
+      selectedWorkspace.copyWith(
+        auditItems: [
+          for (final item in selectedAuditItems)
+            if (item.id == id) update(item) else item,
+        ],
+      ),
+    );
+    notifyListeners();
+  }
+
+  int _priorityWeight(AuditPriority priority) {
+    return switch (priority) {
+      AuditPriority.low => 1,
+      AuditPriority.medium => 2,
+      AuditPriority.high => 3,
+    };
   }
 
   void _updateSelectedWorkspace(CompanyWorkspace updated) {
