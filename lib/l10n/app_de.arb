@@ -1,0 +1,261 @@
+{
+  "@@locale": "de",
+
+  "appName": "UniversalBiz",
+  "appStage": "Stufe 1",
+
+  "landingHeadline": "Universal Business Bot Plattform",
+  "landingSubtitle": "Verwalte Business-Wissen, sichere Bot-Antworten, Audit-Checks und Human Review für mehrere Firmen in einem lokalen Demo-Workspace.",
+  "landingFeatureKnowledge": "Business-Wissen",
+  "landingFeatureBot": "Bot",
+  "landingFeatureAudit": "Audit",
+  "landingFeatureReview": "Human Review",
+  "landingDemoTitle": "Demo-Firmen",
+  "landingOpenDemo": "Demo öffnen",
+  "landingBackHome": "Zur Startseite",
+
+  "companySelectTitle": "Firma auswählen",
+  "companySelectHeadline": "Workspace wählen",
+  "companySelectSubtitle": "Wähle eine Demo-Firma. Dashboard, Firma, Audit, Wissensbasis, Bot-Test, Prüfung und Quellen arbeiten danach mit getrennten lokalen Daten.",
+  "companySelectButton": "Auswählen",
+  "companySwitch": "Firma wechseln",
+  "companyCurrent": "Aktuelle Firma",
+  "companyCreatePlaceholder": "Neue Firma anlegen (später)",
+  "companyProductCount": "{count} Produkte",
+  "@companyProductCount": {
+    "placeholders": {
+      "count": { "type": "int" }
+    }
+  },
+  "companyKnowledgeCount": "{count} Wissenseinträge",
+  "@companyKnowledgeCount": {
+    "placeholders": {
+      "count": { "type": "int" }
+    }
+  },
+  "companyLogCount": "{count} Logs",
+  "@companyLogCount": {
+    "placeholders": {
+      "count": { "type": "int" }
+    }
+  },
+
+  "navDashboard": "Dashboard",
+  "navCompany": "Firma",
+  "navAudit": "Audit",
+  "navKnowledge": "Wissensbasis",
+  "navBotTest": "Bot-Test",
+  "navSources": "Quellen",
+
+  "btnCancel": "Abbrechen",
+  "btnSave": "Speichern",
+  "btnEdit": "Bearbeiten",
+  "btnDelete": "Löschen",
+  "btnAdd": "Hinzufügen",
+  "btnReset": "Zurücksetzen",
+
+  "fieldCompanyName": "Firmenname",
+  "fieldIndustry": "Branche",
+  "fieldDescription": "Beschreibung",
+  "fieldWebsite": "Website",
+  "fieldEmail": "E-Mail",
+  "fieldPhone": "Telefon",
+  "fieldAddress": "Adresse",
+  "fieldTitle": "Titel",
+  "fieldContent": "Inhalt",
+  "fieldCategory": "Kategorie",
+  "fieldKeywords": "Schlüsselwörter (kommagetrennt)",
+  "fieldSource": "Quelle",
+
+  "dashboardSubtitle": "Übersicht · {companyName}",
+  "@dashboardSubtitle": {
+    "placeholders": {
+      "companyName": { "type": "String" }
+    }
+  },
+  "statKnowledgeEntries": "Wissenseinträge",
+  "statBotRequests": "Bot-Anfragen",
+  "statMatchRate": "Match-Rate",
+  "statProducts": "Produkte & Leistungen",
+  "dashboardRecentRequests": "Letzte Bot-Anfragen",
+  "dashboardTotal": "{count} gesamt",
+  "@dashboardTotal": {
+    "placeholders": {
+      "count": { "type": "int" }
+    }
+  },
+  "dashboardNoLogs": "Noch keine Bot-Anfragen. Starte den Bot-Test.",
+  "logNoAnswer": "Keine Antwort gefunden",
+
+  "companyTitle": "Firma",
+  "companyEditDialogTitle": "Firmendaten bearbeiten",
+  "companyProducts": "Produkte & Leistungen",
+
+  "auditTitle": "Audit",
+  "auditSubtitle": "Vollständigkeitscheck für den Bot-Einsatz",
+  "auditTotalScore": "Gesamtscore",
+  "auditScoreLabel": "{score} / {max} Punkte",
+  "@auditScoreLabel": {
+    "placeholders": {
+      "score": { "type": "int" },
+      "max": { "type": "int" }
+    }
+  },
+  "auditExcellent": "Ausgezeichnet – Bot ist bereit!",
+  "auditGood": "Gut – kleine Lücken noch schließen.",
+  "auditMedium": "Mittelmäßig – Wissen ausbauen empfohlen.",
+  "auditPoor": "Unvollständig – Bot noch nicht einsatzbereit.",
+  "auditChecklist": "Checkliste",
+  "auditPoints": "+{points} Pkt.",
+  "@auditPoints": {
+    "placeholders": {
+      "points": { "type": "int" }
+    }
+  },
+  "auditCheckCompanyName": "Firmenname eingetragen",
+  "auditCheckIndustry": "Branche definiert",
+  "auditCheckDescription": "Firmenbeschreibung vorhanden",
+  "auditCheckWebsite": "Website eingetragen",
+  "auditCheckProducts": "Produkte / Leistungen erfasst",
+  "auditCheckKnowledge": "Wissenseinträge vorhanden",
+  "auditCheckKnowledge10": "Mindestens 10 Wissenseinträge",
+  "auditCheckBotTest": "Bot-Test durchgeführt",
+  "auditDescChars": "{count} Zeichen",
+  "@auditDescChars": {
+    "placeholders": {
+      "count": { "type": "int" }
+    }
+  },
+  "auditDescTooShort": "Zu kurz (mind. 50 Zeichen)",
+  "auditDescEntries": "{count} Einträge",
+  "@auditDescEntries": {
+    "placeholders": {
+      "count": { "type": "int" }
+    }
+  },
+  "auditDescAchieved": "Erreicht",
+  "auditDescOfTotal": "{current} von {total}",
+  "@auditDescOfTotal": {
+    "placeholders": {
+      "current": { "type": "int" },
+      "total": { "type": "int" }
+    }
+  },
+  "auditDescNoTest": "Noch kein Test",
+  "auditDescTestCount": "{count} Testanfragen",
+  "@auditDescTestCount": {
+    "placeholders": {
+      "count": { "type": "int" }
+    }
+  },
+
+  "knowledgeTitle": "Wissensbasis",
+  "knowledgeEntryCount": "{count} Einträge",
+  "@knowledgeEntryCount": {
+    "placeholders": {
+      "count": { "type": "int" }
+    }
+  },
+  "knowledgeFilterAll": "Alle",
+  "knowledgeNoEntries": "Keine Einträge in dieser Kategorie.",
+  "knowledgeAddEntry": "Eintrag hinzufügen",
+  "knowledgeDeleteTitle": "Eintrag löschen?",
+  "knowledgeDeleteConfirm": "\"{title}\" wird unwiderruflich entfernt.",
+  "@knowledgeDeleteConfirm": {
+    "placeholders": {
+      "title": { "type": "String" }
+    }
+  },
+  "knowledgeNewEntry": "Neuer Wissenseintrag",
+
+  "botTestTitle": "Bot-Test",
+  "botTestSubtitle": "Simulierter Bot ohne echte KI – Antworten basieren auf der Wissensbasis.",
+  "botTestGreeting": "Hallo! Ich bin dein Bot-Assistent. Stelle mir eine Frage über das Unternehmen.",
+  "botTestInputHint": "Frage eingeben …",
+  "botTestNoMatch": "Keine passende Antwort gefunden. Bitte kontaktieren Sie uns direkt.",
+  "botTestResetMessage": "Chat zurückgesetzt. Stelle mir eine neue Frage!",
+
+  "sourcesTitle": "Quellen",
+  "sourcesSubtitle": "Herkunft der Wissenseinträge",
+  "sourcesCount": "{count} Quellen",
+  "@sourcesCount": {
+    "placeholders": {
+      "count": { "type": "int" }
+    }
+  },
+  "sourcesEntriesCount": "{count} Einträge",
+  "@sourcesEntriesCount": {
+    "placeholders": {
+      "count": { "type": "int" }
+    }
+  },
+  "sourcesEmpty": "Noch keine Quellen vorhanden.",
+  "sourcesEntryInfo": "{count} Einträge · {type}",
+  "@sourcesEntryInfo": {
+    "placeholders": {
+      "count": { "type": "int" },
+      "type": { "type": "String" }
+    }
+  },
+  "sourceTypeUrl": "Website",
+  "sourceTypeDocument": "Dokument",
+  "sourceTypeManual": "Manuell",
+  "sourcesStage2Hint": "In Stufe 2 können Quellen direkt importiert werden (Websites, PDFs, Dokumente).",
+
+  "categoryFaq": "FAQ",
+  "categoryProdukt": "Produkt",
+  "categoryProzess": "Prozess",
+  "categoryAllgemein": "Allgemein",
+
+  "typeProdukt": "Produkt",
+  "typeDienstleistung": "Dienstleistung",
+
+  "riskGreen": "Sicher",
+  "riskYellow": "Wellness",
+  "riskRed": "Gesperrt",
+
+  "botTestRedirectMessage": "Diese Frage berührt medizinische oder rechtliche Bereiche, die ich nicht beantworten darf. Bitte wenden Sie sich an eine qualifizierte Fachstelle oder kontaktieren Sie unseren Support direkt: {supportEmail}",
+  "@botTestRedirectMessage": {
+    "placeholders": {
+      "supportEmail": { "type": "String" }
+    }
+  },
+  "botTestYellowDisclaimer": "Hinweis: Diese Antwort dient nur zur allgemeinen Information und ersetzt keine ärztliche Beratung.",
+
+  "statOpenRequests": "Offene Anfragen",
+  "statRedirects": "Weiterleitungen",
+  "statAuditScore": "Audit-Score",
+  "statReviewOpen": "Offen zur Prüfung",
+  "dashboardRiskTitle": "Wissensbasis nach Risikostufe",
+  "knowledgeRisk": "Risikostufe",
+
+  "navReview": "Prüfung",
+
+  "reviewTitle": "Human Review",
+  "reviewSubtitle": "Bot-Anfragen zur manuellen Prüfung",
+  "reviewEmpty": "Keine Einträge zur Prüfung.",
+  "reviewFilterAll": "Alle",
+  "reviewOpenCount": "{count} offen",
+  "@reviewOpenCount": {
+    "placeholders": {
+      "count": { "type": "int" }
+    }
+  },
+
+  "reviewStatusOpen": "Offen",
+  "reviewStatusReviewed": "Geprüft",
+  "reviewStatusClosed": "Erledigt",
+
+  "reviewReasonNoMatch": "Kein Match",
+  "reviewReasonRedFlag": "Rote Frage",
+  "reviewReasonYellowRisk": "Gelbe Antwort",
+  "reviewReasonLowConfidence": "Niedrige Sicherheit",
+
+  "reviewBotAnswer": "Bot-Antwort",
+  "reviewHumanNote": "Notiz",
+  "reviewNoteHint": "Notiz für das Team …",
+  "reviewSaveNote": "Notiz speichern",
+  "reviewAddNote": "Notiz bearbeiten",
+  "reviewMarkReviewed": "Als geprüft markieren",
+  "reviewMarkClosed": "Als erledigt schließen"
+}
