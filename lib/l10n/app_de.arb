@@ -257,5 +257,9 @@
   "reviewSaveNote": "Notiz speichern",
   "reviewAddNote": "Notiz bearbeiten",
   "reviewMarkReviewed": "Als geprüft markieren",
-  "reviewMarkClosed": "Als erledigt schließen"
+  "reviewMarkClosed": "Als erledigt schließen",
+  "reviewCreateKnowledgeEntry": "Als Wissenseintrag anlegen",
+  "reviewKnowledgeSourceOptional": "Quelle (optional)",
+  "reviewKnowledgeDefaultSource": "Human Review",
+  "reviewKnowledgeCreatedNote": "Als Wissenseintrag übernommen"
 }

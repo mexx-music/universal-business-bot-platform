@@ -164,5 +164,9 @@
   "reviewSaveNote": "Save Note",
   "reviewAddNote": "Edit Note",
   "reviewMarkReviewed": "Mark as reviewed",
-  "reviewMarkClosed": "Mark as closed"
+  "reviewMarkClosed": "Mark as closed",
+  "reviewCreateKnowledgeEntry": "Create knowledge entry",
+  "reviewKnowledgeSourceOptional": "Source (optional)",
+  "reviewKnowledgeDefaultSource": "Human Review",
+  "reviewKnowledgeCreatedNote": "Converted to knowledge entry"
 }

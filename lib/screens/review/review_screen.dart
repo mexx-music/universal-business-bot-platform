@@ -3,6 +3,7 @@ import '../../data/app_state.dart';
 import '../../l10n/app_localizations.dart';
 import '../../l10n/label_helpers.dart';
 import '../../models/bot_question_log.dart';
+import '../../models/knowledge_entry.dart';
 
 class ReviewScreen extends StatefulWidget {
   const ReviewScreen({super.key});
@@ -125,6 +126,10 @@ class _ReviewScreenState extends State<ReviewScreen> {
               (log) => _ReviewCard(
                 log: log,
                 onTap: () => _openDetail(context, state, log),
+                onCreateKnowledgeEntry: log.reviewStatus == ReviewStatus.closed
+                    ? null
+                    : () =>
+                          _openCreateKnowledgeEntryDialog(context, state, log),
               ),
             ),
         ],
@@ -135,7 +140,23 @@ class _ReviewScreenState extends State<ReviewScreen> {
   void _openDetail(BuildContext context, AppState state, BotQuestionLog log) {
     showDialog<void>(
       context: context,
-      builder: (_) => _ReviewDetailDialog(log: log, state: state),
+      builder: (_) => _ReviewDetailDialog(
+        log: log,
+        state: state,
+        onCreateKnowledgeEntry: () =>
+            _openCreateKnowledgeEntryDialog(context, state, log),
+      ),
+    );
+  }
+
+  void _openCreateKnowledgeEntryDialog(
+    BuildContext context,
+    AppState state,
+    BotQuestionLog log,
+  ) {
+    showDialog<void>(
+      context: context,
+      builder: (_) => _CreateKnowledgeEntryDialog(state: state, log: log),
     );
   }
 }
@@ -180,8 +201,13 @@ class _Chip extends StatelessWidget {
 class _ReviewCard extends StatelessWidget {
   final BotQuestionLog log;
   final VoidCallback onTap;
+  final VoidCallback? onCreateKnowledgeEntry;
 
-  const _ReviewCard({required this.log, required this.onTap});
+  const _ReviewCard({
+    required this.log,
+    required this.onTap,
+    this.onCreateKnowledgeEntry,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -304,6 +330,20 @@ class _ReviewCard extends StatelessWidget {
                         ],
                       ),
                     ],
+                    if (onCreateKnowledgeEntry != null) ...[
+                      const SizedBox(height: 10),
+                      Align(
+                        alignment: Alignment.centerLeft,
+                        child: OutlinedButton.icon(
+                          onPressed: onCreateKnowledgeEntry,
+                          icon: const Icon(
+                            Icons.library_add_outlined,
+                            size: 18,
+                          ),
+                          label: Text(l.reviewCreateKnowledgeEntry),
+                        ),
+                      ),
+                    ],
                   ],
                 ),
               ),
@@ -377,8 +417,13 @@ class _StatusBadge extends StatelessWidget {
 class _ReviewDetailDialog extends StatefulWidget {
   final BotQuestionLog log;
   final AppState state;
+  final VoidCallback onCreateKnowledgeEntry;
 
-  const _ReviewDetailDialog({required this.log, required this.state});
+  const _ReviewDetailDialog({
+    required this.log,
+    required this.state,
+    required this.onCreateKnowledgeEntry,
+  });
 
   @override
   State<_ReviewDetailDialog> createState() => _ReviewDetailDialogState();
@@ -423,6 +468,11 @@ class _ReviewDetailDialogState extends State<_ReviewDetailDialog> {
   void _markClosed() {
     widget.state.updateBotLog(_withNote(status: ReviewStatus.closed));
     Navigator.of(context).pop();
+  }
+
+  void _openCreateKnowledgeEntry() {
+    Navigator.of(context).pop();
+    widget.onCreateKnowledgeEntry();
   }
 
   @override
@@ -614,6 +664,11 @@ class _ReviewDetailDialogState extends State<_ReviewDetailDialog> {
                           ),
                         ),
                       ),
+                    OutlinedButton.icon(
+                      onPressed: _openCreateKnowledgeEntry,
+                      icon: const Icon(Icons.library_add_outlined, size: 18),
+                      label: Text(l.reviewCreateKnowledgeEntry),
+                    ),
                     if (log.reviewStatus != ReviewStatus.closed) ...[
                       const SizedBox(height: 8),
                       FilledButton.icon(
@@ -639,5 +694,242 @@ class _ReviewDetailDialogState extends State<_ReviewDetailDialog> {
         FilledButton.tonal(onPressed: _saveNote, child: Text(l.reviewSaveNote)),
       ],
     );
+  }
+}
+
+class _CreateKnowledgeEntryDialog extends StatefulWidget {
+  final AppState state;
+  final BotQuestionLog log;
+
+  const _CreateKnowledgeEntryDialog({required this.state, required this.log});
+
+  @override
+  State<_CreateKnowledgeEntryDialog> createState() =>
+      _CreateKnowledgeEntryDialogState();
+}
+
+class _CreateKnowledgeEntryDialogState
+    extends State<_CreateKnowledgeEntryDialog> {
+  late final TextEditingController _title;
+  late final TextEditingController _content;
+  late final TextEditingController _source;
+  KnowledgeCategory _category = KnowledgeCategory.faq;
+  late RiskLevel _riskLevel;
+
+  @override
+  void initState() {
+    super.initState();
+    _title = TextEditingController(text: widget.log.question);
+    _content = TextEditingController(text: widget.log.humanNote ?? '');
+    _source = TextEditingController();
+    _riskLevel = _defaultRiskLevel(widget.log);
+  }
+
+  @override
+  void dispose() {
+    _title.dispose();
+    _content.dispose();
+    _source.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final l = AppLocalizations.of(context)!;
+
+    return AlertDialog(
+      title: Text(l.reviewCreateKnowledgeEntry),
+      content: SizedBox(
+        width: 520,
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              _field(l.fieldTitle, _title),
+              _field(l.fieldContent, _content, maxLines: 5),
+              const SizedBox(height: 12),
+              InputDecorator(
+                decoration: InputDecoration(
+                  labelText: l.fieldCategory,
+                  border: const OutlineInputBorder(),
+                  isDense: true,
+                ),
+                child: DropdownButton<KnowledgeCategory>(
+                  value: _category,
+                  isExpanded: true,
+                  underline: const SizedBox.shrink(),
+                  items: KnowledgeCategory.values
+                      .map(
+                        (category) => DropdownMenuItem(
+                          value: category,
+                          child: Text(
+                            knowledgeCategoryLabel(context, category),
+                          ),
+                        ),
+                      )
+                      .toList(),
+                  onChanged: (value) {
+                    setState(() => _category = value ?? _category);
+                  },
+                ),
+              ),
+              const SizedBox(height: 12),
+              InputDecorator(
+                decoration: InputDecoration(
+                  labelText: l.knowledgeRisk,
+                  border: const OutlineInputBorder(),
+                  isDense: true,
+                ),
+                child: DropdownButton<RiskLevel>(
+                  value: _riskLevel,
+                  isExpanded: true,
+                  underline: const SizedBox.shrink(),
+                  items: RiskLevel.values
+                      .map(
+                        (riskLevel) => DropdownMenuItem(
+                          value: riskLevel,
+                          child: Row(
+                            children: [
+                              Icon(
+                                riskLevel.icon,
+                                size: 14,
+                                color: riskLevel.color,
+                              ),
+                              const SizedBox(width: 6),
+                              Text(riskLevelLabel(context, riskLevel)),
+                            ],
+                          ),
+                        ),
+                      )
+                      .toList(),
+                  onChanged: (value) {
+                    setState(() => _riskLevel = value ?? _riskLevel);
+                  },
+                ),
+              ),
+              const SizedBox(height: 12),
+              _field(l.reviewKnowledgeSourceOptional, _source),
+            ],
+          ),
+        ),
+      ),
+      actions: [
+        TextButton(
+          onPressed: () => Navigator.of(context).pop(),
+          child: Text(l.btnCancel),
+        ),
+        FilledButton(
+          onPressed: _title.text.trim().isEmpty ? null : _save,
+          child: Text(l.btnSave),
+        ),
+      ],
+    );
+  }
+
+  Widget _field(
+    String label,
+    TextEditingController controller, {
+    int maxLines = 1,
+  }) {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 12),
+      child: TextField(
+        controller: controller,
+        maxLines: maxLines,
+        onChanged: (_) => setState(() {}),
+        decoration: InputDecoration(
+          labelText: label,
+          border: const OutlineInputBorder(),
+          isDense: true,
+        ),
+      ),
+    );
+  }
+
+  void _save() {
+    final l = AppLocalizations.of(context)!;
+    final now = DateTime.now();
+    final source = _source.text.trim().isEmpty
+        ? l.reviewKnowledgeDefaultSource
+        : _source.text.trim();
+
+    final entry = KnowledgeEntry(
+      id: 'k_${now.microsecondsSinceEpoch}',
+      title: _title.text.trim(),
+      content: _content.text.trim(),
+      category: _category,
+      riskLevel: _riskLevel,
+      keywords: _buildKeywords(widget.log.question),
+      source: source,
+      createdAt: now,
+      languageCode: Localizations.localeOf(context).languageCode,
+    );
+
+    widget.state.addKnowledgeEntryFromReview(
+      entry: entry,
+      updatedLog: widget.log.copyWith(
+        reviewStatus: ReviewStatus.closed,
+        humanNote: _reviewNoteWithConversionHint(l),
+        reviewedAt: now,
+      ),
+    );
+
+    Navigator.of(context).pop();
+  }
+
+  String _reviewNoteWithConversionHint(AppLocalizations l) {
+    final existing = widget.log.humanNote?.trim();
+    if (existing == null || existing.isEmpty) {
+      return l.reviewKnowledgeCreatedNote;
+    }
+    if (existing.contains(l.reviewKnowledgeCreatedNote)) {
+      return existing;
+    }
+    return '$existing\n\n${l.reviewKnowledgeCreatedNote}';
+  }
+
+  RiskLevel _defaultRiskLevel(BotQuestionLog log) {
+    return switch (log.reviewReason) {
+      ReviewReason.redFlag => RiskLevel.red,
+      ReviewReason.yellowRisk => RiskLevel.yellow,
+      ReviewReason.lowConfidence => RiskLevel.yellow,
+      ReviewReason.noMatch => RiskLevel.green,
+      null => log.redirected ? RiskLevel.red : RiskLevel.green,
+    };
+  }
+
+  List<String> _buildKeywords(String question) {
+    final stopWords = {
+      'aber',
+      'about',
+      'bitte',
+      'can',
+      'das',
+      'der',
+      'die',
+      'ein',
+      'eine',
+      'for',
+      'für',
+      'how',
+      'ich',
+      'ist',
+      'kann',
+      'mit',
+      'the',
+      'und',
+      'was',
+      'wie',
+      'with',
+    };
+    final words = question
+        .toLowerCase()
+        .split(RegExp(r'[^a-zäöüß0-9]+'))
+        .map((word) => word.trim())
+        .where((word) => word.length > 2 && !stopWords.contains(word))
+        .toSet()
+        .take(8)
+        .toList();
+    return words;
   }
 }

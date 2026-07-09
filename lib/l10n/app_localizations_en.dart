@@ -479,4 +479,16 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get reviewMarkClosed => 'Mark as closed';
+
+  @override
+  String get reviewCreateKnowledgeEntry => 'Create knowledge entry';
+
+  @override
+  String get reviewKnowledgeSourceOptional => 'Source (optional)';
+
+  @override
+  String get reviewKnowledgeDefaultSource => 'Human Review';
+
+  @override
+  String get reviewKnowledgeCreatedNote => 'Converted to knowledge entry';
 }

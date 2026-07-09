@@ -90,6 +90,22 @@ class AppState extends ChangeNotifier {
     notifyListeners();
   }
 
+  void addKnowledgeEntryFromReview({
+    required KnowledgeEntry entry,
+    required BotQuestionLog updatedLog,
+  }) {
+    _updateSelectedWorkspace(
+      selectedWorkspace.copyWith(
+        knowledgeEntries: [...selectedKnowledgeEntries, entry],
+        botLogs: [
+          for (final log in selectedBotLogs)
+            if (log.id == updatedLog.id) updatedLog else log,
+        ],
+      ),
+    );
+    notifyListeners();
+  }
+
   // 0.0 – 1.0; based on same weights as AuditScreen checklist
   double get auditScore {
     int score = 0;

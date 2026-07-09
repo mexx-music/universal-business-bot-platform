@@ -955,6 +955,30 @@ abstract class AppLocalizations {
   /// In de, this message translates to:
   /// **'Als erledigt schließen'**
   String get reviewMarkClosed;
+
+  /// No description provided for @reviewCreateKnowledgeEntry.
+  ///
+  /// In de, this message translates to:
+  /// **'Als Wissenseintrag anlegen'**
+  String get reviewCreateKnowledgeEntry;
+
+  /// No description provided for @reviewKnowledgeSourceOptional.
+  ///
+  /// In de, this message translates to:
+  /// **'Quelle (optional)'**
+  String get reviewKnowledgeSourceOptional;
+
+  /// No description provided for @reviewKnowledgeDefaultSource.
+  ///
+  /// In de, this message translates to:
+  /// **'Human Review'**
+  String get reviewKnowledgeDefaultSource;
+
+  /// No description provided for @reviewKnowledgeCreatedNote.
+  ///
+  /// In de, this message translates to:
+  /// **'Als Wissenseintrag übernommen'**
+  String get reviewKnowledgeCreatedNote;
 }
 
 class _AppLocalizationsDelegate

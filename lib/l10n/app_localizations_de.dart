@@ -480,4 +480,16 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get reviewMarkClosed => 'Als erledigt schließen';
+
+  @override
+  String get reviewCreateKnowledgeEntry => 'Als Wissenseintrag anlegen';
+
+  @override
+  String get reviewKnowledgeSourceOptional => 'Quelle (optional)';
+
+  @override
+  String get reviewKnowledgeDefaultSource => 'Human Review';
+
+  @override
+  String get reviewKnowledgeCreatedNote => 'Als Wissenseintrag übernommen';
 }
