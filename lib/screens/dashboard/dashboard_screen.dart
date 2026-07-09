@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import '../../data/app_state.dart';
 import '../../l10n/app_localizations.dart';
 import '../../l10n/label_helpers.dart';
@@ -18,6 +19,13 @@ class DashboardScreen extends StatelessWidget {
     final reviewOpen = state.botLogs
         .where((log) => log.reviewStatus == ReviewStatus.open)
         .length;
+    final reviewedBotQuestions = state.botLogs
+        .where(
+          (log) =>
+              log.reviewStatus == ReviewStatus.reviewed ||
+              log.reviewStatus == ReviewStatus.closed,
+        )
+        .length;
     final redirects = state.botLogs.where((log) => log.redirected).length;
     final auditPct = (state.auditScore * 100).round();
     final auditMissing = state.auditMissingCount;
@@ -36,6 +44,7 @@ class DashboardScreen extends StatelessWidget {
         .where((e) => e.riskLevel == RiskLevel.red)
         .length;
     final total = state.knowledgeEntries.length;
+    final recommendations = _buildRecommendations(context, state);
 
     return Scaffold(
       body: ListView(
@@ -82,6 +91,12 @@ class DashboardScreen extends StatelessWidget {
                   value: '$redirects',
                   icon: Icons.block_outlined,
                   color: redirects > 0 ? Colors.red : Colors.green,
+                ),
+                StatCard(
+                  label: l.statReviewedBotQuestions,
+                  value: '$reviewedBotQuestions',
+                  icon: Icons.verified_outlined,
+                  color: Colors.blue,
                 ),
                 StatCard(
                   label: l.statAuditScore,
@@ -142,6 +157,26 @@ class DashboardScreen extends StatelessWidget {
               );
             },
           ),
+          const SizedBox(height: 28),
+
+          Text(
+            l.dashboardNextStepsTitle,
+            style: theme.textTheme.titleMedium?.copyWith(
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          const SizedBox(height: 12),
+          if (recommendations.isEmpty)
+            _RecommendationCard(
+              icon: Icons.check_circle_outline,
+              title: l.dashboardRecommendationAllDoneTitle,
+              description: l.dashboardRecommendationAllDoneDescription,
+              color: Colors.green,
+              actionLabel: l.navDashboard,
+              onTap: null,
+            )
+          else
+            ...recommendations.map((item) => _RecommendationCard(item: item)),
           const SizedBox(height: 28),
 
           // ── Risiko-Verteilung ────────────────────────────────────────
@@ -322,6 +357,166 @@ class DashboardScreen extends StatelessWidget {
               );
             }),
         ],
+      ),
+    );
+  }
+
+  List<_Recommendation> _buildRecommendations(
+    BuildContext context,
+    AppState state,
+  ) {
+    final l = AppLocalizations.of(context)!;
+    final recommendations = <_Recommendation>[];
+
+    if (state.auditHighPriorityMissingCount > 0) {
+      recommendations.add(
+        _Recommendation(
+          icon: Icons.priority_high,
+          title: l.dashboardRecommendationAuditTitle,
+          description: l.dashboardRecommendationAuditDescription(
+            state.auditHighPriorityMissingCount,
+          ),
+          color: Colors.red,
+          actionLabel: l.navAudit,
+          path: '/audit',
+        ),
+      );
+    }
+
+    if (state.knowledgeEntries.length < 12) {
+      recommendations.add(
+        _Recommendation(
+          icon: Icons.library_add_outlined,
+          title: l.dashboardRecommendationKnowledgeTitle,
+          description: l.dashboardRecommendationKnowledgeDescription(
+            state.knowledgeEntries.length,
+          ),
+          color: Colors.indigo,
+          actionLabel: l.navKnowledge,
+          path: '/knowledge',
+        ),
+      );
+    }
+
+    if (state.openReviewCount > 0) {
+      recommendations.add(
+        _Recommendation(
+          icon: Icons.rate_review_outlined,
+          title: l.dashboardRecommendationReviewTitle,
+          description: l.dashboardRecommendationReviewDescription(
+            state.openReviewCount,
+          ),
+          color: Colors.orange,
+          actionLabel: l.navReview,
+          path: '/review',
+        ),
+      );
+    }
+
+    if (state.companyProfileStatus != CompanyProfileStatus.complete) {
+      recommendations.add(
+        _Recommendation(
+          icon: Icons.business_outlined,
+          title: l.dashboardRecommendationProfileTitle,
+          description: l.dashboardRecommendationProfileDescription,
+          color: Colors.teal,
+          actionLabel: l.navCompany,
+          path: '/company',
+        ),
+      );
+    }
+
+    return recommendations;
+  }
+}
+
+class _Recommendation {
+  final IconData icon;
+  final String title;
+  final String description;
+  final Color color;
+  final String actionLabel;
+  final String path;
+
+  const _Recommendation({
+    required this.icon,
+    required this.title,
+    required this.description,
+    required this.color,
+    required this.actionLabel,
+    required this.path,
+  });
+}
+
+class _RecommendationCard extends StatelessWidget {
+  final _Recommendation? item;
+  final IconData? icon;
+  final String? title;
+  final String? description;
+  final Color? color;
+  final String? actionLabel;
+  final VoidCallback? onTap;
+
+  const _RecommendationCard({
+    this.item,
+    this.icon,
+    this.title,
+    this.description,
+    this.color,
+    this.actionLabel,
+    this.onTap,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final resolvedIcon = item?.icon ?? icon!;
+    final resolvedTitle = item?.title ?? title!;
+    final resolvedDescription = item?.description ?? description!;
+    final resolvedColor = item?.color ?? color!;
+    final resolvedActionLabel = item?.actionLabel ?? actionLabel!;
+    final resolvedOnTap = item != null ? () => context.go(item!.path) : onTap;
+    final theme = Theme.of(context);
+
+    return Card(
+      margin: const EdgeInsets.only(bottom: 10),
+      child: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            CircleAvatar(
+              backgroundColor: resolvedColor.withAlpha(28),
+              child: Icon(resolvedIcon, color: resolvedColor, size: 20),
+            ),
+            const SizedBox(width: 14),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    resolvedTitle,
+                    style: theme.textTheme.titleSmall?.copyWith(
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  const SizedBox(height: 4),
+                  Text(
+                    resolvedDescription,
+                    style: theme.textTheme.bodySmall?.copyWith(
+                      color: theme.colorScheme.onSurfaceVariant,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(width: 12),
+            if (resolvedOnTap != null)
+              TextButton(
+                onPressed: resolvedOnTap,
+                child: Text(resolvedActionLabel),
+              ),
+          ],
+        ),
       ),
     );
   }

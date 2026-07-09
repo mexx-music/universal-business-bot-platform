@@ -89,6 +89,51 @@ class LandingScreen extends StatelessWidget {
                       ),
                     ],
                   ),
+                  const SizedBox(height: 36),
+                  Text(
+                    l.landingStepsTitle,
+                    style: theme.textTheme.titleLarge?.copyWith(
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  const SizedBox(height: 14),
+                  LayoutBuilder(
+                    builder: (context, constraints) {
+                      final isWide = constraints.maxWidth >= 820;
+                      final steps = [
+                        _StepCard(
+                          number: '1',
+                          title: l.landingStepCompanyTitle,
+                          description: l.landingStepCompanyDescription,
+                          icon: Icons.business_outlined,
+                        ),
+                        _StepCard(
+                          number: '2',
+                          title: l.landingStepKnowledgeTitle,
+                          description: l.landingStepKnowledgeDescription,
+                          icon: Icons.account_tree_outlined,
+                        ),
+                        _StepCard(
+                          number: '3',
+                          title: l.landingStepBotTitle,
+                          description: l.landingStepBotDescription,
+                          icon: Icons.verified_user_outlined,
+                        ),
+                      ];
+                      return GridView.builder(
+                        shrinkWrap: true,
+                        physics: const NeverScrollableScrollPhysics(),
+                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: isWide ? 3 : 1,
+                          crossAxisSpacing: 12,
+                          mainAxisSpacing: 12,
+                          mainAxisExtent: 154,
+                        ),
+                        itemCount: steps.length,
+                        itemBuilder: (context, index) => steps[index],
+                      );
+                    },
+                  ),
                   const SizedBox(height: 44),
                   Text(
                     l.landingDemoTitle,
@@ -123,6 +168,70 @@ class LandingScreen extends StatelessWidget {
                     },
                   ),
                 ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class _StepCard extends StatelessWidget {
+  final String number;
+  final String title;
+  final String description;
+  final IconData icon;
+
+  const _StepCard({
+    required this.number,
+    required this.title,
+    required this.description,
+    required this.icon,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    return Card(
+      child: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              children: [
+                CircleAvatar(
+                  radius: 17,
+                  backgroundColor: theme.colorScheme.primaryContainer,
+                  child: Text(
+                    number,
+                    style: theme.textTheme.labelLarge?.copyWith(
+                      color: theme.colorScheme.onPrimaryContainer,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+                const SizedBox(width: 10),
+                Icon(icon, color: theme.colorScheme.primary, size: 20),
+              ],
+            ),
+            const SizedBox(height: 12),
+            Text(
+              title,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+              style: theme.textTheme.titleSmall?.copyWith(
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            const SizedBox(height: 5),
+            Text(
+              description,
+              maxLines: 2,
+              overflow: TextOverflow.ellipsis,
+              style: theme.textTheme.bodySmall?.copyWith(
+                color: theme.colorScheme.onSurfaceVariant,
               ),
             ),
           ],

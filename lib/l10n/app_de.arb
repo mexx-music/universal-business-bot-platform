@@ -10,6 +10,13 @@
   "landingFeatureBot": "Bot",
   "landingFeatureAudit": "Audit",
   "landingFeatureReview": "Human Review",
+  "landingStepsTitle": "Demo-Flow",
+  "landingStepCompanyTitle": "Firma erfassen",
+  "landingStepCompanyDescription": "Business Core, Kontaktwege und Regeln pro Workspace pflegen.",
+  "landingStepKnowledgeTitle": "Wissen strukturieren",
+  "landingStepKnowledgeDescription": "FAQ, Quellen und Supportwissen in sichere Einträge überführen.",
+  "landingStepBotTitle": "Bot sicher testen",
+  "landingStepBotDescription": "Bot-Fragen prüfen, blockieren und per Human Review absichern.",
   "landingDemoTitle": "Demo-Firmen",
   "landingOpenDemo": "Demo öffnen",
   "landingBackHome": "Zur Startseite",
@@ -35,6 +42,18 @@
   },
   "companyLogCount": "{count} Logs",
   "@companyLogCount": {
+    "placeholders": {
+      "count": { "type": "int" }
+    }
+  },
+  "companyAuditScore": "Audit {score}%",
+  "@companyAuditScore": {
+    "placeholders": {
+      "score": { "type": "int" }
+    }
+  },
+  "companyOpenReviewCount": "{count} offene Reviews",
+  "@companyOpenReviewCount": {
     "placeholders": {
       "count": { "type": "int" }
     }
@@ -95,6 +114,32 @@
   },
   "dashboardNoLogs": "Noch keine Bot-Anfragen. Starte den Bot-Test.",
   "logNoAnswer": "Keine Antwort gefunden",
+  "dashboardNextStepsTitle": "Nächste empfohlene Schritte",
+  "dashboardRecommendationAuditTitle": "Audit-Lücken schließen",
+  "dashboardRecommendationAuditDescription": "{count} High-Priority-Auditpunkte fehlen noch.",
+  "@dashboardRecommendationAuditDescription": {
+    "placeholders": {
+      "count": { "type": "int" }
+    }
+  },
+  "dashboardRecommendationKnowledgeTitle": "Wissensbasis erweitern",
+  "dashboardRecommendationKnowledgeDescription": "Aktuell sind {count} Wissenseinträge vorhanden. Für eine Demo sollten mehr sichere FAQ und Supportfälle ergänzt werden.",
+  "@dashboardRecommendationKnowledgeDescription": {
+    "placeholders": {
+      "count": { "type": "int" }
+    }
+  },
+  "dashboardRecommendationReviewTitle": "Human Review prüfen",
+  "dashboardRecommendationReviewDescription": "{count} Bot-Fragen warten auf Prüfung.",
+  "@dashboardRecommendationReviewDescription": {
+    "placeholders": {
+      "count": { "type": "int" }
+    }
+  },
+  "dashboardRecommendationProfileTitle": "Firmenprofil ergänzen",
+  "dashboardRecommendationProfileDescription": "Business Core, Kontaktwege oder Business Rules sind noch nicht vollständig gepflegt.",
+  "dashboardRecommendationAllDoneTitle": "Workspace wirkt demo-bereit",
+  "dashboardRecommendationAllDoneDescription": "Keine dringenden nächsten Schritte aus den aktuellen Workspace-Daten ableitbar.",
 
   "companyTitle": "Firma",
   "companyEditDialogTitle": "Firmendaten bearbeiten",
@@ -300,6 +345,7 @@
 
   "statOpenRequests": "Offene Anfragen",
   "statRedirects": "Weiterleitungen",
+  "statReviewedBotQuestions": "Geprüfte Bot-Fragen",
   "statAuditScore": "Audit-Score",
   "statAuditMissing": "Audit fehlt",
   "statAuditPartial": "Audit teilweise",

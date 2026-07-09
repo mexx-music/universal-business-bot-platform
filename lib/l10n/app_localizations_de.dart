@@ -34,6 +34,30 @@ class AppLocalizationsDe extends AppLocalizations {
   String get landingFeatureReview => 'Human Review';
 
   @override
+  String get landingStepsTitle => 'Demo-Flow';
+
+  @override
+  String get landingStepCompanyTitle => 'Firma erfassen';
+
+  @override
+  String get landingStepCompanyDescription =>
+      'Business Core, Kontaktwege und Regeln pro Workspace pflegen.';
+
+  @override
+  String get landingStepKnowledgeTitle => 'Wissen strukturieren';
+
+  @override
+  String get landingStepKnowledgeDescription =>
+      'FAQ, Quellen und Supportwissen in sichere Einträge überführen.';
+
+  @override
+  String get landingStepBotTitle => 'Bot sicher testen';
+
+  @override
+  String get landingStepBotDescription =>
+      'Bot-Fragen prüfen, blockieren und per Human Review absichern.';
+
+  @override
   String get landingDemoTitle => 'Demo-Firmen';
 
   @override
@@ -77,6 +101,16 @@ class AppLocalizationsDe extends AppLocalizations {
   @override
   String companyLogCount(int count) {
     return '$count Logs';
+  }
+
+  @override
+  String companyAuditScore(int score) {
+    return 'Audit $score%';
+  }
+
+  @override
+  String companyOpenReviewCount(int count) {
+    return '$count offene Reviews';
   }
 
   @override
@@ -208,6 +242,48 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get logNoAnswer => 'Keine Antwort gefunden';
+
+  @override
+  String get dashboardNextStepsTitle => 'Nächste empfohlene Schritte';
+
+  @override
+  String get dashboardRecommendationAuditTitle => 'Audit-Lücken schließen';
+
+  @override
+  String dashboardRecommendationAuditDescription(int count) {
+    return '$count High-Priority-Auditpunkte fehlen noch.';
+  }
+
+  @override
+  String get dashboardRecommendationKnowledgeTitle => 'Wissensbasis erweitern';
+
+  @override
+  String dashboardRecommendationKnowledgeDescription(int count) {
+    return 'Aktuell sind $count Wissenseinträge vorhanden. Für eine Demo sollten mehr sichere FAQ und Supportfälle ergänzt werden.';
+  }
+
+  @override
+  String get dashboardRecommendationReviewTitle => 'Human Review prüfen';
+
+  @override
+  String dashboardRecommendationReviewDescription(int count) {
+    return '$count Bot-Fragen warten auf Prüfung.';
+  }
+
+  @override
+  String get dashboardRecommendationProfileTitle => 'Firmenprofil ergänzen';
+
+  @override
+  String get dashboardRecommendationProfileDescription =>
+      'Business Core, Kontaktwege oder Business Rules sind noch nicht vollständig gepflegt.';
+
+  @override
+  String get dashboardRecommendationAllDoneTitle =>
+      'Workspace wirkt demo-bereit';
+
+  @override
+  String get dashboardRecommendationAllDoneDescription =>
+      'Keine dringenden nächsten Schritte aus den aktuellen Workspace-Daten ableitbar.';
 
   @override
   String get companyTitle => 'Firma';
@@ -571,6 +647,9 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get statRedirects => 'Weiterleitungen';
+
+  @override
+  String get statReviewedBotQuestions => 'Geprüfte Bot-Fragen';
 
   @override
   String get statAuditScore => 'Audit-Score';

@@ -44,6 +44,8 @@ class CompaniesScreen extends StatelessWidget {
             (workspace) => _CompanySelectionCard(
               workspace: workspace,
               selected: workspace.company.id == state.selectedCompanyId,
+              auditScore: (state.auditScoreFor(workspace) * 100).round(),
+              openReviews: state.openReviewCountFor(workspace),
               onSelect: () {
                 state.selectCompany(workspace.company.id);
                 context.go('/dashboard');
@@ -65,11 +67,15 @@ class CompaniesScreen extends StatelessWidget {
 class _CompanySelectionCard extends StatelessWidget {
   final CompanyWorkspace workspace;
   final bool selected;
+  final int auditScore;
+  final int openReviews;
   final VoidCallback onSelect;
 
   const _CompanySelectionCard({
     required this.workspace,
     required this.selected,
+    required this.auditScore,
+    required this.openReviews,
     required this.onSelect,
   });
 
@@ -142,10 +148,8 @@ class _CompanySelectionCard extends StatelessWidget {
                       runSpacing: 8,
                       children: [
                         _CountChip(
-                          icon: Icons.inventory_2_outlined,
-                          label: l.companyProductCount(
-                            workspace.products.length,
-                          ),
+                          icon: Icons.fact_check_outlined,
+                          label: l.companyAuditScore(auditScore),
                         ),
                         _CountChip(
                           icon: Icons.library_books_outlined,
@@ -154,8 +158,8 @@ class _CompanySelectionCard extends StatelessWidget {
                           ),
                         ),
                         _CountChip(
-                          icon: Icons.smart_toy_outlined,
-                          label: l.companyLogCount(workspace.botLogs.length),
+                          icon: Icons.rate_review_outlined,
+                          label: l.companyOpenReviewCount(openReviews),
                         ),
                       ],
                     ),

@@ -34,6 +34,30 @@ class AppLocalizationsEn extends AppLocalizations {
   String get landingFeatureReview => 'Human Review';
 
   @override
+  String get landingStepsTitle => 'Demo Flow';
+
+  @override
+  String get landingStepCompanyTitle => 'Capture company';
+
+  @override
+  String get landingStepCompanyDescription =>
+      'Maintain business core, contact channels, and rules per workspace.';
+
+  @override
+  String get landingStepKnowledgeTitle => 'Structure knowledge';
+
+  @override
+  String get landingStepKnowledgeDescription =>
+      'Turn FAQs, sources, and support knowledge into safe entries.';
+
+  @override
+  String get landingStepBotTitle => 'Test bot safely';
+
+  @override
+  String get landingStepBotDescription =>
+      'Review, block, and validate bot questions with human review.';
+
+  @override
   String get landingDemoTitle => 'Demo Companies';
 
   @override
@@ -77,6 +101,16 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String companyLogCount(int count) {
     return '$count logs';
+  }
+
+  @override
+  String companyAuditScore(int score) {
+    return 'Audit $score%';
+  }
+
+  @override
+  String companyOpenReviewCount(int count) {
+    return '$count open reviews';
   }
 
   @override
@@ -208,6 +242,48 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get logNoAnswer => 'No answer found';
+
+  @override
+  String get dashboardNextStepsTitle => 'Next recommended steps';
+
+  @override
+  String get dashboardRecommendationAuditTitle => 'Close audit gaps';
+
+  @override
+  String dashboardRecommendationAuditDescription(int count) {
+    return '$count high-priority audit items are still missing.';
+  }
+
+  @override
+  String get dashboardRecommendationKnowledgeTitle => 'Expand knowledge base';
+
+  @override
+  String dashboardRecommendationKnowledgeDescription(int count) {
+    return 'There are currently $count knowledge entries. Add more safe FAQs and support cases for a stronger demo.';
+  }
+
+  @override
+  String get dashboardRecommendationReviewTitle => 'Check human review';
+
+  @override
+  String dashboardRecommendationReviewDescription(int count) {
+    return '$count bot questions are waiting for review.';
+  }
+
+  @override
+  String get dashboardRecommendationProfileTitle => 'Complete company profile';
+
+  @override
+  String get dashboardRecommendationProfileDescription =>
+      'Business core, contact channels, or business rules are not fully maintained yet.';
+
+  @override
+  String get dashboardRecommendationAllDoneTitle =>
+      'Workspace looks demo-ready';
+
+  @override
+  String get dashboardRecommendationAllDoneDescription =>
+      'No urgent next steps can be derived from the current workspace data.';
 
   @override
   String get companyTitle => 'Company';
@@ -570,6 +646,9 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get statRedirects => 'Redirections';
+
+  @override
+  String get statReviewedBotQuestions => 'Reviewed Bot Questions';
 
   @override
   String get statAuditScore => 'Audit Score';

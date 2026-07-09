@@ -146,6 +146,48 @@ abstract class AppLocalizations {
   /// **'Human Review'**
   String get landingFeatureReview;
 
+  /// No description provided for @landingStepsTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Demo-Flow'**
+  String get landingStepsTitle;
+
+  /// No description provided for @landingStepCompanyTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Firma erfassen'**
+  String get landingStepCompanyTitle;
+
+  /// No description provided for @landingStepCompanyDescription.
+  ///
+  /// In de, this message translates to:
+  /// **'Business Core, Kontaktwege und Regeln pro Workspace pflegen.'**
+  String get landingStepCompanyDescription;
+
+  /// No description provided for @landingStepKnowledgeTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Wissen strukturieren'**
+  String get landingStepKnowledgeTitle;
+
+  /// No description provided for @landingStepKnowledgeDescription.
+  ///
+  /// In de, this message translates to:
+  /// **'FAQ, Quellen und Supportwissen in sichere Einträge überführen.'**
+  String get landingStepKnowledgeDescription;
+
+  /// No description provided for @landingStepBotTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Bot sicher testen'**
+  String get landingStepBotTitle;
+
+  /// No description provided for @landingStepBotDescription.
+  ///
+  /// In de, this message translates to:
+  /// **'Bot-Fragen prüfen, blockieren und per Human Review absichern.'**
+  String get landingStepBotDescription;
+
   /// No description provided for @landingDemoTitle.
   ///
   /// In de, this message translates to:
@@ -223,6 +265,18 @@ abstract class AppLocalizations {
   /// In de, this message translates to:
   /// **'{count} Logs'**
   String companyLogCount(int count);
+
+  /// No description provided for @companyAuditScore.
+  ///
+  /// In de, this message translates to:
+  /// **'Audit {score}%'**
+  String companyAuditScore(int score);
+
+  /// No description provided for @companyOpenReviewCount.
+  ///
+  /// In de, this message translates to:
+  /// **'{count} offene Reviews'**
+  String companyOpenReviewCount(int count);
 
   /// No description provided for @navHome.
   ///
@@ -475,6 +529,72 @@ abstract class AppLocalizations {
   /// In de, this message translates to:
   /// **'Keine Antwort gefunden'**
   String get logNoAnswer;
+
+  /// No description provided for @dashboardNextStepsTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Nächste empfohlene Schritte'**
+  String get dashboardNextStepsTitle;
+
+  /// No description provided for @dashboardRecommendationAuditTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Audit-Lücken schließen'**
+  String get dashboardRecommendationAuditTitle;
+
+  /// No description provided for @dashboardRecommendationAuditDescription.
+  ///
+  /// In de, this message translates to:
+  /// **'{count} High-Priority-Auditpunkte fehlen noch.'**
+  String dashboardRecommendationAuditDescription(int count);
+
+  /// No description provided for @dashboardRecommendationKnowledgeTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Wissensbasis erweitern'**
+  String get dashboardRecommendationKnowledgeTitle;
+
+  /// No description provided for @dashboardRecommendationKnowledgeDescription.
+  ///
+  /// In de, this message translates to:
+  /// **'Aktuell sind {count} Wissenseinträge vorhanden. Für eine Demo sollten mehr sichere FAQ und Supportfälle ergänzt werden.'**
+  String dashboardRecommendationKnowledgeDescription(int count);
+
+  /// No description provided for @dashboardRecommendationReviewTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Human Review prüfen'**
+  String get dashboardRecommendationReviewTitle;
+
+  /// No description provided for @dashboardRecommendationReviewDescription.
+  ///
+  /// In de, this message translates to:
+  /// **'{count} Bot-Fragen warten auf Prüfung.'**
+  String dashboardRecommendationReviewDescription(int count);
+
+  /// No description provided for @dashboardRecommendationProfileTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Firmenprofil ergänzen'**
+  String get dashboardRecommendationProfileTitle;
+
+  /// No description provided for @dashboardRecommendationProfileDescription.
+  ///
+  /// In de, this message translates to:
+  /// **'Business Core, Kontaktwege oder Business Rules sind noch nicht vollständig gepflegt.'**
+  String get dashboardRecommendationProfileDescription;
+
+  /// No description provided for @dashboardRecommendationAllDoneTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Workspace wirkt demo-bereit'**
+  String get dashboardRecommendationAllDoneTitle;
+
+  /// No description provided for @dashboardRecommendationAllDoneDescription.
+  ///
+  /// In de, this message translates to:
+  /// **'Keine dringenden nächsten Schritte aus den aktuellen Workspace-Daten ableitbar.'**
+  String get dashboardRecommendationAllDoneDescription;
 
   /// No description provided for @companyTitle.
   ///
@@ -1117,6 +1237,12 @@ abstract class AppLocalizations {
   /// In de, this message translates to:
   /// **'Weiterleitungen'**
   String get statRedirects;
+
+  /// No description provided for @statReviewedBotQuestions.
+  ///
+  /// In de, this message translates to:
+  /// **'Geprüfte Bot-Fragen'**
+  String get statReviewedBotQuestions;
 
   /// No description provided for @statAuditScore.
   ///

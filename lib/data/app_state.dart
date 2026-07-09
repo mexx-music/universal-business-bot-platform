@@ -158,8 +158,26 @@ class AppState extends ChangeNotifier {
       )
       .length;
 
+  int get auditHighPriorityMissingCount => auditItems
+      .where(
+        (item) =>
+            item.priority == AuditPriority.high &&
+            item.status == AuditItemStatus.missing,
+      )
+      .length;
+
+  int get openReviewCount =>
+      botLogs.where((log) => log.reviewStatus == ReviewStatus.open).length;
+
+  int get blockedBotLogCount => botLogs.where((log) => log.redirected).length;
+
   CompanyProfileStatus get companyProfileStatus {
-    final c = company;
+    return companyProfileStatusFor(selectedWorkspace);
+  }
+
+  CompanyProfileStatus companyProfileStatusFor(CompanyWorkspace workspace) {
+    final c = workspace.company;
+    final rules = workspace.businessRules;
     final checks = [
       c.name.isNotEmpty,
       c.description.isNotEmpty,
@@ -169,8 +187,8 @@ class AppState extends ChangeNotifier {
       c.website.isNotEmpty,
       c.email.isNotEmpty,
       c.socialLinks.values.any((value) => value.trim().isNotEmpty),
-      businessRules.brandVoice.isNotEmpty,
-      businessRules.allowedSupportTopics.isNotEmpty,
+      rules.brandVoice.isNotEmpty,
+      rules.allowedSupportTopics.isNotEmpty,
     ];
     final complete = checks.where((check) => check).length;
     if (complete >= 8) return CompanyProfileStatus.complete;
@@ -178,12 +196,30 @@ class AppState extends ChangeNotifier {
     return CompanyProfileStatus.incomplete;
   }
 
+  double auditScoreFor(CompanyWorkspace workspace) {
+    return _auditScoreForItems(workspace.auditItems);
+  }
+
+  int openReviewCountFor(CompanyWorkspace workspace) {
+    return workspace.botLogs
+        .where((log) => log.reviewStatus == ReviewStatus.open)
+        .length;
+  }
+
+  int blockedBotLogCountFor(CompanyWorkspace workspace) {
+    return workspace.botLogs.where((log) => log.redirected).length;
+  }
+
   // 0.0 - 1.0; weighted by priority, with partial items counting halfway.
   double get auditScore {
-    if (auditItems.isEmpty) return 0.0;
+    return _auditScoreForItems(auditItems);
+  }
+
+  double _auditScoreForItems(List<BusinessAuditItem> items) {
+    if (items.isEmpty) return 0.0;
     double score = 0;
     double maxScore = 0;
-    for (final item in auditItems) {
+    for (final item in items) {
       final weight = _priorityWeight(item.priority);
       maxScore += weight;
       score += switch (item.status) {
