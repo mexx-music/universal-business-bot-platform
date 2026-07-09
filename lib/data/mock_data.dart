@@ -1,5 +1,6 @@
 import '../models/business_audit.dart';
 import '../models/business_rules.dart';
+import '../models/bot_configuration.dart';
 import '../models/company.dart';
 import '../models/company_workspace.dart';
 import '../models/product_or_service.dart';
@@ -831,6 +832,33 @@ class MockData {
         'Allgemeine Informationen ersetzen keine medizinische Beratung.',
   );
 
+  static const BotConfiguration hbCureBotConfiguration = BotConfiguration(
+    status: BotStatus.testReady,
+    answerStyle: BotAnswerStyle.balanced,
+    defaultLanguage: 'de',
+    useDisclaimer: true,
+    disclaimerText:
+        'Hinweis: Diese Antwort dient nur zur allgemeinen Information und ersetzt keine medizinische Beratung.',
+    alwaysEscalateRedFlags: true,
+    escalateNoMatch: true,
+    escalateYellowRisk: true,
+    allowedTopics: [
+      'App-Nutzung',
+      'Geräteverbindung',
+      'Preise',
+      'Support',
+      'Datenschutz allgemein',
+    ],
+    blockedTopics: [
+      'Diagnosen',
+      'Heilversprechen',
+      'Medikamente',
+      'Therapieempfehlungen',
+    ],
+    handoverMessage:
+        'Diese Frage kann der Bot nicht sicher beantworten. Bitte wenden Sie sich an den Support oder eine qualifizierte Fachstelle.',
+  );
+
   static final List<BusinessAuditItem> schnurrPurrAuditItems = [
     BusinessAuditItem(
       id: 'sp-a1',
@@ -950,6 +978,32 @@ class MockData {
         'SchnurrPurr bietet Komfort- und Entspannungsinformationen, keine medizinische Beratung.',
   );
 
+  static const BotConfiguration schnurrPurrBotConfiguration = BotConfiguration(
+    status: BotStatus.draft,
+    answerStyle: BotAnswerStyle.balanced,
+    defaultLanguage: 'de',
+    useDisclaimer: true,
+    disclaimerText:
+        'Hinweis: SchnurrPurr bietet Komfort- und Entspannungsinformationen, keine medizinische Beratung.',
+    alwaysEscalateRedFlags: true,
+    escalateNoMatch: true,
+    escalateYellowRisk: false,
+    allowedTopics: [
+      'Relax-App Nutzung',
+      'Pausenroutinen',
+      'Kissenpflege',
+      'Support',
+    ],
+    blockedTopics: [
+      'Diagnosen',
+      'Behandlung',
+      'Therapie',
+      'Garantierte Gesundheitswirkung',
+    ],
+    handoverMessage:
+        'Diese Frage sollte vom Support geprüft werden. Bitte kontaktieren Sie SchnurrPurr direkt.',
+  );
+
   static final List<CompanyWorkspace> companyWorkspaces = [
     CompanyWorkspace(
       company: company,
@@ -958,6 +1012,7 @@ class MockData {
       botLogs: botLogs,
       auditItems: hbCureAuditItems,
       businessRules: hbCureBusinessRules,
+      botConfiguration: hbCureBotConfiguration,
     ),
     CompanyWorkspace(
       company: schnurrPurrCompany,
@@ -966,6 +1021,7 @@ class MockData {
       botLogs: schnurrPurrBotLogs,
       auditItems: schnurrPurrAuditItems,
       businessRules: schnurrPurrBusinessRules,
+      botConfiguration: schnurrPurrBotConfiguration,
     ),
   ];
 }

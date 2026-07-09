@@ -7,6 +7,7 @@ import '../screens/company/company_screen.dart';
 import '../screens/audit/audit_screen.dart';
 import '../screens/knowledge/knowledge_screen.dart';
 import '../screens/bot_test/bot_test_screen.dart';
+import '../screens/bot_settings/bot_settings_screen.dart';
 import '../screens/sources/sources_screen.dart';
 import '../screens/review/review_screen.dart';
 
@@ -41,6 +42,10 @@ final appRouter = GoRouter(
         GoRoute(
           path: '/bot-test',
           builder: (context, state) => const BotTestScreen(),
+        ),
+        GoRoute(
+          path: '/bot-settings',
+          builder: (context, state) => const BotSettingsScreen(),
         ),
         GoRoute(
           path: '/sources',

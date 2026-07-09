@@ -314,6 +314,12 @@ abstract class AppLocalizations {
   /// **'Bot-Test'**
   String get navBotTest;
 
+  /// No description provided for @navBotSettings.
+  ///
+  /// In de, this message translates to:
+  /// **'Bot-Einstellungen'**
+  String get navBotSettings;
+
   /// No description provided for @navSources.
   ///
   /// In de, this message translates to:
@@ -595,6 +601,18 @@ abstract class AppLocalizations {
   /// In de, this message translates to:
   /// **'Keine dringenden nächsten Schritte aus den aktuellen Workspace-Daten ableitbar.'**
   String get dashboardRecommendationAllDoneDescription;
+
+  /// No description provided for @dashboardRecommendationBotSettingsTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Bot-Einstellungen prüfen'**
+  String get dashboardRecommendationBotSettingsTitle;
+
+  /// No description provided for @dashboardRecommendationBotSettingsDescription.
+  ///
+  /// In de, this message translates to:
+  /// **'Der Bot ist noch im Entwurf. Prüfe Status, Eskalation und Handover-Regeln vor dem Test.'**
+  String get dashboardRecommendationBotSettingsDescription;
 
   /// No description provided for @companyTitle.
   ///
@@ -1280,6 +1298,12 @@ abstract class AppLocalizations {
   /// **'Firmenprofil'**
   String get statCompanyProfile;
 
+  /// No description provided for @statBotStatus.
+  ///
+  /// In de, this message translates to:
+  /// **'Bot-Status'**
+  String get statBotStatus;
+
   /// No description provided for @statReviewOpen.
   ///
   /// In de, this message translates to:
@@ -1441,6 +1465,168 @@ abstract class AppLocalizations {
   /// In de, this message translates to:
   /// **'Als Wissenseintrag übernommen'**
   String get reviewKnowledgeCreatedNote;
+
+  /// No description provided for @botSettingsTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Bot-Einstellungen'**
+  String get botSettingsTitle;
+
+  /// No description provided for @botSettingsSubtitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Konfiguration für {companyName}'**
+  String botSettingsSubtitle(String companyName);
+
+  /// No description provided for @botSettingsStatus.
+  ///
+  /// In de, this message translates to:
+  /// **'Status'**
+  String get botSettingsStatus;
+
+  /// No description provided for @botSettingsAnswerStyle.
+  ///
+  /// In de, this message translates to:
+  /// **'Antwortstil'**
+  String get botSettingsAnswerStyle;
+
+  /// No description provided for @botSettingsLanguage.
+  ///
+  /// In de, this message translates to:
+  /// **'Sprache'**
+  String get botSettingsLanguage;
+
+  /// No description provided for @botSettingsDisclaimer.
+  ///
+  /// In de, this message translates to:
+  /// **'Disclaimer'**
+  String get botSettingsDisclaimer;
+
+  /// No description provided for @botSettingsUseDisclaimer.
+  ///
+  /// In de, this message translates to:
+  /// **'Disclaimer bei gelben Antworten anzeigen'**
+  String get botSettingsUseDisclaimer;
+
+  /// No description provided for @botSettingsDisclaimerText.
+  ///
+  /// In de, this message translates to:
+  /// **'Disclaimer-Text'**
+  String get botSettingsDisclaimerText;
+
+  /// No description provided for @botSettingsNoDisclaimer.
+  ///
+  /// In de, this message translates to:
+  /// **'Kein Disclaimer gepflegt.'**
+  String get botSettingsNoDisclaimer;
+
+  /// No description provided for @botSettingsEscalation.
+  ///
+  /// In de, this message translates to:
+  /// **'Eskalation / Human Handover'**
+  String get botSettingsEscalation;
+
+  /// No description provided for @botSettingsEscalateRedFlags.
+  ///
+  /// In de, this message translates to:
+  /// **'Rote Fragen immer eskalieren'**
+  String get botSettingsEscalateRedFlags;
+
+  /// No description provided for @botSettingsEscalateNoMatch.
+  ///
+  /// In de, this message translates to:
+  /// **'No-Match-Fragen in Review schicken'**
+  String get botSettingsEscalateNoMatch;
+
+  /// No description provided for @botSettingsEscalateYellowRisk.
+  ///
+  /// In de, this message translates to:
+  /// **'Gelbe Antworten in Review schicken'**
+  String get botSettingsEscalateYellowRisk;
+
+  /// No description provided for @botSettingsHandoverMessage.
+  ///
+  /// In de, this message translates to:
+  /// **'Handover-Nachricht'**
+  String get botSettingsHandoverMessage;
+
+  /// No description provided for @botSettingsNoHandover.
+  ///
+  /// In de, this message translates to:
+  /// **'Keine Handover-Nachricht gepflegt.'**
+  String get botSettingsNoHandover;
+
+  /// No description provided for @botSettingsAllowedTopics.
+  ///
+  /// In de, this message translates to:
+  /// **'Erlaubte Themen'**
+  String get botSettingsAllowedTopics;
+
+  /// No description provided for @botSettingsBlockedTopics.
+  ///
+  /// In de, this message translates to:
+  /// **'Gesperrte Themen'**
+  String get botSettingsBlockedTopics;
+
+  /// No description provided for @botSettingsNoAllowedTopics.
+  ///
+  /// In de, this message translates to:
+  /// **'Noch keine erlaubten Themen gepflegt.'**
+  String get botSettingsNoAllowedTopics;
+
+  /// No description provided for @botSettingsNoBlockedTopics.
+  ///
+  /// In de, this message translates to:
+  /// **'Noch keine gesperrten Themen gepflegt.'**
+  String get botSettingsNoBlockedTopics;
+
+  /// No description provided for @botStatusDraft.
+  ///
+  /// In de, this message translates to:
+  /// **'Entwurf'**
+  String get botStatusDraft;
+
+  /// No description provided for @botStatusTestReady.
+  ///
+  /// In de, this message translates to:
+  /// **'Testbereit'**
+  String get botStatusTestReady;
+
+  /// No description provided for @botStatusActive.
+  ///
+  /// In de, this message translates to:
+  /// **'Aktiv'**
+  String get botStatusActive;
+
+  /// No description provided for @botAnswerStyleShort.
+  ///
+  /// In de, this message translates to:
+  /// **'Kurz'**
+  String get botAnswerStyleShort;
+
+  /// No description provided for @botAnswerStyleBalanced.
+  ///
+  /// In de, this message translates to:
+  /// **'Ausgewogen'**
+  String get botAnswerStyleBalanced;
+
+  /// No description provided for @botAnswerStyleDetailed.
+  ///
+  /// In de, this message translates to:
+  /// **'Detailliert'**
+  String get botAnswerStyleDetailed;
+
+  /// No description provided for @languageGerman.
+  ///
+  /// In de, this message translates to:
+  /// **'Deutsch'**
+  String get languageGerman;
+
+  /// No description provided for @languageEnglish.
+  ///
+  /// In de, this message translates to:
+  /// **'Englisch'**
+  String get languageEnglish;
 }
 
 class _AppLocalizationsDelegate

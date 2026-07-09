@@ -132,6 +132,9 @@ class AppLocalizationsDe extends AppLocalizations {
   String get navBotTest => 'Bot-Test';
 
   @override
+  String get navBotSettings => 'Bot-Einstellungen';
+
+  @override
   String get navSources => 'Quellen';
 
   @override
@@ -284,6 +287,14 @@ class AppLocalizationsDe extends AppLocalizations {
   @override
   String get dashboardRecommendationAllDoneDescription =>
       'Keine dringenden nächsten Schritte aus den aktuellen Workspace-Daten ableitbar.';
+
+  @override
+  String get dashboardRecommendationBotSettingsTitle =>
+      'Bot-Einstellungen prüfen';
+
+  @override
+  String get dashboardRecommendationBotSettingsDescription =>
+      'Der Bot ist noch im Entwurf. Prüfe Status, Eskalation und Handover-Regeln vor dem Test.';
 
   @override
   String get companyTitle => 'Firma';
@@ -670,6 +681,9 @@ class AppLocalizationsDe extends AppLocalizations {
   String get statCompanyProfile => 'Firmenprofil';
 
   @override
+  String get statBotStatus => 'Bot-Status';
+
+  @override
   String get statReviewOpen => 'Offen zur Prüfung';
 
   @override
@@ -751,4 +765,91 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get reviewKnowledgeCreatedNote => 'Als Wissenseintrag übernommen';
+
+  @override
+  String get botSettingsTitle => 'Bot-Einstellungen';
+
+  @override
+  String botSettingsSubtitle(String companyName) {
+    return 'Konfiguration für $companyName';
+  }
+
+  @override
+  String get botSettingsStatus => 'Status';
+
+  @override
+  String get botSettingsAnswerStyle => 'Antwortstil';
+
+  @override
+  String get botSettingsLanguage => 'Sprache';
+
+  @override
+  String get botSettingsDisclaimer => 'Disclaimer';
+
+  @override
+  String get botSettingsUseDisclaimer =>
+      'Disclaimer bei gelben Antworten anzeigen';
+
+  @override
+  String get botSettingsDisclaimerText => 'Disclaimer-Text';
+
+  @override
+  String get botSettingsNoDisclaimer => 'Kein Disclaimer gepflegt.';
+
+  @override
+  String get botSettingsEscalation => 'Eskalation / Human Handover';
+
+  @override
+  String get botSettingsEscalateRedFlags => 'Rote Fragen immer eskalieren';
+
+  @override
+  String get botSettingsEscalateNoMatch => 'No-Match-Fragen in Review schicken';
+
+  @override
+  String get botSettingsEscalateYellowRisk =>
+      'Gelbe Antworten in Review schicken';
+
+  @override
+  String get botSettingsHandoverMessage => 'Handover-Nachricht';
+
+  @override
+  String get botSettingsNoHandover => 'Keine Handover-Nachricht gepflegt.';
+
+  @override
+  String get botSettingsAllowedTopics => 'Erlaubte Themen';
+
+  @override
+  String get botSettingsBlockedTopics => 'Gesperrte Themen';
+
+  @override
+  String get botSettingsNoAllowedTopics =>
+      'Noch keine erlaubten Themen gepflegt.';
+
+  @override
+  String get botSettingsNoBlockedTopics =>
+      'Noch keine gesperrten Themen gepflegt.';
+
+  @override
+  String get botStatusDraft => 'Entwurf';
+
+  @override
+  String get botStatusTestReady => 'Testbereit';
+
+  @override
+  String get botStatusActive => 'Aktiv';
+
+  @override
+  String get botAnswerStyleShort => 'Kurz';
+
+  @override
+  String get botAnswerStyleBalanced => 'Ausgewogen';
+
+  @override
+  String get botAnswerStyleDetailed => 'Detailliert';
+
+  @override
+  String get languageGerman => 'Deutsch';
+
+  @override
+  String get languageEnglish => 'Englisch';
 }

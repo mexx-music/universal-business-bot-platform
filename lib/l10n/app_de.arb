@@ -65,6 +65,7 @@
   "navAudit": "Audit",
   "navKnowledge": "Wissensbasis",
   "navBotTest": "Bot-Test",
+  "navBotSettings": "Bot-Einstellungen",
   "navSources": "Quellen",
 
   "btnCancel": "Abbrechen",
@@ -140,6 +141,8 @@
   "dashboardRecommendationProfileDescription": "Business Core, Kontaktwege oder Business Rules sind noch nicht vollständig gepflegt.",
   "dashboardRecommendationAllDoneTitle": "Workspace wirkt demo-bereit",
   "dashboardRecommendationAllDoneDescription": "Keine dringenden nächsten Schritte aus den aktuellen Workspace-Daten ableitbar.",
+  "dashboardRecommendationBotSettingsTitle": "Bot-Einstellungen prüfen",
+  "dashboardRecommendationBotSettingsDescription": "Der Bot ist noch im Entwurf. Prüfe Status, Eskalation und Handover-Regeln vor dem Test.",
 
   "companyTitle": "Firma",
   "companyEditDialogTitle": "Firmendaten bearbeiten",
@@ -352,6 +355,7 @@
   "statAuditComplete": "Audit vollständig",
   "statAuditHighPriorityOpen": "High-Priority-Lücken",
   "statCompanyProfile": "Firmenprofil",
+  "statBotStatus": "Bot-Status",
   "statReviewOpen": "Offen zur Prüfung",
   "dashboardRiskTitle": "Wissensbasis nach Risikostufe",
   "knowledgeRisk": "Risikostufe",
@@ -388,5 +392,38 @@
   "reviewCreateKnowledgeEntry": "Als Wissenseintrag anlegen",
   "reviewKnowledgeSourceOptional": "Quelle (optional)",
   "reviewKnowledgeDefaultSource": "Human Review",
-  "reviewKnowledgeCreatedNote": "Als Wissenseintrag übernommen"
+  "reviewKnowledgeCreatedNote": "Als Wissenseintrag übernommen",
+
+  "botSettingsTitle": "Bot-Einstellungen",
+  "botSettingsSubtitle": "Konfiguration für {companyName}",
+  "@botSettingsSubtitle": {
+    "placeholders": {
+      "companyName": { "type": "String" }
+    }
+  },
+  "botSettingsStatus": "Status",
+  "botSettingsAnswerStyle": "Antwortstil",
+  "botSettingsLanguage": "Sprache",
+  "botSettingsDisclaimer": "Disclaimer",
+  "botSettingsUseDisclaimer": "Disclaimer bei gelben Antworten anzeigen",
+  "botSettingsDisclaimerText": "Disclaimer-Text",
+  "botSettingsNoDisclaimer": "Kein Disclaimer gepflegt.",
+  "botSettingsEscalation": "Eskalation / Human Handover",
+  "botSettingsEscalateRedFlags": "Rote Fragen immer eskalieren",
+  "botSettingsEscalateNoMatch": "No-Match-Fragen in Review schicken",
+  "botSettingsEscalateYellowRisk": "Gelbe Antworten in Review schicken",
+  "botSettingsHandoverMessage": "Handover-Nachricht",
+  "botSettingsNoHandover": "Keine Handover-Nachricht gepflegt.",
+  "botSettingsAllowedTopics": "Erlaubte Themen",
+  "botSettingsBlockedTopics": "Gesperrte Themen",
+  "botSettingsNoAllowedTopics": "Noch keine erlaubten Themen gepflegt.",
+  "botSettingsNoBlockedTopics": "Noch keine gesperrten Themen gepflegt.",
+  "botStatusDraft": "Entwurf",
+  "botStatusTestReady": "Testbereit",
+  "botStatusActive": "Aktiv",
+  "botAnswerStyleShort": "Kurz",
+  "botAnswerStyleBalanced": "Ausgewogen",
+  "botAnswerStyleDetailed": "Detailliert",
+  "languageGerman": "Deutsch",
+  "languageEnglish": "Englisch"
 }

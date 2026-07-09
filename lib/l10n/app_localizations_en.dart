@@ -132,6 +132,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get navBotTest => 'Bot Test';
 
   @override
+  String get navBotSettings => 'Bot Settings';
+
+  @override
   String get navSources => 'Sources';
 
   @override
@@ -284,6 +287,13 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get dashboardRecommendationAllDoneDescription =>
       'No urgent next steps can be derived from the current workspace data.';
+
+  @override
+  String get dashboardRecommendationBotSettingsTitle => 'Review bot settings';
+
+  @override
+  String get dashboardRecommendationBotSettingsDescription =>
+      'The bot is still in draft. Check status, escalation, and handover rules before testing.';
 
   @override
   String get companyTitle => 'Company';
@@ -669,6 +679,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get statCompanyProfile => 'Company Profile';
 
   @override
+  String get statBotStatus => 'Bot Status';
+
+  @override
   String get statReviewOpen => 'Open for Review';
 
   @override
@@ -750,4 +763,87 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get reviewKnowledgeCreatedNote => 'Converted to knowledge entry';
+
+  @override
+  String get botSettingsTitle => 'Bot Settings';
+
+  @override
+  String botSettingsSubtitle(String companyName) {
+    return 'Configuration for $companyName';
+  }
+
+  @override
+  String get botSettingsStatus => 'Status';
+
+  @override
+  String get botSettingsAnswerStyle => 'Answer Style';
+
+  @override
+  String get botSettingsLanguage => 'Language';
+
+  @override
+  String get botSettingsDisclaimer => 'Disclaimer';
+
+  @override
+  String get botSettingsUseDisclaimer => 'Show disclaimer for yellow answers';
+
+  @override
+  String get botSettingsDisclaimerText => 'Disclaimer Text';
+
+  @override
+  String get botSettingsNoDisclaimer => 'No disclaimer maintained.';
+
+  @override
+  String get botSettingsEscalation => 'Escalation / Human Handover';
+
+  @override
+  String get botSettingsEscalateRedFlags => 'Always escalate red questions';
+
+  @override
+  String get botSettingsEscalateNoMatch => 'Send no-match questions to review';
+
+  @override
+  String get botSettingsEscalateYellowRisk => 'Send yellow answers to review';
+
+  @override
+  String get botSettingsHandoverMessage => 'Handover Message';
+
+  @override
+  String get botSettingsNoHandover => 'No handover message maintained.';
+
+  @override
+  String get botSettingsAllowedTopics => 'Allowed Topics';
+
+  @override
+  String get botSettingsBlockedTopics => 'Blocked Topics';
+
+  @override
+  String get botSettingsNoAllowedTopics => 'No allowed topics maintained yet.';
+
+  @override
+  String get botSettingsNoBlockedTopics => 'No blocked topics maintained yet.';
+
+  @override
+  String get botStatusDraft => 'Draft';
+
+  @override
+  String get botStatusTestReady => 'Test Ready';
+
+  @override
+  String get botStatusActive => 'Active';
+
+  @override
+  String get botAnswerStyleShort => 'Short';
+
+  @override
+  String get botAnswerStyleBalanced => 'Balanced';
+
+  @override
+  String get botAnswerStyleDetailed => 'Detailed';
+
+  @override
+  String get languageGerman => 'German';
+
+  @override
+  String get languageEnglish => 'English';
 }

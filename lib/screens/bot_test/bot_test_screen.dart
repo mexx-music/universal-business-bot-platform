@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../data/app_state.dart';
 import '../../l10n/app_localizations.dart';
+import '../../models/bot_configuration.dart';
 import '../../models/bot_question_log.dart';
 import '../../models/knowledge_entry.dart';
 
@@ -130,12 +131,14 @@ class _BotTestScreenState extends State<BotTestScreen> {
     if (text.isEmpty) return;
 
     final state = AppState.of(context);
+    final config = state.botConfiguration;
 
     setState(() => _messages.add(_ChatMessage(text: text, isBot: false)));
     _controller.clear();
 
     // Red-flag check has priority — never show content for red keywords
-    if (_hasRedFlag(text, state.knowledgeEntries)) {
+    if (_hasRedFlag(text, state.knowledgeEntries) ||
+        _containsConfiguredTopic(text, config.blockedTopics)) {
       state.addBotLog(
         BotQuestionLog(
           id: 'b_${DateTime.now().millisecondsSinceEpoch}',
@@ -143,7 +146,9 @@ class _BotTestScreenState extends State<BotTestScreen> {
           matched: false,
           redirected: true,
           timestamp: DateTime.now(),
-          reviewStatus: ReviewStatus.open,
+          reviewStatus: config.alwaysEscalateRedFlags
+              ? ReviewStatus.open
+              : ReviewStatus.closed,
           reviewReason: ReviewReason.redFlag,
         ),
       );
@@ -152,7 +157,9 @@ class _BotTestScreenState extends State<BotTestScreen> {
         setState(
           () => _messages.add(
             _ChatMessage(
-              text: l.botTestRedirectMessage(state.company.email),
+              text: config.handoverMessage.trim().isEmpty
+                  ? l.botTestRedirectMessage(state.company.email)
+                  : config.handoverMessage,
               isBot: true,
               riskLevel: RiskLevel.red,
             ),
@@ -168,15 +175,21 @@ class _BotTestScreenState extends State<BotTestScreen> {
         .where((e) => e.riskLevel != RiskLevel.red)
         .toList();
     final match = _findBestMatch(text, safeEntries);
-    final answer = match?.content ?? l.botTestNoMatch;
+    final answer = match != null
+        ? _formatAnswer(match, config)
+        : config.escalateNoMatch && config.handoverMessage.trim().isNotEmpty
+        ? config.handoverMessage
+        : l.botTestNoMatch;
 
     final isYellowMatch = match != null && match.riskLevel == RiskLevel.yellow;
     final reviewStatus = match == null
-        ? ReviewStatus.open
+        ? (config.escalateNoMatch ? ReviewStatus.open : ReviewStatus.closed)
         : isYellowMatch
-        ? ReviewStatus.reviewed
+        ? (config.escalateYellowRisk
+              ? ReviewStatus.open
+              : ReviewStatus.reviewed)
         : ReviewStatus.closed;
-    final reviewReason = match == null
+    final reviewReason = match == null && config.escalateNoMatch
         ? ReviewReason.noMatch
         : isYellowMatch
         ? ReviewReason.yellowRisk
@@ -204,6 +217,12 @@ class _BotTestScreenState extends State<BotTestScreen> {
             isBot: true,
             matchedTitle: match?.title,
             riskLevel: match?.riskLevel,
+            disclaimerText:
+                isYellowMatch &&
+                    config.useDisclaimer &&
+                    config.disclaimerText.trim().isNotEmpty
+                ? config.disclaimerText
+                : null,
           ),
         ),
       );
@@ -220,6 +239,14 @@ class _BotTestScreenState extends State<BotTestScreen> {
       }
     }
     return false;
+  }
+
+  bool _containsConfiguredTopic(String question, List<String> topics) {
+    final lower = question.toLowerCase();
+    return topics.any((topic) {
+      final cleanTopic = topic.trim().toLowerCase();
+      return cleanTopic.isNotEmpty && lower.contains(cleanTopic);
+    });
   }
 
   KnowledgeEntry? _findBestMatch(
@@ -255,6 +282,21 @@ class _BotTestScreenState extends State<BotTestScreen> {
     return bestScore >= 2 ? best : null;
   }
 
+  String _formatAnswer(KnowledgeEntry entry, BotConfiguration config) {
+    return switch (config.answerStyle) {
+      BotAnswerStyle.short => _firstSentence(entry.content),
+      BotAnswerStyle.balanced => entry.content,
+      BotAnswerStyle.detailed => '${entry.content}\n\nQuelle: ${entry.source}',
+    };
+  }
+
+  String _firstSentence(String value) {
+    final trimmed = value.trim();
+    final end = trimmed.indexOf(RegExp(r'[.!?]'));
+    if (end <= 0) return trimmed;
+    return trimmed.substring(0, end + 1);
+  }
+
   void _clearChat(String resetMessage) {
     setState(() {
       _messages
@@ -281,12 +323,14 @@ class _ChatMessage {
   final bool isBot;
   final String? matchedTitle;
   final RiskLevel? riskLevel;
+  final String? disclaimerText;
 
   const _ChatMessage({
     required this.text,
     required this.isBot,
     this.matchedTitle,
     this.riskLevel,
+    this.disclaimerText,
   });
 
   bool get isRedirect => riskLevel == RiskLevel.red;
@@ -357,7 +401,7 @@ class _ChatBubble extends StatelessWidget {
                     ),
                   ),
                 ),
-                if (isBot && message.isYellow)
+                if (isBot && message.isYellow && message.disclaimerText != null)
                   Padding(
                     padding: const EdgeInsets.only(top: 4, left: 4),
                     child: Row(
@@ -371,7 +415,7 @@ class _ChatBubble extends StatelessWidget {
                         const SizedBox(width: 4),
                         Flexible(
                           child: Text(
-                            l.botTestYellowDisclaimer,
+                            message.disclaimerText!,
                             style: theme.textTheme.labelSmall?.copyWith(
                               color: Colors.orange,
                             ),

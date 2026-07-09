@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import '../../data/app_state.dart';
 import '../../l10n/app_localizations.dart';
 import '../../l10n/label_helpers.dart';
+import '../../models/bot_configuration.dart';
 import '../../models/bot_question_log.dart';
 import '../../models/knowledge_entry.dart';
 import '../../widgets/stat_card.dart';
@@ -33,6 +34,7 @@ class DashboardScreen extends StatelessWidget {
     final auditComplete = state.auditCompleteCount;
     final auditHighPriorityOpen = state.auditHighPriorityOpenCount;
     final profileStatus = state.companyProfileStatus;
+    final botStatus = state.botConfiguration.status;
 
     final greenCount = state.knowledgeEntries
         .where((e) => e.riskLevel == RiskLevel.green)
@@ -140,6 +142,16 @@ class DashboardScreen extends StatelessWidget {
                     CompanyProfileStatus.complete => Colors.green,
                     CompanyProfileStatus.partial => Colors.orange,
                     CompanyProfileStatus.incomplete => Colors.red,
+                  },
+                ),
+                StatCard(
+                  label: l.statBotStatus,
+                  value: _botStatusLabel(l, botStatus),
+                  icon: Icons.smart_toy_outlined,
+                  color: switch (botStatus) {
+                    BotStatus.draft => Colors.orange,
+                    BotStatus.testReady => Colors.blue,
+                    BotStatus.active => Colors.green,
                   },
                 ),
               ];
@@ -426,6 +438,19 @@ class DashboardScreen extends StatelessWidget {
       );
     }
 
+    if (state.botConfiguration.status == BotStatus.draft) {
+      recommendations.add(
+        _Recommendation(
+          icon: Icons.tune_outlined,
+          title: l.dashboardRecommendationBotSettingsTitle,
+          description: l.dashboardRecommendationBotSettingsDescription,
+          color: Colors.blue,
+          actionLabel: l.navBotSettings,
+          path: '/bot-settings',
+        ),
+      );
+    }
+
     return recommendations;
   }
 }
@@ -548,6 +573,14 @@ String _profileStatusLabel(AppLocalizations l, CompanyProfileStatus status) {
     CompanyProfileStatus.complete => l.companyProfileComplete,
     CompanyProfileStatus.partial => l.companyProfilePartial,
     CompanyProfileStatus.incomplete => l.companyProfileIncomplete,
+  };
+}
+
+String _botStatusLabel(AppLocalizations l, BotStatus status) {
+  return switch (status) {
+    BotStatus.draft => l.botStatusDraft,
+    BotStatus.testReady => l.botStatusTestReady,
+    BotStatus.active => l.botStatusActive,
   };
 }
 

@@ -1,6 +1,7 @@
 import 'package:flutter/widgets.dart';
 import '../models/business_audit.dart';
 import '../models/business_rules.dart';
+import '../models/bot_configuration.dart';
 import '../models/company.dart';
 import '../models/company_workspace.dart';
 import '../models/product_or_service.dart';
@@ -39,6 +40,8 @@ class AppState extends ChangeNotifier {
   List<BusinessAuditItem> get selectedAuditItems =>
       selectedWorkspace.auditItems;
   BusinessRules get selectedBusinessRules => selectedWorkspace.businessRules;
+  BotConfiguration get selectedBotConfiguration =>
+      selectedWorkspace.botConfiguration;
 
   Company get company => selectedCompany;
   List<ProductOrService> get products => selectedProducts;
@@ -46,6 +49,7 @@ class AppState extends ChangeNotifier {
   List<BotQuestionLog> get botLogs => selectedBotLogs;
   List<BusinessAuditItem> get auditItems => selectedAuditItems;
   BusinessRules get businessRules => selectedBusinessRules;
+  BotConfiguration get botConfiguration => selectedBotConfiguration;
 
   void selectCompany(String companyId) {
     if (selectedCompanyId == companyId) return;
@@ -64,6 +68,13 @@ class AppState extends ChangeNotifier {
   void updateBusinessRules(BusinessRules updated) {
     _updateSelectedWorkspace(
       selectedWorkspace.copyWith(businessRules: updated),
+    );
+    notifyListeners();
+  }
+
+  void updateBotConfiguration(BotConfiguration updated) {
+    _updateSelectedWorkspace(
+      selectedWorkspace.copyWith(botConfiguration: updated),
     );
     notifyListeners();
   }

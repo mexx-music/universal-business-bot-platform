@@ -42,6 +42,11 @@ const _navItems = [
     path: '/bot-test',
   ),
   _NavItem(
+    icon: Icons.tune_outlined,
+    selectedIcon: Icons.tune,
+    path: '/bot-settings',
+  ),
+  _NavItem(
     icon: Icons.source_outlined,
     selectedIcon: Icons.source,
     path: '/sources',
@@ -59,8 +64,9 @@ int _indexFromLocation(String location) {
   if (location.startsWith('/audit')) return 2;
   if (location.startsWith('/knowledge')) return 3;
   if (location.startsWith('/bot-test')) return 4;
-  if (location.startsWith('/sources')) return 5;
-  if (location.startsWith('/review')) return 6;
+  if (location.startsWith('/bot-settings')) return 5;
+  if (location.startsWith('/sources')) return 6;
+  if (location.startsWith('/review')) return 7;
   return 0;
 }
 
@@ -70,6 +76,7 @@ List<String> _navLabels(AppLocalizations l) => [
   l.navAudit,
   l.navKnowledge,
   l.navBotTest,
+  l.navBotSettings,
   l.navSources,
   l.navReview,
 ];
