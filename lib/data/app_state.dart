@@ -7,6 +7,7 @@ import '../models/company_workspace.dart';
 import '../models/product_or_service.dart';
 import '../models/knowledge_entry.dart';
 import '../models/bot_question_log.dart';
+import '../models/source_material.dart';
 import 'mock_data.dart';
 
 enum CompanyProfileStatus { incomplete, partial, complete }
@@ -19,6 +20,7 @@ class AppState extends ChangeNotifier {
           knowledgeEntries: List.from(workspace.knowledgeEntries),
           botLogs: List.from(workspace.botLogs),
           auditItems: List.from(workspace.auditItems),
+          sourceMaterials: List.from(workspace.sourceMaterials),
         ),
       )
       .toList();
@@ -42,6 +44,8 @@ class AppState extends ChangeNotifier {
   BusinessRules get selectedBusinessRules => selectedWorkspace.businessRules;
   BotConfiguration get selectedBotConfiguration =>
       selectedWorkspace.botConfiguration;
+  List<SourceMaterial> get selectedSourceMaterials =>
+      selectedWorkspace.sourceMaterials;
 
   Company get company => selectedCompany;
   List<ProductOrService> get products => selectedProducts;
@@ -50,6 +54,7 @@ class AppState extends ChangeNotifier {
   List<BusinessAuditItem> get auditItems => selectedAuditItems;
   BusinessRules get businessRules => selectedBusinessRules;
   BotConfiguration get botConfiguration => selectedBotConfiguration;
+  List<SourceMaterial> get sourceMaterials => selectedSourceMaterials;
 
   void selectCompany(String companyId) {
     if (selectedCompanyId == companyId) return;
@@ -88,6 +93,36 @@ class AppState extends ChangeNotifier {
     notifyListeners();
   }
 
+  void addKnowledgeEntryLinkedToSource({
+    required KnowledgeEntry entry,
+    String? sourceMaterialId,
+    bool markSourceConverted = true,
+  }) {
+    final updatedSources = [
+      for (final source in selectedSourceMaterials)
+        if (source.id == sourceMaterialId)
+          source.copyWith(
+            status: markSourceConverted
+                ? SourceMaterialStatus.converted
+                : source.status,
+            relatedKnowledgeEntryIds: [
+              ...source.relatedKnowledgeEntryIds,
+              entry.id,
+            ],
+            updatedAt: DateTime.now(),
+          )
+        else
+          source,
+    ];
+    _updateSelectedWorkspace(
+      selectedWorkspace.copyWith(
+        knowledgeEntries: [...selectedKnowledgeEntries, entry],
+        sourceMaterials: updatedSources,
+      ),
+    );
+    notifyListeners();
+  }
+
   void removeKnowledgeEntry(String id) {
     _updateSelectedWorkspace(
       selectedWorkspace.copyWith(
@@ -106,6 +141,52 @@ class AppState extends ChangeNotifier {
     notifyListeners();
   }
 
+  void addSourceMaterial(SourceMaterial source) {
+    _updateSelectedWorkspace(
+      selectedWorkspace.copyWith(
+        sourceMaterials: [...selectedSourceMaterials, source],
+      ),
+    );
+    notifyListeners();
+  }
+
+  void updateSourceMaterial(SourceMaterial updated) {
+    _updateSelectedWorkspace(
+      selectedWorkspace.copyWith(
+        sourceMaterials: [
+          for (final source in selectedSourceMaterials)
+            if (source.id == updated.id) updated else source,
+        ],
+      ),
+    );
+    notifyListeners();
+  }
+
+  void deleteSourceMaterial(String id) {
+    _updateSelectedWorkspace(
+      selectedWorkspace.copyWith(
+        sourceMaterials: selectedSourceMaterials
+            .where((source) => source.id != id)
+            .toList(),
+      ),
+    );
+    notifyListeners();
+  }
+
+  void markSourceAsReviewed(String id) {
+    _updateSourceStatus(id, SourceMaterialStatus.reviewed);
+  }
+
+  void markSourceAsConverted(String id) {
+    _updateSourceStatus(id, SourceMaterialStatus.converted);
+  }
+
+  int get sourceMaterialCount => selectedSourceMaterials.length;
+
+  int get newSourceMaterialCount => selectedSourceMaterials
+      .where((source) => source.status == SourceMaterialStatus.newItem)
+      .length;
+
   void updateBotLog(BotQuestionLog updated) {
     _updateSelectedWorkspace(
       selectedWorkspace.copyWith(
@@ -121,10 +202,29 @@ class AppState extends ChangeNotifier {
   void addKnowledgeEntryFromReview({
     required KnowledgeEntry entry,
     required BotQuestionLog updatedLog,
+    String? sourceMaterialId,
+    bool markSourceConverted = true,
   }) {
+    final updatedSources = [
+      for (final source in selectedSourceMaterials)
+        if (source.id == sourceMaterialId)
+          source.copyWith(
+            status: markSourceConverted
+                ? SourceMaterialStatus.converted
+                : source.status,
+            relatedKnowledgeEntryIds: [
+              ...source.relatedKnowledgeEntryIds,
+              entry.id,
+            ],
+            updatedAt: DateTime.now(),
+          )
+        else
+          source,
+    ];
     _updateSelectedWorkspace(
       selectedWorkspace.copyWith(
         knowledgeEntries: [...selectedKnowledgeEntries, entry],
+        sourceMaterials: updatedSources,
         botLogs: [
           for (final log in selectedBotLogs)
             if (log.id == updatedLog.id) updatedLog else log,
@@ -181,6 +281,16 @@ class AppState extends ChangeNotifier {
       botLogs.where((log) => log.reviewStatus == ReviewStatus.open).length;
 
   int get blockedBotLogCount => botLogs.where((log) => log.redirected).length;
+
+  int sourceMaterialCountFor(CompanyWorkspace workspace) {
+    return workspace.sourceMaterials.length;
+  }
+
+  int newSourceMaterialCountFor(CompanyWorkspace workspace) {
+    return workspace.sourceMaterials
+        .where((source) => source.status == SourceMaterialStatus.newItem)
+        .length;
+  }
 
   CompanyProfileStatus get companyProfileStatus {
     return companyProfileStatusFor(selectedWorkspace);
@@ -251,6 +361,21 @@ class AppState extends ChangeNotifier {
         auditItems: [
           for (final item in selectedAuditItems)
             if (item.id == id) update(item) else item,
+        ],
+      ),
+    );
+    notifyListeners();
+  }
+
+  void _updateSourceStatus(String id, SourceMaterialStatus status) {
+    _updateSelectedWorkspace(
+      selectedWorkspace.copyWith(
+        sourceMaterials: [
+          for (final source in selectedSourceMaterials)
+            if (source.id == id)
+              source.copyWith(status: status, updatedAt: DateTime.now())
+            else
+              source,
         ],
       ),
     );

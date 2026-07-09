@@ -106,6 +106,8 @@
   "statBotRequests": "Bot-Anfragen",
   "statMatchRate": "Match-Rate",
   "statProducts": "Produkte & Leistungen",
+  "statSourcesTotal": "Quellen gesamt",
+  "statSourcesNew": "Neue Quellen",
   "dashboardRecentRequests": "Letzte Bot-Anfragen",
   "dashboardTotal": "{count} gesamt",
   "@dashboardTotal": {
@@ -126,6 +128,13 @@
   "dashboardRecommendationKnowledgeTitle": "Wissensbasis erweitern",
   "dashboardRecommendationKnowledgeDescription": "Aktuell sind {count} Wissenseinträge vorhanden. Für eine Demo sollten mehr sichere FAQ und Supportfälle ergänzt werden.",
   "@dashboardRecommendationKnowledgeDescription": {
+    "placeholders": {
+      "count": { "type": "int" }
+    }
+  },
+  "dashboardRecommendationSourcesTitle": "Quellen prüfen",
+  "dashboardRecommendationSourcesDescription": "{count} neue Quellen warten darauf, geprüft und bei Bedarf in Wissen übernommen zu werden.",
+  "@dashboardRecommendationSourcesDescription": {
     "placeholders": {
       "count": { "type": "int" }
     }
@@ -291,6 +300,9 @@
     }
   },
   "knowledgeNewEntry": "Neuer Wissenseintrag",
+  "knowledgeSourceMaterialOptional": "Quellenmaterial verknüpfen (optional)",
+  "knowledgeNoSourceMaterial": "Keine Quelle verknüpfen",
+  "knowledgeMarkSourceConverted": "Quelle als übernommen markieren",
 
   "botTestTitle": "Bot-Test",
   "botTestSubtitle": "Simulierter Bot ohne echte KI – Antworten basieren auf der Wissensbasis.",
@@ -300,9 +312,16 @@
   "botTestResetMessage": "Chat zurückgesetzt. Stelle mir eine neue Frage!",
 
   "sourcesTitle": "Quellen",
-  "sourcesSubtitle": "Herkunft der Wissenseinträge",
+  "sourcesSubtitle": "Quellen und Materialien dieses Workspaces",
+  "sourcesAdd": "Quelle hinzufügen",
   "sourcesCount": "{count} Quellen",
   "@sourcesCount": {
+    "placeholders": {
+      "count": { "type": "int" }
+    }
+  },
+  "sourcesNewCount": "{count} neu",
+  "@sourcesNewCount": {
     "placeholders": {
       "count": { "type": "int" }
     }
@@ -321,9 +340,41 @@
       "type": { "type": "String" }
     }
   },
+  "sourcesFilterAllTypes": "Alle Typen",
+  "sourcesFilterAllStatuses": "Alle Status",
+  "sourcesLinkedEntries": "{count} verknüpfte Einträge",
+  "@sourcesLinkedEntries": {
+    "placeholders": {
+      "count": { "type": "int" }
+    }
+  },
+  "sourcesDeleteTitle": "Quelle löschen?",
+  "sourcesDeleteConfirm": "\"{title}\" wird aus der Quellenliste entfernt. Wissenseinträge bleiben erhalten.",
+  "@sourcesDeleteConfirm": {
+    "placeholders": {
+      "title": { "type": "String" }
+    }
+  },
+  "sourcesEdit": "Quelle bearbeiten",
+  "sourcesType": "Quellentyp",
+  "sourcesStatus": "Status",
+  "sourcesUrlOptional": "URL (optional)",
+  "sourcesSnippetOptional": "Inhaltsauszug (optional)",
+  "sourcesNotesOptional": "Notizen (optional)",
   "sourceTypeUrl": "Website",
   "sourceTypeDocument": "Dokument",
   "sourceTypeManual": "Manuell",
+  "sourceMaterialTypeWebsite": "Website",
+  "sourceMaterialTypePdf": "PDF",
+  "sourceMaterialTypeFaq": "FAQ",
+  "sourceMaterialTypeReview": "Rezension",
+  "sourceMaterialTypeSocial": "Social",
+  "sourceMaterialTypeNote": "Notiz",
+  "sourceMaterialTypeOther": "Sonstiges",
+  "sourceMaterialStatusNew": "Neu",
+  "sourceMaterialStatusReviewed": "Geprüft",
+  "sourceMaterialStatusConverted": "Übernommen",
+  "sourceMaterialStatusIgnored": "Ignoriert",
   "sourcesStage2Hint": "In Stufe 2 können Quellen direkt importiert werden (Websites, PDFs, Dokumente).",
 
   "categoryFaq": "FAQ",

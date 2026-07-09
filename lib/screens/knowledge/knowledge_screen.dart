@@ -3,6 +3,7 @@ import '../../data/app_state.dart';
 import '../../l10n/app_localizations.dart';
 import '../../l10n/label_helpers.dart';
 import '../../models/knowledge_entry.dart';
+import '../../models/source_material.dart';
 
 class KnowledgeScreen extends StatefulWidget {
   const KnowledgeScreen({super.key});
@@ -307,9 +308,11 @@ class _AddEntryDialogState extends State<_AddEntryDialog> {
   final _title = TextEditingController();
   final _content = TextEditingController();
   final _keywords = TextEditingController();
-  final _source = TextEditingController(text: 'Manuell');
+  final _source = TextEditingController();
   KnowledgeCategory _category = KnowledgeCategory.faq;
   RiskLevel _riskLevel = RiskLevel.green;
+  String? _sourceMaterialId;
+  bool _markSourceConverted = true;
 
   @override
   void dispose() {
@@ -323,6 +326,7 @@ class _AddEntryDialogState extends State<_AddEntryDialog> {
   @override
   Widget build(BuildContext context) {
     final l = AppLocalizations.of(context)!;
+    final sourceMaterials = widget.state.sourceMaterials;
     return AlertDialog(
       title: Text(l.knowledgeNewEntry),
       content: SizedBox(
@@ -386,6 +390,62 @@ class _AddEntryDialogState extends State<_AddEntryDialog> {
               ),
               const SizedBox(height: 12),
               _field(l.fieldKeywords, _keywords),
+              if (sourceMaterials.isNotEmpty) ...[
+                InputDecorator(
+                  decoration: InputDecoration(
+                    labelText: l.knowledgeSourceMaterialOptional,
+                    border: const OutlineInputBorder(),
+                    isDense: true,
+                  ),
+                  child: DropdownButton<String?>(
+                    value: _sourceMaterialId,
+                    isExpanded: true,
+                    underline: const SizedBox.shrink(),
+                    items: [
+                      DropdownMenuItem<String?>(
+                        value: null,
+                        child: Text(l.knowledgeNoSourceMaterial),
+                      ),
+                      ...sourceMaterials.map(
+                        (source) => DropdownMenuItem<String?>(
+                          value: source.id,
+                          child: Text(source.title),
+                        ),
+                      ),
+                    ],
+                    onChanged: (value) {
+                      setState(() {
+                        _sourceMaterialId = value;
+                        SourceMaterial? selected;
+                        for (final source in sourceMaterials) {
+                          if (source.id == value) {
+                            selected = source;
+                            break;
+                          }
+                        }
+                        if (selected != null) {
+                          _source.text = selected.title;
+                        } else if (_source.text.trim().isEmpty) {
+                          _source.text = l.sourceTypeManual;
+                        }
+                      });
+                    },
+                  ),
+                ),
+                const SizedBox(height: 4),
+                CheckboxListTile(
+                  value: _markSourceConverted,
+                  onChanged: _sourceMaterialId == null
+                      ? null
+                      : (value) => setState(
+                          () => _markSourceConverted = value ?? true,
+                        ),
+                  title: Text(l.knowledgeMarkSourceConverted),
+                  dense: true,
+                  contentPadding: EdgeInsets.zero,
+                  controlAffinity: ListTileControlAffinity.leading,
+                ),
+              ],
               _field(l.fieldSource, _source),
             ],
           ),
@@ -405,24 +465,29 @@ class _AddEntryDialogState extends State<_AddEntryDialog> {
   }
 
   void _save() {
+    final l = AppLocalizations.of(context)!;
     final kws = _keywords.text
         .split(',')
         .map((s) => s.trim().toLowerCase())
         .where((s) => s.isNotEmpty)
         .toList();
+    final now = DateTime.now();
+    final sourceText = _source.text.trim();
 
-    widget.state.addKnowledgeEntry(
-      KnowledgeEntry(
-        id: 'k_${DateTime.now().millisecondsSinceEpoch}',
+    widget.state.addKnowledgeEntryLinkedToSource(
+      entry: KnowledgeEntry(
+        id: 'k_${now.millisecondsSinceEpoch}',
         title: _title.text.trim(),
         content: _content.text.trim(),
         category: _category,
         riskLevel: _riskLevel,
         keywords: kws,
-        source: _source.text.trim(),
-        createdAt: DateTime.now(),
+        source: sourceText.isEmpty ? l.sourceTypeManual : sourceText,
+        createdAt: now,
         languageCode: Localizations.localeOf(context).languageCode,
       ),
+      sourceMaterialId: _sourceMaterialId,
+      markSourceConverted: _markSourceConverted,
     );
     Navigator.of(context).pop();
   }

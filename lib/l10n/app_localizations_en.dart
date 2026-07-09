@@ -233,6 +233,12 @@ class AppLocalizationsEn extends AppLocalizations {
   String get statProducts => 'Products & Services';
 
   @override
+  String get statSourcesTotal => 'Total Sources';
+
+  @override
+  String get statSourcesNew => 'New Sources';
+
+  @override
   String get dashboardRecentRequests => 'Recent Bot Requests';
 
   @override
@@ -263,6 +269,14 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String dashboardRecommendationKnowledgeDescription(int count) {
     return 'There are currently $count knowledge entries. Add more safe FAQs and support cases for a stronger demo.';
+  }
+
+  @override
+  String get dashboardRecommendationSourcesTitle => 'Review sources';
+
+  @override
+  String dashboardRecommendationSourcesDescription(int count) {
+    return '$count new sources are waiting to be reviewed and converted into knowledge where useful.';
   }
 
   @override
@@ -558,6 +572,16 @@ class AppLocalizationsEn extends AppLocalizations {
   String get knowledgeNewEntry => 'New Knowledge Entry';
 
   @override
+  String get knowledgeSourceMaterialOptional =>
+      'Link source material (optional)';
+
+  @override
+  String get knowledgeNoSourceMaterial => 'Do not link a source';
+
+  @override
+  String get knowledgeMarkSourceConverted => 'Mark source as converted';
+
+  @override
   String get botTestTitle => 'Bot Test';
 
   @override
@@ -582,11 +606,19 @@ class AppLocalizationsEn extends AppLocalizations {
   String get sourcesTitle => 'Sources';
 
   @override
-  String get sourcesSubtitle => 'Origin of knowledge entries';
+  String get sourcesSubtitle => 'Sources and materials for this workspace';
+
+  @override
+  String get sourcesAdd => 'Add Source';
 
   @override
   String sourcesCount(int count) {
     return '$count sources';
+  }
+
+  @override
+  String sourcesNewCount(int count) {
+    return '$count new';
   }
 
   @override
@@ -603,6 +635,43 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
+  String get sourcesFilterAllTypes => 'All Types';
+
+  @override
+  String get sourcesFilterAllStatuses => 'All Statuses';
+
+  @override
+  String sourcesLinkedEntries(int count) {
+    return '$count linked entries';
+  }
+
+  @override
+  String get sourcesDeleteTitle => 'Delete source?';
+
+  @override
+  String sourcesDeleteConfirm(String title) {
+    return '\"$title\" will be removed from the source list. Knowledge entries remain unchanged.';
+  }
+
+  @override
+  String get sourcesEdit => 'Edit Source';
+
+  @override
+  String get sourcesType => 'Source Type';
+
+  @override
+  String get sourcesStatus => 'Status';
+
+  @override
+  String get sourcesUrlOptional => 'URL (optional)';
+
+  @override
+  String get sourcesSnippetOptional => 'Content snippet (optional)';
+
+  @override
+  String get sourcesNotesOptional => 'Notes (optional)';
+
+  @override
   String get sourceTypeUrl => 'Website';
 
   @override
@@ -610,6 +679,39 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get sourceTypeManual => 'Manual';
+
+  @override
+  String get sourceMaterialTypeWebsite => 'Website';
+
+  @override
+  String get sourceMaterialTypePdf => 'PDF';
+
+  @override
+  String get sourceMaterialTypeFaq => 'FAQ';
+
+  @override
+  String get sourceMaterialTypeReview => 'Review';
+
+  @override
+  String get sourceMaterialTypeSocial => 'Social';
+
+  @override
+  String get sourceMaterialTypeNote => 'Note';
+
+  @override
+  String get sourceMaterialTypeOther => 'Other';
+
+  @override
+  String get sourceMaterialStatusNew => 'New';
+
+  @override
+  String get sourceMaterialStatusReviewed => 'Reviewed';
+
+  @override
+  String get sourceMaterialStatusConverted => 'Converted';
+
+  @override
+  String get sourceMaterialStatusIgnored => 'Ignored';
 
   @override
   String get sourcesStage2Hint =>

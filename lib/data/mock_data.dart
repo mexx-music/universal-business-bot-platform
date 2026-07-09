@@ -6,6 +6,7 @@ import '../models/company_workspace.dart';
 import '../models/product_or_service.dart';
 import '../models/knowledge_entry.dart';
 import '../models/bot_question_log.dart';
+import '../models/source_material.dart';
 
 class MockData {
   static final Company company = Company(
@@ -1004,6 +1005,102 @@ class MockData {
         'Diese Frage sollte vom Support geprüft werden. Bitte kontaktieren Sie SchnurrPurr direkt.',
   );
 
+  static final List<SourceMaterial> hbCureSourceMaterials = [
+    SourceMaterial(
+      id: 'hb-sm1',
+      title: 'Website FAQ',
+      type: SourceMaterialType.faq,
+      url: 'https://www.hbcure.at/faq',
+      contentSnippet:
+          'FAQ zu App, Messgerät, Preisen, Support und allgemeinen Sicherheitsgrenzen.',
+      status: SourceMaterialStatus.converted,
+      relatedKnowledgeEntryIds: ['k1', 'k2', 'k3', 'k11'],
+      createdAt: DateTime(2025, 5, 1),
+      updatedAt: DateTime(2025, 5, 3),
+      notes: 'Basis für mehrere grüne FAQ-Einträge.',
+    ),
+    SourceMaterial(
+      id: 'hb-sm2',
+      title: 'Website-Rezensionen',
+      type: SourceMaterialType.review,
+      url: 'https://www.hbcure.at/reviews',
+      contentSnippet:
+          'Kurze Website-Testimonials und Trustsignale, noch nicht vollständig für Bot-Antworten freigegeben.',
+      status: SourceMaterialStatus.reviewed,
+      createdAt: DateTime(2025, 5, 4),
+      updatedAt: DateTime(2025, 5, 5),
+    ),
+    SourceMaterial(
+      id: 'hb-sm3',
+      title: 'App- und Produktnotizen',
+      type: SourceMaterialType.note,
+      contentSnippet:
+          'Interne Stichpunkte zu Dashboard, Bluetooth-Verbindung, Akku und Gerätepflege.',
+      status: SourceMaterialStatus.converted,
+      relatedKnowledgeEntryIds: ['k4', 'k5', 'k6', 'k8'],
+      createdAt: DateTime(2025, 5, 8),
+      updatedAt: DateTime(2025, 5, 10),
+    ),
+    SourceMaterial(
+      id: 'hb-sm4',
+      title: 'Social Reviews Sammlung',
+      type: SourceMaterialType.social,
+      contentSnippet:
+          'Schwache Social-Proof-Sammlung; vor Nutzung für Bot/Marketing prüfen.',
+      status: SourceMaterialStatus.newItem,
+      createdAt: DateTime(2025, 5, 15),
+      updatedAt: DateTime(2025, 5, 15),
+      notes: 'Noch keine belastbare Quelle.',
+    ),
+  ];
+
+  static final List<SourceMaterial> schnurrPurrSourceMaterials = [
+    SourceMaterial(
+      id: 'sp-sm1',
+      title: 'Website Produktübersicht',
+      type: SourceMaterialType.website,
+      url: 'https://www.schnurrpurr.example',
+      contentSnippet:
+          'Kurzbeschreibung der Relax App und des Purr Pillow mit Supportkontakt.',
+      status: SourceMaterialStatus.reviewed,
+      relatedKnowledgeEntryIds: ['sp-k1', 'sp-k4'],
+      createdAt: DateTime(2025, 5, 2),
+      updatedAt: DateTime(2025, 5, 4),
+    ),
+    SourceMaterial(
+      id: 'sp-sm2',
+      title: 'App-Store Notizen',
+      type: SourceMaterialType.note,
+      contentSnippet:
+          'Entwurfstexte zu Klangwelten, Timern, Erinnerungen und Kontofunktionen.',
+      status: SourceMaterialStatus.converted,
+      relatedKnowledgeEntryIds: ['sp-k2', 'sp-k3', 'sp-k10'],
+      createdAt: DateTime(2025, 5, 6),
+      updatedAt: DateTime(2025, 5, 8),
+    ),
+    SourceMaterial(
+      id: 'sp-sm3',
+      title: 'Kissen- und Relax-Konzeptnotizen',
+      type: SourceMaterialType.note,
+      contentSnippet:
+          'Material- und Pflegehinweise, Nutzungskontext für Pausen und Komfort.',
+      status: SourceMaterialStatus.converted,
+      relatedKnowledgeEntryIds: ['sp-k4', 'sp-k5'],
+      createdAt: DateTime(2025, 5, 10),
+      updatedAt: DateTime(2025, 5, 12),
+    ),
+    SourceMaterial(
+      id: 'sp-sm4',
+      title: 'Review-/Trustmaterial Sammlung',
+      type: SourceMaterialType.review,
+      contentSnippet:
+          'Trustmaterial ist erst teilweise vorhanden und noch nicht botfähig freigegeben.',
+      status: SourceMaterialStatus.newItem,
+      createdAt: DateTime(2025, 5, 16),
+      updatedAt: DateTime(2025, 5, 16),
+    ),
+  ];
+
   static final List<CompanyWorkspace> companyWorkspaces = [
     CompanyWorkspace(
       company: company,
@@ -1013,6 +1110,7 @@ class MockData {
       auditItems: hbCureAuditItems,
       businessRules: hbCureBusinessRules,
       botConfiguration: hbCureBotConfiguration,
+      sourceMaterials: hbCureSourceMaterials,
     ),
     CompanyWorkspace(
       company: schnurrPurrCompany,
@@ -1022,6 +1120,7 @@ class MockData {
       auditItems: schnurrPurrAuditItems,
       businessRules: schnurrPurrBusinessRules,
       botConfiguration: schnurrPurrBotConfiguration,
+      sourceMaterials: schnurrPurrSourceMaterials,
     ),
   ];
 }

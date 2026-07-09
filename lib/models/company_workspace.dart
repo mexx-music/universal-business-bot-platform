@@ -5,6 +5,7 @@ import 'bot_question_log.dart';
 import 'company.dart';
 import 'knowledge_entry.dart';
 import 'product_or_service.dart';
+import 'source_material.dart';
 
 class CompanyWorkspace {
   final Company company;
@@ -14,6 +15,7 @@ class CompanyWorkspace {
   final List<BusinessAuditItem> auditItems;
   final BusinessRules businessRules;
   final BotConfiguration botConfiguration;
+  final List<SourceMaterial> sourceMaterials;
 
   const CompanyWorkspace({
     required this.company,
@@ -23,6 +25,7 @@ class CompanyWorkspace {
     required this.auditItems,
     required this.businessRules,
     required this.botConfiguration,
+    required this.sourceMaterials,
   });
 
   CompanyWorkspace copyWith({
@@ -33,6 +36,7 @@ class CompanyWorkspace {
     List<BusinessAuditItem>? auditItems,
     BusinessRules? businessRules,
     BotConfiguration? botConfiguration,
+    List<SourceMaterial>? sourceMaterials,
   }) {
     return CompanyWorkspace(
       company: company ?? this.company,
@@ -42,6 +46,7 @@ class CompanyWorkspace {
       auditItems: auditItems ?? this.auditItems,
       businessRules: businessRules ?? this.businessRules,
       botConfiguration: botConfiguration ?? this.botConfiguration,
+      sourceMaterials: sourceMaterials ?? this.sourceMaterials,
     );
   }
 }

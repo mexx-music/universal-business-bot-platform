@@ -4,6 +4,7 @@ import '../../l10n/app_localizations.dart';
 import '../../l10n/label_helpers.dart';
 import '../../models/bot_question_log.dart';
 import '../../models/knowledge_entry.dart';
+import '../../models/source_material.dart';
 
 class ReviewScreen extends StatefulWidget {
   const ReviewScreen({super.key});
@@ -715,6 +716,8 @@ class _CreateKnowledgeEntryDialogState
   late final TextEditingController _source;
   KnowledgeCategory _category = KnowledgeCategory.faq;
   late RiskLevel _riskLevel;
+  String? _sourceMaterialId;
+  bool _markSourceConverted = true;
 
   @override
   void initState() {
@@ -736,6 +739,7 @@ class _CreateKnowledgeEntryDialogState
   @override
   Widget build(BuildContext context) {
     final l = AppLocalizations.of(context)!;
+    final sourceMaterials = widget.state.sourceMaterials;
 
     return AlertDialog(
       title: Text(l.reviewCreateKnowledgeEntry),
@@ -808,6 +812,60 @@ class _CreateKnowledgeEntryDialogState
                 ),
               ),
               const SizedBox(height: 12),
+              if (sourceMaterials.isNotEmpty) ...[
+                InputDecorator(
+                  decoration: InputDecoration(
+                    labelText: l.knowledgeSourceMaterialOptional,
+                    border: const OutlineInputBorder(),
+                    isDense: true,
+                  ),
+                  child: DropdownButton<String?>(
+                    value: _sourceMaterialId,
+                    isExpanded: true,
+                    underline: const SizedBox.shrink(),
+                    items: [
+                      DropdownMenuItem<String?>(
+                        value: null,
+                        child: Text(l.knowledgeNoSourceMaterial),
+                      ),
+                      ...sourceMaterials.map(
+                        (source) => DropdownMenuItem<String?>(
+                          value: source.id,
+                          child: Text(source.title),
+                        ),
+                      ),
+                    ],
+                    onChanged: (value) {
+                      setState(() {
+                        _sourceMaterialId = value;
+                        SourceMaterial? selected;
+                        for (final source in sourceMaterials) {
+                          if (source.id == value) {
+                            selected = source;
+                            break;
+                          }
+                        }
+                        if (selected != null) {
+                          _source.text = selected.title;
+                        }
+                      });
+                    },
+                  ),
+                ),
+                const SizedBox(height: 4),
+                CheckboxListTile(
+                  value: _markSourceConverted,
+                  onChanged: _sourceMaterialId == null
+                      ? null
+                      : (value) => setState(
+                          () => _markSourceConverted = value ?? true,
+                        ),
+                  title: Text(l.knowledgeMarkSourceConverted),
+                  dense: true,
+                  contentPadding: EdgeInsets.zero,
+                  controlAffinity: ListTileControlAffinity.leading,
+                ),
+              ],
               _field(l.reviewKnowledgeSourceOptional, _source),
             ],
           ),
@@ -872,6 +930,8 @@ class _CreateKnowledgeEntryDialogState
         humanNote: _reviewNoteWithConversionHint(l),
         reviewedAt: now,
       ),
+      sourceMaterialId: _sourceMaterialId,
+      markSourceConverted: _markSourceConverted,
     );
 
     Navigator.of(context).pop();

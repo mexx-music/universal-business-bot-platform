@@ -35,6 +35,8 @@ class DashboardScreen extends StatelessWidget {
     final auditHighPriorityOpen = state.auditHighPriorityOpenCount;
     final profileStatus = state.companyProfileStatus;
     final botStatus = state.botConfiguration.status;
+    final sourcesTotal = state.sourceMaterialCount;
+    final sourcesNew = state.newSourceMaterialCount;
 
     final greenCount = state.knowledgeEntries
         .where((e) => e.riskLevel == RiskLevel.green)
@@ -153,6 +155,18 @@ class DashboardScreen extends StatelessWidget {
                     BotStatus.testReady => Colors.blue,
                     BotStatus.active => Colors.green,
                   },
+                ),
+                StatCard(
+                  label: l.statSourcesTotal,
+                  value: '$sourcesTotal',
+                  icon: Icons.source_outlined,
+                  color: Colors.teal,
+                ),
+                StatCard(
+                  label: l.statSourcesNew,
+                  value: '$sourcesNew',
+                  icon: Icons.fiber_new_outlined,
+                  color: sourcesNew > 0 ? Colors.orange : Colors.green,
                 ),
               ];
               return GridView.builder(
@@ -406,6 +420,21 @@ class DashboardScreen extends StatelessWidget {
           color: Colors.indigo,
           actionLabel: l.navKnowledge,
           path: '/knowledge',
+        ),
+      );
+    }
+
+    if (state.newSourceMaterialCount > 0) {
+      recommendations.add(
+        _Recommendation(
+          icon: Icons.source_outlined,
+          title: l.dashboardRecommendationSourcesTitle,
+          description: l.dashboardRecommendationSourcesDescription(
+            state.newSourceMaterialCount,
+          ),
+          color: Colors.teal,
+          actionLabel: l.navSources,
+          path: '/sources',
         ),
       );
     }

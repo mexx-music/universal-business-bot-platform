@@ -512,6 +512,18 @@ abstract class AppLocalizations {
   /// **'Produkte & Leistungen'**
   String get statProducts;
 
+  /// No description provided for @statSourcesTotal.
+  ///
+  /// In de, this message translates to:
+  /// **'Quellen gesamt'**
+  String get statSourcesTotal;
+
+  /// No description provided for @statSourcesNew.
+  ///
+  /// In de, this message translates to:
+  /// **'Neue Quellen'**
+  String get statSourcesNew;
+
   /// No description provided for @dashboardRecentRequests.
   ///
   /// In de, this message translates to:
@@ -565,6 +577,18 @@ abstract class AppLocalizations {
   /// In de, this message translates to:
   /// **'Aktuell sind {count} Wissenseinträge vorhanden. Für eine Demo sollten mehr sichere FAQ und Supportfälle ergänzt werden.'**
   String dashboardRecommendationKnowledgeDescription(int count);
+
+  /// No description provided for @dashboardRecommendationSourcesTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Quellen prüfen'**
+  String get dashboardRecommendationSourcesTitle;
+
+  /// No description provided for @dashboardRecommendationSourcesDescription.
+  ///
+  /// In de, this message translates to:
+  /// **'{count} neue Quellen warten darauf, geprüft und bei Bedarf in Wissen übernommen zu werden.'**
+  String dashboardRecommendationSourcesDescription(int count);
 
   /// No description provided for @dashboardRecommendationReviewTitle.
   ///
@@ -1082,6 +1106,24 @@ abstract class AppLocalizations {
   /// **'Neuer Wissenseintrag'**
   String get knowledgeNewEntry;
 
+  /// No description provided for @knowledgeSourceMaterialOptional.
+  ///
+  /// In de, this message translates to:
+  /// **'Quellenmaterial verknüpfen (optional)'**
+  String get knowledgeSourceMaterialOptional;
+
+  /// No description provided for @knowledgeNoSourceMaterial.
+  ///
+  /// In de, this message translates to:
+  /// **'Keine Quelle verknüpfen'**
+  String get knowledgeNoSourceMaterial;
+
+  /// No description provided for @knowledgeMarkSourceConverted.
+  ///
+  /// In de, this message translates to:
+  /// **'Quelle als übernommen markieren'**
+  String get knowledgeMarkSourceConverted;
+
   /// No description provided for @botTestTitle.
   ///
   /// In de, this message translates to:
@@ -1127,14 +1169,26 @@ abstract class AppLocalizations {
   /// No description provided for @sourcesSubtitle.
   ///
   /// In de, this message translates to:
-  /// **'Herkunft der Wissenseinträge'**
+  /// **'Quellen und Materialien dieses Workspaces'**
   String get sourcesSubtitle;
+
+  /// No description provided for @sourcesAdd.
+  ///
+  /// In de, this message translates to:
+  /// **'Quelle hinzufügen'**
+  String get sourcesAdd;
 
   /// No description provided for @sourcesCount.
   ///
   /// In de, this message translates to:
   /// **'{count} Quellen'**
   String sourcesCount(int count);
+
+  /// No description provided for @sourcesNewCount.
+  ///
+  /// In de, this message translates to:
+  /// **'{count} neu'**
+  String sourcesNewCount(int count);
 
   /// No description provided for @sourcesEntriesCount.
   ///
@@ -1154,6 +1208,72 @@ abstract class AppLocalizations {
   /// **'{count} Einträge · {type}'**
   String sourcesEntryInfo(int count, String type);
 
+  /// No description provided for @sourcesFilterAllTypes.
+  ///
+  /// In de, this message translates to:
+  /// **'Alle Typen'**
+  String get sourcesFilterAllTypes;
+
+  /// No description provided for @sourcesFilterAllStatuses.
+  ///
+  /// In de, this message translates to:
+  /// **'Alle Status'**
+  String get sourcesFilterAllStatuses;
+
+  /// No description provided for @sourcesLinkedEntries.
+  ///
+  /// In de, this message translates to:
+  /// **'{count} verknüpfte Einträge'**
+  String sourcesLinkedEntries(int count);
+
+  /// No description provided for @sourcesDeleteTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Quelle löschen?'**
+  String get sourcesDeleteTitle;
+
+  /// No description provided for @sourcesDeleteConfirm.
+  ///
+  /// In de, this message translates to:
+  /// **'\"{title}\" wird aus der Quellenliste entfernt. Wissenseinträge bleiben erhalten.'**
+  String sourcesDeleteConfirm(String title);
+
+  /// No description provided for @sourcesEdit.
+  ///
+  /// In de, this message translates to:
+  /// **'Quelle bearbeiten'**
+  String get sourcesEdit;
+
+  /// No description provided for @sourcesType.
+  ///
+  /// In de, this message translates to:
+  /// **'Quellentyp'**
+  String get sourcesType;
+
+  /// No description provided for @sourcesStatus.
+  ///
+  /// In de, this message translates to:
+  /// **'Status'**
+  String get sourcesStatus;
+
+  /// No description provided for @sourcesUrlOptional.
+  ///
+  /// In de, this message translates to:
+  /// **'URL (optional)'**
+  String get sourcesUrlOptional;
+
+  /// No description provided for @sourcesSnippetOptional.
+  ///
+  /// In de, this message translates to:
+  /// **'Inhaltsauszug (optional)'**
+  String get sourcesSnippetOptional;
+
+  /// No description provided for @sourcesNotesOptional.
+  ///
+  /// In de, this message translates to:
+  /// **'Notizen (optional)'**
+  String get sourcesNotesOptional;
+
   /// No description provided for @sourceTypeUrl.
   ///
   /// In de, this message translates to:
@@ -1171,6 +1291,72 @@ abstract class AppLocalizations {
   /// In de, this message translates to:
   /// **'Manuell'**
   String get sourceTypeManual;
+
+  /// No description provided for @sourceMaterialTypeWebsite.
+  ///
+  /// In de, this message translates to:
+  /// **'Website'**
+  String get sourceMaterialTypeWebsite;
+
+  /// No description provided for @sourceMaterialTypePdf.
+  ///
+  /// In de, this message translates to:
+  /// **'PDF'**
+  String get sourceMaterialTypePdf;
+
+  /// No description provided for @sourceMaterialTypeFaq.
+  ///
+  /// In de, this message translates to:
+  /// **'FAQ'**
+  String get sourceMaterialTypeFaq;
+
+  /// No description provided for @sourceMaterialTypeReview.
+  ///
+  /// In de, this message translates to:
+  /// **'Rezension'**
+  String get sourceMaterialTypeReview;
+
+  /// No description provided for @sourceMaterialTypeSocial.
+  ///
+  /// In de, this message translates to:
+  /// **'Social'**
+  String get sourceMaterialTypeSocial;
+
+  /// No description provided for @sourceMaterialTypeNote.
+  ///
+  /// In de, this message translates to:
+  /// **'Notiz'**
+  String get sourceMaterialTypeNote;
+
+  /// No description provided for @sourceMaterialTypeOther.
+  ///
+  /// In de, this message translates to:
+  /// **'Sonstiges'**
+  String get sourceMaterialTypeOther;
+
+  /// No description provided for @sourceMaterialStatusNew.
+  ///
+  /// In de, this message translates to:
+  /// **'Neu'**
+  String get sourceMaterialStatusNew;
+
+  /// No description provided for @sourceMaterialStatusReviewed.
+  ///
+  /// In de, this message translates to:
+  /// **'Geprüft'**
+  String get sourceMaterialStatusReviewed;
+
+  /// No description provided for @sourceMaterialStatusConverted.
+  ///
+  /// In de, this message translates to:
+  /// **'Übernommen'**
+  String get sourceMaterialStatusConverted;
+
+  /// No description provided for @sourceMaterialStatusIgnored.
+  ///
+  /// In de, this message translates to:
+  /// **'Ignoriert'**
+  String get sourceMaterialStatusIgnored;
 
   /// No description provided for @sourcesStage2Hint.
   ///
