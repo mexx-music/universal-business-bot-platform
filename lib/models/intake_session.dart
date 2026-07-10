@@ -9,6 +9,7 @@ class IntakeBasics {
   final String website;
   final String supportEmail;
   final String supportPhone;
+  final bool? hasWebsite;
 
   const IntakeBasics({
     this.companyName = '',
@@ -19,6 +20,7 @@ class IntakeBasics {
     this.website = '',
     this.supportEmail = '',
     this.supportPhone = '',
+    this.hasWebsite,
   });
 
   IntakeBasics copyWith({
@@ -30,6 +32,7 @@ class IntakeBasics {
     String? website,
     String? supportEmail,
     String? supportPhone,
+    bool? hasWebsite,
   }) {
     return IntakeBasics(
       companyName: companyName ?? this.companyName,
@@ -40,6 +43,7 @@ class IntakeBasics {
       website: website ?? this.website,
       supportEmail: supportEmail ?? this.supportEmail,
       supportPhone: supportPhone ?? this.supportPhone,
+      hasWebsite: hasWebsite ?? this.hasWebsite,
     );
   }
 }
@@ -109,12 +113,14 @@ class IntakeWebsiteAndSupport {
   final String frequentQuestions;
   final String supportProblems;
   final String sensitiveTopics;
+  final bool? hasSensitiveTopics;
 
   const IntakeWebsiteAndSupport({
     this.importantPages = '',
     this.frequentQuestions = '',
     this.supportProblems = '',
     this.sensitiveTopics = '',
+    this.hasSensitiveTopics,
   });
 
   IntakeWebsiteAndSupport copyWith({
@@ -122,12 +128,14 @@ class IntakeWebsiteAndSupport {
     String? frequentQuestions,
     String? supportProblems,
     String? sensitiveTopics,
+    bool? hasSensitiveTopics,
   }) {
     return IntakeWebsiteAndSupport(
       importantPages: importantPages ?? this.importantPages,
       frequentQuestions: frequentQuestions ?? this.frequentQuestions,
       supportProblems: supportProblems ?? this.supportProblems,
       sensitiveTopics: sensitiveTopics ?? this.sensitiveTopics,
+      hasSensitiveTopics: hasSensitiveTopics ?? this.hasSensitiveTopics,
     );
   }
 }
@@ -137,12 +145,18 @@ class IntakeSourcesAndReviews {
   final String reviews;
   final String socialMentions;
   final String trustMaterial;
+  final bool? hasReviews;
+  final bool? hasSocialMentions;
+  final bool? hasTrustMaterial;
 
   const IntakeSourcesAndReviews({
     this.existingSources = '',
     this.reviews = '',
     this.socialMentions = '',
     this.trustMaterial = '',
+    this.hasReviews,
+    this.hasSocialMentions,
+    this.hasTrustMaterial,
   });
 
   IntakeSourcesAndReviews copyWith({
@@ -150,12 +164,18 @@ class IntakeSourcesAndReviews {
     String? reviews,
     String? socialMentions,
     String? trustMaterial,
+    bool? hasReviews,
+    bool? hasSocialMentions,
+    bool? hasTrustMaterial,
   }) {
     return IntakeSourcesAndReviews(
       existingSources: existingSources ?? this.existingSources,
       reviews: reviews ?? this.reviews,
       socialMentions: socialMentions ?? this.socialMentions,
       trustMaterial: trustMaterial ?? this.trustMaterial,
+      hasReviews: hasReviews ?? this.hasReviews,
+      hasSocialMentions: hasSocialMentions ?? this.hasSocialMentions,
+      hasTrustMaterial: hasTrustMaterial ?? this.hasTrustMaterial,
     );
   }
 }
@@ -228,6 +248,11 @@ class IntakeSession {
   final DateTime createdAt;
   final DateTime updatedAt;
   final DateTime? importedAt;
+  final DateTime? chatStartedAt;
+  final DateTime? chatUpdatedAt;
+  final DateTime? chatCompletedAt;
+  final int chatCurrentQuestionIndex;
+  final List<String> skippedQuestionKeys;
   final IntakeBasics basics;
   final IntakeProducts products;
   final IntakeTargetGroups targetGroups;
@@ -244,6 +269,11 @@ class IntakeSession {
     required this.createdAt,
     required this.updatedAt,
     this.importedAt,
+    this.chatStartedAt,
+    this.chatUpdatedAt,
+    this.chatCompletedAt,
+    this.chatCurrentQuestionIndex = 0,
+    this.skippedQuestionKeys = const [],
     this.basics = const IntakeBasics(),
     this.products = const IntakeProducts(),
     this.targetGroups = const IntakeTargetGroups(),
@@ -274,6 +304,11 @@ class IntakeSession {
     int? currentStepIndex,
     DateTime? updatedAt,
     DateTime? importedAt,
+    DateTime? chatStartedAt,
+    DateTime? chatUpdatedAt,
+    DateTime? chatCompletedAt,
+    int? chatCurrentQuestionIndex,
+    List<String>? skippedQuestionKeys,
     IntakeBasics? basics,
     IntakeProducts? products,
     IntakeTargetGroups? targetGroups,
@@ -290,6 +325,12 @@ class IntakeSession {
       createdAt: createdAt,
       updatedAt: updatedAt ?? this.updatedAt,
       importedAt: importedAt ?? this.importedAt,
+      chatStartedAt: chatStartedAt ?? this.chatStartedAt,
+      chatUpdatedAt: chatUpdatedAt ?? this.chatUpdatedAt,
+      chatCompletedAt: chatCompletedAt ?? this.chatCompletedAt,
+      chatCurrentQuestionIndex:
+          chatCurrentQuestionIndex ?? this.chatCurrentQuestionIndex,
+      skippedQuestionKeys: skippedQuestionKeys ?? this.skippedQuestionKeys,
       basics: basics ?? this.basics,
       products: products ?? this.products,
       targetGroups: targetGroups ?? this.targetGroups,

@@ -105,6 +105,7 @@ class AppState extends ChangeNotifier {
         website: c.website,
         supportEmail: c.supportEmail,
         supportPhone: c.supportPhone,
+        hasWebsite: c.website.trim().isNotEmpty,
       ),
     );
     _updateSelectedWorkspace(
@@ -162,6 +163,50 @@ class AppState extends ChangeNotifier {
     _updateIntake(
       (session) =>
           session.copyWith(status: IntakeStatus.completed, currentStepIndex: 7),
+    );
+  }
+
+  void markIntakeChatStarted() {
+    final now = DateTime.now();
+    _updateIntake(
+      (session) => session.copyWith(
+        chatStartedAt: session.chatStartedAt ?? now,
+        chatUpdatedAt: now,
+      ),
+    );
+  }
+
+  void setIntakeChatQuestionIndex(int index) {
+    _updateIntake(
+      (session) => session.copyWith(
+        chatCurrentQuestionIndex: index,
+        chatUpdatedAt: DateTime.now(),
+      ),
+    );
+  }
+
+  void skipIntakeChatQuestion(String questionKey, int nextQuestionIndex) {
+    _updateIntake(
+      (session) => session.copyWith(
+        skippedQuestionKeys: _appendUnique(
+          session.skippedQuestionKeys,
+          questionKey,
+        ),
+        chatCurrentQuestionIndex: nextQuestionIndex,
+        chatUpdatedAt: DateTime.now(),
+      ),
+    );
+  }
+
+  void markIntakeChatCompleted() {
+    final now = DateTime.now();
+    _updateIntake(
+      (session) => session.copyWith(
+        status: IntakeStatus.completed,
+        currentStepIndex: 7,
+        chatCompletedAt: now,
+        chatUpdatedAt: now,
+      ),
     );
   }
 

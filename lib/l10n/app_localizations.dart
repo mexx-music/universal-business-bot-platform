@@ -1094,6 +1094,354 @@ abstract class AppLocalizations {
   /// **'Themen, die ein Bot nicht frei beantworten darf'**
   String get intakeBotRestrictedTopics;
 
+  /// No description provided for @intakeChatTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Chat-Aufnahme'**
+  String get intakeChatTitle;
+
+  /// No description provided for @intakeChatSubtitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Regelbasierter Fragebogen-Chat ohne KI/API. Antworten werden direkt in die Firmenaufnahme gespeichert.'**
+  String get intakeChatSubtitle;
+
+  /// No description provided for @intakeChatStart.
+  ///
+  /// In de, this message translates to:
+  /// **'Chat-Aufnahme starten'**
+  String get intakeChatStart;
+
+  /// No description provided for @intakeChatResume.
+  ///
+  /// In de, this message translates to:
+  /// **'Chat-Aufnahme fortsetzen'**
+  String get intakeChatResume;
+
+  /// No description provided for @intakeChatSharedDataHint.
+  ///
+  /// In de, this message translates to:
+  /// **'Wizard und Chat verwenden dieselben gespeicherten Intake-Daten.'**
+  String get intakeChatSharedDataHint;
+
+  /// No description provided for @intakeChatOpenWizard.
+  ///
+  /// In de, this message translates to:
+  /// **'Zur Wizard-Ansicht'**
+  String get intakeChatOpenWizard;
+
+  /// No description provided for @intakeChatQuestionProgress.
+  ///
+  /// In de, this message translates to:
+  /// **'Frage {current} von {total}'**
+  String intakeChatQuestionProgress(int current, int total);
+
+  /// No description provided for @intakeChatCompletedProgress.
+  ///
+  /// In de, this message translates to:
+  /// **'Abgeschlossen'**
+  String get intakeChatCompletedProgress;
+
+  /// No description provided for @intakeChatInputHint.
+  ///
+  /// In de, this message translates to:
+  /// **'Antwort eingeben …'**
+  String get intakeChatInputHint;
+
+  /// No description provided for @intakeChatDoneInputHint.
+  ///
+  /// In de, this message translates to:
+  /// **'Alle Fragen sind beantwortet.'**
+  String get intakeChatDoneInputHint;
+
+  /// No description provided for @intakeChatYes.
+  ///
+  /// In de, this message translates to:
+  /// **'Ja'**
+  String get intakeChatYes;
+
+  /// No description provided for @intakeChatNo.
+  ///
+  /// In de, this message translates to:
+  /// **'Nein'**
+  String get intakeChatNo;
+
+  /// No description provided for @intakeChatSkip.
+  ///
+  /// In de, this message translates to:
+  /// **'Überspringen'**
+  String get intakeChatSkip;
+
+  /// No description provided for @intakeChatPause.
+  ///
+  /// In de, this message translates to:
+  /// **'Später fortsetzen'**
+  String get intakeChatPause;
+
+  /// No description provided for @intakeChatGoToSummary.
+  ///
+  /// In de, this message translates to:
+  /// **'Zur Firmenaufnahme-Zusammenfassung'**
+  String get intakeChatGoToSummary;
+
+  /// No description provided for @intakeChatGreeting.
+  ///
+  /// In de, this message translates to:
+  /// **'Hallo! Ich führe dich Schritt für Schritt durch die Firmenaufnahme.'**
+  String get intakeChatGreeting;
+
+  /// No description provided for @intakeChatExplanation.
+  ///
+  /// In de, this message translates to:
+  /// **'Ich stelle immer nur eine Frage. Deine Antworten landen direkt in derselben IntakeSession wie der Wizard.'**
+  String get intakeChatExplanation;
+
+  /// No description provided for @intakeChatAllDone.
+  ///
+  /// In de, this message translates to:
+  /// **'Die Chat-Aufnahme ist vollständig. Du kannst jetzt zur Zusammenfassung wechseln und die Übernahme vorbereiten.'**
+  String get intakeChatAllDone;
+
+  /// No description provided for @intakeChatEmptyAnswer.
+  ///
+  /// In de, this message translates to:
+  /// **'Bitte gib eine Antwort ein oder überspringe die Frage.'**
+  String get intakeChatEmptyAnswer;
+
+  /// No description provided for @intakeChatSkipped.
+  ///
+  /// In de, this message translates to:
+  /// **'Frage übersprungen.'**
+  String get intakeChatSkipped;
+
+  /// No description provided for @intakeChatQCompanyName.
+  ///
+  /// In de, this message translates to:
+  /// **'Wie heißt die Firma?'**
+  String get intakeChatQCompanyName;
+
+  /// No description provided for @intakeChatQShortDescription.
+  ///
+  /// In de, this message translates to:
+  /// **'Beschreibe die Firma kurz in 1–3 Sätzen.'**
+  String get intakeChatQShortDescription;
+
+  /// No description provided for @intakeChatQIndustry.
+  ///
+  /// In de, this message translates to:
+  /// **'In welcher Branche oder Kategorie ist die Firma tätig?'**
+  String get intakeChatQIndustry;
+
+  /// No description provided for @intakeChatQCountry.
+  ///
+  /// In de, this message translates to:
+  /// **'In welchem Land ist die Firma hauptsächlich aktiv?'**
+  String get intakeChatQCountry;
+
+  /// No description provided for @intakeChatQPrimaryLanguage.
+  ///
+  /// In de, this message translates to:
+  /// **'Welche Hauptsprache soll der Workspace verwenden?'**
+  String get intakeChatQPrimaryLanguage;
+
+  /// No description provided for @intakeChatQHasWebsite.
+  ///
+  /// In de, this message translates to:
+  /// **'Gibt es bereits eine Website?'**
+  String get intakeChatQHasWebsite;
+
+  /// No description provided for @intakeChatQWebsite.
+  ///
+  /// In de, this message translates to:
+  /// **'Wie lautet die Website-URL?'**
+  String get intakeChatQWebsite;
+
+  /// No description provided for @intakeChatQSupportEmail.
+  ///
+  /// In de, this message translates to:
+  /// **'Welche Support-E-Mail soll verwendet werden?'**
+  String get intakeChatQSupportEmail;
+
+  /// No description provided for @intakeChatQSupportPhone.
+  ///
+  /// In de, this message translates to:
+  /// **'Gibt es eine Support-Telefonnummer?'**
+  String get intakeChatQSupportPhone;
+
+  /// No description provided for @intakeChatQImportantProducts.
+  ///
+  /// In de, this message translates to:
+  /// **'Welche wichtigsten Produkte oder Leistungen gibt es? Du kannst mehrere Zeilen verwenden.'**
+  String get intakeChatQImportantProducts;
+
+  /// No description provided for @intakeChatQMainProduct.
+  ///
+  /// In de, this message translates to:
+  /// **'Was ist aktuell das Hauptprodukt oder Hauptangebot?'**
+  String get intakeChatQMainProduct;
+
+  /// No description provided for @intakeChatQPriorityProducts.
+  ///
+  /// In de, this message translates to:
+  /// **'Welche Produkte oder Leistungen haben aktuell Priorität?'**
+  String get intakeChatQPriorityProducts;
+
+  /// No description provided for @intakeChatQExplanationNeeded.
+  ///
+  /// In de, this message translates to:
+  /// **'Welche Produkte oder Leistungen sind erklärungsbedürftig?'**
+  String get intakeChatQExplanationNeeded;
+
+  /// No description provided for @intakeChatQTargetGroup.
+  ///
+  /// In de, this message translates to:
+  /// **'Wer ist die wichtigste Zielgruppe?'**
+  String get intakeChatQTargetGroup;
+
+  /// No description provided for @intakeChatQMarketType.
+  ///
+  /// In de, this message translates to:
+  /// **'Ist das Angebot eher B2B, B2C oder beides?'**
+  String get intakeChatQMarketType;
+
+  /// No description provided for @intakeChatQProblemSolved.
+  ///
+  /// In de, this message translates to:
+  /// **'Welches Problem löst das Angebot für Kunden?'**
+  String get intakeChatQProblemSolved;
+
+  /// No description provided for @intakeChatQCustomerBenefit.
+  ///
+  /// In de, this message translates to:
+  /// **'Was ist der wichtigste Kundennutzen?'**
+  String get intakeChatQCustomerBenefit;
+
+  /// No description provided for @intakeChatQDifferentiation.
+  ///
+  /// In de, this message translates to:
+  /// **'Wodurch unterscheidet sich die Firma von Alternativen?'**
+  String get intakeChatQDifferentiation;
+
+  /// No description provided for @intakeChatQImportantPages.
+  ///
+  /// In de, this message translates to:
+  /// **'Welche Website- oder Landingpages sind wichtig?'**
+  String get intakeChatQImportantPages;
+
+  /// No description provided for @intakeChatQFrequentQuestions.
+  ///
+  /// In de, this message translates to:
+  /// **'Welche Fragen stellen Kunden besonders häufig?'**
+  String get intakeChatQFrequentQuestions;
+
+  /// No description provided for @intakeChatQSupportProblems.
+  ///
+  /// In de, this message translates to:
+  /// **'Welche Supportprobleme treten häufig auf?'**
+  String get intakeChatQSupportProblems;
+
+  /// No description provided for @intakeChatQHasSensitiveTopics.
+  ///
+  /// In de, this message translates to:
+  /// **'Gibt es sensible Fragen oder Themen?'**
+  String get intakeChatQHasSensitiveTopics;
+
+  /// No description provided for @intakeChatQSensitiveTopics.
+  ///
+  /// In de, this message translates to:
+  /// **'Welche sensiblen Fragen oder Themen sollen besonders vorsichtig behandelt werden?'**
+  String get intakeChatQSensitiveTopics;
+
+  /// No description provided for @intakeChatQExistingSources.
+  ///
+  /// In de, this message translates to:
+  /// **'Welche PDFs, Anleitungen, Notizen oder Materialien sind bereits vorhanden?'**
+  String get intakeChatQExistingSources;
+
+  /// No description provided for @intakeChatQHasReviews.
+  ///
+  /// In de, this message translates to:
+  /// **'Gibt es Rezensionen oder Testimonials?'**
+  String get intakeChatQHasReviews;
+
+  /// No description provided for @intakeChatQReviews.
+  ///
+  /// In de, this message translates to:
+  /// **'Welche Rezensionen oder Testimonials sind relevant?'**
+  String get intakeChatQReviews;
+
+  /// No description provided for @intakeChatQHasSocialMentions.
+  ///
+  /// In de, this message translates to:
+  /// **'Gibt es Social-Media-Erwähnungen oder externe Diskussionen?'**
+  String get intakeChatQHasSocialMentions;
+
+  /// No description provided for @intakeChatQSocialMentions.
+  ///
+  /// In de, this message translates to:
+  /// **'Welche Social-Media-Erwähnungen oder externen Diskussionen sind wichtig?'**
+  String get intakeChatQSocialMentions;
+
+  /// No description provided for @intakeChatQHasTrustMaterial.
+  ///
+  /// In de, this message translates to:
+  /// **'Gibt es Trust-Material wie Siegel, Referenzen oder Nachweise?'**
+  String get intakeChatQHasTrustMaterial;
+
+  /// No description provided for @intakeChatQTrustMaterial.
+  ///
+  /// In de, this message translates to:
+  /// **'Welches Trust-Material ist vorhanden?'**
+  String get intakeChatQTrustMaterial;
+
+  /// No description provided for @intakeChatQChannels.
+  ///
+  /// In de, this message translates to:
+  /// **'Welche Marketing- oder Kommunikationskanäle wurden bisher genutzt?'**
+  String get intakeChatQChannels;
+
+  /// No description provided for @intakeChatQCampaigns.
+  ///
+  /// In de, this message translates to:
+  /// **'Welche Werbemaßnahmen wurden bisher ausprobiert?'**
+  String get intakeChatQCampaigns;
+
+  /// No description provided for @intakeChatQWorkedNotWorked.
+  ///
+  /// In de, this message translates to:
+  /// **'Was hat bisher funktioniert und was nicht?'**
+  String get intakeChatQWorkedNotWorked;
+
+  /// No description provided for @intakeChatQReachProblems.
+  ///
+  /// In de, this message translates to:
+  /// **'Wo bestehen aktuell Reichweitenprobleme?'**
+  String get intakeChatQReachProblems;
+
+  /// No description provided for @intakeChatQCompanyGoals.
+  ///
+  /// In de, this message translates to:
+  /// **'Was sind die wichtigsten Ziele der Firma?'**
+  String get intakeChatQCompanyGoals;
+
+  /// No description provided for @intakeChatQShortTermPriorities.
+  ///
+  /// In de, this message translates to:
+  /// **'Was sind die kurzfristigen Prioritäten?'**
+  String get intakeChatQShortTermPriorities;
+
+  /// No description provided for @intakeChatQForbiddenClaims.
+  ///
+  /// In de, this message translates to:
+  /// **'Welche Aussagen sind sensibel oder verboten?'**
+  String get intakeChatQForbiddenClaims;
+
+  /// No description provided for @intakeChatQBotRestrictedTopics.
+  ///
+  /// In de, this message translates to:
+  /// **'Welche Themen darf ein Bot nicht frei beantworten?'**
+  String get intakeChatQBotRestrictedTopics;
+
   /// No description provided for @companyTitle.
   ///
   /// In de, this message translates to:

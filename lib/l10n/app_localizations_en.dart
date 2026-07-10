@@ -559,6 +559,218 @@ class AppLocalizationsEn extends AppLocalizations {
       'Topics the bot must not answer freely';
 
   @override
+  String get intakeChatTitle => 'Chat Intake';
+
+  @override
+  String get intakeChatSubtitle =>
+      'Rule-based questionnaire chat without AI/API. Answers are saved directly into the company intake.';
+
+  @override
+  String get intakeChatStart => 'Start chat intake';
+
+  @override
+  String get intakeChatResume => 'Resume chat intake';
+
+  @override
+  String get intakeChatSharedDataHint =>
+      'Wizard and chat use the same saved intake data.';
+
+  @override
+  String get intakeChatOpenWizard => 'Open wizard view';
+
+  @override
+  String intakeChatQuestionProgress(int current, int total) {
+    return 'Question $current of $total';
+  }
+
+  @override
+  String get intakeChatCompletedProgress => 'Completed';
+
+  @override
+  String get intakeChatInputHint => 'Enter answer …';
+
+  @override
+  String get intakeChatDoneInputHint => 'All questions are answered.';
+
+  @override
+  String get intakeChatYes => 'Yes';
+
+  @override
+  String get intakeChatNo => 'No';
+
+  @override
+  String get intakeChatSkip => 'Skip';
+
+  @override
+  String get intakeChatPause => 'Continue later';
+
+  @override
+  String get intakeChatGoToSummary => 'Go to intake summary';
+
+  @override
+  String get intakeChatGreeting =>
+      'Hello! I will guide you through the company intake step by step.';
+
+  @override
+  String get intakeChatExplanation =>
+      'I ask one question at a time. Your answers are saved into the same IntakeSession as the wizard.';
+
+  @override
+  String get intakeChatAllDone =>
+      'The chat intake is complete. You can now open the summary and prepare the workspace import.';
+
+  @override
+  String get intakeChatEmptyAnswer =>
+      'Please enter an answer or skip the question.';
+
+  @override
+  String get intakeChatSkipped => 'Question skipped.';
+
+  @override
+  String get intakeChatQCompanyName => 'What is the company name?';
+
+  @override
+  String get intakeChatQShortDescription =>
+      'Briefly describe the company in 1–3 sentences.';
+
+  @override
+  String get intakeChatQIndustry =>
+      'Which industry or category is the company in?';
+
+  @override
+  String get intakeChatQCountry =>
+      'In which country is the company mainly active?';
+
+  @override
+  String get intakeChatQPrimaryLanguage =>
+      'Which primary language should this workspace use?';
+
+  @override
+  String get intakeChatQHasWebsite => 'Is there already a website?';
+
+  @override
+  String get intakeChatQWebsite => 'What is the website URL?';
+
+  @override
+  String get intakeChatQSupportEmail => 'Which support email should be used?';
+
+  @override
+  String get intakeChatQSupportPhone => 'Is there a support phone number?';
+
+  @override
+  String get intakeChatQImportantProducts =>
+      'What are the most important products or services? You can use multiple lines.';
+
+  @override
+  String get intakeChatQMainProduct =>
+      'What is the current main product or offer?';
+
+  @override
+  String get intakeChatQPriorityProducts =>
+      'Which products or services currently have priority?';
+
+  @override
+  String get intakeChatQExplanationNeeded =>
+      'Which products or services need explanation?';
+
+  @override
+  String get intakeChatQTargetGroup =>
+      'Who is the most important target group?';
+
+  @override
+  String get intakeChatQMarketType => 'Is the offer mainly B2B, B2C, or both?';
+
+  @override
+  String get intakeChatQProblemSolved =>
+      'Which problem does the offer solve for customers?';
+
+  @override
+  String get intakeChatQCustomerBenefit =>
+      'What is the most important customer benefit?';
+
+  @override
+  String get intakeChatQDifferentiation =>
+      'How does the company differ from alternatives?';
+
+  @override
+  String get intakeChatQImportantPages =>
+      'Which website or landing pages are important?';
+
+  @override
+  String get intakeChatQFrequentQuestions =>
+      'Which questions do customers ask most often?';
+
+  @override
+  String get intakeChatQSupportProblems =>
+      'Which support issues occur frequently?';
+
+  @override
+  String get intakeChatQHasSensitiveTopics =>
+      'Are there sensitive questions or topics?';
+
+  @override
+  String get intakeChatQSensitiveTopics =>
+      'Which sensitive questions or topics should be handled carefully?';
+
+  @override
+  String get intakeChatQExistingSources =>
+      'Which PDFs, guides, notes, or materials already exist?';
+
+  @override
+  String get intakeChatQHasReviews => 'Are there reviews or testimonials?';
+
+  @override
+  String get intakeChatQReviews =>
+      'Which reviews or testimonials are relevant?';
+
+  @override
+  String get intakeChatQHasSocialMentions =>
+      'Are there social media mentions or external discussions?';
+
+  @override
+  String get intakeChatQSocialMentions =>
+      'Which social media mentions or external discussions are important?';
+
+  @override
+  String get intakeChatQHasTrustMaterial =>
+      'Is there trust material such as seals, references, or proof points?';
+
+  @override
+  String get intakeChatQTrustMaterial => 'Which trust material is available?';
+
+  @override
+  String get intakeChatQChannels =>
+      'Which marketing or communication channels have been used so far?';
+
+  @override
+  String get intakeChatQCampaigns =>
+      'Which marketing activities have been tried so far?';
+
+  @override
+  String get intakeChatQWorkedNotWorked =>
+      'What has worked so far, and what has not?';
+
+  @override
+  String get intakeChatQReachProblems =>
+      'Where are there current reach problems?';
+
+  @override
+  String get intakeChatQCompanyGoals =>
+      'What are the most important company goals?';
+
+  @override
+  String get intakeChatQShortTermPriorities =>
+      'What are the short-term priorities?';
+
+  @override
+  String get intakeChatQForbiddenClaims =>
+      'Which claims are sensitive or forbidden?';
+
+  @override
+  String get intakeChatQBotRestrictedTopics =>
+      'Which topics must a bot not answer freely?';
+
+  @override
   String get companyTitle => 'Company';
 
   @override

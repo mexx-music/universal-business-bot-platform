@@ -561,6 +561,220 @@ class AppLocalizationsDe extends AppLocalizations {
       'Themen, die ein Bot nicht frei beantworten darf';
 
   @override
+  String get intakeChatTitle => 'Chat-Aufnahme';
+
+  @override
+  String get intakeChatSubtitle =>
+      'Regelbasierter Fragebogen-Chat ohne KI/API. Antworten werden direkt in die Firmenaufnahme gespeichert.';
+
+  @override
+  String get intakeChatStart => 'Chat-Aufnahme starten';
+
+  @override
+  String get intakeChatResume => 'Chat-Aufnahme fortsetzen';
+
+  @override
+  String get intakeChatSharedDataHint =>
+      'Wizard und Chat verwenden dieselben gespeicherten Intake-Daten.';
+
+  @override
+  String get intakeChatOpenWizard => 'Zur Wizard-Ansicht';
+
+  @override
+  String intakeChatQuestionProgress(int current, int total) {
+    return 'Frage $current von $total';
+  }
+
+  @override
+  String get intakeChatCompletedProgress => 'Abgeschlossen';
+
+  @override
+  String get intakeChatInputHint => 'Antwort eingeben …';
+
+  @override
+  String get intakeChatDoneInputHint => 'Alle Fragen sind beantwortet.';
+
+  @override
+  String get intakeChatYes => 'Ja';
+
+  @override
+  String get intakeChatNo => 'Nein';
+
+  @override
+  String get intakeChatSkip => 'Überspringen';
+
+  @override
+  String get intakeChatPause => 'Später fortsetzen';
+
+  @override
+  String get intakeChatGoToSummary => 'Zur Firmenaufnahme-Zusammenfassung';
+
+  @override
+  String get intakeChatGreeting =>
+      'Hallo! Ich führe dich Schritt für Schritt durch die Firmenaufnahme.';
+
+  @override
+  String get intakeChatExplanation =>
+      'Ich stelle immer nur eine Frage. Deine Antworten landen direkt in derselben IntakeSession wie der Wizard.';
+
+  @override
+  String get intakeChatAllDone =>
+      'Die Chat-Aufnahme ist vollständig. Du kannst jetzt zur Zusammenfassung wechseln und die Übernahme vorbereiten.';
+
+  @override
+  String get intakeChatEmptyAnswer =>
+      'Bitte gib eine Antwort ein oder überspringe die Frage.';
+
+  @override
+  String get intakeChatSkipped => 'Frage übersprungen.';
+
+  @override
+  String get intakeChatQCompanyName => 'Wie heißt die Firma?';
+
+  @override
+  String get intakeChatQShortDescription =>
+      'Beschreibe die Firma kurz in 1–3 Sätzen.';
+
+  @override
+  String get intakeChatQIndustry =>
+      'In welcher Branche oder Kategorie ist die Firma tätig?';
+
+  @override
+  String get intakeChatQCountry =>
+      'In welchem Land ist die Firma hauptsächlich aktiv?';
+
+  @override
+  String get intakeChatQPrimaryLanguage =>
+      'Welche Hauptsprache soll der Workspace verwenden?';
+
+  @override
+  String get intakeChatQHasWebsite => 'Gibt es bereits eine Website?';
+
+  @override
+  String get intakeChatQWebsite => 'Wie lautet die Website-URL?';
+
+  @override
+  String get intakeChatQSupportEmail =>
+      'Welche Support-E-Mail soll verwendet werden?';
+
+  @override
+  String get intakeChatQSupportPhone => 'Gibt es eine Support-Telefonnummer?';
+
+  @override
+  String get intakeChatQImportantProducts =>
+      'Welche wichtigsten Produkte oder Leistungen gibt es? Du kannst mehrere Zeilen verwenden.';
+
+  @override
+  String get intakeChatQMainProduct =>
+      'Was ist aktuell das Hauptprodukt oder Hauptangebot?';
+
+  @override
+  String get intakeChatQPriorityProducts =>
+      'Welche Produkte oder Leistungen haben aktuell Priorität?';
+
+  @override
+  String get intakeChatQExplanationNeeded =>
+      'Welche Produkte oder Leistungen sind erklärungsbedürftig?';
+
+  @override
+  String get intakeChatQTargetGroup => 'Wer ist die wichtigste Zielgruppe?';
+
+  @override
+  String get intakeChatQMarketType =>
+      'Ist das Angebot eher B2B, B2C oder beides?';
+
+  @override
+  String get intakeChatQProblemSolved =>
+      'Welches Problem löst das Angebot für Kunden?';
+
+  @override
+  String get intakeChatQCustomerBenefit =>
+      'Was ist der wichtigste Kundennutzen?';
+
+  @override
+  String get intakeChatQDifferentiation =>
+      'Wodurch unterscheidet sich die Firma von Alternativen?';
+
+  @override
+  String get intakeChatQImportantPages =>
+      'Welche Website- oder Landingpages sind wichtig?';
+
+  @override
+  String get intakeChatQFrequentQuestions =>
+      'Welche Fragen stellen Kunden besonders häufig?';
+
+  @override
+  String get intakeChatQSupportProblems =>
+      'Welche Supportprobleme treten häufig auf?';
+
+  @override
+  String get intakeChatQHasSensitiveTopics =>
+      'Gibt es sensible Fragen oder Themen?';
+
+  @override
+  String get intakeChatQSensitiveTopics =>
+      'Welche sensiblen Fragen oder Themen sollen besonders vorsichtig behandelt werden?';
+
+  @override
+  String get intakeChatQExistingSources =>
+      'Welche PDFs, Anleitungen, Notizen oder Materialien sind bereits vorhanden?';
+
+  @override
+  String get intakeChatQHasReviews => 'Gibt es Rezensionen oder Testimonials?';
+
+  @override
+  String get intakeChatQReviews =>
+      'Welche Rezensionen oder Testimonials sind relevant?';
+
+  @override
+  String get intakeChatQHasSocialMentions =>
+      'Gibt es Social-Media-Erwähnungen oder externe Diskussionen?';
+
+  @override
+  String get intakeChatQSocialMentions =>
+      'Welche Social-Media-Erwähnungen oder externen Diskussionen sind wichtig?';
+
+  @override
+  String get intakeChatQHasTrustMaterial =>
+      'Gibt es Trust-Material wie Siegel, Referenzen oder Nachweise?';
+
+  @override
+  String get intakeChatQTrustMaterial =>
+      'Welches Trust-Material ist vorhanden?';
+
+  @override
+  String get intakeChatQChannels =>
+      'Welche Marketing- oder Kommunikationskanäle wurden bisher genutzt?';
+
+  @override
+  String get intakeChatQCampaigns =>
+      'Welche Werbemaßnahmen wurden bisher ausprobiert?';
+
+  @override
+  String get intakeChatQWorkedNotWorked =>
+      'Was hat bisher funktioniert und was nicht?';
+
+  @override
+  String get intakeChatQReachProblems =>
+      'Wo bestehen aktuell Reichweitenprobleme?';
+
+  @override
+  String get intakeChatQCompanyGoals =>
+      'Was sind die wichtigsten Ziele der Firma?';
+
+  @override
+  String get intakeChatQShortTermPriorities =>
+      'Was sind die kurzfristigen Prioritäten?';
+
+  @override
+  String get intakeChatQForbiddenClaims =>
+      'Welche Aussagen sind sensibel oder verboten?';
+
+  @override
+  String get intakeChatQBotRestrictedTopics =>
+      'Welche Themen darf ein Bot nicht frei beantworten?';
+
+  @override
   String get companyTitle => 'Firma';
 
   @override

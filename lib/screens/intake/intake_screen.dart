@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../data/app_state.dart';
 import '../../l10n/app_localizations.dart';
@@ -89,6 +90,15 @@ class _IntakeScreenState extends State<IntakeScreen> {
                       icon: const Icon(Icons.assignment_outlined),
                       label: Text(l.dashboardRecommendationIntakeTitle),
                     ),
+                    const SizedBox(height: 8),
+                    OutlinedButton.icon(
+                      onPressed: () {
+                        state.startOrResumeIntake();
+                        context.go('/intake-chat');
+                      },
+                      icon: const Icon(Icons.chat_bubble_outline),
+                      label: Text(l.intakeChatStart),
+                    ),
                   ],
                 ),
               ),
@@ -154,6 +164,29 @@ class _IntakeScreenState extends State<IntakeScreen> {
                   _StepNavigation(
                     selectedIndex: _stepIndex,
                     onSelected: (index) => _goToStep(state, index),
+                  ),
+                  const SizedBox(height: 12),
+                  Wrap(
+                    spacing: 8,
+                    runSpacing: 8,
+                    crossAxisAlignment: WrapCrossAlignment.center,
+                    children: [
+                      OutlinedButton.icon(
+                        onPressed: () => context.go('/intake-chat'),
+                        icon: const Icon(Icons.chat_bubble_outline, size: 18),
+                        label: Text(
+                          session.chatStartedAt == null
+                              ? l.intakeChatStart
+                              : l.intakeChatResume,
+                        ),
+                      ),
+                      Text(
+                        l.intakeChatSharedDataHint,
+                        style: theme.textTheme.bodySmall?.copyWith(
+                          color: theme.colorScheme.onSurfaceVariant,
+                        ),
+                      ),
+                    ],
                   ),
                 ],
               ),
