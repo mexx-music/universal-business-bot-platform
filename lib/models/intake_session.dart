@@ -111,7 +111,9 @@ class IntakeTargetGroups {
 class IntakeWebsiteAndSupport {
   final String websiteUrl;
   final bool? hasShop;
+  final String shopUrl;
   final bool? hasFaqArea;
+  final String faqUrl;
   final String websiteMaintainer;
   final bool? canEditWebsiteQuickly;
   final String websitePlanned;
@@ -131,7 +133,9 @@ class IntakeWebsiteAndSupport {
   const IntakeWebsiteAndSupport({
     this.websiteUrl = '',
     this.hasShop,
+    this.shopUrl = '',
     this.hasFaqArea,
+    this.faqUrl = '',
     this.websiteMaintainer = '',
     this.canEditWebsiteQuickly,
     this.websitePlanned = '',
@@ -152,7 +156,9 @@ class IntakeWebsiteAndSupport {
   IntakeWebsiteAndSupport copyWith({
     String? websiteUrl,
     bool? hasShop,
+    String? shopUrl,
     bool? hasFaqArea,
+    String? faqUrl,
     String? websiteMaintainer,
     bool? canEditWebsiteQuickly,
     String? websitePlanned,
@@ -172,7 +178,9 @@ class IntakeWebsiteAndSupport {
     return IntakeWebsiteAndSupport(
       websiteUrl: websiteUrl ?? this.websiteUrl,
       hasShop: hasShop ?? this.hasShop,
+      shopUrl: shopUrl ?? this.shopUrl,
       hasFaqArea: hasFaqArea ?? this.hasFaqArea,
+      faqUrl: faqUrl ?? this.faqUrl,
       websiteMaintainer: websiteMaintainer ?? this.websiteMaintainer,
       canEditWebsiteQuickly:
           canEditWebsiteQuickly ?? this.canEditWebsiteQuickly,
@@ -450,6 +458,7 @@ class IntakeSession {
   final DateTime? chatCompletedAt;
   final int chatCurrentQuestionIndex;
   final List<String> skippedQuestionKeys;
+  final List<String> deferredQuestionKeys;
   final IntakeBasics basics;
   final IntakeProducts products;
   final IntakeTargetGroups targetGroups;
@@ -471,6 +480,7 @@ class IntakeSession {
     this.chatCompletedAt,
     this.chatCurrentQuestionIndex = 0,
     this.skippedQuestionKeys = const [],
+    this.deferredQuestionKeys = const [],
     this.basics = const IntakeBasics(),
     this.products = const IntakeProducts(),
     this.targetGroups = const IntakeTargetGroups(),
@@ -506,6 +516,7 @@ class IntakeSession {
     DateTime? chatCompletedAt,
     int? chatCurrentQuestionIndex,
     List<String>? skippedQuestionKeys,
+    List<String>? deferredQuestionKeys,
     IntakeBasics? basics,
     IntakeProducts? products,
     IntakeTargetGroups? targetGroups,
@@ -528,6 +539,7 @@ class IntakeSession {
       chatCurrentQuestionIndex:
           chatCurrentQuestionIndex ?? this.chatCurrentQuestionIndex,
       skippedQuestionKeys: skippedQuestionKeys ?? this.skippedQuestionKeys,
+      deferredQuestionKeys: deferredQuestionKeys ?? this.deferredQuestionKeys,
       basics: basics ?? this.basics,
       products: products ?? this.products,
       targetGroups: targetGroups ?? this.targetGroups,

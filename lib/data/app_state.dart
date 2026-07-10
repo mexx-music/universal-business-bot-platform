@@ -204,6 +204,19 @@ class AppState extends ChangeNotifier {
     );
   }
 
+  void deferIntakeChatQuestion(String questionKey, int nextQuestionIndex) {
+    _updateIntake(
+      (session) => session.copyWith(
+        deferredQuestionKeys: _appendUnique(
+          session.deferredQuestionKeys,
+          questionKey,
+        ),
+        chatCurrentQuestionIndex: nextQuestionIndex,
+        chatUpdatedAt: DateTime.now(),
+      ),
+    );
+  }
+
   void markIntakeChatCompleted() {
     final now = DateTime.now();
     _updateIntake(
@@ -555,6 +568,16 @@ class AppState extends ChangeNotifier {
         (
           title: session.websiteAndSupport.websiteUrl.trim(),
           type: SourceMaterialType.website,
+        ),
+      if (session.websiteAndSupport.shopUrl.trim().isNotEmpty)
+        (
+          title: session.websiteAndSupport.shopUrl.trim(),
+          type: SourceMaterialType.website,
+        ),
+      if (session.websiteAndSupport.faqUrl.trim().isNotEmpty)
+        (
+          title: session.websiteAndSupport.faqUrl.trim(),
+          type: SourceMaterialType.faq,
         ),
       for (final item in _splitList(session.websiteAndSupport.importantPages))
         (title: item, type: SourceMaterialType.website),

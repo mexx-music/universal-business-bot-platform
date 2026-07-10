@@ -565,7 +565,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get intakeChatSubtitle =>
-      'Regelbasierter Fragebogen-Chat ohne KI/API. Antworten werden direkt in die Firmenaufnahme gespeichert.';
+      'Schritt-für-Schritt-Fragebogen für Firmenprofil, Website, Support, Material und Ziele.';
 
   @override
   String get intakeChatStart => 'Chat-Aufnahme starten';
@@ -575,10 +575,10 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get intakeChatSharedDataHint =>
-      'Wizard und Chat verwenden dieselben gespeicherten Intake-Daten.';
+      'Alle Antworten werden automatisch gespeichert.';
 
   @override
-  String get intakeChatOpenWizard => 'Zur Wizard-Ansicht';
+  String get intakeChatOpenWizard => 'Zur Übersicht';
 
   @override
   String intakeChatQuestionProgress(int current, int total) {
@@ -604,6 +604,21 @@ class AppLocalizationsDe extends AppLocalizations {
   String get intakeChatSkip => 'Überspringen';
 
   @override
+  String get intakeChatEnterAnswer => 'Antwort eingeben';
+
+  @override
+  String get intakeChatDialogCancel => 'Abbrechen';
+
+  @override
+  String get intakeChatDialogDefer => 'Später beantworten';
+
+  @override
+  String get intakeChatDialogSave => 'Speichern';
+
+  @override
+  String get intakeChatDialogSaveContinue => 'Speichern und weiter';
+
+  @override
   String get intakeChatPause => 'Später fortsetzen';
 
   @override
@@ -615,7 +630,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get intakeChatExplanation =>
-      'Ich stelle immer nur eine Frage. Deine Antworten landen direkt in derselben IntakeSession wie der Wizard.';
+      'Beantworte einfach die aktuelle Frage. Danach geht es automatisch mit dem nächsten passenden Schritt weiter.';
 
   @override
   String get intakeChatAllDone =>
@@ -642,6 +657,55 @@ class AppLocalizationsDe extends AppLocalizations {
   @override
   String get intakeChatEmailWarning =>
       'Die E-Mail-Adresse wirkt ungültig. Bitte prüfe das Format.';
+
+  @override
+  String get intakeChatDeferred => 'Später beantworten.';
+
+  @override
+  String get intakeChatAnswerSaved => 'Antwort gespeichert.';
+
+  @override
+  String get intakeChatExampleShortText =>
+      'Beispiel: Marketing-Team oder Österreich';
+
+  @override
+  String get intakeChatExampleLongText =>
+      'Beispiel: Wir helfen kleinen Firmen, Kundenfragen schneller und einheitlich zu beantworten.';
+
+  @override
+  String get intakeChatExampleList => 'Beispiel: Startseite, Preise, Kontakt';
+
+  @override
+  String get intakeChatExampleUrl => 'Beispiel: https://www.firma.at';
+
+  @override
+  String get intakeChatExampleEmail => 'Beispiel: support@firma.at';
+
+  @override
+  String get intakeChatExampleApproximateNumber =>
+      'Beispiel: ca. 20 oder ungefähr 3.000 €';
+
+  @override
+  String get intakeChatAnswerModeYesNo => 'Wähle Ja oder Nein.';
+
+  @override
+  String get intakeChatAnswerModeShortText => 'Gib eine kurze Antwort ein.';
+
+  @override
+  String get intakeChatAnswerModeLongText => 'Gib eine kurze Beschreibung ein.';
+
+  @override
+  String get intakeChatAnswerModeList => 'Gib eine oder mehrere Angaben ein.';
+
+  @override
+  String get intakeChatAnswerModeUrl => 'Gib eine Internetadresse ein.';
+
+  @override
+  String get intakeChatAnswerModeEmail => 'Gib eine E-Mail-Adresse ein.';
+
+  @override
+  String get intakeChatAnswerModeApproximateNumber =>
+      'Gib eine Zahl oder grobe Schätzung ein.';
 
   @override
   String get intakeChatListHint =>
@@ -704,8 +768,15 @@ class AppLocalizationsDe extends AppLocalizations {
   String get intakeChatQHasShop => 'Gibt es einen Online-Shop?';
 
   @override
+  String get intakeChatQShopUrl => 'Wie lautet die Shop-Adresse?';
+
+  @override
   String get intakeChatQHasFaqArea =>
       'Gibt es einen FAQ- oder Supportbereich auf der Website?';
+
+  @override
+  String get intakeChatQFaqUrl =>
+      'Wie lautet die URL des FAQ- oder Supportbereichs?';
 
   @override
   String get intakeChatQWebsiteMaintainer => 'Wer pflegt die Website aktuell?';

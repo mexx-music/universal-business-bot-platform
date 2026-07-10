@@ -1103,7 +1103,7 @@ abstract class AppLocalizations {
   /// No description provided for @intakeChatSubtitle.
   ///
   /// In de, this message translates to:
-  /// **'Regelbasierter Fragebogen-Chat ohne KI/API. Antworten werden direkt in die Firmenaufnahme gespeichert.'**
+  /// **'Schritt-für-Schritt-Fragebogen für Firmenprofil, Website, Support, Material und Ziele.'**
   String get intakeChatSubtitle;
 
   /// No description provided for @intakeChatStart.
@@ -1121,13 +1121,13 @@ abstract class AppLocalizations {
   /// No description provided for @intakeChatSharedDataHint.
   ///
   /// In de, this message translates to:
-  /// **'Wizard und Chat verwenden dieselben gespeicherten Intake-Daten.'**
+  /// **'Alle Antworten werden automatisch gespeichert.'**
   String get intakeChatSharedDataHint;
 
   /// No description provided for @intakeChatOpenWizard.
   ///
   /// In de, this message translates to:
-  /// **'Zur Wizard-Ansicht'**
+  /// **'Zur Übersicht'**
   String get intakeChatOpenWizard;
 
   /// No description provided for @intakeChatQuestionProgress.
@@ -1172,6 +1172,36 @@ abstract class AppLocalizations {
   /// **'Überspringen'**
   String get intakeChatSkip;
 
+  /// No description provided for @intakeChatEnterAnswer.
+  ///
+  /// In de, this message translates to:
+  /// **'Antwort eingeben'**
+  String get intakeChatEnterAnswer;
+
+  /// No description provided for @intakeChatDialogCancel.
+  ///
+  /// In de, this message translates to:
+  /// **'Abbrechen'**
+  String get intakeChatDialogCancel;
+
+  /// No description provided for @intakeChatDialogDefer.
+  ///
+  /// In de, this message translates to:
+  /// **'Später beantworten'**
+  String get intakeChatDialogDefer;
+
+  /// No description provided for @intakeChatDialogSave.
+  ///
+  /// In de, this message translates to:
+  /// **'Speichern'**
+  String get intakeChatDialogSave;
+
+  /// No description provided for @intakeChatDialogSaveContinue.
+  ///
+  /// In de, this message translates to:
+  /// **'Speichern und weiter'**
+  String get intakeChatDialogSaveContinue;
+
   /// No description provided for @intakeChatPause.
   ///
   /// In de, this message translates to:
@@ -1193,7 +1223,7 @@ abstract class AppLocalizations {
   /// No description provided for @intakeChatExplanation.
   ///
   /// In de, this message translates to:
-  /// **'Ich stelle immer nur eine Frage. Deine Antworten landen direkt in derselben IntakeSession wie der Wizard.'**
+  /// **'Beantworte einfach die aktuelle Frage. Danach geht es automatisch mit dem nächsten passenden Schritt weiter.'**
   String get intakeChatExplanation;
 
   /// No description provided for @intakeChatAllDone.
@@ -1237,6 +1267,96 @@ abstract class AppLocalizations {
   /// In de, this message translates to:
   /// **'Die E-Mail-Adresse wirkt ungültig. Bitte prüfe das Format.'**
   String get intakeChatEmailWarning;
+
+  /// No description provided for @intakeChatDeferred.
+  ///
+  /// In de, this message translates to:
+  /// **'Später beantworten.'**
+  String get intakeChatDeferred;
+
+  /// No description provided for @intakeChatAnswerSaved.
+  ///
+  /// In de, this message translates to:
+  /// **'Antwort gespeichert.'**
+  String get intakeChatAnswerSaved;
+
+  /// No description provided for @intakeChatExampleShortText.
+  ///
+  /// In de, this message translates to:
+  /// **'Beispiel: Marketing-Team oder Österreich'**
+  String get intakeChatExampleShortText;
+
+  /// No description provided for @intakeChatExampleLongText.
+  ///
+  /// In de, this message translates to:
+  /// **'Beispiel: Wir helfen kleinen Firmen, Kundenfragen schneller und einheitlich zu beantworten.'**
+  String get intakeChatExampleLongText;
+
+  /// No description provided for @intakeChatExampleList.
+  ///
+  /// In de, this message translates to:
+  /// **'Beispiel: Startseite, Preise, Kontakt'**
+  String get intakeChatExampleList;
+
+  /// No description provided for @intakeChatExampleUrl.
+  ///
+  /// In de, this message translates to:
+  /// **'Beispiel: https://www.firma.at'**
+  String get intakeChatExampleUrl;
+
+  /// No description provided for @intakeChatExampleEmail.
+  ///
+  /// In de, this message translates to:
+  /// **'Beispiel: support@firma.at'**
+  String get intakeChatExampleEmail;
+
+  /// No description provided for @intakeChatExampleApproximateNumber.
+  ///
+  /// In de, this message translates to:
+  /// **'Beispiel: ca. 20 oder ungefähr 3.000 €'**
+  String get intakeChatExampleApproximateNumber;
+
+  /// No description provided for @intakeChatAnswerModeYesNo.
+  ///
+  /// In de, this message translates to:
+  /// **'Wähle Ja oder Nein.'**
+  String get intakeChatAnswerModeYesNo;
+
+  /// No description provided for @intakeChatAnswerModeShortText.
+  ///
+  /// In de, this message translates to:
+  /// **'Gib eine kurze Antwort ein.'**
+  String get intakeChatAnswerModeShortText;
+
+  /// No description provided for @intakeChatAnswerModeLongText.
+  ///
+  /// In de, this message translates to:
+  /// **'Gib eine kurze Beschreibung ein.'**
+  String get intakeChatAnswerModeLongText;
+
+  /// No description provided for @intakeChatAnswerModeList.
+  ///
+  /// In de, this message translates to:
+  /// **'Gib eine oder mehrere Angaben ein.'**
+  String get intakeChatAnswerModeList;
+
+  /// No description provided for @intakeChatAnswerModeUrl.
+  ///
+  /// In de, this message translates to:
+  /// **'Gib eine Internetadresse ein.'**
+  String get intakeChatAnswerModeUrl;
+
+  /// No description provided for @intakeChatAnswerModeEmail.
+  ///
+  /// In de, this message translates to:
+  /// **'Gib eine E-Mail-Adresse ein.'**
+  String get intakeChatAnswerModeEmail;
+
+  /// No description provided for @intakeChatAnswerModeApproximateNumber.
+  ///
+  /// In de, this message translates to:
+  /// **'Gib eine Zahl oder grobe Schätzung ein.'**
+  String get intakeChatAnswerModeApproximateNumber;
 
   /// No description provided for @intakeChatListHint.
   ///
@@ -1334,11 +1454,23 @@ abstract class AppLocalizations {
   /// **'Gibt es einen Online-Shop?'**
   String get intakeChatQHasShop;
 
+  /// No description provided for @intakeChatQShopUrl.
+  ///
+  /// In de, this message translates to:
+  /// **'Wie lautet die Shop-Adresse?'**
+  String get intakeChatQShopUrl;
+
   /// No description provided for @intakeChatQHasFaqArea.
   ///
   /// In de, this message translates to:
   /// **'Gibt es einen FAQ- oder Supportbereich auf der Website?'**
   String get intakeChatQHasFaqArea;
+
+  /// No description provided for @intakeChatQFaqUrl.
+  ///
+  /// In de, this message translates to:
+  /// **'Wie lautet die URL des FAQ- oder Supportbereichs?'**
+  String get intakeChatQFaqUrl;
 
   /// No description provided for @intakeChatQWebsiteMaintainer.
   ///

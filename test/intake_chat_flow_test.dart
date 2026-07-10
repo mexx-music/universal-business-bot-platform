@@ -1,6 +1,9 @@
+import 'dart:ui';
+
 import 'package:flutter_test/flutter_test.dart';
 import 'package:universalbusiness/data/app_state.dart';
 import 'package:universalbusiness/data/intake_chat_flow.dart';
+import 'package:universalbusiness/l10n/app_localizations.dart';
 import 'package:universalbusiness/models/intake_session.dart';
 
 void main() {
@@ -47,11 +50,126 @@ void main() {
       'website',
     );
     expect(
+      IntakeChatFlow.nextQuestion(state.intakeSession!)!.type,
+      IntakeChatQuestionType.url,
+    );
+    expect(
       IntakeChatFlow.relevantQuestions(
         state.intakeSession!,
       ).map((question) => question.questionKey),
       containsAll(['website', 'hasShop', 'importantPages', 'hasFaqArea']),
     );
+  });
+
+  test('https scheme alone is not accepted as a URL', () {
+    final l = lookupAppLocalizations(const Locale('en'));
+    final question = IntakeChatFlow.questionByKey('website');
+
+    final error = IntakeChatFlow.validateAnswer(question, 'https://', l);
+
+    expect(error, l.intakeChatUrlWarning);
+  });
+
+  test('valid domain URL is normalized and saved', () {
+    final state = AppState();
+    state.updateIntakeBasics(
+      const IntakeBasics(
+        companyName: 'Demo',
+        shortDescription: 'Demo description',
+        industry: 'Software',
+        country: 'AT',
+        primaryLanguage: 'de',
+        hasWebsite: true,
+      ),
+    );
+    state.updateIntakeWebsiteAndSupport(const IntakeWebsiteAndSupport());
+    final question = IntakeChatFlow.questionByKey('website');
+
+    IntakeChatFlow.saveAnswer(state, question, 'example.com');
+
+    expect(state.intakeSession!.basics.website, 'https://example.com');
+    expect(
+      state.intakeSession!.websiteAndSupport.websiteUrl,
+      'https://example.com',
+    );
+  });
+
+  test('question remains open when no answer is saved', () {
+    final state = AppState();
+    state.updateIntakeBasics(
+      const IntakeBasics(
+        companyName: 'Demo',
+        shortDescription: 'Demo description',
+        industry: 'Software',
+        country: 'AT',
+        primaryLanguage: 'de',
+        hasWebsite: true,
+      ),
+    );
+    state.updateIntakeWebsiteAndSupport(const IntakeWebsiteAndSupport());
+
+    expect(
+      IntakeChatFlow.nextQuestion(state.intakeSession!)!.questionKey,
+      'website',
+    );
+    expect(
+      IntakeChatFlow.nextQuestion(state.intakeSession!)!.questionKey,
+      'website',
+    );
+  });
+
+  test('answer later marks a question deferred and moves on', () {
+    final state = AppState();
+    state.updateIntakeBasics(
+      const IntakeBasics(
+        companyName: 'Demo',
+        shortDescription: 'Demo description',
+        industry: 'Software',
+        country: 'AT',
+        primaryLanguage: 'de',
+        hasWebsite: true,
+      ),
+    );
+    state.updateIntakeWebsiteAndSupport(const IntakeWebsiteAndSupport());
+    final question = IntakeChatFlow.questionByKey('website');
+    final before = IntakeChatFlow.answeredRelevantCount(state.intakeSession!);
+    final currentIndex = IntakeChatFlow.questions.indexOf(question);
+
+    state.deferIntakeChatQuestion(question.questionKey, currentIndex + 1);
+
+    expect(state.intakeSession!.deferredQuestionKeys, contains('website'));
+    expect(
+      IntakeChatFlow.nextQuestion(state.intakeSession!)!.questionKey,
+      'hasShop',
+    );
+    expect(
+      IntakeChatFlow.answeredRelevantCount(state.intakeSession!),
+      greaterThanOrEqualTo(before),
+    );
+  });
+
+  test('required empty answer is rejected', () {
+    final l = lookupAppLocalizations(const Locale('en'));
+    final question = IntakeChatFlow.questionByKey('companyName');
+
+    final error = IntakeChatFlow.validateAnswer(question, '   ', l);
+
+    expect(error, l.intakeChatRequiredAnswer);
+  });
+
+  test('shop yes asks shop URL next', () {
+    final state = AppState();
+    state.updateIntakeBasics(const IntakeBasics(hasWebsite: true));
+    state.updateIntakeWebsiteAndSupport(
+      const IntakeWebsiteAndSupport(websiteUrl: 'https://example.com'),
+    );
+    final hasShop = IntakeChatFlow.questionByKey('hasShop');
+
+    IntakeChatFlow.saveAnswer(state, hasShop, 'yes');
+
+    final next = IntakeChatFlow.nextQuestion(state.intakeSession!);
+    expect(next!.questionKey, 'shopUrl');
+    expect(next.type, IntakeChatQuestionType.url);
   });
 
   test('website no skips website details and asks planned website', () {

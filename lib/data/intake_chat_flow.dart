@@ -2,7 +2,16 @@ import '../data/app_state.dart';
 import '../l10n/app_localizations.dart';
 import '../models/intake_session.dart';
 
-enum IntakeChatQuestionType { shortText, longText, yesNo, multiLineList }
+enum IntakeChatQuestionType {
+  shortText,
+  longText,
+  yesNo,
+  multiLineList,
+  url,
+  email,
+  approximateNumber,
+  choice,
+}
 
 class IntakeChatQuestion {
   final String questionKey;
@@ -18,6 +27,9 @@ class IntakeChatQuestion {
   final String? parentQuestionKey;
   final String Function(AppLocalizations l) text;
   final String Function(AppLocalizations l)? helpText;
+  final String Function(AppLocalizations l)? inputHint;
+  final String Function(IntakeSession session)? defaultValue;
+  final List<String> Function(AppLocalizations l)? choiceOptions;
   final String Function(IntakeSession session) value;
   final bool? Function(IntakeSession session)? boolValue;
   final bool Function(String answer)? validation;
@@ -40,12 +52,17 @@ class IntakeChatQuestion {
     this.followUpGroup,
     this.parentQuestionKey,
     this.helpText,
+    this.inputHint,
+    this.defaultValue,
+    this.choiceOptions,
     this.boolValue,
     this.validation,
     this.warningText,
   });
 
   bool get isListQuestion => type == IntakeChatQuestionType.multiLineList;
+
+  bool get opensAnswerDialog => type != IntakeChatQuestionType.yesNo;
 
   bool isAnswered(IntakeSession session) {
     if (type == IntakeChatQuestionType.yesNo) {
@@ -139,7 +156,10 @@ class IntakeChatFlow {
           ? s.websiteAndSupport.websiteUrl
           : s.basics.website,
       (state, answer) {
-        final value = answer.trim();
+        final value = normalizeAnswerForQuestion(
+          questionByKey('website'),
+          answer,
+        );
         state.updateIntakeBasics(
           state.intakeSession!.basics.copyWith(website: value),
         );
@@ -151,6 +171,8 @@ class IntakeChatFlow {
       dependsOnAnswer: true,
       parentQuestionKey: 'hasWebsite',
       followUpGroup: 'website',
+      typeOverride: IntakeChatQuestionType.url,
+      defaultValue: (_) => 'https://',
       validation: _looksLikeUrl,
       warningText: (l) => l.intakeChatUrlWarning,
     ),
@@ -167,6 +189,26 @@ class IntakeChatFlow {
       dependsOnAnswer: true,
       parentQuestionKey: 'hasWebsite',
       followUpGroup: 'website',
+    ),
+    _q(
+      'shopUrl',
+      'websiteAndSupport',
+      IntakeChatQuestionType.url,
+      'websiteAndSupport.shopUrl',
+      (l) => l.intakeChatQShopUrl,
+      (s) => s.websiteAndSupport.shopUrl,
+      (state, answer) => state.updateIntakeWebsiteAndSupport(
+        state.intakeSession!.websiteAndSupport.copyWith(
+          shopUrl: normalizeAnswerForQuestion(questionByKey('shopUrl'), answer),
+        ),
+      ),
+      dependsOnQuestionKey: 'hasShop',
+      dependsOnAnswer: true,
+      parentQuestionKey: 'hasShop',
+      followUpGroup: 'website',
+      defaultValue: (_) => 'https://',
+      validation: _looksLikeUrl,
+      warningText: (l) => l.intakeChatUrlWarning,
     ),
     _q(
       'importantPages',
@@ -202,6 +244,26 @@ class IntakeChatFlow {
       dependsOnAnswer: true,
       parentQuestionKey: 'hasWebsite',
       followUpGroup: 'website',
+    ),
+    _q(
+      'faqUrl',
+      'websiteAndSupport',
+      IntakeChatQuestionType.url,
+      'websiteAndSupport.faqUrl',
+      (l) => l.intakeChatQFaqUrl,
+      (s) => s.websiteAndSupport.faqUrl,
+      (state, answer) => state.updateIntakeWebsiteAndSupport(
+        state.intakeSession!.websiteAndSupport.copyWith(
+          faqUrl: normalizeAnswerForQuestion(questionByKey('faqUrl'), answer),
+        ),
+      ),
+      dependsOnQuestionKey: 'hasFaqArea',
+      dependsOnAnswer: true,
+      parentQuestionKey: 'hasFaqArea',
+      followUpGroup: 'website',
+      defaultValue: (_) => 'https://',
+      validation: _looksLikeUrl,
+      warningText: (l) => l.intakeChatUrlWarning,
     ),
     _q(
       'websiteMaintainer',
@@ -256,7 +318,7 @@ class IntakeChatFlow {
     _q(
       'supportEmail',
       'basics',
-      IntakeChatQuestionType.shortText,
+      IntakeChatQuestionType.email,
       'basics.supportEmail',
       (l) => l.intakeChatQSupportEmail,
       (s) => s.basics.supportEmail,
@@ -856,7 +918,7 @@ class IntakeChatFlow {
     _q(
       'reviewCountEstimate',
       'sourcesAndReviews',
-      IntakeChatQuestionType.shortText,
+      IntakeChatQuestionType.approximateNumber,
       'sourcesAndReviews.reviewCountEstimate',
       (l) => l.intakeChatQReviewCountEstimate,
       (s) => s.sourcesAndReviews.reviewCountEstimate,
@@ -1199,7 +1261,7 @@ class IntakeChatFlow {
     _q(
       'approximateBudget',
       'marketingAndChannels',
-      IntakeChatQuestionType.shortText,
+      IntakeChatQuestionType.approximateNumber,
       'marketingAndChannels.approximateBudget',
       (l) => l.intakeChatQApproximateBudget,
       (s) => s.marketingAndChannels.approximateBudget,
@@ -1384,6 +1446,12 @@ class IntakeChatFlow {
     return null;
   }
 
+  static IntakeChatQuestion questionByKey(String questionKey) {
+    return questions.firstWhere(
+      (question) => question.questionKey == questionKey,
+    );
+  }
+
   static int nextQuestionIndexAfter(IntakeSession session, String questionKey) {
     final currentIndex = questions.indexWhere(
       (q) => q.questionKey == questionKey,
@@ -1404,7 +1472,7 @@ class IntakeChatFlow {
     return [
       for (final question in questions)
         if (_dependencyMatches(question, session) &&
-            !session.skippedQuestionKeys.contains(question.questionKey))
+            !_isDeferredOrSkipped(question, session))
           question,
     ];
   }
@@ -1430,10 +1498,41 @@ class IntakeChatFlow {
         !_isYesNoAnswer(clean)) {
       return l.intakeChatYesNoWarning;
     }
-    if (question.validation != null && !question.validation!(clean)) {
+    final normalized = normalizeAnswerForQuestion(question, clean);
+    if (question.validation != null && !question.validation!(normalized)) {
       return question.warningText?.call(l);
     }
     return null;
+  }
+
+  static String normalizeAnswerForQuestion(
+    IntakeChatQuestion question,
+    String answer,
+  ) {
+    final clean = answer.trim();
+    if (question.type == IntakeChatQuestionType.url) {
+      if (clean == 'https://' || clean == 'http://') return clean;
+      if (clean.isNotEmpty &&
+          !clean.startsWith('http://') &&
+          !clean.startsWith('https://') &&
+          clean.contains('.') &&
+          !clean.contains(' ')) {
+        return 'https://$clean';
+      }
+    }
+    if (question.type == IntakeChatQuestionType.email) {
+      return clean.toLowerCase();
+    }
+    if (question.type == IntakeChatQuestionType.multiLineList) {
+      final normalizedItems = <String>[];
+      for (final item in _splitLines(clean)) {
+        if (!normalizedItems.any((existing) => _same(existing, item))) {
+          normalizedItems.add(item);
+        }
+      }
+      return normalizedItems.join('\n');
+    }
+    return clean;
   }
 
   static void saveAnswer(
@@ -1441,7 +1540,8 @@ class IntakeChatFlow {
     IntakeChatQuestion question,
     String answer,
   ) {
-    question.saveAnswer(state, answer);
+    final normalized = normalizeAnswerForQuestion(question, answer);
+    question.saveAnswer(state, normalized);
     final session = state.intakeSession!;
     final nextIndex = nextQuestionIndexAfter(session, question.questionKey);
     state.setIntakeChatQuestionIndex(nextIndex);
@@ -1463,6 +1563,18 @@ class IntakeChatFlow {
     };
   }
 
+  static String exampleText(AppLocalizations l, IntakeChatQuestion question) {
+    return switch (question.type) {
+      IntakeChatQuestionType.url => l.intakeChatExampleUrl,
+      IntakeChatQuestionType.email => l.intakeChatExampleEmail,
+      IntakeChatQuestionType.multiLineList => l.intakeChatExampleList,
+      IntakeChatQuestionType.approximateNumber =>
+        l.intakeChatExampleApproximateNumber,
+      IntakeChatQuestionType.longText => l.intakeChatExampleLongText,
+      _ => l.intakeChatExampleShortText,
+    };
+  }
+
   static String blockLabel(AppLocalizations l, String blockKey) {
     return switch (blockKey) {
       'basics' => l.intakeStepBasicsTitle,
@@ -1478,8 +1590,16 @@ class IntakeChatFlow {
 
   static bool _isOpen(IntakeChatQuestion question, IntakeSession session) {
     return _dependencyMatches(question, session) &&
-        !session.skippedQuestionKeys.contains(question.questionKey) &&
+        !_isDeferredOrSkipped(question, session) &&
         !question.isAnswered(session);
+  }
+
+  static bool _isDeferredOrSkipped(
+    IntakeChatQuestion question,
+    IntakeSession session,
+  ) {
+    return session.skippedQuestionKeys.contains(question.questionKey) ||
+        session.deferredQuestionKeys.contains(question.questionKey);
   }
 
   static bool _dependencyMatches(
@@ -1510,13 +1630,17 @@ IntakeChatQuestion _q(
   String? followUpGroup,
   String? parentQuestionKey,
   String Function(AppLocalizations l)? helpText,
+  String Function(AppLocalizations l)? inputHint,
+  String Function(IntakeSession session)? defaultValue,
+  List<String> Function(AppLocalizations l)? choiceOptions,
+  IntakeChatQuestionType? typeOverride,
   bool Function(String answer)? validation,
   String Function(AppLocalizations l)? warningText,
 }) {
   return IntakeChatQuestion(
     questionKey: questionKey,
     blockKey: blockKey,
-    type: type,
+    type: typeOverride ?? type,
     targetField: targetField,
     text: text,
     value: value,
@@ -1529,6 +1653,9 @@ IntakeChatQuestion _q(
     followUpGroup: followUpGroup,
     parentQuestionKey: parentQuestionKey,
     helpText: helpText,
+    inputHint: inputHint,
+    defaultValue: defaultValue,
+    choiceOptions: choiceOptions,
     validation: validation,
     warningText: warningText,
   );
@@ -1596,9 +1723,12 @@ bool _isYesNoAnswer(String value) {
 
 bool _looksLikeUrl(String value) {
   final clean = value.trim().toLowerCase();
-  return clean.startsWith('http://') ||
-      clean.startsWith('https://') ||
-      (clean.contains('.') && !clean.contains(' '));
+  if (clean == 'http://' || clean == 'https://') return false;
+  if (clean.contains(' ')) return false;
+  final withoutScheme = clean
+      .replaceFirst(RegExp(r'^https?://'), '')
+      .replaceFirst(RegExp(r'/$'), '');
+  return withoutScheme.contains('.') && withoutScheme.length > 3;
 }
 
 bool _looksLikeEmail(String value) {

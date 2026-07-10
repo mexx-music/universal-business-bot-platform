@@ -563,7 +563,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get intakeChatSubtitle =>
-      'Rule-based questionnaire chat without AI/API. Answers are saved directly into the company intake.';
+      'Step-by-step questionnaire for company profile, website, support, materials, and goals.';
 
   @override
   String get intakeChatStart => 'Start chat intake';
@@ -572,11 +572,10 @@ class AppLocalizationsEn extends AppLocalizations {
   String get intakeChatResume => 'Resume chat intake';
 
   @override
-  String get intakeChatSharedDataHint =>
-      'Wizard and chat use the same saved intake data.';
+  String get intakeChatSharedDataHint => 'All answers are saved automatically.';
 
   @override
-  String get intakeChatOpenWizard => 'Open wizard view';
+  String get intakeChatOpenWizard => 'Open overview';
 
   @override
   String intakeChatQuestionProgress(int current, int total) {
@@ -602,6 +601,21 @@ class AppLocalizationsEn extends AppLocalizations {
   String get intakeChatSkip => 'Skip';
 
   @override
+  String get intakeChatEnterAnswer => 'Enter answer';
+
+  @override
+  String get intakeChatDialogCancel => 'Cancel';
+
+  @override
+  String get intakeChatDialogDefer => 'Answer later';
+
+  @override
+  String get intakeChatDialogSave => 'Save';
+
+  @override
+  String get intakeChatDialogSaveContinue => 'Save and continue';
+
+  @override
   String get intakeChatPause => 'Continue later';
 
   @override
@@ -613,7 +627,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get intakeChatExplanation =>
-      'I ask one question at a time. Your answers are saved into the same IntakeSession as the wizard.';
+      'Answer the current question. After that, the next relevant step appears automatically.';
 
   @override
   String get intakeChatAllDone =>
@@ -640,6 +654,54 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get intakeChatEmailWarning =>
       'This email address does not look valid. Please check the format.';
+
+  @override
+  String get intakeChatDeferred => 'Answer later.';
+
+  @override
+  String get intakeChatAnswerSaved => 'Answer saved.';
+
+  @override
+  String get intakeChatExampleShortText => 'Example: Marketing team or Austria';
+
+  @override
+  String get intakeChatExampleLongText =>
+      'Example: We help small businesses answer customer questions faster and consistently.';
+
+  @override
+  String get intakeChatExampleList => 'Example: Home page, pricing, contact';
+
+  @override
+  String get intakeChatExampleUrl => 'Example: https://www.company.com';
+
+  @override
+  String get intakeChatExampleEmail => 'Example: support@company.com';
+
+  @override
+  String get intakeChatExampleApproximateNumber =>
+      'Example: about 20 or roughly €3,000';
+
+  @override
+  String get intakeChatAnswerModeYesNo => 'Choose yes or no.';
+
+  @override
+  String get intakeChatAnswerModeShortText => 'Enter a short answer.';
+
+  @override
+  String get intakeChatAnswerModeLongText => 'Enter a short description.';
+
+  @override
+  String get intakeChatAnswerModeList => 'Enter one or more items.';
+
+  @override
+  String get intakeChatAnswerModeUrl => 'Enter a web address.';
+
+  @override
+  String get intakeChatAnswerModeEmail => 'Enter an email address.';
+
+  @override
+  String get intakeChatAnswerModeApproximateNumber =>
+      'Enter a number or rough estimate.';
 
   @override
   String get intakeChatListHint =>
@@ -702,8 +764,14 @@ class AppLocalizationsEn extends AppLocalizations {
   String get intakeChatQHasShop => 'Is there an online shop?';
 
   @override
+  String get intakeChatQShopUrl => 'What is the shop URL?';
+
+  @override
   String get intakeChatQHasFaqArea =>
       'Is there an FAQ or support area on the website?';
+
+  @override
+  String get intakeChatQFaqUrl => 'What is the URL of the FAQ or support area?';
 
   @override
   String get intakeChatQWebsiteMaintainer =>
