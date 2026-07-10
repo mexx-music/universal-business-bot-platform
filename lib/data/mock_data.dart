@@ -7,6 +7,7 @@ import '../models/product_or_service.dart';
 import '../models/knowledge_entry.dart';
 import '../models/bot_question_log.dart';
 import '../models/source_material.dart';
+import '../models/intake_session.dart';
 
 class MockData {
   static final Company company = Company(
@@ -1101,6 +1102,106 @@ class MockData {
     ),
   ];
 
+  static final IntakeSession hbCureIntakeSession = IntakeSession(
+    id: 'intake-hb-cure',
+    companyId: 'hb-cure',
+    status: IntakeStatus.inProgress,
+    currentStepIndex: 4,
+    createdAt: DateTime(2025, 5, 20),
+    updatedAt: DateTime(2025, 5, 22),
+    basics: IntakeBasics(
+      companyName: 'HB Cure',
+      shortDescription:
+          'Digitale Gesundheits-App mit Messgerät und Wellness-orientierter Nutzerkommunikation.',
+      industry: 'Digitale Gesundheits-App',
+      country: 'Österreich',
+      primaryLanguage: 'de',
+      website: 'https://www.hbcure.at',
+      supportEmail: 'support@hbcure.at',
+      supportPhone: '+43 720 123 456',
+    ),
+    products: IntakeProducts(
+      importantProducts: 'HB Cure App, Messgerät Pro, Premium Support',
+      mainProduct: 'HB Cure App mit Messgerät',
+      explanationNeeded:
+          'Bluetooth-Verbindung, Messwertanzeige, Datenschutz und Grenzen der App.',
+      priorityProducts: 'App-Onboarding und sicherer Support für Messgerät.',
+    ),
+    targetGroups: IntakeTargetGroups(
+      targetGroup:
+          'Nutzerinnen und Nutzer, die persönliche Körperwerte übersichtlich verfolgen möchten.',
+      marketType: 'B2C',
+      problemSolved:
+          'Messwerte werden verständlicher dokumentiert und im Alltag leichter wiedergefunden.',
+      customerBenefit:
+          'Einfachere Selbstbeobachtung ohne medizinische Diagnoseversprechen.',
+      differentiation:
+          'Kombination aus App, Gerät und bewusst vorsichtiger Kommunikation.',
+    ),
+    websiteAndSupport: IntakeWebsiteAndSupport(
+      importantPages: 'Startseite, FAQ, Datenschutz, Support',
+      frequentQuestions:
+          'App-Start, Geräteverbindung, Kosten, Datenschutz, Akku.',
+      supportProblems:
+          'Bluetooth-Verbindung, Konto, Gerätepflege, Exportfragen.',
+      sensitiveTopics:
+          'Diagnosen, Behandlung, Heilversprechen und konkrete Erkrankungen.',
+    ),
+    sourcesAndReviews: IntakeSourcesAndReviews(
+      existingSources: 'Website FAQ, Produktnotizen, Datenschutzseite',
+      reviews:
+          'Einige Website-Testimonials vorhanden, Social Reviews noch schwach.',
+      socialMentions: 'Instagram/Facebook vorhanden, aber wenig strukturiert.',
+      trustMaterial:
+          'Datenschutz- und Supportinformationen sind wichtiger als Marketingclaims.',
+    ),
+  );
+
+  static final IntakeSession schnurrPurrIntakeSession = IntakeSession(
+    id: 'intake-schnurr-purr',
+    companyId: 'schnurr-purr',
+    status: IntakeStatus.inProgress,
+    currentStepIndex: 2,
+    createdAt: DateTime(2025, 5, 21),
+    updatedAt: DateTime(2025, 5, 23),
+    basics: IntakeBasics(
+      companyName: 'SchnurrPurr',
+      shortDescription:
+          'Entspannungs-App und Komfortprodukte für ruhige Pausen im Alltag.',
+      industry: 'Entspannungs-App & Komfortprodukte',
+      country: 'Deutschland',
+      primaryLanguage: 'de',
+      website: 'https://www.schnurrpurr.example',
+      supportEmail: 'support@schnurrpurr.example',
+    ),
+    products: IntakeProducts(
+      importantProducts: 'SchnurrPurr Relax App, Purr Pillow',
+      mainProduct: 'SchnurrPurr Relax App',
+      explanationNeeded:
+          'App-Nutzung, Klangwelten, Pausenroutinen, Kissenpflege.',
+      priorityProducts: 'Relax App und Kissen-Komfortinformationen.',
+    ),
+    targetGroups: IntakeTargetGroups(
+      targetGroup:
+          'Menschen, die kurze entspannte Pausen und weiche Komfortprodukte suchen.',
+      marketType: 'B2C',
+      problemSolved:
+          'Alltagspausen werden einfacher vorbereitet und angenehmer gestaltet.',
+      customerBenefit:
+          'Ruhige Routinen und klare Produktinformationen ohne Gesundheitsversprechen.',
+      differentiation:
+          'Freundlicher Ton, einfache Nutzung und Kombination aus App und Produkt.',
+    ),
+    websiteAndSupport: IntakeWebsiteAndSupport(
+      importantPages: 'Website, Produktseite, Support, App-Hilfe',
+      frequentQuestions:
+          'App-Start, Timer, Klangwelten, Kissenpflege, Versand.',
+      supportProblems: 'Account, App-Erinnerungen, Pflegehinweise.',
+      sensitiveTopics:
+          'Stress, Schlaf, Therapie oder medizinische Wirkversprechen.',
+    ),
+  );
+
   static final List<CompanyWorkspace> companyWorkspaces = [
     CompanyWorkspace(
       company: company,
@@ -1111,6 +1212,7 @@ class MockData {
       businessRules: hbCureBusinessRules,
       botConfiguration: hbCureBotConfiguration,
       sourceMaterials: hbCureSourceMaterials,
+      intakeSession: hbCureIntakeSession,
     ),
     CompanyWorkspace(
       company: schnurrPurrCompany,
@@ -1121,6 +1223,7 @@ class MockData {
       businessRules: schnurrPurrBusinessRules,
       botConfiguration: schnurrPurrBotConfiguration,
       sourceMaterials: schnurrPurrSourceMaterials,
+      intakeSession: schnurrPurrIntakeSession,
     ),
   ];
 }

@@ -120,6 +120,9 @@ class AppLocalizationsDe extends AppLocalizations {
   String get navDashboard => 'Dashboard';
 
   @override
+  String get navIntake => 'Firmenaufnahme';
+
+  @override
   String get navCompany => 'Firma';
 
   @override
@@ -154,6 +157,12 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get btnReset => 'Zurücksetzen';
+
+  @override
+  String get btnBack => 'Zurück';
+
+  @override
+  String get btnNext => 'Weiter';
 
   @override
   String get fieldCompanyName => 'Firmenname';
@@ -239,6 +248,9 @@ class AppLocalizationsDe extends AppLocalizations {
   String get statSourcesNew => 'Neue Quellen';
 
   @override
+  String get statIntakeStatus => 'Firmenaufnahme';
+
+  @override
   String get dashboardRecentRequests => 'Letzte Bot-Anfragen';
 
   @override
@@ -309,6 +321,244 @@ class AppLocalizationsDe extends AppLocalizations {
   @override
   String get dashboardRecommendationBotSettingsDescription =>
       'Der Bot ist noch im Entwurf. Prüfe Status, Eskalation und Handover-Regeln vor dem Test.';
+
+  @override
+  String get dashboardRecommendationIntakeTitle => 'Firmenaufnahme starten';
+
+  @override
+  String get dashboardRecommendationIntakeDescription =>
+      'Für diesen Workspace gibt es noch keine strukturierte Firmenaufnahme.';
+
+  @override
+  String get dashboardRecommendationIntakeImportTitle =>
+      'Firmenaufnahme übernehmen';
+
+  @override
+  String get dashboardRecommendationIntakeImportDescription =>
+      'Die Firmenaufnahme ist abgeschlossen, aber noch nicht kontrolliert in den Workspace übernommen.';
+
+  @override
+  String get intakeTitle => 'Firmenaufnahme';
+
+  @override
+  String intakeSubtitle(String companyName) {
+    return 'Strukturierte Aufnahme für $companyName';
+  }
+
+  @override
+  String intakeStepOfTotal(int current, int total) {
+    return 'Schritt $current von $total';
+  }
+
+  @override
+  String get intakeStatusDraft => 'Entwurf';
+
+  @override
+  String get intakeStatusInProgress => 'In Bearbeitung';
+
+  @override
+  String get intakeStatusCompleted => 'Abgeschlossen';
+
+  @override
+  String get intakeStatusNotStarted => 'Nicht begonnen';
+
+  @override
+  String get intakeImportStatusReady => 'Bereit zur Übernahme';
+
+  @override
+  String get intakeImportStatusImported => 'Übernommen';
+
+  @override
+  String get intakeSaveDraft => 'Entwurf speichern';
+
+  @override
+  String get intakeDraftSaved => 'Entwurf gespeichert.';
+
+  @override
+  String get intakeCompleted => 'Firmenaufnahme abgeschlossen.';
+
+  @override
+  String get intakeSummaryTitle => 'Zusammenfassung';
+
+  @override
+  String get intakeSummaryNotice =>
+      'Diese Firmenaufnahme ist gespeichert. Die Übernahme in den Workspace folgt im nächsten Schritt.';
+
+  @override
+  String get intakeMarkCompleted => 'Als abgeschlossen markieren';
+
+  @override
+  String get intakePrepareImport => 'Übernahme vorbereiten';
+
+  @override
+  String get intakeMappingPreviewTitle => 'Übernahme-Vorschau';
+
+  @override
+  String get intakeMappingPreviewDescription =>
+      'Prüfe, welche Intake-Daten in welche Workspace-Bereiche geschrieben werden. Konflikte sind standardmäßig nicht ausgewählt.';
+
+  @override
+  String get intakeMappingConflictWarning =>
+      'Einige Vorschläge unterscheiden sich von bestehenden Workspace-Daten und müssen bewusst ausgewählt werden.';
+
+  @override
+  String get intakeConflict => 'Konflikt';
+
+  @override
+  String get intakeCurrentValue => 'Aktueller Wert';
+
+  @override
+  String get intakeProposedValue => 'Vorschlag';
+
+  @override
+  String get intakeKnowledgeDraftEmpty =>
+      'Leerer FAQ-Entwurf – Antwort muss vor Nutzung ergänzt werden.';
+
+  @override
+  String get intakeImportSelected => 'Ausgewählte Daten übernehmen';
+
+  @override
+  String get intakeImportConfirmTitle => 'Ausgewählte Daten übernehmen?';
+
+  @override
+  String get intakeImportConfirmDescription =>
+      'Nur die ausgewählten Vorschläge werden in diesen Workspace geschrieben. Bestehende Daten werden nur bei ausgewählten Konflikten ersetzt.';
+
+  @override
+  String get intakeImportSuccess =>
+      'Ausgewählte Intake-Daten wurden übernommen.';
+
+  @override
+  String get intakeNoAnswer => 'Noch nicht beantwortet';
+
+  @override
+  String get intakeStepBasicsTitle => 'Basisdaten';
+
+  @override
+  String get intakeStepBasicsDescription =>
+      'Grunddaten, Kontaktwege und kurze Einordnung der Firma.';
+
+  @override
+  String get intakeStepProductsTitle => 'Produkte / Leistungen';
+
+  @override
+  String get intakeStepProductsDescription =>
+      'Was angeboten wird, was Priorität hat und was erklärt werden muss.';
+
+  @override
+  String get intakeStepTargetGroupsTitle => 'Zielgruppe / Positionierung';
+
+  @override
+  String get intakeStepTargetGroupsDescription =>
+      'Für wen die Firma arbeitet und welcher Nutzen klar kommuniziert werden soll.';
+
+  @override
+  String get intakeStepWebsiteSupportTitle => 'Website / Support / FAQ';
+
+  @override
+  String get intakeStepWebsiteSupportDescription =>
+      'Wichtige Seiten, häufige Fragen und sensible Supportthemen.';
+
+  @override
+  String get intakeStepSourcesReviewsTitle => 'Quellen / Rezensionen';
+
+  @override
+  String get intakeStepSourcesReviewsDescription =>
+      'Vorhandene Materialien, Rezensionen, Social-Signale und Vertrauenselemente.';
+
+  @override
+  String get intakeStepMarketingTitle => 'Marketing / Kanäle';
+
+  @override
+  String get intakeStepMarketingDescription =>
+      'Bisherige Kanäle, Maßnahmen und Reichweitenprobleme.';
+
+  @override
+  String get intakeStepGoalsRisksTitle => 'Ziele / Risiken / No-Go';
+
+  @override
+  String get intakeStepGoalsRisksDescription =>
+      'Prioritäten, verbotene Aussagen und Themen für Human Review.';
+
+  @override
+  String get intakeImportantProducts => 'Wichtigste Produkte / Leistungen';
+
+  @override
+  String get intakeMainProduct => 'Hauptprodukt';
+
+  @override
+  String get intakeExplanationNeeded => 'Erklärungsbedürftige Produkte';
+
+  @override
+  String get intakePriorityProducts => 'Aktuelle Produktprioritäten';
+
+  @override
+  String get intakeTargetGroup => 'Zielgruppe';
+
+  @override
+  String get intakeMarketType => 'B2B / B2C';
+
+  @override
+  String get intakeProblemSolved => 'Welches Problem wird gelöst?';
+
+  @override
+  String get intakeCustomerBenefit => 'Wichtigster Kundennutzen';
+
+  @override
+  String get intakeDifferentiation => 'Abgrenzung zur Konkurrenz';
+
+  @override
+  String get intakeImportantPages => 'Wichtige Website- / Landingpages';
+
+  @override
+  String get intakeFrequentQuestions => 'Häufige Kundenfragen';
+
+  @override
+  String get intakeSupportProblems => 'Häufige Supportprobleme';
+
+  @override
+  String get intakeSensitiveTopics => 'Sensible Fragen / Themen';
+
+  @override
+  String get intakeExistingSources => 'Vorhandene Quellen / PDFs / Anleitungen';
+
+  @override
+  String get intakeReviews => 'Rezensionen / Testimonials';
+
+  @override
+  String get intakeSocialMentions =>
+      'Social-Media-Erwähnungen / externe Diskussionen';
+
+  @override
+  String get intakeTrustMaterial => 'Trust-Material';
+
+  @override
+  String get intakeChannels => 'Bisher genutzte Kanäle';
+
+  @override
+  String get intakeCampaigns => 'Bisherige Werbemaßnahmen';
+
+  @override
+  String get intakeWorked => 'Was hat funktioniert?';
+
+  @override
+  String get intakeNotWorked => 'Was hat nicht funktioniert?';
+
+  @override
+  String get intakeReachProblems => 'Aktuelle Reichweitenprobleme';
+
+  @override
+  String get intakeCompanyGoals => 'Wichtigste Ziele der Firma';
+
+  @override
+  String get intakeShortTermPriorities => 'Kurzfristige Prioritäten';
+
+  @override
+  String get intakeForbiddenClaims => 'Sensible / verbotene Aussagen';
+
+  @override
+  String get intakeBotRestrictedTopics =>
+      'Themen, die ein Bot nicht frei beantworten darf';
 
   @override
   String get companyTitle => 'Firma';

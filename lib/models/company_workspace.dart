@@ -3,6 +3,7 @@ import 'business_rules.dart';
 import 'bot_configuration.dart';
 import 'bot_question_log.dart';
 import 'company.dart';
+import 'intake_session.dart';
 import 'knowledge_entry.dart';
 import 'product_or_service.dart';
 import 'source_material.dart';
@@ -16,6 +17,7 @@ class CompanyWorkspace {
   final BusinessRules businessRules;
   final BotConfiguration botConfiguration;
   final List<SourceMaterial> sourceMaterials;
+  final IntakeSession? intakeSession;
 
   const CompanyWorkspace({
     required this.company,
@@ -26,6 +28,7 @@ class CompanyWorkspace {
     required this.businessRules,
     required this.botConfiguration,
     required this.sourceMaterials,
+    this.intakeSession,
   });
 
   CompanyWorkspace copyWith({
@@ -37,6 +40,7 @@ class CompanyWorkspace {
     BusinessRules? businessRules,
     BotConfiguration? botConfiguration,
     List<SourceMaterial>? sourceMaterials,
+    IntakeSession? intakeSession,
   }) {
     return CompanyWorkspace(
       company: company ?? this.company,
@@ -47,6 +51,7 @@ class CompanyWorkspace {
       businessRules: businessRules ?? this.businessRules,
       botConfiguration: botConfiguration ?? this.botConfiguration,
       sourceMaterials: sourceMaterials ?? this.sourceMaterials,
+      intakeSession: intakeSession ?? this.intakeSession,
     );
   }
 }

@@ -3,6 +3,7 @@ import '../widgets/app_shell.dart';
 import '../screens/public/landing_screen.dart';
 import '../screens/public/companies_screen.dart';
 import '../screens/dashboard/dashboard_screen.dart';
+import '../screens/intake/intake_screen.dart';
 import '../screens/company/company_screen.dart';
 import '../screens/audit/audit_screen.dart';
 import '../screens/knowledge/knowledge_screen.dart';
@@ -26,6 +27,10 @@ final appRouter = GoRouter(
         GoRoute(
           path: '/dashboard',
           builder: (context, state) => const DashboardScreen(),
+        ),
+        GoRoute(
+          path: '/intake',
+          builder: (context, state) => const IntakeScreen(),
         ),
         GoRoute(
           path: '/company',

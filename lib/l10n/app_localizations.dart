@@ -290,6 +290,12 @@ abstract class AppLocalizations {
   /// **'Dashboard'**
   String get navDashboard;
 
+  /// No description provided for @navIntake.
+  ///
+  /// In de, this message translates to:
+  /// **'Firmenaufnahme'**
+  String get navIntake;
+
   /// No description provided for @navCompany.
   ///
   /// In de, this message translates to:
@@ -361,6 +367,18 @@ abstract class AppLocalizations {
   /// In de, this message translates to:
   /// **'Zurücksetzen'**
   String get btnReset;
+
+  /// No description provided for @btnBack.
+  ///
+  /// In de, this message translates to:
+  /// **'Zurück'**
+  String get btnBack;
+
+  /// No description provided for @btnNext.
+  ///
+  /// In de, this message translates to:
+  /// **'Weiter'**
+  String get btnNext;
 
   /// No description provided for @fieldCompanyName.
   ///
@@ -524,6 +542,12 @@ abstract class AppLocalizations {
   /// **'Neue Quellen'**
   String get statSourcesNew;
 
+  /// No description provided for @statIntakeStatus.
+  ///
+  /// In de, this message translates to:
+  /// **'Firmenaufnahme'**
+  String get statIntakeStatus;
+
   /// No description provided for @dashboardRecentRequests.
   ///
   /// In de, this message translates to:
@@ -637,6 +661,438 @@ abstract class AppLocalizations {
   /// In de, this message translates to:
   /// **'Der Bot ist noch im Entwurf. Prüfe Status, Eskalation und Handover-Regeln vor dem Test.'**
   String get dashboardRecommendationBotSettingsDescription;
+
+  /// No description provided for @dashboardRecommendationIntakeTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Firmenaufnahme starten'**
+  String get dashboardRecommendationIntakeTitle;
+
+  /// No description provided for @dashboardRecommendationIntakeDescription.
+  ///
+  /// In de, this message translates to:
+  /// **'Für diesen Workspace gibt es noch keine strukturierte Firmenaufnahme.'**
+  String get dashboardRecommendationIntakeDescription;
+
+  /// No description provided for @dashboardRecommendationIntakeImportTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Firmenaufnahme übernehmen'**
+  String get dashboardRecommendationIntakeImportTitle;
+
+  /// No description provided for @dashboardRecommendationIntakeImportDescription.
+  ///
+  /// In de, this message translates to:
+  /// **'Die Firmenaufnahme ist abgeschlossen, aber noch nicht kontrolliert in den Workspace übernommen.'**
+  String get dashboardRecommendationIntakeImportDescription;
+
+  /// No description provided for @intakeTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Firmenaufnahme'**
+  String get intakeTitle;
+
+  /// No description provided for @intakeSubtitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Strukturierte Aufnahme für {companyName}'**
+  String intakeSubtitle(String companyName);
+
+  /// No description provided for @intakeStepOfTotal.
+  ///
+  /// In de, this message translates to:
+  /// **'Schritt {current} von {total}'**
+  String intakeStepOfTotal(int current, int total);
+
+  /// No description provided for @intakeStatusDraft.
+  ///
+  /// In de, this message translates to:
+  /// **'Entwurf'**
+  String get intakeStatusDraft;
+
+  /// No description provided for @intakeStatusInProgress.
+  ///
+  /// In de, this message translates to:
+  /// **'In Bearbeitung'**
+  String get intakeStatusInProgress;
+
+  /// No description provided for @intakeStatusCompleted.
+  ///
+  /// In de, this message translates to:
+  /// **'Abgeschlossen'**
+  String get intakeStatusCompleted;
+
+  /// No description provided for @intakeStatusNotStarted.
+  ///
+  /// In de, this message translates to:
+  /// **'Nicht begonnen'**
+  String get intakeStatusNotStarted;
+
+  /// No description provided for @intakeImportStatusReady.
+  ///
+  /// In de, this message translates to:
+  /// **'Bereit zur Übernahme'**
+  String get intakeImportStatusReady;
+
+  /// No description provided for @intakeImportStatusImported.
+  ///
+  /// In de, this message translates to:
+  /// **'Übernommen'**
+  String get intakeImportStatusImported;
+
+  /// No description provided for @intakeSaveDraft.
+  ///
+  /// In de, this message translates to:
+  /// **'Entwurf speichern'**
+  String get intakeSaveDraft;
+
+  /// No description provided for @intakeDraftSaved.
+  ///
+  /// In de, this message translates to:
+  /// **'Entwurf gespeichert.'**
+  String get intakeDraftSaved;
+
+  /// No description provided for @intakeCompleted.
+  ///
+  /// In de, this message translates to:
+  /// **'Firmenaufnahme abgeschlossen.'**
+  String get intakeCompleted;
+
+  /// No description provided for @intakeSummaryTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Zusammenfassung'**
+  String get intakeSummaryTitle;
+
+  /// No description provided for @intakeSummaryNotice.
+  ///
+  /// In de, this message translates to:
+  /// **'Diese Firmenaufnahme ist gespeichert. Die Übernahme in den Workspace folgt im nächsten Schritt.'**
+  String get intakeSummaryNotice;
+
+  /// No description provided for @intakeMarkCompleted.
+  ///
+  /// In de, this message translates to:
+  /// **'Als abgeschlossen markieren'**
+  String get intakeMarkCompleted;
+
+  /// No description provided for @intakePrepareImport.
+  ///
+  /// In de, this message translates to:
+  /// **'Übernahme vorbereiten'**
+  String get intakePrepareImport;
+
+  /// No description provided for @intakeMappingPreviewTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Übernahme-Vorschau'**
+  String get intakeMappingPreviewTitle;
+
+  /// No description provided for @intakeMappingPreviewDescription.
+  ///
+  /// In de, this message translates to:
+  /// **'Prüfe, welche Intake-Daten in welche Workspace-Bereiche geschrieben werden. Konflikte sind standardmäßig nicht ausgewählt.'**
+  String get intakeMappingPreviewDescription;
+
+  /// No description provided for @intakeMappingConflictWarning.
+  ///
+  /// In de, this message translates to:
+  /// **'Einige Vorschläge unterscheiden sich von bestehenden Workspace-Daten und müssen bewusst ausgewählt werden.'**
+  String get intakeMappingConflictWarning;
+
+  /// No description provided for @intakeConflict.
+  ///
+  /// In de, this message translates to:
+  /// **'Konflikt'**
+  String get intakeConflict;
+
+  /// No description provided for @intakeCurrentValue.
+  ///
+  /// In de, this message translates to:
+  /// **'Aktueller Wert'**
+  String get intakeCurrentValue;
+
+  /// No description provided for @intakeProposedValue.
+  ///
+  /// In de, this message translates to:
+  /// **'Vorschlag'**
+  String get intakeProposedValue;
+
+  /// No description provided for @intakeKnowledgeDraftEmpty.
+  ///
+  /// In de, this message translates to:
+  /// **'Leerer FAQ-Entwurf – Antwort muss vor Nutzung ergänzt werden.'**
+  String get intakeKnowledgeDraftEmpty;
+
+  /// No description provided for @intakeImportSelected.
+  ///
+  /// In de, this message translates to:
+  /// **'Ausgewählte Daten übernehmen'**
+  String get intakeImportSelected;
+
+  /// No description provided for @intakeImportConfirmTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Ausgewählte Daten übernehmen?'**
+  String get intakeImportConfirmTitle;
+
+  /// No description provided for @intakeImportConfirmDescription.
+  ///
+  /// In de, this message translates to:
+  /// **'Nur die ausgewählten Vorschläge werden in diesen Workspace geschrieben. Bestehende Daten werden nur bei ausgewählten Konflikten ersetzt.'**
+  String get intakeImportConfirmDescription;
+
+  /// No description provided for @intakeImportSuccess.
+  ///
+  /// In de, this message translates to:
+  /// **'Ausgewählte Intake-Daten wurden übernommen.'**
+  String get intakeImportSuccess;
+
+  /// No description provided for @intakeNoAnswer.
+  ///
+  /// In de, this message translates to:
+  /// **'Noch nicht beantwortet'**
+  String get intakeNoAnswer;
+
+  /// No description provided for @intakeStepBasicsTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Basisdaten'**
+  String get intakeStepBasicsTitle;
+
+  /// No description provided for @intakeStepBasicsDescription.
+  ///
+  /// In de, this message translates to:
+  /// **'Grunddaten, Kontaktwege und kurze Einordnung der Firma.'**
+  String get intakeStepBasicsDescription;
+
+  /// No description provided for @intakeStepProductsTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Produkte / Leistungen'**
+  String get intakeStepProductsTitle;
+
+  /// No description provided for @intakeStepProductsDescription.
+  ///
+  /// In de, this message translates to:
+  /// **'Was angeboten wird, was Priorität hat und was erklärt werden muss.'**
+  String get intakeStepProductsDescription;
+
+  /// No description provided for @intakeStepTargetGroupsTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Zielgruppe / Positionierung'**
+  String get intakeStepTargetGroupsTitle;
+
+  /// No description provided for @intakeStepTargetGroupsDescription.
+  ///
+  /// In de, this message translates to:
+  /// **'Für wen die Firma arbeitet und welcher Nutzen klar kommuniziert werden soll.'**
+  String get intakeStepTargetGroupsDescription;
+
+  /// No description provided for @intakeStepWebsiteSupportTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Website / Support / FAQ'**
+  String get intakeStepWebsiteSupportTitle;
+
+  /// No description provided for @intakeStepWebsiteSupportDescription.
+  ///
+  /// In de, this message translates to:
+  /// **'Wichtige Seiten, häufige Fragen und sensible Supportthemen.'**
+  String get intakeStepWebsiteSupportDescription;
+
+  /// No description provided for @intakeStepSourcesReviewsTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Quellen / Rezensionen'**
+  String get intakeStepSourcesReviewsTitle;
+
+  /// No description provided for @intakeStepSourcesReviewsDescription.
+  ///
+  /// In de, this message translates to:
+  /// **'Vorhandene Materialien, Rezensionen, Social-Signale und Vertrauenselemente.'**
+  String get intakeStepSourcesReviewsDescription;
+
+  /// No description provided for @intakeStepMarketingTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Marketing / Kanäle'**
+  String get intakeStepMarketingTitle;
+
+  /// No description provided for @intakeStepMarketingDescription.
+  ///
+  /// In de, this message translates to:
+  /// **'Bisherige Kanäle, Maßnahmen und Reichweitenprobleme.'**
+  String get intakeStepMarketingDescription;
+
+  /// No description provided for @intakeStepGoalsRisksTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Ziele / Risiken / No-Go'**
+  String get intakeStepGoalsRisksTitle;
+
+  /// No description provided for @intakeStepGoalsRisksDescription.
+  ///
+  /// In de, this message translates to:
+  /// **'Prioritäten, verbotene Aussagen und Themen für Human Review.'**
+  String get intakeStepGoalsRisksDescription;
+
+  /// No description provided for @intakeImportantProducts.
+  ///
+  /// In de, this message translates to:
+  /// **'Wichtigste Produkte / Leistungen'**
+  String get intakeImportantProducts;
+
+  /// No description provided for @intakeMainProduct.
+  ///
+  /// In de, this message translates to:
+  /// **'Hauptprodukt'**
+  String get intakeMainProduct;
+
+  /// No description provided for @intakeExplanationNeeded.
+  ///
+  /// In de, this message translates to:
+  /// **'Erklärungsbedürftige Produkte'**
+  String get intakeExplanationNeeded;
+
+  /// No description provided for @intakePriorityProducts.
+  ///
+  /// In de, this message translates to:
+  /// **'Aktuelle Produktprioritäten'**
+  String get intakePriorityProducts;
+
+  /// No description provided for @intakeTargetGroup.
+  ///
+  /// In de, this message translates to:
+  /// **'Zielgruppe'**
+  String get intakeTargetGroup;
+
+  /// No description provided for @intakeMarketType.
+  ///
+  /// In de, this message translates to:
+  /// **'B2B / B2C'**
+  String get intakeMarketType;
+
+  /// No description provided for @intakeProblemSolved.
+  ///
+  /// In de, this message translates to:
+  /// **'Welches Problem wird gelöst?'**
+  String get intakeProblemSolved;
+
+  /// No description provided for @intakeCustomerBenefit.
+  ///
+  /// In de, this message translates to:
+  /// **'Wichtigster Kundennutzen'**
+  String get intakeCustomerBenefit;
+
+  /// No description provided for @intakeDifferentiation.
+  ///
+  /// In de, this message translates to:
+  /// **'Abgrenzung zur Konkurrenz'**
+  String get intakeDifferentiation;
+
+  /// No description provided for @intakeImportantPages.
+  ///
+  /// In de, this message translates to:
+  /// **'Wichtige Website- / Landingpages'**
+  String get intakeImportantPages;
+
+  /// No description provided for @intakeFrequentQuestions.
+  ///
+  /// In de, this message translates to:
+  /// **'Häufige Kundenfragen'**
+  String get intakeFrequentQuestions;
+
+  /// No description provided for @intakeSupportProblems.
+  ///
+  /// In de, this message translates to:
+  /// **'Häufige Supportprobleme'**
+  String get intakeSupportProblems;
+
+  /// No description provided for @intakeSensitiveTopics.
+  ///
+  /// In de, this message translates to:
+  /// **'Sensible Fragen / Themen'**
+  String get intakeSensitiveTopics;
+
+  /// No description provided for @intakeExistingSources.
+  ///
+  /// In de, this message translates to:
+  /// **'Vorhandene Quellen / PDFs / Anleitungen'**
+  String get intakeExistingSources;
+
+  /// No description provided for @intakeReviews.
+  ///
+  /// In de, this message translates to:
+  /// **'Rezensionen / Testimonials'**
+  String get intakeReviews;
+
+  /// No description provided for @intakeSocialMentions.
+  ///
+  /// In de, this message translates to:
+  /// **'Social-Media-Erwähnungen / externe Diskussionen'**
+  String get intakeSocialMentions;
+
+  /// No description provided for @intakeTrustMaterial.
+  ///
+  /// In de, this message translates to:
+  /// **'Trust-Material'**
+  String get intakeTrustMaterial;
+
+  /// No description provided for @intakeChannels.
+  ///
+  /// In de, this message translates to:
+  /// **'Bisher genutzte Kanäle'**
+  String get intakeChannels;
+
+  /// No description provided for @intakeCampaigns.
+  ///
+  /// In de, this message translates to:
+  /// **'Bisherige Werbemaßnahmen'**
+  String get intakeCampaigns;
+
+  /// No description provided for @intakeWorked.
+  ///
+  /// In de, this message translates to:
+  /// **'Was hat funktioniert?'**
+  String get intakeWorked;
+
+  /// No description provided for @intakeNotWorked.
+  ///
+  /// In de, this message translates to:
+  /// **'Was hat nicht funktioniert?'**
+  String get intakeNotWorked;
+
+  /// No description provided for @intakeReachProblems.
+  ///
+  /// In de, this message translates to:
+  /// **'Aktuelle Reichweitenprobleme'**
+  String get intakeReachProblems;
+
+  /// No description provided for @intakeCompanyGoals.
+  ///
+  /// In de, this message translates to:
+  /// **'Wichtigste Ziele der Firma'**
+  String get intakeCompanyGoals;
+
+  /// No description provided for @intakeShortTermPriorities.
+  ///
+  /// In de, this message translates to:
+  /// **'Kurzfristige Prioritäten'**
+  String get intakeShortTermPriorities;
+
+  /// No description provided for @intakeForbiddenClaims.
+  ///
+  /// In de, this message translates to:
+  /// **'Sensible / verbotene Aussagen'**
+  String get intakeForbiddenClaims;
+
+  /// No description provided for @intakeBotRestrictedTopics.
+  ///
+  /// In de, this message translates to:
+  /// **'Themen, die ein Bot nicht frei beantworten darf'**
+  String get intakeBotRestrictedTopics;
 
   /// No description provided for @companyTitle.
   ///

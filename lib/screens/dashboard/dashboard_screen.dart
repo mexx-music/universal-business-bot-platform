@@ -5,6 +5,7 @@ import '../../l10n/app_localizations.dart';
 import '../../l10n/label_helpers.dart';
 import '../../models/bot_configuration.dart';
 import '../../models/bot_question_log.dart';
+import '../../models/intake_session.dart';
 import '../../models/knowledge_entry.dart';
 import '../../widgets/stat_card.dart';
 
@@ -37,6 +38,7 @@ class DashboardScreen extends StatelessWidget {
     final botStatus = state.botConfiguration.status;
     final sourcesTotal = state.sourceMaterialCount;
     final sourcesNew = state.newSourceMaterialCount;
+    final intakeSession = state.selectedIntakeSession;
 
     final greenCount = state.knowledgeEntries
         .where((e) => e.riskLevel == RiskLevel.green)
@@ -167,6 +169,19 @@ class DashboardScreen extends StatelessWidget {
                   value: '$sourcesNew',
                   icon: Icons.fiber_new_outlined,
                   color: sourcesNew > 0 ? Colors.orange : Colors.green,
+                ),
+                StatCard(
+                  label: l.statIntakeStatus,
+                  value: _intakeStatusLabel(l, intakeSession),
+                  icon: Icons.assignment_outlined,
+                  color: intakeSession?.importedAt != null
+                      ? Colors.green
+                      : switch (intakeSession?.status) {
+                          IntakeStatus.completed => Colors.blue,
+                          IntakeStatus.inProgress => Colors.orange,
+                          IntakeStatus.draft => Colors.grey,
+                          null => Colors.red,
+                        },
                 ),
               ];
               return GridView.builder(
@@ -409,6 +424,34 @@ class DashboardScreen extends StatelessWidget {
       );
     }
 
+    if (state.selectedIntakeSession == null) {
+      recommendations.add(
+        _Recommendation(
+          icon: Icons.assignment_outlined,
+          title: l.dashboardRecommendationIntakeTitle,
+          description: l.dashboardRecommendationIntakeDescription,
+          color: Colors.deepPurple,
+          actionLabel: l.navIntake,
+          path: '/intake',
+        ),
+      );
+    }
+
+    if (state.selectedIntakeSession != null &&
+        state.selectedIntakeSession!.status == IntakeStatus.completed &&
+        state.selectedIntakeSession!.importedAt == null) {
+      recommendations.add(
+        _Recommendation(
+          icon: Icons.move_down_outlined,
+          title: l.dashboardRecommendationIntakeImportTitle,
+          description: l.dashboardRecommendationIntakeImportDescription,
+          color: Colors.deepPurple,
+          actionLabel: l.navIntake,
+          path: '/intake',
+        ),
+      );
+    }
+
     if (state.knowledgeEntries.length < 12) {
       recommendations.add(
         _Recommendation(
@@ -638,6 +681,16 @@ String _botStatusLabel(AppLocalizations l, BotStatus status) {
     BotStatus.draft => l.botStatusDraft,
     BotStatus.testReady => l.botStatusTestReady,
     BotStatus.active => l.botStatusActive,
+  };
+}
+
+String _intakeStatusLabel(AppLocalizations l, IntakeSession? session) {
+  if (session == null) return l.intakeStatusNotStarted;
+  if (session.importedAt != null) return l.intakeImportStatusImported;
+  return switch (session.status) {
+    IntakeStatus.draft => l.intakeStatusDraft,
+    IntakeStatus.inProgress => l.intakeStatusInProgress,
+    IntakeStatus.completed => l.intakeImportStatusReady,
   };
 }
 
