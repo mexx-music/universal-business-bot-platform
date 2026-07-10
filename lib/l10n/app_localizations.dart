@@ -1214,6 +1214,78 @@ abstract class AppLocalizations {
   /// **'Frage übersprungen.'**
   String get intakeChatSkipped;
 
+  /// No description provided for @intakeChatRequiredAnswer.
+  ///
+  /// In de, this message translates to:
+  /// **'Diese Frage ist erforderlich. Bitte gib eine Antwort ein.'**
+  String get intakeChatRequiredAnswer;
+
+  /// No description provided for @intakeChatYesNoWarning.
+  ///
+  /// In de, this message translates to:
+  /// **'Bitte antworte mit Ja oder Nein.'**
+  String get intakeChatYesNoWarning;
+
+  /// No description provided for @intakeChatUrlWarning.
+  ///
+  /// In de, this message translates to:
+  /// **'Die Adresse wirkt nicht wie eine Website-URL. Bitte prüfe sie kurz.'**
+  String get intakeChatUrlWarning;
+
+  /// No description provided for @intakeChatEmailWarning.
+  ///
+  /// In de, this message translates to:
+  /// **'Die E-Mail-Adresse wirkt ungültig. Bitte prüfe das Format.'**
+  String get intakeChatEmailWarning;
+
+  /// No description provided for @intakeChatListHint.
+  ///
+  /// In de, this message translates to:
+  /// **'Mehrere Angaben bitte durch Komma oder Zeilenumbruch trennen.'**
+  String get intakeChatListHint;
+
+  /// No description provided for @intakeChatDetailWebsite.
+  ///
+  /// In de, this message translates to:
+  /// **'Danke. Dann erfassen wir jetzt kurz die Details zur Website.'**
+  String get intakeChatDetailWebsite;
+
+  /// No description provided for @intakeChatDetailSupport.
+  ///
+  /// In de, this message translates to:
+  /// **'Danke. Dann sammeln wir kurz die wichtigsten Supportfragen.'**
+  String get intakeChatDetailSupport;
+
+  /// No description provided for @intakeChatDetailSensitive.
+  ///
+  /// In de, this message translates to:
+  /// **'Danke. Dann halten wir die sensiblen Regeln genauer fest.'**
+  String get intakeChatDetailSensitive;
+
+  /// No description provided for @intakeChatDetailMaterials.
+  ///
+  /// In de, this message translates to:
+  /// **'Danke. Dann erfassen wir kurz die vorhandenen Materialien.'**
+  String get intakeChatDetailMaterials;
+
+  /// No description provided for @intakeChatDetailReviews.
+  ///
+  /// In de, this message translates to:
+  /// **'Danke. Dann gehen wir die Review- und Trust-Details durch.'**
+  String get intakeChatDetailReviews;
+
+  /// No description provided for @intakeChatDetailSocial.
+  ///
+  /// In de, this message translates to:
+  /// **'Danke. Dann erfassen wir kurz die Social-Media-Details.'**
+  String get intakeChatDetailSocial;
+
+  /// No description provided for @intakeChatDetailAds.
+  ///
+  /// In de, this message translates to:
+  /// **'Danke. Dann sammeln wir kurz die bisherigen Werbeerfahrungen.'**
+  String get intakeChatDetailAds;
+
   /// No description provided for @intakeChatQCompanyName.
   ///
   /// In de, this message translates to:
@@ -1255,6 +1327,36 @@ abstract class AppLocalizations {
   /// In de, this message translates to:
   /// **'Wie lautet die Website-URL?'**
   String get intakeChatQWebsite;
+
+  /// No description provided for @intakeChatQHasShop.
+  ///
+  /// In de, this message translates to:
+  /// **'Gibt es einen Online-Shop?'**
+  String get intakeChatQHasShop;
+
+  /// No description provided for @intakeChatQHasFaqArea.
+  ///
+  /// In de, this message translates to:
+  /// **'Gibt es einen FAQ- oder Supportbereich auf der Website?'**
+  String get intakeChatQHasFaqArea;
+
+  /// No description provided for @intakeChatQWebsiteMaintainer.
+  ///
+  /// In de, this message translates to:
+  /// **'Wer pflegt die Website aktuell?'**
+  String get intakeChatQWebsiteMaintainer;
+
+  /// No description provided for @intakeChatQCanEditWebsiteQuickly.
+  ///
+  /// In de, this message translates to:
+  /// **'Kann die Firma Website-Inhalte kurzfristig selbst ändern?'**
+  String get intakeChatQCanEditWebsiteQuickly;
+
+  /// No description provided for @intakeChatQWebsitePlanned.
+  ///
+  /// In de, this message translates to:
+  /// **'Ist eine Website geplant?'**
+  String get intakeChatQWebsitePlanned;
 
   /// No description provided for @intakeChatQSupportEmail.
   ///
@@ -1328,6 +1430,48 @@ abstract class AppLocalizations {
   /// **'Welche Website- oder Landingpages sind wichtig?'**
   String get intakeChatQImportantPages;
 
+  /// No description provided for @intakeChatQHasSupportQuestions.
+  ///
+  /// In de, this message translates to:
+  /// **'Gibt es wiederkehrende Supportfragen oder Kundenprobleme?'**
+  String get intakeChatQHasSupportQuestions;
+
+  /// No description provided for @intakeChatQPreSalesQuestions.
+  ///
+  /// In de, this message translates to:
+  /// **'Welche Fragen kommen vor dem Kauf häufig vor?'**
+  String get intakeChatQPreSalesQuestions;
+
+  /// No description provided for @intakeChatQAfterSalesQuestions.
+  ///
+  /// In de, this message translates to:
+  /// **'Welche Fragen kommen nach dem Kauf häufig vor?'**
+  String get intakeChatQAfterSalesQuestions;
+
+  /// No description provided for @intakeChatQTechnicalProblems.
+  ///
+  /// In de, this message translates to:
+  /// **'Welche technischen Probleme treten häufig auf?'**
+  String get intakeChatQTechnicalProblems;
+
+  /// No description provided for @intakeChatQComplaintsOrMisunderstandings.
+  ///
+  /// In de, this message translates to:
+  /// **'Welche Beschwerden oder Missverständnisse gibt es?'**
+  String get intakeChatQComplaintsOrMisunderstandings;
+
+  /// No description provided for @intakeChatQSupportOwner.
+  ///
+  /// In de, this message translates to:
+  /// **'Wer beantwortet diese Fragen aktuell?'**
+  String get intakeChatQSupportOwner;
+
+  /// No description provided for @intakeChatQStandardizableQuestions.
+  ///
+  /// In de, this message translates to:
+  /// **'Welche Fragen könnten standardisiert beantwortet werden?'**
+  String get intakeChatQStandardizableQuestions;
+
   /// No description provided for @intakeChatQFrequentQuestions.
   ///
   /// In de, this message translates to:
@@ -1352,6 +1496,60 @@ abstract class AppLocalizations {
   /// **'Welche sensiblen Fragen oder Themen sollen besonders vorsichtig behandelt werden?'**
   String get intakeChatQSensitiveTopics;
 
+  /// No description provided for @intakeChatQProhibitedStatements.
+  ///
+  /// In de, this message translates to:
+  /// **'Welche Aussagen oder Formulierungen sollen vermieden werden?'**
+  String get intakeChatQProhibitedStatements;
+
+  /// No description provided for @intakeChatQAlwaysEscalateTopics.
+  ///
+  /// In de, this message translates to:
+  /// **'Bei welchen Themen soll immer an einen Menschen weitergeleitet werden?'**
+  String get intakeChatQAlwaysEscalateTopics;
+
+  /// No description provided for @intakeChatQLegalRestrictions.
+  ///
+  /// In de, this message translates to:
+  /// **'Gibt es rechtliche oder branchenspezifische Einschränkungen?'**
+  String get intakeChatQLegalRestrictions;
+
+  /// No description provided for @intakeChatQHasMaterials.
+  ///
+  /// In de, this message translates to:
+  /// **'Gibt es bereits Materialien wie PDFs, Anleitungen oder Präsentationen?'**
+  String get intakeChatQHasMaterials;
+
+  /// No description provided for @intakeChatQMaterialDetails.
+  ///
+  /// In de, this message translates to:
+  /// **'Welche Materialien gibt es konkret?'**
+  String get intakeChatQMaterialDetails;
+
+  /// No description provided for @intakeChatQMaterialLocations.
+  ///
+  /// In de, this message translates to:
+  /// **'Wo befinden sich diese Materialien?'**
+  String get intakeChatQMaterialLocations;
+
+  /// No description provided for @intakeChatQMaterialFreshness.
+  ///
+  /// In de, this message translates to:
+  /// **'Sind die Materialien aktuell oder teilweise veraltet?'**
+  String get intakeChatQMaterialFreshness;
+
+  /// No description provided for @intakeChatQImportantMaterials.
+  ///
+  /// In de, this message translates to:
+  /// **'Welche Materialien sind besonders wichtig?'**
+  String get intakeChatQImportantMaterials;
+
+  /// No description provided for @intakeChatQMaterialsUsableForKnowledgeBase.
+  ///
+  /// In de, this message translates to:
+  /// **'Dürfen diese Materialien für die Wissensbasis verwendet werden?'**
+  String get intakeChatQMaterialsUsableForKnowledgeBase;
+
   /// No description provided for @intakeChatQExistingSources.
   ///
   /// In de, this message translates to:
@@ -1363,6 +1561,48 @@ abstract class AppLocalizations {
   /// In de, this message translates to:
   /// **'Gibt es Rezensionen oder Testimonials?'**
   String get intakeChatQHasReviews;
+
+  /// No description provided for @intakeChatQReviewPlatforms.
+  ///
+  /// In de, this message translates to:
+  /// **'Wo befinden sich diese Rezensionen?'**
+  String get intakeChatQReviewPlatforms;
+
+  /// No description provided for @intakeChatQReviewCountEstimate.
+  ///
+  /// In de, this message translates to:
+  /// **'Wie viele Rezensionen gibt es ungefähr?'**
+  String get intakeChatQReviewCountEstimate;
+
+  /// No description provided for @intakeChatQReviewLinksOrFiles.
+  ///
+  /// In de, this message translates to:
+  /// **'Gibt es Links, Dateien oder Screenshots zu den Rezensionen?'**
+  String get intakeChatQReviewLinksOrFiles;
+
+  /// No description provided for @intakeChatQReviewTypes.
+  ///
+  /// In de, this message translates to:
+  /// **'Um welche Art von Rezensionen handelt es sich?'**
+  String get intakeChatQReviewTypes;
+
+  /// No description provided for @intakeChatQReviewsPubliclyUsable.
+  ///
+  /// In de, this message translates to:
+  /// **'Sind die Rezensionen öffentlich nutzbar?'**
+  String get intakeChatQReviewsPubliclyUsable;
+
+  /// No description provided for @intakeChatQReviewsEmbeddedOnWebsite.
+  ///
+  /// In de, this message translates to:
+  /// **'Sind sie bereits auf der Website eingebunden?'**
+  String get intakeChatQReviewsEmbeddedOnWebsite;
+
+  /// No description provided for @intakeChatQCollectReviewsPlanned.
+  ///
+  /// In de, this message translates to:
+  /// **'Soll künftig gezielt Trust- oder Review-Material gesammelt werden?'**
+  String get intakeChatQCollectReviewsPlanned;
 
   /// No description provided for @intakeChatQReviews.
   ///
@@ -1394,17 +1634,113 @@ abstract class AppLocalizations {
   /// **'Welches Trust-Material ist vorhanden?'**
   String get intakeChatQTrustMaterial;
 
+  /// No description provided for @intakeChatQHasSocialChannels.
+  ///
+  /// In de, this message translates to:
+  /// **'Gibt es aktive Social-Media-Kanäle?'**
+  String get intakeChatQHasSocialChannels;
+
+  /// No description provided for @intakeChatQSocialPlatforms.
+  ///
+  /// In de, this message translates to:
+  /// **'Welche Plattformen werden genutzt?'**
+  String get intakeChatQSocialPlatforms;
+
+  /// No description provided for @intakeChatQSocialProfileLinks.
+  ///
+  /// In de, this message translates to:
+  /// **'Wie lauten die Links oder Profilnamen?'**
+  String get intakeChatQSocialProfileLinks;
+
+  /// No description provided for @intakeChatQActiveChannels.
+  ///
+  /// In de, this message translates to:
+  /// **'Welche Kanäle sind aktuell aktiv?'**
+  String get intakeChatQActiveChannels;
+
+  /// No description provided for @intakeChatQPostingFrequency.
+  ///
+  /// In de, this message translates to:
+  /// **'Wie oft wird ungefähr gepostet?'**
+  String get intakeChatQPostingFrequency;
+
+  /// No description provided for @intakeChatQWorkingChannels.
+  ///
+  /// In de, this message translates to:
+  /// **'Welche Kanäle funktionieren gut?'**
+  String get intakeChatQWorkingChannels;
+
+  /// No description provided for @intakeChatQInactiveChannels.
+  ///
+  /// In de, this message translates to:
+  /// **'Welche Kanäle liegen brach?'**
+  String get intakeChatQInactiveChannels;
+
+  /// No description provided for @intakeChatQFutureSocialPlatforms.
+  ///
+  /// In de, this message translates to:
+  /// **'Welche Plattform wäre grundsätzlich interessant?'**
+  String get intakeChatQFutureSocialPlatforms;
+
   /// No description provided for @intakeChatQChannels.
   ///
   /// In de, this message translates to:
   /// **'Welche Marketing- oder Kommunikationskanäle wurden bisher genutzt?'**
   String get intakeChatQChannels;
 
+  /// No description provided for @intakeChatQHasRunAds.
+  ///
+  /// In de, this message translates to:
+  /// **'Wurde bereits Werbung geschaltet?'**
+  String get intakeChatQHasRunAds;
+
+  /// No description provided for @intakeChatQAdvertisingChannels.
+  ///
+  /// In de, this message translates to:
+  /// **'Auf welchen Kanälen wurde Werbung geschaltet?'**
+  String get intakeChatQAdvertisingChannels;
+
   /// No description provided for @intakeChatQCampaigns.
   ///
   /// In de, this message translates to:
   /// **'Welche Werbemaßnahmen wurden bisher ausprobiert?'**
   String get intakeChatQCampaigns;
+
+  /// No description provided for @intakeChatQApproximateBudget.
+  ///
+  /// In de, this message translates to:
+  /// **'Wie hoch war das ungefähre Budget?'**
+  String get intakeChatQApproximateBudget;
+
+  /// No description provided for @intakeChatQSuccessfulMeasures.
+  ///
+  /// In de, this message translates to:
+  /// **'Was hat funktioniert?'**
+  String get intakeChatQSuccessfulMeasures;
+
+  /// No description provided for @intakeChatQUnsuccessfulMeasures.
+  ///
+  /// In de, this message translates to:
+  /// **'Was hat nicht funktioniert?'**
+  String get intakeChatQUnsuccessfulMeasures;
+
+  /// No description provided for @intakeChatQAvailableMetrics.
+  ///
+  /// In de, this message translates to:
+  /// **'Gibt es Zahlen zu Klicks, Leads, Verkäufen oder Anfragen?'**
+  String get intakeChatQAvailableMetrics;
+
+  /// No description provided for @intakeChatQAdAccountAccess.
+  ///
+  /// In de, this message translates to:
+  /// **'Gibt es Zugriff auf Werbekonten oder Berichte?'**
+  String get intakeChatQAdAccountAccess;
+
+  /// No description provided for @intakeChatQFutureAdChannels.
+  ///
+  /// In de, this message translates to:
+  /// **'Welche Werbekanäle sollen zukünftig geprüft werden?'**
+  String get intakeChatQFutureAdChannels;
 
   /// No description provided for @intakeChatQWorkedNotWorked.
   ///

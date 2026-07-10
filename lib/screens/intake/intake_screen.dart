@@ -293,10 +293,12 @@ class _IntakeScreenState extends State<IntakeScreen> {
   String _text(String key) => _controller(key).text.trim();
 
   void _saveCurrentStep(AppState state) {
+    final session = state.intakeSession;
+    if (session == null) return;
     switch (_stepIndex) {
       case 0:
         state.updateIntakeBasics(
-          IntakeBasics(
+          session.basics.copyWith(
             companyName: _text('companyName'),
             shortDescription: _text('shortDescription'),
             industry: _text('industry'),
@@ -309,7 +311,7 @@ class _IntakeScreenState extends State<IntakeScreen> {
         );
       case 1:
         state.updateIntakeProducts(
-          IntakeProducts(
+          session.products.copyWith(
             importantProducts: _text('importantProducts'),
             mainProduct: _text('mainProduct'),
             explanationNeeded: _text('explanationNeeded'),
@@ -318,7 +320,7 @@ class _IntakeScreenState extends State<IntakeScreen> {
         );
       case 2:
         state.updateIntakeTargetGroups(
-          IntakeTargetGroups(
+          session.targetGroups.copyWith(
             targetGroup: _text('targetGroup'),
             marketType: _text('marketType'),
             problemSolved: _text('problemSolved'),
@@ -328,7 +330,7 @@ class _IntakeScreenState extends State<IntakeScreen> {
         );
       case 3:
         state.updateIntakeWebsiteAndSupport(
-          IntakeWebsiteAndSupport(
+          session.websiteAndSupport.copyWith(
             importantPages: _text('importantPages'),
             frequentQuestions: _text('frequentQuestions'),
             supportProblems: _text('supportProblems'),
@@ -337,7 +339,7 @@ class _IntakeScreenState extends State<IntakeScreen> {
         );
       case 4:
         state.updateIntakeSourcesAndReviews(
-          IntakeSourcesAndReviews(
+          session.sourcesAndReviews.copyWith(
             existingSources: _text('existingSources'),
             reviews: _text('reviews'),
             socialMentions: _text('socialMentions'),
@@ -346,7 +348,7 @@ class _IntakeScreenState extends State<IntakeScreen> {
         );
       case 5:
         state.updateIntakeMarketingAndChannels(
-          IntakeMarketingAndChannels(
+          session.marketingAndChannels.copyWith(
             channels: _text('channels'),
             campaigns: _text('campaigns'),
             worked: _text('worked'),
@@ -356,7 +358,7 @@ class _IntakeScreenState extends State<IntakeScreen> {
         );
       case 6:
         state.updateIntakeGoalsAndRisks(
-          IntakeGoalsAndRisks(
+          session.goalsAndRisks.copyWith(
             companyGoals: _text('companyGoals'),
             shortTermPriorities: _text('shortTermPriorities'),
             forbiddenClaims: _text('forbiddenClaims'),

@@ -48,9 +48,12 @@ class _IntakeChatScreenState extends State<IntakeChatScreen> {
     final question = session == null
         ? null
         : IntakeChatFlow.nextQuestion(session);
-    final index = question == null
-        ? IntakeChatFlow.questions.length
-        : IntakeChatFlow.questions.indexOf(question);
+    final relevant = session == null
+        ? const <IntakeChatQuestion>[]
+        : IntakeChatFlow.relevantQuestions(session);
+    final answered = session == null
+        ? 0
+        : IntakeChatFlow.answeredRelevantCount(session);
     final blockLabel = question == null
         ? l.intakeSummaryTitle
         : IntakeChatFlow.blockLabel(l, question.blockKey);
@@ -93,7 +96,8 @@ class _IntakeChatScreenState extends State<IntakeChatScreen> {
                       child: LinearProgressIndicator(
                         value: IntakeChatFlow.questions.isEmpty
                             ? 0
-                            : index / IntakeChatFlow.questions.length,
+                            : answered /
+                                  (relevant.isEmpty ? 1 : relevant.length),
                       ),
                     ),
                     const SizedBox(width: 12),
@@ -101,8 +105,8 @@ class _IntakeChatScreenState extends State<IntakeChatScreen> {
                       question == null
                           ? l.intakeChatCompletedProgress
                           : l.intakeChatQuestionProgress(
-                              index + 1,
-                              IntakeChatFlow.questions.length,
+                              answered + 1,
+                              relevant.length,
                             ),
                       style: Theme.of(context).textTheme.labelMedium,
                     ),
@@ -113,6 +117,26 @@ class _IntakeChatScreenState extends State<IntakeChatScreen> {
                   avatar: const Icon(Icons.folder_outlined, size: 16),
                   label: Text(blockLabel),
                 ),
+                if (question?.isListQuestion ?? false)
+                  Padding(
+                    padding: const EdgeInsets.only(top: 6),
+                    child: Text(
+                      l.intakeChatListHint,
+                      style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                        color: Theme.of(context).colorScheme.onSurfaceVariant,
+                      ),
+                    ),
+                  ),
+                if (question?.helpText != null)
+                  Padding(
+                    padding: const EdgeInsets.only(top: 6),
+                    child: Text(
+                      question!.helpText!(l),
+                      style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                        color: Theme.of(context).colorScheme.onSurfaceVariant,
+                      ),
+                    ),
+                  ),
               ],
             ),
           ),
@@ -184,7 +208,9 @@ class _IntakeChatScreenState extends State<IntakeChatScreen> {
                   alignment: WrapAlignment.end,
                   children: [
                     OutlinedButton.icon(
-                      onPressed: question == null ? null : _skipQuestion,
+                      onPressed: question == null || !question.skippable
+                          ? null
+                          : _skipQuestion,
                       icon: const Icon(Icons.skip_next_outlined, size: 18),
                       label: Text(l.intakeChatSkip),
                     ),
@@ -246,7 +272,25 @@ class _IntakeChatScreenState extends State<IntakeChatScreen> {
     final question = IntakeChatFlow.nextQuestion(session);
     if (question == null) return;
     if (answer.trim().isEmpty) {
-      setState(() => _messages.add(_bot(l.intakeChatEmptyAnswer)));
+      setState(
+        () => _messages.add(
+          _bot(
+            question.required
+                ? l.intakeChatRequiredAnswer
+                : l.intakeChatEmptyAnswer,
+          ),
+        ),
+      );
+      _scrollToBottom();
+      return;
+    }
+    final validationMessage = IntakeChatFlow.validateAnswer(
+      question,
+      answer,
+      l,
+    );
+    if (validationMessage != null) {
+      setState(() => _messages.add(_bot(validationMessage)));
       _scrollToBottom();
       return;
     }
@@ -262,6 +306,12 @@ class _IntakeChatScreenState extends State<IntakeChatScreen> {
       if (nextQuestion == null) {
         _messages.add(_bot(l.intakeChatAllDone));
       } else {
+        final intro = nextQuestion.parentQuestionKey == question.questionKey
+            ? IntakeChatFlow.detailIntro(l, nextQuestion)
+            : null;
+        if (intro != null) {
+          _messages.add(_bot(intro));
+        }
         _messages.add(_questionMessage(nextQuestion, l));
       }
     });
@@ -284,6 +334,12 @@ class _IntakeChatScreenState extends State<IntakeChatScreen> {
         state.markIntakeChatCompleted();
         _messages.add(_bot(l.intakeChatAllDone));
       } else {
+        final intro = nextQuestion.parentQuestionKey == question.questionKey
+            ? IntakeChatFlow.detailIntro(l, nextQuestion)
+            : null;
+        if (intro != null) {
+          _messages.add(_bot(intro));
+        }
         _messages.add(_questionMessage(nextQuestion, l));
       }
     });

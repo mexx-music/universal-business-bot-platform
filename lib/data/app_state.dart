@@ -94,20 +94,26 @@ class AppState extends ChangeNotifier {
     if (existing != null) return existing;
 
     final c = selectedCompany;
-    final session = IntakeSession.empty(
-      companyId: c.id,
-      basics: IntakeBasics(
-        companyName: c.name,
-        shortDescription: c.shortDescription,
-        industry: c.industry,
-        country: c.country,
-        primaryLanguage: c.primaryLanguage,
-        website: c.website,
-        supportEmail: c.supportEmail,
-        supportPhone: c.supportPhone,
-        hasWebsite: c.website.trim().isNotEmpty,
-      ),
-    );
+    final session =
+        IntakeSession.empty(
+          companyId: c.id,
+          basics: IntakeBasics(
+            companyName: c.name,
+            shortDescription: c.shortDescription,
+            industry: c.industry,
+            country: c.country,
+            primaryLanguage: c.primaryLanguage,
+            website: c.website,
+            supportEmail: c.supportEmail,
+            supportPhone: c.supportPhone,
+            hasWebsite: c.website.trim().isNotEmpty,
+          ),
+        ).copyWith(
+          websiteAndSupport: IntakeWebsiteAndSupport(
+            websiteUrl: c.website,
+            hasFaqArea: selectedKnowledgeEntries.isNotEmpty,
+          ),
+        );
     _updateSelectedWorkspace(
       selectedWorkspace.copyWith(intakeSession: session),
     );
@@ -282,7 +288,9 @@ class AppState extends ChangeNotifier {
     addCompanyField(
       fieldKey: 'website',
       label: 'Website',
-      proposed: basics.website,
+      proposed: session.websiteAndSupport.websiteUrl.trim().isEmpty
+          ? basics.website
+          : session.websiteAndSupport.websiteUrl,
       current: company.website,
     );
     addCompanyField(
@@ -329,7 +337,21 @@ class AppState extends ChangeNotifier {
       session.targetGroups.customerBenefit,
       session.targetGroups.differentiation,
       session.marketingAndChannels.channels,
+      session.marketingAndChannels.socialPlatforms,
+      session.marketingAndChannels.socialProfileLinks,
+      session.marketingAndChannels.activeChannels,
+      session.marketingAndChannels.inactiveChannels,
+      session.marketingAndChannels.postingFrequency,
+      session.marketingAndChannels.workingChannels,
       session.marketingAndChannels.campaigns,
+      session.marketingAndChannels.advertisingChannels,
+      session.marketingAndChannels.approximateBudget,
+      session.marketingAndChannels.successfulMeasures,
+      session.marketingAndChannels.unsuccessfulMeasures,
+      session.marketingAndChannels.availableMetrics,
+      session.marketingAndChannels.adAccountAccess,
+      session.marketingAndChannels.futureSocialPlatforms,
+      session.marketingAndChannels.futureAdChannels,
       session.marketingAndChannels.worked,
       session.marketingAndChannels.notWorked,
       session.marketingAndChannels.reachProblems,
@@ -376,8 +398,12 @@ class AppState extends ChangeNotifier {
 
     final riskTopics = _uniqueStrings([
       ..._splitList(session.websiteAndSupport.sensitiveTopics),
+      ..._splitList(session.goalsAndRisks.sensitiveTopics),
+      ..._splitList(session.goalsAndRisks.prohibitedStatements),
       ..._splitList(session.goalsAndRisks.forbiddenClaims),
       ..._splitList(session.goalsAndRisks.botRestrictedTopics),
+      ..._splitList(session.goalsAndRisks.alwaysEscalateTopics),
+      ..._splitList(session.goalsAndRisks.legalRestrictions),
     ]);
     for (final topic in riskTopics) {
       if (!_containsSimilar(businessRules.doNotSay, topic)) {
@@ -410,7 +436,10 @@ class AppState extends ChangeNotifier {
 
     final escalationNotes = _joinNonEmpty([
       session.websiteAndSupport.sensitiveTopics,
+      session.goalsAndRisks.sensitiveTopics,
       session.goalsAndRisks.botRestrictedTopics,
+      session.goalsAndRisks.alwaysEscalateTopics,
+      session.goalsAndRisks.legalRestrictions,
       session.goalsAndRisks.shortTermPriorities,
     ]);
     if (escalationNotes.isNotEmpty &&
@@ -446,7 +475,10 @@ class AppState extends ChangeNotifier {
       );
     }
 
-    final handover = session.goalsAndRisks.botRestrictedTopics.trim();
+    final handover = _joinNonEmpty([
+      session.goalsAndRisks.botRestrictedTopics,
+      session.goalsAndRisks.alwaysEscalateTopics,
+    ]);
     if (handover.isNotEmpty &&
         !_sameText(handover, botConfiguration.handoverMessage)) {
       final conflict = botConfiguration.handoverMessage.trim().isNotEmpty;
@@ -469,6 +501,10 @@ class AppState extends ChangeNotifier {
     final knowledgeQuestions = _uniqueStrings([
       ..._splitQuestions(session.websiteAndSupport.frequentQuestions),
       ..._splitQuestions(session.websiteAndSupport.supportProblems),
+      ..._splitQuestions(session.websiteAndSupport.preSalesQuestions),
+      ..._splitQuestions(session.websiteAndSupport.afterSalesQuestions),
+      ..._splitQuestions(session.websiteAndSupport.technicalProblems),
+      ..._splitQuestions(session.websiteAndSupport.standardizableQuestions),
     ]);
     final sensitiveQuestions = _splitQuestions(
       session.websiteAndSupport.sensitiveTopics,
@@ -515,13 +551,38 @@ class AppState extends ChangeNotifier {
     }
 
     final sourceSeeds = <({String title, SourceMaterialType type})>[
+      if (session.websiteAndSupport.websiteUrl.trim().isNotEmpty)
+        (
+          title: session.websiteAndSupport.websiteUrl.trim(),
+          type: SourceMaterialType.website,
+        ),
       for (final item in _splitList(session.websiteAndSupport.importantPages))
         (title: item, type: SourceMaterialType.website),
       for (final item in _splitList(session.sourcesAndReviews.existingSources))
         (title: item, type: _inferSourceType(item)),
+      for (final item in _splitList(session.sourcesAndReviews.materialDetails))
+        (title: item, type: _inferSourceType(item)),
+      for (final item in _splitList(
+        session.sourcesAndReviews.materialLocations,
+      ))
+        (title: item, type: _inferSourceType(item)),
+      for (final item in _splitList(
+        session.sourcesAndReviews.importantMaterials,
+      ))
+        (title: item, type: _inferSourceType(item)),
+      for (final item in _splitList(session.sourcesAndReviews.reviewPlatforms))
+        (title: item, type: SourceMaterialType.review),
+      for (final item in _splitList(
+        session.sourcesAndReviews.reviewLinksOrFiles,
+      ))
+        (title: item, type: SourceMaterialType.review),
       for (final item in _splitList(session.sourcesAndReviews.reviews))
         (title: item, type: SourceMaterialType.review),
       for (final item in _splitList(session.sourcesAndReviews.socialMentions))
+        (title: item, type: SourceMaterialType.social),
+      for (final item in _splitList(
+        session.marketingAndChannels.socialProfileLinks,
+      ))
         (title: item, type: SourceMaterialType.social),
       for (final item in _splitList(session.sourcesAndReviews.trustMaterial))
         (title: item, type: SourceMaterialType.note),
@@ -572,14 +633,21 @@ class AppState extends ChangeNotifier {
 
     addAuditSuggestion(
       AuditArea.website,
-      basics.website.trim().isEmpty
+      basics.website.trim().isEmpty &&
+              session.websiteAndSupport.websiteUrl.trim().isEmpty
           ? AuditItemStatus.missing
           : AuditItemStatus.complete,
       'Website audit',
     );
     addAuditSuggestion(
       AuditArea.supportKnowledge,
-      session.websiteAndSupport.frequentQuestions.trim().isEmpty
+      _joinNonEmpty([
+            session.websiteAndSupport.frequentQuestions,
+            session.websiteAndSupport.preSalesQuestions,
+            session.websiteAndSupport.afterSalesQuestions,
+            session.websiteAndSupport.technicalProblems,
+            session.websiteAndSupport.standardizableQuestions,
+          ]).isEmpty
           ? AuditItemStatus.missing
           : AuditItemStatus.partial,
       'FAQ / support knowledge audit',
@@ -587,7 +655,9 @@ class AppState extends ChangeNotifier {
     addAuditSuggestion(
       AuditArea.trustMaterial,
       session.sourcesAndReviews.trustMaterial.trim().isEmpty &&
-              session.sourcesAndReviews.reviews.trim().isEmpty
+              session.sourcesAndReviews.reviews.trim().isEmpty &&
+              session.sourcesAndReviews.reviewPlatforms.trim().isEmpty &&
+              session.sourcesAndReviews.reviewLinksOrFiles.trim().isEmpty
           ? AuditItemStatus.missing
           : AuditItemStatus.partial,
       'Reviews / trust audit',

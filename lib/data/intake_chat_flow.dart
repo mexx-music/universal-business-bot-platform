@@ -8,20 +8,51 @@ class IntakeChatQuestion {
   final String questionKey;
   final String blockKey;
   final IntakeChatQuestionType type;
+  final String targetField;
+  final String? dependsOnQuestionKey;
+  final bool? dependsOnAnswer;
+  final bool required;
+  final bool skippable;
+  final bool appendMode;
+  final String? followUpGroup;
+  final String? parentQuestionKey;
   final String Function(AppLocalizations l) text;
-  final bool Function(IntakeSession session) shouldAsk;
-  final bool Function(IntakeSession session) isAnswered;
+  final String Function(AppLocalizations l)? helpText;
+  final String Function(IntakeSession session) value;
+  final bool? Function(IntakeSession session)? boolValue;
+  final bool Function(String answer)? validation;
+  final String Function(AppLocalizations l)? warningText;
   final void Function(AppState state, String answer) saveAnswer;
 
   const IntakeChatQuestion({
     required this.questionKey,
     required this.blockKey,
     required this.type,
+    required this.targetField,
     required this.text,
-    required this.shouldAsk,
-    required this.isAnswered,
+    required this.value,
     required this.saveAnswer,
+    this.dependsOnQuestionKey,
+    this.dependsOnAnswer,
+    this.required = false,
+    this.skippable = true,
+    this.appendMode = false,
+    this.followUpGroup,
+    this.parentQuestionKey,
+    this.helpText,
+    this.boolValue,
+    this.validation,
+    this.warningText,
   });
+
+  bool get isListQuestion => type == IntakeChatQuestionType.multiLineList;
+
+  bool isAnswered(IntakeSession session) {
+    if (type == IntakeChatQuestionType.yesNo) {
+      return boolValue?.call(session) != null;
+    }
+    return value(session).trim().isNotEmpty;
+  }
 }
 
 class IntakeChatFlow {
@@ -30,26 +61,33 @@ class IntakeChatFlow {
       'companyName',
       'basics',
       IntakeChatQuestionType.shortText,
+      'basics.companyName',
       (l) => l.intakeChatQCompanyName,
       (s) => s.basics.companyName,
       (state, answer) => state.updateIntakeBasics(
         state.intakeSession!.basics.copyWith(companyName: answer.trim()),
       ),
+      required: true,
+      skippable: false,
     ),
     _q(
       'shortDescription',
       'basics',
       IntakeChatQuestionType.longText,
+      'basics.shortDescription',
       (l) => l.intakeChatQShortDescription,
       (s) => s.basics.shortDescription,
       (state, answer) => state.updateIntakeBasics(
         state.intakeSession!.basics.copyWith(shortDescription: answer.trim()),
       ),
+      required: true,
+      skippable: false,
     ),
     _q(
       'industry',
       'basics',
       IntakeChatQuestionType.shortText,
+      'basics.industry',
       (l) => l.intakeChatQIndustry,
       (s) => s.basics.industry,
       (state, answer) => state.updateIntakeBasics(
@@ -60,6 +98,7 @@ class IntakeChatFlow {
       'country',
       'basics',
       IntakeChatQuestionType.shortText,
+      'basics.country',
       (l) => l.intakeChatQCountry,
       (s) => s.basics.country,
       (state, answer) => state.updateIntakeBasics(
@@ -70,6 +109,7 @@ class IntakeChatFlow {
       'primaryLanguage',
       'basics',
       IntakeChatQuestionType.shortText,
+      'basics.primaryLanguage',
       (l) => l.intakeChatQPrimaryLanguage,
       (s) => s.basics.primaryLanguage,
       (state, answer) => state.updateIntakeBasics(
@@ -79,37 +119,158 @@ class IntakeChatFlow {
     _yesNo(
       'hasWebsite',
       'basics',
+      'basics.hasWebsite',
       (l) => l.intakeChatQHasWebsite,
       (s) => s.basics.hasWebsite,
       (state, value) => state.updateIntakeBasics(
         state.intakeSession!.basics.copyWith(hasWebsite: value),
       ),
+      required: true,
+      skippable: false,
+      followUpGroup: 'website',
     ),
     _q(
       'website',
-      'basics',
+      'websiteAndSupport',
       IntakeChatQuestionType.shortText,
+      'websiteAndSupport.websiteUrl',
       (l) => l.intakeChatQWebsite,
-      (s) => s.basics.website,
-      (state, answer) => state.updateIntakeBasics(
-        state.intakeSession!.basics.copyWith(website: answer.trim()),
+      (s) => s.websiteAndSupport.websiteUrl.isNotEmpty
+          ? s.websiteAndSupport.websiteUrl
+          : s.basics.website,
+      (state, answer) {
+        final value = answer.trim();
+        state.updateIntakeBasics(
+          state.intakeSession!.basics.copyWith(website: value),
+        );
+        state.updateIntakeWebsiteAndSupport(
+          state.intakeSession!.websiteAndSupport.copyWith(websiteUrl: value),
+        );
+      },
+      dependsOnQuestionKey: 'hasWebsite',
+      dependsOnAnswer: true,
+      parentQuestionKey: 'hasWebsite',
+      followUpGroup: 'website',
+      validation: _looksLikeUrl,
+      warningText: (l) => l.intakeChatUrlWarning,
+    ),
+    _yesNo(
+      'hasShop',
+      'websiteAndSupport',
+      'websiteAndSupport.hasShop',
+      (l) => l.intakeChatQHasShop,
+      (s) => s.websiteAndSupport.hasShop,
+      (state, value) => state.updateIntakeWebsiteAndSupport(
+        state.intakeSession!.websiteAndSupport.copyWith(hasShop: value),
       ),
-      shouldAsk: (s) => s.basics.hasWebsite != false,
+      dependsOnQuestionKey: 'hasWebsite',
+      dependsOnAnswer: true,
+      parentQuestionKey: 'hasWebsite',
+      followUpGroup: 'website',
+    ),
+    _q(
+      'importantPages',
+      'websiteAndSupport',
+      IntakeChatQuestionType.multiLineList,
+      'websiteAndSupport.importantPages',
+      (l) => l.intakeChatQImportantPages,
+      (s) => s.websiteAndSupport.importantPages,
+      (state, answer) => state.updateIntakeWebsiteAndSupport(
+        state.intakeSession!.websiteAndSupport.copyWith(
+          importantPages: _mergeListText(
+            state.intakeSession!.websiteAndSupport.importantPages,
+            answer,
+          ),
+        ),
+      ),
+      dependsOnQuestionKey: 'hasWebsite',
+      dependsOnAnswer: true,
+      parentQuestionKey: 'hasWebsite',
+      followUpGroup: 'website',
+      appendMode: true,
+    ),
+    _yesNo(
+      'hasFaqArea',
+      'websiteAndSupport',
+      'websiteAndSupport.hasFaqArea',
+      (l) => l.intakeChatQHasFaqArea,
+      (s) => s.websiteAndSupport.hasFaqArea,
+      (state, value) => state.updateIntakeWebsiteAndSupport(
+        state.intakeSession!.websiteAndSupport.copyWith(hasFaqArea: value),
+      ),
+      dependsOnQuestionKey: 'hasWebsite',
+      dependsOnAnswer: true,
+      parentQuestionKey: 'hasWebsite',
+      followUpGroup: 'website',
+    ),
+    _q(
+      'websiteMaintainer',
+      'websiteAndSupport',
+      IntakeChatQuestionType.shortText,
+      'websiteAndSupport.websiteMaintainer',
+      (l) => l.intakeChatQWebsiteMaintainer,
+      (s) => s.websiteAndSupport.websiteMaintainer,
+      (state, answer) => state.updateIntakeWebsiteAndSupport(
+        state.intakeSession!.websiteAndSupport.copyWith(
+          websiteMaintainer: answer.trim(),
+        ),
+      ),
+      dependsOnQuestionKey: 'hasWebsite',
+      dependsOnAnswer: true,
+      parentQuestionKey: 'hasWebsite',
+      followUpGroup: 'website',
+    ),
+    _yesNo(
+      'canEditWebsiteQuickly',
+      'websiteAndSupport',
+      'websiteAndSupport.canEditWebsiteQuickly',
+      (l) => l.intakeChatQCanEditWebsiteQuickly,
+      (s) => s.websiteAndSupport.canEditWebsiteQuickly,
+      (state, value) => state.updateIntakeWebsiteAndSupport(
+        state.intakeSession!.websiteAndSupport.copyWith(
+          canEditWebsiteQuickly: value,
+        ),
+      ),
+      dependsOnQuestionKey: 'hasWebsite',
+      dependsOnAnswer: true,
+      parentQuestionKey: 'hasWebsite',
+      followUpGroup: 'website',
+    ),
+    _q(
+      'websitePlanned',
+      'websiteAndSupport',
+      IntakeChatQuestionType.shortText,
+      'websiteAndSupport.websitePlanned',
+      (l) => l.intakeChatQWebsitePlanned,
+      (s) => s.websiteAndSupport.websitePlanned,
+      (state, answer) => state.updateIntakeWebsiteAndSupport(
+        state.intakeSession!.websiteAndSupport.copyWith(
+          websitePlanned: answer.trim(),
+        ),
+      ),
+      dependsOnQuestionKey: 'hasWebsite',
+      dependsOnAnswer: false,
+      parentQuestionKey: 'hasWebsite',
+      followUpGroup: 'website',
     ),
     _q(
       'supportEmail',
       'basics',
       IntakeChatQuestionType.shortText,
+      'basics.supportEmail',
       (l) => l.intakeChatQSupportEmail,
       (s) => s.basics.supportEmail,
       (state, answer) => state.updateIntakeBasics(
         state.intakeSession!.basics.copyWith(supportEmail: answer.trim()),
       ),
+      validation: _looksLikeEmail,
+      warningText: (l) => l.intakeChatEmailWarning,
     ),
     _q(
       'supportPhone',
       'basics',
       IntakeChatQuestionType.shortText,
+      'basics.supportPhone',
       (l) => l.intakeChatQSupportPhone,
       (s) => s.basics.supportPhone,
       (state, answer) => state.updateIntakeBasics(
@@ -120,6 +281,7 @@ class IntakeChatFlow {
       'importantProducts',
       'products',
       IntakeChatQuestionType.multiLineList,
+      'products.importantProducts',
       (l) => l.intakeChatQImportantProducts,
       (s) => s.products.importantProducts,
       (state, answer) => state.updateIntakeProducts(
@@ -130,11 +292,13 @@ class IntakeChatFlow {
           ),
         ),
       ),
+      appendMode: true,
     ),
     _q(
       'mainProduct',
       'products',
       IntakeChatQuestionType.shortText,
+      'products.mainProduct',
       (l) => l.intakeChatQMainProduct,
       (s) => s.products.mainProduct,
       (state, answer) => state.updateIntakeProducts(
@@ -145,6 +309,7 @@ class IntakeChatFlow {
       'priorityProducts',
       'products',
       IntakeChatQuestionType.multiLineList,
+      'products.priorityProducts',
       (l) => l.intakeChatQPriorityProducts,
       (s) => s.products.priorityProducts,
       (state, answer) => state.updateIntakeProducts(
@@ -155,11 +320,13 @@ class IntakeChatFlow {
           ),
         ),
       ),
+      appendMode: true,
     ),
     _q(
       'explanationNeeded',
       'products',
       IntakeChatQuestionType.longText,
+      'products.explanationNeeded',
       (l) => l.intakeChatQExplanationNeeded,
       (s) => s.products.explanationNeeded,
       (state, answer) => state.updateIntakeProducts(
@@ -172,6 +339,7 @@ class IntakeChatFlow {
       'targetGroup',
       'targetGroups',
       IntakeChatQuestionType.longText,
+      'targetGroups.targetGroup',
       (l) => l.intakeChatQTargetGroup,
       (s) => s.targetGroups.targetGroup,
       (state, answer) => state.updateIntakeTargetGroups(
@@ -182,6 +350,7 @@ class IntakeChatFlow {
       'marketType',
       'targetGroups',
       IntakeChatQuestionType.shortText,
+      'targetGroups.marketType',
       (l) => l.intakeChatQMarketType,
       (s) => s.targetGroups.marketType,
       (state, answer) => state.updateIntakeTargetGroups(
@@ -192,6 +361,7 @@ class IntakeChatFlow {
       'problemSolved',
       'targetGroups',
       IntakeChatQuestionType.longText,
+      'targetGroups.problemSolved',
       (l) => l.intakeChatQProblemSolved,
       (s) => s.targetGroups.problemSolved,
       (state, answer) => state.updateIntakeTargetGroups(
@@ -204,6 +374,7 @@ class IntakeChatFlow {
       'customerBenefit',
       'targetGroups',
       IntakeChatQuestionType.longText,
+      'targetGroups.customerBenefit',
       (l) => l.intakeChatQCustomerBenefit,
       (s) => s.targetGroups.customerBenefit,
       (state, answer) => state.updateIntakeTargetGroups(
@@ -216,6 +387,7 @@ class IntakeChatFlow {
       'differentiation',
       'targetGroups',
       IntakeChatQuestionType.longText,
+      'targetGroups.differentiation',
       (l) => l.intakeChatQDifferentiation,
       (s) => s.targetGroups.differentiation,
       (state, answer) => state.updateIntakeTargetGroups(
@@ -224,40 +396,87 @@ class IntakeChatFlow {
         ),
       ),
     ),
-    _q(
-      'importantPages',
+    _yesNo(
+      'hasSupportQuestions',
       'websiteAndSupport',
-      IntakeChatQuestionType.multiLineList,
-      (l) => l.intakeChatQImportantPages,
-      (s) => s.websiteAndSupport.importantPages,
-      (state, answer) => state.updateIntakeWebsiteAndSupport(
+      'websiteAndSupport.hasSupportQuestions',
+      (l) => l.intakeChatQHasSupportQuestions,
+      (s) => s.websiteAndSupport.hasSupportQuestions,
+      (state, value) => state.updateIntakeWebsiteAndSupport(
         state.intakeSession!.websiteAndSupport.copyWith(
-          importantPages: _mergeListText(
-            state.intakeSession!.websiteAndSupport.importantPages,
-            answer,
-          ),
+          hasSupportQuestions: value,
         ),
       ),
+      followUpGroup: 'support',
     ),
     _q(
-      'frequentQuestions',
+      'preSalesQuestions',
       'websiteAndSupport',
       IntakeChatQuestionType.multiLineList,
-      (l) => l.intakeChatQFrequentQuestions,
-      (s) => s.websiteAndSupport.frequentQuestions,
+      'websiteAndSupport.preSalesQuestions',
+      (l) => l.intakeChatQPreSalesQuestions,
+      (s) => s.websiteAndSupport.preSalesQuestions,
       (state, answer) => state.updateIntakeWebsiteAndSupport(
         state.intakeSession!.websiteAndSupport.copyWith(
-          frequentQuestions: _mergeListText(
-            state.intakeSession!.websiteAndSupport.frequentQuestions,
+          preSalesQuestions: _mergeListText(
+            state.intakeSession!.websiteAndSupport.preSalesQuestions,
             answer,
           ),
         ),
       ),
+      dependsOnQuestionKey: 'hasSupportQuestions',
+      dependsOnAnswer: true,
+      parentQuestionKey: 'hasSupportQuestions',
+      followUpGroup: 'support',
+      appendMode: true,
+    ),
+    _q(
+      'afterSalesQuestions',
+      'websiteAndSupport',
+      IntakeChatQuestionType.multiLineList,
+      'websiteAndSupport.afterSalesQuestions',
+      (l) => l.intakeChatQAfterSalesQuestions,
+      (s) => s.websiteAndSupport.afterSalesQuestions,
+      (state, answer) => state.updateIntakeWebsiteAndSupport(
+        state.intakeSession!.websiteAndSupport.copyWith(
+          afterSalesQuestions: _mergeListText(
+            state.intakeSession!.websiteAndSupport.afterSalesQuestions,
+            answer,
+          ),
+        ),
+      ),
+      dependsOnQuestionKey: 'hasSupportQuestions',
+      dependsOnAnswer: true,
+      parentQuestionKey: 'hasSupportQuestions',
+      followUpGroup: 'support',
+      appendMode: true,
+    ),
+    _q(
+      'technicalProblems',
+      'websiteAndSupport',
+      IntakeChatQuestionType.multiLineList,
+      'websiteAndSupport.technicalProblems',
+      (l) => l.intakeChatQTechnicalProblems,
+      (s) => s.websiteAndSupport.technicalProblems,
+      (state, answer) => state.updateIntakeWebsiteAndSupport(
+        state.intakeSession!.websiteAndSupport.copyWith(
+          technicalProblems: _mergeListText(
+            state.intakeSession!.websiteAndSupport.technicalProblems,
+            answer,
+          ),
+        ),
+      ),
+      dependsOnQuestionKey: 'hasSupportQuestions',
+      dependsOnAnswer: true,
+      parentQuestionKey: 'hasSupportQuestions',
+      followUpGroup: 'support',
+      appendMode: true,
     ),
     _q(
       'supportProblems',
       'websiteAndSupport',
       IntakeChatQuestionType.multiLineList,
+      'websiteAndSupport.supportProblems',
       (l) => l.intakeChatQSupportProblems,
       (s) => s.websiteAndSupport.supportProblems,
       (state, answer) => state.updateIntakeWebsiteAndSupport(
@@ -268,168 +487,838 @@ class IntakeChatFlow {
           ),
         ),
       ),
-    ),
-    _yesNo(
-      'hasSensitiveTopics',
-      'websiteAndSupport',
-      (l) => l.intakeChatQHasSensitiveTopics,
-      (s) => s.websiteAndSupport.hasSensitiveTopics,
-      (state, value) => state.updateIntakeWebsiteAndSupport(
-        state.intakeSession!.websiteAndSupport.copyWith(
-          hasSensitiveTopics: value,
-        ),
-      ),
+      dependsOnQuestionKey: 'hasSupportQuestions',
+      dependsOnAnswer: true,
+      parentQuestionKey: 'hasSupportQuestions',
+      followUpGroup: 'support',
+      appendMode: true,
     ),
     _q(
-      'sensitiveTopics',
+      'complaintsOrMisunderstandings',
       'websiteAndSupport',
       IntakeChatQuestionType.multiLineList,
-      (l) => l.intakeChatQSensitiveTopics,
-      (s) => s.websiteAndSupport.sensitiveTopics,
+      'websiteAndSupport.complaintsOrMisunderstandings',
+      (l) => l.intakeChatQComplaintsOrMisunderstandings,
+      (s) => s.websiteAndSupport.complaintsOrMisunderstandings,
       (state, answer) => state.updateIntakeWebsiteAndSupport(
         state.intakeSession!.websiteAndSupport.copyWith(
-          sensitiveTopics: _mergeListText(
-            state.intakeSession!.websiteAndSupport.sensitiveTopics,
+          complaintsOrMisunderstandings: _mergeListText(
+            state
+                .intakeSession!
+                .websiteAndSupport
+                .complaintsOrMisunderstandings,
             answer,
           ),
         ),
       ),
-      shouldAsk: (s) => s.websiteAndSupport.hasSensitiveTopics != false,
+      dependsOnQuestionKey: 'hasSupportQuestions',
+      dependsOnAnswer: true,
+      parentQuestionKey: 'hasSupportQuestions',
+      followUpGroup: 'support',
+      appendMode: true,
     ),
     _q(
-      'existingSources',
+      'supportOwner',
+      'websiteAndSupport',
+      IntakeChatQuestionType.shortText,
+      'websiteAndSupport.supportOwner',
+      (l) => l.intakeChatQSupportOwner,
+      (s) => s.websiteAndSupport.supportOwner,
+      (state, answer) => state.updateIntakeWebsiteAndSupport(
+        state.intakeSession!.websiteAndSupport.copyWith(
+          supportOwner: answer.trim(),
+        ),
+      ),
+      dependsOnQuestionKey: 'hasSupportQuestions',
+      dependsOnAnswer: true,
+      parentQuestionKey: 'hasSupportQuestions',
+      followUpGroup: 'support',
+    ),
+    _q(
+      'standardizableQuestions',
+      'websiteAndSupport',
+      IntakeChatQuestionType.multiLineList,
+      'websiteAndSupport.standardizableQuestions',
+      (l) => l.intakeChatQStandardizableQuestions,
+      (s) => s.websiteAndSupport.standardizableQuestions,
+      (state, answer) => state.updateIntakeWebsiteAndSupport(
+        state.intakeSession!.websiteAndSupport.copyWith(
+          standardizableQuestions: _mergeListText(
+            state.intakeSession!.websiteAndSupport.standardizableQuestions,
+            answer,
+          ),
+        ),
+      ),
+      dependsOnQuestionKey: 'hasSupportQuestions',
+      dependsOnAnswer: true,
+      parentQuestionKey: 'hasSupportQuestions',
+      followUpGroup: 'support',
+      appendMode: true,
+    ),
+    _q(
+      'frequentQuestions',
+      'websiteAndSupport',
+      IntakeChatQuestionType.multiLineList,
+      'websiteAndSupport.frequentQuestions',
+      (l) => l.intakeChatQFrequentQuestions,
+      (s) => s.websiteAndSupport.frequentQuestions,
+      (state, answer) => state.updateIntakeWebsiteAndSupport(
+        state.intakeSession!.websiteAndSupport.copyWith(
+          frequentQuestions: _mergeListText(
+            state.intakeSession!.websiteAndSupport.frequentQuestions,
+            answer,
+          ),
+        ),
+      ),
+      appendMode: true,
+    ),
+    _yesNo(
+      'hasSensitiveTopics',
+      'goalsAndRisks',
+      'goalsAndRisks.hasSensitiveTopics',
+      (l) => l.intakeChatQHasSensitiveTopics,
+      (s) =>
+          s.goalsAndRisks.hasSensitiveTopics ??
+          s.websiteAndSupport.hasSensitiveTopics,
+      (state, value) {
+        state.updateIntakeGoalsAndRisks(
+          state.intakeSession!.goalsAndRisks.copyWith(
+            hasSensitiveTopics: value,
+          ),
+        );
+        state.updateIntakeWebsiteAndSupport(
+          state.intakeSession!.websiteAndSupport.copyWith(
+            hasSensitiveTopics: value,
+          ),
+        );
+      },
+      followUpGroup: 'sensitive',
+    ),
+    _q(
+      'sensitiveTopics',
+      'goalsAndRisks',
+      IntakeChatQuestionType.multiLineList,
+      'goalsAndRisks.sensitiveTopics',
+      (l) => l.intakeChatQSensitiveTopics,
+      (s) => s.goalsAndRisks.sensitiveTopics.isNotEmpty
+          ? s.goalsAndRisks.sensitiveTopics
+          : s.websiteAndSupport.sensitiveTopics,
+      (state, answer) {
+        final merged = _mergeListText(
+          state.intakeSession!.goalsAndRisks.sensitiveTopics,
+          answer,
+        );
+        state.updateIntakeGoalsAndRisks(
+          state.intakeSession!.goalsAndRisks.copyWith(sensitiveTopics: merged),
+        );
+        state.updateIntakeWebsiteAndSupport(
+          state.intakeSession!.websiteAndSupport.copyWith(
+            sensitiveTopics: _mergeListText(
+              state.intakeSession!.websiteAndSupport.sensitiveTopics,
+              answer,
+            ),
+          ),
+        );
+      },
+      dependsOnQuestionKey: 'hasSensitiveTopics',
+      dependsOnAnswer: true,
+      parentQuestionKey: 'hasSensitiveTopics',
+      followUpGroup: 'sensitive',
+      appendMode: true,
+    ),
+    _q(
+      'prohibitedStatements',
+      'goalsAndRisks',
+      IntakeChatQuestionType.multiLineList,
+      'goalsAndRisks.prohibitedStatements',
+      (l) => l.intakeChatQProhibitedStatements,
+      (s) => s.goalsAndRisks.prohibitedStatements,
+      (state, answer) => state.updateIntakeGoalsAndRisks(
+        state.intakeSession!.goalsAndRisks.copyWith(
+          prohibitedStatements: _mergeListText(
+            state.intakeSession!.goalsAndRisks.prohibitedStatements,
+            answer,
+          ),
+        ),
+      ),
+      dependsOnQuestionKey: 'hasSensitiveTopics',
+      dependsOnAnswer: true,
+      parentQuestionKey: 'hasSensitiveTopics',
+      followUpGroup: 'sensitive',
+      appendMode: true,
+    ),
+    _q(
+      'botRestrictedTopics',
+      'goalsAndRisks',
+      IntakeChatQuestionType.multiLineList,
+      'goalsAndRisks.botRestrictedTopics',
+      (l) => l.intakeChatQBotRestrictedTopics,
+      (s) => s.goalsAndRisks.botRestrictedTopics,
+      (state, answer) => state.updateIntakeGoalsAndRisks(
+        state.intakeSession!.goalsAndRisks.copyWith(
+          botRestrictedTopics: _mergeListText(
+            state.intakeSession!.goalsAndRisks.botRestrictedTopics,
+            answer,
+          ),
+        ),
+      ),
+      dependsOnQuestionKey: 'hasSensitiveTopics',
+      dependsOnAnswer: true,
+      parentQuestionKey: 'hasSensitiveTopics',
+      followUpGroup: 'sensitive',
+      appendMode: true,
+    ),
+    _q(
+      'alwaysEscalateTopics',
+      'goalsAndRisks',
+      IntakeChatQuestionType.multiLineList,
+      'goalsAndRisks.alwaysEscalateTopics',
+      (l) => l.intakeChatQAlwaysEscalateTopics,
+      (s) => s.goalsAndRisks.alwaysEscalateTopics,
+      (state, answer) => state.updateIntakeGoalsAndRisks(
+        state.intakeSession!.goalsAndRisks.copyWith(
+          alwaysEscalateTopics: _mergeListText(
+            state.intakeSession!.goalsAndRisks.alwaysEscalateTopics,
+            answer,
+          ),
+        ),
+      ),
+      dependsOnQuestionKey: 'hasSensitiveTopics',
+      dependsOnAnswer: true,
+      parentQuestionKey: 'hasSensitiveTopics',
+      followUpGroup: 'sensitive',
+      appendMode: true,
+    ),
+    _q(
+      'legalRestrictions',
+      'goalsAndRisks',
+      IntakeChatQuestionType.multiLineList,
+      'goalsAndRisks.legalRestrictions',
+      (l) => l.intakeChatQLegalRestrictions,
+      (s) => s.goalsAndRisks.legalRestrictions,
+      (state, answer) => state.updateIntakeGoalsAndRisks(
+        state.intakeSession!.goalsAndRisks.copyWith(
+          legalRestrictions: _mergeListText(
+            state.intakeSession!.goalsAndRisks.legalRestrictions,
+            answer,
+          ),
+        ),
+      ),
+      dependsOnQuestionKey: 'hasSensitiveTopics',
+      dependsOnAnswer: true,
+      parentQuestionKey: 'hasSensitiveTopics',
+      followUpGroup: 'sensitive',
+      appendMode: true,
+    ),
+    _yesNo(
+      'hasMaterials',
+      'sourcesAndReviews',
+      'sourcesAndReviews.hasMaterials',
+      (l) => l.intakeChatQHasMaterials,
+      (s) => s.sourcesAndReviews.hasMaterials,
+      (state, value) => state.updateIntakeSourcesAndReviews(
+        state.intakeSession!.sourcesAndReviews.copyWith(hasMaterials: value),
+      ),
+      followUpGroup: 'materials',
+    ),
+    _q(
+      'materialDetails',
       'sourcesAndReviews',
       IntakeChatQuestionType.multiLineList,
-      (l) => l.intakeChatQExistingSources,
-      (s) => s.sourcesAndReviews.existingSources,
+      'sourcesAndReviews.materialDetails',
+      (l) => l.intakeChatQMaterialDetails,
+      (s) => s.sourcesAndReviews.materialDetails,
       (state, answer) => state.updateIntakeSourcesAndReviews(
         state.intakeSession!.sourcesAndReviews.copyWith(
+          materialDetails: _mergeListText(
+            state.intakeSession!.sourcesAndReviews.materialDetails,
+            answer,
+          ),
           existingSources: _mergeListText(
             state.intakeSession!.sourcesAndReviews.existingSources,
             answer,
           ),
         ),
       ),
+      dependsOnQuestionKey: 'hasMaterials',
+      dependsOnAnswer: true,
+      parentQuestionKey: 'hasMaterials',
+      followUpGroup: 'materials',
+      appendMode: true,
+    ),
+    _q(
+      'materialLocations',
+      'sourcesAndReviews',
+      IntakeChatQuestionType.multiLineList,
+      'sourcesAndReviews.materialLocations',
+      (l) => l.intakeChatQMaterialLocations,
+      (s) => s.sourcesAndReviews.materialLocations,
+      (state, answer) => state.updateIntakeSourcesAndReviews(
+        state.intakeSession!.sourcesAndReviews.copyWith(
+          materialLocations: _mergeListText(
+            state.intakeSession!.sourcesAndReviews.materialLocations,
+            answer,
+          ),
+        ),
+      ),
+      dependsOnQuestionKey: 'hasMaterials',
+      dependsOnAnswer: true,
+      parentQuestionKey: 'hasMaterials',
+      followUpGroup: 'materials',
+      appendMode: true,
+    ),
+    _q(
+      'materialFreshness',
+      'sourcesAndReviews',
+      IntakeChatQuestionType.shortText,
+      'sourcesAndReviews.materialFreshness',
+      (l) => l.intakeChatQMaterialFreshness,
+      (s) => s.sourcesAndReviews.materialFreshness,
+      (state, answer) => state.updateIntakeSourcesAndReviews(
+        state.intakeSession!.sourcesAndReviews.copyWith(
+          materialFreshness: answer.trim(),
+        ),
+      ),
+      dependsOnQuestionKey: 'hasMaterials',
+      dependsOnAnswer: true,
+      parentQuestionKey: 'hasMaterials',
+      followUpGroup: 'materials',
+    ),
+    _q(
+      'importantMaterials',
+      'sourcesAndReviews',
+      IntakeChatQuestionType.multiLineList,
+      'sourcesAndReviews.importantMaterials',
+      (l) => l.intakeChatQImportantMaterials,
+      (s) => s.sourcesAndReviews.importantMaterials,
+      (state, answer) => state.updateIntakeSourcesAndReviews(
+        state.intakeSession!.sourcesAndReviews.copyWith(
+          importantMaterials: _mergeListText(
+            state.intakeSession!.sourcesAndReviews.importantMaterials,
+            answer,
+          ),
+        ),
+      ),
+      dependsOnQuestionKey: 'hasMaterials',
+      dependsOnAnswer: true,
+      parentQuestionKey: 'hasMaterials',
+      followUpGroup: 'materials',
+      appendMode: true,
+    ),
+    _yesNo(
+      'materialsUsableForKnowledgeBase',
+      'sourcesAndReviews',
+      'sourcesAndReviews.materialsUsableForKnowledgeBase',
+      (l) => l.intakeChatQMaterialsUsableForKnowledgeBase,
+      (s) => s.sourcesAndReviews.materialsUsableForKnowledgeBase,
+      (state, value) => state.updateIntakeSourcesAndReviews(
+        state.intakeSession!.sourcesAndReviews.copyWith(
+          materialsUsableForKnowledgeBase: value,
+        ),
+      ),
+      dependsOnQuestionKey: 'hasMaterials',
+      dependsOnAnswer: true,
+      parentQuestionKey: 'hasMaterials',
+      followUpGroup: 'materials',
     ),
     _yesNo(
       'hasReviews',
       'sourcesAndReviews',
+      'sourcesAndReviews.hasReviews',
       (l) => l.intakeChatQHasReviews,
       (s) => s.sourcesAndReviews.hasReviews,
       (state, value) => state.updateIntakeSourcesAndReviews(
         state.intakeSession!.sourcesAndReviews.copyWith(hasReviews: value),
       ),
+      followUpGroup: 'reviews',
     ),
     _q(
-      'reviews',
+      'reviewPlatforms',
       'sourcesAndReviews',
       IntakeChatQuestionType.multiLineList,
-      (l) => l.intakeChatQReviews,
-      (s) => s.sourcesAndReviews.reviews,
+      'sourcesAndReviews.reviewPlatforms',
+      (l) => l.intakeChatQReviewPlatforms,
+      (s) => s.sourcesAndReviews.reviewPlatforms,
       (state, answer) => state.updateIntakeSourcesAndReviews(
         state.intakeSession!.sourcesAndReviews.copyWith(
+          reviewPlatforms: _mergeListText(
+            state.intakeSession!.sourcesAndReviews.reviewPlatforms,
+            answer,
+          ),
+        ),
+      ),
+      dependsOnQuestionKey: 'hasReviews',
+      dependsOnAnswer: true,
+      parentQuestionKey: 'hasReviews',
+      followUpGroup: 'reviews',
+      appendMode: true,
+    ),
+    _q(
+      'reviewCountEstimate',
+      'sourcesAndReviews',
+      IntakeChatQuestionType.shortText,
+      'sourcesAndReviews.reviewCountEstimate',
+      (l) => l.intakeChatQReviewCountEstimate,
+      (s) => s.sourcesAndReviews.reviewCountEstimate,
+      (state, answer) => state.updateIntakeSourcesAndReviews(
+        state.intakeSession!.sourcesAndReviews.copyWith(
+          reviewCountEstimate: answer.trim(),
+        ),
+      ),
+      dependsOnQuestionKey: 'hasReviews',
+      dependsOnAnswer: true,
+      parentQuestionKey: 'hasReviews',
+      followUpGroup: 'reviews',
+    ),
+    _q(
+      'reviewLinksOrFiles',
+      'sourcesAndReviews',
+      IntakeChatQuestionType.multiLineList,
+      'sourcesAndReviews.reviewLinksOrFiles',
+      (l) => l.intakeChatQReviewLinksOrFiles,
+      (s) => s.sourcesAndReviews.reviewLinksOrFiles,
+      (state, answer) => state.updateIntakeSourcesAndReviews(
+        state.intakeSession!.sourcesAndReviews.copyWith(
+          reviewLinksOrFiles: _mergeListText(
+            state.intakeSession!.sourcesAndReviews.reviewLinksOrFiles,
+            answer,
+          ),
+        ),
+      ),
+      dependsOnQuestionKey: 'hasReviews',
+      dependsOnAnswer: true,
+      parentQuestionKey: 'hasReviews',
+      followUpGroup: 'reviews',
+      appendMode: true,
+    ),
+    _q(
+      'reviewTypes',
+      'sourcesAndReviews',
+      IntakeChatQuestionType.multiLineList,
+      'sourcesAndReviews.reviewTypes',
+      (l) => l.intakeChatQReviewTypes,
+      (s) => s.sourcesAndReviews.reviewTypes,
+      (state, answer) => state.updateIntakeSourcesAndReviews(
+        state.intakeSession!.sourcesAndReviews.copyWith(
+          reviewTypes: _mergeListText(
+            state.intakeSession!.sourcesAndReviews.reviewTypes,
+            answer,
+          ),
           reviews: _mergeListText(
             state.intakeSession!.sourcesAndReviews.reviews,
             answer,
           ),
         ),
       ),
-      shouldAsk: (s) => s.sourcesAndReviews.hasReviews != false,
+      dependsOnQuestionKey: 'hasReviews',
+      dependsOnAnswer: true,
+      parentQuestionKey: 'hasReviews',
+      followUpGroup: 'reviews',
+      appendMode: true,
     ),
     _yesNo(
-      'hasSocialMentions',
+      'reviewsPubliclyUsable',
       'sourcesAndReviews',
-      (l) => l.intakeChatQHasSocialMentions,
-      (s) => s.sourcesAndReviews.hasSocialMentions,
+      'sourcesAndReviews.reviewsPubliclyUsable',
+      (l) => l.intakeChatQReviewsPubliclyUsable,
+      (s) => s.sourcesAndReviews.reviewsPubliclyUsable,
       (state, value) => state.updateIntakeSourcesAndReviews(
         state.intakeSession!.sourcesAndReviews.copyWith(
-          hasSocialMentions: value,
+          reviewsPubliclyUsable: value,
         ),
       ),
-    ),
-    _q(
-      'socialMentions',
-      'sourcesAndReviews',
-      IntakeChatQuestionType.multiLineList,
-      (l) => l.intakeChatQSocialMentions,
-      (s) => s.sourcesAndReviews.socialMentions,
-      (state, answer) => state.updateIntakeSourcesAndReviews(
-        state.intakeSession!.sourcesAndReviews.copyWith(
-          socialMentions: _mergeListText(
-            state.intakeSession!.sourcesAndReviews.socialMentions,
-            answer,
-          ),
-        ),
-      ),
-      shouldAsk: (s) => s.sourcesAndReviews.hasSocialMentions != false,
+      dependsOnQuestionKey: 'hasReviews',
+      dependsOnAnswer: true,
+      parentQuestionKey: 'hasReviews',
+      followUpGroup: 'reviews',
     ),
     _yesNo(
-      'hasTrustMaterial',
+      'reviewsEmbeddedOnWebsite',
       'sourcesAndReviews',
-      (l) => l.intakeChatQHasTrustMaterial,
-      (s) => s.sourcesAndReviews.hasTrustMaterial,
+      'sourcesAndReviews.reviewsEmbeddedOnWebsite',
+      (l) => l.intakeChatQReviewsEmbeddedOnWebsite,
+      (s) => s.sourcesAndReviews.reviewsEmbeddedOnWebsite,
       (state, value) => state.updateIntakeSourcesAndReviews(
         state.intakeSession!.sourcesAndReviews.copyWith(
-          hasTrustMaterial: value,
+          reviewsEmbeddedOnWebsite: value,
         ),
       ),
+      dependsOnQuestionKey: 'hasReviews',
+      dependsOnAnswer: true,
+      parentQuestionKey: 'hasReviews',
+      followUpGroup: 'reviews',
     ),
     _q(
-      'trustMaterial',
+      'collectReviewsPlanned',
       'sourcesAndReviews',
-      IntakeChatQuestionType.multiLineList,
-      (l) => l.intakeChatQTrustMaterial,
-      (s) => s.sourcesAndReviews.trustMaterial,
+      IntakeChatQuestionType.shortText,
+      'sourcesAndReviews.collectReviewsPlanned',
+      (l) => l.intakeChatQCollectReviewsPlanned,
+      (s) => s.sourcesAndReviews.collectReviewsPlanned,
       (state, answer) => state.updateIntakeSourcesAndReviews(
         state.intakeSession!.sourcesAndReviews.copyWith(
-          trustMaterial: _mergeListText(
-            state.intakeSession!.sourcesAndReviews.trustMaterial,
-            answer,
-          ),
+          collectReviewsPlanned: answer.trim(),
         ),
       ),
-      shouldAsk: (s) => s.sourcesAndReviews.hasTrustMaterial != false,
+      dependsOnQuestionKey: 'hasReviews',
+      dependsOnAnswer: false,
+      parentQuestionKey: 'hasReviews',
+      followUpGroup: 'reviews',
+    ),
+    _yesNo(
+      'hasSocialChannels',
+      'marketingAndChannels',
+      'marketingAndChannels.hasSocialChannels',
+      (l) => l.intakeChatQHasSocialChannels,
+      (s) => s.marketingAndChannels.hasSocialChannels,
+      (state, value) => state.updateIntakeMarketingAndChannels(
+        state.intakeSession!.marketingAndChannels.copyWith(
+          hasSocialChannels: value,
+        ),
+      ),
+      followUpGroup: 'social',
     ),
     _q(
-      'channels',
+      'socialPlatforms',
       'marketingAndChannels',
       IntakeChatQuestionType.multiLineList,
-      (l) => l.intakeChatQChannels,
-      (s) => s.marketingAndChannels.channels,
+      'marketingAndChannels.socialPlatforms',
+      (l) => l.intakeChatQSocialPlatforms,
+      (s) => s.marketingAndChannels.socialPlatforms,
       (state, answer) => state.updateIntakeMarketingAndChannels(
         state.intakeSession!.marketingAndChannels.copyWith(
+          socialPlatforms: _mergeListText(
+            state.intakeSession!.marketingAndChannels.socialPlatforms,
+            answer,
+          ),
           channels: _mergeListText(
             state.intakeSession!.marketingAndChannels.channels,
             answer,
           ),
         ),
       ),
+      dependsOnQuestionKey: 'hasSocialChannels',
+      dependsOnAnswer: true,
+      parentQuestionKey: 'hasSocialChannels',
+      followUpGroup: 'social',
+      appendMode: true,
+    ),
+    _q(
+      'socialProfileLinks',
+      'marketingAndChannels',
+      IntakeChatQuestionType.multiLineList,
+      'marketingAndChannels.socialProfileLinks',
+      (l) => l.intakeChatQSocialProfileLinks,
+      (s) => s.marketingAndChannels.socialProfileLinks,
+      (state, answer) => state.updateIntakeMarketingAndChannels(
+        state.intakeSession!.marketingAndChannels.copyWith(
+          socialProfileLinks: _mergeListText(
+            state.intakeSession!.marketingAndChannels.socialProfileLinks,
+            answer,
+          ),
+        ),
+      ),
+      dependsOnQuestionKey: 'hasSocialChannels',
+      dependsOnAnswer: true,
+      parentQuestionKey: 'hasSocialChannels',
+      followUpGroup: 'social',
+      appendMode: true,
+    ),
+    _q(
+      'activeChannels',
+      'marketingAndChannels',
+      IntakeChatQuestionType.multiLineList,
+      'marketingAndChannels.activeChannels',
+      (l) => l.intakeChatQActiveChannels,
+      (s) => s.marketingAndChannels.activeChannels,
+      (state, answer) => state.updateIntakeMarketingAndChannels(
+        state.intakeSession!.marketingAndChannels.copyWith(
+          activeChannels: _mergeListText(
+            state.intakeSession!.marketingAndChannels.activeChannels,
+            answer,
+          ),
+        ),
+      ),
+      dependsOnQuestionKey: 'hasSocialChannels',
+      dependsOnAnswer: true,
+      parentQuestionKey: 'hasSocialChannels',
+      followUpGroup: 'social',
+      appendMode: true,
+    ),
+    _q(
+      'postingFrequency',
+      'marketingAndChannels',
+      IntakeChatQuestionType.shortText,
+      'marketingAndChannels.postingFrequency',
+      (l) => l.intakeChatQPostingFrequency,
+      (s) => s.marketingAndChannels.postingFrequency,
+      (state, answer) => state.updateIntakeMarketingAndChannels(
+        state.intakeSession!.marketingAndChannels.copyWith(
+          postingFrequency: answer.trim(),
+        ),
+      ),
+      dependsOnQuestionKey: 'hasSocialChannels',
+      dependsOnAnswer: true,
+      parentQuestionKey: 'hasSocialChannels',
+      followUpGroup: 'social',
+    ),
+    _q(
+      'workingChannels',
+      'marketingAndChannels',
+      IntakeChatQuestionType.multiLineList,
+      'marketingAndChannels.workingChannels',
+      (l) => l.intakeChatQWorkingChannels,
+      (s) => s.marketingAndChannels.workingChannels,
+      (state, answer) => state.updateIntakeMarketingAndChannels(
+        state.intakeSession!.marketingAndChannels.copyWith(
+          workingChannels: _mergeListText(
+            state.intakeSession!.marketingAndChannels.workingChannels,
+            answer,
+          ),
+        ),
+      ),
+      dependsOnQuestionKey: 'hasSocialChannels',
+      dependsOnAnswer: true,
+      parentQuestionKey: 'hasSocialChannels',
+      followUpGroup: 'social',
+      appendMode: true,
+    ),
+    _q(
+      'inactiveChannels',
+      'marketingAndChannels',
+      IntakeChatQuestionType.multiLineList,
+      'marketingAndChannels.inactiveChannels',
+      (l) => l.intakeChatQInactiveChannels,
+      (s) => s.marketingAndChannels.inactiveChannels,
+      (state, answer) => state.updateIntakeMarketingAndChannels(
+        state.intakeSession!.marketingAndChannels.copyWith(
+          inactiveChannels: _mergeListText(
+            state.intakeSession!.marketingAndChannels.inactiveChannels,
+            answer,
+          ),
+        ),
+      ),
+      dependsOnQuestionKey: 'hasSocialChannels',
+      dependsOnAnswer: true,
+      parentQuestionKey: 'hasSocialChannels',
+      followUpGroup: 'social',
+      appendMode: true,
+    ),
+    _q(
+      'socialMentions',
+      'sourcesAndReviews',
+      IntakeChatQuestionType.multiLineList,
+      'sourcesAndReviews.socialMentions',
+      (l) => l.intakeChatQSocialMentions,
+      (s) => s.sourcesAndReviews.socialMentions,
+      (state, answer) {
+        state.updateIntakeSourcesAndReviews(
+          state.intakeSession!.sourcesAndReviews.copyWith(
+            hasSocialMentions: true,
+            socialMentions: _mergeListText(
+              state.intakeSession!.sourcesAndReviews.socialMentions,
+              answer,
+            ),
+          ),
+        );
+      },
+      dependsOnQuestionKey: 'hasSocialChannels',
+      dependsOnAnswer: true,
+      parentQuestionKey: 'hasSocialChannels',
+      followUpGroup: 'social',
+      appendMode: true,
+    ),
+    _q(
+      'futureSocialPlatforms',
+      'marketingAndChannels',
+      IntakeChatQuestionType.shortText,
+      'marketingAndChannels.futureSocialPlatforms',
+      (l) => l.intakeChatQFutureSocialPlatforms,
+      (s) => s.marketingAndChannels.futureSocialPlatforms,
+      (state, answer) => state.updateIntakeMarketingAndChannels(
+        state.intakeSession!.marketingAndChannels.copyWith(
+          futureSocialPlatforms: answer.trim(),
+        ),
+      ),
+      dependsOnQuestionKey: 'hasSocialChannels',
+      dependsOnAnswer: false,
+      parentQuestionKey: 'hasSocialChannels',
+      followUpGroup: 'social',
+    ),
+    _yesNo(
+      'hasRunAds',
+      'marketingAndChannels',
+      'marketingAndChannels.hasRunAds',
+      (l) => l.intakeChatQHasRunAds,
+      (s) => s.marketingAndChannels.hasRunAds,
+      (state, value) => state.updateIntakeMarketingAndChannels(
+        state.intakeSession!.marketingAndChannels.copyWith(hasRunAds: value),
+      ),
+      followUpGroup: 'ads',
+    ),
+    _q(
+      'advertisingChannels',
+      'marketingAndChannels',
+      IntakeChatQuestionType.multiLineList,
+      'marketingAndChannels.advertisingChannels',
+      (l) => l.intakeChatQAdvertisingChannels,
+      (s) => s.marketingAndChannels.advertisingChannels,
+      (state, answer) => state.updateIntakeMarketingAndChannels(
+        state.intakeSession!.marketingAndChannels.copyWith(
+          advertisingChannels: _mergeListText(
+            state.intakeSession!.marketingAndChannels.advertisingChannels,
+            answer,
+          ),
+          channels: _mergeListText(
+            state.intakeSession!.marketingAndChannels.channels,
+            answer,
+          ),
+        ),
+      ),
+      dependsOnQuestionKey: 'hasRunAds',
+      dependsOnAnswer: true,
+      parentQuestionKey: 'hasRunAds',
+      followUpGroup: 'ads',
+      appendMode: true,
     ),
     _q(
       'campaigns',
       'marketingAndChannels',
       IntakeChatQuestionType.longText,
+      'marketingAndChannels.campaigns',
       (l) => l.intakeChatQCampaigns,
       (s) => s.marketingAndChannels.campaigns,
       (state, answer) => state.updateIntakeMarketingAndChannels(
         state.intakeSession!.marketingAndChannels.copyWith(campaigns: answer),
       ),
+      dependsOnQuestionKey: 'hasRunAds',
+      dependsOnAnswer: true,
+      parentQuestionKey: 'hasRunAds',
+      followUpGroup: 'ads',
     ),
     _q(
-      'workedNotWorked',
+      'approximateBudget',
+      'marketingAndChannels',
+      IntakeChatQuestionType.shortText,
+      'marketingAndChannels.approximateBudget',
+      (l) => l.intakeChatQApproximateBudget,
+      (s) => s.marketingAndChannels.approximateBudget,
+      (state, answer) => state.updateIntakeMarketingAndChannels(
+        state.intakeSession!.marketingAndChannels.copyWith(
+          approximateBudget: answer.trim(),
+        ),
+      ),
+      dependsOnQuestionKey: 'hasRunAds',
+      dependsOnAnswer: true,
+      parentQuestionKey: 'hasRunAds',
+      followUpGroup: 'ads',
+    ),
+    _q(
+      'successfulMeasures',
+      'marketingAndChannels',
+      IntakeChatQuestionType.multiLineList,
+      'marketingAndChannels.successfulMeasures',
+      (l) => l.intakeChatQSuccessfulMeasures,
+      (s) => s.marketingAndChannels.successfulMeasures,
+      (state, answer) => state.updateIntakeMarketingAndChannels(
+        state.intakeSession!.marketingAndChannels.copyWith(
+          successfulMeasures: _mergeListText(
+            state.intakeSession!.marketingAndChannels.successfulMeasures,
+            answer,
+          ),
+          worked: _mergeListText(
+            state.intakeSession!.marketingAndChannels.worked,
+            answer,
+          ),
+        ),
+      ),
+      dependsOnQuestionKey: 'hasRunAds',
+      dependsOnAnswer: true,
+      parentQuestionKey: 'hasRunAds',
+      followUpGroup: 'ads',
+      appendMode: true,
+    ),
+    _q(
+      'unsuccessfulMeasures',
+      'marketingAndChannels',
+      IntakeChatQuestionType.multiLineList,
+      'marketingAndChannels.unsuccessfulMeasures',
+      (l) => l.intakeChatQUnsuccessfulMeasures,
+      (s) => s.marketingAndChannels.unsuccessfulMeasures,
+      (state, answer) => state.updateIntakeMarketingAndChannels(
+        state.intakeSession!.marketingAndChannels.copyWith(
+          unsuccessfulMeasures: _mergeListText(
+            state.intakeSession!.marketingAndChannels.unsuccessfulMeasures,
+            answer,
+          ),
+          notWorked: _mergeListText(
+            state.intakeSession!.marketingAndChannels.notWorked,
+            answer,
+          ),
+        ),
+      ),
+      dependsOnQuestionKey: 'hasRunAds',
+      dependsOnAnswer: true,
+      parentQuestionKey: 'hasRunAds',
+      followUpGroup: 'ads',
+      appendMode: true,
+    ),
+    _q(
+      'availableMetrics',
       'marketingAndChannels',
       IntakeChatQuestionType.longText,
-      (l) => l.intakeChatQWorkedNotWorked,
-      (s) =>
-          '${s.marketingAndChannels.worked}\n${s.marketingAndChannels.notWorked}',
+      'marketingAndChannels.availableMetrics',
+      (l) => l.intakeChatQAvailableMetrics,
+      (s) => s.marketingAndChannels.availableMetrics,
       (state, answer) => state.updateIntakeMarketingAndChannels(
-        state.intakeSession!.marketingAndChannels.copyWith(worked: answer),
+        state.intakeSession!.marketingAndChannels.copyWith(
+          availableMetrics: answer.trim(),
+        ),
       ),
+      dependsOnQuestionKey: 'hasRunAds',
+      dependsOnAnswer: true,
+      parentQuestionKey: 'hasRunAds',
+      followUpGroup: 'ads',
+    ),
+    _q(
+      'adAccountAccess',
+      'marketingAndChannels',
+      IntakeChatQuestionType.shortText,
+      'marketingAndChannels.adAccountAccess',
+      (l) => l.intakeChatQAdAccountAccess,
+      (s) => s.marketingAndChannels.adAccountAccess,
+      (state, answer) => state.updateIntakeMarketingAndChannels(
+        state.intakeSession!.marketingAndChannels.copyWith(
+          adAccountAccess: answer.trim(),
+        ),
+      ),
+      dependsOnQuestionKey: 'hasRunAds',
+      dependsOnAnswer: true,
+      parentQuestionKey: 'hasRunAds',
+      followUpGroup: 'ads',
+    ),
+    _q(
+      'futureAdChannels',
+      'marketingAndChannels',
+      IntakeChatQuestionType.shortText,
+      'marketingAndChannels.futureAdChannels',
+      (l) => l.intakeChatQFutureAdChannels,
+      (s) => s.marketingAndChannels.futureAdChannels,
+      (state, answer) => state.updateIntakeMarketingAndChannels(
+        state.intakeSession!.marketingAndChannels.copyWith(
+          futureAdChannels: answer.trim(),
+        ),
+      ),
+      dependsOnQuestionKey: 'hasRunAds',
+      dependsOnAnswer: false,
+      parentQuestionKey: 'hasRunAds',
+      followUpGroup: 'ads',
     ),
     _q(
       'reachProblems',
       'marketingAndChannels',
       IntakeChatQuestionType.longText,
+      'marketingAndChannels.reachProblems',
       (l) => l.intakeChatQReachProblems,
       (s) => s.marketingAndChannels.reachProblems,
       (state, answer) => state.updateIntakeMarketingAndChannels(
@@ -442,6 +1331,7 @@ class IntakeChatFlow {
       'companyGoals',
       'goalsAndRisks',
       IntakeChatQuestionType.longText,
+      'goalsAndRisks.companyGoals',
       (l) => l.intakeChatQCompanyGoals,
       (s) => s.goalsAndRisks.companyGoals,
       (state, answer) => state.updateIntakeGoalsAndRisks(
@@ -454,6 +1344,7 @@ class IntakeChatFlow {
       'shortTermPriorities',
       'goalsAndRisks',
       IntakeChatQuestionType.longText,
+      'goalsAndRisks.shortTermPriorities',
       (l) => l.intakeChatQShortTermPriorities,
       (s) => s.goalsAndRisks.shortTermPriorities,
       (state, answer) => state.updateIntakeGoalsAndRisks(
@@ -466,6 +1357,7 @@ class IntakeChatFlow {
       'forbiddenClaims',
       'goalsAndRisks',
       IntakeChatQuestionType.multiLineList,
+      'goalsAndRisks.forbiddenClaims',
       (l) => l.intakeChatQForbiddenClaims,
       (s) => s.goalsAndRisks.forbiddenClaims,
       (state, answer) => state.updateIntakeGoalsAndRisks(
@@ -476,21 +1368,7 @@ class IntakeChatFlow {
           ),
         ),
       ),
-    ),
-    _q(
-      'botRestrictedTopics',
-      'goalsAndRisks',
-      IntakeChatQuestionType.multiLineList,
-      (l) => l.intakeChatQBotRestrictedTopics,
-      (s) => s.goalsAndRisks.botRestrictedTopics,
-      (state, answer) => state.updateIntakeGoalsAndRisks(
-        state.intakeSession!.goalsAndRisks.copyWith(
-          botRestrictedTopics: _mergeListText(
-            state.intakeSession!.goalsAndRisks.botRestrictedTopics,
-            answer,
-          ),
-        ),
-      ),
+      appendMode: true,
     ),
   ];
 
@@ -522,6 +1400,42 @@ class IntakeChatFlow {
     return questions.length;
   }
 
+  static List<IntakeChatQuestion> relevantQuestions(IntakeSession session) {
+    return [
+      for (final question in questions)
+        if (_dependencyMatches(question, session) &&
+            !session.skippedQuestionKeys.contains(question.questionKey))
+          question,
+    ];
+  }
+
+  static int answeredRelevantCount(IntakeSession session) {
+    return relevantQuestions(
+      session,
+    ).where((question) => question.isAnswered(session)).length;
+  }
+
+  static String? validateAnswer(
+    IntakeChatQuestion question,
+    String answer,
+    AppLocalizations l,
+  ) {
+    final clean = answer.trim();
+    if (clean.isEmpty) {
+      return question.required
+          ? l.intakeChatRequiredAnswer
+          : l.intakeChatEmptyAnswer;
+    }
+    if (question.type == IntakeChatQuestionType.yesNo &&
+        !_isYesNoAnswer(clean)) {
+      return l.intakeChatYesNoWarning;
+    }
+    if (question.validation != null && !question.validation!(clean)) {
+      return question.warningText?.call(l);
+    }
+    return null;
+  }
+
   static void saveAnswer(
     AppState state,
     IntakeChatQuestion question,
@@ -534,6 +1448,19 @@ class IntakeChatFlow {
     if (nextQuestion(state.intakeSession!) == null) {
       state.markIntakeChatCompleted();
     }
+  }
+
+  static String? detailIntro(AppLocalizations l, IntakeChatQuestion question) {
+    return switch (question.followUpGroup) {
+      'website' => l.intakeChatDetailWebsite,
+      'support' => l.intakeChatDetailSupport,
+      'sensitive' => l.intakeChatDetailSensitive,
+      'materials' => l.intakeChatDetailMaterials,
+      'reviews' => l.intakeChatDetailReviews,
+      'social' => l.intakeChatDetailSocial,
+      'ads' => l.intakeChatDetailAds,
+      _ => null,
+    };
   }
 
   static String blockLabel(AppLocalizations l, String blockKey) {
@@ -550,9 +1477,20 @@ class IntakeChatFlow {
   }
 
   static bool _isOpen(IntakeChatQuestion question, IntakeSession session) {
-    return question.shouldAsk(session) &&
+    return _dependencyMatches(question, session) &&
         !session.skippedQuestionKeys.contains(question.questionKey) &&
         !question.isAnswered(session);
+  }
+
+  static bool _dependencyMatches(
+    IntakeChatQuestion question,
+    IntakeSession session,
+  ) {
+    final dependency = question.dependsOnQuestionKey;
+    if (dependency == null) return true;
+    final parent = questions.where((q) => q.questionKey == dependency).first;
+    final parentValue = parent.boolValue?.call(session);
+    return parentValue == question.dependsOnAnswer;
   }
 }
 
@@ -560,37 +1498,77 @@ IntakeChatQuestion _q(
   String questionKey,
   String blockKey,
   IntakeChatQuestionType type,
+  String targetField,
   String Function(AppLocalizations l) text,
   String Function(IntakeSession session) value,
   void Function(AppState state, String answer) saveAnswer, {
-  bool Function(IntakeSession session)? shouldAsk,
+  String? dependsOnQuestionKey,
+  bool? dependsOnAnswer,
+  bool required = false,
+  bool skippable = true,
+  bool appendMode = false,
+  String? followUpGroup,
+  String? parentQuestionKey,
+  String Function(AppLocalizations l)? helpText,
+  bool Function(String answer)? validation,
+  String Function(AppLocalizations l)? warningText,
 }) {
   return IntakeChatQuestion(
     questionKey: questionKey,
     blockKey: blockKey,
     type: type,
+    targetField: targetField,
     text: text,
-    shouldAsk: shouldAsk ?? (_) => true,
-    isAnswered: (session) => value(session).trim().isNotEmpty,
+    value: value,
     saveAnswer: saveAnswer,
+    dependsOnQuestionKey: dependsOnQuestionKey,
+    dependsOnAnswer: dependsOnAnswer,
+    required: required,
+    skippable: skippable,
+    appendMode: appendMode,
+    followUpGroup: followUpGroup,
+    parentQuestionKey: parentQuestionKey,
+    helpText: helpText,
+    validation: validation,
+    warningText: warningText,
   );
 }
 
 IntakeChatQuestion _yesNo(
   String questionKey,
   String blockKey,
+  String targetField,
   String Function(AppLocalizations l) text,
   bool? Function(IntakeSession session) value,
-  void Function(AppState state, bool answer) saveAnswer,
-) {
+  void Function(AppState state, bool answer) saveAnswer, {
+  String? dependsOnQuestionKey,
+  bool? dependsOnAnswer,
+  bool required = false,
+  bool skippable = true,
+  String? followUpGroup,
+  String? parentQuestionKey,
+  String Function(AppLocalizations l)? helpText,
+}) {
   return IntakeChatQuestion(
     questionKey: questionKey,
     blockKey: blockKey,
     type: IntakeChatQuestionType.yesNo,
+    targetField: targetField,
     text: text,
-    shouldAsk: (_) => true,
-    isAnswered: (session) => value(session) != null,
+    value: (session) {
+      final answer = value(session);
+      if (answer == null) return '';
+      return answer ? 'yes' : 'no';
+    },
+    boolValue: value,
     saveAnswer: (state, answer) => saveAnswer(state, _parseYes(answer)),
+    dependsOnQuestionKey: dependsOnQuestionKey,
+    dependsOnAnswer: dependsOnAnswer,
+    required: required,
+    skippable: skippable,
+    followUpGroup: followUpGroup,
+    parentQuestionKey: parentQuestionKey,
+    helpText: helpText,
   );
 }
 
@@ -601,6 +1579,30 @@ bool _parseYes(String value) {
       normalized == 'j' ||
       normalized == 'y' ||
       normalized == 'true';
+}
+
+bool _isYesNoAnswer(String value) {
+  final normalized = value.trim().toLowerCase();
+  return normalized == 'yes' ||
+      normalized == 'ja' ||
+      normalized == 'j' ||
+      normalized == 'y' ||
+      normalized == 'true' ||
+      normalized == 'no' ||
+      normalized == 'nein' ||
+      normalized == 'n' ||
+      normalized == 'false';
+}
+
+bool _looksLikeUrl(String value) {
+  final clean = value.trim().toLowerCase();
+  return clean.startsWith('http://') ||
+      clean.startsWith('https://') ||
+      (clean.contains('.') && !clean.contains(' '));
+}
+
+bool _looksLikeEmail(String value) {
+  return RegExp(r'^[^@\s]+@[^@\s]+\.[^@\s]+$').hasMatch(value.trim());
 }
 
 String _mergeListText(String current, String addition) {

@@ -627,6 +627,53 @@ class AppLocalizationsEn extends AppLocalizations {
   String get intakeChatSkipped => 'Question skipped.';
 
   @override
+  String get intakeChatRequiredAnswer =>
+      'This question is required. Please enter an answer.';
+
+  @override
+  String get intakeChatYesNoWarning => 'Please answer with yes or no.';
+
+  @override
+  String get intakeChatUrlWarning =>
+      'This does not look like a website URL. Please check it briefly.';
+
+  @override
+  String get intakeChatEmailWarning =>
+      'This email address does not look valid. Please check the format.';
+
+  @override
+  String get intakeChatListHint =>
+      'Separate multiple entries with commas or line breaks.';
+
+  @override
+  String get intakeChatDetailWebsite =>
+      'Thanks. Let us capture the website details briefly.';
+
+  @override
+  String get intakeChatDetailSupport =>
+      'Thanks. Let us collect the key support questions.';
+
+  @override
+  String get intakeChatDetailSensitive =>
+      'Thanks. Let us capture the sensitive rules more precisely.';
+
+  @override
+  String get intakeChatDetailMaterials =>
+      'Thanks. Let us capture the existing materials briefly.';
+
+  @override
+  String get intakeChatDetailReviews =>
+      'Thanks. Let us go through the review and trust details.';
+
+  @override
+  String get intakeChatDetailSocial =>
+      'Thanks. Let us capture the social media details.';
+
+  @override
+  String get intakeChatDetailAds =>
+      'Thanks. Let us collect the previous advertising experience.';
+
+  @override
   String get intakeChatQCompanyName => 'What is the company name?';
 
   @override
@@ -650,6 +697,24 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get intakeChatQWebsite => 'What is the website URL?';
+
+  @override
+  String get intakeChatQHasShop => 'Is there an online shop?';
+
+  @override
+  String get intakeChatQHasFaqArea =>
+      'Is there an FAQ or support area on the website?';
+
+  @override
+  String get intakeChatQWebsiteMaintainer =>
+      'Who currently maintains the website?';
+
+  @override
+  String get intakeChatQCanEditWebsiteQuickly =>
+      'Can the company change website content itself on short notice?';
+
+  @override
+  String get intakeChatQWebsitePlanned => 'Is a website planned?';
 
   @override
   String get intakeChatQSupportEmail => 'Which support email should be used?';
@@ -697,6 +762,34 @@ class AppLocalizationsEn extends AppLocalizations {
       'Which website or landing pages are important?';
 
   @override
+  String get intakeChatQHasSupportQuestions =>
+      'Are there recurring support questions or customer issues?';
+
+  @override
+  String get intakeChatQPreSalesQuestions =>
+      'Which questions come up frequently before purchase?';
+
+  @override
+  String get intakeChatQAfterSalesQuestions =>
+      'Which questions come up frequently after purchase?';
+
+  @override
+  String get intakeChatQTechnicalProblems =>
+      'Which technical problems occur frequently?';
+
+  @override
+  String get intakeChatQComplaintsOrMisunderstandings =>
+      'Which complaints or misunderstandings occur?';
+
+  @override
+  String get intakeChatQSupportOwner =>
+      'Who currently answers these questions?';
+
+  @override
+  String get intakeChatQStandardizableQuestions =>
+      'Which questions could be answered in a standardized way?';
+
+  @override
   String get intakeChatQFrequentQuestions =>
       'Which questions do customers ask most often?';
 
@@ -713,11 +806,73 @@ class AppLocalizationsEn extends AppLocalizations {
       'Which sensitive questions or topics should be handled carefully?';
 
   @override
+  String get intakeChatQProhibitedStatements =>
+      'Which statements or wordings should be avoided?';
+
+  @override
+  String get intakeChatQAlwaysEscalateTopics =>
+      'Which topics should always be handed over to a human?';
+
+  @override
+  String get intakeChatQLegalRestrictions =>
+      'Are there legal or industry-specific restrictions?';
+
+  @override
+  String get intakeChatQHasMaterials =>
+      'Are there existing materials such as PDFs, guides, or presentations?';
+
+  @override
+  String get intakeChatQMaterialDetails =>
+      'Which materials exist specifically?';
+
+  @override
+  String get intakeChatQMaterialLocations =>
+      'Where are these materials stored?';
+
+  @override
+  String get intakeChatQMaterialFreshness =>
+      'Are the materials current or partly outdated?';
+
+  @override
+  String get intakeChatQImportantMaterials =>
+      'Which materials are especially important?';
+
+  @override
+  String get intakeChatQMaterialsUsableForKnowledgeBase =>
+      'May these materials be used for the knowledge base?';
+
+  @override
   String get intakeChatQExistingSources =>
       'Which PDFs, guides, notes, or materials already exist?';
 
   @override
   String get intakeChatQHasReviews => 'Are there reviews or testimonials?';
+
+  @override
+  String get intakeChatQReviewPlatforms => 'Where are these reviews located?';
+
+  @override
+  String get intakeChatQReviewCountEstimate =>
+      'Roughly how many reviews are there?';
+
+  @override
+  String get intakeChatQReviewLinksOrFiles =>
+      'Are there links, files, or screenshots for the reviews?';
+
+  @override
+  String get intakeChatQReviewTypes => 'What type of reviews are they?';
+
+  @override
+  String get intakeChatQReviewsPubliclyUsable =>
+      'Can the reviews be used publicly?';
+
+  @override
+  String get intakeChatQReviewsEmbeddedOnWebsite =>
+      'Are they already embedded on the website?';
+
+  @override
+  String get intakeChatQCollectReviewsPlanned =>
+      'Should trust or review material be collected intentionally in the future?';
 
   @override
   String get intakeChatQReviews =>
@@ -739,12 +894,69 @@ class AppLocalizationsEn extends AppLocalizations {
   String get intakeChatQTrustMaterial => 'Which trust material is available?';
 
   @override
+  String get intakeChatQHasSocialChannels =>
+      'Are there active social media channels?';
+
+  @override
+  String get intakeChatQSocialPlatforms => 'Which platforms are used?';
+
+  @override
+  String get intakeChatQSocialProfileLinks =>
+      'What are the links or profile names?';
+
+  @override
+  String get intakeChatQActiveChannels =>
+      'Which channels are currently active?';
+
+  @override
+  String get intakeChatQPostingFrequency =>
+      'How often is content posted roughly?';
+
+  @override
+  String get intakeChatQWorkingChannels => 'Which channels work well?';
+
+  @override
+  String get intakeChatQInactiveChannels => 'Which channels are inactive?';
+
+  @override
+  String get intakeChatQFutureSocialPlatforms =>
+      'Which platform would generally be interesting?';
+
+  @override
   String get intakeChatQChannels =>
       'Which marketing or communication channels have been used so far?';
 
   @override
+  String get intakeChatQHasRunAds => 'Has advertising been run before?';
+
+  @override
+  String get intakeChatQAdvertisingChannels =>
+      'On which channels was advertising run?';
+
+  @override
   String get intakeChatQCampaigns =>
       'Which marketing activities have been tried so far?';
+
+  @override
+  String get intakeChatQApproximateBudget => 'What was the approximate budget?';
+
+  @override
+  String get intakeChatQSuccessfulMeasures => 'What worked?';
+
+  @override
+  String get intakeChatQUnsuccessfulMeasures => 'What did not work?';
+
+  @override
+  String get intakeChatQAvailableMetrics =>
+      'Are there figures for clicks, leads, sales, or inquiries?';
+
+  @override
+  String get intakeChatQAdAccountAccess =>
+      'Is there access to ad accounts or reports?';
+
+  @override
+  String get intakeChatQFutureAdChannels =>
+      'Which advertising channels should be checked in the future?';
 
   @override
   String get intakeChatQWorkedNotWorked =>
