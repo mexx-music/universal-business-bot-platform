@@ -289,6 +289,7 @@ class _IntakeChatScreenState extends State<IntakeChatScreen> {
       context: context,
       barrierDismissible: false,
       builder: (_) => IntakeAnswerDialog(
+        key: ValueKey('intake-answer-${question.questionKey}'),
         question: question,
         initialValue: question.value(session),
         defaultValue: question.defaultValue?.call(session) ?? '',
@@ -341,7 +342,11 @@ class _IntakeChatScreenState extends State<IntakeChatScreen> {
     final result = await showDialog<IntakeChoiceDialogResult>(
       context: context,
       barrierDismissible: false,
-      builder: (_) => IntakeChoiceDialog(question: question, session: session),
+      builder: (_) => IntakeChoiceDialog(
+        key: ValueKey('intake-choice-${question.questionKey}'),
+        question: question,
+        session: session,
+      ),
     );
     if (!mounted) return;
     setState(() {

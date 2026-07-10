@@ -32,6 +32,7 @@ class IntakeChatQuestion {
   final String Function(AppLocalizations l) text;
   final String Function(AppLocalizations l)? helpText;
   final String Function(AppLocalizations l)? inputHint;
+  final String Function(AppLocalizations l)? exampleText;
   final String Function(IntakeSession session)? defaultValue;
   final List<String> Function(IntakeSession session, AppLocalizations l)?
   choiceOptions;
@@ -63,6 +64,7 @@ class IntakeChatQuestion {
     this.parentQuestionKey,
     this.helpText,
     this.inputHint,
+    this.exampleText,
     this.defaultValue,
     this.choiceOptions,
     this.allowMultiple = false,
@@ -127,6 +129,7 @@ class IntakeChatFlow {
       ),
       required: true,
       skippable: false,
+      exampleText: (l) => l.intakeChatExampleShortDescription,
     ),
     _q(
       'industry',
@@ -138,6 +141,7 @@ class IntakeChatFlow {
       (state, answer) => state.updateIntakeBasics(
         state.intakeSession!.basics.copyWith(industry: answer.trim()),
       ),
+      exampleText: (l) => l.intakeChatExampleIndustry,
     ),
     _choice(
       'country',
@@ -219,6 +223,7 @@ class IntakeChatFlow {
           s.basics.website.trim().isEmpty ? 'https://' : s.basics.website,
       validation: _looksLikeUrl,
       warningText: (l) => l.intakeChatUrlWarning,
+      exampleText: (l) => l.intakeChatExampleWebsiteUrl,
     ),
     _yesNo(
       'hasShop',
@@ -253,6 +258,7 @@ class IntakeChatFlow {
       defaultValue: (_) => 'https://',
       validation: _looksLikeUrl,
       warningText: (l) => l.intakeChatUrlWarning,
+      exampleText: (l) => l.intakeChatExampleShopUrl,
     ),
     _q(
       'importantPages',
@@ -274,6 +280,7 @@ class IntakeChatFlow {
       parentQuestionKey: 'hasWebsite',
       followUpGroup: 'website',
       appendMode: true,
+      exampleText: (l) => l.intakeChatExampleWebsitePages,
     ),
     _yesNo(
       'hasFaqArea',
@@ -308,6 +315,7 @@ class IntakeChatFlow {
       defaultValue: (_) => 'https://',
       validation: _looksLikeUrl,
       warningText: (l) => l.intakeChatUrlWarning,
+      exampleText: (l) => l.intakeChatExampleFaqUrl,
     ),
     _q(
       'websiteMaintainer',
@@ -371,6 +379,7 @@ class IntakeChatFlow {
       ),
       validation: _looksLikeEmail,
       warningText: (l) => l.intakeChatEmailWarning,
+      exampleText: (l) => l.intakeChatExampleSupportEmail,
     ),
     _q(
       'supportPhone',
@@ -382,6 +391,7 @@ class IntakeChatFlow {
       (state, answer) => state.updateIntakeBasics(
         state.intakeSession!.basics.copyWith(supportPhone: answer.trim()),
       ),
+      exampleText: (l) => l.intakeChatExampleSupportPhone,
     ),
     _q(
       'importantProducts',
@@ -399,6 +409,7 @@ class IntakeChatFlow {
         ),
       ),
       appendMode: true,
+      exampleText: (l) => l.intakeChatExampleImportantProducts,
     ),
     _q(
       'mainProduct',
@@ -410,6 +421,7 @@ class IntakeChatFlow {
       (state, answer) => state.updateIntakeProducts(
         state.intakeSession!.products.copyWith(mainProduct: answer.trim()),
       ),
+      exampleText: (l) => l.intakeChatExampleMainProduct,
     ),
     _q(
       'priorityProducts',
@@ -427,6 +439,7 @@ class IntakeChatFlow {
         ),
       ),
       appendMode: true,
+      exampleText: (l) => l.intakeChatExampleImportantProducts,
     ),
     _q(
       'explanationNeeded',
@@ -453,6 +466,7 @@ class IntakeChatFlow {
       ),
       choiceOptions: (_, l) => _splitOptions(l.intakeChoiceTargetGroupOptions),
       allowOther: true,
+      exampleText: (l) => l.intakeChatExampleTargetGroup,
     ),
     _choice(
       'marketType',
@@ -491,6 +505,7 @@ class IntakeChatFlow {
           customerBenefit: answer.trim(),
         ),
       ),
+      exampleText: (l) => l.intakeChatExampleCustomerBenefit,
     ),
     _q(
       'differentiation',
@@ -558,6 +573,7 @@ class IntakeChatFlow {
       parentQuestionKey: 'hasSupportQuestions',
       followUpGroup: 'support',
       appendMode: true,
+      exampleText: (l) => l.intakeChatExampleSupportQuestions,
     ),
     _q(
       'afterSalesQuestions',
@@ -579,6 +595,7 @@ class IntakeChatFlow {
       parentQuestionKey: 'hasSupportQuestions',
       followUpGroup: 'support',
       appendMode: true,
+      exampleText: (l) => l.intakeChatExampleSupportQuestions,
     ),
     _q(
       'technicalProblems',
@@ -600,6 +617,7 @@ class IntakeChatFlow {
       parentQuestionKey: 'hasSupportQuestions',
       followUpGroup: 'support',
       appendMode: true,
+      exampleText: (l) => l.intakeChatExampleSupportProblems,
     ),
     _q(
       'supportProblems',
@@ -621,6 +639,7 @@ class IntakeChatFlow {
       parentQuestionKey: 'hasSupportQuestions',
       followUpGroup: 'support',
       appendMode: true,
+      exampleText: (l) => l.intakeChatExampleSupportProblems,
     ),
     _q(
       'complaintsOrMisunderstandings',
@@ -645,6 +664,7 @@ class IntakeChatFlow {
       parentQuestionKey: 'hasSupportQuestions',
       followUpGroup: 'support',
       appendMode: true,
+      exampleText: (l) => l.intakeChatExampleSupportProblems,
     ),
     _q(
       'supportOwner',
@@ -700,6 +720,7 @@ class IntakeChatFlow {
         ),
       ),
       appendMode: true,
+      exampleText: (l) => l.intakeChatExampleSupportQuestions,
     ),
     _yesNo(
       'hasSensitiveTopics',
@@ -754,6 +775,7 @@ class IntakeChatFlow {
       parentQuestionKey: 'hasSensitiveTopics',
       followUpGroup: 'sensitive',
       allowOther: true,
+      exampleText: (l) => l.intakeChatExampleSensitiveTopics,
     ),
     _q(
       'prohibitedStatements',
@@ -775,6 +797,7 @@ class IntakeChatFlow {
       parentQuestionKey: 'hasSensitiveTopics',
       followUpGroup: 'sensitive',
       appendMode: true,
+      exampleText: (l) => l.intakeChatExampleNoGoStatements,
     ),
     _q(
       'botRestrictedTopics',
@@ -796,6 +819,7 @@ class IntakeChatFlow {
       parentQuestionKey: 'hasSensitiveTopics',
       followUpGroup: 'sensitive',
       appendMode: true,
+      exampleText: (l) => l.intakeChatExampleSensitiveTopics,
     ),
     _q(
       'alwaysEscalateTopics',
@@ -817,6 +841,7 @@ class IntakeChatFlow {
       parentQuestionKey: 'hasSensitiveTopics',
       followUpGroup: 'sensitive',
       appendMode: true,
+      exampleText: (l) => l.intakeChatExampleEscalationTopics,
     ),
     _q(
       'legalRestrictions',
@@ -875,6 +900,7 @@ class IntakeChatFlow {
       parentQuestionKey: 'hasMaterials',
       followUpGroup: 'materials',
       allowOther: true,
+      exampleText: (l) => l.intakeChatExampleMaterials,
     ),
     _q(
       'materialLocations',
@@ -896,6 +922,7 @@ class IntakeChatFlow {
       parentQuestionKey: 'hasMaterials',
       followUpGroup: 'materials',
       appendMode: true,
+      exampleText: (l) => l.intakeChatExampleMaterialLocations,
     ),
     _q(
       'materialFreshness',
@@ -934,6 +961,7 @@ class IntakeChatFlow {
       parentQuestionKey: 'hasMaterials',
       followUpGroup: 'materials',
       appendMode: true,
+      exampleText: (l) => l.intakeChatExampleMaterials,
     ),
     _yesNo(
       'materialsUsableForKnowledgeBase',
@@ -1001,6 +1029,7 @@ class IntakeChatFlow {
       dependsOnAnswer: true,
       parentQuestionKey: 'hasReviews',
       followUpGroup: 'reviews',
+      exampleText: (l) => l.intakeChatExampleReviewCount,
     ),
     _q(
       'reviewLinksOrFiles',
@@ -1022,6 +1051,7 @@ class IntakeChatFlow {
       parentQuestionKey: 'hasReviews',
       followUpGroup: 'reviews',
       appendMode: true,
+      exampleText: (l) => l.intakeChatExampleReviewLinks,
     ),
     _q(
       'reviewTypes',
@@ -1157,6 +1187,7 @@ class IntakeChatFlow {
       parentQuestionKey: 'hasSocialChannels',
       followUpGroup: 'social',
       appendMode: true,
+      exampleText: (l) => l.intakeChatExampleSocialProfileLinks,
     ),
     _choice(
       'activeChannels',
@@ -1180,6 +1211,7 @@ class IntakeChatFlow {
       dependsOnAnswer: true,
       parentQuestionKey: 'hasSocialChannels',
       followUpGroup: 'social',
+      exampleText: (l) => l.intakeChatExamplePostingFrequency,
     ),
     _q(
       'postingFrequency',
@@ -1337,6 +1369,7 @@ class IntakeChatFlow {
       dependsOnAnswer: true,
       parentQuestionKey: 'hasRunAds',
       followUpGroup: 'ads',
+      exampleText: (l) => l.intakeChatExampleCampaigns,
     ),
     _q(
       'approximateBudget',
@@ -1354,6 +1387,7 @@ class IntakeChatFlow {
       dependsOnAnswer: true,
       parentQuestionKey: 'hasRunAds',
       followUpGroup: 'ads',
+      exampleText: (l) => l.intakeChatExampleAdBudget,
     ),
     _q(
       'successfulMeasures',
@@ -1379,6 +1413,7 @@ class IntakeChatFlow {
       parentQuestionKey: 'hasRunAds',
       followUpGroup: 'ads',
       appendMode: true,
+      exampleText: (l) => l.intakeChatExampleAdResults,
     ),
     _q(
       'unsuccessfulMeasures',
@@ -1483,6 +1518,7 @@ class IntakeChatFlow {
       ),
       choiceOptions: (_, l) => _splitOptions(l.intakeChoiceGoalOptions),
       allowOther: true,
+      exampleText: (l) => l.intakeChatExampleGoals,
     ),
     _q(
       'shortTermPriorities',
@@ -1513,6 +1549,7 @@ class IntakeChatFlow {
         ),
       ),
       appendMode: true,
+      exampleText: (l) => l.intakeChatExampleNoGoStatements,
     ),
   ];
 
@@ -1647,22 +1684,10 @@ class IntakeChatFlow {
     };
   }
 
-  static String exampleText(AppLocalizations l, IntakeChatQuestion question) {
-    return switch (question.type) {
-      IntakeChatQuestionType.singleChoice ||
-      IntakeChatQuestionType.choiceWithOther ||
-      IntakeChatQuestionType.ratingChoice => l.intakeChatExampleChoice,
-      IntakeChatQuestionType.multiChoice ||
-      IntakeChatQuestionType.multiChoiceWithOther =>
-        l.intakeChatExampleMultiChoice,
-      IntakeChatQuestionType.url => l.intakeChatExampleUrl,
-      IntakeChatQuestionType.email => l.intakeChatExampleEmail,
-      IntakeChatQuestionType.multiLineList => l.intakeChatExampleList,
-      IntakeChatQuestionType.approximateNumber =>
-        l.intakeChatExampleApproximateNumber,
-      IntakeChatQuestionType.longText => l.intakeChatExampleLongText,
-      _ => l.intakeChatExampleShortText,
-    };
+  static String? exampleText(AppLocalizations l, IntakeChatQuestion question) {
+    final text = question.exampleText?.call(l).trim();
+    if (text == null || text.isEmpty) return null;
+    return text;
   }
 
   static String blockLabel(AppLocalizations l, String blockKey) {
@@ -1721,6 +1746,7 @@ IntakeChatQuestion _q(
   String? parentQuestionKey,
   String Function(AppLocalizations l)? helpText,
   String Function(AppLocalizations l)? inputHint,
+  String Function(AppLocalizations l)? exampleText,
   String Function(IntakeSession session)? defaultValue,
   List<String> Function(AppLocalizations l)? choiceOptions,
   bool allowMultiple = false,
@@ -1749,6 +1775,7 @@ IntakeChatQuestion _q(
     parentQuestionKey: parentQuestionKey,
     helpText: helpText,
     inputHint: inputHint,
+    exampleText: exampleText,
     defaultValue: defaultValue,
     choiceOptions: choiceOptions == null ? null : (_, l) => choiceOptions(l),
     allowMultiple: allowMultiple,
@@ -1779,6 +1806,7 @@ IntakeChatQuestion _choice(
   String? followUpGroup,
   String? parentQuestionKey,
   String Function(AppLocalizations l)? helpText,
+  String Function(AppLocalizations l)? exampleText,
   bool allowOther = false,
   String Function(AppLocalizations l)? otherLabel,
   int? minSelections,
@@ -1812,6 +1840,7 @@ IntakeChatQuestion _choice(
     followUpGroup: followUpGroup,
     parentQuestionKey: parentQuestionKey,
     helpText: helpText,
+    exampleText: exampleText,
   );
 }
 
@@ -1829,6 +1858,7 @@ IntakeChatQuestion _yesNo(
   String? followUpGroup,
   String? parentQuestionKey,
   String Function(AppLocalizations l)? helpText,
+  String Function(AppLocalizations l)? exampleText,
 }) {
   return IntakeChatQuestion(
     questionKey: questionKey,
@@ -1850,6 +1880,7 @@ IntakeChatQuestion _yesNo(
     followUpGroup: followUpGroup,
     parentQuestionKey: parentQuestionKey,
     helpText: helpText,
+    exampleText: exampleText,
   );
 }
 

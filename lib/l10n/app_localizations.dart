@@ -1280,53 +1280,167 @@ abstract class AppLocalizations {
   /// **'Antwort gespeichert.'**
   String get intakeChatAnswerSaved;
 
-  /// No description provided for @intakeChatExampleShortText.
+  /// No description provided for @intakeChatExampleShortDescription.
   ///
   /// In de, this message translates to:
-  /// **'Beispiel: Marketing-Team oder Österreich'**
-  String get intakeChatExampleShortText;
+  /// **'Beispiel: Wir entwickeln und verkaufen Zubehör für Katzenhalter im deutschsprachigen Raum.'**
+  String get intakeChatExampleShortDescription;
 
-  /// No description provided for @intakeChatExampleLongText.
+  /// No description provided for @intakeChatExampleIndustry.
   ///
   /// In de, this message translates to:
-  /// **'Beispiel: Wir helfen kleinen Firmen, Kundenfragen schneller und einheitlich zu beantworten.'**
-  String get intakeChatExampleLongText;
+  /// **'Beispiel: Onlinehandel, Beratung, Software oder Gesundheitsprodukte'**
+  String get intakeChatExampleIndustry;
 
-  /// No description provided for @intakeChatExampleList.
+  /// No description provided for @intakeChatExampleWebsiteUrl.
   ///
   /// In de, this message translates to:
-  /// **'Beispiel: Startseite, Preise, Kontakt'**
-  String get intakeChatExampleList;
+  /// **'Beispiel: https://www.meinefirma.de'**
+  String get intakeChatExampleWebsiteUrl;
 
-  /// No description provided for @intakeChatExampleUrl.
+  /// No description provided for @intakeChatExampleShopUrl.
   ///
   /// In de, this message translates to:
-  /// **'Beispiel: https://www.firma.at'**
-  String get intakeChatExampleUrl;
+  /// **'Beispiel: https://shop.meinefirma.de'**
+  String get intakeChatExampleShopUrl;
 
-  /// No description provided for @intakeChatExampleEmail.
+  /// No description provided for @intakeChatExampleFaqUrl.
   ///
   /// In de, this message translates to:
-  /// **'Beispiel: support@firma.at'**
-  String get intakeChatExampleEmail;
+  /// **'Beispiel: https://www.meinefirma.de/faq'**
+  String get intakeChatExampleFaqUrl;
 
-  /// No description provided for @intakeChatExampleApproximateNumber.
+  /// No description provided for @intakeChatExampleSupportEmail.
   ///
   /// In de, this message translates to:
-  /// **'Beispiel: ca. 20 oder ungefähr 3.000 €'**
-  String get intakeChatExampleApproximateNumber;
+  /// **'Beispiel: support@meinefirma.de'**
+  String get intakeChatExampleSupportEmail;
 
-  /// No description provided for @intakeChatExampleChoice.
+  /// No description provided for @intakeChatExampleSupportPhone.
   ///
   /// In de, this message translates to:
-  /// **'Wähle die passende Antwort aus.'**
-  String get intakeChatExampleChoice;
+  /// **'Beispiel: +43 660 1234567'**
+  String get intakeChatExampleSupportPhone;
 
-  /// No description provided for @intakeChatExampleMultiChoice.
+  /// No description provided for @intakeChatExampleImportantProducts.
   ///
   /// In de, this message translates to:
-  /// **'Wähle alle passenden Antworten aus.'**
-  String get intakeChatExampleMultiChoice;
+  /// **'Beispiel: Mobile App, Relax-Kissen, Zubehör'**
+  String get intakeChatExampleImportantProducts;
+
+  /// No description provided for @intakeChatExampleMainProduct.
+  ///
+  /// In de, this message translates to:
+  /// **'Beispiel: Unser meistverkauftes Produkt ist ...'**
+  String get intakeChatExampleMainProduct;
+
+  /// No description provided for @intakeChatExampleTargetGroup.
+  ///
+  /// In de, this message translates to:
+  /// **'Beispiel: Privatkunden im DACH-Raum und kleine Fachhändler'**
+  String get intakeChatExampleTargetGroup;
+
+  /// No description provided for @intakeChatExampleCustomerBenefit.
+  ///
+  /// In de, this message translates to:
+  /// **'Beispiel: Kunden sparen Zeit, erhalten verständliche Informationen oder lösen ein konkretes Alltagsproblem.'**
+  String get intakeChatExampleCustomerBenefit;
+
+  /// No description provided for @intakeChatExampleWebsitePages.
+  ///
+  /// In de, this message translates to:
+  /// **'Beispiel: Produktseite, FAQ, Kontakt, Shop, Händlerbereich'**
+  String get intakeChatExampleWebsitePages;
+
+  /// No description provided for @intakeChatExampleSupportQuestions.
+  ///
+  /// In de, this message translates to:
+  /// **'Beispiel: Wie lange dauert die Lieferung? Wie funktioniert die Einrichtung?'**
+  String get intakeChatExampleSupportQuestions;
+
+  /// No description provided for @intakeChatExampleSupportProblems.
+  ///
+  /// In de, this message translates to:
+  /// **'Beispiel: Verbindungsprobleme, falsche Bestellung, fehlende Anleitung'**
+  String get intakeChatExampleSupportProblems;
+
+  /// No description provided for @intakeChatExampleReviewCount.
+  ///
+  /// In de, this message translates to:
+  /// **'Beispiel: ca. 20 Bewertungen oder ungefähr 150 Sternebewertungen'**
+  String get intakeChatExampleReviewCount;
+
+  /// No description provided for @intakeChatExampleReviewLinks.
+  ///
+  /// In de, this message translates to:
+  /// **'Beispiel: Google-Profil, Facebook-Seite oder Screenshot-Datei'**
+  String get intakeChatExampleReviewLinks;
+
+  /// No description provided for @intakeChatExampleMaterials.
+  ///
+  /// In de, this message translates to:
+  /// **'Beispiel: Bedienungsanleitung, PDF-Broschüre, Präsentation oder Preisliste'**
+  String get intakeChatExampleMaterials;
+
+  /// No description provided for @intakeChatExampleMaterialLocations.
+  ///
+  /// In de, this message translates to:
+  /// **'Beispiel: Website, Google Drive, interner Ordner oder gedruckte Unterlagen'**
+  String get intakeChatExampleMaterialLocations;
+
+  /// No description provided for @intakeChatExampleSocialProfileLinks.
+  ///
+  /// In de, this message translates to:
+  /// **'Beispiel: https://facebook.com/meinefirma'**
+  String get intakeChatExampleSocialProfileLinks;
+
+  /// No description provided for @intakeChatExamplePostingFrequency.
+  ///
+  /// In de, this message translates to:
+  /// **'Beispiel: zweimal pro Woche oder unregelmäßig'**
+  String get intakeChatExamplePostingFrequency;
+
+  /// No description provided for @intakeChatExampleCampaigns.
+  ///
+  /// In de, this message translates to:
+  /// **'Beispiel: Facebook-Kampagne für Produkt X im Frühjahr'**
+  String get intakeChatExampleCampaigns;
+
+  /// No description provided for @intakeChatExampleAdBudget.
+  ///
+  /// In de, this message translates to:
+  /// **'Beispiel: ca. 500 € pro Monat'**
+  String get intakeChatExampleAdBudget;
+
+  /// No description provided for @intakeChatExampleAdResults.
+  ///
+  /// In de, this message translates to:
+  /// **'Beispiel: 300 Klicks, 12 Anfragen und 3 Verkäufe'**
+  String get intakeChatExampleAdResults;
+
+  /// No description provided for @intakeChatExampleGoals.
+  ///
+  /// In de, this message translates to:
+  /// **'Beispiel: mehr Anfragen, bessere Sichtbarkeit und weniger Supportaufwand'**
+  String get intakeChatExampleGoals;
+
+  /// No description provided for @intakeChatExampleSensitiveTopics.
+  ///
+  /// In de, this message translates to:
+  /// **'Beispiel: medizinische Aussagen, Rückerstattungen oder individuelle Rechtsberatung'**
+  String get intakeChatExampleSensitiveTopics;
+
+  /// No description provided for @intakeChatExampleNoGoStatements.
+  ///
+  /// In de, this message translates to:
+  /// **'Beispiel: keine Heilversprechen und keine verbindliche Rechtsauskunft'**
+  String get intakeChatExampleNoGoStatements;
+
+  /// No description provided for @intakeChatExampleEscalationTopics.
+  ///
+  /// In de, this message translates to:
+  /// **'Beispiel: Beschwerden, rechtliche Drohungen oder individuelle Gesundheitsfragen'**
+  String get intakeChatExampleEscalationTopics;
 
   /// No description provided for @intakeChatAnswerModeYesNo.
   ///

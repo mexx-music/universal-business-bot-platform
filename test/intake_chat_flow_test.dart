@@ -282,6 +282,93 @@ void main() {
     );
   });
 
+  test('question examples are specific and localized', () {
+    final de = lookupAppLocalizations(const Locale('de'));
+    final en = lookupAppLocalizations(const Locale('en'));
+
+    expect(
+      IntakeChatFlow.exampleText(de, IntakeChatFlow.questionByKey('website')),
+      'Beispiel: https://www.meinefirma.de',
+    );
+    expect(
+      IntakeChatFlow.exampleText(en, IntakeChatFlow.questionByKey('website')),
+      'Example: https://www.mycompany.com',
+    );
+    expect(
+      IntakeChatFlow.exampleText(
+        de,
+        IntakeChatFlow.questionByKey('supportEmail'),
+      ),
+      'Beispiel: support@meinefirma.de',
+    );
+    expect(
+      IntakeChatFlow.exampleText(
+        de,
+        IntakeChatFlow.questionByKey('approximateBudget'),
+      ),
+      'Beispiel: ca. 500 € pro Monat',
+    );
+  });
+
+  test(
+    'yes no and ordinary choice questions do not show fallback examples',
+    () {
+      final l = lookupAppLocalizations(const Locale('de'));
+
+      expect(
+        IntakeChatFlow.exampleText(
+          l,
+          IntakeChatFlow.questionByKey('hasWebsite'),
+        ),
+        isNull,
+      );
+      expect(
+        IntakeChatFlow.exampleText(l, IntakeChatFlow.questionByKey('country')),
+        isNull,
+      );
+      expect(
+        IntakeChatFlow.exampleText(
+          l,
+          IntakeChatFlow.questionByKey('marketType'),
+        ),
+        isNull,
+      );
+    },
+  );
+
+  test('questions without example metadata hide the example area', () {
+    final l = lookupAppLocalizations(const Locale('en'));
+
+    expect(
+      IntakeChatFlow.exampleText(
+        l,
+        IntakeChatFlow.questionByKey('companyName'),
+      ),
+      isNull,
+    );
+    expect(
+      IntakeChatFlow.exampleText(
+        l,
+        IntakeChatFlow.questionByKey('websiteMaintainer'),
+      ),
+      isNull,
+    );
+  });
+
+  test('example lookup does not reuse text from a previous question', () {
+    final l = lookupAppLocalizations(const Locale('en'));
+    final website = IntakeChatFlow.questionByKey('website');
+    final companyName = IntakeChatFlow.questionByKey('companyName');
+    final supportEmail = IntakeChatFlow.questionByKey('supportEmail');
+
+    expect(IntakeChatFlow.exampleText(l, website), contains('mycompany.com'));
+    expect(IntakeChatFlow.exampleText(l, companyName), isNull);
+    expect(
+      IntakeChatFlow.exampleText(l, supportEmail),
+      'Example: support@mycompany.com',
+    );
+  });
+
   test('website no skips website details and asks planned website', () {
     final state = AppState();
     state.updateIntakeBasics(const IntakeBasics());

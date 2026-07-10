@@ -665,32 +665,108 @@ class AppLocalizationsDe extends AppLocalizations {
   String get intakeChatAnswerSaved => 'Antwort gespeichert.';
 
   @override
-  String get intakeChatExampleShortText =>
-      'Beispiel: Marketing-Team oder Österreich';
+  String get intakeChatExampleShortDescription =>
+      'Beispiel: Wir entwickeln und verkaufen Zubehör für Katzenhalter im deutschsprachigen Raum.';
 
   @override
-  String get intakeChatExampleLongText =>
-      'Beispiel: Wir helfen kleinen Firmen, Kundenfragen schneller und einheitlich zu beantworten.';
+  String get intakeChatExampleIndustry =>
+      'Beispiel: Onlinehandel, Beratung, Software oder Gesundheitsprodukte';
 
   @override
-  String get intakeChatExampleList => 'Beispiel: Startseite, Preise, Kontakt';
+  String get intakeChatExampleWebsiteUrl =>
+      'Beispiel: https://www.meinefirma.de';
 
   @override
-  String get intakeChatExampleUrl => 'Beispiel: https://www.firma.at';
+  String get intakeChatExampleShopUrl => 'Beispiel: https://shop.meinefirma.de';
 
   @override
-  String get intakeChatExampleEmail => 'Beispiel: support@firma.at';
+  String get intakeChatExampleFaqUrl =>
+      'Beispiel: https://www.meinefirma.de/faq';
 
   @override
-  String get intakeChatExampleApproximateNumber =>
-      'Beispiel: ca. 20 oder ungefähr 3.000 €';
+  String get intakeChatExampleSupportEmail => 'Beispiel: support@meinefirma.de';
 
   @override
-  String get intakeChatExampleChoice => 'Wähle die passende Antwort aus.';
+  String get intakeChatExampleSupportPhone => 'Beispiel: +43 660 1234567';
 
   @override
-  String get intakeChatExampleMultiChoice =>
-      'Wähle alle passenden Antworten aus.';
+  String get intakeChatExampleImportantProducts =>
+      'Beispiel: Mobile App, Relax-Kissen, Zubehör';
+
+  @override
+  String get intakeChatExampleMainProduct =>
+      'Beispiel: Unser meistverkauftes Produkt ist ...';
+
+  @override
+  String get intakeChatExampleTargetGroup =>
+      'Beispiel: Privatkunden im DACH-Raum und kleine Fachhändler';
+
+  @override
+  String get intakeChatExampleCustomerBenefit =>
+      'Beispiel: Kunden sparen Zeit, erhalten verständliche Informationen oder lösen ein konkretes Alltagsproblem.';
+
+  @override
+  String get intakeChatExampleWebsitePages =>
+      'Beispiel: Produktseite, FAQ, Kontakt, Shop, Händlerbereich';
+
+  @override
+  String get intakeChatExampleSupportQuestions =>
+      'Beispiel: Wie lange dauert die Lieferung? Wie funktioniert die Einrichtung?';
+
+  @override
+  String get intakeChatExampleSupportProblems =>
+      'Beispiel: Verbindungsprobleme, falsche Bestellung, fehlende Anleitung';
+
+  @override
+  String get intakeChatExampleReviewCount =>
+      'Beispiel: ca. 20 Bewertungen oder ungefähr 150 Sternebewertungen';
+
+  @override
+  String get intakeChatExampleReviewLinks =>
+      'Beispiel: Google-Profil, Facebook-Seite oder Screenshot-Datei';
+
+  @override
+  String get intakeChatExampleMaterials =>
+      'Beispiel: Bedienungsanleitung, PDF-Broschüre, Präsentation oder Preisliste';
+
+  @override
+  String get intakeChatExampleMaterialLocations =>
+      'Beispiel: Website, Google Drive, interner Ordner oder gedruckte Unterlagen';
+
+  @override
+  String get intakeChatExampleSocialProfileLinks =>
+      'Beispiel: https://facebook.com/meinefirma';
+
+  @override
+  String get intakeChatExamplePostingFrequency =>
+      'Beispiel: zweimal pro Woche oder unregelmäßig';
+
+  @override
+  String get intakeChatExampleCampaigns =>
+      'Beispiel: Facebook-Kampagne für Produkt X im Frühjahr';
+
+  @override
+  String get intakeChatExampleAdBudget => 'Beispiel: ca. 500 € pro Monat';
+
+  @override
+  String get intakeChatExampleAdResults =>
+      'Beispiel: 300 Klicks, 12 Anfragen und 3 Verkäufe';
+
+  @override
+  String get intakeChatExampleGoals =>
+      'Beispiel: mehr Anfragen, bessere Sichtbarkeit und weniger Supportaufwand';
+
+  @override
+  String get intakeChatExampleSensitiveTopics =>
+      'Beispiel: medizinische Aussagen, Rückerstattungen oder individuelle Rechtsberatung';
+
+  @override
+  String get intakeChatExampleNoGoStatements =>
+      'Beispiel: keine Heilversprechen und keine verbindliche Rechtsauskunft';
+
+  @override
+  String get intakeChatExampleEscalationTopics =>
+      'Beispiel: Beschwerden, rechtliche Drohungen oder individuelle Gesundheitsfragen';
 
   @override
   String get intakeChatAnswerModeYesNo => 'Wähle Ja oder Nein.';

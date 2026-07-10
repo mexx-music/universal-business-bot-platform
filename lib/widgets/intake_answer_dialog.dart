@@ -52,6 +52,8 @@ class _IntakeAnswerDialogState extends State<IntakeAnswerDialog> {
   Widget build(BuildContext context) {
     final l = AppLocalizations.of(context)!;
     final question = widget.question;
+    final helpText = question.helpText?.call(l).trim();
+    final exampleText = IntakeChatFlow.exampleText(l, question);
     final isMultiLine =
         question.type == IntakeChatQuestionType.longText ||
         question.type == IntakeChatQuestionType.multiLineList;
@@ -64,11 +66,8 @@ class _IntakeAnswerDialogState extends State<IntakeAnswerDialog> {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            if (question.helpText != null) ...[
-              Text(
-                question.helpText!(l),
-                style: Theme.of(context).textTheme.bodySmall,
-              ),
+            if (helpText != null && helpText.isNotEmpty) ...[
+              Text(helpText, style: Theme.of(context).textTheme.bodySmall),
               const SizedBox(height: 10),
             ],
             if (question.isListQuestion) ...[
@@ -100,13 +99,15 @@ class _IntakeAnswerDialogState extends State<IntakeAnswerDialog> {
                 if (!isMultiLine) _save(l);
               },
             ),
-            const SizedBox(height: 8),
-            Text(
-              IntakeChatFlow.exampleText(l, question),
-              style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                color: Theme.of(context).colorScheme.onSurfaceVariant,
+            if (exampleText != null) ...[
+              const SizedBox(height: 8),
+              Text(
+                exampleText,
+                style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                  color: Theme.of(context).colorScheme.onSurfaceVariant,
+                ),
               ),
-            ),
+            ],
           ],
         ),
       ),

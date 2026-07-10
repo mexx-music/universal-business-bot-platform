@@ -662,30 +662,108 @@ class AppLocalizationsEn extends AppLocalizations {
   String get intakeChatAnswerSaved => 'Answer saved.';
 
   @override
-  String get intakeChatExampleShortText => 'Example: Marketing team or Austria';
+  String get intakeChatExampleShortDescription =>
+      'Example: We develop and sell accessories for cat owners in German-speaking markets.';
 
   @override
-  String get intakeChatExampleLongText =>
-      'Example: We help small businesses answer customer questions faster and consistently.';
+  String get intakeChatExampleIndustry =>
+      'Example: online retail, consulting, software, or health products';
 
   @override
-  String get intakeChatExampleList => 'Example: Home page, pricing, contact';
+  String get intakeChatExampleWebsiteUrl =>
+      'Example: https://www.mycompany.com';
 
   @override
-  String get intakeChatExampleUrl => 'Example: https://www.company.com';
+  String get intakeChatExampleShopUrl => 'Example: https://shop.mycompany.com';
 
   @override
-  String get intakeChatExampleEmail => 'Example: support@company.com';
+  String get intakeChatExampleFaqUrl =>
+      'Example: https://www.mycompany.com/faq';
 
   @override
-  String get intakeChatExampleApproximateNumber =>
-      'Example: about 20 or roughly €3,000';
+  String get intakeChatExampleSupportEmail => 'Example: support@mycompany.com';
 
   @override
-  String get intakeChatExampleChoice => 'Choose the matching answer.';
+  String get intakeChatExampleSupportPhone => 'Example: +43 660 1234567';
 
   @override
-  String get intakeChatExampleMultiChoice => 'Choose all matching answers.';
+  String get intakeChatExampleImportantProducts =>
+      'Example: mobile app, relax pillow, accessories';
+
+  @override
+  String get intakeChatExampleMainProduct =>
+      'Example: Our best-selling product is ...';
+
+  @override
+  String get intakeChatExampleTargetGroup =>
+      'Example: private customers in the DACH region and small specialist retailers';
+
+  @override
+  String get intakeChatExampleCustomerBenefit =>
+      'Example: Customers save time, get clear information, or solve a concrete everyday problem.';
+
+  @override
+  String get intakeChatExampleWebsitePages =>
+      'Example: product page, FAQ, contact, shop, retailer area';
+
+  @override
+  String get intakeChatExampleSupportQuestions =>
+      'Example: How long does delivery take? How does setup work?';
+
+  @override
+  String get intakeChatExampleSupportProblems =>
+      'Example: connection issues, wrong order, missing instructions';
+
+  @override
+  String get intakeChatExampleReviewCount =>
+      'Example: about 20 reviews or roughly 150 star ratings';
+
+  @override
+  String get intakeChatExampleReviewLinks =>
+      'Example: Google profile, Facebook page, or screenshot file';
+
+  @override
+  String get intakeChatExampleMaterials =>
+      'Example: user manual, PDF brochure, presentation, or price list';
+
+  @override
+  String get intakeChatExampleMaterialLocations =>
+      'Example: website, Google Drive, internal folder, or printed documents';
+
+  @override
+  String get intakeChatExampleSocialProfileLinks =>
+      'Example: https://facebook.com/mycompany';
+
+  @override
+  String get intakeChatExamplePostingFrequency =>
+      'Example: twice per week or irregularly';
+
+  @override
+  String get intakeChatExampleCampaigns =>
+      'Example: Facebook campaign for product X in spring';
+
+  @override
+  String get intakeChatExampleAdBudget => 'Example: about €500 per month';
+
+  @override
+  String get intakeChatExampleAdResults =>
+      'Example: 300 clicks, 12 inquiries, and 3 sales';
+
+  @override
+  String get intakeChatExampleGoals =>
+      'Example: more inquiries, better visibility, and less support effort';
+
+  @override
+  String get intakeChatExampleSensitiveTopics =>
+      'Example: medical statements, refunds, or individual legal advice';
+
+  @override
+  String get intakeChatExampleNoGoStatements =>
+      'Example: no healing promises and no binding legal advice';
+
+  @override
+  String get intakeChatExampleEscalationTopics =>
+      'Example: complaints, legal threats, or individual health questions';
 
   @override
   String get intakeChatAnswerModeYesNo => 'Choose yes or no.';

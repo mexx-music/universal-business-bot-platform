@@ -29,14 +29,23 @@ class IntakeChoiceDialog extends StatefulWidget {
 
 class _IntakeChoiceDialogState extends State<IntakeChoiceDialog> {
   late final TextEditingController _otherController;
-  late final List<String> _options;
-  late final Set<String> _selected;
+  List<String> _options = const [];
+  Set<String> _selected = {};
   String? _errorText;
   bool _otherSelected = false;
+  bool _initialized = false;
 
   @override
   void initState() {
     super.initState();
+    _otherController = TextEditingController();
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    if (_initialized) return;
+    _initialized = true;
     final l = AppLocalizations.of(context)!;
     _options =
         widget.question.choiceOptions?.call(widget.session, l) ?? const [];
@@ -51,7 +60,7 @@ class _IntakeChoiceDialogState extends State<IntakeChoiceDialog> {
         if (!_options.any((option) => _same(option, value))) value,
     ];
     _otherSelected = otherValues.isNotEmpty;
-    _otherController = TextEditingController(text: otherValues.join(', '));
+    _otherController.text = otherValues.join(', ');
   }
 
   @override
@@ -64,6 +73,8 @@ class _IntakeChoiceDialogState extends State<IntakeChoiceDialog> {
   Widget build(BuildContext context) {
     final l = AppLocalizations.of(context)!;
     final question = widget.question;
+    final helpText = question.helpText?.call(l).trim();
+    final exampleText = IntakeChatFlow.exampleText(l, question);
     final isWide = MediaQuery.sizeOf(context).width > 560;
 
     return AlertDialog(
@@ -81,6 +92,19 @@ class _IntakeChoiceDialogState extends State<IntakeChoiceDialog> {
                     : l.intakeChoiceDialogSingleHint,
                 style: Theme.of(context).textTheme.bodySmall,
               ),
+              if (helpText != null && helpText.isNotEmpty) ...[
+                const SizedBox(height: 8),
+                Text(helpText, style: Theme.of(context).textTheme.bodySmall),
+              ],
+              if (exampleText != null) ...[
+                const SizedBox(height: 8),
+                Text(
+                  exampleText,
+                  style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                    color: Theme.of(context).colorScheme.onSurfaceVariant,
+                  ),
+                ),
+              ],
               const SizedBox(height: 12),
               if (_errorText != null) ...[
                 Text(
