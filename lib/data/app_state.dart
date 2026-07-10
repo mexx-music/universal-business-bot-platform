@@ -94,26 +94,20 @@ class AppState extends ChangeNotifier {
     if (existing != null) return existing;
 
     final c = selectedCompany;
-    final session =
-        IntakeSession.empty(
-          companyId: c.id,
-          basics: IntakeBasics(
-            companyName: c.name,
-            shortDescription: c.shortDescription,
-            industry: c.industry,
-            country: c.country,
-            primaryLanguage: c.primaryLanguage,
-            website: c.website,
-            supportEmail: c.supportEmail,
-            supportPhone: c.supportPhone,
-            hasWebsite: c.website.trim().isNotEmpty,
-          ),
-        ).copyWith(
-          websiteAndSupport: IntakeWebsiteAndSupport(
-            websiteUrl: c.website,
-            hasFaqArea: selectedKnowledgeEntries.isNotEmpty,
-          ),
-        );
+    final session = IntakeSession.empty(
+      companyId: c.id,
+      basics: IntakeBasics(
+        companyName: c.name,
+        shortDescription: c.shortDescription,
+        industry: c.industry,
+        country: c.country,
+        primaryLanguage: c.primaryLanguage,
+        website: c.website,
+        supportEmail: c.supportEmail,
+        supportPhone: c.supportPhone,
+        hasWebsite: c.website.trim().isNotEmpty,
+      ),
+    );
     _updateSelectedWorkspace(
       selectedWorkspace.copyWith(intakeSession: session),
     );
@@ -344,6 +338,8 @@ class AppState extends ChangeNotifier {
     }
 
     final positioningNote = _joinNonEmpty([
+      session.basics.additionalLanguages,
+      session.basics.targetRegions,
       session.targetGroups.targetGroup,
       session.targetGroups.marketType,
       session.targetGroups.problemSolved,
@@ -449,6 +445,7 @@ class AppState extends ChangeNotifier {
 
     final escalationNotes = _joinNonEmpty([
       session.websiteAndSupport.sensitiveTopics,
+      session.websiteAndSupport.supportChannels,
       session.goalsAndRisks.sensitiveTopics,
       session.goalsAndRisks.botRestrictedTopics,
       session.goalsAndRisks.alwaysEscalateTopics,

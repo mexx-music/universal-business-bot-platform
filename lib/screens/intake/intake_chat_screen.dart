@@ -6,6 +6,7 @@ import '../../data/intake_chat_flow.dart';
 import '../../l10n/app_localizations.dart';
 import '../../models/intake_chat_message.dart';
 import '../../widgets/intake_answer_dialog.dart';
+import '../../widgets/intake_choice_dialog.dart';
 
 class IntakeChatScreen extends StatefulWidget {
   const IntakeChatScreen({super.key});
@@ -181,7 +182,7 @@ class _IntakeChatScreenState extends State<IntakeChatScreen> {
                         child: FilledButton.icon(
                           onPressed: _isBusy
                               ? null
-                              : () => _openAnswerDialog(question),
+                              : () => _openInputForQuestion(question),
                           icon: const Icon(Icons.edit_outlined, size: 18),
                           style: FilledButton.styleFrom(
                             minimumSize: const Size.fromHeight(52),
@@ -309,11 +310,52 @@ class _IntakeChatScreenState extends State<IntakeChatScreen> {
   }
 
   void _maybeOpenDialog(IntakeChatQuestion? question) {
-    if (question == null || !question.opensAnswerDialog) return;
+    if (question == null || question.type == IntakeChatQuestionType.yesNo) {
+      return;
+    }
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (!mounted) return;
-      _openAnswerDialog(question);
+      _openInputForQuestion(question);
     });
+  }
+
+  Future<void> _openInputForQuestion(IntakeChatQuestion question) {
+    if (question.isChoiceQuestion) {
+      return _openChoiceDialog(question);
+    }
+    return _openAnswerDialog(question);
+  }
+
+  Future<void> _openChoiceDialog(IntakeChatQuestion question) async {
+    if (_dialogOpen || _isBusy || !mounted) return;
+    final state = AppState.of(context);
+    final session = state.intakeSession;
+    if (session == null) return;
+    final currentQuestion = IntakeChatFlow.nextQuestion(session);
+    if (currentQuestion?.questionKey != question.questionKey) return;
+
+    setState(() {
+      _dialogOpen = true;
+      _isBusy = true;
+    });
+    final result = await showDialog<IntakeChoiceDialogResult>(
+      context: context,
+      barrierDismissible: false,
+      builder: (_) => IntakeChoiceDialog(question: question, session: session),
+    );
+    if (!mounted) return;
+    setState(() {
+      _dialogOpen = false;
+      _isBusy = false;
+    });
+    if (result == null || result.action == IntakeChoiceDialogAction.cancel) {
+      return;
+    }
+    if (result.action == IntakeChoiceDialogAction.defer) {
+      _deferQuestion(question);
+      return;
+    }
+    _submitAnswer(result.answer);
   }
 
   void _advanceAfterQuestion(IntakeChatQuestion question) {
@@ -529,6 +571,12 @@ class _CurrentQuestionPanel extends StatelessWidget {
 String _answerModeLabel(AppLocalizations l, IntakeChatQuestion question) {
   return switch (question.type) {
     IntakeChatQuestionType.yesNo => l.intakeChatAnswerModeYesNo,
+    IntakeChatQuestionType.singleChoice ||
+    IntakeChatQuestionType.choiceWithOther ||
+    IntakeChatQuestionType.ratingChoice => l.intakeChatAnswerModeChoice,
+    IntakeChatQuestionType.multiChoice ||
+    IntakeChatQuestionType.multiChoiceWithOther =>
+      l.intakeChatAnswerModeMultiChoice,
     IntakeChatQuestionType.url => l.intakeChatAnswerModeUrl,
     IntakeChatQuestionType.email => l.intakeChatAnswerModeEmail,
     IntakeChatQuestionType.multiLineList => l.intakeChatAnswerModeList,

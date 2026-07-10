@@ -3,6 +3,8 @@ import '../l10n/app_localizations.dart';
 import '../models/intake_session.dart';
 
 enum IntakeChatQuestionType {
+  singleChoice,
+  multiChoice,
   shortText,
   longText,
   yesNo,
@@ -10,7 +12,9 @@ enum IntakeChatQuestionType {
   url,
   email,
   approximateNumber,
-  choice,
+  choiceWithOther,
+  multiChoiceWithOther,
+  ratingChoice,
 }
 
 class IntakeChatQuestion {
@@ -29,7 +33,13 @@ class IntakeChatQuestion {
   final String Function(AppLocalizations l)? helpText;
   final String Function(AppLocalizations l)? inputHint;
   final String Function(IntakeSession session)? defaultValue;
-  final List<String> Function(AppLocalizations l)? choiceOptions;
+  final List<String> Function(IntakeSession session, AppLocalizations l)?
+  choiceOptions;
+  final bool allowMultiple;
+  final bool allowOther;
+  final String Function(AppLocalizations l)? otherLabel;
+  final int? minSelections;
+  final int? maxSelections;
   final String Function(IntakeSession session) value;
   final bool? Function(IntakeSession session)? boolValue;
   final bool Function(String answer)? validation;
@@ -55,6 +65,11 @@ class IntakeChatQuestion {
     this.inputHint,
     this.defaultValue,
     this.choiceOptions,
+    this.allowMultiple = false,
+    this.allowOther = false,
+    this.otherLabel,
+    this.minSelections,
+    this.maxSelections,
     this.boolValue,
     this.validation,
     this.warningText,
@@ -62,13 +77,26 @@ class IntakeChatQuestion {
 
   bool get isListQuestion => type == IntakeChatQuestionType.multiLineList;
 
-  bool get opensAnswerDialog => type != IntakeChatQuestionType.yesNo;
+  bool get isChoiceQuestion =>
+      type == IntakeChatQuestionType.singleChoice ||
+      type == IntakeChatQuestionType.multiChoice ||
+      type == IntakeChatQuestionType.choiceWithOther ||
+      type == IntakeChatQuestionType.multiChoiceWithOther ||
+      type == IntakeChatQuestionType.ratingChoice;
+
+  bool get opensAnswerDialog =>
+      type != IntakeChatQuestionType.yesNo && !isChoiceQuestion;
 
   bool isAnswered(IntakeSession session) {
     if (type == IntakeChatQuestionType.yesNo) {
       return boolValue?.call(session) != null;
     }
-    return value(session).trim().isNotEmpty;
+    final currentValue = value(session).trim();
+    if (currentValue.isEmpty) return false;
+    if (type == IntakeChatQuestionType.url) {
+      return _looksLikeUrl(currentValue);
+    }
+    return true;
   }
 }
 
@@ -111,27 +139,44 @@ class IntakeChatFlow {
         state.intakeSession!.basics.copyWith(industry: answer.trim()),
       ),
     ),
-    _q(
+    _choice(
       'country',
       'basics',
-      IntakeChatQuestionType.shortText,
+      IntakeChatQuestionType.choiceWithOther,
       'basics.country',
       (l) => l.intakeChatQCountry,
       (s) => s.basics.country,
       (state, answer) => state.updateIntakeBasics(
         state.intakeSession!.basics.copyWith(country: answer.trim()),
       ),
+      choiceOptions: (_, l) => _splitOptions(l.intakeChoiceRegionOptions),
+      allowOther: true,
     ),
-    _q(
+    _choice(
       'primaryLanguage',
       'basics',
-      IntakeChatQuestionType.shortText,
+      IntakeChatQuestionType.choiceWithOther,
       'basics.primaryLanguage',
       (l) => l.intakeChatQPrimaryLanguage,
       (s) => s.basics.primaryLanguage,
       (state, answer) => state.updateIntakeBasics(
         state.intakeSession!.basics.copyWith(primaryLanguage: answer.trim()),
       ),
+      choiceOptions: (_, l) => _splitOptions(l.intakeChoiceLanguageOptions),
+      allowOther: true,
+    ),
+    _choice(
+      'additionalLanguages',
+      'basics',
+      IntakeChatQuestionType.multiChoiceWithOther,
+      'basics.additionalLanguages',
+      (l) => l.intakeChatQAdditionalLanguages,
+      (s) => s.basics.additionalLanguages,
+      (state, answer) => state.updateIntakeBasics(
+        state.intakeSession!.basics.copyWith(additionalLanguages: answer),
+      ),
+      choiceOptions: (_, l) => _splitOptions(l.intakeChoiceLanguageOptions),
+      allowOther: true,
     ),
     _yesNo(
       'hasWebsite',
@@ -152,9 +197,7 @@ class IntakeChatFlow {
       IntakeChatQuestionType.shortText,
       'websiteAndSupport.websiteUrl',
       (l) => l.intakeChatQWebsite,
-      (s) => s.websiteAndSupport.websiteUrl.isNotEmpty
-          ? s.websiteAndSupport.websiteUrl
-          : s.basics.website,
+      (s) => s.websiteAndSupport.websiteUrl,
       (state, answer) {
         final value = normalizeAnswerForQuestion(
           questionByKey('website'),
@@ -172,7 +215,8 @@ class IntakeChatFlow {
       parentQuestionKey: 'hasWebsite',
       followUpGroup: 'website',
       typeOverride: IntakeChatQuestionType.url,
-      defaultValue: (_) => 'https://',
+      defaultValue: (s) =>
+          s.basics.website.trim().isEmpty ? 'https://' : s.basics.website,
       validation: _looksLikeUrl,
       warningText: (l) => l.intakeChatUrlWarning,
     ),
@@ -397,27 +441,30 @@ class IntakeChatFlow {
         ),
       ),
     ),
-    _q(
+    _choice(
       'targetGroup',
       'targetGroups',
-      IntakeChatQuestionType.longText,
+      IntakeChatQuestionType.multiChoiceWithOther,
       'targetGroups.targetGroup',
       (l) => l.intakeChatQTargetGroup,
       (s) => s.targetGroups.targetGroup,
       (state, answer) => state.updateIntakeTargetGroups(
-        state.intakeSession!.targetGroups.copyWith(targetGroup: answer.trim()),
+        state.intakeSession!.targetGroups.copyWith(targetGroup: answer),
       ),
+      choiceOptions: (_, l) => _splitOptions(l.intakeChoiceTargetGroupOptions),
+      allowOther: true,
     ),
-    _q(
+    _choice(
       'marketType',
       'targetGroups',
-      IntakeChatQuestionType.shortText,
+      IntakeChatQuestionType.singleChoice,
       'targetGroups.marketType',
       (l) => l.intakeChatQMarketType,
       (s) => s.targetGroups.marketType,
       (state, answer) => state.updateIntakeTargetGroups(
         state.intakeSession!.targetGroups.copyWith(marketType: answer.trim()),
       ),
+      choiceOptions: (_, l) => _splitOptions(l.intakeChoiceMarketTypeOptions),
     ),
     _q(
       'problemSolved',
@@ -470,6 +517,26 @@ class IntakeChatFlow {
         ),
       ),
       followUpGroup: 'support',
+    ),
+    _choice(
+      'supportChannels',
+      'websiteAndSupport',
+      IntakeChatQuestionType.multiChoiceWithOther,
+      'websiteAndSupport.supportChannels',
+      (l) => l.intakeChatQSupportChannels,
+      (s) => s.websiteAndSupport.supportChannels,
+      (state, answer) => state.updateIntakeWebsiteAndSupport(
+        state.intakeSession!.websiteAndSupport.copyWith(
+          supportChannels: answer,
+        ),
+      ),
+      choiceOptions: (_, l) =>
+          _splitOptions(l.intakeChoiceSupportChannelOptions),
+      dependsOnQuestionKey: 'hasSupportQuestions',
+      dependsOnAnswer: true,
+      parentQuestionKey: 'hasSupportQuestions',
+      followUpGroup: 'support',
+      allowOther: true,
     ),
     _q(
       'preSalesQuestions',
@@ -656,15 +723,13 @@ class IntakeChatFlow {
       },
       followUpGroup: 'sensitive',
     ),
-    _q(
+    _choice(
       'sensitiveTopics',
       'goalsAndRisks',
-      IntakeChatQuestionType.multiLineList,
+      IntakeChatQuestionType.multiChoiceWithOther,
       'goalsAndRisks.sensitiveTopics',
       (l) => l.intakeChatQSensitiveTopics,
-      (s) => s.goalsAndRisks.sensitiveTopics.isNotEmpty
-          ? s.goalsAndRisks.sensitiveTopics
-          : s.websiteAndSupport.sensitiveTopics,
+      (s) => s.goalsAndRisks.sensitiveTopics,
       (state, answer) {
         final merged = _mergeListText(
           state.intakeSession!.goalsAndRisks.sensitiveTopics,
@@ -682,11 +747,13 @@ class IntakeChatFlow {
           ),
         );
       },
+      choiceOptions: (_, l) =>
+          _splitOptions(l.intakeChoiceSensitiveCategoryOptions),
       dependsOnQuestionKey: 'hasSensitiveTopics',
       dependsOnAnswer: true,
       parentQuestionKey: 'hasSensitiveTopics',
       followUpGroup: 'sensitive',
-      appendMode: true,
+      allowOther: true,
     ),
     _q(
       'prohibitedStatements',
@@ -783,10 +850,10 @@ class IntakeChatFlow {
       ),
       followUpGroup: 'materials',
     ),
-    _q(
+    _choice(
       'materialDetails',
       'sourcesAndReviews',
-      IntakeChatQuestionType.multiLineList,
+      IntakeChatQuestionType.multiChoiceWithOther,
       'sourcesAndReviews.materialDetails',
       (l) => l.intakeChatQMaterialDetails,
       (s) => s.sourcesAndReviews.materialDetails,
@@ -802,11 +869,12 @@ class IntakeChatFlow {
           ),
         ),
       ),
+      choiceOptions: (_, l) => _splitOptions(l.intakeChoiceMaterialOptions),
       dependsOnQuestionKey: 'hasMaterials',
       dependsOnAnswer: true,
       parentQuestionKey: 'hasMaterials',
       followUpGroup: 'materials',
-      appendMode: true,
+      allowOther: true,
     ),
     _q(
       'materialLocations',
@@ -894,10 +962,10 @@ class IntakeChatFlow {
       ),
       followUpGroup: 'reviews',
     ),
-    _q(
+    _choice(
       'reviewPlatforms',
       'sourcesAndReviews',
-      IntakeChatQuestionType.multiLineList,
+      IntakeChatQuestionType.multiChoiceWithOther,
       'sourcesAndReviews.reviewPlatforms',
       (l) => l.intakeChatQReviewPlatforms,
       (s) => s.sourcesAndReviews.reviewPlatforms,
@@ -909,11 +977,13 @@ class IntakeChatFlow {
           ),
         ),
       ),
+      choiceOptions: (_, l) =>
+          _splitOptions(l.intakeChoiceReviewPlatformOptions),
       dependsOnQuestionKey: 'hasReviews',
       dependsOnAnswer: true,
       parentQuestionKey: 'hasReviews',
       followUpGroup: 'reviews',
-      appendMode: true,
+      allowOther: true,
     ),
     _q(
       'reviewCountEstimate',
@@ -1040,10 +1110,10 @@ class IntakeChatFlow {
       ),
       followUpGroup: 'social',
     ),
-    _q(
+    _choice(
       'socialPlatforms',
       'marketingAndChannels',
-      IntakeChatQuestionType.multiLineList,
+      IntakeChatQuestionType.multiChoiceWithOther,
       'marketingAndChannels.socialPlatforms',
       (l) => l.intakeChatQSocialPlatforms,
       (s) => s.marketingAndChannels.socialPlatforms,
@@ -1059,11 +1129,13 @@ class IntakeChatFlow {
           ),
         ),
       ),
+      choiceOptions: (_, l) =>
+          _splitOptions(l.intakeChoiceSocialPlatformOptions),
       dependsOnQuestionKey: 'hasSocialChannels',
       dependsOnAnswer: true,
       parentQuestionKey: 'hasSocialChannels',
       followUpGroup: 'social',
-      appendMode: true,
+      allowOther: true,
     ),
     _q(
       'socialProfileLinks',
@@ -1086,10 +1158,10 @@ class IntakeChatFlow {
       followUpGroup: 'social',
       appendMode: true,
     ),
-    _q(
+    _choice(
       'activeChannels',
       'marketingAndChannels',
-      IntakeChatQuestionType.multiLineList,
+      IntakeChatQuestionType.multiChoice,
       'marketingAndChannels.activeChannels',
       (l) => l.intakeChatQActiveChannels,
       (s) => s.marketingAndChannels.activeChannels,
@@ -1101,11 +1173,13 @@ class IntakeChatFlow {
           ),
         ),
       ),
+      choiceOptions: (s, _) => _splitLines(
+        s.marketingAndChannels.socialPlatforms,
+      ).where((item) => !_isNone(item)).toList(),
       dependsOnQuestionKey: 'hasSocialChannels',
       dependsOnAnswer: true,
       parentQuestionKey: 'hasSocialChannels',
       followUpGroup: 'social',
-      appendMode: true,
     ),
     _q(
       'postingFrequency',
@@ -1124,10 +1198,10 @@ class IntakeChatFlow {
       parentQuestionKey: 'hasSocialChannels',
       followUpGroup: 'social',
     ),
-    _q(
+    _choice(
       'workingChannels',
       'marketingAndChannels',
-      IntakeChatQuestionType.multiLineList,
+      IntakeChatQuestionType.multiChoice,
       'marketingAndChannels.workingChannels',
       (l) => l.intakeChatQWorkingChannels,
       (s) => s.marketingAndChannels.workingChannels,
@@ -1139,16 +1213,18 @@ class IntakeChatFlow {
           ),
         ),
       ),
+      choiceOptions: (s, _) => _splitLines(
+        s.marketingAndChannels.socialPlatforms,
+      ).where((item) => !_isNone(item)).toList(),
       dependsOnQuestionKey: 'hasSocialChannels',
       dependsOnAnswer: true,
       parentQuestionKey: 'hasSocialChannels',
       followUpGroup: 'social',
-      appendMode: true,
     ),
-    _q(
+    _choice(
       'inactiveChannels',
       'marketingAndChannels',
-      IntakeChatQuestionType.multiLineList,
+      IntakeChatQuestionType.multiChoice,
       'marketingAndChannels.inactiveChannels',
       (l) => l.intakeChatQInactiveChannels,
       (s) => s.marketingAndChannels.inactiveChannels,
@@ -1160,11 +1236,13 @@ class IntakeChatFlow {
           ),
         ),
       ),
+      choiceOptions: (s, _) => _splitLines(
+        s.marketingAndChannels.socialPlatforms,
+      ).where((item) => !_isNone(item)).toList(),
       dependsOnQuestionKey: 'hasSocialChannels',
       dependsOnAnswer: true,
       parentQuestionKey: 'hasSocialChannels',
       followUpGroup: 'social',
-      appendMode: true,
     ),
     _q(
       'socialMentions',
@@ -1218,10 +1296,10 @@ class IntakeChatFlow {
       ),
       followUpGroup: 'ads',
     ),
-    _q(
+    _choice(
       'advertisingChannels',
       'marketingAndChannels',
-      IntakeChatQuestionType.multiLineList,
+      IntakeChatQuestionType.multiChoiceWithOther,
       'marketingAndChannels.advertisingChannels',
       (l) => l.intakeChatQAdvertisingChannels,
       (s) => s.marketingAndChannels.advertisingChannels,
@@ -1237,11 +1315,13 @@ class IntakeChatFlow {
           ),
         ),
       ),
+      choiceOptions: (_, l) =>
+          _splitOptions(l.intakeChoiceAdvertisingChannelOptions),
       dependsOnQuestionKey: 'hasRunAds',
       dependsOnAnswer: true,
       parentQuestionKey: 'hasRunAds',
       followUpGroup: 'ads',
-      appendMode: true,
+      allowOther: true,
     ),
     _q(
       'campaigns',
@@ -1376,31 +1456,33 @@ class IntakeChatFlow {
       parentQuestionKey: 'hasRunAds',
       followUpGroup: 'ads',
     ),
-    _q(
+    _choice(
       'reachProblems',
       'marketingAndChannels',
-      IntakeChatQuestionType.longText,
+      IntakeChatQuestionType.multiChoiceWithOther,
       'marketingAndChannels.reachProblems',
       (l) => l.intakeChatQReachProblems,
       (s) => s.marketingAndChannels.reachProblems,
       (state, answer) => state.updateIntakeMarketingAndChannels(
         state.intakeSession!.marketingAndChannels.copyWith(
-          reachProblems: answer.trim(),
+          reachProblems: answer,
         ),
       ),
+      choiceOptions: (_, l) => _splitOptions(l.intakeChoiceReachProblemOptions),
+      allowOther: true,
     ),
-    _q(
+    _choice(
       'companyGoals',
       'goalsAndRisks',
-      IntakeChatQuestionType.longText,
+      IntakeChatQuestionType.multiChoiceWithOther,
       'goalsAndRisks.companyGoals',
       (l) => l.intakeChatQCompanyGoals,
       (s) => s.goalsAndRisks.companyGoals,
       (state, answer) => state.updateIntakeGoalsAndRisks(
-        state.intakeSession!.goalsAndRisks.copyWith(
-          companyGoals: answer.trim(),
-        ),
+        state.intakeSession!.goalsAndRisks.copyWith(companyGoals: answer),
       ),
+      choiceOptions: (_, l) => _splitOptions(l.intakeChoiceGoalOptions),
+      allowOther: true,
     ),
     _q(
       'shortTermPriorities',
@@ -1523,9 +1605,11 @@ class IntakeChatFlow {
     if (question.type == IntakeChatQuestionType.email) {
       return clean.toLowerCase();
     }
-    if (question.type == IntakeChatQuestionType.multiLineList) {
+    if (question.type == IntakeChatQuestionType.multiLineList ||
+        question.isChoiceQuestion) {
       final normalizedItems = <String>[];
       for (final item in _splitLines(clean)) {
+        if (_isNone(item)) return item;
         if (!normalizedItems.any((existing) => _same(existing, item))) {
           normalizedItems.add(item);
         }
@@ -1565,6 +1649,12 @@ class IntakeChatFlow {
 
   static String exampleText(AppLocalizations l, IntakeChatQuestion question) {
     return switch (question.type) {
+      IntakeChatQuestionType.singleChoice ||
+      IntakeChatQuestionType.choiceWithOther ||
+      IntakeChatQuestionType.ratingChoice => l.intakeChatExampleChoice,
+      IntakeChatQuestionType.multiChoice ||
+      IntakeChatQuestionType.multiChoiceWithOther =>
+        l.intakeChatExampleMultiChoice,
       IntakeChatQuestionType.url => l.intakeChatExampleUrl,
       IntakeChatQuestionType.email => l.intakeChatExampleEmail,
       IntakeChatQuestionType.multiLineList => l.intakeChatExampleList,
@@ -1633,6 +1723,11 @@ IntakeChatQuestion _q(
   String Function(AppLocalizations l)? inputHint,
   String Function(IntakeSession session)? defaultValue,
   List<String> Function(AppLocalizations l)? choiceOptions,
+  bool allowMultiple = false,
+  bool allowOther = false,
+  String Function(AppLocalizations l)? otherLabel,
+  int? minSelections,
+  int? maxSelections,
   IntakeChatQuestionType? typeOverride,
   bool Function(String answer)? validation,
   String Function(AppLocalizations l)? warningText,
@@ -1655,9 +1750,68 @@ IntakeChatQuestion _q(
     helpText: helpText,
     inputHint: inputHint,
     defaultValue: defaultValue,
-    choiceOptions: choiceOptions,
+    choiceOptions: choiceOptions == null ? null : (_, l) => choiceOptions(l),
+    allowMultiple: allowMultiple,
+    allowOther: allowOther,
+    otherLabel: otherLabel,
+    minSelections: minSelections,
+    maxSelections: maxSelections,
     validation: validation,
     warningText: warningText,
+  );
+}
+
+IntakeChatQuestion _choice(
+  String questionKey,
+  String blockKey,
+  IntakeChatQuestionType type,
+  String targetField,
+  String Function(AppLocalizations l) text,
+  String Function(IntakeSession session) value,
+  void Function(AppState state, String answer) saveAnswer, {
+  required List<String> Function(IntakeSession session, AppLocalizations l)
+  choiceOptions,
+  String? dependsOnQuestionKey,
+  bool? dependsOnAnswer,
+  bool required = false,
+  bool skippable = true,
+  bool appendMode = false,
+  String? followUpGroup,
+  String? parentQuestionKey,
+  String Function(AppLocalizations l)? helpText,
+  bool allowOther = false,
+  String Function(AppLocalizations l)? otherLabel,
+  int? minSelections,
+  int? maxSelections,
+}) {
+  final allowMultiple =
+      type == IntakeChatQuestionType.multiChoice ||
+      type == IntakeChatQuestionType.multiChoiceWithOther;
+  return IntakeChatQuestion(
+    questionKey: questionKey,
+    blockKey: blockKey,
+    type: type,
+    targetField: targetField,
+    text: text,
+    value: value,
+    saveAnswer: saveAnswer,
+    choiceOptions: choiceOptions,
+    allowMultiple: allowMultiple,
+    allowOther:
+        allowOther ||
+        type == IntakeChatQuestionType.choiceWithOther ||
+        type == IntakeChatQuestionType.multiChoiceWithOther,
+    otherLabel: otherLabel,
+    minSelections: minSelections,
+    maxSelections: maxSelections,
+    dependsOnQuestionKey: dependsOnQuestionKey,
+    dependsOnAnswer: dependsOnAnswer,
+    required: required,
+    skippable: skippable,
+    appendMode: appendMode,
+    followUpGroup: followUpGroup,
+    parentQuestionKey: parentQuestionKey,
+    helpText: helpText,
   );
 }
 
@@ -1755,8 +1909,23 @@ List<String> _splitLines(String value) {
       .toList();
 }
 
+List<String> _splitOptions(String value) {
+  return value
+      .split('|')
+      .map((item) => item.trim())
+      .where((item) => item.isNotEmpty)
+      .toList();
+}
+
 bool _same(String a, String b) {
   String normalize(String value) =>
       value.trim().toLowerCase().replaceAll(RegExp(r'\s+'), ' ');
   return normalize(a) == normalize(b);
+}
+
+bool _isNone(String value) {
+  final normalized = value.trim().toLowerCase();
+  return normalized == 'keine' ||
+      normalized == 'none' ||
+      normalized == 'no fixed structure';
 }

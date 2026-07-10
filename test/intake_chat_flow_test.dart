@@ -35,7 +35,9 @@ void main() {
 
   test('website yes asks URL and website detail questions', () {
     final state = AppState();
-    state.updateIntakeBasics(const IntakeBasics());
+    state.updateIntakeBasics(
+      const IntakeBasics(website: 'https://prefilled.example'),
+    );
     state.updateIntakeWebsiteAndSupport(const IntakeWebsiteAndSupport());
 
     final hasWebsite = IntakeChatFlow.questions.firstWhere(
@@ -50,6 +52,16 @@ void main() {
       'website',
     );
     expect(
+      IntakeChatFlow.questionByKey('website').value(state.intakeSession!),
+      isEmpty,
+    );
+    expect(
+      IntakeChatFlow.questionByKey('website').defaultValue!(
+        state.intakeSession!,
+      ),
+      'https://prefilled.example',
+    );
+    expect(
       IntakeChatFlow.nextQuestion(state.intakeSession!)!.type,
       IntakeChatQuestionType.url,
     );
@@ -58,6 +70,31 @@ void main() {
         state.intakeSession!,
       ).map((question) => question.questionKey),
       containsAll(['website', 'hasShop', 'importantPages', 'hasFaqArea']),
+    );
+  });
+
+  test('website URL empty keeps shop question closed', () {
+    final state = AppState();
+    state.updateIntakeBasics(
+      const IntakeBasics(
+        companyName: 'Demo',
+        shortDescription: 'Demo description',
+        industry: 'Software',
+        country: 'AT',
+        primaryLanguage: 'de',
+        additionalLanguages: 'English',
+        hasWebsite: true,
+      ),
+    );
+    state.updateIntakeWebsiteAndSupport(const IntakeWebsiteAndSupport());
+
+    expect(
+      IntakeChatFlow.nextQuestion(state.intakeSession!)!.questionKey,
+      'website',
+    );
+    expect(
+      IntakeChatFlow.nextQuestion(state.intakeSession!)!.questionKey,
+      isNot('hasShop'),
     );
   });
 
@@ -79,6 +116,7 @@ void main() {
         industry: 'Software',
         country: 'AT',
         primaryLanguage: 'de',
+        additionalLanguages: 'English',
         hasWebsite: true,
       ),
     );
@@ -92,9 +130,13 @@ void main() {
       state.intakeSession!.websiteAndSupport.websiteUrl,
       'https://example.com',
     );
+    expect(
+      IntakeChatFlow.nextQuestion(state.intakeSession!)!.questionKey,
+      'hasShop',
+    );
   });
 
-  test('question remains open when no answer is saved', () {
+  test('website URL cancelled remains current question', () {
     final state = AppState();
     state.updateIntakeBasics(
       const IntakeBasics(
@@ -103,6 +145,7 @@ void main() {
         industry: 'Software',
         country: 'AT',
         primaryLanguage: 'de',
+        additionalLanguages: 'English',
         hasWebsite: true,
       ),
     );
@@ -118,7 +161,7 @@ void main() {
     );
   });
 
-  test('answer later marks a question deferred and moves on', () {
+  test('website URL answer later allows shop question but keeps gap open', () {
     final state = AppState();
     state.updateIntakeBasics(
       const IntakeBasics(
@@ -127,6 +170,7 @@ void main() {
         industry: 'Software',
         country: 'AT',
         primaryLanguage: 'de',
+        additionalLanguages: 'English',
         hasWebsite: true,
       ),
     );
@@ -172,6 +216,72 @@ void main() {
     expect(next.type, IntakeChatQuestionType.url);
   });
 
+  test('faq yes asks faq URL next', () {
+    final state = AppState();
+    state.updateIntakeBasics(const IntakeBasics(hasWebsite: true));
+    state.updateIntakeWebsiteAndSupport(
+      const IntakeWebsiteAndSupport(
+        websiteUrl: 'https://example.com',
+        hasShop: false,
+        importantPages: 'Home',
+      ),
+    );
+    final hasFaqArea = IntakeChatFlow.questionByKey('hasFaqArea');
+
+    IntakeChatFlow.saveAnswer(state, hasFaqArea, 'yes');
+
+    final next = IntakeChatFlow.nextQuestion(state.intakeSession!);
+    expect(next!.questionKey, 'faqUrl');
+    expect(next.type, IntakeChatQuestionType.url);
+  });
+
+  test('resume inside website detail path starts at missing URL', () {
+    final state = AppState();
+    state.updateIntakeBasics(
+      const IntakeBasics(
+        companyName: 'Demo',
+        shortDescription: 'Demo description',
+        industry: 'Software',
+        country: 'AT',
+        primaryLanguage: 'de',
+        additionalLanguages: 'English',
+        hasWebsite: true,
+      ),
+    );
+    state.updateIntakeWebsiteAndSupport(const IntakeWebsiteAndSupport());
+    state.setIntakeChatQuestionIndex(
+      IntakeChatFlow.questions.indexOf(IntakeChatFlow.questionByKey('website')),
+    );
+
+    expect(
+      IntakeChatFlow.nextQuestion(state.intakeSession!)!.questionKey,
+      'website',
+    );
+  });
+
+  test('https scheme alone does not count as answered', () {
+    final state = AppState();
+    state.updateIntakeBasics(
+      const IntakeBasics(
+        companyName: 'Demo',
+        shortDescription: 'Demo description',
+        industry: 'Software',
+        country: 'AT',
+        primaryLanguage: 'de',
+        additionalLanguages: 'English',
+        hasWebsite: true,
+      ),
+    );
+    state.updateIntakeWebsiteAndSupport(
+      const IntakeWebsiteAndSupport(websiteUrl: 'https://'),
+    );
+
+    expect(
+      IntakeChatFlow.nextQuestion(state.intakeSession!)!.questionKey,
+      'website',
+    );
+  });
+
   test('website no skips website details and asks planned website', () {
     final state = AppState();
     state.updateIntakeBasics(const IntakeBasics());
@@ -201,6 +311,7 @@ void main() {
         industry: 'Software',
         country: 'Österreich',
         primaryLanguage: 'de',
+        additionalLanguages: 'Englisch',
         hasWebsite: false,
       ),
     );
@@ -393,5 +504,150 @@ void main() {
     expect(labels, contains('Google Reviews'));
     expect(labels, contains('Was kostet das Produkt?'));
     expect(labels, contains('Rechtliche Beschwerden'));
+  });
+
+  test('multiChoice stores multiple values without duplicates', () {
+    final state = AppState();
+    state.updateIntakeMarketingAndChannels(
+      const IntakeMarketingAndChannels(hasSocialChannels: true),
+    );
+    final question = IntakeChatFlow.questionByKey('socialPlatforms');
+
+    IntakeChatFlow.saveAnswer(state, question, 'Facebook\nInstagram\nFacebook');
+
+    expect(
+      state.intakeSession!.marketingAndChannels.socialPlatforms,
+      'Facebook\nInstagram',
+    );
+  });
+
+  test('none selection removes other selected values', () {
+    final state = AppState();
+    state.updateIntakeMarketingAndChannels(
+      const IntakeMarketingAndChannels(hasSocialChannels: true),
+    );
+    final question = IntakeChatFlow.questionByKey('socialPlatforms');
+
+    IntakeChatFlow.saveAnswer(state, question, 'Facebook\nkeine\nInstagram');
+
+    expect(state.intakeSession!.marketingAndChannels.socialPlatforms, 'keine');
+  });
+
+  test('other choice text is stored with the selected values', () {
+    final state = AppState();
+    state.updateIntakeMarketingAndChannels(
+      const IntakeMarketingAndChannels(hasSocialChannels: true),
+    );
+    final question = IntakeChatFlow.questionByKey('socialPlatforms');
+
+    IntakeChatFlow.saveAnswer(state, question, 'Instagram\nMastodon');
+
+    expect(
+      state.intakeSession!.marketingAndChannels.socialPlatforms,
+      'Instagram\nMastodon',
+    );
+  });
+
+  test('existing choice values remain available for editing', () {
+    final state = AppState();
+    state.updateIntakeMarketingAndChannels(
+      const IntakeMarketingAndChannels(
+        hasSocialChannels: true,
+        socialPlatforms: 'Facebook\nInstagram',
+      ),
+    );
+    final question = IntakeChatFlow.questionByKey('socialPlatforms');
+
+    expect(question.value(state.intakeSession!), 'Facebook\nInstagram');
+  });
+
+  test('social follow-up choices only use selected platforms', () {
+    final state = AppState();
+    final l = lookupAppLocalizations(const Locale('en'));
+    state.updateIntakeMarketingAndChannels(
+      const IntakeMarketingAndChannels(
+        hasSocialChannels: true,
+        socialPlatforms: 'Facebook\nInstagram',
+      ),
+    );
+    final question = IntakeChatFlow.questionByKey('activeChannels');
+
+    expect(question.choiceOptions!(state.intakeSession!, l), [
+      'Facebook',
+      'Instagram',
+    ]);
+  });
+
+  test('choice data stays in the selected workspace only', () {
+    final state = AppState();
+    final otherBefore = state.companies
+        .firstWhere((workspace) => workspace.company.id == 'schnurr-purr')
+        .intakeSession!
+        .marketingAndChannels
+        .socialPlatforms;
+    state.updateIntakeMarketingAndChannels(
+      const IntakeMarketingAndChannels(hasSocialChannels: true),
+    );
+    final question = IntakeChatFlow.questionByKey('socialPlatforms');
+
+    IntakeChatFlow.saveAnswer(state, question, 'LinkedIn\nNewsletter');
+
+    expect(
+      state.intakeSession!.marketingAndChannels.socialPlatforms,
+      'LinkedIn\nNewsletter',
+    );
+    expect(
+      state.companies
+          .firstWhere((workspace) => workspace.company.id == 'schnurr-purr')
+          .intakeSession!
+          .marketingAndChannels
+          .socialPlatforms,
+      otherBefore,
+    );
+  });
+
+  test('wizard and chat share selected choice values', () {
+    final state = AppState();
+    final question = IntakeChatFlow.questionByKey('targetGroup');
+
+    IntakeChatFlow.saveAnswer(state, question, 'private customers\nbusinesses');
+
+    expect(
+      state.intakeSession!.targetGroups.targetGroup,
+      'private customers\nbusinesses',
+    );
+  });
+
+  test('mapping preview processes selected choice values', () {
+    final state = AppState();
+    state.updateIntakeMarketingAndChannels(
+      const IntakeMarketingAndChannels(
+        socialPlatforms: 'Instagram\nNewsletter',
+        advertisingChannels: 'Google Ads\nSEO',
+        reachProblems: 'too few inquiries',
+      ),
+    );
+    state.updateIntakeSourcesAndReviews(
+      const IntakeSourcesAndReviews(
+        reviewPlatforms: 'Google\nTrustpilot',
+        materialDetails: 'PDF\nFAQ list',
+      ),
+    );
+    state.updateIntakeGoalsAndRisks(
+      const IntakeGoalsAndRisks(
+        companyGoals: 'more inquiries\nbetter website',
+        sensitiveTopics: 'data protection',
+      ),
+    );
+
+    final labels = state.generateIntakeMappingPreview().suggestions.map(
+      (suggestion) => suggestion.label,
+    );
+
+    expect(labels, contains('Google'));
+    expect(labels, contains('Trustpilot'));
+    expect(labels, contains('PDF'));
+    expect(labels, contains('FAQ list'));
+    expect(labels, contains('data protection'));
   });
 }

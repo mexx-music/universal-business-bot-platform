@@ -686,7 +686,21 @@ class AppLocalizationsDe extends AppLocalizations {
       'Beispiel: ca. 20 oder ungefähr 3.000 €';
 
   @override
+  String get intakeChatExampleChoice => 'Wähle die passende Antwort aus.';
+
+  @override
+  String get intakeChatExampleMultiChoice =>
+      'Wähle alle passenden Antworten aus.';
+
+  @override
   String get intakeChatAnswerModeYesNo => 'Wähle Ja oder Nein.';
+
+  @override
+  String get intakeChatAnswerModeChoice => 'Wähle eine Antwort aus.';
+
+  @override
+  String get intakeChatAnswerModeMultiChoice =>
+      'Wähle alle passenden Antworten aus.';
 
   @override
   String get intakeChatAnswerModeShortText => 'Gib eine kurze Antwort ein.';
@@ -757,6 +771,10 @@ class AppLocalizationsDe extends AppLocalizations {
   @override
   String get intakeChatQPrimaryLanguage =>
       'Welche Hauptsprache soll der Workspace verwenden?';
+
+  @override
+  String get intakeChatQAdditionalLanguages =>
+      'Welche weiteren Sprachen sind wichtig?';
 
   @override
   String get intakeChatQHasWebsite => 'Gibt es bereits eine Website?';
@@ -837,6 +855,10 @@ class AppLocalizationsDe extends AppLocalizations {
   @override
   String get intakeChatQHasSupportQuestions =>
       'Gibt es wiederkehrende Supportfragen oder Kundenprobleme?';
+
+  @override
+  String get intakeChatQSupportChannels =>
+      'Über welche Kanäle kommen Supportfragen herein?';
 
   @override
   String get intakeChatQPreSalesQuestions =>
@@ -1055,6 +1077,72 @@ class AppLocalizationsDe extends AppLocalizations {
   @override
   String get intakeChatQBotRestrictedTopics =>
       'Welche Themen darf ein Bot nicht frei beantworten?';
+
+  @override
+  String get intakeChoiceOther => 'Andere';
+
+  @override
+  String get intakeChoiceOtherHint => 'Andere Antwort eingeben';
+
+  @override
+  String get intakeChoiceDialogSingleHint => 'Tippe eine Option an.';
+
+  @override
+  String get intakeChoiceDialogMultiHint => 'Tippe alle passenden Optionen an.';
+
+  @override
+  String get intakeChoiceDialogSelectionRequired =>
+      'Bitte wähle mindestens eine Option aus.';
+
+  @override
+  String get intakeChoiceDialogSaveContinue => 'Auswahl speichern und weiter';
+
+  @override
+  String get intakeChoiceLanguageOptions =>
+      'Deutsch|Englisch|Französisch|Italienisch|Spanisch|Niederländisch|Polnisch';
+
+  @override
+  String get intakeChoiceRegionOptions =>
+      'Inland|DACH|EU|Europa|weltweit|einzelne Länder';
+
+  @override
+  String get intakeChoiceTargetGroupOptions =>
+      'Privatkunden|Unternehmen|Händler|Therapeuten|Behörden|Vereine|Bildungseinrichtungen|Tierhalter|internationale Kunden';
+
+  @override
+  String get intakeChoiceMarketTypeOptions => 'B2C|B2B|beides';
+
+  @override
+  String get intakeChoiceSupportChannelOptions =>
+      'Telefon|E-Mail|WhatsApp|Telegram|Website-Formular|Live-Chat|Facebook Messenger|Instagram|persönlich vor Ort|Händler|keine feste Struktur';
+
+  @override
+  String get intakeChoiceSensitiveCategoryOptions =>
+      'medizinische Aussagen|rechtliche Fragen|Datenschutz|Preise/Rabatte|Beschwerden|Rückerstattungen|Produktsicherheit|technische Störungen|individuelle Beratung|vertrauliche Firmendaten';
+
+  @override
+  String get intakeChoiceMaterialOptions =>
+      'Bedienungsanleitung|PDF|Broschüre|Präsentation|Preislisten|Produkttexte|FAQ-Liste|Antwortvorlagen|Videos|Bilder|Screenshots|interne Notizen|E-Mails';
+
+  @override
+  String get intakeChoiceReviewPlatformOptions =>
+      'eigene Website|Google|Facebook|Trustpilot|Amazon|App Store|Google Play|YouTube|E-Mail|Screenshots|Foren';
+
+  @override
+  String get intakeChoiceSocialPlatformOptions =>
+      'Facebook|Instagram|TikTok|YouTube|LinkedIn|WhatsApp|Telegram|Reddit|X|Pinterest|Snapchat|eigener Blog|Newsletter|keine';
+
+  @override
+  String get intakeChoiceAdvertisingChannelOptions =>
+      'Google Ads|Facebook Ads|Instagram Ads|TikTok Ads|YouTube Ads|LinkedIn Ads|Influencer|SEO|Newsletter|Print|Flyer|Messen|Telegram-/Community-Marketing|keine';
+
+  @override
+  String get intakeChoiceGoalOptions =>
+      'mehr Verkäufe|mehr Anfragen|größere Reichweite|bessere Sichtbarkeit|weniger Supportaufwand|bessere Kundeninformation|mehr Rezensionen|bessere Website|Social Media ausbauen|Werbung optimieren|neue Märkte|interne Abläufe verbessern';
+
+  @override
+  String get intakeChoiceReachProblemOptions =>
+      'zu wenig Website-Besucher|zu wenig Anfragen|zu wenig Verkäufe|wenig Social-Reichweite|zu wenig Rezensionen|unklare Positionierung|schwache Landingpage|zu wenig Vertrauen|zu wenig Content|falsche Werbekanäle|keine Messdaten';
 
   @override
   String get companyTitle => 'Firma';

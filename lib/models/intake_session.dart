@@ -10,6 +10,8 @@ class IntakeBasics {
   final String supportEmail;
   final String supportPhone;
   final bool? hasWebsite;
+  final String additionalLanguages;
+  final String targetRegions;
 
   const IntakeBasics({
     this.companyName = '',
@@ -21,6 +23,8 @@ class IntakeBasics {
     this.supportEmail = '',
     this.supportPhone = '',
     this.hasWebsite,
+    this.additionalLanguages = '',
+    this.targetRegions = '',
   });
 
   IntakeBasics copyWith({
@@ -33,6 +37,8 @@ class IntakeBasics {
     String? supportEmail,
     String? supportPhone,
     bool? hasWebsite,
+    String? additionalLanguages,
+    String? targetRegions,
   }) {
     return IntakeBasics(
       companyName: companyName ?? this.companyName,
@@ -44,6 +50,8 @@ class IntakeBasics {
       supportEmail: supportEmail ?? this.supportEmail,
       supportPhone: supportPhone ?? this.supportPhone,
       hasWebsite: hasWebsite ?? this.hasWebsite,
+      additionalLanguages: additionalLanguages ?? this.additionalLanguages,
+      targetRegions: targetRegions ?? this.targetRegions,
     );
   }
 }
@@ -120,6 +128,7 @@ class IntakeWebsiteAndSupport {
   final String importantPages;
   final String frequentQuestions;
   final bool? hasSupportQuestions;
+  final String supportChannels;
   final String preSalesQuestions;
   final String afterSalesQuestions;
   final String technicalProblems;
@@ -142,6 +151,7 @@ class IntakeWebsiteAndSupport {
     this.importantPages = '',
     this.frequentQuestions = '',
     this.hasSupportQuestions,
+    this.supportChannels = '',
     this.preSalesQuestions = '',
     this.afterSalesQuestions = '',
     this.technicalProblems = '',
@@ -165,6 +175,7 @@ class IntakeWebsiteAndSupport {
     String? importantPages,
     String? frequentQuestions,
     bool? hasSupportQuestions,
+    String? supportChannels,
     String? preSalesQuestions,
     String? afterSalesQuestions,
     String? technicalProblems,
@@ -188,6 +199,7 @@ class IntakeWebsiteAndSupport {
       importantPages: importantPages ?? this.importantPages,
       frequentQuestions: frequentQuestions ?? this.frequentQuestions,
       hasSupportQuestions: hasSupportQuestions ?? this.hasSupportQuestions,
+      supportChannels: supportChannels ?? this.supportChannels,
       preSalesQuestions: preSalesQuestions ?? this.preSalesQuestions,
       afterSalesQuestions: afterSalesQuestions ?? this.afterSalesQuestions,
       technicalProblems: technicalProblems ?? this.technicalProblems,

@@ -1316,11 +1316,35 @@ abstract class AppLocalizations {
   /// **'Beispiel: ca. 20 oder ungefähr 3.000 €'**
   String get intakeChatExampleApproximateNumber;
 
+  /// No description provided for @intakeChatExampleChoice.
+  ///
+  /// In de, this message translates to:
+  /// **'Wähle die passende Antwort aus.'**
+  String get intakeChatExampleChoice;
+
+  /// No description provided for @intakeChatExampleMultiChoice.
+  ///
+  /// In de, this message translates to:
+  /// **'Wähle alle passenden Antworten aus.'**
+  String get intakeChatExampleMultiChoice;
+
   /// No description provided for @intakeChatAnswerModeYesNo.
   ///
   /// In de, this message translates to:
   /// **'Wähle Ja oder Nein.'**
   String get intakeChatAnswerModeYesNo;
+
+  /// No description provided for @intakeChatAnswerModeChoice.
+  ///
+  /// In de, this message translates to:
+  /// **'Wähle eine Antwort aus.'**
+  String get intakeChatAnswerModeChoice;
+
+  /// No description provided for @intakeChatAnswerModeMultiChoice.
+  ///
+  /// In de, this message translates to:
+  /// **'Wähle alle passenden Antworten aus.'**
+  String get intakeChatAnswerModeMultiChoice;
 
   /// No description provided for @intakeChatAnswerModeShortText.
   ///
@@ -1435,6 +1459,12 @@ abstract class AppLocalizations {
   /// In de, this message translates to:
   /// **'Welche Hauptsprache soll der Workspace verwenden?'**
   String get intakeChatQPrimaryLanguage;
+
+  /// No description provided for @intakeChatQAdditionalLanguages.
+  ///
+  /// In de, this message translates to:
+  /// **'Welche weiteren Sprachen sind wichtig?'**
+  String get intakeChatQAdditionalLanguages;
 
   /// No description provided for @intakeChatQHasWebsite.
   ///
@@ -1567,6 +1597,12 @@ abstract class AppLocalizations {
   /// In de, this message translates to:
   /// **'Gibt es wiederkehrende Supportfragen oder Kundenprobleme?'**
   String get intakeChatQHasSupportQuestions;
+
+  /// No description provided for @intakeChatQSupportChannels.
+  ///
+  /// In de, this message translates to:
+  /// **'Über welche Kanäle kommen Supportfragen herein?'**
+  String get intakeChatQSupportChannels;
 
   /// No description provided for @intakeChatQPreSalesQuestions.
   ///
@@ -1909,6 +1945,114 @@ abstract class AppLocalizations {
   /// In de, this message translates to:
   /// **'Welche Themen darf ein Bot nicht frei beantworten?'**
   String get intakeChatQBotRestrictedTopics;
+
+  /// No description provided for @intakeChoiceOther.
+  ///
+  /// In de, this message translates to:
+  /// **'Andere'**
+  String get intakeChoiceOther;
+
+  /// No description provided for @intakeChoiceOtherHint.
+  ///
+  /// In de, this message translates to:
+  /// **'Andere Antwort eingeben'**
+  String get intakeChoiceOtherHint;
+
+  /// No description provided for @intakeChoiceDialogSingleHint.
+  ///
+  /// In de, this message translates to:
+  /// **'Tippe eine Option an.'**
+  String get intakeChoiceDialogSingleHint;
+
+  /// No description provided for @intakeChoiceDialogMultiHint.
+  ///
+  /// In de, this message translates to:
+  /// **'Tippe alle passenden Optionen an.'**
+  String get intakeChoiceDialogMultiHint;
+
+  /// No description provided for @intakeChoiceDialogSelectionRequired.
+  ///
+  /// In de, this message translates to:
+  /// **'Bitte wähle mindestens eine Option aus.'**
+  String get intakeChoiceDialogSelectionRequired;
+
+  /// No description provided for @intakeChoiceDialogSaveContinue.
+  ///
+  /// In de, this message translates to:
+  /// **'Auswahl speichern und weiter'**
+  String get intakeChoiceDialogSaveContinue;
+
+  /// No description provided for @intakeChoiceLanguageOptions.
+  ///
+  /// In de, this message translates to:
+  /// **'Deutsch|Englisch|Französisch|Italienisch|Spanisch|Niederländisch|Polnisch'**
+  String get intakeChoiceLanguageOptions;
+
+  /// No description provided for @intakeChoiceRegionOptions.
+  ///
+  /// In de, this message translates to:
+  /// **'Inland|DACH|EU|Europa|weltweit|einzelne Länder'**
+  String get intakeChoiceRegionOptions;
+
+  /// No description provided for @intakeChoiceTargetGroupOptions.
+  ///
+  /// In de, this message translates to:
+  /// **'Privatkunden|Unternehmen|Händler|Therapeuten|Behörden|Vereine|Bildungseinrichtungen|Tierhalter|internationale Kunden'**
+  String get intakeChoiceTargetGroupOptions;
+
+  /// No description provided for @intakeChoiceMarketTypeOptions.
+  ///
+  /// In de, this message translates to:
+  /// **'B2C|B2B|beides'**
+  String get intakeChoiceMarketTypeOptions;
+
+  /// No description provided for @intakeChoiceSupportChannelOptions.
+  ///
+  /// In de, this message translates to:
+  /// **'Telefon|E-Mail|WhatsApp|Telegram|Website-Formular|Live-Chat|Facebook Messenger|Instagram|persönlich vor Ort|Händler|keine feste Struktur'**
+  String get intakeChoiceSupportChannelOptions;
+
+  /// No description provided for @intakeChoiceSensitiveCategoryOptions.
+  ///
+  /// In de, this message translates to:
+  /// **'medizinische Aussagen|rechtliche Fragen|Datenschutz|Preise/Rabatte|Beschwerden|Rückerstattungen|Produktsicherheit|technische Störungen|individuelle Beratung|vertrauliche Firmendaten'**
+  String get intakeChoiceSensitiveCategoryOptions;
+
+  /// No description provided for @intakeChoiceMaterialOptions.
+  ///
+  /// In de, this message translates to:
+  /// **'Bedienungsanleitung|PDF|Broschüre|Präsentation|Preislisten|Produkttexte|FAQ-Liste|Antwortvorlagen|Videos|Bilder|Screenshots|interne Notizen|E-Mails'**
+  String get intakeChoiceMaterialOptions;
+
+  /// No description provided for @intakeChoiceReviewPlatformOptions.
+  ///
+  /// In de, this message translates to:
+  /// **'eigene Website|Google|Facebook|Trustpilot|Amazon|App Store|Google Play|YouTube|E-Mail|Screenshots|Foren'**
+  String get intakeChoiceReviewPlatformOptions;
+
+  /// No description provided for @intakeChoiceSocialPlatformOptions.
+  ///
+  /// In de, this message translates to:
+  /// **'Facebook|Instagram|TikTok|YouTube|LinkedIn|WhatsApp|Telegram|Reddit|X|Pinterest|Snapchat|eigener Blog|Newsletter|keine'**
+  String get intakeChoiceSocialPlatformOptions;
+
+  /// No description provided for @intakeChoiceAdvertisingChannelOptions.
+  ///
+  /// In de, this message translates to:
+  /// **'Google Ads|Facebook Ads|Instagram Ads|TikTok Ads|YouTube Ads|LinkedIn Ads|Influencer|SEO|Newsletter|Print|Flyer|Messen|Telegram-/Community-Marketing|keine'**
+  String get intakeChoiceAdvertisingChannelOptions;
+
+  /// No description provided for @intakeChoiceGoalOptions.
+  ///
+  /// In de, this message translates to:
+  /// **'mehr Verkäufe|mehr Anfragen|größere Reichweite|bessere Sichtbarkeit|weniger Supportaufwand|bessere Kundeninformation|mehr Rezensionen|bessere Website|Social Media ausbauen|Werbung optimieren|neue Märkte|interne Abläufe verbessern'**
+  String get intakeChoiceGoalOptions;
+
+  /// No description provided for @intakeChoiceReachProblemOptions.
+  ///
+  /// In de, this message translates to:
+  /// **'zu wenig Website-Besucher|zu wenig Anfragen|zu wenig Verkäufe|wenig Social-Reichweite|zu wenig Rezensionen|unklare Positionierung|schwache Landingpage|zu wenig Vertrauen|zu wenig Content|falsche Werbekanäle|keine Messdaten'**
+  String get intakeChoiceReachProblemOptions;
 
   /// No description provided for @companyTitle.
   ///
