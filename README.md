@@ -46,6 +46,26 @@ This MVP intentionally does not include:
 - Flutter localizations / ARB files
 - Local in-memory mock state
 
+## Web / PWA
+
+The browser is the primary access path. Supported browsers can optionally install the app or add it to the home screen, but installation is not required.
+
+Release build:
+
+```sh
+flutter build web
+```
+
+The build output is written to `build/web`. Production PWA behavior requires HTTPS, except for local development on `localhost`.
+
+Because the app uses Flutter web routing with direct routes such as `/companies`, `/dashboard`, `/intake-chat`, and `/bot-settings`, the hosting server should fall back to `index.html` for app routes. This can be configured with the equivalent of a Firebase Hosting rewrite, Netlify redirect, Cloudflare Pages SPA fallback, or a GitHub Pages-compatible setup.
+
+## PWA Status And Current Limitations
+
+The current PWA preparation provides a web app manifest, app icons, standalone display metadata, and Flutter's generated service worker in release builds. After the first successful load, the app shell and static build assets can be available again depending on browser support and cache state.
+
+This does not add authentication, a backend, secure server-side tenancy, encrypted persistent customer storage, or device synchronization. The current MVP uses local in-memory state; browser reloads or restarts can reset data unless persistence is added later. Production customer data requires authentication, backend storage, and a database design.
+
 ## Status
 
 Internal MVP / work in progress.

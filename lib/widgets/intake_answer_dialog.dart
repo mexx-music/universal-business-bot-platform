@@ -62,53 +62,56 @@ class _IntakeAnswerDialogState extends State<IntakeAnswerDialog> {
       title: Text(question.text(l)),
       content: ConstrainedBox(
         constraints: const BoxConstraints(maxWidth: 520),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            if (helpText != null && helpText.isNotEmpty) ...[
-              Text(helpText, style: Theme.of(context).textTheme.bodySmall),
-              const SizedBox(height: 10),
-            ],
-            if (question.isListQuestion) ...[
-              Text(
-                l.intakeChatListHint,
-                style: Theme.of(context).textTheme.bodySmall,
-              ),
-              const SizedBox(height: 10),
-            ],
-            TextField(
-              controller: _controller,
-              autofocus: true,
-              keyboardType: _keyboardType(question.type),
-              minLines: isMultiLine ? 4 : 1,
-              maxLines: isMultiLine ? 8 : 1,
-              textInputAction: isMultiLine
-                  ? TextInputAction.newline
-                  : TextInputAction.done,
-              decoration: InputDecoration(
-                border: const OutlineInputBorder(),
-                hintText: question.inputHint?.call(l) ?? l.intakeChatInputHint,
-                errorText: _errorText,
-                contentPadding: const EdgeInsets.symmetric(
-                  horizontal: 14,
-                  vertical: 16,
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              if (helpText != null && helpText.isNotEmpty) ...[
+                Text(helpText, style: Theme.of(context).textTheme.bodySmall),
+                const SizedBox(height: 10),
+              ],
+              if (question.isListQuestion) ...[
+                Text(
+                  l.intakeChatListHint,
+                  style: Theme.of(context).textTheme.bodySmall,
                 ),
-              ),
-              onSubmitted: (_) {
-                if (!isMultiLine) _save(l);
-              },
-            ),
-            if (exampleText != null) ...[
-              const SizedBox(height: 8),
-              Text(
-                exampleText,
-                style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                  color: Theme.of(context).colorScheme.onSurfaceVariant,
+                const SizedBox(height: 10),
+              ],
+              TextField(
+                controller: _controller,
+                autofocus: true,
+                keyboardType: _keyboardType(question.type),
+                minLines: isMultiLine ? 4 : 1,
+                maxLines: isMultiLine ? 8 : 1,
+                textInputAction: isMultiLine
+                    ? TextInputAction.newline
+                    : TextInputAction.done,
+                decoration: InputDecoration(
+                  border: const OutlineInputBorder(),
+                  hintText:
+                      question.inputHint?.call(l) ?? l.intakeChatInputHint,
+                  errorText: _errorText,
+                  contentPadding: const EdgeInsets.symmetric(
+                    horizontal: 14,
+                    vertical: 16,
+                  ),
                 ),
+                onSubmitted: (_) {
+                  if (!isMultiLine) _save(l);
+                },
               ),
+              if (exampleText != null) ...[
+                const SizedBox(height: 8),
+                Text(
+                  exampleText,
+                  style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                    color: Theme.of(context).colorScheme.onSurfaceVariant,
+                  ),
+                ),
+              ],
             ],
-          ],
+          ),
         ),
       ),
       actions: [

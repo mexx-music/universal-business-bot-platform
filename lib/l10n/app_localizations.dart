@@ -206,6 +206,36 @@ abstract class AppLocalizations {
   /// **'Zur Startseite'**
   String get landingBackHome;
 
+  /// No description provided for @landingPwaHint.
+  ///
+  /// In de, this message translates to:
+  /// **'Sie können die Plattform direkt im Browser verwenden oder für schnelleren Zugriff zum Startbildschirm hinzufügen.'**
+  String get landingPwaHint;
+
+  /// No description provided for @landingPwaAddToHome.
+  ///
+  /// In de, this message translates to:
+  /// **'Zum Startbildschirm hinzufügen'**
+  String get landingPwaAddToHome;
+
+  /// No description provided for @landingPwaDismiss.
+  ///
+  /// In de, this message translates to:
+  /// **'Ausblenden'**
+  String get landingPwaDismiss;
+
+  /// No description provided for @landingPwaBrowserMenuHint.
+  ///
+  /// In de, this message translates to:
+  /// **'Nutzen Sie dafür bei Bedarf das Browser-Menü.'**
+  String get landingPwaBrowserMenuHint;
+
+  /// No description provided for @landingPwaIosHint.
+  ///
+  /// In de, this message translates to:
+  /// **'Nutzen Sie dafür auf iPhone oder iPad das Teilen-Menü und „Zum Home-Bildschirm“.'**
+  String get landingPwaIosHint;
+
   /// No description provided for @companySelectTitle.
   ///
   /// In de, this message translates to:

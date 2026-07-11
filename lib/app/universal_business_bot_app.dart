@@ -13,7 +13,7 @@ class UniversalBusinessApp extends StatelessWidget {
     return AppStateScope(
       notifier: _appState,
       child: MaterialApp.router(
-        title: 'Universal Business Bot',
+        title: 'Universal Business Bot Platform',
         debugShowCheckedModeBanner: false,
         localizationsDelegates: AppLocalizations.localizationsDelegates,
         supportedLocales: AppLocalizations.supportedLocales,

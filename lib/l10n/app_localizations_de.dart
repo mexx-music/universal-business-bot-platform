@@ -67,6 +67,24 @@ class AppLocalizationsDe extends AppLocalizations {
   String get landingBackHome => 'Zur Startseite';
 
   @override
+  String get landingPwaHint =>
+      'Sie können die Plattform direkt im Browser verwenden oder für schnelleren Zugriff zum Startbildschirm hinzufügen.';
+
+  @override
+  String get landingPwaAddToHome => 'Zum Startbildschirm hinzufügen';
+
+  @override
+  String get landingPwaDismiss => 'Ausblenden';
+
+  @override
+  String get landingPwaBrowserMenuHint =>
+      'Nutzen Sie dafür bei Bedarf das Browser-Menü.';
+
+  @override
+  String get landingPwaIosHint =>
+      'Nutzen Sie dafür auf iPhone oder iPad das Teilen-Menü und „Zum Home-Bildschirm“.';
+
+  @override
   String get companySelectTitle => 'Firma auswählen';
 
   @override

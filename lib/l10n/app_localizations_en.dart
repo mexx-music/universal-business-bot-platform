@@ -67,6 +67,24 @@ class AppLocalizationsEn extends AppLocalizations {
   String get landingBackHome => 'Back Home';
 
   @override
+  String get landingPwaHint =>
+      'You can use the platform directly in your browser or add it to your home screen for faster access.';
+
+  @override
+  String get landingPwaAddToHome => 'Add to home screen';
+
+  @override
+  String get landingPwaDismiss => 'Hide';
+
+  @override
+  String get landingPwaBrowserMenuHint =>
+      'Use your browser menu if you want to add it.';
+
+  @override
+  String get landingPwaIosHint =>
+      'On iPhone or iPad, use the Share menu and Add to Home Screen.';
+
+  @override
   String get companySelectTitle => 'Select Company';
 
   @override

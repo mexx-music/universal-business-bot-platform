@@ -20,6 +20,11 @@
   "landingDemoTitle": "Demo Companies",
   "landingOpenDemo": "Open Demo",
   "landingBackHome": "Back Home",
+  "landingPwaHint": "You can use the platform directly in your browser or add it to your home screen for faster access.",
+  "landingPwaAddToHome": "Add to home screen",
+  "landingPwaDismiss": "Hide",
+  "landingPwaBrowserMenuHint": "Use your browser menu if you want to add it.",
+  "landingPwaIosHint": "On iPhone or iPad, use the Share menu and Add to Home Screen.",
 
   "companySelectTitle": "Select Company",
   "companySelectHeadline": "Choose Workspace",
