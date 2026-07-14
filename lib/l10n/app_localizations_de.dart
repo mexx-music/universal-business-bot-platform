@@ -85,6 +85,186 @@ class AppLocalizationsDe extends AppLocalizations {
       'Nutzen Sie dafür auf iPhone oder iPad das Teilen-Menü und „Zum Home-Bildschirm“.';
 
   @override
+  String get landingBrandName => 'Universal Business Bot Platform';
+
+  @override
+  String get landingPlaceholderAction =>
+      'Diese Aktion ist im MVP noch ein Platzhalter.';
+
+  @override
+  String get landingHeroEyebrow => 'Öffentliche Plattformvorschau';
+
+  @override
+  String get landingHeroTitle =>
+      'Die intelligente Plattform für Unternehmenswissen und digitales Wachstum';
+
+  @override
+  String get landingHeroSubtitle =>
+      'Erfassen Sie Ihr Unternehmen strukturiert, organisieren Sie Wissen und erhalten Sie konkrete Handlungsempfehlungen.';
+
+  @override
+  String get landingLearnMoreButton => 'Plattform kennenlernen';
+
+  @override
+  String get landingDemoButton => 'Demo ansehen';
+
+  @override
+  String get landingContactButton => 'Kontakt';
+
+  @override
+  String get landingHeroFlowCompany => 'Unternehmen';
+
+  @override
+  String get landingHeroFlowKnowledge => 'Wissensbasis';
+
+  @override
+  String get landingHeroFlowBot => 'Bot';
+
+  @override
+  String get landingHeroFlowMarketing => 'Marketing';
+
+  @override
+  String get landingHeroFlowControlling => 'Controlling';
+
+  @override
+  String get landingWorkflowTitle => 'So funktioniert es';
+
+  @override
+  String get landingWorkflowStep1Title => 'Unternehmen erfassen';
+
+  @override
+  String get landingWorkflowStep1Text =>
+      'Alle wichtigen Unternehmensinformationen werden strukturiert aufgenommen.';
+
+  @override
+  String get landingWorkflowStep2Title => 'Wissen organisieren';
+
+  @override
+  String get landingWorkflowStep2Text =>
+      'Produkte, FAQs, Dokumente und Prozesse werden übersichtlich verwaltet.';
+
+  @override
+  String get landingWorkflowStep3Title => 'Potenziale erkennen';
+
+  @override
+  String get landingWorkflowStep3Text =>
+      'Die Plattform unterstützt bei Marketing, Support und Unternehmensentwicklung.';
+
+  @override
+  String get landingFeaturesTitle => 'Funktionen';
+
+  @override
+  String get landingFeaturesSubtitle =>
+      'Ein öffentlicher Überblick über die Bausteine der Plattform. Einige Bereiche sind im MVP vorbereitet und werden schrittweise ausgebaut.';
+
+  @override
+  String get landingFeatureIntake => 'Firmenaufnahme';
+
+  @override
+  String get landingFeatureAuditFull => 'Audit';
+
+  @override
+  String get landingFeatureKnowledgeFull => 'Wissensbasis';
+
+  @override
+  String get landingFeatureSources => 'Quellenverwaltung';
+
+  @override
+  String get landingFeatureBotTest => 'Bot-Test';
+
+  @override
+  String get landingFeatureHumanReview => 'Human Review';
+
+  @override
+  String get landingFeatureMarketing => 'Marketing-Empfehlungen';
+
+  @override
+  String get landingFeatureControlling => 'Controlling';
+
+  @override
+  String get landingComingSoon => 'Coming Soon';
+
+  @override
+  String get landingBenefitsTitle => 'Vorteile';
+
+  @override
+  String get landingBenefitOnePlace => 'Alles an einem Ort';
+
+  @override
+  String get landingBenefitLessSupport => 'Weniger Supportaufwand';
+
+  @override
+  String get landingBenefitStructuredData => 'Strukturierte Unternehmensdaten';
+
+  @override
+  String get landingBenefitHumanAi => 'KI und Mensch arbeiten zusammen';
+
+  @override
+  String get landingBenefitTransparency => 'Mehr Transparenz';
+
+  @override
+  String get landingBenefitScalable => 'Skalierbare Plattform';
+
+  @override
+  String get landingDemoSectionTitle => 'Demo';
+
+  @override
+  String get landingDemoSectionSubtitle =>
+      'Die Videofläche ist vorbereitet und kann später durch ein echtes Produktvideo ersetzt werden.';
+
+  @override
+  String get landingDemoVideoComing => 'Demovideo folgt';
+
+  @override
+  String get landingAudienceTitle => 'Zielgruppen';
+
+  @override
+  String get landingAudienceServices => 'Dienstleister';
+
+  @override
+  String get landingAudienceManufacturers => 'Hersteller';
+
+  @override
+  String get landingAudienceCommerce => 'Onlinehandel';
+
+  @override
+  String get landingAudienceSoftware => 'Software';
+
+  @override
+  String get landingAudienceConsulting => 'Beratung';
+
+  @override
+  String get landingAudienceHealth => 'Gesundheitsunternehmen';
+
+  @override
+  String get landingCtaTitle => 'Bereit für den nächsten Schritt?';
+
+  @override
+  String get landingCtaText =>
+      'Starten Sie mit einer strukturierten Firmenaufnahme.';
+
+  @override
+  String get landingCtaButton => 'Firmenaufnahme anfragen';
+
+  @override
+  String get landingFooterVersion => 'Internal MVP / Work in progress';
+
+  @override
+  String get landingFooterGithub => 'GitHub';
+
+  @override
+  String get landingFooterImprint => 'Impressum';
+
+  @override
+  String get landingFooterPrivacy => 'Datenschutz';
+
+  @override
+  String get landingFooterContact => 'Kontakt';
+
+  @override
+  String get landingFooterLanguages => 'DE / EN';
+
+  @override
   String get companySelectTitle => 'Firma auswählen';
 
   @override

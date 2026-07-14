@@ -77,6 +77,12 @@ void main() {
     expect(index, contains('rel="icon"'));
   });
 
+  test('Cloudflare Pages SPA fallback is present', () {
+    final redirects = File('web/_redirects').readAsStringSync().trim();
+
+    expect(redirects, '/* /index.html 200');
+  });
+
   test(
     'non-web PWA install controller stays inert for tests and native builds',
     () {

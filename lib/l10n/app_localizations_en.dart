@@ -85,6 +85,185 @@ class AppLocalizationsEn extends AppLocalizations {
       'On iPhone or iPad, use the Share menu and Add to Home Screen.';
 
   @override
+  String get landingBrandName => 'Universal Business Bot Platform';
+
+  @override
+  String get landingPlaceholderAction =>
+      'This action is still a placeholder in the MVP.';
+
+  @override
+  String get landingHeroEyebrow => 'Public platform preview';
+
+  @override
+  String get landingHeroTitle =>
+      'The intelligent platform for company knowledge and digital growth';
+
+  @override
+  String get landingHeroSubtitle =>
+      'Capture your company in a structured way, organize knowledge, and receive concrete recommendations.';
+
+  @override
+  String get landingLearnMoreButton => 'Explore platform';
+
+  @override
+  String get landingDemoButton => 'View demo';
+
+  @override
+  String get landingContactButton => 'Contact';
+
+  @override
+  String get landingHeroFlowCompany => 'Company';
+
+  @override
+  String get landingHeroFlowKnowledge => 'Knowledge base';
+
+  @override
+  String get landingHeroFlowBot => 'Bot';
+
+  @override
+  String get landingHeroFlowMarketing => 'Marketing';
+
+  @override
+  String get landingHeroFlowControlling => 'Controlling';
+
+  @override
+  String get landingWorkflowTitle => 'How it works';
+
+  @override
+  String get landingWorkflowStep1Title => 'Capture company';
+
+  @override
+  String get landingWorkflowStep1Text =>
+      'All important company information is collected in a structured way.';
+
+  @override
+  String get landingWorkflowStep2Title => 'Organize knowledge';
+
+  @override
+  String get landingWorkflowStep2Text =>
+      'Products, FAQs, documents, and processes are managed clearly.';
+
+  @override
+  String get landingWorkflowStep3Title => 'Identify potential';
+
+  @override
+  String get landingWorkflowStep3Text =>
+      'The platform supports marketing, support, and company development.';
+
+  @override
+  String get landingFeaturesTitle => 'Features';
+
+  @override
+  String get landingFeaturesSubtitle =>
+      'A public overview of the platform building blocks. Some areas are prepared in the MVP and will be expanded step by step.';
+
+  @override
+  String get landingFeatureIntake => 'Company intake';
+
+  @override
+  String get landingFeatureAuditFull => 'Audit';
+
+  @override
+  String get landingFeatureKnowledgeFull => 'Knowledge base';
+
+  @override
+  String get landingFeatureSources => 'Source management';
+
+  @override
+  String get landingFeatureBotTest => 'Bot test';
+
+  @override
+  String get landingFeatureHumanReview => 'Human review';
+
+  @override
+  String get landingFeatureMarketing => 'Marketing recommendations';
+
+  @override
+  String get landingFeatureControlling => 'Controlling';
+
+  @override
+  String get landingComingSoon => 'Coming Soon';
+
+  @override
+  String get landingBenefitsTitle => 'Benefits';
+
+  @override
+  String get landingBenefitOnePlace => 'Everything in one place';
+
+  @override
+  String get landingBenefitLessSupport => 'Less support effort';
+
+  @override
+  String get landingBenefitStructuredData => 'Structured company data';
+
+  @override
+  String get landingBenefitHumanAi => 'AI and humans work together';
+
+  @override
+  String get landingBenefitTransparency => 'More transparency';
+
+  @override
+  String get landingBenefitScalable => 'Scalable platform';
+
+  @override
+  String get landingDemoSectionTitle => 'Demo';
+
+  @override
+  String get landingDemoSectionSubtitle =>
+      'The video area is prepared and can later be replaced by a real product video.';
+
+  @override
+  String get landingDemoVideoComing => 'Demo video coming soon';
+
+  @override
+  String get landingAudienceTitle => 'Target groups';
+
+  @override
+  String get landingAudienceServices => 'Service providers';
+
+  @override
+  String get landingAudienceManufacturers => 'Manufacturers';
+
+  @override
+  String get landingAudienceCommerce => 'Online retail';
+
+  @override
+  String get landingAudienceSoftware => 'Software';
+
+  @override
+  String get landingAudienceConsulting => 'Consulting';
+
+  @override
+  String get landingAudienceHealth => 'Healthcare companies';
+
+  @override
+  String get landingCtaTitle => 'Ready for the next step?';
+
+  @override
+  String get landingCtaText => 'Start with a structured company intake.';
+
+  @override
+  String get landingCtaButton => 'Request company intake';
+
+  @override
+  String get landingFooterVersion => 'Internal MVP / Work in progress';
+
+  @override
+  String get landingFooterGithub => 'GitHub';
+
+  @override
+  String get landingFooterImprint => 'Imprint';
+
+  @override
+  String get landingFooterPrivacy => 'Privacy';
+
+  @override
+  String get landingFooterContact => 'Contact';
+
+  @override
+  String get landingFooterLanguages => 'DE / EN';
+
+  @override
   String get companySelectTitle => 'Select Company';
 
   @override

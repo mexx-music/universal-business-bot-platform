@@ -53,12 +53,40 @@ The browser is the primary access path. Supported browsers can optionally instal
 Release build:
 
 ```sh
-flutter build web
+flutter build web --release
+bash scripts/prepare_cloudflare_pages.sh
 ```
 
 The build output is written to `build/web`. Production PWA behavior requires HTTPS, except for local development on `localhost`.
 
 Because the app uses Flutter web routing with direct routes such as `/companies`, `/dashboard`, `/intake-chat`, and `/bot-settings`, the hosting server should fall back to `index.html` for app routes. This can be configured with the equivalent of a Firebase Hosting rewrite, Netlify redirect, Cloudflare Pages SPA fallback, or a GitHub Pages-compatible setup.
+
+## Test Deployment
+
+GitHub remains the source of truth for code. The preferred test deployment path is:
+
+- GitHub Actions installs Flutter `3.35.7`
+- `flutter pub get`
+- `flutter gen-l10n`
+- `flutter test`
+- `flutter build web --release`
+- `bash scripts/prepare_cloudflare_pages.sh`
+- the generated `build/web` directory is deployed to Cloudflare Pages
+
+The workflow in `.github/workflows/cloudflare-pages.yml` builds on every push to `main`. It deploys to Cloudflare Pages when the repository variable `CLOUDFLARE_PAGES_PROJECT_NAME` is set and the required GitHub Secrets exist:
+
+- `CLOUDFLARE_API_TOKEN`
+- `CLOUDFLARE_ACCOUNT_ID`
+
+No Cloudflare tokens or secret values are stored in the repository.
+
+Cloudflare Pages should initially serve a `pages.dev` test URL. A custom domain can be connected later. For Flutter/GoRouter routes such as `/companies`, `/dashboard`, `/intake`, `/intake-chat`, and `/bot-settings`, Cloudflare needs an SPA fallback. The `web/_redirects` file contains:
+
+```txt
+/* /index.html 200
+```
+
+The `scripts/prepare_cloudflare_pages.sh` step copies this file into `build/web` after the Flutter build and verifies the expected PWA files. Refreshed direct routes can then fall back to `index.html` after deployment.
 
 ## PWA Status And Current Limitations
 

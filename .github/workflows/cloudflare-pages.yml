@@ -1,0 +1,78 @@
+name: Build and deploy web
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: cloudflare-pages-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  FLUTTER_VERSION: "3.35.7"
+
+jobs:
+  build:
+    name: Build Flutter web
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: ${{ env.FLUTTER_VERSION }}
+          channel: stable
+          cache: true
+
+      - name: Show Flutter version
+        run: flutter --version
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Generate localizations
+        run: flutter gen-l10n
+
+      - name: Run tests
+        run: flutter test
+
+      - name: Build web release
+        run: flutter build web --release
+
+      - name: Prepare Cloudflare Pages artifact
+        run: bash scripts/prepare_cloudflare_pages.sh
+
+      - name: Upload web artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: flutter-web
+          path: build/web
+          if-no-files-found: error
+
+  deploy-test:
+    name: Deploy test version to Cloudflare Pages
+    needs: build
+    runs-on: ubuntu-latest
+    if: ${{ github.ref == 'refs/heads/main' && vars.CLOUDFLARE_PAGES_PROJECT_NAME != '' }}
+
+    steps:
+      - name: Download web artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: flutter-web
+          path: build/web
+
+      - name: Deploy to Cloudflare Pages
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy build/web --project-name=${{ vars.CLOUDFLARE_PAGES_PROJECT_NAME }} --branch=${{ github.ref_name }}

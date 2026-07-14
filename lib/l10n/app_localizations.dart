@@ -236,6 +236,348 @@ abstract class AppLocalizations {
   /// **'Nutzen Sie dafür auf iPhone oder iPad das Teilen-Menü und „Zum Home-Bildschirm“.'**
   String get landingPwaIosHint;
 
+  /// No description provided for @landingBrandName.
+  ///
+  /// In de, this message translates to:
+  /// **'Universal Business Bot Platform'**
+  String get landingBrandName;
+
+  /// No description provided for @landingPlaceholderAction.
+  ///
+  /// In de, this message translates to:
+  /// **'Diese Aktion ist im MVP noch ein Platzhalter.'**
+  String get landingPlaceholderAction;
+
+  /// No description provided for @landingHeroEyebrow.
+  ///
+  /// In de, this message translates to:
+  /// **'Öffentliche Plattformvorschau'**
+  String get landingHeroEyebrow;
+
+  /// No description provided for @landingHeroTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Die intelligente Plattform für Unternehmenswissen und digitales Wachstum'**
+  String get landingHeroTitle;
+
+  /// No description provided for @landingHeroSubtitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Erfassen Sie Ihr Unternehmen strukturiert, organisieren Sie Wissen und erhalten Sie konkrete Handlungsempfehlungen.'**
+  String get landingHeroSubtitle;
+
+  /// No description provided for @landingLearnMoreButton.
+  ///
+  /// In de, this message translates to:
+  /// **'Plattform kennenlernen'**
+  String get landingLearnMoreButton;
+
+  /// No description provided for @landingDemoButton.
+  ///
+  /// In de, this message translates to:
+  /// **'Demo ansehen'**
+  String get landingDemoButton;
+
+  /// No description provided for @landingContactButton.
+  ///
+  /// In de, this message translates to:
+  /// **'Kontakt'**
+  String get landingContactButton;
+
+  /// No description provided for @landingHeroFlowCompany.
+  ///
+  /// In de, this message translates to:
+  /// **'Unternehmen'**
+  String get landingHeroFlowCompany;
+
+  /// No description provided for @landingHeroFlowKnowledge.
+  ///
+  /// In de, this message translates to:
+  /// **'Wissensbasis'**
+  String get landingHeroFlowKnowledge;
+
+  /// No description provided for @landingHeroFlowBot.
+  ///
+  /// In de, this message translates to:
+  /// **'Bot'**
+  String get landingHeroFlowBot;
+
+  /// No description provided for @landingHeroFlowMarketing.
+  ///
+  /// In de, this message translates to:
+  /// **'Marketing'**
+  String get landingHeroFlowMarketing;
+
+  /// No description provided for @landingHeroFlowControlling.
+  ///
+  /// In de, this message translates to:
+  /// **'Controlling'**
+  String get landingHeroFlowControlling;
+
+  /// No description provided for @landingWorkflowTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'So funktioniert es'**
+  String get landingWorkflowTitle;
+
+  /// No description provided for @landingWorkflowStep1Title.
+  ///
+  /// In de, this message translates to:
+  /// **'Unternehmen erfassen'**
+  String get landingWorkflowStep1Title;
+
+  /// No description provided for @landingWorkflowStep1Text.
+  ///
+  /// In de, this message translates to:
+  /// **'Alle wichtigen Unternehmensinformationen werden strukturiert aufgenommen.'**
+  String get landingWorkflowStep1Text;
+
+  /// No description provided for @landingWorkflowStep2Title.
+  ///
+  /// In de, this message translates to:
+  /// **'Wissen organisieren'**
+  String get landingWorkflowStep2Title;
+
+  /// No description provided for @landingWorkflowStep2Text.
+  ///
+  /// In de, this message translates to:
+  /// **'Produkte, FAQs, Dokumente und Prozesse werden übersichtlich verwaltet.'**
+  String get landingWorkflowStep2Text;
+
+  /// No description provided for @landingWorkflowStep3Title.
+  ///
+  /// In de, this message translates to:
+  /// **'Potenziale erkennen'**
+  String get landingWorkflowStep3Title;
+
+  /// No description provided for @landingWorkflowStep3Text.
+  ///
+  /// In de, this message translates to:
+  /// **'Die Plattform unterstützt bei Marketing, Support und Unternehmensentwicklung.'**
+  String get landingWorkflowStep3Text;
+
+  /// No description provided for @landingFeaturesTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Funktionen'**
+  String get landingFeaturesTitle;
+
+  /// No description provided for @landingFeaturesSubtitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Ein öffentlicher Überblick über die Bausteine der Plattform. Einige Bereiche sind im MVP vorbereitet und werden schrittweise ausgebaut.'**
+  String get landingFeaturesSubtitle;
+
+  /// No description provided for @landingFeatureIntake.
+  ///
+  /// In de, this message translates to:
+  /// **'Firmenaufnahme'**
+  String get landingFeatureIntake;
+
+  /// No description provided for @landingFeatureAuditFull.
+  ///
+  /// In de, this message translates to:
+  /// **'Audit'**
+  String get landingFeatureAuditFull;
+
+  /// No description provided for @landingFeatureKnowledgeFull.
+  ///
+  /// In de, this message translates to:
+  /// **'Wissensbasis'**
+  String get landingFeatureKnowledgeFull;
+
+  /// No description provided for @landingFeatureSources.
+  ///
+  /// In de, this message translates to:
+  /// **'Quellenverwaltung'**
+  String get landingFeatureSources;
+
+  /// No description provided for @landingFeatureBotTest.
+  ///
+  /// In de, this message translates to:
+  /// **'Bot-Test'**
+  String get landingFeatureBotTest;
+
+  /// No description provided for @landingFeatureHumanReview.
+  ///
+  /// In de, this message translates to:
+  /// **'Human Review'**
+  String get landingFeatureHumanReview;
+
+  /// No description provided for @landingFeatureMarketing.
+  ///
+  /// In de, this message translates to:
+  /// **'Marketing-Empfehlungen'**
+  String get landingFeatureMarketing;
+
+  /// No description provided for @landingFeatureControlling.
+  ///
+  /// In de, this message translates to:
+  /// **'Controlling'**
+  String get landingFeatureControlling;
+
+  /// No description provided for @landingComingSoon.
+  ///
+  /// In de, this message translates to:
+  /// **'Coming Soon'**
+  String get landingComingSoon;
+
+  /// No description provided for @landingBenefitsTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Vorteile'**
+  String get landingBenefitsTitle;
+
+  /// No description provided for @landingBenefitOnePlace.
+  ///
+  /// In de, this message translates to:
+  /// **'Alles an einem Ort'**
+  String get landingBenefitOnePlace;
+
+  /// No description provided for @landingBenefitLessSupport.
+  ///
+  /// In de, this message translates to:
+  /// **'Weniger Supportaufwand'**
+  String get landingBenefitLessSupport;
+
+  /// No description provided for @landingBenefitStructuredData.
+  ///
+  /// In de, this message translates to:
+  /// **'Strukturierte Unternehmensdaten'**
+  String get landingBenefitStructuredData;
+
+  /// No description provided for @landingBenefitHumanAi.
+  ///
+  /// In de, this message translates to:
+  /// **'KI und Mensch arbeiten zusammen'**
+  String get landingBenefitHumanAi;
+
+  /// No description provided for @landingBenefitTransparency.
+  ///
+  /// In de, this message translates to:
+  /// **'Mehr Transparenz'**
+  String get landingBenefitTransparency;
+
+  /// No description provided for @landingBenefitScalable.
+  ///
+  /// In de, this message translates to:
+  /// **'Skalierbare Plattform'**
+  String get landingBenefitScalable;
+
+  /// No description provided for @landingDemoSectionTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Demo'**
+  String get landingDemoSectionTitle;
+
+  /// No description provided for @landingDemoSectionSubtitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Die Videofläche ist vorbereitet und kann später durch ein echtes Produktvideo ersetzt werden.'**
+  String get landingDemoSectionSubtitle;
+
+  /// No description provided for @landingDemoVideoComing.
+  ///
+  /// In de, this message translates to:
+  /// **'Demovideo folgt'**
+  String get landingDemoVideoComing;
+
+  /// No description provided for @landingAudienceTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Zielgruppen'**
+  String get landingAudienceTitle;
+
+  /// No description provided for @landingAudienceServices.
+  ///
+  /// In de, this message translates to:
+  /// **'Dienstleister'**
+  String get landingAudienceServices;
+
+  /// No description provided for @landingAudienceManufacturers.
+  ///
+  /// In de, this message translates to:
+  /// **'Hersteller'**
+  String get landingAudienceManufacturers;
+
+  /// No description provided for @landingAudienceCommerce.
+  ///
+  /// In de, this message translates to:
+  /// **'Onlinehandel'**
+  String get landingAudienceCommerce;
+
+  /// No description provided for @landingAudienceSoftware.
+  ///
+  /// In de, this message translates to:
+  /// **'Software'**
+  String get landingAudienceSoftware;
+
+  /// No description provided for @landingAudienceConsulting.
+  ///
+  /// In de, this message translates to:
+  /// **'Beratung'**
+  String get landingAudienceConsulting;
+
+  /// No description provided for @landingAudienceHealth.
+  ///
+  /// In de, this message translates to:
+  /// **'Gesundheitsunternehmen'**
+  String get landingAudienceHealth;
+
+  /// No description provided for @landingCtaTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Bereit für den nächsten Schritt?'**
+  String get landingCtaTitle;
+
+  /// No description provided for @landingCtaText.
+  ///
+  /// In de, this message translates to:
+  /// **'Starten Sie mit einer strukturierten Firmenaufnahme.'**
+  String get landingCtaText;
+
+  /// No description provided for @landingCtaButton.
+  ///
+  /// In de, this message translates to:
+  /// **'Firmenaufnahme anfragen'**
+  String get landingCtaButton;
+
+  /// No description provided for @landingFooterVersion.
+  ///
+  /// In de, this message translates to:
+  /// **'Internal MVP / Work in progress'**
+  String get landingFooterVersion;
+
+  /// No description provided for @landingFooterGithub.
+  ///
+  /// In de, this message translates to:
+  /// **'GitHub'**
+  String get landingFooterGithub;
+
+  /// No description provided for @landingFooterImprint.
+  ///
+  /// In de, this message translates to:
+  /// **'Impressum'**
+  String get landingFooterImprint;
+
+  /// No description provided for @landingFooterPrivacy.
+  ///
+  /// In de, this message translates to:
+  /// **'Datenschutz'**
+  String get landingFooterPrivacy;
+
+  /// No description provided for @landingFooterContact.
+  ///
+  /// In de, this message translates to:
+  /// **'Kontakt'**
+  String get landingFooterContact;
+
+  /// No description provided for @landingFooterLanguages.
+  ///
+  /// In de, this message translates to:
+  /// **'DE / EN'**
+  String get landingFooterLanguages;
+
   /// No description provided for @companySelectTitle.
   ///
   /// In de, this message translates to:
