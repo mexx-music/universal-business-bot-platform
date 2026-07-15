@@ -2223,4 +2223,217 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get languageEnglish => 'Englisch';
+
+  @override
+  String get navProjectStatus => 'Projektstatus';
+
+  @override
+  String get projectStatusTitle => 'Projektstatus';
+
+  @override
+  String projectStatusSubtitle(String companyName) {
+    return 'Gesamtfortschritt und nächste Schritte für $companyName';
+  }
+
+  @override
+  String get projectNextStep => 'Nächster empfohlener Schritt';
+
+  @override
+  String get projectOpenNow => 'Jetzt öffnen';
+
+  @override
+  String projectCompletedTasks(int count) {
+    return '$count erledigt';
+  }
+
+  @override
+  String projectOpenTasks(int count) {
+    return '$count offen';
+  }
+
+  @override
+  String projectHighPriorityTasks(int count) {
+    return '$count hohe Priorität';
+  }
+
+  @override
+  String projectCurrentPhase(String phase) {
+    return 'Aktuelle Phase: $phase';
+  }
+
+  @override
+  String get projectPhasesTitle => 'Projektphasen';
+
+  @override
+  String get projectTasksTitle => 'Statuspunkte';
+
+  @override
+  String get projectRecommendationsTitle => 'Nächste empfohlene Schritte';
+
+  @override
+  String get projectRecommendationsEmpty =>
+      'Alle wichtigen nächsten Schritte sind aktuell erledigt.';
+
+  @override
+  String get projectPhaseCompany => 'Phase 1 · Unternehmen';
+
+  @override
+  String get projectPhaseKnowledge => 'Phase 2 · Wissen';
+
+  @override
+  String get projectPhaseAi => 'Phase 3 · KI';
+
+  @override
+  String get projectPhaseMarketing => 'Phase 4 · Marketing';
+
+  @override
+  String get projectPhaseControlling => 'Phase 5 · Controlling';
+
+  @override
+  String get projectPhaseCompanyDescription =>
+      'Firmenprofil, Aufnahme und Grundregeln klären.';
+
+  @override
+  String get projectPhaseKnowledgeDescription =>
+      'Wissen, Quellen, Website und Audit strukturieren.';
+
+  @override
+  String get projectPhaseAiDescription =>
+      'Bot konfigurieren, testen und Reviews schließen.';
+
+  @override
+  String get projectPhaseMarketingDescription =>
+      'Kanäle, Inhalte und Wachstumsschritte vorbereiten.';
+
+  @override
+  String get projectPhaseControllingDescription =>
+      'Nutzung, offene Aufgaben und Wirkung beobachten.';
+
+  @override
+  String get projectPriorityLow => 'Niedrig';
+
+  @override
+  String get projectPriorityMedium => 'Mittel';
+
+  @override
+  String get projectPriorityHigh => 'Hoch';
+
+  @override
+  String get projectCompletionMissing => 'Offen';
+
+  @override
+  String get projectCompletionPartial => 'Teilweise';
+
+  @override
+  String get projectCompletionComplete => 'Erledigt';
+
+  @override
+  String get projectTaskCompanyProfileTitle => 'Firmenprofil';
+
+  @override
+  String get projectTaskCompanyProfileDescription =>
+      'Profil, Kontaktwege und Geschäftsregeln sind gepflegt.';
+
+  @override
+  String get projectTaskIntakeTitle => 'Firmenaufnahme';
+
+  @override
+  String get projectTaskIntakeDescription =>
+      'Der geführte Fragebogen wurde ausgefüllt und übernommen.';
+
+  @override
+  String get projectTaskKnowledgeTitle => 'Wissensbasis';
+
+  @override
+  String get projectTaskKnowledgeDescription =>
+      'Ausreichend FAQ- und Supportwissen ist vorhanden.';
+
+  @override
+  String get projectTaskSourcesTitle => 'Quellen';
+
+  @override
+  String get projectTaskSourcesDescription =>
+      'Materialien wurden gesammelt, geprüft und in Wissen überführt.';
+
+  @override
+  String get projectTaskAuditTitle => 'Audit';
+
+  @override
+  String get projectTaskAuditDescription =>
+      'Wichtige Lücken und Risiken sind bewertet.';
+
+  @override
+  String get projectTaskWebsiteTitle => 'Website analysieren';
+
+  @override
+  String get projectTaskWebsiteDescription =>
+      'Website-Inhalte sind als Quelle geprüft.';
+
+  @override
+  String get projectTaskMarketingTitle => 'Marketing vorbereiten';
+
+  @override
+  String get projectTaskMarketingDescription =>
+      'Kanäle, Kampagnen und nächste Wachstumsschritte sind erfasst.';
+
+  @override
+  String get projectTaskBotTitle => 'Bot aktivieren';
+
+  @override
+  String get projectTaskBotDescription =>
+      'Antwortstil, Grenzen und Übergabe an Menschen sind eingerichtet.';
+
+  @override
+  String get projectTaskReviewTitle => 'Human Review abschließen';
+
+  @override
+  String get projectTaskReviewDescription =>
+      'Offene Bot-Fragen wurden geprüft oder erledigt.';
+
+  @override
+  String get projectTaskControllingTitle => 'Controlling aktivieren';
+
+  @override
+  String get projectTaskControllingDescription =>
+      'Aktivität und Fortschritt können nachvollzogen werden.';
+
+  @override
+  String get projectRecommendationProfile =>
+      'Ergänzen Sie fehlende Unternehmensdaten und Regeln.';
+
+  @override
+  String get projectRecommendationIntake =>
+      'Führen Sie die Firmenaufnahme weiter oder übernehmen Sie die Antworten.';
+
+  @override
+  String get projectRecommendationKnowledge =>
+      'Erweitern Sie FAQ- und Supportwissen für sichere Antworten.';
+
+  @override
+  String get projectRecommendationSources =>
+      'Prüfen Sie neue Quellen und übernehmen Sie verwertbares Wissen.';
+
+  @override
+  String get projectRecommendationAudit =>
+      'Schließen Sie wichtige Audit-Lücken vor dem weiteren Ausbau.';
+
+  @override
+  String get projectRecommendationWebsite =>
+      'Erfassen oder prüfen Sie Website-Inhalte als Quelle.';
+
+  @override
+  String get projectRecommendationMarketing =>
+      'Ergänzen Sie Kanäle, Kampagnen und Wachstumshinweise.';
+
+  @override
+  String get projectRecommendationBot =>
+      'Prüfen Sie Bot-Einstellungen und testen Sie den Antwortfluss.';
+
+  @override
+  String get projectRecommendationReview =>
+      'Bearbeiten Sie offene Fragen im Human Review.';
+
+  @override
+  String get projectRecommendationControlling =>
+      'Sammeln Sie mehr Aktivität, damit Fortschritt messbar wird.';
 }

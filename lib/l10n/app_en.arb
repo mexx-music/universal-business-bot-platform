@@ -672,5 +672,90 @@
   "botAnswerStyleBalanced": "Balanced",
   "botAnswerStyleDetailed": "Detailed",
   "languageGerman": "German",
-  "languageEnglish": "English"
+  "languageEnglish": "English",
+
+  "navProjectStatus": "Project Status",
+  "projectStatusTitle": "Project Status",
+  "projectStatusSubtitle": "Overall progress and next steps for {companyName}",
+  "@projectStatusSubtitle": {
+    "placeholders": {
+      "companyName": { "type": "String" }
+    }
+  },
+  "projectNextStep": "Next recommended step",
+  "projectOpenNow": "Open now",
+  "projectCompletedTasks": "{count} done",
+  "@projectCompletedTasks": {
+    "placeholders": {
+      "count": { "type": "int" }
+    }
+  },
+  "projectOpenTasks": "{count} open",
+  "@projectOpenTasks": {
+    "placeholders": {
+      "count": { "type": "int" }
+    }
+  },
+  "projectHighPriorityTasks": "{count} high priority",
+  "@projectHighPriorityTasks": {
+    "placeholders": {
+      "count": { "type": "int" }
+    }
+  },
+  "projectCurrentPhase": "Current phase: {phase}",
+  "@projectCurrentPhase": {
+    "placeholders": {
+      "phase": { "type": "String" }
+    }
+  },
+  "projectPhasesTitle": "Project phases",
+  "projectTasksTitle": "Status points",
+  "projectRecommendationsTitle": "Next recommended steps",
+  "projectRecommendationsEmpty": "All important next steps are currently done.",
+  "projectPhaseCompany": "Phase 1 · Company",
+  "projectPhaseKnowledge": "Phase 2 · Knowledge",
+  "projectPhaseAi": "Phase 3 · AI",
+  "projectPhaseMarketing": "Phase 4 · Marketing",
+  "projectPhaseControlling": "Phase 5 · Controlling",
+  "projectPhaseCompanyDescription": "Clarify company profile, intake and core rules.",
+  "projectPhaseKnowledgeDescription": "Structure knowledge, sources, website and audit.",
+  "projectPhaseAiDescription": "Configure the bot, test it and close reviews.",
+  "projectPhaseMarketingDescription": "Prepare channels, content and growth steps.",
+  "projectPhaseControllingDescription": "Track usage, open tasks and impact.",
+  "projectPriorityLow": "Low",
+  "projectPriorityMedium": "Medium",
+  "projectPriorityHigh": "High",
+  "projectCompletionMissing": "Open",
+  "projectCompletionPartial": "Partial",
+  "projectCompletionComplete": "Done",
+  "projectTaskCompanyProfileTitle": "Company profile",
+  "projectTaskCompanyProfileDescription": "Profile, contact paths and business rules are maintained.",
+  "projectTaskIntakeTitle": "Company intake",
+  "projectTaskIntakeDescription": "The guided questionnaire was completed and imported.",
+  "projectTaskKnowledgeTitle": "Knowledge base",
+  "projectTaskKnowledgeDescription": "Enough FAQ and support knowledge is available.",
+  "projectTaskSourcesTitle": "Sources",
+  "projectTaskSourcesDescription": "Materials were collected, reviewed and converted into knowledge.",
+  "projectTaskAuditTitle": "Audit",
+  "projectTaskAuditDescription": "Important gaps and risks are assessed.",
+  "projectTaskWebsiteTitle": "Analyze website",
+  "projectTaskWebsiteDescription": "Website content is reviewed as a source.",
+  "projectTaskMarketingTitle": "Prepare marketing",
+  "projectTaskMarketingDescription": "Channels, campaigns and next growth steps are captured.",
+  "projectTaskBotTitle": "Activate bot",
+  "projectTaskBotDescription": "Answer style, boundaries and human handover are configured.",
+  "projectTaskReviewTitle": "Complete Human Review",
+  "projectTaskReviewDescription": "Open bot questions were reviewed or closed.",
+  "projectTaskControllingTitle": "Activate controlling",
+  "projectTaskControllingDescription": "Activity and progress can be tracked.",
+  "projectRecommendationProfile": "Complete missing company data and rules.",
+  "projectRecommendationIntake": "Continue the company intake or import the answers.",
+  "projectRecommendationKnowledge": "Expand FAQ and support knowledge for safer answers.",
+  "projectRecommendationSources": "Review new sources and convert useful material into knowledge.",
+  "projectRecommendationAudit": "Close important audit gaps before further rollout.",
+  "projectRecommendationWebsite": "Capture or review website content as a source.",
+  "projectRecommendationMarketing": "Add channels, campaigns and growth notes.",
+  "projectRecommendationBot": "Check bot settings and test the answer flow.",
+  "projectRecommendationReview": "Work through open questions in Human Review.",
+  "projectRecommendationControlling": "Collect more activity so progress becomes measurable."
 }

@@ -857,5 +857,90 @@
   "botAnswerStyleBalanced": "Ausgewogen",
   "botAnswerStyleDetailed": "Detailliert",
   "languageGerman": "Deutsch",
-  "languageEnglish": "Englisch"
+  "languageEnglish": "Englisch",
+
+  "navProjectStatus": "Projektstatus",
+  "projectStatusTitle": "Projektstatus",
+  "projectStatusSubtitle": "Gesamtfortschritt und nächste Schritte für {companyName}",
+  "@projectStatusSubtitle": {
+    "placeholders": {
+      "companyName": { "type": "String" }
+    }
+  },
+  "projectNextStep": "Nächster empfohlener Schritt",
+  "projectOpenNow": "Jetzt öffnen",
+  "projectCompletedTasks": "{count} erledigt",
+  "@projectCompletedTasks": {
+    "placeholders": {
+      "count": { "type": "int" }
+    }
+  },
+  "projectOpenTasks": "{count} offen",
+  "@projectOpenTasks": {
+    "placeholders": {
+      "count": { "type": "int" }
+    }
+  },
+  "projectHighPriorityTasks": "{count} hohe Priorität",
+  "@projectHighPriorityTasks": {
+    "placeholders": {
+      "count": { "type": "int" }
+    }
+  },
+  "projectCurrentPhase": "Aktuelle Phase: {phase}",
+  "@projectCurrentPhase": {
+    "placeholders": {
+      "phase": { "type": "String" }
+    }
+  },
+  "projectPhasesTitle": "Projektphasen",
+  "projectTasksTitle": "Statuspunkte",
+  "projectRecommendationsTitle": "Nächste empfohlene Schritte",
+  "projectRecommendationsEmpty": "Alle wichtigen nächsten Schritte sind aktuell erledigt.",
+  "projectPhaseCompany": "Phase 1 · Unternehmen",
+  "projectPhaseKnowledge": "Phase 2 · Wissen",
+  "projectPhaseAi": "Phase 3 · KI",
+  "projectPhaseMarketing": "Phase 4 · Marketing",
+  "projectPhaseControlling": "Phase 5 · Controlling",
+  "projectPhaseCompanyDescription": "Firmenprofil, Aufnahme und Grundregeln klären.",
+  "projectPhaseKnowledgeDescription": "Wissen, Quellen, Website und Audit strukturieren.",
+  "projectPhaseAiDescription": "Bot konfigurieren, testen und Reviews schließen.",
+  "projectPhaseMarketingDescription": "Kanäle, Inhalte und Wachstumsschritte vorbereiten.",
+  "projectPhaseControllingDescription": "Nutzung, offene Aufgaben und Wirkung beobachten.",
+  "projectPriorityLow": "Niedrig",
+  "projectPriorityMedium": "Mittel",
+  "projectPriorityHigh": "Hoch",
+  "projectCompletionMissing": "Offen",
+  "projectCompletionPartial": "Teilweise",
+  "projectCompletionComplete": "Erledigt",
+  "projectTaskCompanyProfileTitle": "Firmenprofil",
+  "projectTaskCompanyProfileDescription": "Profil, Kontaktwege und Geschäftsregeln sind gepflegt.",
+  "projectTaskIntakeTitle": "Firmenaufnahme",
+  "projectTaskIntakeDescription": "Der geführte Fragebogen wurde ausgefüllt und übernommen.",
+  "projectTaskKnowledgeTitle": "Wissensbasis",
+  "projectTaskKnowledgeDescription": "Ausreichend FAQ- und Supportwissen ist vorhanden.",
+  "projectTaskSourcesTitle": "Quellen",
+  "projectTaskSourcesDescription": "Materialien wurden gesammelt, geprüft und in Wissen überführt.",
+  "projectTaskAuditTitle": "Audit",
+  "projectTaskAuditDescription": "Wichtige Lücken und Risiken sind bewertet.",
+  "projectTaskWebsiteTitle": "Website analysieren",
+  "projectTaskWebsiteDescription": "Website-Inhalte sind als Quelle geprüft.",
+  "projectTaskMarketingTitle": "Marketing vorbereiten",
+  "projectTaskMarketingDescription": "Kanäle, Kampagnen und nächste Wachstumsschritte sind erfasst.",
+  "projectTaskBotTitle": "Bot aktivieren",
+  "projectTaskBotDescription": "Antwortstil, Grenzen und Übergabe an Menschen sind eingerichtet.",
+  "projectTaskReviewTitle": "Human Review abschließen",
+  "projectTaskReviewDescription": "Offene Bot-Fragen wurden geprüft oder erledigt.",
+  "projectTaskControllingTitle": "Controlling aktivieren",
+  "projectTaskControllingDescription": "Aktivität und Fortschritt können nachvollzogen werden.",
+  "projectRecommendationProfile": "Ergänzen Sie fehlende Unternehmensdaten und Regeln.",
+  "projectRecommendationIntake": "Führen Sie die Firmenaufnahme weiter oder übernehmen Sie die Antworten.",
+  "projectRecommendationKnowledge": "Erweitern Sie FAQ- und Supportwissen für sichere Antworten.",
+  "projectRecommendationSources": "Prüfen Sie neue Quellen und übernehmen Sie verwertbares Wissen.",
+  "projectRecommendationAudit": "Schließen Sie wichtige Audit-Lücken vor dem weiteren Ausbau.",
+  "projectRecommendationWebsite": "Erfassen oder prüfen Sie Website-Inhalte als Quelle.",
+  "projectRecommendationMarketing": "Ergänzen Sie Kanäle, Kampagnen und Wachstumshinweise.",
+  "projectRecommendationBot": "Prüfen Sie Bot-Einstellungen und testen Sie den Antwortfluss.",
+  "projectRecommendationReview": "Bearbeiten Sie offene Fragen im Human Review.",
+  "projectRecommendationControlling": "Sammeln Sie mehr Aktivität, damit Fortschritt messbar wird."
 }

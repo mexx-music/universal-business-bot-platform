@@ -7,7 +7,9 @@ import '../../models/bot_configuration.dart';
 import '../../models/bot_question_log.dart';
 import '../../models/intake_session.dart';
 import '../../models/knowledge_entry.dart';
+import '../../models/project_status.dart';
 import '../../widgets/stat_card.dart';
+import '../../widgets/project_status/project_status_helpers.dart';
 
 class DashboardScreen extends StatelessWidget {
   const DashboardScreen({super.key});
@@ -39,6 +41,7 @@ class DashboardScreen extends StatelessWidget {
     final sourcesTotal = state.sourceMaterialCount;
     final sourcesNew = state.newSourceMaterialCount;
     final intakeSession = state.selectedIntakeSession;
+    final projectStatus = state.projectStatus;
 
     final greenCount = state.knowledgeEntries
         .where((e) => e.riskLevel == RiskLevel.green)
@@ -198,6 +201,9 @@ class DashboardScreen extends StatelessWidget {
               );
             },
           ),
+          const SizedBox(height: 28),
+
+          _DashboardProjectStatusCard(status: projectStatus),
           const SizedBox(height: 28),
 
           Text(
@@ -642,6 +648,168 @@ class _RecommendationCard extends StatelessWidget {
             );
           },
         ),
+      ),
+    );
+  }
+}
+
+class _DashboardProjectStatusCard extends StatelessWidget {
+  final ProjectStatusSnapshot status;
+
+  const _DashboardProjectStatusCard({required this.status});
+
+  @override
+  Widget build(BuildContext context) {
+    final l = AppLocalizations.of(context)!;
+    final theme = Theme.of(context);
+    final next = status.nextRecommendation;
+    final percent = (status.progress * 100).round();
+
+    return Card(
+      child: Padding(
+        padding: const EdgeInsets.all(20),
+        child: LayoutBuilder(
+          builder: (context, constraints) {
+            final compact = constraints.maxWidth < 620;
+            final progressBlock = Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  children: [
+                    CircleAvatar(
+                      backgroundColor: theme.colorScheme.primaryContainer,
+                      child: Icon(
+                        Icons.route_outlined,
+                        color: theme.colorScheme.onPrimaryContainer,
+                      ),
+                    ),
+                    const SizedBox(width: 12),
+                    Expanded(
+                      child: Text(
+                        l.projectStatusTitle,
+                        style: theme.textTheme.titleMedium?.copyWith(
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                    Text(
+                      '$percent%',
+                      style: theme.textTheme.headlineSmall?.copyWith(
+                        color: theme.colorScheme.primary,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 14),
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(6),
+                  child: LinearProgressIndicator(
+                    minHeight: 10,
+                    value: status.progress.clamp(0.0, 1.0),
+                  ),
+                ),
+                const SizedBox(height: 12),
+                Text(
+                  next == null
+                      ? l.projectRecommendationsEmpty
+                      : '${l.projectNextStep}: ${projectTaskTitle(l, next.type)}',
+                  style: theme.textTheme.bodyMedium?.copyWith(
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
+              ],
+            );
+
+            final metrics = Wrap(
+              spacing: 10,
+              runSpacing: 10,
+              children: [
+                _ProjectMetric(
+                  label: l.projectOpenTasks(status.openTaskCount),
+                  icon: Icons.pending_actions_outlined,
+                  color: Colors.orange,
+                ),
+                _ProjectMetric(
+                  label: l.projectHighPriorityTasks(
+                    status.highPriorityOpenCount,
+                  ),
+                  icon: Icons.priority_high,
+                  color: status.highPriorityOpenCount > 0
+                      ? Colors.red
+                      : Colors.green,
+                ),
+              ],
+            );
+
+            final action = FilledButton(
+              onPressed: () => context.go('/project-status'),
+              child: Text(l.projectOpenNow),
+            );
+
+            if (compact) {
+              return Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  progressBlock,
+                  const SizedBox(height: 16),
+                  metrics,
+                  const SizedBox(height: 16),
+                  action,
+                ],
+              );
+            }
+
+            return Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Expanded(flex: 3, child: progressBlock),
+                const SizedBox(width: 24),
+                Expanded(flex: 2, child: metrics),
+                const SizedBox(width: 16),
+                action,
+              ],
+            );
+          },
+        ),
+      ),
+    );
+  }
+}
+
+class _ProjectMetric extends StatelessWidget {
+  final String label;
+  final IconData icon;
+  final Color color;
+
+  const _ProjectMetric({
+    required this.label,
+    required this.icon,
+    required this.color,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
+      decoration: BoxDecoration(
+        color: color.withAlpha(18),
+        borderRadius: BorderRadius.circular(6),
+        border: Border.all(color: color.withAlpha(48)),
+      ),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Icon(icon, size: 16, color: color),
+          const SizedBox(width: 6),
+          Text(
+            label,
+            style: Theme.of(context).textTheme.labelMedium?.copyWith(
+              color: color,
+              fontWeight: FontWeight.w700,
+            ),
+          ),
+        ],
       ),
     );
   }

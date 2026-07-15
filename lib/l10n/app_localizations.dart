@@ -3991,6 +3991,360 @@ abstract class AppLocalizations {
   /// In de, this message translates to:
   /// **'Englisch'**
   String get languageEnglish;
+
+  /// No description provided for @navProjectStatus.
+  ///
+  /// In de, this message translates to:
+  /// **'Projektstatus'**
+  String get navProjectStatus;
+
+  /// No description provided for @projectStatusTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Projektstatus'**
+  String get projectStatusTitle;
+
+  /// No description provided for @projectStatusSubtitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Gesamtfortschritt und nächste Schritte für {companyName}'**
+  String projectStatusSubtitle(String companyName);
+
+  /// No description provided for @projectNextStep.
+  ///
+  /// In de, this message translates to:
+  /// **'Nächster empfohlener Schritt'**
+  String get projectNextStep;
+
+  /// No description provided for @projectOpenNow.
+  ///
+  /// In de, this message translates to:
+  /// **'Jetzt öffnen'**
+  String get projectOpenNow;
+
+  /// No description provided for @projectCompletedTasks.
+  ///
+  /// In de, this message translates to:
+  /// **'{count} erledigt'**
+  String projectCompletedTasks(int count);
+
+  /// No description provided for @projectOpenTasks.
+  ///
+  /// In de, this message translates to:
+  /// **'{count} offen'**
+  String projectOpenTasks(int count);
+
+  /// No description provided for @projectHighPriorityTasks.
+  ///
+  /// In de, this message translates to:
+  /// **'{count} hohe Priorität'**
+  String projectHighPriorityTasks(int count);
+
+  /// No description provided for @projectCurrentPhase.
+  ///
+  /// In de, this message translates to:
+  /// **'Aktuelle Phase: {phase}'**
+  String projectCurrentPhase(String phase);
+
+  /// No description provided for @projectPhasesTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Projektphasen'**
+  String get projectPhasesTitle;
+
+  /// No description provided for @projectTasksTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Statuspunkte'**
+  String get projectTasksTitle;
+
+  /// No description provided for @projectRecommendationsTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Nächste empfohlene Schritte'**
+  String get projectRecommendationsTitle;
+
+  /// No description provided for @projectRecommendationsEmpty.
+  ///
+  /// In de, this message translates to:
+  /// **'Alle wichtigen nächsten Schritte sind aktuell erledigt.'**
+  String get projectRecommendationsEmpty;
+
+  /// No description provided for @projectPhaseCompany.
+  ///
+  /// In de, this message translates to:
+  /// **'Phase 1 · Unternehmen'**
+  String get projectPhaseCompany;
+
+  /// No description provided for @projectPhaseKnowledge.
+  ///
+  /// In de, this message translates to:
+  /// **'Phase 2 · Wissen'**
+  String get projectPhaseKnowledge;
+
+  /// No description provided for @projectPhaseAi.
+  ///
+  /// In de, this message translates to:
+  /// **'Phase 3 · KI'**
+  String get projectPhaseAi;
+
+  /// No description provided for @projectPhaseMarketing.
+  ///
+  /// In de, this message translates to:
+  /// **'Phase 4 · Marketing'**
+  String get projectPhaseMarketing;
+
+  /// No description provided for @projectPhaseControlling.
+  ///
+  /// In de, this message translates to:
+  /// **'Phase 5 · Controlling'**
+  String get projectPhaseControlling;
+
+  /// No description provided for @projectPhaseCompanyDescription.
+  ///
+  /// In de, this message translates to:
+  /// **'Firmenprofil, Aufnahme und Grundregeln klären.'**
+  String get projectPhaseCompanyDescription;
+
+  /// No description provided for @projectPhaseKnowledgeDescription.
+  ///
+  /// In de, this message translates to:
+  /// **'Wissen, Quellen, Website und Audit strukturieren.'**
+  String get projectPhaseKnowledgeDescription;
+
+  /// No description provided for @projectPhaseAiDescription.
+  ///
+  /// In de, this message translates to:
+  /// **'Bot konfigurieren, testen und Reviews schließen.'**
+  String get projectPhaseAiDescription;
+
+  /// No description provided for @projectPhaseMarketingDescription.
+  ///
+  /// In de, this message translates to:
+  /// **'Kanäle, Inhalte und Wachstumsschritte vorbereiten.'**
+  String get projectPhaseMarketingDescription;
+
+  /// No description provided for @projectPhaseControllingDescription.
+  ///
+  /// In de, this message translates to:
+  /// **'Nutzung, offene Aufgaben und Wirkung beobachten.'**
+  String get projectPhaseControllingDescription;
+
+  /// No description provided for @projectPriorityLow.
+  ///
+  /// In de, this message translates to:
+  /// **'Niedrig'**
+  String get projectPriorityLow;
+
+  /// No description provided for @projectPriorityMedium.
+  ///
+  /// In de, this message translates to:
+  /// **'Mittel'**
+  String get projectPriorityMedium;
+
+  /// No description provided for @projectPriorityHigh.
+  ///
+  /// In de, this message translates to:
+  /// **'Hoch'**
+  String get projectPriorityHigh;
+
+  /// No description provided for @projectCompletionMissing.
+  ///
+  /// In de, this message translates to:
+  /// **'Offen'**
+  String get projectCompletionMissing;
+
+  /// No description provided for @projectCompletionPartial.
+  ///
+  /// In de, this message translates to:
+  /// **'Teilweise'**
+  String get projectCompletionPartial;
+
+  /// No description provided for @projectCompletionComplete.
+  ///
+  /// In de, this message translates to:
+  /// **'Erledigt'**
+  String get projectCompletionComplete;
+
+  /// No description provided for @projectTaskCompanyProfileTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Firmenprofil'**
+  String get projectTaskCompanyProfileTitle;
+
+  /// No description provided for @projectTaskCompanyProfileDescription.
+  ///
+  /// In de, this message translates to:
+  /// **'Profil, Kontaktwege und Geschäftsregeln sind gepflegt.'**
+  String get projectTaskCompanyProfileDescription;
+
+  /// No description provided for @projectTaskIntakeTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Firmenaufnahme'**
+  String get projectTaskIntakeTitle;
+
+  /// No description provided for @projectTaskIntakeDescription.
+  ///
+  /// In de, this message translates to:
+  /// **'Der geführte Fragebogen wurde ausgefüllt und übernommen.'**
+  String get projectTaskIntakeDescription;
+
+  /// No description provided for @projectTaskKnowledgeTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Wissensbasis'**
+  String get projectTaskKnowledgeTitle;
+
+  /// No description provided for @projectTaskKnowledgeDescription.
+  ///
+  /// In de, this message translates to:
+  /// **'Ausreichend FAQ- und Supportwissen ist vorhanden.'**
+  String get projectTaskKnowledgeDescription;
+
+  /// No description provided for @projectTaskSourcesTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Quellen'**
+  String get projectTaskSourcesTitle;
+
+  /// No description provided for @projectTaskSourcesDescription.
+  ///
+  /// In de, this message translates to:
+  /// **'Materialien wurden gesammelt, geprüft und in Wissen überführt.'**
+  String get projectTaskSourcesDescription;
+
+  /// No description provided for @projectTaskAuditTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Audit'**
+  String get projectTaskAuditTitle;
+
+  /// No description provided for @projectTaskAuditDescription.
+  ///
+  /// In de, this message translates to:
+  /// **'Wichtige Lücken und Risiken sind bewertet.'**
+  String get projectTaskAuditDescription;
+
+  /// No description provided for @projectTaskWebsiteTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Website analysieren'**
+  String get projectTaskWebsiteTitle;
+
+  /// No description provided for @projectTaskWebsiteDescription.
+  ///
+  /// In de, this message translates to:
+  /// **'Website-Inhalte sind als Quelle geprüft.'**
+  String get projectTaskWebsiteDescription;
+
+  /// No description provided for @projectTaskMarketingTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Marketing vorbereiten'**
+  String get projectTaskMarketingTitle;
+
+  /// No description provided for @projectTaskMarketingDescription.
+  ///
+  /// In de, this message translates to:
+  /// **'Kanäle, Kampagnen und nächste Wachstumsschritte sind erfasst.'**
+  String get projectTaskMarketingDescription;
+
+  /// No description provided for @projectTaskBotTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Bot aktivieren'**
+  String get projectTaskBotTitle;
+
+  /// No description provided for @projectTaskBotDescription.
+  ///
+  /// In de, this message translates to:
+  /// **'Antwortstil, Grenzen und Übergabe an Menschen sind eingerichtet.'**
+  String get projectTaskBotDescription;
+
+  /// No description provided for @projectTaskReviewTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Human Review abschließen'**
+  String get projectTaskReviewTitle;
+
+  /// No description provided for @projectTaskReviewDescription.
+  ///
+  /// In de, this message translates to:
+  /// **'Offene Bot-Fragen wurden geprüft oder erledigt.'**
+  String get projectTaskReviewDescription;
+
+  /// No description provided for @projectTaskControllingTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Controlling aktivieren'**
+  String get projectTaskControllingTitle;
+
+  /// No description provided for @projectTaskControllingDescription.
+  ///
+  /// In de, this message translates to:
+  /// **'Aktivität und Fortschritt können nachvollzogen werden.'**
+  String get projectTaskControllingDescription;
+
+  /// No description provided for @projectRecommendationProfile.
+  ///
+  /// In de, this message translates to:
+  /// **'Ergänzen Sie fehlende Unternehmensdaten und Regeln.'**
+  String get projectRecommendationProfile;
+
+  /// No description provided for @projectRecommendationIntake.
+  ///
+  /// In de, this message translates to:
+  /// **'Führen Sie die Firmenaufnahme weiter oder übernehmen Sie die Antworten.'**
+  String get projectRecommendationIntake;
+
+  /// No description provided for @projectRecommendationKnowledge.
+  ///
+  /// In de, this message translates to:
+  /// **'Erweitern Sie FAQ- und Supportwissen für sichere Antworten.'**
+  String get projectRecommendationKnowledge;
+
+  /// No description provided for @projectRecommendationSources.
+  ///
+  /// In de, this message translates to:
+  /// **'Prüfen Sie neue Quellen und übernehmen Sie verwertbares Wissen.'**
+  String get projectRecommendationSources;
+
+  /// No description provided for @projectRecommendationAudit.
+  ///
+  /// In de, this message translates to:
+  /// **'Schließen Sie wichtige Audit-Lücken vor dem weiteren Ausbau.'**
+  String get projectRecommendationAudit;
+
+  /// No description provided for @projectRecommendationWebsite.
+  ///
+  /// In de, this message translates to:
+  /// **'Erfassen oder prüfen Sie Website-Inhalte als Quelle.'**
+  String get projectRecommendationWebsite;
+
+  /// No description provided for @projectRecommendationMarketing.
+  ///
+  /// In de, this message translates to:
+  /// **'Ergänzen Sie Kanäle, Kampagnen und Wachstumshinweise.'**
+  String get projectRecommendationMarketing;
+
+  /// No description provided for @projectRecommendationBot.
+  ///
+  /// In de, this message translates to:
+  /// **'Prüfen Sie Bot-Einstellungen und testen Sie den Antwortfluss.'**
+  String get projectRecommendationBot;
+
+  /// No description provided for @projectRecommendationReview.
+  ///
+  /// In de, this message translates to:
+  /// **'Bearbeiten Sie offene Fragen im Human Review.'**
+  String get projectRecommendationReview;
+
+  /// No description provided for @projectRecommendationControlling.
+  ///
+  /// In de, this message translates to:
+  /// **'Sammeln Sie mehr Aktivität, damit Fortschritt messbar wird.'**
+  String get projectRecommendationControlling;
 }
 
 class _AppLocalizationsDelegate

@@ -22,6 +22,11 @@ const _navItems = [
     path: '/dashboard',
   ),
   _NavItem(
+    icon: Icons.route_outlined,
+    selectedIcon: Icons.route,
+    path: '/project-status',
+  ),
+  _NavItem(
     icon: Icons.assignment_outlined,
     selectedIcon: Icons.assignment,
     path: '/intake',
@@ -65,19 +70,21 @@ const _navItems = [
 
 int _indexFromLocation(String location) {
   if (location.startsWith('/dashboard')) return 0;
-  if (location.startsWith('/intake')) return 1;
-  if (location.startsWith('/company')) return 2;
-  if (location.startsWith('/audit')) return 3;
-  if (location.startsWith('/knowledge')) return 4;
-  if (location.startsWith('/bot-test')) return 5;
-  if (location.startsWith('/bot-settings')) return 6;
-  if (location.startsWith('/sources')) return 7;
-  if (location.startsWith('/review')) return 8;
+  if (location.startsWith('/project-status')) return 1;
+  if (location.startsWith('/intake')) return 2;
+  if (location.startsWith('/company')) return 3;
+  if (location.startsWith('/audit')) return 4;
+  if (location.startsWith('/knowledge')) return 5;
+  if (location.startsWith('/bot-test')) return 6;
+  if (location.startsWith('/bot-settings')) return 7;
+  if (location.startsWith('/sources')) return 8;
+  if (location.startsWith('/review')) return 9;
   return 0;
 }
 
 List<String> _navLabels(AppLocalizations l) => [
   l.navDashboard,
+  l.navProjectStatus,
   l.navIntake,
   l.navCompany,
   l.navAudit,

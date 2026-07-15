@@ -2209,4 +2209,217 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get languageEnglish => 'English';
+
+  @override
+  String get navProjectStatus => 'Project Status';
+
+  @override
+  String get projectStatusTitle => 'Project Status';
+
+  @override
+  String projectStatusSubtitle(String companyName) {
+    return 'Overall progress and next steps for $companyName';
+  }
+
+  @override
+  String get projectNextStep => 'Next recommended step';
+
+  @override
+  String get projectOpenNow => 'Open now';
+
+  @override
+  String projectCompletedTasks(int count) {
+    return '$count done';
+  }
+
+  @override
+  String projectOpenTasks(int count) {
+    return '$count open';
+  }
+
+  @override
+  String projectHighPriorityTasks(int count) {
+    return '$count high priority';
+  }
+
+  @override
+  String projectCurrentPhase(String phase) {
+    return 'Current phase: $phase';
+  }
+
+  @override
+  String get projectPhasesTitle => 'Project phases';
+
+  @override
+  String get projectTasksTitle => 'Status points';
+
+  @override
+  String get projectRecommendationsTitle => 'Next recommended steps';
+
+  @override
+  String get projectRecommendationsEmpty =>
+      'All important next steps are currently done.';
+
+  @override
+  String get projectPhaseCompany => 'Phase 1 · Company';
+
+  @override
+  String get projectPhaseKnowledge => 'Phase 2 · Knowledge';
+
+  @override
+  String get projectPhaseAi => 'Phase 3 · AI';
+
+  @override
+  String get projectPhaseMarketing => 'Phase 4 · Marketing';
+
+  @override
+  String get projectPhaseControlling => 'Phase 5 · Controlling';
+
+  @override
+  String get projectPhaseCompanyDescription =>
+      'Clarify company profile, intake and core rules.';
+
+  @override
+  String get projectPhaseKnowledgeDescription =>
+      'Structure knowledge, sources, website and audit.';
+
+  @override
+  String get projectPhaseAiDescription =>
+      'Configure the bot, test it and close reviews.';
+
+  @override
+  String get projectPhaseMarketingDescription =>
+      'Prepare channels, content and growth steps.';
+
+  @override
+  String get projectPhaseControllingDescription =>
+      'Track usage, open tasks and impact.';
+
+  @override
+  String get projectPriorityLow => 'Low';
+
+  @override
+  String get projectPriorityMedium => 'Medium';
+
+  @override
+  String get projectPriorityHigh => 'High';
+
+  @override
+  String get projectCompletionMissing => 'Open';
+
+  @override
+  String get projectCompletionPartial => 'Partial';
+
+  @override
+  String get projectCompletionComplete => 'Done';
+
+  @override
+  String get projectTaskCompanyProfileTitle => 'Company profile';
+
+  @override
+  String get projectTaskCompanyProfileDescription =>
+      'Profile, contact paths and business rules are maintained.';
+
+  @override
+  String get projectTaskIntakeTitle => 'Company intake';
+
+  @override
+  String get projectTaskIntakeDescription =>
+      'The guided questionnaire was completed and imported.';
+
+  @override
+  String get projectTaskKnowledgeTitle => 'Knowledge base';
+
+  @override
+  String get projectTaskKnowledgeDescription =>
+      'Enough FAQ and support knowledge is available.';
+
+  @override
+  String get projectTaskSourcesTitle => 'Sources';
+
+  @override
+  String get projectTaskSourcesDescription =>
+      'Materials were collected, reviewed and converted into knowledge.';
+
+  @override
+  String get projectTaskAuditTitle => 'Audit';
+
+  @override
+  String get projectTaskAuditDescription =>
+      'Important gaps and risks are assessed.';
+
+  @override
+  String get projectTaskWebsiteTitle => 'Analyze website';
+
+  @override
+  String get projectTaskWebsiteDescription =>
+      'Website content is reviewed as a source.';
+
+  @override
+  String get projectTaskMarketingTitle => 'Prepare marketing';
+
+  @override
+  String get projectTaskMarketingDescription =>
+      'Channels, campaigns and next growth steps are captured.';
+
+  @override
+  String get projectTaskBotTitle => 'Activate bot';
+
+  @override
+  String get projectTaskBotDescription =>
+      'Answer style, boundaries and human handover are configured.';
+
+  @override
+  String get projectTaskReviewTitle => 'Complete Human Review';
+
+  @override
+  String get projectTaskReviewDescription =>
+      'Open bot questions were reviewed or closed.';
+
+  @override
+  String get projectTaskControllingTitle => 'Activate controlling';
+
+  @override
+  String get projectTaskControllingDescription =>
+      'Activity and progress can be tracked.';
+
+  @override
+  String get projectRecommendationProfile =>
+      'Complete missing company data and rules.';
+
+  @override
+  String get projectRecommendationIntake =>
+      'Continue the company intake or import the answers.';
+
+  @override
+  String get projectRecommendationKnowledge =>
+      'Expand FAQ and support knowledge for safer answers.';
+
+  @override
+  String get projectRecommendationSources =>
+      'Review new sources and convert useful material into knowledge.';
+
+  @override
+  String get projectRecommendationAudit =>
+      'Close important audit gaps before further rollout.';
+
+  @override
+  String get projectRecommendationWebsite =>
+      'Capture or review website content as a source.';
+
+  @override
+  String get projectRecommendationMarketing =>
+      'Add channels, campaigns and growth notes.';
+
+  @override
+  String get projectRecommendationBot =>
+      'Check bot settings and test the answer flow.';
+
+  @override
+  String get projectRecommendationReview =>
+      'Work through open questions in Human Review.';
+
+  @override
+  String get projectRecommendationControlling =>
+      'Collect more activity so progress becomes measurable.';
 }
