@@ -7,7 +7,7 @@ void main() {
     await tester.pumpAndSettle();
     expect(
       find.text(
-        'Die intelligente Plattform für Unternehmenswissen und digitales Wachstum',
+        'Die intelligente Plattform\nfür Unternehmenswissen\nund digitales Wachstum',
       ),
       findsOneWidget,
     );

@@ -257,13 +257,13 @@ abstract class AppLocalizations {
   /// No description provided for @landingHeroTitle.
   ///
   /// In de, this message translates to:
-  /// **'Die intelligente Plattform für Unternehmenswissen und digitales Wachstum'**
+  /// **'Die intelligente Plattform\nfür Unternehmenswissen\nund digitales Wachstum'**
   String get landingHeroTitle;
 
   /// No description provided for @landingHeroSubtitle.
   ///
   /// In de, this message translates to:
-  /// **'Erfassen Sie Ihr Unternehmen strukturiert, organisieren Sie Wissen und erhalten Sie konkrete Handlungsempfehlungen.'**
+  /// **'Erfassen Sie Ihr Unternehmen, organisieren Sie Wissen, automatisieren Sie Prozesse und unterstützen Sie Ihre Mitarbeiter mit intelligenter KI.'**
   String get landingHeroSubtitle;
 
   /// No description provided for @landingLearnMoreButton.
@@ -320,6 +320,12 @@ abstract class AppLocalizations {
   /// **'So funktioniert es'**
   String get landingWorkflowTitle;
 
+  /// No description provided for @landingWorkflowSubtitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Vom Unternehmensprofil bis zur nutzbaren KI-Unterstützung bleibt der Ablauf klar, kontrolliert und nachvollziehbar.'**
+  String get landingWorkflowSubtitle;
+
   /// No description provided for @landingWorkflowStep1Title.
   ///
   /// In de, this message translates to:
@@ -355,6 +361,96 @@ abstract class AppLocalizations {
   /// In de, this message translates to:
   /// **'Die Plattform unterstützt bei Marketing, Support und Unternehmensentwicklung.'**
   String get landingWorkflowStep3Text;
+
+  /// No description provided for @landingTimelineStep1.
+  ///
+  /// In de, this message translates to:
+  /// **'Unternehmen anlegen'**
+  String get landingTimelineStep1;
+
+  /// No description provided for @landingTimelineStep1Text.
+  ///
+  /// In de, this message translates to:
+  /// **'Profil, Kontaktwege und Regeln werden strukturiert erfasst.'**
+  String get landingTimelineStep1Text;
+
+  /// No description provided for @landingTimelineStep2.
+  ///
+  /// In de, this message translates to:
+  /// **'Wissen importieren'**
+  String get landingTimelineStep2;
+
+  /// No description provided for @landingTimelineStep2Text.
+  ///
+  /// In de, this message translates to:
+  /// **'FAQ, Quellen und Prozesse werden in verwaltbares Wissen überführt.'**
+  String get landingTimelineStep2Text;
+
+  /// No description provided for @landingTimelineStep3.
+  ///
+  /// In de, this message translates to:
+  /// **'KI konfigurieren'**
+  String get landingTimelineStep3;
+
+  /// No description provided for @landingTimelineStep3Text.
+  ///
+  /// In de, this message translates to:
+  /// **'Antwortstil, Themen und menschliche Übergabe werden festgelegt.'**
+  String get landingTimelineStep3Text;
+
+  /// No description provided for @landingTimelineStep4.
+  ///
+  /// In de, this message translates to:
+  /// **'Bot beantwortet Fragen'**
+  String get landingTimelineStep4;
+
+  /// No description provided for @landingTimelineStep4Text.
+  ///
+  /// In de, this message translates to:
+  /// **'Supportfragen werden sicher getestet und bei Bedarf geprüft.'**
+  String get landingTimelineStep4Text;
+
+  /// No description provided for @landingTimelineStep5.
+  ///
+  /// In de, this message translates to:
+  /// **'Unternehmen wächst'**
+  String get landingTimelineStep5;
+
+  /// No description provided for @landingTimelineStep5Text.
+  ///
+  /// In de, this message translates to:
+  /// **'Empfehlungen zeigen Chancen für Support, Marketing und Entwicklung.'**
+  String get landingTimelineStep5Text;
+
+  /// No description provided for @landingPreviewTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Interaktive Vorschau'**
+  String get landingPreviewTitle;
+
+  /// No description provided for @landingPreviewSubtitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Ein stilisiertes Mockup zeigt, wie die Plattform auf Desktop, Tablet und Smartphone wirken kann.'**
+  String get landingPreviewSubtitle;
+
+  /// No description provided for @landingPreviewDesktop.
+  ///
+  /// In de, this message translates to:
+  /// **'Desktop'**
+  String get landingPreviewDesktop;
+
+  /// No description provided for @landingPreviewTablet.
+  ///
+  /// In de, this message translates to:
+  /// **'Tablet'**
+  String get landingPreviewTablet;
+
+  /// No description provided for @landingPreviewPhone.
+  ///
+  /// In de, this message translates to:
+  /// **'Smartphone'**
+  String get landingPreviewPhone;
 
   /// No description provided for @landingFeaturesTitle.
   ///
@@ -425,8 +521,74 @@ abstract class AppLocalizations {
   /// No description provided for @landingBenefitsTitle.
   ///
   /// In de, this message translates to:
-  /// **'Vorteile'**
+  /// **'Vorteile auf einen Blick'**
   String get landingBenefitsTitle;
+
+  /// No description provided for @landingBenefitsSubtitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Die Plattform verbindet Unternehmensdaten, Wissen und Assistenzfunktionen in einem gemeinsamen Arbeitsbereich.'**
+  String get landingBenefitsSubtitle;
+
+  /// No description provided for @landingBenefitCompanyTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Unternehmen'**
+  String get landingBenefitCompanyTitle;
+
+  /// No description provided for @landingBenefitCompanyText.
+  ///
+  /// In de, this message translates to:
+  /// **'Profile, Angebote und Regeln werden sauber an einem Ort gepflegt.'**
+  String get landingBenefitCompanyText;
+
+  /// No description provided for @landingBenefitAssistantTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'KI-Assistent'**
+  String get landingBenefitAssistantTitle;
+
+  /// No description provided for @landingBenefitAssistantText.
+  ///
+  /// In de, this message translates to:
+  /// **'Antworten werden kontrolliert vorbereitet und bei Risiko an Menschen übergeben.'**
+  String get landingBenefitAssistantText;
+
+  /// No description provided for @landingBenefitDatabaseTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Wissensdatenbank'**
+  String get landingBenefitDatabaseTitle;
+
+  /// No description provided for @landingBenefitDatabaseText.
+  ///
+  /// In de, this message translates to:
+  /// **'FAQ, Dokumente und Quellen werden auffindbar und wiederverwendbar.'**
+  String get landingBenefitDatabaseText;
+
+  /// No description provided for @landingBenefitMarketingTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Marketing'**
+  String get landingBenefitMarketingTitle;
+
+  /// No description provided for @landingBenefitMarketingText.
+  ///
+  /// In de, this message translates to:
+  /// **'Potenziale, Lücken und nächste Schritte werden verständlich sichtbar.'**
+  String get landingBenefitMarketingText;
+
+  /// No description provided for @landingBenefitControllingTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Controlling'**
+  String get landingBenefitControllingTitle;
+
+  /// No description provided for @landingBenefitControllingText.
+  ///
+  /// In de, this message translates to:
+  /// **'Status, offene Prüfungen und Fortschritt bleiben nachvollziehbar.'**
+  String get landingBenefitControllingText;
 
   /// No description provided for @landingBenefitOnePlace.
   ///
@@ -494,6 +656,18 @@ abstract class AppLocalizations {
   /// **'Dienstleister'**
   String get landingAudienceServices;
 
+  /// No description provided for @landingAudienceCraft.
+  ///
+  /// In de, this message translates to:
+  /// **'Handwerk'**
+  String get landingAudienceCraft;
+
+  /// No description provided for @landingAudienceDoctors.
+  ///
+  /// In de, this message translates to:
+  /// **'Ärzte'**
+  String get landingAudienceDoctors;
+
   /// No description provided for @landingAudienceManufacturers.
   ///
   /// In de, this message translates to:
@@ -523,6 +697,108 @@ abstract class AppLocalizations {
   /// In de, this message translates to:
   /// **'Gesundheitsunternehmen'**
   String get landingAudienceHealth;
+
+  /// No description provided for @landingAudienceShops.
+  ///
+  /// In de, this message translates to:
+  /// **'Shops'**
+  String get landingAudienceShops;
+
+  /// No description provided for @landingAudienceHotels.
+  ///
+  /// In de, this message translates to:
+  /// **'Hotels'**
+  String get landingAudienceHotels;
+
+  /// No description provided for @landingAudienceAssociations.
+  ///
+  /// In de, this message translates to:
+  /// **'Vereine'**
+  String get landingAudienceAssociations;
+
+  /// No description provided for @landingFaqTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Häufige Fragen'**
+  String get landingFaqTitle;
+
+  /// No description provided for @landingFaqSubtitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Kurz beantwortet für eine erste Orientierung.'**
+  String get landingFaqSubtitle;
+
+  /// No description provided for @landingFaqQuestion1.
+  ///
+  /// In de, this message translates to:
+  /// **'Ist die Plattform bereits ein fertiges Produkt?'**
+  String get landingFaqQuestion1;
+
+  /// No description provided for @landingFaqAnswer1.
+  ///
+  /// In de, this message translates to:
+  /// **'Aktuell ist sie ein MVP mit lokalem Demo-Workspace. Die öffentliche Landingpage zeigt die Richtung und die geplante Produktlogik.'**
+  String get landingFaqAnswer1;
+
+  /// No description provided for @landingFaqQuestion2.
+  ///
+  /// In de, this message translates to:
+  /// **'Muss ich die App installieren?'**
+  String get landingFaqQuestion2;
+
+  /// No description provided for @landingFaqAnswer2.
+  ///
+  /// In de, this message translates to:
+  /// **'Nein. Die Plattform läuft direkt im Browser. Unterstützte Browser können sie optional zum Startbildschirm hinzufügen.'**
+  String get landingFaqAnswer2;
+
+  /// No description provided for @landingFaqQuestion3.
+  ///
+  /// In de, this message translates to:
+  /// **'Sind echte KI-Funktionen schon angebunden?'**
+  String get landingFaqQuestion3;
+
+  /// No description provided for @landingFaqAnswer3.
+  ///
+  /// In de, this message translates to:
+  /// **'Noch nicht. Bot-Test und Review-Flows arbeiten im MVP lokal und regelbasiert, ohne echte KI-API.'**
+  String get landingFaqAnswer3;
+
+  /// No description provided for @landingFaqQuestion4.
+  ///
+  /// In de, this message translates to:
+  /// **'Können mehrere Firmen verwaltet werden?'**
+  String get landingFaqQuestion4;
+
+  /// No description provided for @landingFaqAnswer4.
+  ///
+  /// In de, this message translates to:
+  /// **'Ja. Demo-Workspaces sind getrennt aufgebaut, damit Daten pro Firma betrachtet und getestet werden können.'**
+  String get landingFaqAnswer4;
+
+  /// No description provided for @landingFaqQuestion5.
+  ///
+  /// In de, this message translates to:
+  /// **'Was passiert bei riskanten Antworten?'**
+  String get landingFaqQuestion5;
+
+  /// No description provided for @landingFaqAnswer5.
+  ///
+  /// In de, this message translates to:
+  /// **'Riskante oder unklare Fragen werden im Human-Review-Bereich gesammelt und können kontrolliert in Wissen überführt werden.'**
+  String get landingFaqAnswer5;
+
+  /// No description provided for @landingFaqQuestion6.
+  ///
+  /// In de, this message translates to:
+  /// **'Ist das schon für produktive Kundendaten gedacht?'**
+  String get landingFaqQuestion6;
+
+  /// No description provided for @landingFaqAnswer6.
+  ///
+  /// In de, this message translates to:
+  /// **'Nein. Für produktive Kundendaten fehlen noch Authentifizierung, Backend, Datenbank und dauerhafte sichere Speicherung.'**
+  String get landingFaqAnswer6;
 
   /// No description provided for @landingCtaTitle.
   ///

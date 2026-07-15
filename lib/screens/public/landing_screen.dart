@@ -7,9 +7,11 @@ import '../../widgets/public/landing_audience_section.dart';
 import '../../widgets/public/landing_benefits_section.dart';
 import '../../widgets/public/landing_cta_section.dart';
 import '../../widgets/public/landing_demo_section.dart';
+import '../../widgets/public/landing_faq_section.dart';
 import '../../widgets/public/landing_features_section.dart';
 import '../../widgets/public/landing_footer_section.dart';
 import '../../widgets/public/landing_hero_section.dart';
+import '../../widgets/public/landing_preview_section.dart';
 import '../../widgets/public/landing_workflow_section.dart';
 import '../../widgets/public/pwa_install_notice.dart';
 
@@ -26,6 +28,7 @@ class _LandingScreenState extends State<LandingScreen> {
   final _scrollController = ScrollController();
   final _platformKey = GlobalKey();
   final _demoKey = GlobalKey();
+  final _contactKey = GlobalKey();
   late final PwaInstallController _pwaInstallController;
   late bool _pwaHintDismissed;
 
@@ -54,11 +57,11 @@ class _LandingScreenState extends State<LandingScreen> {
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
             colors: [
-              theme.colorScheme.primaryContainer.withAlpha(75),
+              theme.colorScheme.primaryContainer.withAlpha(92),
               theme.colorScheme.surface,
               theme.colorScheme.surface,
             ],
-            stops: const [0, 0.34, 1],
+            stops: const [0, 0.42, 1],
           ),
         ),
         child: SafeArea(
@@ -71,12 +74,12 @@ class _LandingScreenState extends State<LandingScreen> {
                   children: [
                     _LandingNav(
                       onDemo: () => _scrollTo(_demoKey),
-                      onContact: _showPlaceholderMessage,
+                      onContact: () => _scrollTo(_contactKey),
                     ),
                     LandingHeroSection(
                       onLearnMore: () => _scrollTo(_platformKey),
                       onDemo: () => _scrollTo(_demoKey),
-                      onContact: _showPlaceholderMessage,
+                      onContact: () => _scrollTo(_contactKey),
                     ),
                     PwaInstallNotice(
                       controller: _pwaInstallController,
@@ -91,12 +94,13 @@ class _LandingScreenState extends State<LandingScreen> {
                   ],
                 ),
               ),
+              const _PageBand(child: LandingBenefitsSection()),
               _PageBand(
                 key: _platformKey,
                 child: const LandingWorkflowSection(),
               ),
+              const _PageBand(child: LandingPreviewSection()),
               const _PageBand(child: LandingFeaturesSection()),
-              const _PageBand(child: LandingBenefitsSection()),
               _PageBand(
                 key: _demoKey,
                 child: LandingDemoSection(
@@ -104,7 +108,9 @@ class _LandingScreenState extends State<LandingScreen> {
                 ),
               ),
               const _PageBand(child: LandingAudienceSection()),
+              const _PageBand(child: LandingFaqSection()),
               _PageBand(
+                key: _contactKey,
                 child: LandingCtaSection(onRequest: _showPlaceholderMessage),
               ),
               _PageBand(
@@ -224,11 +230,17 @@ class _PageBand extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final width = MediaQuery.sizeOf(context).width;
+    final horizontalPadding = width < 520
+        ? 18.0
+        : width < 900
+        ? 24.0
+        : 32.0;
     return Center(
       child: ConstrainedBox(
-        constraints: const BoxConstraints(maxWidth: 1180),
+        constraints: const BoxConstraints(maxWidth: 1280),
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 24),
+          padding: EdgeInsets.symmetric(horizontal: horizontalPadding),
           child: child,
         ),
       ),

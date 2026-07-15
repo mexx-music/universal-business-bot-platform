@@ -96,11 +96,11 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get landingHeroTitle =>
-      'Die intelligente Plattform für Unternehmenswissen und digitales Wachstum';
+      'Die intelligente Plattform\nfür Unternehmenswissen\nund digitales Wachstum';
 
   @override
   String get landingHeroSubtitle =>
-      'Erfassen Sie Ihr Unternehmen strukturiert, organisieren Sie Wissen und erhalten Sie konkrete Handlungsempfehlungen.';
+      'Erfassen Sie Ihr Unternehmen, organisieren Sie Wissen, automatisieren Sie Prozesse und unterstützen Sie Ihre Mitarbeiter mit intelligenter KI.';
 
   @override
   String get landingLearnMoreButton => 'Plattform kennenlernen';
@@ -130,6 +130,10 @@ class AppLocalizationsDe extends AppLocalizations {
   String get landingWorkflowTitle => 'So funktioniert es';
 
   @override
+  String get landingWorkflowSubtitle =>
+      'Vom Unternehmensprofil bis zur nutzbaren KI-Unterstützung bleibt der Ablauf klar, kontrolliert und nachvollziehbar.';
+
+  @override
   String get landingWorkflowStep1Title => 'Unternehmen erfassen';
 
   @override
@@ -149,6 +153,57 @@ class AppLocalizationsDe extends AppLocalizations {
   @override
   String get landingWorkflowStep3Text =>
       'Die Plattform unterstützt bei Marketing, Support und Unternehmensentwicklung.';
+
+  @override
+  String get landingTimelineStep1 => 'Unternehmen anlegen';
+
+  @override
+  String get landingTimelineStep1Text =>
+      'Profil, Kontaktwege und Regeln werden strukturiert erfasst.';
+
+  @override
+  String get landingTimelineStep2 => 'Wissen importieren';
+
+  @override
+  String get landingTimelineStep2Text =>
+      'FAQ, Quellen und Prozesse werden in verwaltbares Wissen überführt.';
+
+  @override
+  String get landingTimelineStep3 => 'KI konfigurieren';
+
+  @override
+  String get landingTimelineStep3Text =>
+      'Antwortstil, Themen und menschliche Übergabe werden festgelegt.';
+
+  @override
+  String get landingTimelineStep4 => 'Bot beantwortet Fragen';
+
+  @override
+  String get landingTimelineStep4Text =>
+      'Supportfragen werden sicher getestet und bei Bedarf geprüft.';
+
+  @override
+  String get landingTimelineStep5 => 'Unternehmen wächst';
+
+  @override
+  String get landingTimelineStep5Text =>
+      'Empfehlungen zeigen Chancen für Support, Marketing und Entwicklung.';
+
+  @override
+  String get landingPreviewTitle => 'Interaktive Vorschau';
+
+  @override
+  String get landingPreviewSubtitle =>
+      'Ein stilisiertes Mockup zeigt, wie die Plattform auf Desktop, Tablet und Smartphone wirken kann.';
+
+  @override
+  String get landingPreviewDesktop => 'Desktop';
+
+  @override
+  String get landingPreviewTablet => 'Tablet';
+
+  @override
+  String get landingPreviewPhone => 'Smartphone';
 
   @override
   String get landingFeaturesTitle => 'Funktionen';
@@ -185,7 +240,46 @@ class AppLocalizationsDe extends AppLocalizations {
   String get landingComingSoon => 'Coming Soon';
 
   @override
-  String get landingBenefitsTitle => 'Vorteile';
+  String get landingBenefitsTitle => 'Vorteile auf einen Blick';
+
+  @override
+  String get landingBenefitsSubtitle =>
+      'Die Plattform verbindet Unternehmensdaten, Wissen und Assistenzfunktionen in einem gemeinsamen Arbeitsbereich.';
+
+  @override
+  String get landingBenefitCompanyTitle => 'Unternehmen';
+
+  @override
+  String get landingBenefitCompanyText =>
+      'Profile, Angebote und Regeln werden sauber an einem Ort gepflegt.';
+
+  @override
+  String get landingBenefitAssistantTitle => 'KI-Assistent';
+
+  @override
+  String get landingBenefitAssistantText =>
+      'Antworten werden kontrolliert vorbereitet und bei Risiko an Menschen übergeben.';
+
+  @override
+  String get landingBenefitDatabaseTitle => 'Wissensdatenbank';
+
+  @override
+  String get landingBenefitDatabaseText =>
+      'FAQ, Dokumente und Quellen werden auffindbar und wiederverwendbar.';
+
+  @override
+  String get landingBenefitMarketingTitle => 'Marketing';
+
+  @override
+  String get landingBenefitMarketingText =>
+      'Potenziale, Lücken und nächste Schritte werden verständlich sichtbar.';
+
+  @override
+  String get landingBenefitControllingTitle => 'Controlling';
+
+  @override
+  String get landingBenefitControllingText =>
+      'Status, offene Prüfungen und Fortschritt bleiben nachvollziehbar.';
 
   @override
   String get landingBenefitOnePlace => 'Alles an einem Ort';
@@ -222,6 +316,12 @@ class AppLocalizationsDe extends AppLocalizations {
   String get landingAudienceServices => 'Dienstleister';
 
   @override
+  String get landingAudienceCraft => 'Handwerk';
+
+  @override
+  String get landingAudienceDoctors => 'Ärzte';
+
+  @override
   String get landingAudienceManufacturers => 'Hersteller';
 
   @override
@@ -235,6 +335,67 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get landingAudienceHealth => 'Gesundheitsunternehmen';
+
+  @override
+  String get landingAudienceShops => 'Shops';
+
+  @override
+  String get landingAudienceHotels => 'Hotels';
+
+  @override
+  String get landingAudienceAssociations => 'Vereine';
+
+  @override
+  String get landingFaqTitle => 'Häufige Fragen';
+
+  @override
+  String get landingFaqSubtitle =>
+      'Kurz beantwortet für eine erste Orientierung.';
+
+  @override
+  String get landingFaqQuestion1 =>
+      'Ist die Plattform bereits ein fertiges Produkt?';
+
+  @override
+  String get landingFaqAnswer1 =>
+      'Aktuell ist sie ein MVP mit lokalem Demo-Workspace. Die öffentliche Landingpage zeigt die Richtung und die geplante Produktlogik.';
+
+  @override
+  String get landingFaqQuestion2 => 'Muss ich die App installieren?';
+
+  @override
+  String get landingFaqAnswer2 =>
+      'Nein. Die Plattform läuft direkt im Browser. Unterstützte Browser können sie optional zum Startbildschirm hinzufügen.';
+
+  @override
+  String get landingFaqQuestion3 =>
+      'Sind echte KI-Funktionen schon angebunden?';
+
+  @override
+  String get landingFaqAnswer3 =>
+      'Noch nicht. Bot-Test und Review-Flows arbeiten im MVP lokal und regelbasiert, ohne echte KI-API.';
+
+  @override
+  String get landingFaqQuestion4 => 'Können mehrere Firmen verwaltet werden?';
+
+  @override
+  String get landingFaqAnswer4 =>
+      'Ja. Demo-Workspaces sind getrennt aufgebaut, damit Daten pro Firma betrachtet und getestet werden können.';
+
+  @override
+  String get landingFaqQuestion5 => 'Was passiert bei riskanten Antworten?';
+
+  @override
+  String get landingFaqAnswer5 =>
+      'Riskante oder unklare Fragen werden im Human-Review-Bereich gesammelt und können kontrolliert in Wissen überführt werden.';
+
+  @override
+  String get landingFaqQuestion6 =>
+      'Ist das schon für produktive Kundendaten gedacht?';
+
+  @override
+  String get landingFaqAnswer6 =>
+      'Nein. Für produktive Kundendaten fehlen noch Authentifizierung, Backend, Datenbank und dauerhafte sichere Speicherung.';
 
   @override
   String get landingCtaTitle => 'Bereit für den nächsten Schritt?';

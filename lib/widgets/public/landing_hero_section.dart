@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 
 import '../../l10n/app_localizations.dart';
@@ -17,10 +19,10 @@ class LandingHeroSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(bottom: 38),
+      padding: const EdgeInsets.only(top: 14, bottom: 48),
       child: TweenAnimationBuilder<double>(
         tween: Tween(begin: 0, end: 1),
-        duration: const Duration(milliseconds: 520),
+        duration: const Duration(milliseconds: 620),
         curve: Curves.easeOutCubic,
         builder: (context, value, child) => Opacity(
           opacity: value,
@@ -31,7 +33,8 @@ class LandingHeroSection extends StatelessWidget {
         ),
         child: LayoutBuilder(
           builder: (context, constraints) {
-            final wide = constraints.maxWidth >= 900;
+            final width = constraints.maxWidth;
+            final twoColumn = width >= 860;
             final copy = _HeroCopy(
               onLearnMore: onLearnMore,
               onDemo: onDemo,
@@ -39,18 +42,18 @@ class LandingHeroSection extends StatelessWidget {
             );
             const visual = _HeroIllustration();
 
-            if (!wide) {
+            if (!twoColumn) {
               return Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [copy, const SizedBox(height: 28), visual],
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [copy, const SizedBox(height: 30), visual],
               );
             }
 
             return Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Expanded(flex: 11, child: copy),
-                const SizedBox(width: 38),
+                Expanded(flex: 10, child: copy),
+                const SizedBox(width: 48),
                 const Expanded(flex: 9, child: visual),
               ],
             );
@@ -77,130 +80,216 @@ class _HeroCopy extends StatelessWidget {
     final l = AppLocalizations.of(context)!;
     final theme = Theme.of(context);
 
-    return ConstrainedBox(
-      constraints: const BoxConstraints(maxWidth: 660),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Container(
-            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 7),
-            decoration: BoxDecoration(
-              color: theme.colorScheme.primary.withAlpha(18),
-              borderRadius: BorderRadius.circular(999),
-              border: Border.all(
-                color: theme.colorScheme.primary.withAlpha(35),
-              ),
-            ),
-            child: Text(
-              l.landingHeroEyebrow,
-              style: theme.textTheme.labelLarge?.copyWith(
-                color: theme.colorScheme.primary,
-                fontWeight: FontWeight.w700,
-              ),
-            ),
-          ),
-          const SizedBox(height: 22),
-          Text(
-            l.landingHeroTitle,
-            style: theme.textTheme.displayMedium?.copyWith(
-              fontWeight: FontWeight.w900,
-              letterSpacing: 0,
-              height: 1.04,
-            ),
-          ),
-          const SizedBox(height: 18),
-          Text(
-            l.landingHeroSubtitle,
-            style: theme.textTheme.titleMedium?.copyWith(
-              color: theme.colorScheme.onSurfaceVariant,
-              height: 1.45,
-            ),
-          ),
-          const SizedBox(height: 28),
-          Wrap(
-            spacing: 12,
-            runSpacing: 12,
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        final compact = constraints.maxWidth < 520;
+        return ConstrainedBox(
+          constraints: const BoxConstraints(maxWidth: 720),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              FilledButton.icon(
-                onPressed: onLearnMore,
-                icon: const Icon(Icons.arrow_downward_rounded),
-                label: Text(l.landingLearnMoreButton),
-                style: FilledButton.styleFrom(
-                  minimumSize: const Size(0, 52),
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
+              Container(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 14,
+                  vertical: 8,
+                ),
+                decoration: BoxDecoration(
+                  color: theme.colorScheme.primary.withAlpha(20),
+                  borderRadius: BorderRadius.circular(999),
+                  border: Border.all(
+                    color: theme.colorScheme.primary.withAlpha(42),
+                  ),
+                ),
+                child: Text(
+                  l.landingHeroEyebrow,
+                  style: theme.textTheme.labelLarge?.copyWith(
+                    color: theme.colorScheme.primary,
+                    fontWeight: FontWeight.w800,
+                  ),
                 ),
               ),
-              OutlinedButton.icon(
-                onPressed: onDemo,
-                icon: const Icon(Icons.play_circle_outline_rounded),
-                label: Text(l.landingDemoButton),
-                style: OutlinedButton.styleFrom(
-                  minimumSize: const Size(0, 52),
-                  padding: const EdgeInsets.symmetric(horizontal: 18),
+              const SizedBox(height: 24),
+              Text(
+                l.landingHeroTitle,
+                style:
+                    (compact
+                            ? theme.textTheme.displaySmall
+                            : theme.textTheme.displayMedium)
+                        ?.copyWith(
+                          fontWeight: FontWeight.w900,
+                          letterSpacing: 0,
+                          height: 1.03,
+                        ),
+              ),
+              const SizedBox(height: 20),
+              ConstrainedBox(
+                constraints: const BoxConstraints(maxWidth: 620),
+                child: Text(
+                  l.landingHeroSubtitle,
+                  style:
+                      (compact
+                              ? theme.textTheme.titleSmall
+                              : theme.textTheme.titleMedium)
+                          ?.copyWith(
+                            color: theme.colorScheme.onSurfaceVariant,
+                            height: 1.48,
+                          ),
                 ),
               ),
-              TextButton(
-                onPressed: onContact,
-                child: Text(l.landingContactButton),
+              const SizedBox(height: 30),
+              _HeroActions(
+                compact: compact,
+                onLearnMore: onLearnMore,
+                onDemo: onDemo,
+                onContact: onContact,
               ),
             ],
           ),
-        ],
-      ),
+        );
+      },
     );
   }
 }
 
-class _HeroIllustration extends StatelessWidget {
+class _HeroActions extends StatelessWidget {
+  final bool compact;
+  final VoidCallback onLearnMore;
+  final VoidCallback onDemo;
+  final VoidCallback onContact;
+
+  const _HeroActions({
+    required this.compact,
+    required this.onLearnMore,
+    required this.onDemo,
+    required this.onContact,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final l = AppLocalizations.of(context)!;
+    final buttons = [
+      FilledButton.icon(
+        onPressed: onLearnMore,
+        icon: const Icon(Icons.arrow_downward_rounded),
+        label: Text(l.landingLearnMoreButton),
+        style: FilledButton.styleFrom(
+          minimumSize: Size(compact ? double.infinity : 0, 54),
+          padding: const EdgeInsets.symmetric(horizontal: 22),
+        ),
+      ),
+      OutlinedButton.icon(
+        onPressed: onDemo,
+        icon: const Icon(Icons.play_circle_outline_rounded),
+        label: Text(l.landingDemoButton),
+        style: OutlinedButton.styleFrom(
+          minimumSize: Size(compact ? double.infinity : 0, 54),
+          padding: const EdgeInsets.symmetric(horizontal: 20),
+        ),
+      ),
+      TextButton(
+        onPressed: onContact,
+        style: TextButton.styleFrom(
+          minimumSize: Size(compact ? double.infinity : 0, 54),
+          padding: const EdgeInsets.symmetric(horizontal: 16),
+        ),
+        child: Text(l.landingContactButton),
+      ),
+    ];
+
+    if (compact) {
+      return Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          for (var index = 0; index < buttons.length; index++) ...[
+            buttons[index],
+            if (index < buttons.length - 1) const SizedBox(height: 10),
+          ],
+        ],
+      );
+    }
+
+    return Wrap(spacing: 12, runSpacing: 12, children: buttons);
+  }
+}
+
+class _HeroIllustration extends StatefulWidget {
   const _HeroIllustration();
+
+  @override
+  State<_HeroIllustration> createState() => _HeroIllustrationState();
+}
+
+class _HeroIllustrationState extends State<_HeroIllustration> {
+  int _activeIndex = 2;
+  Timer? _timer;
+
+  @override
+  void initState() {
+    super.initState();
+    _timer = Timer.periodic(const Duration(seconds: 3), (_) {
+      if (!mounted) return;
+      setState(() => _activeIndex = (_activeIndex + 1) % 5);
+    });
+  }
+
+  @override
+  void dispose() {
+    _timer?.cancel();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     final l = AppLocalizations.of(context)!;
     final theme = Theme.of(context);
     final items = [
-      (Icons.business_outlined, l.landingHeroFlowCompany),
-      (Icons.library_books_outlined, l.landingHeroFlowKnowledge),
-      (Icons.smart_toy_outlined, l.landingHeroFlowBot),
-      (Icons.campaign_outlined, l.landingHeroFlowMarketing),
-      (Icons.query_stats_outlined, l.landingHeroFlowControlling),
+      _FlowItem(Icons.apartment_rounded, l.landingHeroFlowCompany),
+      _FlowItem(Icons.menu_book_rounded, l.landingHeroFlowKnowledge),
+      _FlowItem(Icons.auto_awesome_rounded, l.landingHeroFlowBot),
+      _FlowItem(Icons.campaign_rounded, l.landingHeroFlowMarketing),
+      _FlowItem(Icons.query_stats_rounded, l.landingHeroFlowControlling),
     ];
 
-    return AspectRatio(
-      aspectRatio: 0.98,
-      child: Container(
-        padding: const EdgeInsets.all(20),
+    return MouseRegion(
+      onExit: (_) => setState(() => _activeIndex = 2),
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 220),
+        curve: Curves.easeOut,
+        padding: const EdgeInsets.all(22),
         decoration: BoxDecoration(
-          color: theme.colorScheme.surface.withAlpha(230),
-          borderRadius: BorderRadius.circular(28),
+          color: theme.colorScheme.surface.withAlpha(242),
+          borderRadius: BorderRadius.circular(32),
           border: Border.all(color: theme.colorScheme.outlineVariant),
           boxShadow: [
             BoxShadow(
-              color: theme.colorScheme.primary.withAlpha(20),
-              blurRadius: 34,
-              offset: const Offset(0, 22),
+              color: theme.colorScheme.primary.withAlpha(26),
+              blurRadius: 40,
+              offset: const Offset(0, 24),
+            ),
+            BoxShadow(
+              color: theme.colorScheme.shadow.withAlpha(10),
+              blurRadius: 12,
+              offset: const Offset(0, 5),
             ),
           ],
         ),
         child: LayoutBuilder(
           builder: (context, constraints) {
-            final compact = constraints.maxWidth < 360;
+            final compact = constraints.maxWidth < 420;
             return Column(
-              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisSize: MainAxisSize.min,
               children: [
+                _IllustrationTopBar(compact: compact),
+                const SizedBox(height: 18),
                 for (var index = 0; index < items.length; index++) ...[
                   _FlowNode(
-                    icon: items[index].$1,
-                    label: items[index].$2,
+                    item: items[index],
+                    active: index == _activeIndex,
                     compact: compact,
-                    emphasized: index == 2,
+                    onHover: () => setState(() => _activeIndex = index),
                   ),
                   if (index < items.length - 1)
-                    Container(
-                      width: 2,
-                      height: compact ? 14 : 18,
-                      color: theme.colorScheme.primary.withAlpha(80),
-                    ),
+                    _Connector(active: index == _activeIndex - 1),
                 ],
               ],
             );
@@ -211,56 +300,160 @@ class _HeroIllustration extends StatelessWidget {
   }
 }
 
-class _FlowNode extends StatelessWidget {
-  final IconData icon;
-  final String label;
+class _IllustrationTopBar extends StatelessWidget {
   final bool compact;
-  final bool emphasized;
+
+  const _IllustrationTopBar({required this.compact});
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    return Row(
+      children: [
+        for (final color in [
+          theme.colorScheme.primary,
+          theme.colorScheme.tertiary,
+          theme.colorScheme.secondary,
+        ]) ...[
+          Container(
+            width: compact ? 8 : 10,
+            height: compact ? 8 : 10,
+            decoration: BoxDecoration(color: color, shape: BoxShape.circle),
+          ),
+          const SizedBox(width: 6),
+        ],
+        const Spacer(),
+        Container(
+          width: compact ? 84 : 118,
+          height: 8,
+          decoration: BoxDecoration(
+            color: theme.colorScheme.outlineVariant.withAlpha(140),
+            borderRadius: BorderRadius.circular(999),
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class _FlowNode extends StatelessWidget {
+  final _FlowItem item;
+  final bool active;
+  final bool compact;
+  final VoidCallback onHover;
 
   const _FlowNode({
-    required this.icon,
-    required this.label,
+    required this.item,
+    required this.active,
     required this.compact,
-    required this.emphasized,
+    required this.onHover,
   });
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final background = emphasized
-        ? theme.colorScheme.primary
-        : theme.colorScheme.surfaceContainerHighest;
-    final foreground = emphasized
-        ? theme.colorScheme.onPrimary
-        : theme.colorScheme.onSurface;
 
-    return Container(
-      width: double.infinity,
-      padding: EdgeInsets.symmetric(
-        horizontal: compact ? 12 : 16,
-        vertical: compact ? 11 : 14,
-      ),
-      decoration: BoxDecoration(
-        color: background,
-        borderRadius: BorderRadius.circular(16),
-      ),
-      child: Row(
-        children: [
-          Icon(icon, color: foreground, size: compact ? 20 : 24),
-          const SizedBox(width: 12),
-          Expanded(
-            child: Text(
-              label,
-              maxLines: 1,
-              overflow: TextOverflow.ellipsis,
-              style: theme.textTheme.titleSmall?.copyWith(
-                color: foreground,
-                fontWeight: FontWeight.w800,
-              ),
-            ),
+    return MouseRegion(
+      onEnter: (_) => onHover(),
+      child: AnimatedScale(
+        scale: active ? 1.025 : 1,
+        duration: const Duration(milliseconds: 180),
+        curve: Curves.easeOut,
+        child: AnimatedContainer(
+          duration: const Duration(milliseconds: 220),
+          curve: Curves.easeOut,
+          width: double.infinity,
+          padding: EdgeInsets.symmetric(
+            horizontal: compact ? 14 : 18,
+            vertical: compact ? 13 : 16,
           ),
-        ],
+          decoration: BoxDecoration(
+            color: active
+                ? theme.colorScheme.primary
+                : theme.colorScheme.surfaceContainerHighest,
+            borderRadius: BorderRadius.circular(18),
+            boxShadow: [
+              if (active)
+                BoxShadow(
+                  color: theme.colorScheme.primary.withAlpha(38),
+                  blurRadius: 22,
+                  offset: const Offset(0, 12),
+                ),
+            ],
+          ),
+          child: Row(
+            children: [
+              Container(
+                width: compact ? 38 : 44,
+                height: compact ? 38 : 44,
+                decoration: BoxDecoration(
+                  color: active
+                      ? theme.colorScheme.onPrimary.withAlpha(28)
+                      : theme.colorScheme.primary.withAlpha(16),
+                  borderRadius: BorderRadius.circular(14),
+                ),
+                child: Icon(
+                  item.icon,
+                  color: active
+                      ? theme.colorScheme.onPrimary
+                      : theme.colorScheme.primary,
+                  size: compact ? 21 : 24,
+                ),
+              ),
+              const SizedBox(width: 14),
+              Expanded(
+                child: Text(
+                  item.label,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: theme.textTheme.titleSmall?.copyWith(
+                    color: active
+                        ? theme.colorScheme.onPrimary
+                        : theme.colorScheme.onSurface,
+                    fontWeight: FontWeight.w900,
+                  ),
+                ),
+              ),
+              Icon(
+                Icons.arrow_forward_rounded,
+                color: active
+                    ? theme.colorScheme.onPrimary
+                    : theme.colorScheme.onSurfaceVariant,
+                size: 20,
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }
+}
+
+class _Connector extends StatelessWidget {
+  final bool active;
+
+  const _Connector({required this.active});
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    return AnimatedContainer(
+      duration: const Duration(milliseconds: 220),
+      width: 3,
+      height: 18,
+      decoration: BoxDecoration(
+        color: active
+            ? theme.colorScheme.primary
+            : theme.colorScheme.outlineVariant,
+        borderRadius: BorderRadius.circular(999),
+      ),
+    );
+  }
+}
+
+class _FlowItem {
+  final IconData icon;
+  final String label;
+
+  const _FlowItem(this.icon, this.label);
 }

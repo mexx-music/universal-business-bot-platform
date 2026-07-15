@@ -12,11 +12,12 @@ class LandingAudienceSection extends StatelessWidget {
     final l = AppLocalizations.of(context)!;
     final audiences = [
       (Icons.design_services_outlined, l.landingAudienceServices),
-      (Icons.precision_manufacturing_outlined, l.landingAudienceManufacturers),
-      (Icons.shopping_bag_outlined, l.landingAudienceCommerce),
-      (Icons.code_outlined, l.landingAudienceSoftware),
+      (Icons.handyman_rounded, l.landingAudienceCraft),
+      (Icons.local_hospital_outlined, l.landingAudienceDoctors),
       (Icons.handshake_outlined, l.landingAudienceConsulting),
-      (Icons.health_and_safety_outlined, l.landingAudienceHealth),
+      (Icons.shopping_bag_outlined, l.landingAudienceShops),
+      (Icons.hotel_rounded, l.landingAudienceHotels),
+      (Icons.groups_rounded, l.landingAudienceAssociations),
     ];
 
     return Padding(
@@ -28,7 +29,9 @@ class LandingAudienceSection extends StatelessWidget {
           const SizedBox(height: 22),
           LayoutBuilder(
             builder: (context, constraints) {
-              final count = constraints.maxWidth >= 980
+              final count = constraints.maxWidth >= 1100
+                  ? 4
+                  : constraints.maxWidth >= 820
                   ? 3
                   : constraints.maxWidth >= 620
                   ? 2
@@ -40,7 +43,7 @@ class LandingAudienceSection extends StatelessWidget {
                   crossAxisCount: count,
                   crossAxisSpacing: 14,
                   mainAxisSpacing: 14,
-                  mainAxisExtent: 112,
+                  mainAxisExtent: 118,
                 ),
                 itemCount: audiences.length,
                 itemBuilder: (context, index) => _AudienceCard(

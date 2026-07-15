@@ -96,11 +96,11 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get landingHeroTitle =>
-      'The intelligent platform for company knowledge and digital growth';
+      'The intelligent platform\nfor company knowledge\nand digital growth';
 
   @override
   String get landingHeroSubtitle =>
-      'Capture your company in a structured way, organize knowledge, and receive concrete recommendations.';
+      'Capture your company, organize knowledge, automate processes, and support your team with intelligent AI.';
 
   @override
   String get landingLearnMoreButton => 'Explore platform';
@@ -130,6 +130,10 @@ class AppLocalizationsEn extends AppLocalizations {
   String get landingWorkflowTitle => 'How it works';
 
   @override
+  String get landingWorkflowSubtitle =>
+      'From company profile to useful AI support, the workflow stays clear, controlled, and traceable.';
+
+  @override
   String get landingWorkflowStep1Title => 'Capture company';
 
   @override
@@ -149,6 +153,57 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get landingWorkflowStep3Text =>
       'The platform supports marketing, support, and company development.';
+
+  @override
+  String get landingTimelineStep1 => 'Create company';
+
+  @override
+  String get landingTimelineStep1Text =>
+      'Profile, contact channels, and rules are captured in a structured way.';
+
+  @override
+  String get landingTimelineStep2 => 'Import knowledge';
+
+  @override
+  String get landingTimelineStep2Text =>
+      'FAQs, sources, and processes are turned into manageable knowledge.';
+
+  @override
+  String get landingTimelineStep3 => 'Configure AI';
+
+  @override
+  String get landingTimelineStep3Text =>
+      'Answer style, topics, and human handover are defined.';
+
+  @override
+  String get landingTimelineStep4 => 'Bot answers questions';
+
+  @override
+  String get landingTimelineStep4Text =>
+      'Support questions are tested safely and reviewed when needed.';
+
+  @override
+  String get landingTimelineStep5 => 'Company grows';
+
+  @override
+  String get landingTimelineStep5Text =>
+      'Recommendations reveal opportunities for support, marketing, and development.';
+
+  @override
+  String get landingPreviewTitle => 'Interactive preview';
+
+  @override
+  String get landingPreviewSubtitle =>
+      'A stylized mockup shows how the platform can work on desktop, tablet, and smartphone.';
+
+  @override
+  String get landingPreviewDesktop => 'Desktop';
+
+  @override
+  String get landingPreviewTablet => 'Tablet';
+
+  @override
+  String get landingPreviewPhone => 'Smartphone';
 
   @override
   String get landingFeaturesTitle => 'Features';
@@ -185,7 +240,46 @@ class AppLocalizationsEn extends AppLocalizations {
   String get landingComingSoon => 'Coming Soon';
 
   @override
-  String get landingBenefitsTitle => 'Benefits';
+  String get landingBenefitsTitle => 'Benefits at a glance';
+
+  @override
+  String get landingBenefitsSubtitle =>
+      'The platform connects company data, knowledge, and assistant workflows in one shared workspace.';
+
+  @override
+  String get landingBenefitCompanyTitle => 'Company';
+
+  @override
+  String get landingBenefitCompanyText =>
+      'Profiles, offers, and rules are maintained cleanly in one place.';
+
+  @override
+  String get landingBenefitAssistantTitle => 'AI assistant';
+
+  @override
+  String get landingBenefitAssistantText =>
+      'Answers are prepared with control and handed to humans when risk appears.';
+
+  @override
+  String get landingBenefitDatabaseTitle => 'Knowledge database';
+
+  @override
+  String get landingBenefitDatabaseText =>
+      'FAQs, documents, and sources become findable and reusable.';
+
+  @override
+  String get landingBenefitMarketingTitle => 'Marketing';
+
+  @override
+  String get landingBenefitMarketingText =>
+      'Potential, gaps, and next steps become clear and understandable.';
+
+  @override
+  String get landingBenefitControllingTitle => 'Controlling';
+
+  @override
+  String get landingBenefitControllingText =>
+      'Status, open reviews, and progress stay visible and traceable.';
 
   @override
   String get landingBenefitOnePlace => 'Everything in one place';
@@ -222,6 +316,12 @@ class AppLocalizationsEn extends AppLocalizations {
   String get landingAudienceServices => 'Service providers';
 
   @override
+  String get landingAudienceCraft => 'Trades';
+
+  @override
+  String get landingAudienceDoctors => 'Doctors';
+
+  @override
   String get landingAudienceManufacturers => 'Manufacturers';
 
   @override
@@ -235,6 +335,65 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get landingAudienceHealth => 'Healthcare companies';
+
+  @override
+  String get landingAudienceShops => 'Shops';
+
+  @override
+  String get landingAudienceHotels => 'Hotels';
+
+  @override
+  String get landingAudienceAssociations => 'Associations';
+
+  @override
+  String get landingFaqTitle => 'Frequently asked questions';
+
+  @override
+  String get landingFaqSubtitle => 'Short answers for first orientation.';
+
+  @override
+  String get landingFaqQuestion1 =>
+      'Is the platform already a finished product?';
+
+  @override
+  String get landingFaqAnswer1 =>
+      'It is currently an MVP with a local demo workspace. The public landing page shows the direction and planned product logic.';
+
+  @override
+  String get landingFaqQuestion2 => 'Do I need to install the app?';
+
+  @override
+  String get landingFaqAnswer2 =>
+      'No. The platform runs directly in the browser. Supported browsers can optionally add it to the home screen.';
+
+  @override
+  String get landingFaqQuestion3 => 'Are real AI features already connected?';
+
+  @override
+  String get landingFaqAnswer3 =>
+      'Not yet. In the MVP, bot test and review flows work locally and rule-based, without a real AI API.';
+
+  @override
+  String get landingFaqQuestion4 => 'Can multiple companies be managed?';
+
+  @override
+  String get landingFaqAnswer4 =>
+      'Yes. Demo workspaces are separated so each company\'s data can be reviewed and tested independently.';
+
+  @override
+  String get landingFaqQuestion5 => 'What happens with risky answers?';
+
+  @override
+  String get landingFaqAnswer5 =>
+      'Risky or unclear questions are collected in human review and can be converted into knowledge in a controlled way.';
+
+  @override
+  String get landingFaqQuestion6 =>
+      'Is this ready for production customer data?';
+
+  @override
+  String get landingFaqAnswer6 =>
+      'No. Production customer data still requires authentication, backend, database, and durable secure storage.';
 
   @override
   String get landingCtaTitle => 'Ready for the next step?';
