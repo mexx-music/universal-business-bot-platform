@@ -1,5 +1,6 @@
 import '../models/business_audit.dart';
 import '../models/business_rules.dart';
+import '../models/business_strategy.dart';
 import '../models/bot_configuration.dart';
 import '../models/company.dart';
 import '../models/company_workspace.dart';
@@ -1202,6 +1203,82 @@ class MockData {
     ),
   );
 
+  static final List<BusinessGoal> hbCureBusinessGoals = [
+    BusinessGoal(
+      id: 'hb-goal-support',
+      title: 'Support reduzieren',
+      description:
+          'Wiederkehrende App-, Geräte- und Datenschutzfragen sicher standardisieren.',
+      priority: BusinessGoalPriority.high,
+      startDate: DateTime(2025, 6, 1),
+      targetDate: DateTime(2025, 9, 30),
+      status: BusinessGoalStatus.inProgress,
+      owner: 'Demo Team',
+      comment: 'FAQ, Bot-Test und Human Review zuerst stabilisieren.',
+      linkedAreas: [
+        BusinessGoalArea.knowledgeBase,
+        BusinessGoalArea.bot,
+        BusinessGoalArea.humanReview,
+        BusinessGoalArea.audit,
+      ],
+    ),
+    BusinessGoal(
+      id: 'hb-goal-trust',
+      title: 'Website verbessern',
+      description:
+          'Vertrauensmaterial und sichere FAQ für die öffentliche Website vorbereiten.',
+      priority: BusinessGoalPriority.medium,
+      startDate: DateTime(2025, 6, 1),
+      targetDate: DateTime(2025, 10, 15),
+      status: BusinessGoalStatus.planned,
+      owner: 'Marketing',
+      linkedAreas: [
+        BusinessGoalArea.marketing,
+        BusinessGoalArea.sources,
+        BusinessGoalArea.knowledgeBase,
+        BusinessGoalArea.companyProfile,
+      ],
+    ),
+  ];
+
+  static final List<BusinessGoal> schnurrPurrBusinessGoals = [
+    BusinessGoal(
+      id: 'sp-goal-customers',
+      title: 'Mehr Kunden gewinnen',
+      description:
+          'Website, Social Proof und einfache Inhalte für App und Komfortprodukte ausbauen.',
+      priority: BusinessGoalPriority.high,
+      startDate: DateTime(2025, 6, 1),
+      targetDate: DateTime(2025, 11, 30),
+      status: BusinessGoalStatus.inProgress,
+      owner: 'Demo Team',
+      comment: 'Trustmaterial und Marketing-Basics fehlen noch teilweise.',
+      linkedAreas: [
+        BusinessGoalArea.marketing,
+        BusinessGoalArea.sources,
+        BusinessGoalArea.audit,
+        BusinessGoalArea.knowledgeBase,
+      ],
+    ),
+    BusinessGoal(
+      id: 'sp-goal-bot',
+      title: 'Bot ausbauen',
+      description:
+          'Supportfragen rund um App, Pausenroutinen und Kissenpflege sicher beantworten.',
+      priority: BusinessGoalPriority.medium,
+      startDate: DateTime(2025, 6, 5),
+      targetDate: DateTime(2025, 10, 31),
+      status: BusinessGoalStatus.planned,
+      owner: 'Support',
+      linkedAreas: [
+        BusinessGoalArea.bot,
+        BusinessGoalArea.knowledgeBase,
+        BusinessGoalArea.humanReview,
+        BusinessGoalArea.projectStatus,
+      ],
+    ),
+  ];
+
   static final List<CompanyWorkspace> companyWorkspaces = [
     CompanyWorkspace(
       company: company,
@@ -1212,6 +1289,7 @@ class MockData {
       businessRules: hbCureBusinessRules,
       botConfiguration: hbCureBotConfiguration,
       sourceMaterials: hbCureSourceMaterials,
+      businessGoals: hbCureBusinessGoals,
       intakeSession: hbCureIntakeSession,
     ),
     CompanyWorkspace(
@@ -1223,6 +1301,7 @@ class MockData {
       businessRules: schnurrPurrBusinessRules,
       botConfiguration: schnurrPurrBotConfiguration,
       sourceMaterials: schnurrPurrSourceMaterials,
+      businessGoals: schnurrPurrBusinessGoals,
       intakeSession: schnurrPurrIntakeSession,
     ),
   ];

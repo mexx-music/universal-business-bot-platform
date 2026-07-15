@@ -4345,6 +4345,600 @@ abstract class AppLocalizations {
   /// In de, this message translates to:
   /// **'Sammeln Sie mehr Aktivität, damit Fortschritt messbar wird.'**
   String get projectRecommendationControlling;
+
+  /// No description provided for @navMarketingStrategy.
+  ///
+  /// In de, this message translates to:
+  /// **'Marketing'**
+  String get navMarketingStrategy;
+
+  /// No description provided for @marketingStrategyTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Marketing Strategy'**
+  String get marketingStrategyTitle;
+
+  /// No description provided for @marketingStrategySubtitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Strategie, Maßnahmen und Budgetplanung für {companyName}'**
+  String marketingStrategySubtitle(String companyName);
+
+  /// No description provided for @marketingScore.
+  ///
+  /// In de, this message translates to:
+  /// **'Marketing Score'**
+  String get marketingScore;
+
+  /// No description provided for @marketingOpenActions.
+  ///
+  /// In de, this message translates to:
+  /// **'{count} offen'**
+  String marketingOpenActions(int count);
+
+  /// No description provided for @marketingRunningActions.
+  ///
+  /// In de, this message translates to:
+  /// **'{count} in Arbeit'**
+  String marketingRunningActions(int count);
+
+  /// No description provided for @marketingCompletedActions.
+  ///
+  /// In de, this message translates to:
+  /// **'{count} abgeschlossen'**
+  String marketingCompletedActions(int count);
+
+  /// No description provided for @marketingRecommendationsTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Automatische Empfehlungen'**
+  String get marketingRecommendationsTitle;
+
+  /// No description provided for @marketingRecommendationsEmpty.
+  ///
+  /// In de, this message translates to:
+  /// **'Aktuell gibt es keine dringenden Marketing-Empfehlungen.'**
+  String get marketingRecommendationsEmpty;
+
+  /// No description provided for @marketingActionsTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Maßnahmen'**
+  String get marketingActionsTitle;
+
+  /// No description provided for @marketingActionStatus.
+  ///
+  /// In de, this message translates to:
+  /// **'Status'**
+  String get marketingActionStatus;
+
+  /// No description provided for @marketingActionNotes.
+  ///
+  /// In de, this message translates to:
+  /// **'Notizen'**
+  String get marketingActionNotes;
+
+  /// No description provided for @marketingEditAction.
+  ///
+  /// In de, this message translates to:
+  /// **'Bearbeiten'**
+  String get marketingEditAction;
+
+  /// No description provided for @marketingNoNotes.
+  ///
+  /// In de, this message translates to:
+  /// **'Noch keine Notizen.'**
+  String get marketingNoNotes;
+
+  /// No description provided for @marketingNoBudget.
+  ///
+  /// In de, this message translates to:
+  /// **'Kein Budget geplant'**
+  String get marketingNoBudget;
+
+  /// No description provided for @marketingBudgetPlanned.
+  ///
+  /// In de, this message translates to:
+  /// **'Budget geplant'**
+  String get marketingBudgetPlanned;
+
+  /// No description provided for @marketingBudgetUsed.
+  ///
+  /// In de, this message translates to:
+  /// **'Budget verwendet'**
+  String get marketingBudgetUsed;
+
+  /// No description provided for @marketingBudgetComment.
+  ///
+  /// In de, this message translates to:
+  /// **'Budget-Kommentar'**
+  String get marketingBudgetComment;
+
+  /// No description provided for @marketingBudgetSummary.
+  ///
+  /// In de, this message translates to:
+  /// **'Budget {planned} / verwendet {used}'**
+  String marketingBudgetSummary(String planned, String used);
+
+  /// No description provided for @marketingStatusNotStarted.
+  ///
+  /// In de, this message translates to:
+  /// **'Nicht begonnen'**
+  String get marketingStatusNotStarted;
+
+  /// No description provided for @marketingStatusPlanned.
+  ///
+  /// In de, this message translates to:
+  /// **'Geplant'**
+  String get marketingStatusPlanned;
+
+  /// No description provided for @marketingStatusInProgress.
+  ///
+  /// In de, this message translates to:
+  /// **'In Arbeit'**
+  String get marketingStatusInProgress;
+
+  /// No description provided for @marketingStatusCompleted.
+  ///
+  /// In de, this message translates to:
+  /// **'Abgeschlossen'**
+  String get marketingStatusCompleted;
+
+  /// No description provided for @marketingStatusPostponed.
+  ///
+  /// In de, this message translates to:
+  /// **'Zurückgestellt'**
+  String get marketingStatusPostponed;
+
+  /// No description provided for @marketingEffortLow.
+  ///
+  /// In de, this message translates to:
+  /// **'Aufwand niedrig'**
+  String get marketingEffortLow;
+
+  /// No description provided for @marketingEffortMedium.
+  ///
+  /// In de, this message translates to:
+  /// **'Aufwand mittel'**
+  String get marketingEffortMedium;
+
+  /// No description provided for @marketingEffortHigh.
+  ///
+  /// In de, this message translates to:
+  /// **'Aufwand hoch'**
+  String get marketingEffortHigh;
+
+  /// No description provided for @marketingImpactLow.
+  ///
+  /// In de, this message translates to:
+  /// **'Nutzen niedrig'**
+  String get marketingImpactLow;
+
+  /// No description provided for @marketingImpactMedium.
+  ///
+  /// In de, this message translates to:
+  /// **'Nutzen mittel'**
+  String get marketingImpactMedium;
+
+  /// No description provided for @marketingImpactHigh.
+  ///
+  /// In de, this message translates to:
+  /// **'Nutzen hoch'**
+  String get marketingImpactHigh;
+
+  /// No description provided for @marketingActionOptimizeWebsite.
+  ///
+  /// In de, this message translates to:
+  /// **'Website optimieren'**
+  String get marketingActionOptimizeWebsite;
+
+  /// No description provided for @marketingActionOptimizeWebsiteDesc.
+  ///
+  /// In de, this message translates to:
+  /// **'Startseite, Vertrauen und klare nächste Schritte verbessern.'**
+  String get marketingActionOptimizeWebsiteDesc;
+
+  /// No description provided for @marketingActionGoogleBusiness.
+  ///
+  /// In de, this message translates to:
+  /// **'Google Business anlegen'**
+  String get marketingActionGoogleBusiness;
+
+  /// No description provided for @marketingActionGoogleBusinessDesc.
+  ///
+  /// In de, this message translates to:
+  /// **'Lokale Auffindbarkeit und Basisinformationen pflegen.'**
+  String get marketingActionGoogleBusinessDesc;
+
+  /// No description provided for @marketingActionFacebook.
+  ///
+  /// In de, this message translates to:
+  /// **'Facebook pflegen'**
+  String get marketingActionFacebook;
+
+  /// No description provided for @marketingActionFacebookDesc.
+  ///
+  /// In de, this message translates to:
+  /// **'Profil, Öffnungszeiten und aktuelle Beiträge sauber halten.'**
+  String get marketingActionFacebookDesc;
+
+  /// No description provided for @marketingActionInstagram.
+  ///
+  /// In de, this message translates to:
+  /// **'Instagram starten'**
+  String get marketingActionInstagram;
+
+  /// No description provided for @marketingActionInstagramDesc.
+  ///
+  /// In de, this message translates to:
+  /// **'Visuelle Inhalte und einfache Produktgeschichten vorbereiten.'**
+  String get marketingActionInstagramDesc;
+
+  /// No description provided for @marketingActionLinkedIn.
+  ///
+  /// In de, this message translates to:
+  /// **'LinkedIn nutzen'**
+  String get marketingActionLinkedIn;
+
+  /// No description provided for @marketingActionLinkedInDesc.
+  ///
+  /// In de, this message translates to:
+  /// **'B2B-Sichtbarkeit, Team- und Fachinhalte strukturieren.'**
+  String get marketingActionLinkedInDesc;
+
+  /// No description provided for @marketingActionFaq.
+  ///
+  /// In de, this message translates to:
+  /// **'FAQ erweitern'**
+  String get marketingActionFaq;
+
+  /// No description provided for @marketingActionFaqDesc.
+  ///
+  /// In de, this message translates to:
+  /// **'Häufige Fragen aus Support und Bot-Test in Inhalte überführen.'**
+  String get marketingActionFaqDesc;
+
+  /// No description provided for @marketingActionReviews.
+  ///
+  /// In de, this message translates to:
+  /// **'Bewertungen sammeln'**
+  String get marketingActionReviews;
+
+  /// No description provided for @marketingActionReviewsDesc.
+  ///
+  /// In de, this message translates to:
+  /// **'Trustmaterial sammeln und zulässige Nutzung dokumentieren.'**
+  String get marketingActionReviewsDesc;
+
+  /// No description provided for @marketingActionNewsletter.
+  ///
+  /// In de, this message translates to:
+  /// **'Newsletter vorbereiten'**
+  String get marketingActionNewsletter;
+
+  /// No description provided for @marketingActionNewsletterDesc.
+  ///
+  /// In de, this message translates to:
+  /// **'Themen, Zielgruppen und einfache Versandlogik planen.'**
+  String get marketingActionNewsletterDesc;
+
+  /// No description provided for @marketingActionBotWebsite.
+  ///
+  /// In de, this message translates to:
+  /// **'Bot auf Website integrieren'**
+  String get marketingActionBotWebsite;
+
+  /// No description provided for @marketingActionBotWebsiteDesc.
+  ///
+  /// In de, this message translates to:
+  /// **'Bot erst nach Test und Review als Website-Hilfe einplanen.'**
+  String get marketingActionBotWebsiteDesc;
+
+  /// No description provided for @marketingActionSeo.
+  ///
+  /// In de, this message translates to:
+  /// **'SEO verbessern'**
+  String get marketingActionSeo;
+
+  /// No description provided for @marketingActionSeoDesc.
+  ///
+  /// In de, this message translates to:
+  /// **'Quellen, FAQ und Seitenstruktur für Suchmaschinen nutzbar machen.'**
+  String get marketingActionSeoDesc;
+
+  /// No description provided for @marketingActionGoogleAds.
+  ///
+  /// In de, this message translates to:
+  /// **'Google Ads prüfen'**
+  String get marketingActionGoogleAds;
+
+  /// No description provided for @marketingActionGoogleAdsDesc.
+  ///
+  /// In de, this message translates to:
+  /// **'Kampagnenpotenzial, Budget und Zielseiten grob bewerten.'**
+  String get marketingActionGoogleAdsDesc;
+
+  /// No description provided for @marketingActionFacebookAds.
+  ///
+  /// In de, this message translates to:
+  /// **'Facebook Ads prüfen'**
+  String get marketingActionFacebookAds;
+
+  /// No description provided for @marketingActionFacebookAdsDesc.
+  ///
+  /// In de, this message translates to:
+  /// **'Social-Kampagnen nur mit klaren Inhalten und Budget planen.'**
+  String get marketingActionFacebookAdsDesc;
+
+  /// No description provided for @navBusinessStrategy.
+  ///
+  /// In de, this message translates to:
+  /// **'Unternehmensstrategie'**
+  String get navBusinessStrategy;
+
+  /// No description provided for @businessStrategyTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Unternehmensstrategie'**
+  String get businessStrategyTitle;
+
+  /// No description provided for @businessStrategySubtitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Ziele, Fortschritt und Modulbeiträge für {companyName}'**
+  String businessStrategySubtitle(String companyName);
+
+  /// No description provided for @businessGoalAdd.
+  ///
+  /// In de, this message translates to:
+  /// **'Ziel anlegen'**
+  String get businessGoalAdd;
+
+  /// No description provided for @businessGoalEdit.
+  ///
+  /// In de, this message translates to:
+  /// **'Ziel bearbeiten'**
+  String get businessGoalEdit;
+
+  /// No description provided for @businessGoalsTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Unternehmensziele'**
+  String get businessGoalsTitle;
+
+  /// No description provided for @businessGoalsEmpty.
+  ///
+  /// In de, this message translates to:
+  /// **'Noch keine Unternehmensziele angelegt.'**
+  String get businessGoalsEmpty;
+
+  /// No description provided for @businessGoalTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Titel'**
+  String get businessGoalTitle;
+
+  /// No description provided for @businessGoalDescription.
+  ///
+  /// In de, this message translates to:
+  /// **'Beschreibung'**
+  String get businessGoalDescription;
+
+  /// No description provided for @businessGoalPriority.
+  ///
+  /// In de, this message translates to:
+  /// **'Priorität'**
+  String get businessGoalPriority;
+
+  /// No description provided for @businessGoalStatus.
+  ///
+  /// In de, this message translates to:
+  /// **'Status'**
+  String get businessGoalStatus;
+
+  /// No description provided for @businessGoalOwner.
+  ///
+  /// In de, this message translates to:
+  /// **'Verantwortlicher'**
+  String get businessGoalOwner;
+
+  /// No description provided for @businessGoalComment.
+  ///
+  /// In de, this message translates to:
+  /// **'Kommentar'**
+  String get businessGoalComment;
+
+  /// No description provided for @businessGoalLinkedAreas.
+  ///
+  /// In de, this message translates to:
+  /// **'Verknüpfte Bereiche'**
+  String get businessGoalLinkedAreas;
+
+  /// No description provided for @businessGoalDefaultOwner.
+  ///
+  /// In de, this message translates to:
+  /// **'Team'**
+  String get businessGoalDefaultOwner;
+
+  /// No description provided for @businessActiveGoals.
+  ///
+  /// In de, this message translates to:
+  /// **'{count} aktive Unternehmensziele'**
+  String businessActiveGoals(int count);
+
+  /// No description provided for @businessAverageProgress.
+  ///
+  /// In de, this message translates to:
+  /// **'Fortschritt {progress}%'**
+  String businessAverageProgress(int progress);
+
+  /// No description provided for @businessMainGoal.
+  ///
+  /// In de, this message translates to:
+  /// **'Aktuelles Hauptziel: {goal}'**
+  String businessMainGoal(String goal);
+
+  /// No description provided for @businessNoMainGoal.
+  ///
+  /// In de, this message translates to:
+  /// **'Noch kein aktives Hauptziel.'**
+  String get businessNoMainGoal;
+
+  /// No description provided for @businessNoRecommendation.
+  ///
+  /// In de, this message translates to:
+  /// **'Aktuell keine zielbezogene Empfehlung.'**
+  String get businessNoRecommendation;
+
+  /// No description provided for @businessGoalRecommendation.
+  ///
+  /// In de, this message translates to:
+  /// **'{area} könnte sinnvoll sein, um Ihr Ziel „{goal}“ zu unterstützen.'**
+  String businessGoalRecommendation(String area, String goal);
+
+  /// No description provided for @businessDashboardNextAction.
+  ///
+  /// In de, this message translates to:
+  /// **'Nächste Maßnahme für „{goal}“'**
+  String businessDashboardNextAction(String goal);
+
+  /// No description provided for @projectMainGoalTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Aktuelles Hauptziel'**
+  String get projectMainGoalTitle;
+
+  /// No description provided for @businessFlowGoal.
+  ///
+  /// In de, this message translates to:
+  /// **'Unternehmensziel'**
+  String get businessFlowGoal;
+
+  /// No description provided for @businessFlowMarketing.
+  ///
+  /// In de, this message translates to:
+  /// **'Marketing'**
+  String get businessFlowMarketing;
+
+  /// No description provided for @businessFlowBot.
+  ///
+  /// In de, this message translates to:
+  /// **'Bot'**
+  String get businessFlowBot;
+
+  /// No description provided for @businessFlowKnowledge.
+  ///
+  /// In de, this message translates to:
+  /// **'Knowledge'**
+  String get businessFlowKnowledge;
+
+  /// No description provided for @businessFlowAudit.
+  ///
+  /// In de, this message translates to:
+  /// **'Audit'**
+  String get businessFlowAudit;
+
+  /// No description provided for @businessFlowReview.
+  ///
+  /// In de, this message translates to:
+  /// **'Human Review'**
+  String get businessFlowReview;
+
+  /// No description provided for @businessFlowControlling.
+  ///
+  /// In de, this message translates to:
+  /// **'Controlling'**
+  String get businessFlowControlling;
+
+  /// No description provided for @businessStatusNotStarted.
+  ///
+  /// In de, this message translates to:
+  /// **'Nicht begonnen'**
+  String get businessStatusNotStarted;
+
+  /// No description provided for @businessStatusPlanned.
+  ///
+  /// In de, this message translates to:
+  /// **'Geplant'**
+  String get businessStatusPlanned;
+
+  /// No description provided for @businessStatusInProgress.
+  ///
+  /// In de, this message translates to:
+  /// **'In Arbeit'**
+  String get businessStatusInProgress;
+
+  /// No description provided for @businessStatusAchieved.
+  ///
+  /// In de, this message translates to:
+  /// **'Erreicht'**
+  String get businessStatusAchieved;
+
+  /// No description provided for @businessStatusPaused.
+  ///
+  /// In de, this message translates to:
+  /// **'Pausiert'**
+  String get businessStatusPaused;
+
+  /// No description provided for @businessStatusCanceled.
+  ///
+  /// In de, this message translates to:
+  /// **'Abgebrochen'**
+  String get businessStatusCanceled;
+
+  /// No description provided for @businessAreaMarketing.
+  ///
+  /// In de, this message translates to:
+  /// **'Marketing'**
+  String get businessAreaMarketing;
+
+  /// No description provided for @businessAreaAudit.
+  ///
+  /// In de, this message translates to:
+  /// **'Audit'**
+  String get businessAreaAudit;
+
+  /// No description provided for @businessAreaKnowledge.
+  ///
+  /// In de, this message translates to:
+  /// **'Wissensbasis'**
+  String get businessAreaKnowledge;
+
+  /// No description provided for @businessAreaBot.
+  ///
+  /// In de, this message translates to:
+  /// **'Bot'**
+  String get businessAreaBot;
+
+  /// No description provided for @businessAreaReview.
+  ///
+  /// In de, this message translates to:
+  /// **'Human Review'**
+  String get businessAreaReview;
+
+  /// No description provided for @businessAreaSources.
+  ///
+  /// In de, this message translates to:
+  /// **'Quellen'**
+  String get businessAreaSources;
+
+  /// No description provided for @businessAreaCompany.
+  ///
+  /// In de, this message translates to:
+  /// **'Firmenprofil'**
+  String get businessAreaCompany;
+
+  /// No description provided for @businessAreaProject.
+  ///
+  /// In de, this message translates to:
+  /// **'Projektstatus'**
+  String get businessAreaProject;
+
+  /// No description provided for @businessAreaControlling.
+  ///
+  /// In de, this message translates to:
+  /// **'Controlling'**
+  String get businessAreaControlling;
 }
 
 class _AppLocalizationsDelegate

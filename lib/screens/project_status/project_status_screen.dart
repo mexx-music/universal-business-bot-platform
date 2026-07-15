@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../data/app_state.dart';
 import '../../l10n/app_localizations.dart';
+import '../../models/business_strategy.dart';
 import '../../widgets/project_status/project_phase_timeline.dart';
 import '../../widgets/project_status/project_progress_card.dart';
 import '../../widgets/project_status/project_recommendation_card.dart';
@@ -13,6 +14,7 @@ class ProjectStatusScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final state = AppState.of(context);
     final status = state.projectStatus;
+    final businessStrategy = state.businessStrategy;
     final l = AppLocalizations.of(context)!;
     final theme = Theme.of(context);
 
@@ -61,6 +63,8 @@ class ProjectStatusScreen extends StatelessWidget {
             },
           ),
           const SizedBox(height: 24),
+          _ProjectBusinessGoalCard(strategy: businessStrategy),
+          const SizedBox(height: 24),
           Text(
             l.projectRecommendationsTitle,
             style: theme.textTheme.titleMedium?.copyWith(
@@ -89,5 +93,89 @@ class ProjectStatusScreen extends StatelessWidget {
         ],
       ),
     );
+  }
+}
+
+class _ProjectBusinessGoalCard extends StatelessWidget {
+  final BusinessStrategySnapshot strategy;
+
+  const _ProjectBusinessGoalCard({required this.strategy});
+
+  @override
+  Widget build(BuildContext context) {
+    final l = AppLocalizations.of(context)!;
+    final theme = Theme.of(context);
+    final mainGoal = strategy.mainGoal;
+    if (mainGoal == null) return const SizedBox.shrink();
+    final percent = (mainGoal.progress * 100).round();
+
+    return Card(
+      child: Padding(
+        padding: const EdgeInsets.all(20),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              l.projectMainGoalTitle,
+              style: theme.textTheme.titleMedium?.copyWith(
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            const SizedBox(height: 8),
+            Text(
+              mainGoal.goal.title,
+              style: theme.textTheme.titleSmall?.copyWith(
+                fontWeight: FontWeight.w700,
+              ),
+            ),
+            const SizedBox(height: 12),
+            ClipRRect(
+              borderRadius: BorderRadius.circular(6),
+              child: LinearProgressIndicator(
+                minHeight: 10,
+                value: mainGoal.progress.clamp(0, 1),
+              ),
+            ),
+            const SizedBox(height: 8),
+            Text(l.businessAverageProgress(percent)),
+            const SizedBox(height: 12),
+            Wrap(
+              spacing: 8,
+              runSpacing: 8,
+              children: mainGoal.moduleContributions.entries.map((entry) {
+                return Container(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 10,
+                    vertical: 8,
+                  ),
+                  decoration: BoxDecoration(
+                    color: theme.colorScheme.surfaceContainerHighest,
+                    borderRadius: BorderRadius.circular(6),
+                  ),
+                  child: Text(
+                    '${_areaLabel(l, entry.key)} ${(entry.value * 100).round()}%',
+                    style: theme.textTheme.labelMedium,
+                  ),
+                );
+              }).toList(),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  String _areaLabel(AppLocalizations l, BusinessGoalArea area) {
+    return switch (area) {
+      BusinessGoalArea.marketing => l.businessAreaMarketing,
+      BusinessGoalArea.audit => l.businessAreaAudit,
+      BusinessGoalArea.knowledgeBase => l.businessAreaKnowledge,
+      BusinessGoalArea.bot => l.businessAreaBot,
+      BusinessGoalArea.humanReview => l.businessAreaReview,
+      BusinessGoalArea.sources => l.businessAreaSources,
+      BusinessGoalArea.companyProfile => l.businessAreaCompany,
+      BusinessGoalArea.projectStatus => l.businessAreaProject,
+      BusinessGoalArea.controlling => l.businessAreaControlling,
+    };
   }
 }

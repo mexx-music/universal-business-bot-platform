@@ -942,5 +942,163 @@
   "projectRecommendationMarketing": "Ergänzen Sie Kanäle, Kampagnen und Wachstumshinweise.",
   "projectRecommendationBot": "Prüfen Sie Bot-Einstellungen und testen Sie den Antwortfluss.",
   "projectRecommendationReview": "Bearbeiten Sie offene Fragen im Human Review.",
-  "projectRecommendationControlling": "Sammeln Sie mehr Aktivität, damit Fortschritt messbar wird."
+  "projectRecommendationControlling": "Sammeln Sie mehr Aktivität, damit Fortschritt messbar wird.",
+
+  "navMarketingStrategy": "Marketing",
+  "marketingStrategyTitle": "Marketing Strategy",
+  "marketingStrategySubtitle": "Strategie, Maßnahmen und Budgetplanung für {companyName}",
+  "@marketingStrategySubtitle": {
+    "placeholders": {
+      "companyName": { "type": "String" }
+    }
+  },
+  "marketingScore": "Marketing Score",
+  "marketingOpenActions": "{count} offen",
+  "@marketingOpenActions": {
+    "placeholders": {
+      "count": { "type": "int" }
+    }
+  },
+  "marketingRunningActions": "{count} in Arbeit",
+  "@marketingRunningActions": {
+    "placeholders": {
+      "count": { "type": "int" }
+    }
+  },
+  "marketingCompletedActions": "{count} abgeschlossen",
+  "@marketingCompletedActions": {
+    "placeholders": {
+      "count": { "type": "int" }
+    }
+  },
+  "marketingRecommendationsTitle": "Automatische Empfehlungen",
+  "marketingRecommendationsEmpty": "Aktuell gibt es keine dringenden Marketing-Empfehlungen.",
+  "marketingActionsTitle": "Maßnahmen",
+  "marketingActionStatus": "Status",
+  "marketingActionNotes": "Notizen",
+  "marketingEditAction": "Bearbeiten",
+  "marketingNoNotes": "Noch keine Notizen.",
+  "marketingNoBudget": "Kein Budget geplant",
+  "marketingBudgetPlanned": "Budget geplant",
+  "marketingBudgetUsed": "Budget verwendet",
+  "marketingBudgetComment": "Budget-Kommentar",
+  "marketingBudgetSummary": "Budget {planned} / verwendet {used}",
+  "@marketingBudgetSummary": {
+    "placeholders": {
+      "planned": { "type": "String" },
+      "used": { "type": "String" }
+    }
+  },
+  "marketingStatusNotStarted": "Nicht begonnen",
+  "marketingStatusPlanned": "Geplant",
+  "marketingStatusInProgress": "In Arbeit",
+  "marketingStatusCompleted": "Abgeschlossen",
+  "marketingStatusPostponed": "Zurückgestellt",
+  "marketingEffortLow": "Aufwand niedrig",
+  "marketingEffortMedium": "Aufwand mittel",
+  "marketingEffortHigh": "Aufwand hoch",
+  "marketingImpactLow": "Nutzen niedrig",
+  "marketingImpactMedium": "Nutzen mittel",
+  "marketingImpactHigh": "Nutzen hoch",
+  "marketingActionOptimizeWebsite": "Website optimieren",
+  "marketingActionOptimizeWebsiteDesc": "Startseite, Vertrauen und klare nächste Schritte verbessern.",
+  "marketingActionGoogleBusiness": "Google Business anlegen",
+  "marketingActionGoogleBusinessDesc": "Lokale Auffindbarkeit und Basisinformationen pflegen.",
+  "marketingActionFacebook": "Facebook pflegen",
+  "marketingActionFacebookDesc": "Profil, Öffnungszeiten und aktuelle Beiträge sauber halten.",
+  "marketingActionInstagram": "Instagram starten",
+  "marketingActionInstagramDesc": "Visuelle Inhalte und einfache Produktgeschichten vorbereiten.",
+  "marketingActionLinkedIn": "LinkedIn nutzen",
+  "marketingActionLinkedInDesc": "B2B-Sichtbarkeit, Team- und Fachinhalte strukturieren.",
+  "marketingActionFaq": "FAQ erweitern",
+  "marketingActionFaqDesc": "Häufige Fragen aus Support und Bot-Test in Inhalte überführen.",
+  "marketingActionReviews": "Bewertungen sammeln",
+  "marketingActionReviewsDesc": "Trustmaterial sammeln und zulässige Nutzung dokumentieren.",
+  "marketingActionNewsletter": "Newsletter vorbereiten",
+  "marketingActionNewsletterDesc": "Themen, Zielgruppen und einfache Versandlogik planen.",
+  "marketingActionBotWebsite": "Bot auf Website integrieren",
+  "marketingActionBotWebsiteDesc": "Bot erst nach Test und Review als Website-Hilfe einplanen.",
+  "marketingActionSeo": "SEO verbessern",
+  "marketingActionSeoDesc": "Quellen, FAQ und Seitenstruktur für Suchmaschinen nutzbar machen.",
+  "marketingActionGoogleAds": "Google Ads prüfen",
+  "marketingActionGoogleAdsDesc": "Kampagnenpotenzial, Budget und Zielseiten grob bewerten.",
+  "marketingActionFacebookAds": "Facebook Ads prüfen",
+  "marketingActionFacebookAdsDesc": "Social-Kampagnen nur mit klaren Inhalten und Budget planen.",
+
+  "navBusinessStrategy": "Unternehmensstrategie",
+  "businessStrategyTitle": "Unternehmensstrategie",
+  "businessStrategySubtitle": "Ziele, Fortschritt und Modulbeiträge für {companyName}",
+  "@businessStrategySubtitle": {
+    "placeholders": {
+      "companyName": { "type": "String" }
+    }
+  },
+  "businessGoalAdd": "Ziel anlegen",
+  "businessGoalEdit": "Ziel bearbeiten",
+  "businessGoalsTitle": "Unternehmensziele",
+  "businessGoalsEmpty": "Noch keine Unternehmensziele angelegt.",
+  "businessGoalTitle": "Titel",
+  "businessGoalDescription": "Beschreibung",
+  "businessGoalPriority": "Priorität",
+  "businessGoalStatus": "Status",
+  "businessGoalOwner": "Verantwortlicher",
+  "businessGoalComment": "Kommentar",
+  "businessGoalLinkedAreas": "Verknüpfte Bereiche",
+  "businessGoalDefaultOwner": "Team",
+  "businessActiveGoals": "{count} aktive Unternehmensziele",
+  "@businessActiveGoals": {
+    "placeholders": {
+      "count": { "type": "int" }
+    }
+  },
+  "businessAverageProgress": "Fortschritt {progress}%",
+  "@businessAverageProgress": {
+    "placeholders": {
+      "progress": { "type": "int" }
+    }
+  },
+  "businessMainGoal": "Aktuelles Hauptziel: {goal}",
+  "@businessMainGoal": {
+    "placeholders": {
+      "goal": { "type": "String" }
+    }
+  },
+  "businessNoMainGoal": "Noch kein aktives Hauptziel.",
+  "businessNoRecommendation": "Aktuell keine zielbezogene Empfehlung.",
+  "businessGoalRecommendation": "{area} könnte sinnvoll sein, um Ihr Ziel „{goal}“ zu unterstützen.",
+  "@businessGoalRecommendation": {
+    "placeholders": {
+      "area": { "type": "String" },
+      "goal": { "type": "String" }
+    }
+  },
+  "businessDashboardNextAction": "Nächste Maßnahme für „{goal}“",
+  "@businessDashboardNextAction": {
+    "placeholders": {
+      "goal": { "type": "String" }
+    }
+  },
+  "projectMainGoalTitle": "Aktuelles Hauptziel",
+  "businessFlowGoal": "Unternehmensziel",
+  "businessFlowMarketing": "Marketing",
+  "businessFlowBot": "Bot",
+  "businessFlowKnowledge": "Knowledge",
+  "businessFlowAudit": "Audit",
+  "businessFlowReview": "Human Review",
+  "businessFlowControlling": "Controlling",
+  "businessStatusNotStarted": "Nicht begonnen",
+  "businessStatusPlanned": "Geplant",
+  "businessStatusInProgress": "In Arbeit",
+  "businessStatusAchieved": "Erreicht",
+  "businessStatusPaused": "Pausiert",
+  "businessStatusCanceled": "Abgebrochen",
+  "businessAreaMarketing": "Marketing",
+  "businessAreaAudit": "Audit",
+  "businessAreaKnowledge": "Wissensbasis",
+  "businessAreaBot": "Bot",
+  "businessAreaReview": "Human Review",
+  "businessAreaSources": "Quellen",
+  "businessAreaCompany": "Firmenprofil",
+  "businessAreaProject": "Projektstatus",
+  "businessAreaControlling": "Controlling"
 }

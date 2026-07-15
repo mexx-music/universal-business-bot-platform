@@ -5,8 +5,9 @@ import '../../l10n/app_localizations.dart';
 import '../../l10n/label_helpers.dart';
 import '../../models/bot_configuration.dart';
 import '../../models/bot_question_log.dart';
+import '../../models/business_strategy.dart';
 import '../../models/intake_session.dart';
-import '../../models/knowledge_entry.dart';
+import '../../models/marketing_strategy.dart';
 import '../../models/project_status.dart';
 import '../../widgets/stat_card.dart';
 import '../../widgets/project_status/project_status_helpers.dart';
@@ -19,40 +20,29 @@ class DashboardScreen extends StatelessWidget {
     final state = AppState.of(context);
     final l = AppLocalizations.of(context)!;
     final theme = Theme.of(context);
+    final metrics = state.dashboardMetrics;
 
-    final reviewOpen = state.botLogs
-        .where((log) => log.reviewStatus == ReviewStatus.open)
-        .length;
-    final reviewedBotQuestions = state.botLogs
-        .where(
-          (log) =>
-              log.reviewStatus == ReviewStatus.reviewed ||
-              log.reviewStatus == ReviewStatus.closed,
-        )
-        .length;
-    final redirects = state.botLogs.where((log) => log.redirected).length;
-    final auditPct = (state.auditScore * 100).round();
-    final auditMissing = state.auditMissingCount;
-    final auditPartial = state.auditPartialCount;
-    final auditComplete = state.auditCompleteCount;
-    final auditHighPriorityOpen = state.auditHighPriorityOpenCount;
+    final reviewOpen = metrics.reviewOpen;
+    final reviewedBotQuestions = metrics.reviewedBotQuestions;
+    final redirects = metrics.redirects;
+    final auditPct = metrics.auditPct;
+    final auditMissing = metrics.auditMissing;
+    final auditPartial = metrics.auditPartial;
+    final auditComplete = metrics.auditComplete;
+    final auditHighPriorityOpen = metrics.auditHighPriorityOpen;
     final profileStatus = state.companyProfileStatus;
-    final botStatus = state.botConfiguration.status;
-    final sourcesTotal = state.sourceMaterialCount;
-    final sourcesNew = state.newSourceMaterialCount;
-    final intakeSession = state.selectedIntakeSession;
-    final projectStatus = state.projectStatus;
+    final botStatus = metrics.botStatus;
+    final sourcesTotal = metrics.sourcesTotal;
+    final sourcesNew = metrics.sourcesNew;
+    final intakeSession = metrics.intakeSession;
+    final projectStatus = metrics.projectStatus;
+    final marketingStrategy = metrics.marketingStrategy;
+    final businessStrategy = metrics.businessStrategy;
 
-    final greenCount = state.knowledgeEntries
-        .where((e) => e.riskLevel == RiskLevel.green)
-        .length;
-    final yellowCount = state.knowledgeEntries
-        .where((e) => e.riskLevel == RiskLevel.yellow)
-        .length;
-    final redCount = state.knowledgeEntries
-        .where((e) => e.riskLevel == RiskLevel.red)
-        .length;
-    final total = state.knowledgeEntries.length;
+    final greenCount = metrics.greenKnowledgeCount;
+    final yellowCount = metrics.yellowKnowledgeCount;
+    final redCount = metrics.redKnowledgeCount;
+    final total = metrics.totalKnowledgeCount;
     final recommendations = _buildRecommendations(context, state);
 
     return Scaffold(
@@ -204,6 +194,12 @@ class DashboardScreen extends StatelessWidget {
           const SizedBox(height: 28),
 
           _DashboardProjectStatusCard(status: projectStatus),
+          const SizedBox(height: 28),
+
+          _DashboardBusinessStrategyCard(strategy: businessStrategy),
+          const SizedBox(height: 28),
+
+          _DashboardMarketingCard(strategy: marketingStrategy),
           const SizedBox(height: 28),
 
           Text(
@@ -764,6 +760,233 @@ class _DashboardProjectStatusCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Expanded(flex: 3, child: progressBlock),
+                const SizedBox(width: 24),
+                Expanded(flex: 2, child: metrics),
+                const SizedBox(width: 16),
+                action,
+              ],
+            );
+          },
+        ),
+      ),
+    );
+  }
+}
+
+class _DashboardBusinessStrategyCard extends StatelessWidget {
+  final BusinessStrategySnapshot strategy;
+
+  const _DashboardBusinessStrategyCard({required this.strategy});
+
+  @override
+  Widget build(BuildContext context) {
+    final l = AppLocalizations.of(context)!;
+    final theme = Theme.of(context);
+    final mainGoal = strategy.mainGoal;
+    final recommendation = strategy.nextRecommendation;
+    final percent = (strategy.averageProgress * 100).round();
+
+    return Card(
+      child: Padding(
+        padding: const EdgeInsets.all(20),
+        child: LayoutBuilder(
+          builder: (context, constraints) {
+            final compact = constraints.maxWidth < 620;
+            final content = Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  children: [
+                    CircleAvatar(
+                      backgroundColor: theme.colorScheme.primaryContainer,
+                      child: Icon(
+                        Icons.flag_outlined,
+                        color: theme.colorScheme.onPrimaryContainer,
+                      ),
+                    ),
+                    const SizedBox(width: 12),
+                    Expanded(
+                      child: Text(
+                        l.businessActiveGoals(strategy.activeGoalCount),
+                        style: theme.textTheme.titleMedium?.copyWith(
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                    Text(
+                      '$percent%',
+                      style: theme.textTheme.headlineSmall?.copyWith(
+                        color: theme.colorScheme.primary,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 12),
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(6),
+                  child: LinearProgressIndicator(
+                    minHeight: 10,
+                    value: strategy.averageProgress.clamp(0.0, 1.0),
+                  ),
+                ),
+                const SizedBox(height: 10),
+                Text(
+                  mainGoal == null
+                      ? l.businessNoMainGoal
+                      : l.businessMainGoal(mainGoal.goal.title),
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: theme.textTheme.bodyMedium?.copyWith(
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
+                if (recommendation != null) ...[
+                  const SizedBox(height: 4),
+                  Text(
+                    l.businessDashboardNextAction(recommendation.goal.title),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: theme.textTheme.bodySmall?.copyWith(
+                      color: theme.colorScheme.onSurfaceVariant,
+                    ),
+                  ),
+                ],
+              ],
+            );
+            final action = FilledButton(
+              onPressed: () => context.go('/business-strategy'),
+              child: Text(l.projectOpenNow),
+            );
+            if (compact) {
+              return Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [content, const SizedBox(height: 16), action],
+              );
+            }
+            return Row(
+              children: [
+                Expanded(child: content),
+                const SizedBox(width: 16),
+                action,
+              ],
+            );
+          },
+        ),
+      ),
+    );
+  }
+}
+
+class _DashboardMarketingCard extends StatelessWidget {
+  final MarketingStrategySnapshot strategy;
+
+  const _DashboardMarketingCard({required this.strategy});
+
+  @override
+  Widget build(BuildContext context) {
+    final l = AppLocalizations.of(context)!;
+    final theme = Theme.of(context);
+    final score = strategy.score;
+    final color = score >= 75
+        ? Colors.green
+        : score >= 45
+        ? Colors.orange
+        : Colors.red;
+
+    return Card(
+      child: Padding(
+        padding: const EdgeInsets.all(20),
+        child: LayoutBuilder(
+          builder: (context, constraints) {
+            final compact = constraints.maxWidth < 620;
+            final scoreBlock = Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  children: [
+                    CircleAvatar(
+                      backgroundColor: color.withAlpha(22),
+                      child: Icon(Icons.campaign_outlined, color: color),
+                    ),
+                    const SizedBox(width: 12),
+                    Expanded(
+                      child: Text(
+                        l.marketingScore,
+                        style: theme.textTheme.titleMedium?.copyWith(
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                    Text(
+                      '$score',
+                      style: theme.textTheme.headlineSmall?.copyWith(
+                        color: color,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 14),
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(6),
+                  child: LinearProgressIndicator(
+                    minHeight: 10,
+                    value: score / 100,
+                    color: color,
+                  ),
+                ),
+              ],
+            );
+
+            final metrics = Wrap(
+              spacing: 10,
+              runSpacing: 10,
+              children: [
+                _ProjectMetric(
+                  label: l.marketingOpenActions(strategy.openActionCount),
+                  icon: Icons.pending_actions_outlined,
+                  color: Colors.orange,
+                ),
+                _ProjectMetric(
+                  label: l.marketingRunningActions(
+                    strategy.inProgressActionCount,
+                  ),
+                  icon: Icons.play_circle_outline,
+                  color: Colors.blue,
+                ),
+                _ProjectMetric(
+                  label: l.marketingCompletedActions(
+                    strategy.completedActionCount,
+                  ),
+                  icon: Icons.check_circle_outline,
+                  color: Colors.green,
+                ),
+              ],
+            );
+
+            final action = FilledButton(
+              onPressed: () => context.go('/marketing-strategy'),
+              child: Text(l.projectOpenNow),
+            );
+
+            if (compact) {
+              return Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  scoreBlock,
+                  const SizedBox(height: 16),
+                  metrics,
+                  const SizedBox(height: 16),
+                  action,
+                ],
+              );
+            }
+
+            return Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Expanded(flex: 3, child: scoreBlock),
                 const SizedBox(width: 24),
                 Expanded(flex: 2, child: metrics),
                 const SizedBox(width: 16),

@@ -27,6 +27,16 @@ const _navItems = [
     path: '/project-status',
   ),
   _NavItem(
+    icon: Icons.flag_outlined,
+    selectedIcon: Icons.flag,
+    path: '/business-strategy',
+  ),
+  _NavItem(
+    icon: Icons.campaign_outlined,
+    selectedIcon: Icons.campaign,
+    path: '/marketing-strategy',
+  ),
+  _NavItem(
     icon: Icons.assignment_outlined,
     selectedIcon: Icons.assignment,
     path: '/intake',
@@ -71,20 +81,24 @@ const _navItems = [
 int _indexFromLocation(String location) {
   if (location.startsWith('/dashboard')) return 0;
   if (location.startsWith('/project-status')) return 1;
-  if (location.startsWith('/intake')) return 2;
-  if (location.startsWith('/company')) return 3;
-  if (location.startsWith('/audit')) return 4;
-  if (location.startsWith('/knowledge')) return 5;
-  if (location.startsWith('/bot-test')) return 6;
-  if (location.startsWith('/bot-settings')) return 7;
-  if (location.startsWith('/sources')) return 8;
-  if (location.startsWith('/review')) return 9;
+  if (location.startsWith('/business-strategy')) return 2;
+  if (location.startsWith('/marketing-strategy')) return 3;
+  if (location.startsWith('/intake')) return 4;
+  if (location.startsWith('/company')) return 5;
+  if (location.startsWith('/audit')) return 6;
+  if (location.startsWith('/knowledge')) return 7;
+  if (location.startsWith('/bot-test')) return 8;
+  if (location.startsWith('/bot-settings')) return 9;
+  if (location.startsWith('/sources')) return 10;
+  if (location.startsWith('/review')) return 11;
   return 0;
 }
 
 List<String> _navLabels(AppLocalizations l) => [
   l.navDashboard,
   l.navProjectStatus,
+  l.navBusinessStrategy,
+  l.navMarketingStrategy,
   l.navIntake,
   l.navCompany,
   l.navAudit,

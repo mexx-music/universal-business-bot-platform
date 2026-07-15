@@ -2,9 +2,11 @@ import 'business_audit.dart';
 import 'business_rules.dart';
 import 'bot_configuration.dart';
 import 'bot_question_log.dart';
+import 'business_strategy.dart';
 import 'company.dart';
 import 'intake_session.dart';
 import 'knowledge_entry.dart';
+import 'marketing_strategy.dart';
 import 'product_or_service.dart';
 import 'source_material.dart';
 
@@ -17,6 +19,8 @@ class CompanyWorkspace {
   final BusinessRules businessRules;
   final BotConfiguration botConfiguration;
   final List<SourceMaterial> sourceMaterials;
+  final List<MarketingAction> marketingActions;
+  final List<BusinessGoal> businessGoals;
   final IntakeSession? intakeSession;
 
   const CompanyWorkspace({
@@ -28,6 +32,8 @@ class CompanyWorkspace {
     required this.businessRules,
     required this.botConfiguration,
     required this.sourceMaterials,
+    this.marketingActions = const [],
+    this.businessGoals = const [],
     this.intakeSession,
   });
 
@@ -40,6 +46,8 @@ class CompanyWorkspace {
     BusinessRules? businessRules,
     BotConfiguration? botConfiguration,
     List<SourceMaterial>? sourceMaterials,
+    List<MarketingAction>? marketingActions,
+    List<BusinessGoal>? businessGoals,
     IntakeSession? intakeSession,
   }) {
     return CompanyWorkspace(
@@ -51,6 +59,8 @@ class CompanyWorkspace {
       businessRules: businessRules ?? this.businessRules,
       botConfiguration: botConfiguration ?? this.botConfiguration,
       sourceMaterials: sourceMaterials ?? this.sourceMaterials,
+      marketingActions: marketingActions ?? this.marketingActions,
+      businessGoals: businessGoals ?? this.businessGoals,
       intakeSession: intakeSession ?? this.intakeSession,
     );
   }

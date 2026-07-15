@@ -757,5 +757,163 @@
   "projectRecommendationMarketing": "Add channels, campaigns and growth notes.",
   "projectRecommendationBot": "Check bot settings and test the answer flow.",
   "projectRecommendationReview": "Work through open questions in Human Review.",
-  "projectRecommendationControlling": "Collect more activity so progress becomes measurable."
+  "projectRecommendationControlling": "Collect more activity so progress becomes measurable.",
+
+  "navMarketingStrategy": "Marketing",
+  "marketingStrategyTitle": "Marketing Strategy",
+  "marketingStrategySubtitle": "Strategy, actions and budget planning for {companyName}",
+  "@marketingStrategySubtitle": {
+    "placeholders": {
+      "companyName": { "type": "String" }
+    }
+  },
+  "marketingScore": "Marketing Score",
+  "marketingOpenActions": "{count} open",
+  "@marketingOpenActions": {
+    "placeholders": {
+      "count": { "type": "int" }
+    }
+  },
+  "marketingRunningActions": "{count} in progress",
+  "@marketingRunningActions": {
+    "placeholders": {
+      "count": { "type": "int" }
+    }
+  },
+  "marketingCompletedActions": "{count} completed",
+  "@marketingCompletedActions": {
+    "placeholders": {
+      "count": { "type": "int" }
+    }
+  },
+  "marketingRecommendationsTitle": "Automatic recommendations",
+  "marketingRecommendationsEmpty": "There are no urgent marketing recommendations right now.",
+  "marketingActionsTitle": "Actions",
+  "marketingActionStatus": "Status",
+  "marketingActionNotes": "Notes",
+  "marketingEditAction": "Edit",
+  "marketingNoNotes": "No notes yet.",
+  "marketingNoBudget": "No budget planned",
+  "marketingBudgetPlanned": "Planned budget",
+  "marketingBudgetUsed": "Used budget",
+  "marketingBudgetComment": "Budget comment",
+  "marketingBudgetSummary": "Budget {planned} / used {used}",
+  "@marketingBudgetSummary": {
+    "placeholders": {
+      "planned": { "type": "String" },
+      "used": { "type": "String" }
+    }
+  },
+  "marketingStatusNotStarted": "Not started",
+  "marketingStatusPlanned": "Planned",
+  "marketingStatusInProgress": "In progress",
+  "marketingStatusCompleted": "Completed",
+  "marketingStatusPostponed": "Postponed",
+  "marketingEffortLow": "Low effort",
+  "marketingEffortMedium": "Medium effort",
+  "marketingEffortHigh": "High effort",
+  "marketingImpactLow": "Low benefit",
+  "marketingImpactMedium": "Medium benefit",
+  "marketingImpactHigh": "High benefit",
+  "marketingActionOptimizeWebsite": "Optimize website",
+  "marketingActionOptimizeWebsiteDesc": "Improve homepage, trust and clear next steps.",
+  "marketingActionGoogleBusiness": "Create Google Business",
+  "marketingActionGoogleBusinessDesc": "Maintain local visibility and basic company information.",
+  "marketingActionFacebook": "Maintain Facebook",
+  "marketingActionFacebookDesc": "Keep profile, hours and current posts clean.",
+  "marketingActionInstagram": "Start Instagram",
+  "marketingActionInstagramDesc": "Prepare visual content and simple product stories.",
+  "marketingActionLinkedIn": "Use LinkedIn",
+  "marketingActionLinkedInDesc": "Structure B2B visibility, team and expert content.",
+  "marketingActionFaq": "Expand FAQ",
+  "marketingActionFaqDesc": "Turn support and bot-test questions into useful content.",
+  "marketingActionReviews": "Collect reviews",
+  "marketingActionReviewsDesc": "Collect trust material and document allowed usage.",
+  "marketingActionNewsletter": "Prepare newsletter",
+  "marketingActionNewsletterDesc": "Plan topics, audiences and a simple sending approach.",
+  "marketingActionBotWebsite": "Integrate bot on website",
+  "marketingActionBotWebsiteDesc": "Plan the bot as website help only after test and review.",
+  "marketingActionSeo": "Improve SEO",
+  "marketingActionSeoDesc": "Make sources, FAQ and page structure useful for search.",
+  "marketingActionGoogleAds": "Check Google Ads",
+  "marketingActionGoogleAdsDesc": "Roughly assess campaign potential, budget and landing pages.",
+  "marketingActionFacebookAds": "Check Facebook Ads",
+  "marketingActionFacebookAdsDesc": "Plan social campaigns only with clear content and budget.",
+
+  "navBusinessStrategy": "Business Strategy",
+  "businessStrategyTitle": "Business Strategy",
+  "businessStrategySubtitle": "Goals, progress and module contributions for {companyName}",
+  "@businessStrategySubtitle": {
+    "placeholders": {
+      "companyName": { "type": "String" }
+    }
+  },
+  "businessGoalAdd": "Add goal",
+  "businessGoalEdit": "Edit goal",
+  "businessGoalsTitle": "Business goals",
+  "businessGoalsEmpty": "No business goals have been added yet.",
+  "businessGoalTitle": "Title",
+  "businessGoalDescription": "Description",
+  "businessGoalPriority": "Priority",
+  "businessGoalStatus": "Status",
+  "businessGoalOwner": "Owner",
+  "businessGoalComment": "Comment",
+  "businessGoalLinkedAreas": "Linked areas",
+  "businessGoalDefaultOwner": "Team",
+  "businessActiveGoals": "{count} active business goals",
+  "@businessActiveGoals": {
+    "placeholders": {
+      "count": { "type": "int" }
+    }
+  },
+  "businessAverageProgress": "Progress {progress}%",
+  "@businessAverageProgress": {
+    "placeholders": {
+      "progress": { "type": "int" }
+    }
+  },
+  "businessMainGoal": "Current main goal: {goal}",
+  "@businessMainGoal": {
+    "placeholders": {
+      "goal": { "type": "String" }
+    }
+  },
+  "businessNoMainGoal": "No active main goal yet.",
+  "businessNoRecommendation": "No goal-based recommendation right now.",
+  "businessGoalRecommendation": "{area} could help support your goal “{goal}”.",
+  "@businessGoalRecommendation": {
+    "placeholders": {
+      "area": { "type": "String" },
+      "goal": { "type": "String" }
+    }
+  },
+  "businessDashboardNextAction": "Next action for “{goal}”",
+  "@businessDashboardNextAction": {
+    "placeholders": {
+      "goal": { "type": "String" }
+    }
+  },
+  "projectMainGoalTitle": "Current main goal",
+  "businessFlowGoal": "Business goal",
+  "businessFlowMarketing": "Marketing",
+  "businessFlowBot": "Bot",
+  "businessFlowKnowledge": "Knowledge",
+  "businessFlowAudit": "Audit",
+  "businessFlowReview": "Human Review",
+  "businessFlowControlling": "Controlling",
+  "businessStatusNotStarted": "Not started",
+  "businessStatusPlanned": "Planned",
+  "businessStatusInProgress": "In progress",
+  "businessStatusAchieved": "Achieved",
+  "businessStatusPaused": "Paused",
+  "businessStatusCanceled": "Canceled",
+  "businessAreaMarketing": "Marketing",
+  "businessAreaAudit": "Audit",
+  "businessAreaKnowledge": "Knowledge Base",
+  "businessAreaBot": "Bot",
+  "businessAreaReview": "Human Review",
+  "businessAreaSources": "Sources",
+  "businessAreaCompany": "Company Profile",
+  "businessAreaProject": "Project Status",
+  "businessAreaControlling": "Controlling"
 }

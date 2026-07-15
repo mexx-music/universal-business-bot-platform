@@ -2422,4 +2422,337 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get projectRecommendationControlling =>
       'Collect more activity so progress becomes measurable.';
+
+  @override
+  String get navMarketingStrategy => 'Marketing';
+
+  @override
+  String get marketingStrategyTitle => 'Marketing Strategy';
+
+  @override
+  String marketingStrategySubtitle(String companyName) {
+    return 'Strategy, actions and budget planning for $companyName';
+  }
+
+  @override
+  String get marketingScore => 'Marketing Score';
+
+  @override
+  String marketingOpenActions(int count) {
+    return '$count open';
+  }
+
+  @override
+  String marketingRunningActions(int count) {
+    return '$count in progress';
+  }
+
+  @override
+  String marketingCompletedActions(int count) {
+    return '$count completed';
+  }
+
+  @override
+  String get marketingRecommendationsTitle => 'Automatic recommendations';
+
+  @override
+  String get marketingRecommendationsEmpty =>
+      'There are no urgent marketing recommendations right now.';
+
+  @override
+  String get marketingActionsTitle => 'Actions';
+
+  @override
+  String get marketingActionStatus => 'Status';
+
+  @override
+  String get marketingActionNotes => 'Notes';
+
+  @override
+  String get marketingEditAction => 'Edit';
+
+  @override
+  String get marketingNoNotes => 'No notes yet.';
+
+  @override
+  String get marketingNoBudget => 'No budget planned';
+
+  @override
+  String get marketingBudgetPlanned => 'Planned budget';
+
+  @override
+  String get marketingBudgetUsed => 'Used budget';
+
+  @override
+  String get marketingBudgetComment => 'Budget comment';
+
+  @override
+  String marketingBudgetSummary(String planned, String used) {
+    return 'Budget $planned / used $used';
+  }
+
+  @override
+  String get marketingStatusNotStarted => 'Not started';
+
+  @override
+  String get marketingStatusPlanned => 'Planned';
+
+  @override
+  String get marketingStatusInProgress => 'In progress';
+
+  @override
+  String get marketingStatusCompleted => 'Completed';
+
+  @override
+  String get marketingStatusPostponed => 'Postponed';
+
+  @override
+  String get marketingEffortLow => 'Low effort';
+
+  @override
+  String get marketingEffortMedium => 'Medium effort';
+
+  @override
+  String get marketingEffortHigh => 'High effort';
+
+  @override
+  String get marketingImpactLow => 'Low benefit';
+
+  @override
+  String get marketingImpactMedium => 'Medium benefit';
+
+  @override
+  String get marketingImpactHigh => 'High benefit';
+
+  @override
+  String get marketingActionOptimizeWebsite => 'Optimize website';
+
+  @override
+  String get marketingActionOptimizeWebsiteDesc =>
+      'Improve homepage, trust and clear next steps.';
+
+  @override
+  String get marketingActionGoogleBusiness => 'Create Google Business';
+
+  @override
+  String get marketingActionGoogleBusinessDesc =>
+      'Maintain local visibility and basic company information.';
+
+  @override
+  String get marketingActionFacebook => 'Maintain Facebook';
+
+  @override
+  String get marketingActionFacebookDesc =>
+      'Keep profile, hours and current posts clean.';
+
+  @override
+  String get marketingActionInstagram => 'Start Instagram';
+
+  @override
+  String get marketingActionInstagramDesc =>
+      'Prepare visual content and simple product stories.';
+
+  @override
+  String get marketingActionLinkedIn => 'Use LinkedIn';
+
+  @override
+  String get marketingActionLinkedInDesc =>
+      'Structure B2B visibility, team and expert content.';
+
+  @override
+  String get marketingActionFaq => 'Expand FAQ';
+
+  @override
+  String get marketingActionFaqDesc =>
+      'Turn support and bot-test questions into useful content.';
+
+  @override
+  String get marketingActionReviews => 'Collect reviews';
+
+  @override
+  String get marketingActionReviewsDesc =>
+      'Collect trust material and document allowed usage.';
+
+  @override
+  String get marketingActionNewsletter => 'Prepare newsletter';
+
+  @override
+  String get marketingActionNewsletterDesc =>
+      'Plan topics, audiences and a simple sending approach.';
+
+  @override
+  String get marketingActionBotWebsite => 'Integrate bot on website';
+
+  @override
+  String get marketingActionBotWebsiteDesc =>
+      'Plan the bot as website help only after test and review.';
+
+  @override
+  String get marketingActionSeo => 'Improve SEO';
+
+  @override
+  String get marketingActionSeoDesc =>
+      'Make sources, FAQ and page structure useful for search.';
+
+  @override
+  String get marketingActionGoogleAds => 'Check Google Ads';
+
+  @override
+  String get marketingActionGoogleAdsDesc =>
+      'Roughly assess campaign potential, budget and landing pages.';
+
+  @override
+  String get marketingActionFacebookAds => 'Check Facebook Ads';
+
+  @override
+  String get marketingActionFacebookAdsDesc =>
+      'Plan social campaigns only with clear content and budget.';
+
+  @override
+  String get navBusinessStrategy => 'Business Strategy';
+
+  @override
+  String get businessStrategyTitle => 'Business Strategy';
+
+  @override
+  String businessStrategySubtitle(String companyName) {
+    return 'Goals, progress and module contributions for $companyName';
+  }
+
+  @override
+  String get businessGoalAdd => 'Add goal';
+
+  @override
+  String get businessGoalEdit => 'Edit goal';
+
+  @override
+  String get businessGoalsTitle => 'Business goals';
+
+  @override
+  String get businessGoalsEmpty => 'No business goals have been added yet.';
+
+  @override
+  String get businessGoalTitle => 'Title';
+
+  @override
+  String get businessGoalDescription => 'Description';
+
+  @override
+  String get businessGoalPriority => 'Priority';
+
+  @override
+  String get businessGoalStatus => 'Status';
+
+  @override
+  String get businessGoalOwner => 'Owner';
+
+  @override
+  String get businessGoalComment => 'Comment';
+
+  @override
+  String get businessGoalLinkedAreas => 'Linked areas';
+
+  @override
+  String get businessGoalDefaultOwner => 'Team';
+
+  @override
+  String businessActiveGoals(int count) {
+    return '$count active business goals';
+  }
+
+  @override
+  String businessAverageProgress(int progress) {
+    return 'Progress $progress%';
+  }
+
+  @override
+  String businessMainGoal(String goal) {
+    return 'Current main goal: $goal';
+  }
+
+  @override
+  String get businessNoMainGoal => 'No active main goal yet.';
+
+  @override
+  String get businessNoRecommendation =>
+      'No goal-based recommendation right now.';
+
+  @override
+  String businessGoalRecommendation(String area, String goal) {
+    return '$area could help support your goal “$goal”.';
+  }
+
+  @override
+  String businessDashboardNextAction(String goal) {
+    return 'Next action for “$goal”';
+  }
+
+  @override
+  String get projectMainGoalTitle => 'Current main goal';
+
+  @override
+  String get businessFlowGoal => 'Business goal';
+
+  @override
+  String get businessFlowMarketing => 'Marketing';
+
+  @override
+  String get businessFlowBot => 'Bot';
+
+  @override
+  String get businessFlowKnowledge => 'Knowledge';
+
+  @override
+  String get businessFlowAudit => 'Audit';
+
+  @override
+  String get businessFlowReview => 'Human Review';
+
+  @override
+  String get businessFlowControlling => 'Controlling';
+
+  @override
+  String get businessStatusNotStarted => 'Not started';
+
+  @override
+  String get businessStatusPlanned => 'Planned';
+
+  @override
+  String get businessStatusInProgress => 'In progress';
+
+  @override
+  String get businessStatusAchieved => 'Achieved';
+
+  @override
+  String get businessStatusPaused => 'Paused';
+
+  @override
+  String get businessStatusCanceled => 'Canceled';
+
+  @override
+  String get businessAreaMarketing => 'Marketing';
+
+  @override
+  String get businessAreaAudit => 'Audit';
+
+  @override
+  String get businessAreaKnowledge => 'Knowledge Base';
+
+  @override
+  String get businessAreaBot => 'Bot';
+
+  @override
+  String get businessAreaReview => 'Human Review';
+
+  @override
+  String get businessAreaSources => 'Sources';
+
+  @override
+  String get businessAreaCompany => 'Company Profile';
+
+  @override
+  String get businessAreaProject => 'Project Status';
+
+  @override
+  String get businessAreaControlling => 'Controlling';
 }
