@@ -1,9 +1,11 @@
 import 'package:flutter/widgets.dart';
+import '../calculators/business_intelligence_calculator.dart';
 import '../calculators/business_strategy_calculator.dart';
 import '../calculators/dashboard_metrics_calculator.dart';
 import '../calculators/marketing_strategy_calculator.dart';
 import '../calculators/project_status_calculator.dart';
 import '../models/business_audit.dart';
+import '../models/business_intelligence.dart';
 import '../models/business_rules.dart';
 import '../models/business_strategy.dart';
 import '../models/bot_configuration.dart';
@@ -27,6 +29,7 @@ class AppState extends ChangeNotifier {
   final WorkspaceStore _workspaceStore;
   final WorkspaceMutationService _mutationService;
   final IntakeMappingService _intakeMappingService;
+  final BusinessIntelligenceCalculator _businessIntelligenceCalculator;
   final MarketingStrategyCalculator _marketingStrategyCalculator;
   final ProjectStatusCalculator _projectStatusCalculator;
   final BusinessStrategyCalculator _businessStrategyCalculator;
@@ -36,6 +39,8 @@ class AppState extends ChangeNotifier {
     WorkspaceStore? workspaceStore,
     WorkspaceMutationService mutationService = const WorkspaceMutationService(),
     IntakeMappingService intakeMappingService = const IntakeMappingService(),
+    BusinessIntelligenceCalculator businessIntelligenceCalculator =
+        const BusinessIntelligenceCalculator(),
     MarketingStrategyCalculator marketingStrategyCalculator =
         const MarketingStrategyCalculator(),
     ProjectStatusCalculator projectStatusCalculator =
@@ -47,6 +52,7 @@ class AppState extends ChangeNotifier {
   }) : _workspaceStore = workspaceStore ?? WorkspaceStore(),
        _mutationService = mutationService,
        _intakeMappingService = intakeMappingService,
+       _businessIntelligenceCalculator = businessIntelligenceCalculator,
        _marketingStrategyCalculator = marketingStrategyCalculator,
        _projectStatusCalculator = projectStatusCalculator,
        _businessStrategyCalculator = businessStrategyCalculator,
@@ -462,6 +468,10 @@ class AppState extends ChangeNotifier {
     return businessStrategyFor(selectedWorkspace);
   }
 
+  BusinessIntelligenceSnapshot get businessIntelligence {
+    return businessIntelligenceFor(selectedWorkspace);
+  }
+
   DashboardMetrics get dashboardMetrics {
     return _dashboardMetricsCalculator.calculate(selectedWorkspace);
   }
@@ -472,6 +482,12 @@ class AppState extends ChangeNotifier {
 
   BusinessStrategySnapshot businessStrategyFor(CompanyWorkspace workspace) {
     return _businessStrategyCalculator.calculate(workspace);
+  }
+
+  BusinessIntelligenceSnapshot businessIntelligenceFor(
+    CompanyWorkspace workspace,
+  ) {
+    return _businessIntelligenceCalculator.calculate(workspace);
   }
 
   ProjectStatusSnapshot get projectStatus {

@@ -1100,5 +1100,92 @@
   "businessAreaSources": "Quellen",
   "businessAreaCompany": "Firmenprofil",
   "businessAreaProject": "Projektstatus",
-  "businessAreaControlling": "Controlling"
+  "businessAreaControlling": "Controlling",
+
+  "navBusinessIntelligence": "Business Intelligence",
+  "businessIntelligenceTitle": "Business Intelligence",
+  "businessIntelligenceSubtitle": "Entwicklung, Timeline und Kennzahlen für {companyName}",
+  "@businessIntelligenceSubtitle": {
+    "placeholders": {
+      "companyName": { "type": "String" }
+    }
+  },
+  "businessTimelineTitle": "Company Timeline",
+  "businessKpiTitle": "KPI-Verlauf",
+  "businessDevelopmentTitle": "Unternehmensentwicklung",
+  "businessHighlightsTitle": "Highlights",
+  "businessMonthlyTitle": "Aktueller Monat",
+  "businessLastActivity": "Letzte Aktivität",
+  "businessBiggestProgress": "Größter Fortschritt",
+  "businessNoActivity": "Noch keine Aktivität vorhanden.",
+  "businessBiggestProgressNone": "Noch kein Fortschritt",
+  "businessMonthlyChanges": "Änderungen",
+  "businessMonthlySources": "Neue Quellen",
+  "businessMonthlyKnowledge": "Neue Wissenseinträge",
+  "businessMonthlyMarketingCompleted": "Marketing abgeschlossen",
+  "businessMonthlyGoalsAchieved": "Ziele erreicht",
+  "businessDashboardLastActivity": "Letzte Aktivität: {title}",
+  "@businessDashboardLastActivity": {
+    "placeholders": {
+      "title": { "type": "String" }
+    }
+  },
+  "businessDashboardBiggestProgress": "{area} {value}",
+  "@businessDashboardBiggestProgress": {
+    "placeholders": {
+      "area": { "type": "String" },
+      "value": { "type": "String" }
+    }
+  },
+  "businessDashboardDevelopment": "{area}: {value}",
+  "@businessDashboardDevelopment": {
+    "placeholders": {
+      "area": { "type": "String" },
+      "value": { "type": "String" }
+    }
+  },
+  "projectLatestImprovementTitle": "Letzte Verbesserung",
+  "projectSinceLastWeek": "Seit letzter Woche: {summary}",
+  "@projectSinceLastWeek": {
+    "placeholders": {
+      "summary": { "type": "String" }
+    }
+  },
+  "businessKpiAuditScore": "Audit Score",
+  "businessKpiMarketingScore": "Marketing Score",
+  "businessKpiKnowledgeEntries": "Wissenseinträge",
+  "businessKpiSources": "Quellen",
+  "businessKpiReviews": "Reviews",
+  "businessKpiBotStatus": "Bot-Status",
+  "businessKpiProjectProgress": "Projektfortschritt",
+  "businessKpiStrategyProgress": "Strategiefortschritt",
+  "businessTimelineCategoryCompany": "Firma",
+  "businessTimelineCategoryWebsite": "Website",
+  "businessTimelineCategoryBot": "Bot",
+  "businessTimelineCategoryAudit": "Audit",
+  "businessTimelineCategoryKnowledge": "Wissen",
+  "businessTimelineCategoryReview": "Review",
+  "businessTimelineCategoryMarketing": "Marketing",
+  "businessTimelineCategoryStrategy": "Strategie",
+  "businessTimelineCategorySources": "Quellen",
+  "businessTimelineCategoryProjectStatus": "Projektstatus",
+  "businessEventCompanyCreated": "Unternehmen angelegt",
+  "businessEventWebsiteAdded": "Website ergänzt",
+  "businessEventIntakeCompleted": "Firmenaufnahme abgeschlossen",
+  "businessEventBotActivated": "Bot aktiviert",
+  "businessEventAuditImproved": "Audit verbessert",
+  "businessEventKnowledgeAdded": "Knowledge erweitert",
+  "businessEventFaqAdded": "Neue FAQ",
+  "businessEventReviewClosed": "Review abgeschlossen",
+  "businessEventMarketingStarted": "Marketingmaßnahme gestartet",
+  "businessEventMarketingCompleted": "Marketingmaßnahme abgeschlossen",
+  "businessEventStrategyChanged": "Strategie geändert",
+  "businessEventSourceAdded": "Neue Quelle hinzugefügt",
+  "businessEventGoalAdded": "Neues Ziel",
+  "businessEventProjectStatusImproved": "Projektstatus verbessert",
+  "businessHighlightBiggestProgress": "Größter Fortschritt",
+  "businessHighlightStrongestModule": "Stärkstes Modul",
+  "businessHighlightLastImprovement": "Letzte Verbesserung",
+  "businessHighlightOpenIssue": "Offene Baustelle",
+  "businessHighlightNextChance": "Nächste Chance"
 }

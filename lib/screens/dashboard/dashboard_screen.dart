@@ -5,6 +5,7 @@ import '../../l10n/app_localizations.dart';
 import '../../l10n/label_helpers.dart';
 import '../../models/bot_configuration.dart';
 import '../../models/bot_question_log.dart';
+import '../../models/business_intelligence.dart';
 import '../../models/business_strategy.dart';
 import '../../models/intake_session.dart';
 import '../../models/marketing_strategy.dart';
@@ -38,6 +39,7 @@ class DashboardScreen extends StatelessWidget {
     final projectStatus = metrics.projectStatus;
     final marketingStrategy = metrics.marketingStrategy;
     final businessStrategy = metrics.businessStrategy;
+    final businessIntelligence = metrics.businessIntelligence;
 
     final greenCount = metrics.greenKnowledgeCount;
     final yellowCount = metrics.yellowKnowledgeCount;
@@ -194,6 +196,9 @@ class DashboardScreen extends StatelessWidget {
           const SizedBox(height: 28),
 
           _DashboardProjectStatusCard(status: projectStatus),
+          const SizedBox(height: 28),
+
+          _DashboardBusinessIntelligenceCard(snapshot: businessIntelligence),
           const SizedBox(height: 28),
 
           _DashboardBusinessStrategyCard(strategy: businessStrategy),
@@ -762,6 +767,122 @@ class _DashboardProjectStatusCard extends StatelessWidget {
                 Expanded(flex: 3, child: progressBlock),
                 const SizedBox(width: 24),
                 Expanded(flex: 2, child: metrics),
+                const SizedBox(width: 16),
+                action,
+              ],
+            );
+          },
+        ),
+      ),
+    );
+  }
+}
+
+class _DashboardBusinessIntelligenceCard extends StatelessWidget {
+  final BusinessIntelligenceSnapshot snapshot;
+
+  const _DashboardBusinessIntelligenceCard({required this.snapshot});
+
+  @override
+  Widget build(BuildContext context) {
+    final l = AppLocalizations.of(context)!;
+    final theme = Theme.of(context);
+    final last = snapshot.lastImprovement;
+    BusinessHighlight? biggest;
+    for (final item in snapshot.highlights) {
+      if (item.type == BusinessHighlightType.biggestProgress) {
+        biggest = item;
+        break;
+      }
+    }
+    final firstSignal = snapshot.developmentSignals.isEmpty
+        ? null
+        : snapshot.developmentSignals.first;
+
+    return Card(
+      child: Padding(
+        padding: const EdgeInsets.all(20),
+        child: LayoutBuilder(
+          builder: (context, constraints) {
+            final compact = constraints.maxWidth < 620;
+            final content = Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  children: [
+                    CircleAvatar(
+                      backgroundColor: Colors.indigo.withAlpha(26),
+                      child: const Icon(
+                        Icons.insights_outlined,
+                        color: Colors.indigo,
+                      ),
+                    ),
+                    const SizedBox(width: 12),
+                    Expanded(
+                      child: Text(
+                        l.businessIntelligenceTitle,
+                        style: theme.textTheme.titleMedium?.copyWith(
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 12),
+                Text(
+                  last == null
+                      ? l.businessNoActivity
+                      : l.businessDashboardLastActivity(last.title),
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: theme.textTheme.bodyMedium?.copyWith(
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
+                const SizedBox(height: 8),
+                Wrap(
+                  spacing: 8,
+                  runSpacing: 8,
+                  children: [
+                    _ProjectMetric(
+                      label: biggest == null
+                          ? l.businessBiggestProgressNone
+                          : l.businessDashboardBiggestProgress(
+                              biggest.title,
+                              biggest.description,
+                            ),
+                      icon: Icons.trending_up,
+                      color: Colors.green,
+                    ),
+                    if (firstSignal != null)
+                      _ProjectMetric(
+                        label: l.businessDashboardDevelopment(
+                          firstSignal.area,
+                          firstSignal.value,
+                        ),
+                        icon: Icons.auto_graph,
+                        color: firstSignal.positive
+                            ? Colors.green
+                            : Colors.orange,
+                      ),
+                  ],
+                ),
+              ],
+            );
+            final action = FilledButton(
+              onPressed: () => context.go('/business-intelligence'),
+              child: Text(l.projectOpenNow),
+            );
+
+            if (compact) {
+              return Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [content, const SizedBox(height: 16), action],
+              );
+            }
+            return Row(
+              children: [
+                Expanded(child: content),
                 const SizedBox(width: 16),
                 action,
               ],

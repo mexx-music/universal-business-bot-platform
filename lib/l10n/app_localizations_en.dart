@@ -2755,4 +2755,191 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get businessAreaControlling => 'Controlling';
+
+  @override
+  String get navBusinessIntelligence => 'Business Intelligence';
+
+  @override
+  String get businessIntelligenceTitle => 'Business Intelligence';
+
+  @override
+  String businessIntelligenceSubtitle(String companyName) {
+    return 'Development, timeline, and metrics for $companyName';
+  }
+
+  @override
+  String get businessTimelineTitle => 'Company Timeline';
+
+  @override
+  String get businessKpiTitle => 'KPI Trends';
+
+  @override
+  String get businessDevelopmentTitle => 'Company Development';
+
+  @override
+  String get businessHighlightsTitle => 'Highlights';
+
+  @override
+  String get businessMonthlyTitle => 'Current Month';
+
+  @override
+  String get businessLastActivity => 'Latest Activity';
+
+  @override
+  String get businessBiggestProgress => 'Biggest Progress';
+
+  @override
+  String get businessNoActivity => 'No activity yet.';
+
+  @override
+  String get businessBiggestProgressNone => 'No progress yet';
+
+  @override
+  String get businessMonthlyChanges => 'Changes';
+
+  @override
+  String get businessMonthlySources => 'New sources';
+
+  @override
+  String get businessMonthlyKnowledge => 'New knowledge entries';
+
+  @override
+  String get businessMonthlyMarketingCompleted => 'Marketing completed';
+
+  @override
+  String get businessMonthlyGoalsAchieved => 'Goals achieved';
+
+  @override
+  String businessDashboardLastActivity(String title) {
+    return 'Latest activity: $title';
+  }
+
+  @override
+  String businessDashboardBiggestProgress(String area, String value) {
+    return '$area $value';
+  }
+
+  @override
+  String businessDashboardDevelopment(String area, String value) {
+    return '$area: $value';
+  }
+
+  @override
+  String get projectLatestImprovementTitle => 'Latest improvement';
+
+  @override
+  String projectSinceLastWeek(String summary) {
+    return 'Since last week: $summary';
+  }
+
+  @override
+  String get businessKpiAuditScore => 'Audit Score';
+
+  @override
+  String get businessKpiMarketingScore => 'Marketing Score';
+
+  @override
+  String get businessKpiKnowledgeEntries => 'Knowledge Entries';
+
+  @override
+  String get businessKpiSources => 'Sources';
+
+  @override
+  String get businessKpiReviews => 'Reviews';
+
+  @override
+  String get businessKpiBotStatus => 'Bot Status';
+
+  @override
+  String get businessKpiProjectProgress => 'Project Progress';
+
+  @override
+  String get businessKpiStrategyProgress => 'Strategy Progress';
+
+  @override
+  String get businessTimelineCategoryCompany => 'Company';
+
+  @override
+  String get businessTimelineCategoryWebsite => 'Website';
+
+  @override
+  String get businessTimelineCategoryBot => 'Bot';
+
+  @override
+  String get businessTimelineCategoryAudit => 'Audit';
+
+  @override
+  String get businessTimelineCategoryKnowledge => 'Knowledge';
+
+  @override
+  String get businessTimelineCategoryReview => 'Review';
+
+  @override
+  String get businessTimelineCategoryMarketing => 'Marketing';
+
+  @override
+  String get businessTimelineCategoryStrategy => 'Strategy';
+
+  @override
+  String get businessTimelineCategorySources => 'Sources';
+
+  @override
+  String get businessTimelineCategoryProjectStatus => 'Project Status';
+
+  @override
+  String get businessEventCompanyCreated => 'Company created';
+
+  @override
+  String get businessEventWebsiteAdded => 'Website added';
+
+  @override
+  String get businessEventIntakeCompleted => 'Company intake completed';
+
+  @override
+  String get businessEventBotActivated => 'Bot activated';
+
+  @override
+  String get businessEventAuditImproved => 'Audit improved';
+
+  @override
+  String get businessEventKnowledgeAdded => 'Knowledge expanded';
+
+  @override
+  String get businessEventFaqAdded => 'New FAQ';
+
+  @override
+  String get businessEventReviewClosed => 'Review completed';
+
+  @override
+  String get businessEventMarketingStarted => 'Marketing action started';
+
+  @override
+  String get businessEventMarketingCompleted => 'Marketing action completed';
+
+  @override
+  String get businessEventStrategyChanged => 'Strategy changed';
+
+  @override
+  String get businessEventSourceAdded => 'New source added';
+
+  @override
+  String get businessEventGoalAdded => 'New goal';
+
+  @override
+  String get businessEventProjectStatusImproved => 'Project status improved';
+
+  @override
+  String get businessHighlightBiggestProgress => 'Biggest progress';
+
+  @override
+  String get businessHighlightStrongestModule => 'Strongest module';
+
+  @override
+  String get businessHighlightLastImprovement => 'Latest improvement';
+
+  @override
+  String get businessHighlightOpenIssue => 'Open issue';
+
+  @override
+  String get businessHighlightNextChance => 'Next opportunity';
 }

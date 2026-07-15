@@ -4,6 +4,7 @@ import '../screens/public/landing_screen.dart';
 import '../screens/public/companies_screen.dart';
 import '../screens/dashboard/dashboard_screen.dart';
 import '../screens/project_status/project_status_screen.dart';
+import '../screens/business_intelligence/business_intelligence_screen.dart';
 import '../screens/business_strategy/business_strategy_screen.dart';
 import '../screens/marketing_strategy/marketing_strategy_screen.dart';
 import '../screens/intake/intake_chat_screen.dart';
@@ -35,6 +36,10 @@ final appRouter = GoRouter(
         GoRoute(
           path: '/project-status',
           builder: (context, state) => const ProjectStatusScreen(),
+        ),
+        GoRoute(
+          path: '/business-intelligence',
+          builder: (context, state) => const BusinessIntelligenceScreen(),
         ),
         GoRoute(
           path: '/business-strategy',

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import '../../data/app_state.dart';
 import '../../l10n/app_localizations.dart';
+import '../../models/business_intelligence.dart';
 import '../../models/business_strategy.dart';
 import '../../widgets/project_status/project_phase_timeline.dart';
 import '../../widgets/project_status/project_progress_card.dart';
@@ -15,6 +17,7 @@ class ProjectStatusScreen extends StatelessWidget {
     final state = AppState.of(context);
     final status = state.projectStatus;
     final businessStrategy = state.businessStrategy;
+    final businessIntelligence = state.businessIntelligence;
     final l = AppLocalizations.of(context)!;
     final theme = Theme.of(context);
 
@@ -65,6 +68,8 @@ class ProjectStatusScreen extends StatelessWidget {
           const SizedBox(height: 24),
           _ProjectBusinessGoalCard(strategy: businessStrategy),
           const SizedBox(height: 24),
+          _ProjectBusinessIntelligenceCard(snapshot: businessIntelligence),
+          const SizedBox(height: 24),
           Text(
             l.projectRecommendationsTitle,
             style: theme.textTheme.titleMedium?.copyWith(
@@ -91,6 +96,88 @@ class ProjectStatusScreen extends StatelessWidget {
                   ProjectRecommendationCard(recommendation: recommendation),
             ),
         ],
+      ),
+    );
+  }
+}
+
+class _ProjectBusinessIntelligenceCard extends StatelessWidget {
+  final BusinessIntelligenceSnapshot snapshot;
+
+  const _ProjectBusinessIntelligenceCard({required this.snapshot});
+
+  @override
+  Widget build(BuildContext context) {
+    final l = AppLocalizations.of(context)!;
+    final theme = Theme.of(context);
+    final last = snapshot.lastImprovement;
+
+    return Card(
+      child: Padding(
+        padding: const EdgeInsets.all(20),
+        child: LayoutBuilder(
+          builder: (context, constraints) {
+            final compact = constraints.maxWidth < 620;
+            final content = Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                CircleAvatar(
+                  backgroundColor: theme.colorScheme.primaryContainer,
+                  child: Icon(
+                    Icons.insights_outlined,
+                    color: theme.colorScheme.onPrimaryContainer,
+                  ),
+                ),
+                const SizedBox(width: 12),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        l.projectLatestImprovementTitle,
+                        style: theme.textTheme.titleMedium?.copyWith(
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      const SizedBox(height: 6),
+                      Text(
+                        last == null ? l.businessNoActivity : last.title,
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                        style: theme.textTheme.bodyMedium,
+                      ),
+                      const SizedBox(height: 6),
+                      Text(
+                        l.projectSinceLastWeek(snapshot.weeklySummary),
+                        style: theme.textTheme.bodySmall?.copyWith(
+                          color: theme.colorScheme.onSurfaceVariant,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            );
+            final action = FilledButton(
+              onPressed: () => context.go('/business-intelligence'),
+              child: Text(l.projectOpenNow),
+            );
+
+            if (compact) {
+              return Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [content, const SizedBox(height: 16), action],
+              );
+            }
+            return Row(
+              children: [
+                Expanded(child: content),
+                const SizedBox(width: 16),
+                action,
+              ],
+            );
+          },
+        ),
       ),
     );
   }

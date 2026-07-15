@@ -4939,6 +4939,360 @@ abstract class AppLocalizations {
   /// In de, this message translates to:
   /// **'Controlling'**
   String get businessAreaControlling;
+
+  /// No description provided for @navBusinessIntelligence.
+  ///
+  /// In de, this message translates to:
+  /// **'Business Intelligence'**
+  String get navBusinessIntelligence;
+
+  /// No description provided for @businessIntelligenceTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Business Intelligence'**
+  String get businessIntelligenceTitle;
+
+  /// No description provided for @businessIntelligenceSubtitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Entwicklung, Timeline und Kennzahlen für {companyName}'**
+  String businessIntelligenceSubtitle(String companyName);
+
+  /// No description provided for @businessTimelineTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Company Timeline'**
+  String get businessTimelineTitle;
+
+  /// No description provided for @businessKpiTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'KPI-Verlauf'**
+  String get businessKpiTitle;
+
+  /// No description provided for @businessDevelopmentTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Unternehmensentwicklung'**
+  String get businessDevelopmentTitle;
+
+  /// No description provided for @businessHighlightsTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Highlights'**
+  String get businessHighlightsTitle;
+
+  /// No description provided for @businessMonthlyTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Aktueller Monat'**
+  String get businessMonthlyTitle;
+
+  /// No description provided for @businessLastActivity.
+  ///
+  /// In de, this message translates to:
+  /// **'Letzte Aktivität'**
+  String get businessLastActivity;
+
+  /// No description provided for @businessBiggestProgress.
+  ///
+  /// In de, this message translates to:
+  /// **'Größter Fortschritt'**
+  String get businessBiggestProgress;
+
+  /// No description provided for @businessNoActivity.
+  ///
+  /// In de, this message translates to:
+  /// **'Noch keine Aktivität vorhanden.'**
+  String get businessNoActivity;
+
+  /// No description provided for @businessBiggestProgressNone.
+  ///
+  /// In de, this message translates to:
+  /// **'Noch kein Fortschritt'**
+  String get businessBiggestProgressNone;
+
+  /// No description provided for @businessMonthlyChanges.
+  ///
+  /// In de, this message translates to:
+  /// **'Änderungen'**
+  String get businessMonthlyChanges;
+
+  /// No description provided for @businessMonthlySources.
+  ///
+  /// In de, this message translates to:
+  /// **'Neue Quellen'**
+  String get businessMonthlySources;
+
+  /// No description provided for @businessMonthlyKnowledge.
+  ///
+  /// In de, this message translates to:
+  /// **'Neue Wissenseinträge'**
+  String get businessMonthlyKnowledge;
+
+  /// No description provided for @businessMonthlyMarketingCompleted.
+  ///
+  /// In de, this message translates to:
+  /// **'Marketing abgeschlossen'**
+  String get businessMonthlyMarketingCompleted;
+
+  /// No description provided for @businessMonthlyGoalsAchieved.
+  ///
+  /// In de, this message translates to:
+  /// **'Ziele erreicht'**
+  String get businessMonthlyGoalsAchieved;
+
+  /// No description provided for @businessDashboardLastActivity.
+  ///
+  /// In de, this message translates to:
+  /// **'Letzte Aktivität: {title}'**
+  String businessDashboardLastActivity(String title);
+
+  /// No description provided for @businessDashboardBiggestProgress.
+  ///
+  /// In de, this message translates to:
+  /// **'{area} {value}'**
+  String businessDashboardBiggestProgress(String area, String value);
+
+  /// No description provided for @businessDashboardDevelopment.
+  ///
+  /// In de, this message translates to:
+  /// **'{area}: {value}'**
+  String businessDashboardDevelopment(String area, String value);
+
+  /// No description provided for @projectLatestImprovementTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Letzte Verbesserung'**
+  String get projectLatestImprovementTitle;
+
+  /// No description provided for @projectSinceLastWeek.
+  ///
+  /// In de, this message translates to:
+  /// **'Seit letzter Woche: {summary}'**
+  String projectSinceLastWeek(String summary);
+
+  /// No description provided for @businessKpiAuditScore.
+  ///
+  /// In de, this message translates to:
+  /// **'Audit Score'**
+  String get businessKpiAuditScore;
+
+  /// No description provided for @businessKpiMarketingScore.
+  ///
+  /// In de, this message translates to:
+  /// **'Marketing Score'**
+  String get businessKpiMarketingScore;
+
+  /// No description provided for @businessKpiKnowledgeEntries.
+  ///
+  /// In de, this message translates to:
+  /// **'Wissenseinträge'**
+  String get businessKpiKnowledgeEntries;
+
+  /// No description provided for @businessKpiSources.
+  ///
+  /// In de, this message translates to:
+  /// **'Quellen'**
+  String get businessKpiSources;
+
+  /// No description provided for @businessKpiReviews.
+  ///
+  /// In de, this message translates to:
+  /// **'Reviews'**
+  String get businessKpiReviews;
+
+  /// No description provided for @businessKpiBotStatus.
+  ///
+  /// In de, this message translates to:
+  /// **'Bot-Status'**
+  String get businessKpiBotStatus;
+
+  /// No description provided for @businessKpiProjectProgress.
+  ///
+  /// In de, this message translates to:
+  /// **'Projektfortschritt'**
+  String get businessKpiProjectProgress;
+
+  /// No description provided for @businessKpiStrategyProgress.
+  ///
+  /// In de, this message translates to:
+  /// **'Strategiefortschritt'**
+  String get businessKpiStrategyProgress;
+
+  /// No description provided for @businessTimelineCategoryCompany.
+  ///
+  /// In de, this message translates to:
+  /// **'Firma'**
+  String get businessTimelineCategoryCompany;
+
+  /// No description provided for @businessTimelineCategoryWebsite.
+  ///
+  /// In de, this message translates to:
+  /// **'Website'**
+  String get businessTimelineCategoryWebsite;
+
+  /// No description provided for @businessTimelineCategoryBot.
+  ///
+  /// In de, this message translates to:
+  /// **'Bot'**
+  String get businessTimelineCategoryBot;
+
+  /// No description provided for @businessTimelineCategoryAudit.
+  ///
+  /// In de, this message translates to:
+  /// **'Audit'**
+  String get businessTimelineCategoryAudit;
+
+  /// No description provided for @businessTimelineCategoryKnowledge.
+  ///
+  /// In de, this message translates to:
+  /// **'Wissen'**
+  String get businessTimelineCategoryKnowledge;
+
+  /// No description provided for @businessTimelineCategoryReview.
+  ///
+  /// In de, this message translates to:
+  /// **'Review'**
+  String get businessTimelineCategoryReview;
+
+  /// No description provided for @businessTimelineCategoryMarketing.
+  ///
+  /// In de, this message translates to:
+  /// **'Marketing'**
+  String get businessTimelineCategoryMarketing;
+
+  /// No description provided for @businessTimelineCategoryStrategy.
+  ///
+  /// In de, this message translates to:
+  /// **'Strategie'**
+  String get businessTimelineCategoryStrategy;
+
+  /// No description provided for @businessTimelineCategorySources.
+  ///
+  /// In de, this message translates to:
+  /// **'Quellen'**
+  String get businessTimelineCategorySources;
+
+  /// No description provided for @businessTimelineCategoryProjectStatus.
+  ///
+  /// In de, this message translates to:
+  /// **'Projektstatus'**
+  String get businessTimelineCategoryProjectStatus;
+
+  /// No description provided for @businessEventCompanyCreated.
+  ///
+  /// In de, this message translates to:
+  /// **'Unternehmen angelegt'**
+  String get businessEventCompanyCreated;
+
+  /// No description provided for @businessEventWebsiteAdded.
+  ///
+  /// In de, this message translates to:
+  /// **'Website ergänzt'**
+  String get businessEventWebsiteAdded;
+
+  /// No description provided for @businessEventIntakeCompleted.
+  ///
+  /// In de, this message translates to:
+  /// **'Firmenaufnahme abgeschlossen'**
+  String get businessEventIntakeCompleted;
+
+  /// No description provided for @businessEventBotActivated.
+  ///
+  /// In de, this message translates to:
+  /// **'Bot aktiviert'**
+  String get businessEventBotActivated;
+
+  /// No description provided for @businessEventAuditImproved.
+  ///
+  /// In de, this message translates to:
+  /// **'Audit verbessert'**
+  String get businessEventAuditImproved;
+
+  /// No description provided for @businessEventKnowledgeAdded.
+  ///
+  /// In de, this message translates to:
+  /// **'Knowledge erweitert'**
+  String get businessEventKnowledgeAdded;
+
+  /// No description provided for @businessEventFaqAdded.
+  ///
+  /// In de, this message translates to:
+  /// **'Neue FAQ'**
+  String get businessEventFaqAdded;
+
+  /// No description provided for @businessEventReviewClosed.
+  ///
+  /// In de, this message translates to:
+  /// **'Review abgeschlossen'**
+  String get businessEventReviewClosed;
+
+  /// No description provided for @businessEventMarketingStarted.
+  ///
+  /// In de, this message translates to:
+  /// **'Marketingmaßnahme gestartet'**
+  String get businessEventMarketingStarted;
+
+  /// No description provided for @businessEventMarketingCompleted.
+  ///
+  /// In de, this message translates to:
+  /// **'Marketingmaßnahme abgeschlossen'**
+  String get businessEventMarketingCompleted;
+
+  /// No description provided for @businessEventStrategyChanged.
+  ///
+  /// In de, this message translates to:
+  /// **'Strategie geändert'**
+  String get businessEventStrategyChanged;
+
+  /// No description provided for @businessEventSourceAdded.
+  ///
+  /// In de, this message translates to:
+  /// **'Neue Quelle hinzugefügt'**
+  String get businessEventSourceAdded;
+
+  /// No description provided for @businessEventGoalAdded.
+  ///
+  /// In de, this message translates to:
+  /// **'Neues Ziel'**
+  String get businessEventGoalAdded;
+
+  /// No description provided for @businessEventProjectStatusImproved.
+  ///
+  /// In de, this message translates to:
+  /// **'Projektstatus verbessert'**
+  String get businessEventProjectStatusImproved;
+
+  /// No description provided for @businessHighlightBiggestProgress.
+  ///
+  /// In de, this message translates to:
+  /// **'Größter Fortschritt'**
+  String get businessHighlightBiggestProgress;
+
+  /// No description provided for @businessHighlightStrongestModule.
+  ///
+  /// In de, this message translates to:
+  /// **'Stärkstes Modul'**
+  String get businessHighlightStrongestModule;
+
+  /// No description provided for @businessHighlightLastImprovement.
+  ///
+  /// In de, this message translates to:
+  /// **'Letzte Verbesserung'**
+  String get businessHighlightLastImprovement;
+
+  /// No description provided for @businessHighlightOpenIssue.
+  ///
+  /// In de, this message translates to:
+  /// **'Offene Baustelle'**
+  String get businessHighlightOpenIssue;
+
+  /// No description provided for @businessHighlightNextChance.
+  ///
+  /// In de, this message translates to:
+  /// **'Nächste Chance'**
+  String get businessHighlightNextChance;
 }
 
 class _AppLocalizationsDelegate
