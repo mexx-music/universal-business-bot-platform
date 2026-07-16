@@ -19,14 +19,15 @@ import '../models/project_status.dart';
 import '../models/source_material.dart';
 import '../models/intake_session.dart';
 import '../models/intake_mapping_preview.dart';
+import '../repositories/local_workspace_repository.dart';
+import '../repositories/workspace_repository.dart';
 import '../services/intake_mapping_service.dart';
 import '../services/workspace_mutation_service.dart';
-import 'workspace_store.dart';
 
 enum CompanyProfileStatus { incomplete, partial, complete }
 
 class AppState extends ChangeNotifier {
-  final WorkspaceStore _workspaceStore;
+  final WorkspaceRepository _workspaceRepository;
   final WorkspaceMutationService _mutationService;
   final IntakeMappingService _intakeMappingService;
   final BusinessIntelligenceCalculator _businessIntelligenceCalculator;
@@ -36,7 +37,7 @@ class AppState extends ChangeNotifier {
   final DashboardMetricsCalculator _dashboardMetricsCalculator;
 
   AppState({
-    WorkspaceStore? workspaceStore,
+    WorkspaceRepository? workspaceRepository,
     WorkspaceMutationService mutationService = const WorkspaceMutationService(),
     IntakeMappingService intakeMappingService = const IntakeMappingService(),
     BusinessIntelligenceCalculator businessIntelligenceCalculator =
@@ -49,7 +50,7 @@ class AppState extends ChangeNotifier {
         const BusinessStrategyCalculator(),
     DashboardMetricsCalculator dashboardMetricsCalculator =
         const DashboardMetricsCalculator(),
-  }) : _workspaceStore = workspaceStore ?? WorkspaceStore(),
+  }) : _workspaceRepository = workspaceRepository ?? LocalWorkspaceRepository(),
        _mutationService = mutationService,
        _intakeMappingService = intakeMappingService,
        _businessIntelligenceCalculator = businessIntelligenceCalculator,
@@ -58,12 +59,12 @@ class AppState extends ChangeNotifier {
        _businessStrategyCalculator = businessStrategyCalculator,
        _dashboardMetricsCalculator = dashboardMetricsCalculator;
 
-  List<CompanyWorkspace> get companies => _workspaceStore.companies;
+  List<CompanyWorkspace> get companies => _workspaceRepository.companies;
 
-  String get selectedCompanyId => _workspaceStore.selectedCompanyId;
+  String get selectedCompanyId => _workspaceRepository.selectedCompanyId;
 
   CompanyWorkspace get selectedWorkspace {
-    return _workspaceStore.selectedWorkspace;
+    return _workspaceRepository.selectedWorkspace;
   }
 
   Company get selectedCompany => selectedWorkspace.company;
@@ -97,7 +98,7 @@ class AppState extends ChangeNotifier {
   IntakeSession? get intakeSession => selectedIntakeSession;
 
   void selectCompany(String companyId) {
-    if (_workspaceStore.selectCompany(companyId)) notifyListeners();
+    if (_workspaceRepository.selectCompany(companyId)) notifyListeners();
   }
 
   void updateCompany(Company updated) {
@@ -615,7 +616,7 @@ class AppState extends ChangeNotifier {
   }
 
   void _updateSelectedWorkspace(CompanyWorkspace updated) {
-    _workspaceStore.replaceSelectedWorkspace(updated);
+    _workspaceRepository.saveSelectedWorkspace(updated);
   }
 
   static AppState of(BuildContext context) {

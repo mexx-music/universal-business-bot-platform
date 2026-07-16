@@ -23,6 +23,7 @@ The current app includes:
 - Human Review workflow for open, reviewed, and closed bot logs
 - Sources overview grouped by knowledge-entry origin
 - Multi-company support with isolated local mock data per workspace
+- Local persistence: workspace data is stored in the current browser (IndexedDB) and survives reloads — device- and browser-bound, no cloud sync
 - German and English localization structure
 - Local demo data for HB Cure and SchnurrPurr
 
@@ -44,7 +45,7 @@ This MVP intentionally does not include:
 - Material 3
 - go_router
 - Flutter localizations / ARB files
-- Local in-memory mock state
+- Repository layer with local IndexedDB persistence (sembast) and in-memory fallback
 
 ## Web / PWA
 
@@ -92,7 +93,7 @@ The `scripts/prepare_cloudflare_pages.sh` step copies this file into `build/web`
 
 The current PWA preparation provides a web app manifest, app icons, standalone display metadata, and Flutter's generated service worker in release builds. After the first successful load, the app shell and static build assets can be available again depending on browser support and cache state.
 
-This does not add authentication, a backend, secure server-side tenancy, encrypted persistent customer storage, or device synchronization. The current MVP uses local in-memory state; browser reloads or restarts can reset data unless persistence is added later. Production customer data requires authentication, backend storage, and a database design.
+This does not add authentication, a backend, secure server-side tenancy, encrypted persistent customer storage, or device synchronization. Workspace data persists locally in the current browser (IndexedDB) and survives reloads; it remains bound to this device and browser profile and is lost when site data is cleared. Production customer data requires authentication, backend storage, and a database design.
 
 ## Status
 

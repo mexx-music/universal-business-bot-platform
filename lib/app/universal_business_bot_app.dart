@@ -2,16 +2,18 @@ import 'package:flutter/material.dart';
 import '../data/app_state.dart';
 import '../l10n/app_localizations.dart';
 import '../router/app_router.dart';
+import 'app_dependencies.dart';
 
 class UniversalBusinessApp extends StatelessWidget {
-  UniversalBusinessApp({super.key});
+  UniversalBusinessApp({super.key, AppDependencies? dependencies})
+    : _dependencies = dependencies ?? AppDependencies.local();
 
-  final _appState = AppState();
+  final AppDependencies _dependencies;
 
   @override
   Widget build(BuildContext context) {
     return AppStateScope(
-      notifier: _appState,
+      notifier: _dependencies.appState,
       child: MaterialApp.router(
         title: 'Universal Business Bot Platform',
         debugShowCheckedModeBanner: false,
