@@ -1,8 +1,10 @@
+import '../../models/action_record.dart';
 import '../../models/bot_configuration.dart';
 import '../../models/bot_question_log.dart';
 import '../../models/business_audit.dart';
 import '../../models/business_rules.dart';
 import '../../models/business_strategy.dart';
+import '../../models/companion_check_in.dart';
 import '../../models/company.dart';
 import '../../models/company_workspace.dart';
 import '../../models/intake_session.dart';
@@ -55,6 +57,13 @@ class WorkspaceCodec {
       'intakeSession': workspace.intakeSession == null
           ? null
           : _encodeIntakeSession(workspace.intakeSession!),
+      'actionRecords': [
+        for (final record in workspace.actionRecords)
+          _encodeActionRecord(record),
+      ],
+      'checkIns': [
+        for (final checkIn in workspace.checkIns) _encodeCheckIn(checkIn),
+      ],
     });
   }
 
@@ -94,6 +103,126 @@ class WorkspaceCodec {
       intakeSession: intakeJson is Map
           ? _decodeIntakeSession(intakeJson.cast<String, Object?>())
           : null,
+      // Added in schema version 2; absent in v1 data → empty history.
+      actionRecords: [
+        for (final item in _mapList(json, 'actionRecords'))
+          _decodeActionRecord(item),
+      ],
+      // Added in schema version 3; absent in older data → no check-ins yet.
+      checkIns: [
+        for (final item in _mapList(json, 'checkIns')) _decodeCheckIn(item),
+      ],
+    );
+  }
+
+  // --- CompanionCheckIn (companion rhythm) ---
+
+  static Map<String, Object?> _encodeCheckIn(CompanionCheckIn checkIn) {
+    return _clean({
+      'id': checkIn.id,
+      'workspaceId': checkIn.workspaceId,
+      'periodStart': checkIn.periodStart.toIso8601String(),
+      'periodEnd': checkIn.periodEnd.toIso8601String(),
+      'createdAt': checkIn.createdAt.toIso8601String(),
+      'completedAt': checkIn.completedAt?.toIso8601String(),
+      'status': checkIn.status.name,
+      'summary': checkIn.summary,
+      'completedActionIds': checkIn.completedActionIds,
+      'openActionIds': checkIn.openActionIds,
+      'ratedActionIds': checkIn.ratedActionIds,
+      'awaitingRatingActionIds': checkIn.awaitingRatingActionIds,
+      'positiveOutcomes': checkIn.positiveOutcomes,
+      'negativeOutcomes': checkIn.negativeOutcomes,
+      'lessonsLearned': checkIn.lessonsLearned,
+      'userNotes': checkIn.userNotes,
+      'nextActionIds': checkIn.nextActionIds,
+      'dataConfidence': checkIn.dataConfidence.name,
+      'needsHumanReview': checkIn.needsHumanReview,
+    });
+  }
+
+  static CompanionCheckIn _decodeCheckIn(Map<String, Object?> json) {
+    return CompanionCheckIn(
+      id: _string(json, 'id'),
+      workspaceId: _string(json, 'workspaceId'),
+      periodStart: _dateTime(json, 'periodStart'),
+      periodEnd: _dateTime(json, 'periodEnd'),
+      createdAt: _dateTime(json, 'createdAt'),
+      completedAt: _dateTimeOrNull(json, 'completedAt'),
+      status: _enum(CheckInStatus.values, json['status'], CheckInStatus.draft),
+      summary: _string(json, 'summary'),
+      completedActionIds: _stringList(json, 'completedActionIds'),
+      openActionIds: _stringList(json, 'openActionIds'),
+      ratedActionIds: _stringList(json, 'ratedActionIds'),
+      awaitingRatingActionIds: _stringList(json, 'awaitingRatingActionIds'),
+      positiveOutcomes: _stringList(json, 'positiveOutcomes'),
+      negativeOutcomes: _stringList(json, 'negativeOutcomes'),
+      lessonsLearned: _stringList(json, 'lessonsLearned'),
+      userNotes: _string(json, 'userNotes'),
+      nextActionIds: _stringList(json, 'nextActionIds'),
+      dataConfidence: _enum(
+        CheckInDataConfidence.values,
+        json['dataConfidence'],
+        CheckInDataConfidence.low,
+      ),
+      needsHumanReview: _bool(json, 'needsHumanReview', false),
+    );
+  }
+
+  // --- ActionRecord (company memory) ---
+
+  static Map<String, Object?> _encodeActionRecord(ActionRecord record) {
+    return _clean({
+      'id': record.id,
+      'actionType': record.actionType,
+      'titleSnapshot': record.titleSnapshot,
+      'descriptionSnapshot': record.descriptionSnapshot,
+      'status': record.status.name,
+      'createdAt': record.createdAt.toIso8601String(),
+      'acceptedAt': record.acceptedAt?.toIso8601String(),
+      'startedAt': record.startedAt?.toIso8601String(),
+      'completedAt': record.completedAt?.toIso8601String(),
+      'deferredUntil': record.deferredUntil?.toIso8601String(),
+      'declinedAt': record.declinedAt?.toIso8601String(),
+      'declineReason': record.declineReason,
+      'resultRating': record.resultRating?.name,
+      'resultNote': record.resultNote,
+      'expectedImpact': record.expectedImpact,
+      'actualOutcome': record.actualOutcome,
+      'repeatRequested': record.repeatRequested,
+      'relatedGoalIds': record.relatedGoalIds,
+      'sourceReasonKeys': record.sourceReasonKeys,
+    });
+  }
+
+  static ActionRecord _decodeActionRecord(Map<String, Object?> json) {
+    return ActionRecord(
+      id: _string(json, 'id'),
+      actionType: _string(json, 'actionType'),
+      titleSnapshot: _string(json, 'titleSnapshot'),
+      descriptionSnapshot: _string(json, 'descriptionSnapshot'),
+      status: _enum(
+        ActionRecordStatus.values,
+        json['status'],
+        ActionRecordStatus.suggested,
+      ),
+      createdAt: _dateTime(json, 'createdAt'),
+      acceptedAt: _dateTimeOrNull(json, 'acceptedAt'),
+      startedAt: _dateTimeOrNull(json, 'startedAt'),
+      completedAt: _dateTimeOrNull(json, 'completedAt'),
+      deferredUntil: _dateTimeOrNull(json, 'deferredUntil'),
+      declinedAt: _dateTimeOrNull(json, 'declinedAt'),
+      declineReason: _stringOrNull(json, 'declineReason'),
+      resultRating: _enumOrNull(
+        ActionResultRating.values,
+        json['resultRating'],
+      ),
+      resultNote: _stringOrNull(json, 'resultNote'),
+      expectedImpact: _string(json, 'expectedImpact'),
+      actualOutcome: _stringOrNull(json, 'actualOutcome'),
+      repeatRequested: _boolOrNull(json, 'repeatRequested'),
+      relatedGoalIds: _stringList(json, 'relatedGoalIds'),
+      sourceReasonKeys: _stringList(json, 'sourceReasonKeys'),
     );
   }
 

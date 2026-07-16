@@ -2957,4 +2957,284 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get businessHighlightNextChance => 'Nächste Chance';
+
+  @override
+  String get navNextActions => 'Nächste Schritte';
+
+  @override
+  String get nextActionsTitle => 'Meine nächsten Schritte';
+
+  @override
+  String get nextActionsIntro =>
+      'Das sind aktuell Ihre wichtigsten nächsten Schritte.';
+
+  @override
+  String get nextActionsEmpty =>
+      'Aktuell gibt es keine offenen Empfehlungen. Alle wichtigen Schritte sind erledigt oder in Umsetzung.';
+
+  @override
+  String get actionWhyNow => 'Warum jetzt?';
+
+  @override
+  String get actionEvidenceLabel => 'Datengrundlage';
+
+  @override
+  String get actionPriorityPrefix => 'Priorität';
+
+  @override
+  String get actionEffortPrefix => 'Aufwand';
+
+  @override
+  String get actionImpactPrefix => 'Nutzen';
+
+  @override
+  String get actionPriorityCritical => 'Kritisch';
+
+  @override
+  String get actionPriorityHigh => 'Hoch';
+
+  @override
+  String get actionPriorityMedium => 'Mittel';
+
+  @override
+  String get actionPriorityLow => 'Niedrig';
+
+  @override
+  String get actionLevelLow => 'gering';
+
+  @override
+  String get actionLevelMedium => 'mittel';
+
+  @override
+  String get actionLevelHigh => 'hoch';
+
+  @override
+  String get actionAccept => 'Annehmen';
+
+  @override
+  String get actionDefer => 'Später';
+
+  @override
+  String get actionDecline => 'Ablehnen';
+
+  @override
+  String get actionStart => 'Als begonnen markieren';
+
+  @override
+  String get actionComplete => 'Als erledigt markieren';
+
+  @override
+  String get actionSave => 'Speichern';
+
+  @override
+  String get deferDialogTitle => 'Wie lange zurückstellen?';
+
+  @override
+  String get deferOneWeek => '1 Woche';
+
+  @override
+  String get deferOneMonth => '1 Monat';
+
+  @override
+  String get deferThreeMonths => '3 Monate';
+
+  @override
+  String get declineDialogTitle => 'Empfehlung ablehnen';
+
+  @override
+  String get declineReasonLabel => 'Grund (optional)';
+
+  @override
+  String get completeDialogTitle => 'Maßnahme abschließen';
+
+  @override
+  String get completeDialogQuestion => 'Hat die Maßnahme geholfen?';
+
+  @override
+  String get ratingHelpedALot => 'Deutlich geholfen';
+
+  @override
+  String get ratingHelpedSomewhat => 'Etwas geholfen';
+
+  @override
+  String get ratingNoEffect => 'Kein erkennbarer Effekt';
+
+  @override
+  String get ratingNegative => 'Negativer Effekt';
+
+  @override
+  String get ratingNotYet => 'Noch nicht bewertbar';
+
+  @override
+  String get completeWhatHappened => 'Was ist passiert? (optional)';
+
+  @override
+  String get completeMetricChanged =>
+      'Welche Kennzahl hat sich verändert? (optional)';
+
+  @override
+  String get completeRepeatQuestion => 'Diese Maßnahme später wiederholen?';
+
+  @override
+  String get inProgressSectionTitle => 'In Umsetzung';
+
+  @override
+  String get awaitingRatingSectionTitle => 'Bewertung ausstehend';
+
+  @override
+  String get rateNow => 'Jetzt bewerten';
+
+  @override
+  String get historyTitle => 'Maßnahmenhistorie';
+
+  @override
+  String get historyEmpty =>
+      'Noch keine Entscheidungen erfasst. Sobald Sie Empfehlungen annehmen oder ablehnen, entsteht hier Ihr Unternehmensgedächtnis.';
+
+  @override
+  String get actionStatusSuggested => 'Vorgeschlagen';
+
+  @override
+  String get actionStatusAccepted => 'Angenommen';
+
+  @override
+  String get actionStatusInProgress => 'In Umsetzung';
+
+  @override
+  String get actionStatusCompleted => 'Erledigt';
+
+  @override
+  String get actionStatusDeferred => 'Zurückgestellt';
+
+  @override
+  String get actionStatusDeclined => 'Abgelehnt';
+
+  @override
+  String get dashboardNextActionsTitle => 'Nächste Schritte';
+
+  @override
+  String get dashboardTopActionLabel => 'Wichtigste Maßnahme';
+
+  @override
+  String get dashboardNoTopAction => 'Keine offene Empfehlung';
+
+  @override
+  String get dashboardInProgressLabel => 'In Umsetzung';
+
+  @override
+  String get dashboardAwaitingRatingLabel => 'Zu bewerten';
+
+  @override
+  String get dashboardOpenNextActions => 'Nächste Schritte öffnen';
+
+  @override
+  String get navCheckIn => 'Monats-Check-in';
+
+  @override
+  String get checkInTitle => 'Monats-Check-in';
+
+  @override
+  String get checkInIntro =>
+      'Ein kurzer Rückblick, ehrliche Ergebnisse und Ihre nächsten Schritte – in wenigen Minuten.';
+
+  @override
+  String get checkInStart => 'Check-in starten';
+
+  @override
+  String get checkInSkip => 'Check-in überspringen';
+
+  @override
+  String get checkInLastLabel => 'Letzter Check-in';
+
+  @override
+  String get checkInNextLabel => 'Nächster empfohlener Check-in';
+
+  @override
+  String get checkInNever => 'Noch kein Check-in durchgeführt';
+
+  @override
+  String get checkInStep1 => 'Seit dem letzten Check-in';
+
+  @override
+  String get checkInStep2 => 'Offene Bewertungen nachholen';
+
+  @override
+  String get checkInStep3 => 'Was hat geholfen – was nicht?';
+
+  @override
+  String get checkInStep4 => 'Eigene Beobachtungen';
+
+  @override
+  String get checkInStep5 => 'Die nächsten drei Schritte';
+
+  @override
+  String get checkInStep6 => 'Abschließen';
+
+  @override
+  String get checkInNoOpenRatings =>
+      'Keine offenen Bewertungen – alles ist bewertet.';
+
+  @override
+  String get checkInPositiveTitle => 'Was hat geholfen?';
+
+  @override
+  String get checkInNegativeTitle => 'Was hat nicht geholfen?';
+
+  @override
+  String get checkInNoOutcomes =>
+      'Für diesen Zeitraum liegen noch keine bewerteten Ergebnisse vor.';
+
+  @override
+  String get checkInCausalityNote =>
+      'Hinweis: Diese Angaben sind gemeldete Beobachtungen – kein Beweis für Ursache und Wirkung.';
+
+  @override
+  String get checkInLessonsTitle => 'Was haben wir gelernt?';
+
+  @override
+  String get checkInNoLessons => 'Noch keine Erkenntnisse in diesem Zeitraum.';
+
+  @override
+  String get checkInNotesLabel => 'Ihre Beobachtungen (optional)';
+
+  @override
+  String get checkInNextStepsIntro =>
+      'Das sind die nächsten Schritte für Ihr Unternehmen:';
+
+  @override
+  String get checkInConfidenceLabel => 'Datenbasis';
+
+  @override
+  String get checkInConfidenceLow => 'niedrig';
+
+  @override
+  String get checkInConfidenceMedium => 'mittel';
+
+  @override
+  String get checkInConfidenceHigh => 'hoch';
+
+  @override
+  String get checkInHumanReviewHint =>
+      'Eine kurze menschliche Prüfung wäre sinnvoll.';
+
+  @override
+  String get checkInComplete => 'Check-in abschließen';
+
+  @override
+  String get checkInHistoryTitle => 'Frühere Check-ins';
+
+  @override
+  String get checkInStatusActive => 'In Bearbeitung';
+
+  @override
+  String get checkInStatusCompleted => 'Abgeschlossen';
+
+  @override
+  String get checkInStatusSkipped => 'Übersprungen';
+
+  @override
+  String get dashboardCheckInTitle => 'Monats-Check-in';
+
+  @override
+  String get dashboardStartCheckIn => 'Check-in starten';
 }

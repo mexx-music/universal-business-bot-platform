@@ -2,7 +2,9 @@ import 'package:go_router/go_router.dart';
 import '../widgets/app_shell.dart';
 import '../screens/public/landing_screen.dart';
 import '../screens/public/companies_screen.dart';
+import '../screens/check_in/check_in_screen.dart';
 import '../screens/dashboard/dashboard_screen.dart';
+import '../screens/next_actions/next_actions_screen.dart';
 import '../screens/project_status/project_status_screen.dart';
 import '../screens/business_intelligence/business_intelligence_screen.dart';
 import '../screens/business_strategy/business_strategy_screen.dart';
@@ -32,6 +34,14 @@ final appRouter = GoRouter(
         GoRoute(
           path: '/dashboard',
           builder: (context, state) => const DashboardScreen(),
+        ),
+        GoRoute(
+          path: '/next-actions',
+          builder: (context, state) => const NextActionsScreen(),
+        ),
+        GoRoute(
+          path: '/check-in',
+          builder: (context, state) => const CheckInScreen(),
         ),
         GoRoute(
           path: '/project-status',

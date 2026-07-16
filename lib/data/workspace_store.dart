@@ -80,6 +80,8 @@ class WorkspaceStore {
             marketingActions: List.from(workspace.marketingActions),
             businessGoals: List.from(workspace.businessGoals),
             intakeSession: workspace.intakeSession,
+            actionRecords: List.from(workspace.actionRecords),
+            checkIns: List.from(workspace.checkIns),
           ),
         )
         .toList();

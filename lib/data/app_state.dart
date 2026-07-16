@@ -18,9 +18,15 @@ import '../models/bot_question_log.dart';
 import '../models/project_status.dart';
 import '../models/source_material.dart';
 import '../models/intake_session.dart';
+import '../models/action_record.dart';
+import '../models/companion_check_in.dart';
 import '../models/intake_mapping_preview.dart';
+import '../recommendations/next_best_action.dart';
+import '../recommendations/next_best_action_engine.dart';
 import '../repositories/local_workspace_repository.dart';
 import '../repositories/workspace_repository.dart';
+import '../services/action_lifecycle_service.dart';
+import '../services/check_in_service.dart';
 import '../services/intake_mapping_service.dart';
 import '../services/workspace_mutation_service.dart';
 
@@ -30,6 +36,9 @@ class AppState extends ChangeNotifier {
   final WorkspaceRepository _workspaceRepository;
   final WorkspaceMutationService _mutationService;
   final IntakeMappingService _intakeMappingService;
+  final ActionLifecycleService _actionLifecycleService;
+  final NextBestActionEngine _nextBestActionEngine;
+  final CheckInService _checkInService;
   final BusinessIntelligenceCalculator _businessIntelligenceCalculator;
   final MarketingStrategyCalculator _marketingStrategyCalculator;
   final ProjectStatusCalculator _projectStatusCalculator;
@@ -40,6 +49,10 @@ class AppState extends ChangeNotifier {
     WorkspaceRepository? workspaceRepository,
     WorkspaceMutationService mutationService = const WorkspaceMutationService(),
     IntakeMappingService intakeMappingService = const IntakeMappingService(),
+    ActionLifecycleService actionLifecycleService =
+        const ActionLifecycleService(),
+    NextBestActionEngine nextBestActionEngine = const NextBestActionEngine(),
+    CheckInService checkInService = const CheckInService(),
     BusinessIntelligenceCalculator businessIntelligenceCalculator =
         const BusinessIntelligenceCalculator(),
     MarketingStrategyCalculator marketingStrategyCalculator =
@@ -53,6 +66,9 @@ class AppState extends ChangeNotifier {
   }) : _workspaceRepository = workspaceRepository ?? LocalWorkspaceRepository(),
        _mutationService = mutationService,
        _intakeMappingService = intakeMappingService,
+       _actionLifecycleService = actionLifecycleService,
+       _nextBestActionEngine = nextBestActionEngine,
+       _checkInService = checkInService,
        _businessIntelligenceCalculator = businessIntelligenceCalculator,
        _marketingStrategyCalculator = marketingStrategyCalculator,
        _projectStatusCalculator = projectStatusCalculator,
@@ -252,6 +268,175 @@ class AppState extends ChangeNotifier {
         chatUpdatedAt: now,
       ),
     );
+  }
+
+  // --- Next Best Actions & company memory ---
+
+  NextBestActionPlan get nextBestActionPlan =>
+      _nextBestActionEngine.recommendPlan(selectedWorkspace);
+
+  List<NextBestAction> get nextBestActions => nextBestActionPlan.actions;
+
+  List<ActionRecord> get actionRecords => selectedWorkspace.actionRecords;
+
+  List<ActionRecord> get inProgressActionRecords => actionRecords
+      .where((record) => record.status == ActionRecordStatus.inProgress)
+      .toList();
+
+  List<ActionRecord> get actionRecordsAwaitingRating =>
+      actionRecords.where((record) => record.awaitsRating).toList();
+
+  void acceptNextAction(NextBestAction action) {
+    _updateSelectedWorkspace(
+      _actionLifecycleService.acceptAction(selectedWorkspace, action),
+    );
+    notifyListeners();
+  }
+
+  void deferNextAction(NextBestAction action, {required DateTime until}) {
+    _updateSelectedWorkspace(
+      _actionLifecycleService.deferAction(
+        selectedWorkspace,
+        action,
+        until: until,
+      ),
+    );
+    notifyListeners();
+  }
+
+  void declineNextAction(NextBestAction action, {String? reason}) {
+    _updateSelectedWorkspace(
+      _actionLifecycleService.declineAction(
+        selectedWorkspace,
+        action,
+        reason: reason,
+      ),
+    );
+    notifyListeners();
+  }
+
+  void startNextAction(NextBestAction action) {
+    _updateSelectedWorkspace(
+      _actionLifecycleService.startAction(selectedWorkspace, action),
+    );
+    notifyListeners();
+  }
+
+  void completeNextAction(
+    NextBestAction action, {
+    ActionResultRating? rating,
+    String? resultNote,
+    String? actualOutcome,
+    bool? repeatRequested,
+  }) {
+    _updateSelectedWorkspace(
+      _actionLifecycleService.completeAction(
+        selectedWorkspace,
+        action,
+        rating: rating,
+        resultNote: resultNote,
+        actualOutcome: actualOutcome,
+        repeatRequested: repeatRequested,
+      ),
+    );
+    notifyListeners();
+  }
+
+  void completeActionRecord(
+    String recordId, {
+    ActionResultRating? rating,
+    String? resultNote,
+    String? actualOutcome,
+    bool? repeatRequested,
+  }) {
+    _updateSelectedWorkspace(
+      _actionLifecycleService.completeRecord(
+        selectedWorkspace,
+        recordId,
+        rating: rating,
+        resultNote: resultNote,
+        actualOutcome: actualOutcome,
+        repeatRequested: repeatRequested,
+      ),
+    );
+    notifyListeners();
+  }
+
+  void rateActionRecord(
+    String recordId, {
+    required ActionResultRating rating,
+    String? resultNote,
+    String? actualOutcome,
+    bool? repeatRequested,
+  }) {
+    _updateSelectedWorkspace(
+      _actionLifecycleService.rateRecord(
+        selectedWorkspace,
+        recordId,
+        rating: rating,
+        resultNote: resultNote,
+        actualOutcome: actualOutcome,
+        repeatRequested: repeatRequested,
+      ),
+    );
+    notifyListeners();
+  }
+
+  // --- Companion check-in rhythm ---
+
+  List<CompanionCheckIn> get checkIns => selectedWorkspace.checkIns;
+
+  CompanionCheckIn? get activeCheckIn =>
+      _checkInService.activeCheckIn(selectedWorkspace);
+
+  CompanionCheckIn? get lastCompletedCheckIn =>
+      _checkInService.lastCompletedCheckIn(selectedWorkspace);
+
+  /// Live content of the active check-in (current data, same period).
+  CompanionCheckIn? get activeCheckInPreview {
+    final active = activeCheckIn;
+    if (active == null) return null;
+    return _checkInService.preview(selectedWorkspace, active);
+  }
+
+  DateTime get nextRecommendedCheckIn =>
+      _checkInService.nextRecommendedCheckIn(selectedWorkspace);
+
+  void startCheckIn() {
+    final updated = _checkInService.startCheckIn(selectedWorkspace);
+    if (identical(updated, selectedWorkspace)) return;
+    _updateSelectedWorkspace(updated);
+    notifyListeners();
+  }
+
+  void updateCheckInNotes(String checkInId, String notes) {
+    _updateSelectedWorkspace(
+      _checkInService.updateUserNotes(selectedWorkspace, checkInId, notes),
+    );
+    notifyListeners();
+  }
+
+  void completeCheckIn(
+    String checkInId, {
+    String? userNotes,
+    List<String>? confirmedNextActionIds,
+  }) {
+    _updateSelectedWorkspace(
+      _checkInService.completeCheckIn(
+        selectedWorkspace,
+        checkInId,
+        userNotes: userNotes,
+        confirmedNextActionIds: confirmedNextActionIds,
+      ),
+    );
+    notifyListeners();
+  }
+
+  void skipCheckIn(String checkInId) {
+    _updateSelectedWorkspace(
+      _checkInService.skipCheckIn(selectedWorkspace, checkInId),
+    );
+    notifyListeners();
   }
 
   IntakeMappingPreview generateIntakeMappingPreview() {

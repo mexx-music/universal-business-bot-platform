@@ -22,6 +22,16 @@ const _navItems = [
     path: '/dashboard',
   ),
   _NavItem(
+    icon: Icons.checklist_outlined,
+    selectedIcon: Icons.checklist,
+    path: '/next-actions',
+  ),
+  _NavItem(
+    icon: Icons.event_available_outlined,
+    selectedIcon: Icons.event_available,
+    path: '/check-in',
+  ),
+  _NavItem(
     icon: Icons.route_outlined,
     selectedIcon: Icons.route,
     path: '/project-status',
@@ -85,23 +95,27 @@ const _navItems = [
 
 int _indexFromLocation(String location) {
   if (location.startsWith('/dashboard')) return 0;
-  if (location.startsWith('/project-status')) return 1;
-  if (location.startsWith('/business-intelligence')) return 2;
-  if (location.startsWith('/business-strategy')) return 3;
-  if (location.startsWith('/marketing-strategy')) return 4;
-  if (location.startsWith('/intake')) return 5;
-  if (location.startsWith('/company')) return 6;
-  if (location.startsWith('/audit')) return 7;
-  if (location.startsWith('/knowledge')) return 8;
-  if (location.startsWith('/bot-test')) return 9;
-  if (location.startsWith('/bot-settings')) return 10;
-  if (location.startsWith('/sources')) return 11;
-  if (location.startsWith('/review')) return 12;
+  if (location.startsWith('/next-actions')) return 1;
+  if (location.startsWith('/check-in')) return 2;
+  if (location.startsWith('/project-status')) return 3;
+  if (location.startsWith('/business-intelligence')) return 4;
+  if (location.startsWith('/business-strategy')) return 5;
+  if (location.startsWith('/marketing-strategy')) return 6;
+  if (location.startsWith('/intake')) return 7;
+  if (location.startsWith('/company')) return 8;
+  if (location.startsWith('/audit')) return 9;
+  if (location.startsWith('/knowledge')) return 10;
+  if (location.startsWith('/bot-test')) return 11;
+  if (location.startsWith('/bot-settings')) return 12;
+  if (location.startsWith('/sources')) return 13;
+  if (location.startsWith('/review')) return 14;
   return 0;
 }
 
 List<String> _navLabels(AppLocalizations l) => [
   l.navDashboard,
+  l.navNextActions,
+  l.navCheckIn,
   l.navProjectStatus,
   l.navBusinessIntelligence,
   l.navBusinessStrategy,

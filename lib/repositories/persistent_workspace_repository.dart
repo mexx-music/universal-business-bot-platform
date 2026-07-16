@@ -35,7 +35,11 @@ class SchemaVersionException implements Exception {
 /// company id), plus a single `meta` record holding `schemaVersion` and
 /// `selectedCompanyId`. Future migrations hook into [_migrateIfNeeded].
 class PersistentWorkspaceRepository implements WorkspaceRepository {
-  static const int schemaVersion = 1;
+  /// v1: initial layout. v2: workspaces carry `actionRecords` (company
+  /// memory). v3: workspaces carry `checkIns` (companion rhythm). Older
+  /// data loads unchanged because the codec treats missing fields as empty
+  /// histories; migrations only bump the stored version.
+  static const int schemaVersion = 3;
   static const String defaultDbName = 'universalbusiness.db';
 
   static final StoreRef<String, Map<String, Object?>> _workspacesStore =
@@ -171,12 +175,18 @@ class PersistentWorkspaceRepository implements WorkspaceRepository {
     }
   }
 
-  /// Placeholder for future schema migrations (`storedVersion` <
-  /// [schemaVersion]). With only schema version 1 in existence there is
-  /// nothing to do yet.
+  /// Runs pending schema migrations (`storedVersion` < [schemaVersion])
+  /// and stamps the meta record with the new version.
+  ///
+  /// v1 → v2 (`actionRecords`) and v2 → v3 (`checkIns`) added fields to the
+  /// workspace payload. No data transformation is needed — the codec reads
+  /// missing fields as empty histories — so the migrations only bump the
+  /// stored version.
   static Future<void> _migrateIfNeeded(Database db, int storedVersion) async {
     if (storedVersion >= schemaVersion) return;
-    // Future migrations run here, step by step, then update the meta record.
+    final meta = await _metaRecord.get(db);
+    if (meta == null) return;
+    await _metaRecord.put(db, {...meta, 'schemaVersion': schemaVersion});
   }
 
   static Map<String, Object?> _metaJson(String selectedCompanyId) => {

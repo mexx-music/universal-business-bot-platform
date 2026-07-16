@@ -2942,4 +2942,281 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get businessHighlightNextChance => 'Next opportunity';
+
+  @override
+  String get navNextActions => 'Next Steps';
+
+  @override
+  String get nextActionsTitle => 'My Next Steps';
+
+  @override
+  String get nextActionsIntro =>
+      'These are currently your most important next steps.';
+
+  @override
+  String get nextActionsEmpty =>
+      'There are no open recommendations right now. All important steps are done or in progress.';
+
+  @override
+  String get actionWhyNow => 'Why now?';
+
+  @override
+  String get actionEvidenceLabel => 'Data basis';
+
+  @override
+  String get actionPriorityPrefix => 'Priority';
+
+  @override
+  String get actionEffortPrefix => 'Effort';
+
+  @override
+  String get actionImpactPrefix => 'Benefit';
+
+  @override
+  String get actionPriorityCritical => 'Critical';
+
+  @override
+  String get actionPriorityHigh => 'High';
+
+  @override
+  String get actionPriorityMedium => 'Medium';
+
+  @override
+  String get actionPriorityLow => 'Low';
+
+  @override
+  String get actionLevelLow => 'low';
+
+  @override
+  String get actionLevelMedium => 'medium';
+
+  @override
+  String get actionLevelHigh => 'high';
+
+  @override
+  String get actionAccept => 'Accept';
+
+  @override
+  String get actionDefer => 'Later';
+
+  @override
+  String get actionDecline => 'Decline';
+
+  @override
+  String get actionStart => 'Mark as started';
+
+  @override
+  String get actionComplete => 'Mark as done';
+
+  @override
+  String get actionSave => 'Save';
+
+  @override
+  String get deferDialogTitle => 'Defer for how long?';
+
+  @override
+  String get deferOneWeek => '1 week';
+
+  @override
+  String get deferOneMonth => '1 month';
+
+  @override
+  String get deferThreeMonths => '3 months';
+
+  @override
+  String get declineDialogTitle => 'Decline recommendation';
+
+  @override
+  String get declineReasonLabel => 'Reason (optional)';
+
+  @override
+  String get completeDialogTitle => 'Complete action';
+
+  @override
+  String get completeDialogQuestion => 'Did this action help?';
+
+  @override
+  String get ratingHelpedALot => 'Helped a lot';
+
+  @override
+  String get ratingHelpedSomewhat => 'Helped somewhat';
+
+  @override
+  String get ratingNoEffect => 'No noticeable effect';
+
+  @override
+  String get ratingNegative => 'Negative effect';
+
+  @override
+  String get ratingNotYet => 'Not ratable yet';
+
+  @override
+  String get completeWhatHappened => 'What happened? (optional)';
+
+  @override
+  String get completeMetricChanged => 'Which metric changed? (optional)';
+
+  @override
+  String get completeRepeatQuestion => 'Repeat this action later?';
+
+  @override
+  String get inProgressSectionTitle => 'In progress';
+
+  @override
+  String get awaitingRatingSectionTitle => 'Awaiting rating';
+
+  @override
+  String get rateNow => 'Rate now';
+
+  @override
+  String get historyTitle => 'Action history';
+
+  @override
+  String get historyEmpty =>
+      'No decisions recorded yet. As soon as you accept or decline recommendations, your company memory grows here.';
+
+  @override
+  String get actionStatusSuggested => 'Suggested';
+
+  @override
+  String get actionStatusAccepted => 'Accepted';
+
+  @override
+  String get actionStatusInProgress => 'In progress';
+
+  @override
+  String get actionStatusCompleted => 'Done';
+
+  @override
+  String get actionStatusDeferred => 'Deferred';
+
+  @override
+  String get actionStatusDeclined => 'Declined';
+
+  @override
+  String get dashboardNextActionsTitle => 'Next Steps';
+
+  @override
+  String get dashboardTopActionLabel => 'Most important action';
+
+  @override
+  String get dashboardNoTopAction => 'No open recommendation';
+
+  @override
+  String get dashboardInProgressLabel => 'In progress';
+
+  @override
+  String get dashboardAwaitingRatingLabel => 'To rate';
+
+  @override
+  String get dashboardOpenNextActions => 'Open next steps';
+
+  @override
+  String get navCheckIn => 'Monthly Check-in';
+
+  @override
+  String get checkInTitle => 'Monthly Check-in';
+
+  @override
+  String get checkInIntro =>
+      'A short review, honest results and your next steps – in a few minutes.';
+
+  @override
+  String get checkInStart => 'Start check-in';
+
+  @override
+  String get checkInSkip => 'Skip check-in';
+
+  @override
+  String get checkInLastLabel => 'Last check-in';
+
+  @override
+  String get checkInNextLabel => 'Next recommended check-in';
+
+  @override
+  String get checkInNever => 'No check-in completed yet';
+
+  @override
+  String get checkInStep1 => 'Since the last check-in';
+
+  @override
+  String get checkInStep2 => 'Catch up on open ratings';
+
+  @override
+  String get checkInStep3 => 'What helped – what didn\'t?';
+
+  @override
+  String get checkInStep4 => 'Your own observations';
+
+  @override
+  String get checkInStep5 => 'The next three steps';
+
+  @override
+  String get checkInStep6 => 'Finish';
+
+  @override
+  String get checkInNoOpenRatings => 'No open ratings – everything is rated.';
+
+  @override
+  String get checkInPositiveTitle => 'What helped?';
+
+  @override
+  String get checkInNegativeTitle => 'What didn\'t help?';
+
+  @override
+  String get checkInNoOutcomes => 'No rated results for this period yet.';
+
+  @override
+  String get checkInCausalityNote =>
+      'Note: these statements are reported observations – not proof of cause and effect.';
+
+  @override
+  String get checkInLessonsTitle => 'What did we learn?';
+
+  @override
+  String get checkInNoLessons => 'No lessons recorded for this period yet.';
+
+  @override
+  String get checkInNotesLabel => 'Your observations (optional)';
+
+  @override
+  String get checkInNextStepsIntro =>
+      'These are the next steps for your business:';
+
+  @override
+  String get checkInConfidenceLabel => 'Data basis';
+
+  @override
+  String get checkInConfidenceLow => 'low';
+
+  @override
+  String get checkInConfidenceMedium => 'medium';
+
+  @override
+  String get checkInConfidenceHigh => 'high';
+
+  @override
+  String get checkInHumanReviewHint =>
+      'A short human review would be sensible.';
+
+  @override
+  String get checkInComplete => 'Complete check-in';
+
+  @override
+  String get checkInHistoryTitle => 'Previous check-ins';
+
+  @override
+  String get checkInStatusActive => 'In progress';
+
+  @override
+  String get checkInStatusCompleted => 'Completed';
+
+  @override
+  String get checkInStatusSkipped => 'Skipped';
+
+  @override
+  String get dashboardCheckInTitle => 'Monthly Check-in';
+
+  @override
+  String get dashboardStartCheckIn => 'Start check-in';
 }

@@ -1,4 +1,6 @@
+import 'action_record.dart';
 import 'business_audit.dart';
+import 'companion_check_in.dart';
 import 'business_rules.dart';
 import 'bot_configuration.dart';
 import 'bot_question_log.dart';
@@ -23,6 +25,12 @@ class CompanyWorkspace {
   final List<BusinessGoal> businessGoals;
   final IntakeSession? intakeSession;
 
+  /// Company memory: persisted decisions about recommended actions.
+  final List<ActionRecord> actionRecords;
+
+  /// Company memory: persisted check-in moments (companion rhythm).
+  final List<CompanionCheckIn> checkIns;
+
   const CompanyWorkspace({
     required this.company,
     required this.products,
@@ -35,6 +43,8 @@ class CompanyWorkspace {
     this.marketingActions = const [],
     this.businessGoals = const [],
     this.intakeSession,
+    this.actionRecords = const [],
+    this.checkIns = const [],
   });
 
   CompanyWorkspace copyWith({
@@ -49,6 +59,8 @@ class CompanyWorkspace {
     List<MarketingAction>? marketingActions,
     List<BusinessGoal>? businessGoals,
     IntakeSession? intakeSession,
+    List<ActionRecord>? actionRecords,
+    List<CompanionCheckIn>? checkIns,
   }) {
     return CompanyWorkspace(
       company: company ?? this.company,
@@ -62,6 +74,8 @@ class CompanyWorkspace {
       marketingActions: marketingActions ?? this.marketingActions,
       businessGoals: businessGoals ?? this.businessGoals,
       intakeSession: intakeSession ?? this.intakeSession,
+      actionRecords: actionRecords ?? this.actionRecords,
+      checkIns: checkIns ?? this.checkIns,
     );
   }
 }

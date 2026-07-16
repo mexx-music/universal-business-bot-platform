@@ -5293,6 +5293,546 @@ abstract class AppLocalizations {
   /// In de, this message translates to:
   /// **'Nächste Chance'**
   String get businessHighlightNextChance;
+
+  /// No description provided for @navNextActions.
+  ///
+  /// In de, this message translates to:
+  /// **'Nächste Schritte'**
+  String get navNextActions;
+
+  /// No description provided for @nextActionsTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Meine nächsten Schritte'**
+  String get nextActionsTitle;
+
+  /// No description provided for @nextActionsIntro.
+  ///
+  /// In de, this message translates to:
+  /// **'Das sind aktuell Ihre wichtigsten nächsten Schritte.'**
+  String get nextActionsIntro;
+
+  /// No description provided for @nextActionsEmpty.
+  ///
+  /// In de, this message translates to:
+  /// **'Aktuell gibt es keine offenen Empfehlungen. Alle wichtigen Schritte sind erledigt oder in Umsetzung.'**
+  String get nextActionsEmpty;
+
+  /// No description provided for @actionWhyNow.
+  ///
+  /// In de, this message translates to:
+  /// **'Warum jetzt?'**
+  String get actionWhyNow;
+
+  /// No description provided for @actionEvidenceLabel.
+  ///
+  /// In de, this message translates to:
+  /// **'Datengrundlage'**
+  String get actionEvidenceLabel;
+
+  /// No description provided for @actionPriorityPrefix.
+  ///
+  /// In de, this message translates to:
+  /// **'Priorität'**
+  String get actionPriorityPrefix;
+
+  /// No description provided for @actionEffortPrefix.
+  ///
+  /// In de, this message translates to:
+  /// **'Aufwand'**
+  String get actionEffortPrefix;
+
+  /// No description provided for @actionImpactPrefix.
+  ///
+  /// In de, this message translates to:
+  /// **'Nutzen'**
+  String get actionImpactPrefix;
+
+  /// No description provided for @actionPriorityCritical.
+  ///
+  /// In de, this message translates to:
+  /// **'Kritisch'**
+  String get actionPriorityCritical;
+
+  /// No description provided for @actionPriorityHigh.
+  ///
+  /// In de, this message translates to:
+  /// **'Hoch'**
+  String get actionPriorityHigh;
+
+  /// No description provided for @actionPriorityMedium.
+  ///
+  /// In de, this message translates to:
+  /// **'Mittel'**
+  String get actionPriorityMedium;
+
+  /// No description provided for @actionPriorityLow.
+  ///
+  /// In de, this message translates to:
+  /// **'Niedrig'**
+  String get actionPriorityLow;
+
+  /// No description provided for @actionLevelLow.
+  ///
+  /// In de, this message translates to:
+  /// **'gering'**
+  String get actionLevelLow;
+
+  /// No description provided for @actionLevelMedium.
+  ///
+  /// In de, this message translates to:
+  /// **'mittel'**
+  String get actionLevelMedium;
+
+  /// No description provided for @actionLevelHigh.
+  ///
+  /// In de, this message translates to:
+  /// **'hoch'**
+  String get actionLevelHigh;
+
+  /// No description provided for @actionAccept.
+  ///
+  /// In de, this message translates to:
+  /// **'Annehmen'**
+  String get actionAccept;
+
+  /// No description provided for @actionDefer.
+  ///
+  /// In de, this message translates to:
+  /// **'Später'**
+  String get actionDefer;
+
+  /// No description provided for @actionDecline.
+  ///
+  /// In de, this message translates to:
+  /// **'Ablehnen'**
+  String get actionDecline;
+
+  /// No description provided for @actionStart.
+  ///
+  /// In de, this message translates to:
+  /// **'Als begonnen markieren'**
+  String get actionStart;
+
+  /// No description provided for @actionComplete.
+  ///
+  /// In de, this message translates to:
+  /// **'Als erledigt markieren'**
+  String get actionComplete;
+
+  /// No description provided for @actionSave.
+  ///
+  /// In de, this message translates to:
+  /// **'Speichern'**
+  String get actionSave;
+
+  /// No description provided for @deferDialogTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Wie lange zurückstellen?'**
+  String get deferDialogTitle;
+
+  /// No description provided for @deferOneWeek.
+  ///
+  /// In de, this message translates to:
+  /// **'1 Woche'**
+  String get deferOneWeek;
+
+  /// No description provided for @deferOneMonth.
+  ///
+  /// In de, this message translates to:
+  /// **'1 Monat'**
+  String get deferOneMonth;
+
+  /// No description provided for @deferThreeMonths.
+  ///
+  /// In de, this message translates to:
+  /// **'3 Monate'**
+  String get deferThreeMonths;
+
+  /// No description provided for @declineDialogTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Empfehlung ablehnen'**
+  String get declineDialogTitle;
+
+  /// No description provided for @declineReasonLabel.
+  ///
+  /// In de, this message translates to:
+  /// **'Grund (optional)'**
+  String get declineReasonLabel;
+
+  /// No description provided for @completeDialogTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Maßnahme abschließen'**
+  String get completeDialogTitle;
+
+  /// No description provided for @completeDialogQuestion.
+  ///
+  /// In de, this message translates to:
+  /// **'Hat die Maßnahme geholfen?'**
+  String get completeDialogQuestion;
+
+  /// No description provided for @ratingHelpedALot.
+  ///
+  /// In de, this message translates to:
+  /// **'Deutlich geholfen'**
+  String get ratingHelpedALot;
+
+  /// No description provided for @ratingHelpedSomewhat.
+  ///
+  /// In de, this message translates to:
+  /// **'Etwas geholfen'**
+  String get ratingHelpedSomewhat;
+
+  /// No description provided for @ratingNoEffect.
+  ///
+  /// In de, this message translates to:
+  /// **'Kein erkennbarer Effekt'**
+  String get ratingNoEffect;
+
+  /// No description provided for @ratingNegative.
+  ///
+  /// In de, this message translates to:
+  /// **'Negativer Effekt'**
+  String get ratingNegative;
+
+  /// No description provided for @ratingNotYet.
+  ///
+  /// In de, this message translates to:
+  /// **'Noch nicht bewertbar'**
+  String get ratingNotYet;
+
+  /// No description provided for @completeWhatHappened.
+  ///
+  /// In de, this message translates to:
+  /// **'Was ist passiert? (optional)'**
+  String get completeWhatHappened;
+
+  /// No description provided for @completeMetricChanged.
+  ///
+  /// In de, this message translates to:
+  /// **'Welche Kennzahl hat sich verändert? (optional)'**
+  String get completeMetricChanged;
+
+  /// No description provided for @completeRepeatQuestion.
+  ///
+  /// In de, this message translates to:
+  /// **'Diese Maßnahme später wiederholen?'**
+  String get completeRepeatQuestion;
+
+  /// No description provided for @inProgressSectionTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'In Umsetzung'**
+  String get inProgressSectionTitle;
+
+  /// No description provided for @awaitingRatingSectionTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Bewertung ausstehend'**
+  String get awaitingRatingSectionTitle;
+
+  /// No description provided for @rateNow.
+  ///
+  /// In de, this message translates to:
+  /// **'Jetzt bewerten'**
+  String get rateNow;
+
+  /// No description provided for @historyTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Maßnahmenhistorie'**
+  String get historyTitle;
+
+  /// No description provided for @historyEmpty.
+  ///
+  /// In de, this message translates to:
+  /// **'Noch keine Entscheidungen erfasst. Sobald Sie Empfehlungen annehmen oder ablehnen, entsteht hier Ihr Unternehmensgedächtnis.'**
+  String get historyEmpty;
+
+  /// No description provided for @actionStatusSuggested.
+  ///
+  /// In de, this message translates to:
+  /// **'Vorgeschlagen'**
+  String get actionStatusSuggested;
+
+  /// No description provided for @actionStatusAccepted.
+  ///
+  /// In de, this message translates to:
+  /// **'Angenommen'**
+  String get actionStatusAccepted;
+
+  /// No description provided for @actionStatusInProgress.
+  ///
+  /// In de, this message translates to:
+  /// **'In Umsetzung'**
+  String get actionStatusInProgress;
+
+  /// No description provided for @actionStatusCompleted.
+  ///
+  /// In de, this message translates to:
+  /// **'Erledigt'**
+  String get actionStatusCompleted;
+
+  /// No description provided for @actionStatusDeferred.
+  ///
+  /// In de, this message translates to:
+  /// **'Zurückgestellt'**
+  String get actionStatusDeferred;
+
+  /// No description provided for @actionStatusDeclined.
+  ///
+  /// In de, this message translates to:
+  /// **'Abgelehnt'**
+  String get actionStatusDeclined;
+
+  /// No description provided for @dashboardNextActionsTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Nächste Schritte'**
+  String get dashboardNextActionsTitle;
+
+  /// No description provided for @dashboardTopActionLabel.
+  ///
+  /// In de, this message translates to:
+  /// **'Wichtigste Maßnahme'**
+  String get dashboardTopActionLabel;
+
+  /// No description provided for @dashboardNoTopAction.
+  ///
+  /// In de, this message translates to:
+  /// **'Keine offene Empfehlung'**
+  String get dashboardNoTopAction;
+
+  /// No description provided for @dashboardInProgressLabel.
+  ///
+  /// In de, this message translates to:
+  /// **'In Umsetzung'**
+  String get dashboardInProgressLabel;
+
+  /// No description provided for @dashboardAwaitingRatingLabel.
+  ///
+  /// In de, this message translates to:
+  /// **'Zu bewerten'**
+  String get dashboardAwaitingRatingLabel;
+
+  /// No description provided for @dashboardOpenNextActions.
+  ///
+  /// In de, this message translates to:
+  /// **'Nächste Schritte öffnen'**
+  String get dashboardOpenNextActions;
+
+  /// No description provided for @navCheckIn.
+  ///
+  /// In de, this message translates to:
+  /// **'Monats-Check-in'**
+  String get navCheckIn;
+
+  /// No description provided for @checkInTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Monats-Check-in'**
+  String get checkInTitle;
+
+  /// No description provided for @checkInIntro.
+  ///
+  /// In de, this message translates to:
+  /// **'Ein kurzer Rückblick, ehrliche Ergebnisse und Ihre nächsten Schritte – in wenigen Minuten.'**
+  String get checkInIntro;
+
+  /// No description provided for @checkInStart.
+  ///
+  /// In de, this message translates to:
+  /// **'Check-in starten'**
+  String get checkInStart;
+
+  /// No description provided for @checkInSkip.
+  ///
+  /// In de, this message translates to:
+  /// **'Check-in überspringen'**
+  String get checkInSkip;
+
+  /// No description provided for @checkInLastLabel.
+  ///
+  /// In de, this message translates to:
+  /// **'Letzter Check-in'**
+  String get checkInLastLabel;
+
+  /// No description provided for @checkInNextLabel.
+  ///
+  /// In de, this message translates to:
+  /// **'Nächster empfohlener Check-in'**
+  String get checkInNextLabel;
+
+  /// No description provided for @checkInNever.
+  ///
+  /// In de, this message translates to:
+  /// **'Noch kein Check-in durchgeführt'**
+  String get checkInNever;
+
+  /// No description provided for @checkInStep1.
+  ///
+  /// In de, this message translates to:
+  /// **'Seit dem letzten Check-in'**
+  String get checkInStep1;
+
+  /// No description provided for @checkInStep2.
+  ///
+  /// In de, this message translates to:
+  /// **'Offene Bewertungen nachholen'**
+  String get checkInStep2;
+
+  /// No description provided for @checkInStep3.
+  ///
+  /// In de, this message translates to:
+  /// **'Was hat geholfen – was nicht?'**
+  String get checkInStep3;
+
+  /// No description provided for @checkInStep4.
+  ///
+  /// In de, this message translates to:
+  /// **'Eigene Beobachtungen'**
+  String get checkInStep4;
+
+  /// No description provided for @checkInStep5.
+  ///
+  /// In de, this message translates to:
+  /// **'Die nächsten drei Schritte'**
+  String get checkInStep5;
+
+  /// No description provided for @checkInStep6.
+  ///
+  /// In de, this message translates to:
+  /// **'Abschließen'**
+  String get checkInStep6;
+
+  /// No description provided for @checkInNoOpenRatings.
+  ///
+  /// In de, this message translates to:
+  /// **'Keine offenen Bewertungen – alles ist bewertet.'**
+  String get checkInNoOpenRatings;
+
+  /// No description provided for @checkInPositiveTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Was hat geholfen?'**
+  String get checkInPositiveTitle;
+
+  /// No description provided for @checkInNegativeTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Was hat nicht geholfen?'**
+  String get checkInNegativeTitle;
+
+  /// No description provided for @checkInNoOutcomes.
+  ///
+  /// In de, this message translates to:
+  /// **'Für diesen Zeitraum liegen noch keine bewerteten Ergebnisse vor.'**
+  String get checkInNoOutcomes;
+
+  /// No description provided for @checkInCausalityNote.
+  ///
+  /// In de, this message translates to:
+  /// **'Hinweis: Diese Angaben sind gemeldete Beobachtungen – kein Beweis für Ursache und Wirkung.'**
+  String get checkInCausalityNote;
+
+  /// No description provided for @checkInLessonsTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Was haben wir gelernt?'**
+  String get checkInLessonsTitle;
+
+  /// No description provided for @checkInNoLessons.
+  ///
+  /// In de, this message translates to:
+  /// **'Noch keine Erkenntnisse in diesem Zeitraum.'**
+  String get checkInNoLessons;
+
+  /// No description provided for @checkInNotesLabel.
+  ///
+  /// In de, this message translates to:
+  /// **'Ihre Beobachtungen (optional)'**
+  String get checkInNotesLabel;
+
+  /// No description provided for @checkInNextStepsIntro.
+  ///
+  /// In de, this message translates to:
+  /// **'Das sind die nächsten Schritte für Ihr Unternehmen:'**
+  String get checkInNextStepsIntro;
+
+  /// No description provided for @checkInConfidenceLabel.
+  ///
+  /// In de, this message translates to:
+  /// **'Datenbasis'**
+  String get checkInConfidenceLabel;
+
+  /// No description provided for @checkInConfidenceLow.
+  ///
+  /// In de, this message translates to:
+  /// **'niedrig'**
+  String get checkInConfidenceLow;
+
+  /// No description provided for @checkInConfidenceMedium.
+  ///
+  /// In de, this message translates to:
+  /// **'mittel'**
+  String get checkInConfidenceMedium;
+
+  /// No description provided for @checkInConfidenceHigh.
+  ///
+  /// In de, this message translates to:
+  /// **'hoch'**
+  String get checkInConfidenceHigh;
+
+  /// No description provided for @checkInHumanReviewHint.
+  ///
+  /// In de, this message translates to:
+  /// **'Eine kurze menschliche Prüfung wäre sinnvoll.'**
+  String get checkInHumanReviewHint;
+
+  /// No description provided for @checkInComplete.
+  ///
+  /// In de, this message translates to:
+  /// **'Check-in abschließen'**
+  String get checkInComplete;
+
+  /// No description provided for @checkInHistoryTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Frühere Check-ins'**
+  String get checkInHistoryTitle;
+
+  /// No description provided for @checkInStatusActive.
+  ///
+  /// In de, this message translates to:
+  /// **'In Bearbeitung'**
+  String get checkInStatusActive;
+
+  /// No description provided for @checkInStatusCompleted.
+  ///
+  /// In de, this message translates to:
+  /// **'Abgeschlossen'**
+  String get checkInStatusCompleted;
+
+  /// No description provided for @checkInStatusSkipped.
+  ///
+  /// In de, this message translates to:
+  /// **'Übersprungen'**
+  String get checkInStatusSkipped;
+
+  /// No description provided for @dashboardCheckInTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Monats-Check-in'**
+  String get dashboardCheckInTitle;
+
+  /// No description provided for @dashboardStartCheckIn.
+  ///
+  /// In de, this message translates to:
+  /// **'Check-in starten'**
+  String get dashboardStartCheckIn;
 }
 
 class _AppLocalizationsDelegate

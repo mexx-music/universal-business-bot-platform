@@ -64,6 +64,8 @@ class DashboardScreen extends StatelessWidget {
               color: theme.colorScheme.onSurfaceVariant,
             ),
           ),
+          const SizedBox(height: 20),
+          const _NextActionsTeaserCard(),
           const SizedBox(height: 28),
 
           // ── KPI-Kacheln ──────────────────────────────────────────────
@@ -531,6 +533,105 @@ class DashboardScreen extends StatelessWidget {
     }
 
     return recommendations;
+  }
+}
+
+/// Minimal companion teaser: the current top action plus the state of the
+/// action lifecycle — details live on /next-actions.
+class _NextActionsTeaserCard extends StatelessWidget {
+  const _NextActionsTeaserCard();
+
+  @override
+  Widget build(BuildContext context) {
+    final state = AppState.of(context);
+    final l = AppLocalizations.of(context)!;
+    final theme = Theme.of(context);
+    final actions = state.nextBestActions;
+    final inProgress = state.inProgressActionRecords.length;
+    final awaitingRating = state.actionRecordsAwaitingRating.length;
+
+    return Card(
+      child: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              children: [
+                Icon(Icons.checklist, color: theme.colorScheme.primary),
+                const SizedBox(width: 8),
+                Text(
+                  l.dashboardNextActionsTitle,
+                  style: theme.textTheme.titleMedium?.copyWith(
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 10),
+            Text(
+              '${l.dashboardTopActionLabel}: '
+              '${actions.isEmpty ? l.dashboardNoTopAction : actions.first.title}',
+              style: theme.textTheme.bodyMedium?.copyWith(
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+            const SizedBox(height: 4),
+            Text(
+              '${l.dashboardInProgressLabel}: $inProgress · '
+              '${l.dashboardAwaitingRatingLabel}: $awaitingRating',
+              style: theme.textTheme.bodySmall?.copyWith(
+                color: theme.colorScheme.onSurfaceVariant,
+              ),
+            ),
+            const SizedBox(height: 8),
+            const Divider(height: 16),
+            Row(
+              children: [
+                Icon(
+                  Icons.event_available_outlined,
+                  size: 18,
+                  color: theme.colorScheme.onSurfaceVariant,
+                ),
+                const SizedBox(width: 6),
+                Expanded(
+                  child: Text(
+                    '${l.checkInLastLabel}: '
+                    '${state.lastCompletedCheckIn == null ? l.checkInNever : _teaserDate(state.lastCompletedCheckIn!.periodEnd)} · '
+                    '${l.checkInNextLabel}: '
+                    '${_teaserDate(state.nextRecommendedCheckIn)}',
+                    style: theme.textTheme.bodySmall?.copyWith(
+                      color: theme.colorScheme.onSurfaceVariant,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 6),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                TextButton.icon(
+                  onPressed: () => context.go('/check-in'),
+                  icon: const Icon(Icons.event_available, size: 18),
+                  label: Text(l.dashboardStartCheckIn),
+                ),
+                TextButton.icon(
+                  onPressed: () => context.go('/next-actions'),
+                  icon: const Icon(Icons.arrow_forward, size: 18),
+                  label: Text(l.dashboardOpenNextActions),
+                ),
+              ],
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  static String _teaserDate(DateTime date) {
+    return '${date.day.toString().padLeft(2, '0')}.'
+        '${date.month.toString().padLeft(2, '0')}.${date.year}';
   }
 }
 
