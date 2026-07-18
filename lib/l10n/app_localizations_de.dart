@@ -1950,6 +1950,27 @@ class AppLocalizationsDe extends AppLocalizations {
   String get companyIntakeInvitationCopied => 'Link wurde kopiert.';
 
   @override
+  String get companyIntakeInvitationCreated => 'Link erstellt';
+
+  @override
+  String get companyIntakeInvitationCopiedShort => 'In Zwischenablage kopiert';
+
+  @override
+  String get companyIntakeInvitationOpened =>
+      'Öffentlicher Fragebogen geöffnet';
+
+  @override
+  String get companyIntakeInvitationOpen => 'Fragebogen öffnen';
+
+  @override
+  String get companyIntakeInvitationOpenBlocked =>
+      'Der Browser hat das automatische Öffnen blockiert. Der Link wurde kopiert.';
+
+  @override
+  String get companyIntakeInvitationOpenBlockedShort =>
+      'Automatisches Öffnen blockiert';
+
+  @override
   String get companyIntakeInvitationRegenerate => 'Neu generieren';
 
   @override

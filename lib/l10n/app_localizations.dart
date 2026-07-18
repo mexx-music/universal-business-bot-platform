@@ -3476,6 +3476,42 @@ abstract class AppLocalizations {
   /// **'Link wurde kopiert.'**
   String get companyIntakeInvitationCopied;
 
+  /// No description provided for @companyIntakeInvitationCreated.
+  ///
+  /// In de, this message translates to:
+  /// **'Link erstellt'**
+  String get companyIntakeInvitationCreated;
+
+  /// No description provided for @companyIntakeInvitationCopiedShort.
+  ///
+  /// In de, this message translates to:
+  /// **'In Zwischenablage kopiert'**
+  String get companyIntakeInvitationCopiedShort;
+
+  /// No description provided for @companyIntakeInvitationOpened.
+  ///
+  /// In de, this message translates to:
+  /// **'Öffentlicher Fragebogen geöffnet'**
+  String get companyIntakeInvitationOpened;
+
+  /// No description provided for @companyIntakeInvitationOpen.
+  ///
+  /// In de, this message translates to:
+  /// **'Fragebogen öffnen'**
+  String get companyIntakeInvitationOpen;
+
+  /// No description provided for @companyIntakeInvitationOpenBlocked.
+  ///
+  /// In de, this message translates to:
+  /// **'Der Browser hat das automatische Öffnen blockiert. Der Link wurde kopiert.'**
+  String get companyIntakeInvitationOpenBlocked;
+
+  /// No description provided for @companyIntakeInvitationOpenBlockedShort.
+  ///
+  /// In de, this message translates to:
+  /// **'Automatisches Öffnen blockiert'**
+  String get companyIntakeInvitationOpenBlockedShort;
+
   /// No description provided for @companyIntakeInvitationRegenerate.
   ///
   /// In de, this message translates to:

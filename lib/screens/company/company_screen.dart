@@ -7,6 +7,7 @@ import '../../models/business_rules.dart';
 import '../../models/company.dart';
 import '../../models/intake_invitation.dart';
 import '../../models/product_or_service.dart';
+import '../../platform/external_link_opener.dart';
 
 class CompanyScreen extends StatelessWidget {
   const CompanyScreen({super.key});
@@ -237,15 +238,24 @@ class _SectionCard extends StatelessWidget {
   }
 }
 
-class _IntakeInvitationView extends StatelessWidget {
+class _IntakeInvitationView extends StatefulWidget {
   const _IntakeInvitationView({required this.state});
 
   final AppState state;
 
   @override
+  State<_IntakeInvitationView> createState() => _IntakeInvitationViewState();
+}
+
+class _IntakeInvitationViewState extends State<_IntakeInvitationView> {
+  String? _blockedOpenLink;
+  bool _isCreating = false;
+
+  @override
   Widget build(BuildContext context) {
     final l = AppLocalizations.of(context)!;
     final theme = Theme.of(context);
+    final state = widget.state;
     final invitation = state.selectedIntakeInvitation;
     final link = state.selectedIntakeInvitationLink();
     final canWrite = state.canWriteWorkspace;
@@ -283,15 +293,49 @@ class _IntakeInvitationView extends StatelessWidget {
           ),
         ],
         const SizedBox(height: 12),
+        if (_blockedOpenLink != null) ...[
+          Container(
+            width: double.infinity,
+            padding: const EdgeInsets.all(14),
+            decoration: BoxDecoration(
+              color: theme.colorScheme.primaryContainer,
+              borderRadius: BorderRadius.circular(8),
+              border: Border.all(
+                color: theme.colorScheme.primary.withValues(alpha: 0.2),
+              ),
+            ),
+            child: Wrap(
+              spacing: 12,
+              runSpacing: 12,
+              alignment: WrapAlignment.spaceBetween,
+              crossAxisAlignment: WrapCrossAlignment.center,
+              children: [
+                Text(
+                  l.companyIntakeInvitationOpenBlocked,
+                  style: theme.textTheme.bodyMedium?.copyWith(
+                    color: theme.colorScheme.onPrimaryContainer,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+                FilledButton.icon(
+                  onPressed: () => _openBlockedLink(context),
+                  icon: const Icon(Icons.open_in_new),
+                  label: Text(l.companyIntakeInvitationOpen),
+                ),
+              ],
+            ),
+          ),
+          const SizedBox(height: 12),
+        ],
         Wrap(
           spacing: 8,
           runSpacing: 8,
           children: [
             FilledButton.icon(
-              onPressed: !canWrite || invitation != null
+              onPressed: !canWrite || invitation != null || _isCreating
                   ? null
                   : () async {
-                      await state.createIntakeInvitation();
+                      await _createCopyAndOpenInvitation(context);
                     },
               icon: const Icon(Icons.add_link),
               label: Text(l.companyIntakeInvitationCreate),
@@ -300,14 +344,7 @@ class _IntakeInvitationView extends StatelessWidget {
               onPressed: !canWrite || link == null
                   ? null
                   : () async {
-                      await Clipboard.setData(ClipboardData(text: link));
-                      if (context.mounted) {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(
-                            content: Text(l.companyIntakeInvitationCopied),
-                          ),
-                        );
-                      }
+                      await _copyInvitationLink(context, link);
                     },
               icon: const Icon(Icons.copy_outlined),
               label: Text(l.companyIntakeInvitationCopy),
@@ -339,6 +376,93 @@ class _IntakeInvitationView extends StatelessWidget {
             ),
           ],
         ),
+      ],
+    );
+  }
+
+  Future<void> _createCopyAndOpenInvitation(BuildContext context) async {
+    final l = AppLocalizations.of(context)!;
+    final state = widget.state;
+    final preparedTab = prepareExternalLink();
+    setState(() {
+      _isCreating = true;
+      _blockedOpenLink = null;
+    });
+
+    try {
+      await state.createIntakeInvitation();
+      final link = state.selectedIntakeInvitationLink();
+      if (link == null) {
+        preparedTab?.close();
+        return;
+      }
+
+      await Clipboard.setData(ClipboardData(text: link));
+      final opened = preparedTab?.open(link) ?? openExternalLink(link);
+      if (!opened && mounted) {
+        setState(() => _blockedOpenLink = link);
+      }
+
+      if (context.mounted) {
+        final messages = [
+          l.companyIntakeInvitationCreated,
+          l.companyIntakeInvitationCopiedShort,
+          if (opened)
+            l.companyIntakeInvitationOpened
+          else
+            l.companyIntakeInvitationOpenBlockedShort,
+        ];
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: _InvitationSnackBarContent(messages: messages)),
+        );
+      }
+    } catch (_) {
+      preparedTab?.close();
+      rethrow;
+    } finally {
+      if (mounted) setState(() => _isCreating = false);
+    }
+  }
+
+  Future<void> _copyInvitationLink(BuildContext context, String link) async {
+    final l = AppLocalizations.of(context)!;
+    await Clipboard.setData(ClipboardData(text: link));
+    if (context.mounted) {
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text(l.companyIntakeInvitationCopied)));
+    }
+  }
+
+  void _openBlockedLink(BuildContext context) {
+    final link = _blockedOpenLink;
+    if (link == null) return;
+    if (openExternalLink(link)) {
+      setState(() => _blockedOpenLink = null);
+    }
+  }
+}
+
+class _InvitationSnackBarContent extends StatelessWidget {
+  const _InvitationSnackBarContent({required this.messages});
+
+  final List<String> messages;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        for (final message in messages)
+          Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              const Icon(Icons.check_circle, size: 18, color: Colors.white),
+              const SizedBox(width: 8),
+              Flexible(child: Text(message)),
+            ],
+          ),
       ],
     );
   }

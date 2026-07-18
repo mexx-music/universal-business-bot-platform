@@ -1937,6 +1937,26 @@ class AppLocalizationsEn extends AppLocalizations {
   String get companyIntakeInvitationCopied => 'Link copied.';
 
   @override
+  String get companyIntakeInvitationCreated => 'Link created';
+
+  @override
+  String get companyIntakeInvitationCopiedShort => 'Copied to clipboard';
+
+  @override
+  String get companyIntakeInvitationOpened => 'Public questionnaire opened';
+
+  @override
+  String get companyIntakeInvitationOpen => 'Open questionnaire';
+
+  @override
+  String get companyIntakeInvitationOpenBlocked =>
+      'The browser blocked automatic opening. The link was copied.';
+
+  @override
+  String get companyIntakeInvitationOpenBlockedShort =>
+      'Automatic opening blocked';
+
+  @override
   String get companyIntakeInvitationRegenerate => 'Regenerate';
 
   @override
