@@ -473,6 +473,108 @@ class AppLocalizationsDe extends AppLocalizations {
   }
 
   @override
+  String get workspaceLoadingTitle => 'Workspace wird geladen';
+
+  @override
+  String get workspaceLoadingMessage =>
+      'Die Unternehmensdaten werden aus dem aktiven Konto geladen.';
+
+  @override
+  String get workspaceEmptyTitle => 'Kein Workspace verfügbar';
+
+  @override
+  String get workspaceEmptyMessage =>
+      'Für dieses Konto sind noch keine Unternehmensdaten verfügbar.';
+
+  @override
+  String get workspaceOnboardingTitle => 'Unternehmen noch nicht zugeordnet';
+
+  @override
+  String get workspaceOnboardingMessage =>
+      'Ihr Konto ist angemeldet, aber noch keinem Unternehmen zugeordnet. Der sichere Onboarding-Schritt folgt.';
+
+  @override
+  String get workspaceErrorTitle => 'Workspace konnte nicht geladen werden';
+
+  @override
+  String get workspaceErrorMessage =>
+      'Die Unternehmensdaten konnten gerade nicht geladen werden. Bitte versuchen Sie es später erneut oder melden Sie sich neu an.';
+
+  @override
+  String get tenantSelectTitle => 'Firma auswählen';
+
+  @override
+  String get tenantSelectHeading => 'Welche Firma möchten Sie öffnen?';
+
+  @override
+  String get tenantSelectSubtitle =>
+      'Ihr Konto hat Zugriff auf mehrere Firmen. Wählen Sie die Firma, mit der Sie jetzt arbeiten möchten.';
+
+  @override
+  String get tenantOpen => 'Öffnen';
+
+  @override
+  String get tenantCurrent => 'Aktuelle Firma';
+
+  @override
+  String get tenantSwitch => 'Firma wechseln';
+
+  @override
+  String get tenantCurrentRole => 'Rolle';
+
+  @override
+  String tenantWorkspaceCount(int count) {
+    return '$count Workspaces';
+  }
+
+  @override
+  String get tenantAccessActive => 'Zugriff aktiv';
+
+  @override
+  String get tenantRetry => 'Erneut versuchen';
+
+  @override
+  String get tenantSwitching => 'Wechsel läuft';
+
+  @override
+  String get tenantSwitchFailed =>
+      'Die Firma konnte nicht geöffnet werden. Bitte versuchen Sie es erneut.';
+
+  @override
+  String get tenantNoneTitle => 'Für dieses Konto ist keine Firma verfügbar.';
+
+  @override
+  String get tenantAddPlaceholder => 'Weitere Firma hinzufügen';
+
+  @override
+  String get tenantAddPlaceholderSubtitle =>
+      'Diese Funktion folgt in einem späteren Schritt.';
+
+  @override
+  String get tenantUnsavedChanges => 'Es gibt noch ungespeicherte Änderungen.';
+
+  @override
+  String get tenantDiscardChanges => 'Änderungen verwerfen';
+
+  @override
+  String get tenantCancelSwitch => 'Wechsel abbrechen';
+
+  @override
+  String get tenantRoleOwner => 'Owner';
+
+  @override
+  String get tenantRoleAdmin => 'Admin';
+
+  @override
+  String get tenantRoleEditor => 'Bearbeiten';
+
+  @override
+  String get tenantRoleReviewer => 'Prüfen';
+
+  @override
+  String get tenantRoleViewer => 'Lesen';
+
+  @override
   String get navHome => 'Startseite';
 
   @override
@@ -498,6 +600,197 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get navSources => 'Quellen';
+
+  @override
+  String get authLocalMode => 'Lokaler Modus';
+
+  @override
+  String get authSignedIn => 'Angemeldet';
+
+  @override
+  String get authLogout => 'Abmelden';
+
+  @override
+  String get authSignInTitle => 'Anmelden';
+
+  @override
+  String get authSignInSubtitle =>
+      'Melden Sie sich an, wenn diese Installation mit Supabase verbunden ist.';
+
+  @override
+  String get authSignUpTitle => 'Konto erstellen';
+
+  @override
+  String get authSignUpSubtitle =>
+      'Erstellen Sie ein Konto. Der Unternehmenszugang wird danach vorbereitet.';
+
+  @override
+  String get authResetTitle => 'Passwort zurücksetzen';
+
+  @override
+  String get authResetSubtitle =>
+      'Geben Sie Ihre E-Mail-Adresse ein. Sie erhalten einen Link zum Zurücksetzen.';
+
+  @override
+  String get authEmailLabel => 'E-Mail';
+
+  @override
+  String get authPasswordLabel => 'Passwort';
+
+  @override
+  String get authDisplayNameLabel => 'Name (optional)';
+
+  @override
+  String get authInvalidEmail => 'Bitte eine gültige E-Mail-Adresse eingeben.';
+
+  @override
+  String get authPasswordTooShort =>
+      'Das Passwort muss mindestens 6 Zeichen lang sein.';
+
+  @override
+  String get authAcceptTerms =>
+      'Ich stimme Datenschutz und Nutzungsbedingungen zu.';
+
+  @override
+  String get authTermsRequired =>
+      'Bitte stimmen Sie Datenschutz und Nutzungsbedingungen zu.';
+
+  @override
+  String get authSignInButton => 'Anmelden';
+
+  @override
+  String get authSignUpButton => 'Konto erstellen';
+
+  @override
+  String get authResetButton => 'Reset-Link senden';
+
+  @override
+  String get authCreateAccount => 'Konto erstellen';
+
+  @override
+  String get authBackToSignIn => 'Zur Anmeldung';
+
+  @override
+  String get authForgotPassword => 'Passwort vergessen';
+
+  @override
+  String get authBackHome => 'Zurück zur Startseite';
+
+  @override
+  String get authPleaseWait => 'Bitte warten ...';
+
+  @override
+  String get authVerificationHint =>
+      'Konto erstellt. Bitte prüfen Sie Ihre E-Mails, falls die Verifikation aktiv ist.';
+
+  @override
+  String get authResetSent =>
+      'Wenn ein Konto existiert, wurde ein Reset-Link gesendet.';
+
+  @override
+  String get authOnboardingRequired =>
+      'Ihr Konto ist angemeldet, aber noch keinem Unternehmen zugeordnet. Richten Sie jetzt Ihren ersten Workspace ein.';
+
+  @override
+  String get authGenericError =>
+      'Anmeldung fehlgeschlagen. Bitte prüfen Sie E-Mail und Passwort.';
+
+  @override
+  String get onboardingTitle => 'Ersten Workspace einrichten';
+
+  @override
+  String get onboardingSubtitle =>
+      'Legen Sie Ihr Unternehmen an. Danach öffnet sich automatisch Ihr neuer Arbeitsbereich.';
+
+  @override
+  String get onboardingCompanyNameLabel => 'Firmenname';
+
+  @override
+  String get onboardingCompanyNameHelper => 'Beispiel: Muster GmbH';
+
+  @override
+  String get onboardingCompanyNameRequired =>
+      'Bitte geben Sie den Firmennamen ein.';
+
+  @override
+  String get onboardingCompanyNameTooShort =>
+      'Der Firmenname muss mindestens 2 Zeichen lang sein.';
+
+  @override
+  String get onboardingCompanyNameTooLong =>
+      'Der Firmenname darf maximal 120 Zeichen lang sein.';
+
+  @override
+  String get onboardingCompanyNameInvalid =>
+      'Bitte verwenden Sie einen erkennbaren Firmennamen.';
+
+  @override
+  String get onboardingWebsiteLabel => 'Website (optional)';
+
+  @override
+  String get onboardingWebsiteHelper => 'Beispiel: www.firma.at';
+
+  @override
+  String get onboardingWebsiteInvalid =>
+      'Bitte geben Sie eine gültige HTTPS-Website oder Domain ein.';
+
+  @override
+  String get onboardingIndustryLabel => 'Branche (optional)';
+
+  @override
+  String get onboardingIndustryHelper => 'Beispiel: Beratung, Handwerk, Hotel';
+
+  @override
+  String get onboardingDescriptionLabel => 'Kurzbeschreibung (optional)';
+
+  @override
+  String get onboardingDescriptionHelper =>
+      'Was macht Ihr Unternehmen in wenigen Sätzen?';
+
+  @override
+  String get onboardingDescriptionTooLong =>
+      'Die Beschreibung darf maximal 600 Zeichen lang sein.';
+
+  @override
+  String get onboardingLanguageLabel => 'Sprache';
+
+  @override
+  String get onboardingLanguageInvalid =>
+      'Bitte wählen Sie Deutsch oder Englisch.';
+
+  @override
+  String get onboardingWorkspaceLabel => 'Workspace-Name (optional)';
+
+  @override
+  String get onboardingWorkspaceHelper =>
+      'Leer lassen, um den Firmennamen zu verwenden.';
+
+  @override
+  String get onboardingSubmit => 'Workspace erstellen';
+
+  @override
+  String get onboardingSubmitting => 'Workspace wird erstellt ...';
+
+  @override
+  String get onboardingSuccess => 'Ihr Workspace wurde erstellt.';
+
+  @override
+  String get onboardingRemoteError =>
+      'Der Workspace konnte nicht erstellt werden. Bitte versuchen Sie es erneut.';
+
+  @override
+  String get onboardingAlreadyCompleted =>
+      'Ihr Konto hat bereits einen Workspace. Der Arbeitsbereich wird geladen.';
+
+  @override
+  String get onboardingSessionExpired =>
+      'Ihre Sitzung ist abgelaufen. Bitte melden Sie sich erneut an.';
+
+  @override
+  String get languageGerman => 'Deutsch';
+
+  @override
+  String get languageEnglish => 'Englisch';
 
   @override
   String get btnCancel => 'Abbrechen';
@@ -986,6 +1279,29 @@ class AppLocalizationsDe extends AppLocalizations {
   @override
   String get intakeChatGreeting =>
       'Hallo! Ich führe dich Schritt für Schritt durch die Firmenaufnahme.';
+
+  @override
+  String publicIntakeTitle(String company) {
+    return 'Firmenfragebogen: $company';
+  }
+
+  @override
+  String get publicIntakeGreeting =>
+      'Willkommen. Ihre Antworten werden automatisch gespeichert und Sie können später über denselben Link fortfahren.';
+
+  @override
+  String get publicIntakeNotFoundTitle => 'Einladungslink nicht gefunden';
+
+  @override
+  String get publicIntakeNotFoundMessage =>
+      'Dieser Link ist ungültig oder gehört zu keiner aktiven Einladung.';
+
+  @override
+  String get publicIntakeDisabledTitle => 'Einladungslink deaktiviert';
+
+  @override
+  String get publicIntakeDisabledMessage =>
+      'Dieser Fragebogen-Link wurde deaktiviert. Bitte wenden Sie sich an die Person, die Sie eingeladen hat.';
 
   @override
   String get intakeChatExplanation =>
@@ -1615,6 +1931,52 @@ class AppLocalizationsDe extends AppLocalizations {
   String get companyNoInternalNotes => 'Noch keine internen Notizen gepflegt.';
 
   @override
+  String get companyIntakeInvitationSection => 'Öffentlicher Firmenfragebogen';
+
+  @override
+  String get companyIntakeInvitationDescription =>
+      'Erstellen Sie einen sicheren Link, über den eine eingeladene Person nur den Fragebogen dieser Firma ausfüllen kann.';
+
+  @override
+  String get companyIntakeInvitationTokenHint => 'Sicherer Token-Link';
+
+  @override
+  String get companyIntakeInvitationCreate => 'Link erstellen';
+
+  @override
+  String get companyIntakeInvitationCopy => 'Link kopieren';
+
+  @override
+  String get companyIntakeInvitationCopied => 'Link wurde kopiert.';
+
+  @override
+  String get companyIntakeInvitationRegenerate => 'Neu generieren';
+
+  @override
+  String get companyIntakeInvitationDisable => 'Deaktivieren';
+
+  @override
+  String get companyIntakeInvitationRefresh => 'Status aktualisieren';
+
+  @override
+  String get companyIntakeInvitationStatusMissing => 'Noch kein Link';
+
+  @override
+  String get companyIntakeInvitationStatusInvited => 'Eingeladen';
+
+  @override
+  String get companyIntakeInvitationStatusStarted => 'Begonnen';
+
+  @override
+  String get companyIntakeInvitationStatusPartial => 'Teilweise ausgefüllt';
+
+  @override
+  String get companyIntakeInvitationStatusCompleted => 'Abgeschlossen';
+
+  @override
+  String get companyIntakeInvitationStatusDisabled => 'Deaktiviert';
+
+  @override
   String get companyBrandVoice => 'Brand Voice / Tonalität';
 
   @override
@@ -2217,12 +2579,6 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get botAnswerStyleDetailed => 'Detailliert';
-
-  @override
-  String get languageGerman => 'Deutsch';
-
-  @override
-  String get languageEnglish => 'Englisch';
 
   @override
   String get navProjectStatus => 'Projektstatus';

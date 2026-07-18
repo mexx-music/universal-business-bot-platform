@@ -346,7 +346,10 @@ void main() {
 
       expect(identical(workspace.actionRecords, recordsBefore), isTrue);
       expect(recordsBefore.single.status, ActionRecordStatus.accepted);
-      expect(second.actions.map((a) => a.type), first.actions.map((a) => a.type));
+      expect(
+        second.actions.map((a) => a.type),
+        first.actions.map((a) => a.type),
+      );
       expect(
         second.suppressed.map((s) => '${s.type}:${s.reason}'),
         first.suppressed.map((s) => '${s.type}:${s.reason}'),
@@ -364,12 +367,8 @@ void main() {
       state.acceptNextAction(action);
 
       expect(state.actionRecords, hasLength(1));
-      expect(
-        state.actionRecords.single.status,
-        ActionRecordStatus.accepted,
-      );
-      final other = state.companies
-          .firstWhere((w) => w.company.id == otherId);
+      expect(state.actionRecords.single.status, ActionRecordStatus.accepted);
+      final other = state.companies.firstWhere((w) => w.company.id == otherId);
       expect(other.actionRecords, isEmpty);
     });
 
@@ -402,8 +401,9 @@ void main() {
   });
 
   group('NextActionsScreen', () {
-    testWidgets('renders cards, accepting moves the action into the history',
-        (tester) async {
+    testWidgets('renders cards, accepting moves the action into the history', (
+      tester,
+    ) async {
       final state = AppState();
       await tester.pumpWidget(
         MaterialApp(
@@ -436,10 +436,7 @@ void main() {
 
       expect(state.actionRecords, hasLength(1));
       expect(state.actionRecords.single.titleSnapshot, topActionTitle);
-      expect(
-        state.actionRecords.single.status,
-        ActionRecordStatus.accepted,
-      );
+      expect(state.actionRecords.single.status, ActionRecordStatus.accepted);
       // The accepted action is no longer offered as a card.
       expect(
         state.nextBestActions.map((a) => a.title),

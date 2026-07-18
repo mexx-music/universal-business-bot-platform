@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import '../auth/auth_controller.dart';
 import '../data/app_state.dart';
 import '../l10n/app_localizations.dart';
+import '../tenant_selection/tenant_selection_controller.dart';
 
 class _NavItem {
   final IconData icon;
@@ -144,8 +146,23 @@ class AppShell extends StatelessWidget {
   Widget build(BuildContext context) {
     final l = AppLocalizations.of(context)!;
     final state = AppState.of(context);
+    final auth = AuthController.of(context);
+    final tenantSelection = TenantSelectionController.of(context);
     final labels = _navLabels(l);
     final selectedIndex = _indexFromLocation(currentLocation);
+    if (!state.hasWorkspaces) {
+      return _EmptyWorkspaceScaffold(
+        title: _emptyWorkspaceTitle(state, l),
+        message: _emptyWorkspaceMessage(state, l),
+        onHome: () => context.go('/'),
+        onLogout: auth.isSupabaseMode
+            ? () async {
+                await auth.signOut();
+                if (context.mounted) context.go('/login');
+              }
+            : null,
+      );
+    }
     final company = state.selectedCompany;
 
     return LayoutBuilder(
@@ -154,33 +171,74 @@ class AppShell extends StatelessWidget {
           return Scaffold(
             appBar: AppBar(
               title: Text(company.name),
+              actions: [
+                Padding(
+                  padding: const EdgeInsets.only(right: 8),
+                  child: Center(child: Text(_authLabel(auth, l))),
+                ),
+              ],
               bottom: PreferredSize(
-                preferredSize: const Size.fromHeight(52),
+                preferredSize: Size.fromHeight(auth.isSupabaseMode ? 140 : 52),
                 child: Padding(
                   padding: const EdgeInsets.fromLTRB(12, 2, 12, 10),
-                  child: Row(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
                     children: [
-                      Expanded(
-                        child: SizedBox(
-                          height: 40,
+                      Row(
+                        children: [
+                          Expanded(
+                            child: SizedBox(
+                              height: 40,
+                              child: _ShellTextButton(
+                                onPressed: () => context.go('/'),
+                                icon: const Icon(Icons.home_outlined, size: 18),
+                                label: Text(l.navHome),
+                              ),
+                            ),
+                          ),
+                          const SizedBox(width: 8),
+                          Expanded(
+                            child: SizedBox(
+                              height: 40,
+                              child: _ShellTextButton(
+                                onPressed: () => context.go('/companies'),
+                                icon: const Icon(Icons.swap_horiz, size: 18),
+                                label: Text(l.companySwitch),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      if (auth.isSupabaseMode) ...[
+                        const SizedBox(height: 6),
+                        SizedBox(
+                          width: double.infinity,
+                          height: 38,
                           child: _ShellTextButton(
-                            onPressed: () => context.go('/'),
-                            icon: const Icon(Icons.home_outlined, size: 18),
-                            label: Text(l.navHome),
+                            onPressed: state.isSavingWorkspace
+                                ? null
+                                : () => context.go('/select-tenant?switch=1'),
+                            icon: const Icon(
+                              Icons.business_center_outlined,
+                              size: 18,
+                            ),
+                            label: Text(l.tenantSwitch),
                           ),
                         ),
-                      ),
-                      const SizedBox(width: 8),
-                      Expanded(
-                        child: SizedBox(
-                          height: 40,
+                        const SizedBox(height: 6),
+                        SizedBox(
+                          width: double.infinity,
+                          height: 38,
                           child: _ShellTextButton(
-                            onPressed: () => context.go('/companies'),
-                            icon: const Icon(Icons.swap_horiz, size: 18),
-                            label: Text(l.companySwitch),
+                            onPressed: () async {
+                              await auth.signOut();
+                              if (context.mounted) context.go('/login');
+                            },
+                            icon: const Icon(Icons.logout, size: 18),
+                            label: Text(l.authLogout),
                           ),
                         ),
-                      ),
+                      ],
                     ],
                   ),
                 ),
@@ -217,8 +275,22 @@ class AppShell extends StatelessWidget {
                     extended: extended,
                     l: l,
                     companyName: company.name,
+                    tenantName:
+                        tenantSelection.activeTenantName ??
+                        auth.tenantContext?.tenantName,
+                    tenantRole: auth.tenantContext?.role,
+                    authLabel: _authLabel(auth, l),
+                    showLogout: auth.isSupabaseMode,
+                    showTenantSwitcher: auth.isSupabaseMode,
                     onGoHome: () => context.go('/'),
                     onSwitchCompany: () => context.go('/companies'),
+                    onSwitchTenant: state.isSavingWorkspace
+                        ? null
+                        : () => context.go('/select-tenant?switch=1'),
+                    onLogout: () async {
+                      await auth.signOut();
+                      if (context.mounted) context.go('/login');
+                    },
                   ),
                 ),
                 destinations: List.generate(
@@ -240,19 +312,130 @@ class AppShell extends StatelessWidget {
   }
 }
 
+String _emptyWorkspaceTitle(AppState state, AppLocalizations l) {
+  return switch (state.workspaceLoadStatus) {
+    WorkspaceLoadStatus.loading => l.workspaceLoadingTitle,
+    WorkspaceLoadStatus.onboardingRequired => l.workspaceOnboardingTitle,
+    WorkspaceLoadStatus.error => l.workspaceErrorTitle,
+    _ => l.workspaceEmptyTitle,
+  };
+}
+
+String _emptyWorkspaceMessage(AppState state, AppLocalizations l) {
+  return switch (state.workspaceLoadStatus) {
+    WorkspaceLoadStatus.loading => l.workspaceLoadingMessage,
+    WorkspaceLoadStatus.onboardingRequired => l.workspaceOnboardingMessage,
+    WorkspaceLoadStatus.error => l.workspaceErrorMessage,
+    _ => l.workspaceEmptyMessage,
+  };
+}
+
+class _EmptyWorkspaceScaffold extends StatelessWidget {
+  const _EmptyWorkspaceScaffold({
+    required this.title,
+    required this.message,
+    required this.onHome,
+    this.onLogout,
+  });
+
+  final String title;
+  final String message;
+  final VoidCallback onHome;
+  final VoidCallback? onLogout;
+
+  @override
+  Widget build(BuildContext context) {
+    final l = AppLocalizations.of(context)!;
+    return Scaffold(
+      appBar: AppBar(title: Text(l.appName)),
+      body: Center(
+        child: ConstrainedBox(
+          constraints: const BoxConstraints(maxWidth: 520),
+          child: Padding(
+            padding: const EdgeInsets.all(24),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Icon(
+                  Icons.cloud_off_outlined,
+                  size: 48,
+                  color: Theme.of(context).colorScheme.primary,
+                ),
+                const SizedBox(height: 16),
+                Text(
+                  title,
+                  textAlign: TextAlign.center,
+                  style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                const SizedBox(height: 8),
+                Text(message, textAlign: TextAlign.center),
+                const SizedBox(height: 20),
+                Wrap(
+                  alignment: WrapAlignment.center,
+                  spacing: 10,
+                  runSpacing: 10,
+                  children: [
+                    FilledButton.icon(
+                      onPressed: onHome,
+                      icon: const Icon(Icons.home_outlined),
+                      label: Text(l.navHome),
+                    ),
+                    if (onLogout != null)
+                      OutlinedButton.icon(
+                        onPressed: onLogout,
+                        icon: const Icon(Icons.logout),
+                        label: Text(l.authLogout),
+                      ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+String _authLabel(AuthController auth, AppLocalizations l) {
+  if (auth.isLocalMode) return l.authLocalMode;
+  final user = auth.user;
+  final name = user?.displayName;
+  if (name != null && name.trim().isNotEmpty) return name;
+  final email = user?.email;
+  if (email != null && email.trim().isNotEmpty) return email;
+  return l.authSignedIn;
+}
+
 class _AppLogo extends StatelessWidget {
   final bool extended;
   final AppLocalizations l;
   final String companyName;
+  final String? tenantName;
+  final String? tenantRole;
+  final String authLabel;
+  final bool showLogout;
+  final bool showTenantSwitcher;
   final VoidCallback onGoHome;
   final VoidCallback onSwitchCompany;
+  final VoidCallback? onSwitchTenant;
+  final VoidCallback onLogout;
 
   const _AppLogo({
     required this.extended,
     required this.l,
     required this.companyName,
+    this.tenantName,
+    this.tenantRole,
+    required this.authLabel,
+    required this.showLogout,
+    required this.showTenantSwitcher,
     required this.onGoHome,
     required this.onSwitchCompany,
+    required this.onSwitchTenant,
+    required this.onLogout,
   });
 
   @override
@@ -318,19 +501,42 @@ class _AppLogo extends StatelessWidget {
             child: Column(
               children: [
                 Text(
-                  l.companyCurrent,
+                  tenantName == null ? l.companyCurrent : l.tenantCurrent,
                   style: theme.textTheme.labelSmall?.copyWith(
                     color: theme.colorScheme.onSurfaceVariant,
                   ),
                 ),
                 const SizedBox(height: 2),
                 Text(
-                  companyName,
+                  tenantName ?? companyName,
                   textAlign: TextAlign.center,
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                   style: theme.textTheme.labelLarge?.copyWith(
                     fontWeight: FontWeight.bold,
+                  ),
+                ),
+                if (tenantRole != null) ...[
+                  const SizedBox(height: 2),
+                  Text(
+                    _roleLabel(tenantRole!, l),
+                    textAlign: TextAlign.center,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: theme.textTheme.labelSmall?.copyWith(
+                      color: theme.colorScheme.primary,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                ],
+                const SizedBox(height: 6),
+                Text(
+                  authLabel,
+                  textAlign: TextAlign.center,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: theme.textTheme.labelSmall?.copyWith(
+                    color: theme.colorScheme.onSurfaceVariant,
                   ),
                 ),
                 const SizedBox(height: 6),
@@ -353,6 +559,33 @@ class _AppLogo extends StatelessWidget {
                     label: Text(l.companySwitch),
                   ),
                 ),
+                if (showTenantSwitcher) ...[
+                  const SizedBox(height: 2),
+                  SizedBox(
+                    width: double.infinity,
+                    height: 36,
+                    child: _ShellTextButton(
+                      onPressed: onSwitchTenant,
+                      icon: const Icon(
+                        Icons.business_center_outlined,
+                        size: 16,
+                      ),
+                      label: Text(l.tenantSwitch),
+                    ),
+                  ),
+                ],
+                if (showLogout) ...[
+                  const SizedBox(height: 2),
+                  SizedBox(
+                    width: double.infinity,
+                    height: 36,
+                    child: _ShellTextButton(
+                      onPressed: onLogout,
+                      icon: const Icon(Icons.logout, size: 16),
+                      label: Text(l.authLogout),
+                    ),
+                  ),
+                ],
               ],
             ),
           ),
@@ -374,13 +607,35 @@ class _AppLogo extends StatelessWidget {
           onPressed: onSwitchCompany,
           icon: const Icon(Icons.swap_horiz),
         ),
+        if (showTenantSwitcher)
+          IconButton(
+            tooltip: l.tenantSwitch,
+            onPressed: onSwitchTenant,
+            icon: const Icon(Icons.business_center_outlined),
+          ),
+        if (showLogout)
+          IconButton(
+            tooltip: l.authLogout,
+            onPressed: onLogout,
+            icon: const Icon(Icons.logout),
+          ),
       ],
     );
   }
 }
 
+String _roleLabel(String role, AppLocalizations l) {
+  return switch (role) {
+    'owner' => l.tenantRoleOwner,
+    'admin' => l.tenantRoleAdmin,
+    'editor' => l.tenantRoleEditor,
+    'reviewer' => l.tenantRoleReviewer,
+    _ => l.tenantRoleViewer,
+  };
+}
+
 class _ShellTextButton extends StatelessWidget {
-  final VoidCallback onPressed;
+  final VoidCallback? onPressed;
   final Widget icon;
   final Text label;
 

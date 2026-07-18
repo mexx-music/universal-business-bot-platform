@@ -23,9 +23,7 @@ class QueryProfile {
   bool get isEmpty => baseTerms.isEmpty;
 
   /// Every term worth searching for (base terms + synonyms).
-  Set<String> get allTerms => {
-    for (final terms in expansions.values) ...terms,
-  };
+  Set<String> get allTerms => {for (final terms in expansions.values) ...terms};
 
   /// Which base terms are covered by [matchedTerms] (directly or via a
   /// synonym). Used for coverage and gap detection.
@@ -271,9 +269,6 @@ class KnowledgeRetriever {
   }
 
   String _normalize(String text) {
-    return text
-        .toLowerCase()
-        .replaceAll(RegExp(r'[^a-z0-9äöüß]+'), ' ')
-        .trim();
+    return text.toLowerCase().replaceAll(RegExp(r'[^a-z0-9äöüß]+'), ' ').trim();
   }
 }

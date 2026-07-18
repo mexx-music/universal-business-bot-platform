@@ -99,25 +99,27 @@ void main() {
     await reloaded.dispose();
   });
 
-  test('a single corrupted record is skipped, the rest keeps working',
-      () async {
-    final factory = newDatabaseFactoryMemory();
-    final repo = await openRepo(factory);
-    final ids = repo.companies.map((w) => w.company.id).toList();
-    await repo.dispose();
+  test(
+    'a single corrupted record is skipped, the rest keeps working',
+    () async {
+      final factory = newDatabaseFactoryMemory();
+      final repo = await openRepo(factory);
+      final ids = repo.companies.map((w) => w.company.id).toList();
+      await repo.dispose();
 
-    final db = await factory.openDatabase(
-      PersistentWorkspaceRepository.defaultDbName,
-    );
-    await workspacesStore.record(ids.first).put(db, {'garbage': true});
-    await db.close();
+      final db = await factory.openDatabase(
+        PersistentWorkspaceRepository.defaultDbName,
+      );
+      await workspacesStore.record(ids.first).put(db, {'garbage': true});
+      await db.close();
 
-    final reloaded = await openRepo(factory);
-    expect(reloaded.loadedFromFallback, isFalse);
-    expect(reloaded.companies.map((w) => w.company.id), [ids.last]);
-    expect(reloaded.selectedCompanyId, ids.last);
-    await reloaded.dispose();
-  });
+      final reloaded = await openRepo(factory);
+      expect(reloaded.loadedFromFallback, isFalse);
+      expect(reloaded.companies.map((w) => w.company.id), [ids.last]);
+      expect(reloaded.selectedCompanyId, ids.last);
+      await reloaded.dispose();
+    },
+  );
 
   test(
     'fully corrupted data falls back to mock seed without overwriting it',
@@ -151,38 +153,40 @@ void main() {
     },
   );
 
-  test('data from a newer schema version is refused and left untouched',
-      () async {
-    final factory = newDatabaseFactoryMemory();
-    final repo = await openRepo(factory);
-    await repo.dispose();
+  test(
+    'data from a newer schema version is refused and left untouched',
+    () async {
+      final factory = newDatabaseFactoryMemory();
+      final repo = await openRepo(factory);
+      await repo.dispose();
 
-    final db = await factory.openDatabase(
-      PersistentWorkspaceRepository.defaultDbName,
-    );
-    final meta = Map<String, Object?>.from((await metaRecord.get(db))!);
-    meta['schemaVersion'] = PersistentWorkspaceRepository.schemaVersion + 1;
-    await metaRecord.put(db, meta);
-    await db.close();
+      final db = await factory.openDatabase(
+        PersistentWorkspaceRepository.defaultDbName,
+      );
+      final meta = Map<String, Object?>.from((await metaRecord.get(db))!);
+      meta['schemaVersion'] = PersistentWorkspaceRepository.schemaVersion + 1;
+      await metaRecord.put(db, meta);
+      await db.close();
 
-    await expectLater(
-      openRepo(factory),
-      throwsA(isA<SchemaVersionException>()),
-    );
+      await expectLater(
+        openRepo(factory),
+        throwsA(isA<SchemaVersionException>()),
+      );
 
-    final checkDb = await factory.openDatabase(
-      PersistentWorkspaceRepository.defaultDbName,
-    );
-    expect(
-      (await metaRecord.get(checkDb))?['schemaVersion'],
-      PersistentWorkspaceRepository.schemaVersion + 1,
-    );
-    expect(
-      await workspacesStore.find(checkDb),
-      hasLength(MockData.companyWorkspaces.length),
-    );
-    await checkDb.close();
-  });
+      final checkDb = await factory.openDatabase(
+        PersistentWorkspaceRepository.defaultDbName,
+      );
+      expect(
+        (await metaRecord.get(checkDb))?['schemaVersion'],
+        PersistentWorkspaceRepository.schemaVersion + 1,
+      );
+      expect(
+        await workspacesStore.find(checkDb),
+        hasLength(MockData.companyWorkspaces.length),
+      );
+      await checkDb.close();
+    },
+  );
 
   test('clear() removes persisted data; next start reseeds', () async {
     final factory = newDatabaseFactoryMemory();
@@ -353,10 +357,7 @@ void main() {
     final migrated = await openRepo(factory);
     expect(migrated.selectedWorkspace.company.name, companyName);
     expect(migrated.selectedWorkspace.actionRecords, isEmpty);
-    expect(
-      migrated.companies,
-      hasLength(MockData.companyWorkspaces.length),
-    );
+    expect(migrated.companies, hasLength(MockData.companyWorkspaces.length));
     await migrated.dispose();
 
     final checkDb = await factory.openDatabase(
@@ -444,10 +445,7 @@ void main() {
     await repo.saveSelectedWorkspace(updated);
     expect(repo.selectedWorkspace.company.name, 'Lokal');
 
-    expect(
-      await repo.saveWorkspace('does-not-exist', updated),
-      isFalse,
-    );
+    expect(await repo.saveWorkspace('does-not-exist', updated), isFalse);
 
     await repo.clear();
     expect(

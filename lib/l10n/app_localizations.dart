@@ -926,6 +926,192 @@ abstract class AppLocalizations {
   /// **'{count} offene Reviews'**
   String companyOpenReviewCount(int count);
 
+  /// No description provided for @workspaceLoadingTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Workspace wird geladen'**
+  String get workspaceLoadingTitle;
+
+  /// No description provided for @workspaceLoadingMessage.
+  ///
+  /// In de, this message translates to:
+  /// **'Die Unternehmensdaten werden aus dem aktiven Konto geladen.'**
+  String get workspaceLoadingMessage;
+
+  /// No description provided for @workspaceEmptyTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Kein Workspace verfügbar'**
+  String get workspaceEmptyTitle;
+
+  /// No description provided for @workspaceEmptyMessage.
+  ///
+  /// In de, this message translates to:
+  /// **'Für dieses Konto sind noch keine Unternehmensdaten verfügbar.'**
+  String get workspaceEmptyMessage;
+
+  /// No description provided for @workspaceOnboardingTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Unternehmen noch nicht zugeordnet'**
+  String get workspaceOnboardingTitle;
+
+  /// No description provided for @workspaceOnboardingMessage.
+  ///
+  /// In de, this message translates to:
+  /// **'Ihr Konto ist angemeldet, aber noch keinem Unternehmen zugeordnet. Der sichere Onboarding-Schritt folgt.'**
+  String get workspaceOnboardingMessage;
+
+  /// No description provided for @workspaceErrorTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Workspace konnte nicht geladen werden'**
+  String get workspaceErrorTitle;
+
+  /// No description provided for @workspaceErrorMessage.
+  ///
+  /// In de, this message translates to:
+  /// **'Die Unternehmensdaten konnten gerade nicht geladen werden. Bitte versuchen Sie es später erneut oder melden Sie sich neu an.'**
+  String get workspaceErrorMessage;
+
+  /// No description provided for @tenantSelectTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Firma auswählen'**
+  String get tenantSelectTitle;
+
+  /// No description provided for @tenantSelectHeading.
+  ///
+  /// In de, this message translates to:
+  /// **'Welche Firma möchten Sie öffnen?'**
+  String get tenantSelectHeading;
+
+  /// No description provided for @tenantSelectSubtitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Ihr Konto hat Zugriff auf mehrere Firmen. Wählen Sie die Firma, mit der Sie jetzt arbeiten möchten.'**
+  String get tenantSelectSubtitle;
+
+  /// No description provided for @tenantOpen.
+  ///
+  /// In de, this message translates to:
+  /// **'Öffnen'**
+  String get tenantOpen;
+
+  /// No description provided for @tenantCurrent.
+  ///
+  /// In de, this message translates to:
+  /// **'Aktuelle Firma'**
+  String get tenantCurrent;
+
+  /// No description provided for @tenantSwitch.
+  ///
+  /// In de, this message translates to:
+  /// **'Firma wechseln'**
+  String get tenantSwitch;
+
+  /// No description provided for @tenantCurrentRole.
+  ///
+  /// In de, this message translates to:
+  /// **'Rolle'**
+  String get tenantCurrentRole;
+
+  /// No description provided for @tenantWorkspaceCount.
+  ///
+  /// In de, this message translates to:
+  /// **'{count} Workspaces'**
+  String tenantWorkspaceCount(int count);
+
+  /// No description provided for @tenantAccessActive.
+  ///
+  /// In de, this message translates to:
+  /// **'Zugriff aktiv'**
+  String get tenantAccessActive;
+
+  /// No description provided for @tenantRetry.
+  ///
+  /// In de, this message translates to:
+  /// **'Erneut versuchen'**
+  String get tenantRetry;
+
+  /// No description provided for @tenantSwitching.
+  ///
+  /// In de, this message translates to:
+  /// **'Wechsel läuft'**
+  String get tenantSwitching;
+
+  /// No description provided for @tenantSwitchFailed.
+  ///
+  /// In de, this message translates to:
+  /// **'Die Firma konnte nicht geöffnet werden. Bitte versuchen Sie es erneut.'**
+  String get tenantSwitchFailed;
+
+  /// No description provided for @tenantNoneTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Für dieses Konto ist keine Firma verfügbar.'**
+  String get tenantNoneTitle;
+
+  /// No description provided for @tenantAddPlaceholder.
+  ///
+  /// In de, this message translates to:
+  /// **'Weitere Firma hinzufügen'**
+  String get tenantAddPlaceholder;
+
+  /// No description provided for @tenantAddPlaceholderSubtitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Diese Funktion folgt in einem späteren Schritt.'**
+  String get tenantAddPlaceholderSubtitle;
+
+  /// No description provided for @tenantUnsavedChanges.
+  ///
+  /// In de, this message translates to:
+  /// **'Es gibt noch ungespeicherte Änderungen.'**
+  String get tenantUnsavedChanges;
+
+  /// No description provided for @tenantDiscardChanges.
+  ///
+  /// In de, this message translates to:
+  /// **'Änderungen verwerfen'**
+  String get tenantDiscardChanges;
+
+  /// No description provided for @tenantCancelSwitch.
+  ///
+  /// In de, this message translates to:
+  /// **'Wechsel abbrechen'**
+  String get tenantCancelSwitch;
+
+  /// No description provided for @tenantRoleOwner.
+  ///
+  /// In de, this message translates to:
+  /// **'Owner'**
+  String get tenantRoleOwner;
+
+  /// No description provided for @tenantRoleAdmin.
+  ///
+  /// In de, this message translates to:
+  /// **'Admin'**
+  String get tenantRoleAdmin;
+
+  /// No description provided for @tenantRoleEditor.
+  ///
+  /// In de, this message translates to:
+  /// **'Bearbeiten'**
+  String get tenantRoleEditor;
+
+  /// No description provided for @tenantRoleReviewer.
+  ///
+  /// In de, this message translates to:
+  /// **'Prüfen'**
+  String get tenantRoleReviewer;
+
+  /// No description provided for @tenantRoleViewer.
+  ///
+  /// In de, this message translates to:
+  /// **'Lesen'**
+  String get tenantRoleViewer;
+
   /// No description provided for @navHome.
   ///
   /// In de, this message translates to:
@@ -979,6 +1165,342 @@ abstract class AppLocalizations {
   /// In de, this message translates to:
   /// **'Quellen'**
   String get navSources;
+
+  /// No description provided for @authLocalMode.
+  ///
+  /// In de, this message translates to:
+  /// **'Lokaler Modus'**
+  String get authLocalMode;
+
+  /// No description provided for @authSignedIn.
+  ///
+  /// In de, this message translates to:
+  /// **'Angemeldet'**
+  String get authSignedIn;
+
+  /// No description provided for @authLogout.
+  ///
+  /// In de, this message translates to:
+  /// **'Abmelden'**
+  String get authLogout;
+
+  /// No description provided for @authSignInTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Anmelden'**
+  String get authSignInTitle;
+
+  /// No description provided for @authSignInSubtitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Melden Sie sich an, wenn diese Installation mit Supabase verbunden ist.'**
+  String get authSignInSubtitle;
+
+  /// No description provided for @authSignUpTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Konto erstellen'**
+  String get authSignUpTitle;
+
+  /// No description provided for @authSignUpSubtitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Erstellen Sie ein Konto. Der Unternehmenszugang wird danach vorbereitet.'**
+  String get authSignUpSubtitle;
+
+  /// No description provided for @authResetTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Passwort zurücksetzen'**
+  String get authResetTitle;
+
+  /// No description provided for @authResetSubtitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Geben Sie Ihre E-Mail-Adresse ein. Sie erhalten einen Link zum Zurücksetzen.'**
+  String get authResetSubtitle;
+
+  /// No description provided for @authEmailLabel.
+  ///
+  /// In de, this message translates to:
+  /// **'E-Mail'**
+  String get authEmailLabel;
+
+  /// No description provided for @authPasswordLabel.
+  ///
+  /// In de, this message translates to:
+  /// **'Passwort'**
+  String get authPasswordLabel;
+
+  /// No description provided for @authDisplayNameLabel.
+  ///
+  /// In de, this message translates to:
+  /// **'Name (optional)'**
+  String get authDisplayNameLabel;
+
+  /// No description provided for @authInvalidEmail.
+  ///
+  /// In de, this message translates to:
+  /// **'Bitte eine gültige E-Mail-Adresse eingeben.'**
+  String get authInvalidEmail;
+
+  /// No description provided for @authPasswordTooShort.
+  ///
+  /// In de, this message translates to:
+  /// **'Das Passwort muss mindestens 6 Zeichen lang sein.'**
+  String get authPasswordTooShort;
+
+  /// No description provided for @authAcceptTerms.
+  ///
+  /// In de, this message translates to:
+  /// **'Ich stimme Datenschutz und Nutzungsbedingungen zu.'**
+  String get authAcceptTerms;
+
+  /// No description provided for @authTermsRequired.
+  ///
+  /// In de, this message translates to:
+  /// **'Bitte stimmen Sie Datenschutz und Nutzungsbedingungen zu.'**
+  String get authTermsRequired;
+
+  /// No description provided for @authSignInButton.
+  ///
+  /// In de, this message translates to:
+  /// **'Anmelden'**
+  String get authSignInButton;
+
+  /// No description provided for @authSignUpButton.
+  ///
+  /// In de, this message translates to:
+  /// **'Konto erstellen'**
+  String get authSignUpButton;
+
+  /// No description provided for @authResetButton.
+  ///
+  /// In de, this message translates to:
+  /// **'Reset-Link senden'**
+  String get authResetButton;
+
+  /// No description provided for @authCreateAccount.
+  ///
+  /// In de, this message translates to:
+  /// **'Konto erstellen'**
+  String get authCreateAccount;
+
+  /// No description provided for @authBackToSignIn.
+  ///
+  /// In de, this message translates to:
+  /// **'Zur Anmeldung'**
+  String get authBackToSignIn;
+
+  /// No description provided for @authForgotPassword.
+  ///
+  /// In de, this message translates to:
+  /// **'Passwort vergessen'**
+  String get authForgotPassword;
+
+  /// No description provided for @authBackHome.
+  ///
+  /// In de, this message translates to:
+  /// **'Zurück zur Startseite'**
+  String get authBackHome;
+
+  /// No description provided for @authPleaseWait.
+  ///
+  /// In de, this message translates to:
+  /// **'Bitte warten ...'**
+  String get authPleaseWait;
+
+  /// No description provided for @authVerificationHint.
+  ///
+  /// In de, this message translates to:
+  /// **'Konto erstellt. Bitte prüfen Sie Ihre E-Mails, falls die Verifikation aktiv ist.'**
+  String get authVerificationHint;
+
+  /// No description provided for @authResetSent.
+  ///
+  /// In de, this message translates to:
+  /// **'Wenn ein Konto existiert, wurde ein Reset-Link gesendet.'**
+  String get authResetSent;
+
+  /// No description provided for @authOnboardingRequired.
+  ///
+  /// In de, this message translates to:
+  /// **'Ihr Konto ist angemeldet, aber noch keinem Unternehmen zugeordnet. Richten Sie jetzt Ihren ersten Workspace ein.'**
+  String get authOnboardingRequired;
+
+  /// No description provided for @authGenericError.
+  ///
+  /// In de, this message translates to:
+  /// **'Anmeldung fehlgeschlagen. Bitte prüfen Sie E-Mail und Passwort.'**
+  String get authGenericError;
+
+  /// No description provided for @onboardingTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Ersten Workspace einrichten'**
+  String get onboardingTitle;
+
+  /// No description provided for @onboardingSubtitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Legen Sie Ihr Unternehmen an. Danach öffnet sich automatisch Ihr neuer Arbeitsbereich.'**
+  String get onboardingSubtitle;
+
+  /// No description provided for @onboardingCompanyNameLabel.
+  ///
+  /// In de, this message translates to:
+  /// **'Firmenname'**
+  String get onboardingCompanyNameLabel;
+
+  /// No description provided for @onboardingCompanyNameHelper.
+  ///
+  /// In de, this message translates to:
+  /// **'Beispiel: Muster GmbH'**
+  String get onboardingCompanyNameHelper;
+
+  /// No description provided for @onboardingCompanyNameRequired.
+  ///
+  /// In de, this message translates to:
+  /// **'Bitte geben Sie den Firmennamen ein.'**
+  String get onboardingCompanyNameRequired;
+
+  /// No description provided for @onboardingCompanyNameTooShort.
+  ///
+  /// In de, this message translates to:
+  /// **'Der Firmenname muss mindestens 2 Zeichen lang sein.'**
+  String get onboardingCompanyNameTooShort;
+
+  /// No description provided for @onboardingCompanyNameTooLong.
+  ///
+  /// In de, this message translates to:
+  /// **'Der Firmenname darf maximal 120 Zeichen lang sein.'**
+  String get onboardingCompanyNameTooLong;
+
+  /// No description provided for @onboardingCompanyNameInvalid.
+  ///
+  /// In de, this message translates to:
+  /// **'Bitte verwenden Sie einen erkennbaren Firmennamen.'**
+  String get onboardingCompanyNameInvalid;
+
+  /// No description provided for @onboardingWebsiteLabel.
+  ///
+  /// In de, this message translates to:
+  /// **'Website (optional)'**
+  String get onboardingWebsiteLabel;
+
+  /// No description provided for @onboardingWebsiteHelper.
+  ///
+  /// In de, this message translates to:
+  /// **'Beispiel: www.firma.at'**
+  String get onboardingWebsiteHelper;
+
+  /// No description provided for @onboardingWebsiteInvalid.
+  ///
+  /// In de, this message translates to:
+  /// **'Bitte geben Sie eine gültige HTTPS-Website oder Domain ein.'**
+  String get onboardingWebsiteInvalid;
+
+  /// No description provided for @onboardingIndustryLabel.
+  ///
+  /// In de, this message translates to:
+  /// **'Branche (optional)'**
+  String get onboardingIndustryLabel;
+
+  /// No description provided for @onboardingIndustryHelper.
+  ///
+  /// In de, this message translates to:
+  /// **'Beispiel: Beratung, Handwerk, Hotel'**
+  String get onboardingIndustryHelper;
+
+  /// No description provided for @onboardingDescriptionLabel.
+  ///
+  /// In de, this message translates to:
+  /// **'Kurzbeschreibung (optional)'**
+  String get onboardingDescriptionLabel;
+
+  /// No description provided for @onboardingDescriptionHelper.
+  ///
+  /// In de, this message translates to:
+  /// **'Was macht Ihr Unternehmen in wenigen Sätzen?'**
+  String get onboardingDescriptionHelper;
+
+  /// No description provided for @onboardingDescriptionTooLong.
+  ///
+  /// In de, this message translates to:
+  /// **'Die Beschreibung darf maximal 600 Zeichen lang sein.'**
+  String get onboardingDescriptionTooLong;
+
+  /// No description provided for @onboardingLanguageLabel.
+  ///
+  /// In de, this message translates to:
+  /// **'Sprache'**
+  String get onboardingLanguageLabel;
+
+  /// No description provided for @onboardingLanguageInvalid.
+  ///
+  /// In de, this message translates to:
+  /// **'Bitte wählen Sie Deutsch oder Englisch.'**
+  String get onboardingLanguageInvalid;
+
+  /// No description provided for @onboardingWorkspaceLabel.
+  ///
+  /// In de, this message translates to:
+  /// **'Workspace-Name (optional)'**
+  String get onboardingWorkspaceLabel;
+
+  /// No description provided for @onboardingWorkspaceHelper.
+  ///
+  /// In de, this message translates to:
+  /// **'Leer lassen, um den Firmennamen zu verwenden.'**
+  String get onboardingWorkspaceHelper;
+
+  /// No description provided for @onboardingSubmit.
+  ///
+  /// In de, this message translates to:
+  /// **'Workspace erstellen'**
+  String get onboardingSubmit;
+
+  /// No description provided for @onboardingSubmitting.
+  ///
+  /// In de, this message translates to:
+  /// **'Workspace wird erstellt ...'**
+  String get onboardingSubmitting;
+
+  /// No description provided for @onboardingSuccess.
+  ///
+  /// In de, this message translates to:
+  /// **'Ihr Workspace wurde erstellt.'**
+  String get onboardingSuccess;
+
+  /// No description provided for @onboardingRemoteError.
+  ///
+  /// In de, this message translates to:
+  /// **'Der Workspace konnte nicht erstellt werden. Bitte versuchen Sie es erneut.'**
+  String get onboardingRemoteError;
+
+  /// No description provided for @onboardingAlreadyCompleted.
+  ///
+  /// In de, this message translates to:
+  /// **'Ihr Konto hat bereits einen Workspace. Der Arbeitsbereich wird geladen.'**
+  String get onboardingAlreadyCompleted;
+
+  /// No description provided for @onboardingSessionExpired.
+  ///
+  /// In de, this message translates to:
+  /// **'Ihre Sitzung ist abgelaufen. Bitte melden Sie sich erneut an.'**
+  String get onboardingSessionExpired;
+
+  /// No description provided for @languageGerman.
+  ///
+  /// In de, this message translates to:
+  /// **'Deutsch'**
+  String get languageGerman;
+
+  /// No description provided for @languageEnglish.
+  ///
+  /// In de, this message translates to:
+  /// **'Englisch'**
+  String get languageEnglish;
 
   /// No description provided for @btnCancel.
   ///
@@ -1867,6 +2389,42 @@ abstract class AppLocalizations {
   /// In de, this message translates to:
   /// **'Hallo! Ich führe dich Schritt für Schritt durch die Firmenaufnahme.'**
   String get intakeChatGreeting;
+
+  /// No description provided for @publicIntakeTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Firmenfragebogen: {company}'**
+  String publicIntakeTitle(String company);
+
+  /// No description provided for @publicIntakeGreeting.
+  ///
+  /// In de, this message translates to:
+  /// **'Willkommen. Ihre Antworten werden automatisch gespeichert und Sie können später über denselben Link fortfahren.'**
+  String get publicIntakeGreeting;
+
+  /// No description provided for @publicIntakeNotFoundTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Einladungslink nicht gefunden'**
+  String get publicIntakeNotFoundTitle;
+
+  /// No description provided for @publicIntakeNotFoundMessage.
+  ///
+  /// In de, this message translates to:
+  /// **'Dieser Link ist ungültig oder gehört zu keiner aktiven Einladung.'**
+  String get publicIntakeNotFoundMessage;
+
+  /// No description provided for @publicIntakeDisabledTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Einladungslink deaktiviert'**
+  String get publicIntakeDisabledTitle;
+
+  /// No description provided for @publicIntakeDisabledMessage.
+  ///
+  /// In de, this message translates to:
+  /// **'Dieser Fragebogen-Link wurde deaktiviert. Bitte wenden Sie sich an die Person, die Sie eingeladen hat.'**
+  String get publicIntakeDisabledMessage;
 
   /// No description provided for @intakeChatExplanation.
   ///
@@ -2881,6 +3439,96 @@ abstract class AppLocalizations {
   /// In de, this message translates to:
   /// **'Noch keine internen Notizen gepflegt.'**
   String get companyNoInternalNotes;
+
+  /// No description provided for @companyIntakeInvitationSection.
+  ///
+  /// In de, this message translates to:
+  /// **'Öffentlicher Firmenfragebogen'**
+  String get companyIntakeInvitationSection;
+
+  /// No description provided for @companyIntakeInvitationDescription.
+  ///
+  /// In de, this message translates to:
+  /// **'Erstellen Sie einen sicheren Link, über den eine eingeladene Person nur den Fragebogen dieser Firma ausfüllen kann.'**
+  String get companyIntakeInvitationDescription;
+
+  /// No description provided for @companyIntakeInvitationTokenHint.
+  ///
+  /// In de, this message translates to:
+  /// **'Sicherer Token-Link'**
+  String get companyIntakeInvitationTokenHint;
+
+  /// No description provided for @companyIntakeInvitationCreate.
+  ///
+  /// In de, this message translates to:
+  /// **'Link erstellen'**
+  String get companyIntakeInvitationCreate;
+
+  /// No description provided for @companyIntakeInvitationCopy.
+  ///
+  /// In de, this message translates to:
+  /// **'Link kopieren'**
+  String get companyIntakeInvitationCopy;
+
+  /// No description provided for @companyIntakeInvitationCopied.
+  ///
+  /// In de, this message translates to:
+  /// **'Link wurde kopiert.'**
+  String get companyIntakeInvitationCopied;
+
+  /// No description provided for @companyIntakeInvitationRegenerate.
+  ///
+  /// In de, this message translates to:
+  /// **'Neu generieren'**
+  String get companyIntakeInvitationRegenerate;
+
+  /// No description provided for @companyIntakeInvitationDisable.
+  ///
+  /// In de, this message translates to:
+  /// **'Deaktivieren'**
+  String get companyIntakeInvitationDisable;
+
+  /// No description provided for @companyIntakeInvitationRefresh.
+  ///
+  /// In de, this message translates to:
+  /// **'Status aktualisieren'**
+  String get companyIntakeInvitationRefresh;
+
+  /// No description provided for @companyIntakeInvitationStatusMissing.
+  ///
+  /// In de, this message translates to:
+  /// **'Noch kein Link'**
+  String get companyIntakeInvitationStatusMissing;
+
+  /// No description provided for @companyIntakeInvitationStatusInvited.
+  ///
+  /// In de, this message translates to:
+  /// **'Eingeladen'**
+  String get companyIntakeInvitationStatusInvited;
+
+  /// No description provided for @companyIntakeInvitationStatusStarted.
+  ///
+  /// In de, this message translates to:
+  /// **'Begonnen'**
+  String get companyIntakeInvitationStatusStarted;
+
+  /// No description provided for @companyIntakeInvitationStatusPartial.
+  ///
+  /// In de, this message translates to:
+  /// **'Teilweise ausgefüllt'**
+  String get companyIntakeInvitationStatusPartial;
+
+  /// No description provided for @companyIntakeInvitationStatusCompleted.
+  ///
+  /// In de, this message translates to:
+  /// **'Abgeschlossen'**
+  String get companyIntakeInvitationStatusCompleted;
+
+  /// No description provided for @companyIntakeInvitationStatusDisabled.
+  ///
+  /// In de, this message translates to:
+  /// **'Deaktiviert'**
+  String get companyIntakeInvitationStatusDisabled;
 
   /// No description provided for @companyBrandVoice.
   ///
@@ -3979,18 +4627,6 @@ abstract class AppLocalizations {
   /// In de, this message translates to:
   /// **'Detailliert'**
   String get botAnswerStyleDetailed;
-
-  /// No description provided for @languageGerman.
-  ///
-  /// In de, this message translates to:
-  /// **'Deutsch'**
-  String get languageGerman;
-
-  /// No description provided for @languageEnglish.
-  ///
-  /// In de, this message translates to:
-  /// **'Englisch'**
-  String get languageEnglish;
 
   /// No description provided for @navProjectStatus.
   ///

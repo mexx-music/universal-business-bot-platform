@@ -17,8 +17,11 @@ WorkspaceRepository               (Interface — einzige Datenzugriffsgrenze)
         │
         ├── PersistentWorkspaceRepository   (Standard im Web: sembast/IndexedDB)
         │       └── WorkspaceCodec          (explizites toJson/fromJson)
-        └── LocalWorkspaceRepository        (In-Memory: Tests, Demo, Fallback)
-                └── WorkspaceStore + MockData
+        ├── LocalWorkspaceRepository        (In-Memory: Tests, Demo, Fallback)
+        │       └── WorkspaceStore + MockData
+        ├── RemoteWorkspaceRepository       (Supabase: tenant-sicherer Snapshot)
+        │       └── RemoteWorkspaceDataSource + RemoteWorkspaceMapper
+        └── EmptyWorkspaceRepository        (Supabase: Login/Onboarding/Fehler)
 ```
 
 Daneben, jeweils zustandslos und per Konstruktor in `AppState` injiziert:
@@ -28,8 +31,11 @@ Daneben, jeweils zustandslos und per Konstruktor in `AppState` injiziert:
 - `calculators/` — pure Ableitungen/Scores (Project Status, Marketing,
   Strategy, BI, Dashboard)
 
-Unabhängig davon (noch nicht in `AppState` verdrahtet):
+Unabhängig davon:
 
+- `auth/` — optionale Auth-Schicht (`AuthService`, `LocalAuthService`,
+  `SupabaseAuthService`, `AuthController`). UI und Router sprechen nur mit
+  dem Controller, nie direkt mit `SupabaseClient.auth`.
 - `runtime/` — Knowledge Runtime: Retrieval + Ranking + Antwortkontext,
   siehe unten.
 - `recommendations/` — Next Best Actions Engine: die zentrale
@@ -44,16 +50,29 @@ Unabhängig davon (noch nicht in `AppState` verdrahtet):
   persistiert nach jeder Mutation in IndexedDB (sembast).
 - `lib/repositories/local_workspace_repository.dart` — In-Memory-Variante für
   Tests, Demo und als Fallback; einziger Ort, der `WorkspaceStore` kennt.
-- `lib/repositories/tenant_context.dart` — `TenantContext` (tenantId, userId).
-  Jedes Repository ist an einen Kontext gebunden. Ohne Auth läuft alles unter
-  `TenantContext.local()`; nach Einführung von Auth erzeugt die Composition
-  Root pro Session einen echten Kontext.
+- `lib/repositories/remote_workspace_repository.dart` — Supabase-Snapshot und
+  kontrollierte Cloud-CRUD-Schicht für authentifizierte Tenants. Lädt vor der
+  UI die aktuell unterstützten Entitäten: Workspaces, Companies, Products,
+  Knowledge Entries, Source Materials, Bot Question Logs und Audit Items.
+  Dauerhafte Writes sind für Company-Profil/Rules/BotConfig, Products,
+  Knowledge Entries, Source Materials, Bot Question Logs und Audit Items
+  implementiert. Tenant- und Workspace-Zuordnung kommen ausschließlich aus
+  `TenantContext` und dem geladenen Workspace-Mapping, nie aus UI-Inputs.
+- `lib/repositories/empty_workspace_repository.dart` — sicherer leerer Zustand
+  für Supabase-Login ohne Session, fehlende Membership, Onboarding und Fehler.
+- `lib/repositories/tenant_context.dart` — `TenantContext` (tenantId, userId,
+  role, optional membershipId, tenantName, workspaceId, workspaceName). Jedes Repository ist an einen Kontext
+  gebunden. Ohne Auth läuft alles unter `TenantContext.local()`; im
+  Supabase-Modus löst `AuthController` nach Session-Restore den aktiven
+  Tenant über `tenant_members`/`active_tenant_memberships()` auf.
 
 Lesezugriffe sind synchron (Snapshot-Semantik): Der komplette Zustand liegt
-im Speicher, Schreibzugriffe aktualisieren ihn sofort und laufen danach über
-eine serialisierte Write-Queue in den Storage (local-first). Die
-`Future`-Rückgaben der Schreibmethoden signalisieren den Abschluss der
-Persistierung.
+im Speicher. Lokale Repositories bleiben local-first und persistieren über
+eine serialisierte Write-Queue in IndexedDB. Remote-Schreibzugriffe sind
+server-first: DataSource schreibt nach Supabase, das Repository mappt den
+bestätigten Datensatz zurück in den Snapshot, erst danach benachrichtigt
+AppState die UI. Dadurch behauptet die Cloud-UI keinen Erfolg vor RLS- und
+Constraint-Bestätigung.
 
 ## Lokale Persistenz
 
@@ -104,6 +123,91 @@ dem konkrete Implementierungen gewählt und verdrahtet werden
 Keine globalen Singletons, keine Service Locators; alles wird per Konstruktor
 durchgereicht. Tests können `AppState` oder Repositories direkt mit eigenen
 Abhängigkeiten konstruieren.
+
+Seit Block 22B prüft die Composition Root zusätzlich die Build-Variablen
+`SUPABASE_URL` und `SUPABASE_ANON_KEY`. Sind beide gesetzt, wird
+`Supabase.initialize()` vor `runApp` ausgeführt, die Session wiederhergestellt
+und `SupabaseAuthService` verwendet. Ohne Konfiguration oder bei kontrolliertem
+Initialisierungsfehler startet die App bewusst im lokalen Modus. Interne
+Routen sind im Supabase-Modus geschützt; lokale Builds bleiben ohne Login
+vollständig nutzbar.
+
+Seit Block 22C entscheidet dieselbe Composition Root über das Workspace-
+Repository:
+
+1. Lokaler Modus → `PersistentWorkspaceRepository` mit In-Memory-Fallback.
+2. Supabase ohne Session → `EmptyWorkspaceRepository`.
+3. Supabase mit Session, aber ohne aktive Membership → `/onboarding` mit
+   `EmptyWorkspaceRepository`.
+4. Supabase mit mehreren aktiven Memberships, aber ohne gültige gespeicherte
+   Auswahl → `/select-tenant` mit `EmptyWorkspaceRepository`.
+5. Supabase mit aktiver Membership → `RemoteWorkspaceRepository`.
+
+Login, Logout und Tenant-Auflösung werden über eine kleine Bridge zwischen
+`AuthController` und `AppState` synchronisiert: Login lädt den Remote-Snapshot,
+Logout ersetzt ihn durch einen leeren Repository-Zustand. Es gibt keinen
+Fallback auf HB-Cure/SchnurrPurr-Demo-Daten im Supabase-Modus. Lokale Daten
+werden weiterhin niemals automatisch in einen Tenant hochgeladen.
+
+Seit Block 22D sind die bestehenden AppState-Mutationen für die wichtigsten
+bearbeitbaren Entitäten an typisierte Repository-Schreibmethoden angebunden.
+`RemoteWorkspaceDataSource` kapselt dabei ausschließlich technische
+Supabase-Zugriffe; Widgets, Screens, AppState, Mapper und Modelle enthalten
+keine Supabase-Queries. `TenantContext` stellt clientseitige Rollen-Helper
+bereit (`owner`/`admin`/`editor` schreiben Inhalte, `reviewer` Review-Daten,
+`viewer` liest nur). Diese Prüfung dient der Benutzerführung; verbindlich
+bleiben die RLS-Policies und pgTAP-Tests in `supabase/tests/database`.
+
+Seit Block 22E gibt es einen initialen Tenant-Onboarding-Flow:
+
+```
+sign-up / login
+        │
+AuthController.resolveTenantContext()
+        │
+keine aktive Membership
+        ▼
+/onboarding
+        │
+OnboardingController
+        │
+TenantOnboardingService
+        │
+Supabase RPC create_initial_tenant_workspace()
+        │
+Tenant + owner membership + workspace + company + draft bot config
+        │
+AuthController.refreshTenantContext()
+        │
+RemoteWorkspaceRepository lädt den neuen Workspace
+        ▼
+/dashboard
+```
+
+Die RPC ist serverseitig transaktional und idempotent für den initialen
+Setup-Fall: Sobald eine aktive Membership existiert, wird kein zweiter
+initialer Tenant erzeugt. Die UI übergibt nur fachliche Felder
+(Firmenname, Website, Branche, Beschreibung, Sprache, optionaler
+Workspace-Name), keine Tenant-ID, User-ID oder Rolle.
+
+Seit Block 22F unterstützt die Auth-Schicht mehrere aktive Memberships pro
+Nutzer. `active_tenant_memberships()` liefert ausschließlich Memberships von
+`auth.uid()` und ergänzt Tenantname, Rolle und primäre Workspace-Metadaten.
+Die Auswahlregeln liegen im `AuthController`, nicht in Widgets:
+
+1. Keine Membership → `/onboarding`.
+2. Eine Membership → automatisch aktivieren.
+3. Mehrere Memberships → zuletzt genutzten Tenant pro User-ID prüfen.
+4. Gültige Präferenz → automatisch aktivieren.
+5. Keine gültige Präferenz → `/select-tenant`.
+
+Der `TenantSelectionController` ist eine dünne UI-nahe Hülle um den
+`AuthController` und enthält keine Supabase-Abfragen. Beim Tenant-Wechsel wird
+der alte `AppState` sofort auf ein `EmptyWorkspaceRepository` gesetzt; die
+Auth/AppState-Bridge verwirft verspätete Remote-Loads über eine Generation.
+Das neue `RemoteWorkspaceRepository` wird erst mit dem neuen `TenantContext`
+geöffnet. Dadurch bleiben Rollenwechsel tenant-spezifisch, und alte Daten
+erscheinen nicht unter dem neuen Firmennamen.
 
 ## Knowledge Runtime (`lib/runtime/`)
 
@@ -271,17 +375,14 @@ Check-ins blickt der Unternehmer zurück und bestätigt die nächsten Schritte.
   nächste drei Schritte → Abschluss) plus Historie früherer Check-ins. Das
   Dashboard zeigt kompakt letzten/nächsten Check-in und den Start-Button.
 
-## Zukünftiger Austausch gegen Cloud
+## Cloud-Ausbau
 
-1. Neue Klasse, z. B. `RemoteWorkspaceRepository implements
-   WorkspaceRepository` (REST/Supabase/Firebase), gescoped über den
-   `TenantContext`. Der lokale IndexedDB-Bestand kann dabei als
-   Offline-Cache weiterleben (local-first, Sync im Hintergrund) — das
-   Schreibmodell (synchroner Snapshot + Write-Queue) ist dafür ausgelegt.
-2. Neue Factory in der Composition Root, z. B.
-   `AppDependencies.remote(session)`.
-3. `main.dart` wählt die Factory. Screens, Widgets, Router, Services und
-   Calculators bleiben unverändert.
+1. `RemoteWorkspaceRepository` ist als read-focused Supabase-Snapshot
+   umgesetzt und gescoped über den `TenantContext`.
+2. Der nächste Schritt ist 22D: kontrollierte Cloud-Schreiboperationen,
+   Upserts pro Entität und klare Fehler-/Konfliktbehandlung.
+3. Der lokale IndexedDB-Bestand kann später als Offline-Cache weiterleben;
+   automatische lokale-zu-Cloud-Migration ist bewusst noch nicht aktiv.
 
 ## Empfohlene Reihenfolge
 

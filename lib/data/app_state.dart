@@ -1,3 +1,7 @@
+import 'dart:convert';
+import 'dart:math';
+import 'dart:async';
+
 import 'package:flutter/widgets.dart';
 import '../calculators/business_intelligence_calculator.dart';
 import '../calculators/business_strategy_calculator.dart';
@@ -11,6 +15,7 @@ import '../models/business_strategy.dart';
 import '../models/bot_configuration.dart';
 import '../models/company.dart';
 import '../models/company_workspace.dart';
+import '../models/intake_invitation.dart';
 import '../models/product_or_service.dart';
 import '../models/knowledge_entry.dart';
 import '../models/marketing_strategy.dart';
@@ -24,6 +29,8 @@ import '../models/intake_mapping_preview.dart';
 import '../recommendations/next_best_action.dart';
 import '../recommendations/next_best_action_engine.dart';
 import '../repositories/local_workspace_repository.dart';
+import '../repositories/intake_invitation_repository.dart';
+import '../repositories/remote_workspace_exception.dart';
 import '../repositories/workspace_repository.dart';
 import '../services/action_lifecycle_service.dart';
 import '../services/check_in_service.dart';
@@ -32,8 +39,19 @@ import '../services/workspace_mutation_service.dart';
 
 enum CompanyProfileStatus { incomplete, partial, complete }
 
+enum PublicIntakeOpenResult { opened, notFound, disabled }
+
+enum WorkspaceLoadStatus {
+  initial,
+  loading,
+  loaded,
+  empty,
+  onboardingRequired,
+  error,
+}
+
 class AppState extends ChangeNotifier {
-  final WorkspaceRepository _workspaceRepository;
+  WorkspaceRepository _workspaceRepository;
   final WorkspaceMutationService _mutationService;
   final IntakeMappingService _intakeMappingService;
   final ActionLifecycleService _actionLifecycleService;
@@ -47,6 +65,8 @@ class AppState extends ChangeNotifier {
 
   AppState({
     WorkspaceRepository? workspaceRepository,
+    WorkspaceLoadStatus workspaceLoadStatus = WorkspaceLoadStatus.loaded,
+    String? workspaceLoadError,
     WorkspaceMutationService mutationService = const WorkspaceMutationService(),
     IntakeMappingService intakeMappingService = const IntakeMappingService(),
     ActionLifecycleService actionLifecycleService =
@@ -64,6 +84,8 @@ class AppState extends ChangeNotifier {
     DashboardMetricsCalculator dashboardMetricsCalculator =
         const DashboardMetricsCalculator(),
   }) : _workspaceRepository = workspaceRepository ?? LocalWorkspaceRepository(),
+       _workspaceLoadStatus = workspaceLoadStatus,
+       _workspaceLoadError = workspaceLoadError,
        _mutationService = mutationService,
        _intakeMappingService = intakeMappingService,
        _actionLifecycleService = actionLifecycleService,
@@ -74,6 +96,60 @@ class AppState extends ChangeNotifier {
        _projectStatusCalculator = projectStatusCalculator,
        _businessStrategyCalculator = businessStrategyCalculator,
        _dashboardMetricsCalculator = dashboardMetricsCalculator;
+
+  WorkspaceLoadStatus _workspaceLoadStatus;
+  String? _workspaceLoadError;
+  bool _isSavingWorkspace = false;
+  String? _workspaceSaveError;
+  int _workspaceMutationGeneration = 0;
+
+  WorkspaceLoadStatus get workspaceLoadStatus => _workspaceLoadStatus;
+  String? get workspaceLoadError => _workspaceLoadError;
+  bool get isSavingWorkspace => _isSavingWorkspace;
+  String? get workspaceSaveError => _workspaceSaveError;
+  bool get canWriteWorkspace =>
+      _workspaceRepository.tenantContext.canWriteContent;
+  bool get canReviewWorkspace =>
+      _workspaceRepository.tenantContext.canReviewContent;
+  bool get canDeleteWorkspace =>
+      _workspaceRepository.tenantContext.canDeleteContent;
+  bool get hasWorkspaces => _workspaceRepository.companies.isNotEmpty;
+
+  void replaceWorkspaceRepository(
+    WorkspaceRepository repository, {
+    WorkspaceLoadStatus? status,
+    String? error,
+  }) {
+    _workspaceMutationGeneration++;
+    _isSavingWorkspace = false;
+    _workspaceSaveError = null;
+    _workspaceRepository = repository;
+    _workspaceLoadStatus =
+        status ??
+        (repository.companies.isEmpty
+            ? WorkspaceLoadStatus.empty
+            : WorkspaceLoadStatus.loaded);
+    _workspaceLoadError = error;
+    notifyListeners();
+  }
+
+  void markWorkspaceLoading() {
+    _workspaceLoadStatus = WorkspaceLoadStatus.loading;
+    _workspaceLoadError = null;
+    notifyListeners();
+  }
+
+  void clearWorkspaceData({
+    WorkspaceLoadStatus status = WorkspaceLoadStatus.empty,
+  }) {
+    _workspaceMutationGeneration++;
+    _isSavingWorkspace = false;
+    _workspaceSaveError = null;
+    _workspaceRepository.clear();
+    _workspaceLoadStatus = status;
+    _workspaceLoadError = null;
+    notifyListeners();
+  }
 
   List<CompanyWorkspace> get companies => _workspaceRepository.companies;
 
@@ -100,6 +176,8 @@ class AppState extends ChangeNotifier {
   List<BusinessGoal> get selectedBusinessGoals =>
       selectedWorkspace.businessGoals;
   IntakeSession? get selectedIntakeSession => selectedWorkspace.intakeSession;
+  IntakeInvitation? get selectedIntakeInvitation =>
+      selectedWorkspace.intakeInvitation;
 
   Company get company => selectedCompany;
   List<ProductOrService> get products => selectedProducts;
@@ -112,28 +190,174 @@ class AppState extends ChangeNotifier {
   List<MarketingAction> get marketingActions => selectedMarketingActions;
   List<BusinessGoal> get businessGoals => selectedBusinessGoals;
   IntakeSession? get intakeSession => selectedIntakeSession;
+  IntakeInvitation? get intakeInvitation => selectedIntakeInvitation;
 
   void selectCompany(String companyId) {
     if (_workspaceRepository.selectCompany(companyId)) notifyListeners();
   }
 
-  void updateCompany(Company updated) {
-    _updateSelectedWorkspace(selectedWorkspace.copyWith(company: updated));
+  String? selectedIntakeInvitationLink({Uri? baseUri}) {
+    final invitation = selectedIntakeInvitation;
+    if (invitation == null ||
+        !invitation.isActive ||
+        invitation.token.trim().isEmpty) {
+      return null;
+    }
+    final base = baseUri ?? Uri.base;
+    return Uri(
+      scheme: base.scheme,
+      host: base.host,
+      port: base.hasPort ? base.port : null,
+      path: '/onboarding/${invitation.token}',
+    ).toString();
+  }
+
+  Future<void> reloadWorkspaces() async {
+    final repository = _workspaceRepository;
+    if (repository is! ReloadableWorkspaceRepository) return;
+    await (repository as ReloadableWorkspaceRepository).reload();
     notifyListeners();
   }
 
-  void updateBusinessRules(BusinessRules updated) {
+  Future<IntakeInvitation> createIntakeInvitation() async {
+    final repository = _workspaceRepository;
+    final greeting = _defaultIntakeInvitationGreeting(selectedCompany);
+    if (repository is IntakeInvitationRepository) {
+      final invitation = await (repository as IntakeInvitationRepository)
+          .createIntakeInvitation(greeting: greeting);
+      _updateSelectedWorkspace(
+        selectedWorkspace.copyWith(intakeInvitation: invitation),
+      );
+      notifyListeners();
+      return invitation;
+    }
+    final now = DateTime.now();
+    final invitation = IntakeInvitation(
+      id: 'invite_${now.microsecondsSinceEpoch}',
+      token: _generateInvitationToken(),
+      status: IntakeInvitationStatus.invited,
+      greeting: greeting,
+      createdAt: now,
+      updatedAt: now,
+    );
     _updateSelectedWorkspace(
-      selectedWorkspace.copyWith(businessRules: updated),
+      selectedWorkspace.copyWith(intakeInvitation: invitation),
+    );
+    notifyListeners();
+    return invitation;
+  }
+
+  Future<IntakeInvitation> regenerateIntakeInvitation() async {
+    final repository = _workspaceRepository;
+    if (repository is IntakeInvitationRepository) {
+      final invitation = await (repository as IntakeInvitationRepository)
+          .regenerateIntakeInvitation(
+            greeting: selectedIntakeInvitation?.greeting,
+          );
+      _updateSelectedWorkspace(
+        selectedWorkspace.copyWith(intakeInvitation: invitation),
+      );
+      notifyListeners();
+      return invitation;
+    }
+    final now = DateTime.now();
+    final existing = selectedIntakeInvitation;
+    final invitation = IntakeInvitation(
+      id: existing?.id ?? 'invite_${now.microsecondsSinceEpoch}',
+      token: _generateInvitationToken(),
+      status: IntakeInvitationStatus.invited,
+      greeting:
+          existing?.greeting ??
+          _defaultIntakeInvitationGreeting(selectedCompany),
+      createdAt: existing?.createdAt ?? now,
+      updatedAt: now,
+    );
+    _updateSelectedWorkspace(
+      selectedWorkspace.copyWith(intakeInvitation: invitation),
+    );
+    notifyListeners();
+    return invitation;
+  }
+
+  Future<void> deactivateIntakeInvitation() async {
+    final repository = _workspaceRepository;
+    if (repository is IntakeInvitationRepository) {
+      final invitation = await (repository as IntakeInvitationRepository)
+          .deactivateIntakeInvitation();
+      if (invitation != null) {
+        _updateSelectedWorkspace(
+          selectedWorkspace.copyWith(intakeInvitation: invitation),
+        );
+        notifyListeners();
+      }
+      return;
+    }
+    final existing = selectedIntakeInvitation;
+    if (existing == null || !existing.isActive) return;
+    final now = DateTime.now();
+    _updateSelectedWorkspace(
+      selectedWorkspace.copyWith(
+        intakeInvitation: existing.copyWith(
+          status: IntakeInvitationStatus.disabled,
+          updatedAt: now,
+          disabledAt: now,
+        ),
+      ),
     );
     notifyListeners();
   }
 
-  void updateBotConfiguration(BotConfiguration updated) {
-    _updateSelectedWorkspace(
-      selectedWorkspace.copyWith(botConfiguration: updated),
-    );
+  PublicIntakeOpenResult openPublicIntakeInvitation(String token) {
+    final cleanToken = token.trim();
+    if (cleanToken.isEmpty) return PublicIntakeOpenResult.notFound;
+    CompanyWorkspace? target;
+    for (final workspace in companies) {
+      if (workspace.intakeInvitation?.token == cleanToken) {
+        target = workspace;
+        break;
+      }
+    }
+    if (target == null) return PublicIntakeOpenResult.notFound;
+    final invitation = target.intakeInvitation!;
+    if (!invitation.isActive) return PublicIntakeOpenResult.disabled;
+
+    if (selectedCompanyId != target.company.id) {
+      _workspaceRepository.selectCompany(target.company.id);
+    }
+    startOrResumeIntake();
+    _markPublicIntakeStarted();
     notifyListeners();
+    return PublicIntakeOpenResult.opened;
+  }
+
+  Future<void> updateCompany(Company updated) {
+    return _runWorkspaceMutation(
+      () => _workspaceRepository.updateCompany(
+        updated,
+        businessRules: selectedBusinessRules,
+        botConfiguration: selectedBotConfiguration,
+      ),
+    );
+  }
+
+  Future<void> updateBusinessRules(BusinessRules updated) {
+    return _runWorkspaceMutation(
+      () => _workspaceRepository.updateCompany(
+        selectedCompany,
+        businessRules: updated,
+        botConfiguration: selectedBotConfiguration,
+      ),
+    );
+  }
+
+  Future<void> updateBotConfiguration(BotConfiguration updated) {
+    return _runWorkspaceMutation(
+      () => _workspaceRepository.updateCompany(
+        selectedCompany,
+        businessRules: selectedBusinessRules,
+        botConfiguration: updated,
+      ),
+    );
   }
 
   IntakeSession startOrResumeIntake() {
@@ -215,12 +439,23 @@ class AppState extends ChangeNotifier {
 
   void markIntakeChatStarted() {
     final now = DateTime.now();
-    _updateIntake(
-      (session) => session.copyWith(
-        chatStartedAt: session.chatStartedAt ?? now,
-        chatUpdatedAt: now,
+    final existing = selectedIntakeSession ?? startOrResumeIntake();
+    final status = existing.status == IntakeStatus.completed
+        ? IntakeStatus.completed
+        : IntakeStatus.inProgress;
+    final updated = existing.copyWith(
+      status: status,
+      chatStartedAt: existing.chatStartedAt ?? now,
+      chatUpdatedAt: now,
+    );
+    final invitation = _invitationForIntakeStart(now);
+    _updateSelectedWorkspace(
+      selectedWorkspace.copyWith(
+        intakeSession: updated,
+        intakeInvitation: invitation,
       ),
     );
+    notifyListeners();
   }
 
   void setIntakeChatQuestionIndex(int index) {
@@ -268,6 +503,7 @@ class AppState extends ChangeNotifier {
         chatUpdatedAt: now,
       ),
     );
+    _markPublicIntakeCompleted();
   }
 
   // --- Next Best Actions & company memory ---
@@ -453,70 +689,66 @@ class AppState extends ChangeNotifier {
     notifyListeners();
   }
 
-  void addKnowledgeEntry(KnowledgeEntry entry) {
-    _updateSelectedWorkspace(
-      selectedWorkspace.copyWith(
-        knowledgeEntries: [...selectedKnowledgeEntries, entry],
-      ),
+  Future<void> addKnowledgeEntry(KnowledgeEntry entry) {
+    return _runWorkspaceMutation(
+      () => _workspaceRepository.createKnowledgeEntry(entry),
     );
-    notifyListeners();
   }
 
-  void addKnowledgeEntryLinkedToSource({
+  Future<void> addKnowledgeEntryLinkedToSource({
     required KnowledgeEntry entry,
     String? sourceMaterialId,
     bool markSourceConverted = true,
   }) {
-    _updateSelectedWorkspace(
-      _mutationService.addKnowledgeEntryLinkedToSource(
-        workspace: selectedWorkspace,
-        entry: entry,
-        sourceMaterialId: sourceMaterialId,
-        markSourceConverted: markSourceConverted,
-      ),
-    );
-    notifyListeners();
+    return _runWorkspaceMutation(() async {
+      final savedEntry = await _workspaceRepository.createKnowledgeEntry(entry);
+      if (sourceMaterialId == null) return null;
+      final source = _sourceMaterialById(sourceMaterialId);
+      if (source == null) return null;
+      await _workspaceRepository.updateSourceMaterial(
+        source.copyWith(
+          status: markSourceConverted
+              ? SourceMaterialStatus.converted
+              : source.status,
+          relatedKnowledgeEntryIds: [
+            ...source.relatedKnowledgeEntryIds,
+            savedEntry.id,
+          ],
+          updatedAt: DateTime.now(),
+        ),
+      );
+      return null;
+    });
   }
 
-  void removeKnowledgeEntry(String id) {
-    _updateSelectedWorkspace(
-      selectedWorkspace.copyWith(
-        knowledgeEntries: selectedKnowledgeEntries
-            .where((e) => e.id != id)
-            .toList(),
-      ),
+  Future<void> removeKnowledgeEntry(String id) {
+    return _runWorkspaceMutation(
+      () => _workspaceRepository.deleteKnowledgeEntry(id),
     );
-    notifyListeners();
   }
 
-  void addBotLog(BotQuestionLog log) {
-    _updateSelectedWorkspace(
-      selectedWorkspace.copyWith(botLogs: [...selectedBotLogs, log]),
+  Future<void> addBotLog(BotQuestionLog log) {
+    return _runWorkspaceMutation(
+      () => _workspaceRepository.createBotQuestionLog(log),
     );
-    notifyListeners();
   }
 
-  void addSourceMaterial(SourceMaterial source) {
-    _updateSelectedWorkspace(
-      selectedWorkspace.copyWith(
-        sourceMaterials: [...selectedSourceMaterials, source],
-      ),
+  Future<void> addSourceMaterial(SourceMaterial source) {
+    return _runWorkspaceMutation(
+      () => _workspaceRepository.createSourceMaterial(source),
     );
-    notifyListeners();
   }
 
-  void updateSourceMaterial(SourceMaterial updated) {
-    _updateSelectedWorkspace(
-      _mutationService.replaceSourceMaterial(selectedWorkspace, updated),
+  Future<void> updateSourceMaterial(SourceMaterial updated) {
+    return _runWorkspaceMutation(
+      () => _workspaceRepository.updateSourceMaterial(updated),
     );
-    notifyListeners();
   }
 
-  void deleteSourceMaterial(String id) {
-    _updateSelectedWorkspace(
-      _mutationService.deleteSourceMaterial(selectedWorkspace, id),
+  Future<void> deleteSourceMaterial(String id) {
+    return _runWorkspaceMutation(
+      () => _workspaceRepository.deleteSourceMaterial(id),
     );
-    notifyListeners();
   }
 
   void markSourceAsReviewed(String id) {
@@ -573,29 +805,40 @@ class AppState extends ChangeNotifier {
     return session.status.name;
   }
 
-  void updateBotLog(BotQuestionLog updated) {
-    _updateSelectedWorkspace(
-      _mutationService.replaceBotLog(selectedWorkspace, updated),
+  Future<void> updateBotLog(BotQuestionLog updated) {
+    return _runWorkspaceMutation(
+      () => _workspaceRepository.updateBotQuestionLog(updated),
     );
-    notifyListeners();
   }
 
-  void addKnowledgeEntryFromReview({
+  Future<void> addKnowledgeEntryFromReview({
     required KnowledgeEntry entry,
     required BotQuestionLog updatedLog,
     String? sourceMaterialId,
     bool markSourceConverted = true,
   }) {
-    _updateSelectedWorkspace(
-      _mutationService.addKnowledgeEntryFromReview(
-        workspace: selectedWorkspace,
-        entry: entry,
-        updatedLog: updatedLog,
-        sourceMaterialId: sourceMaterialId,
-        markSourceConverted: markSourceConverted,
-      ),
-    );
-    notifyListeners();
+    return _runWorkspaceMutation(() async {
+      final savedEntry = await _workspaceRepository.createKnowledgeEntry(entry);
+      if (sourceMaterialId != null) {
+        final source = _sourceMaterialById(sourceMaterialId);
+        if (source != null) {
+          await _workspaceRepository.updateSourceMaterial(
+            source.copyWith(
+              status: markSourceConverted
+                  ? SourceMaterialStatus.converted
+                  : source.status,
+              relatedKnowledgeEntryIds: [
+                ...source.relatedKnowledgeEntryIds,
+                savedEntry.id,
+              ],
+              updatedAt: DateTime.now(),
+            ),
+          );
+        }
+      }
+      await _workspaceRepository.updateBotQuestionLog(updatedLog);
+      return null;
+    });
   }
 
   void updateAuditItemStatus(String id, AuditItemStatus status) {
@@ -742,22 +985,28 @@ class AppState extends ChangeNotifier {
     String id,
     BusinessAuditItem Function(BusinessAuditItem item) update,
   ) {
-    _updateSelectedWorkspace(
-      selectedWorkspace.copyWith(
-        auditItems: [
-          for (final item in selectedAuditItems)
-            if (item.id == id) update(item) else item,
-        ],
-      ),
+    BusinessAuditItem? item;
+    for (final existing in selectedAuditItems) {
+      if (existing.id == id) {
+        item = existing;
+        break;
+      }
+    }
+    if (item == null) return;
+    final current = item;
+    _runWorkspaceMutation(
+      () => _workspaceRepository.updateAuditItem(update(current)),
     );
-    notifyListeners();
   }
 
   void _updateSourceStatus(String id, SourceMaterialStatus status) {
-    _updateSelectedWorkspace(
-      _mutationService.updateSourceStatus(selectedWorkspace, id, status),
+    final source = _sourceMaterialById(id);
+    if (source == null) return;
+    _runWorkspaceMutation(
+      () => _workspaceRepository.updateSourceMaterial(
+        source.copyWith(status: status, updatedAt: DateTime.now()),
+      ),
     );
-    notifyListeners();
   }
 
   void _updateIntake(IntakeSession Function(IntakeSession session) update) {
@@ -768,10 +1017,120 @@ class AppState extends ChangeNotifier {
     final updated = update(
       existing.copyWith(status: status, updatedAt: DateTime.now()),
     );
+    final invitation = _invitationForIntakeUpdate(updated);
     _updateSelectedWorkspace(
-      selectedWorkspace.copyWith(intakeSession: updated),
+      selectedWorkspace.copyWith(
+        intakeSession: updated,
+        intakeInvitation: invitation,
+      ),
     );
+    final repository = _workspaceRepository;
+    if (repository is IntakeInvitationRepository) {
+      unawaited(
+        (repository as IntakeInvitationRepository)
+            .updateIntakeSession(updated, invitation: invitation)
+            .catchError((Object error) {
+              _workspaceSaveError = _friendlyRepositoryError(error);
+              notifyListeners();
+              return updated;
+            }),
+      );
+    }
     notifyListeners();
+  }
+
+  IntakeInvitation? _invitationForIntakeUpdate(IntakeSession session) {
+    final invitation = selectedIntakeInvitation;
+    if (invitation == null ||
+        invitation.status == IntakeInvitationStatus.disabled) {
+      return invitation;
+    }
+    final now = DateTime.now();
+    if (session.status == IntakeStatus.completed) {
+      return invitation.copyWith(
+        status: IntakeInvitationStatus.completed,
+        updatedAt: now,
+        completedAt: now,
+      );
+    }
+    if (invitation.status == IntakeInvitationStatus.invited ||
+        invitation.status == IntakeInvitationStatus.started) {
+      return invitation.copyWith(
+        status: IntakeInvitationStatus.partial,
+        updatedAt: now,
+        startedAt: invitation.startedAt ?? now,
+      );
+    }
+    return invitation.copyWith(updatedAt: now);
+  }
+
+  IntakeInvitation? _invitationForIntakeStart(DateTime now) {
+    final invitation = selectedIntakeInvitation;
+    if (invitation == null ||
+        invitation.status == IntakeInvitationStatus.disabled ||
+        invitation.status == IntakeInvitationStatus.completed) {
+      return invitation;
+    }
+    if (invitation.status == IntakeInvitationStatus.invited) {
+      return invitation.copyWith(
+        status: IntakeInvitationStatus.started,
+        startedAt: invitation.startedAt ?? now,
+        updatedAt: now,
+      );
+    }
+    return invitation.copyWith(updatedAt: now);
+  }
+
+  void _markPublicIntakeStarted() {
+    final invitation = selectedIntakeInvitation;
+    if (invitation == null ||
+        invitation.status == IntakeInvitationStatus.disabled ||
+        invitation.status == IntakeInvitationStatus.completed) {
+      return;
+    }
+    if (invitation.status != IntakeInvitationStatus.invited) return;
+    final now = DateTime.now();
+    _updateSelectedWorkspace(
+      selectedWorkspace.copyWith(
+        intakeInvitation: invitation.copyWith(
+          status: IntakeInvitationStatus.started,
+          startedAt: now,
+          updatedAt: now,
+        ),
+      ),
+    );
+  }
+
+  void _markPublicIntakeCompleted() {
+    final invitation = selectedIntakeInvitation;
+    if (invitation == null ||
+        invitation.status == IntakeInvitationStatus.disabled) {
+      return;
+    }
+    final now = DateTime.now();
+    _updateSelectedWorkspace(
+      selectedWorkspace.copyWith(
+        intakeInvitation: invitation.copyWith(
+          status: IntakeInvitationStatus.completed,
+          completedAt: now,
+          updatedAt: now,
+        ),
+      ),
+    );
+  }
+
+  String _generateInvitationToken() {
+    final random = Random.secure();
+    final bytes = List<int>.generate(24, (_) => random.nextInt(256));
+    return base64Url.encode(bytes).replaceAll('=', '');
+  }
+
+  String _defaultIntakeInvitationGreeting(Company company) {
+    final language = company.primaryLanguage.trim().toLowerCase();
+    if (language.startsWith('en')) {
+      return 'Welcome to the company questionnaire for ${company.name}.';
+    }
+    return 'Willkommen beim Firmenfragebogen für ${company.name}.';
   }
 
   bool _containsSimilar(Iterable<String> existingValues, String candidate) {
@@ -801,7 +1160,64 @@ class AppState extends ChangeNotifier {
   }
 
   void _updateSelectedWorkspace(CompanyWorkspace updated) {
-    _workspaceRepository.saveSelectedWorkspace(updated);
+    unawaited(
+      _workspaceRepository.saveSelectedWorkspace(updated).catchError((
+        Object error,
+      ) {
+        _workspaceSaveError = _friendlyRepositoryError(error);
+        notifyListeners();
+      }),
+    );
+  }
+
+  SourceMaterial? _sourceMaterialById(String id) {
+    for (final source in selectedSourceMaterials) {
+      if (source.id == id) return source;
+    }
+    return null;
+  }
+
+  Future<void> _runWorkspaceMutation(Future<Object?> Function() action) async {
+    if (_isSavingWorkspace) return;
+    final generation = _workspaceMutationGeneration;
+    _isSavingWorkspace = true;
+    _workspaceSaveError = null;
+    notifyListeners();
+    try {
+      await action();
+      if (generation != _workspaceMutationGeneration) return;
+      _workspaceSaveError = null;
+    } catch (error) {
+      if (generation != _workspaceMutationGeneration) return;
+      _workspaceSaveError = _friendlyRepositoryError(error);
+    } finally {
+      if (generation == _workspaceMutationGeneration) {
+        _isSavingWorkspace = false;
+        notifyListeners();
+      }
+    }
+  }
+
+  String _friendlyRepositoryError(Object error) {
+    if (error is NoActiveWorkspaceException) {
+      return 'No active workspace is available.';
+    }
+    if (error is MissingTenantException || error is MissingSessionException) {
+      return 'Please sign in again before saving changes.';
+    }
+    if (error is NoWritePermissionException) {
+      return 'You do not have permission to change this workspace.';
+    }
+    if (error is RepositoryRecordNotFoundException) {
+      return 'The record could not be found anymore.';
+    }
+    if (error is RepositoryValidationException) {
+      return 'Please check the entered data and try again.';
+    }
+    if (error is RepositoryConflictException) {
+      return 'The record changed elsewhere. Please reload and try again.';
+    }
+    return 'The change could not be saved.';
   }
 
   static AppState of(BuildContext context) {

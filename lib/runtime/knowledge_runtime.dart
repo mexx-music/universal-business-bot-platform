@@ -153,18 +153,21 @@ class KnowledgeRuntime {
     ];
     final topScore = answerable.isEmpty ? 0 : answerable.first.score;
     final corroboration =
-        (answerable.skip(1).where((m) => m.score >= 40).length * 5)
-            .clamp(0, 10);
+        (answerable.skip(1).where((m) => m.score >= 40).length * 5).clamp(
+          0,
+          10,
+        );
     final reviewBonus = retrieval.reviewedSimilarLogs.isEmpty ? 0 : 5;
 
-    var confidence = (topScore * 0.65 + coverage * 25 + corroboration +
-            reviewBonus)
-        .round()
-        .clamp(0, 100);
+    var confidence =
+        (topScore * 0.65 + coverage * 25 + corroboration + reviewBonus)
+            .round()
+            .clamp(0, 100);
 
-    final onlyRestrictedKnowledge = answerable.isEmpty &&
-        topEntries.any((match) => match.restricted);
-    final restrictedOutranksAnswerable = answerable.isNotEmpty &&
+    final onlyRestrictedKnowledge =
+        answerable.isEmpty && topEntries.any((match) => match.restricted);
+    final restrictedOutranksAnswerable =
+        answerable.isNotEmpty &&
         topEntries.first.restricted &&
         topEntries.first.score > answerable.first.score;
     if (retrieval.blockedTopicHits.isNotEmpty ||

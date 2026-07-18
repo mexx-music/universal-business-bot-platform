@@ -83,8 +83,7 @@ void main() {
   }
 
   group('CompanionCheckInGenerator', () {
-    test('first check-in without history is honest about the empty period',
-        () {
+    test('first check-in without history is honest about the empty period', () {
       final workspace = buildWorkspace();
       final checkIn = generator.generate(
         workspace: workspace,
@@ -339,8 +338,11 @@ void main() {
       expect(completed.nextActionIds, ['expandFaq']);
 
       // Immutable from now on.
-      final afterNotes =
-          service.updateUserNotes(workspace, id, 'Nachträglich geändert');
+      final afterNotes = service.updateUserNotes(
+        workspace,
+        id,
+        'Nachträglich geändert',
+      );
       expect(identical(afterNotes, workspace), isTrue);
       final afterComplete = service.completeCheckIn(
         workspace,
@@ -392,8 +394,7 @@ void main() {
       expect(state.checkIns, hasLength(1));
       expect(state.activeCheckIn, isNotNull);
 
-      final other = state.companies
-          .firstWhere((w) => w.company.id == otherId);
+      final other = state.companies.firstWhere((w) => w.company.id == otherId);
       expect(other.checkIns, isEmpty);
 
       state.completeCheckIn(
@@ -407,8 +408,9 @@ void main() {
   });
 
   group('CheckInScreen', () {
-    testWidgets('start opens the guided flow, skip returns to the overview',
-        (tester) async {
+    testWidgets('start opens the guided flow, skip returns to the overview', (
+      tester,
+    ) async {
       final state = AppState();
       await tester.pumpWidget(
         MaterialApp(

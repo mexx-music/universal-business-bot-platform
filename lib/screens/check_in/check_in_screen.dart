@@ -216,7 +216,8 @@ class _CheckInScreenState extends State<CheckInScreen> {
                                 context,
                                 onSave: (result) => state.rateActionRecord(
                                   record.id,
-                                  rating: result.rating ??
+                                  rating:
+                                      result.rating ??
                                       ActionResultRating.notYetRatable,
                                   resultNote: result.note,
                                   actualOutcome: result.outcome,

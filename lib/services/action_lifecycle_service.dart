@@ -20,10 +20,10 @@ class ActionLifecycleService {
     final timestamp = now ?? DateTime.now();
     return _append(
       workspace,
-      _newRecord(action, timestamp).copyWith(
-        status: ActionRecordStatus.accepted,
-        acceptedAt: timestamp,
-      ),
+      _newRecord(
+        action,
+        timestamp,
+      ).copyWith(status: ActionRecordStatus.accepted, acceptedAt: timestamp),
     );
   }
 
@@ -36,10 +36,10 @@ class ActionLifecycleService {
     final timestamp = now ?? DateTime.now();
     return _append(
       workspace,
-      _newRecord(action, timestamp).copyWith(
-        status: ActionRecordStatus.deferred,
-        deferredUntil: until,
-      ),
+      _newRecord(
+        action,
+        timestamp,
+      ).copyWith(status: ActionRecordStatus.deferred, deferredUntil: until),
     );
   }
 
@@ -84,10 +84,10 @@ class ActionLifecycleService {
     }
     return _append(
       workspace,
-      _newRecord(action, timestamp).copyWith(
-        status: ActionRecordStatus.inProgress,
-        startedAt: timestamp,
-      ),
+      _newRecord(
+        action,
+        timestamp,
+      ).copyWith(status: ActionRecordStatus.inProgress, startedAt: timestamp),
     );
   }
 
@@ -107,10 +107,28 @@ class ActionLifecycleService {
     final open = _openRecordFor(workspace, action.type.name);
     final base = open ?? _newRecord(action, timestamp);
     return open != null
-        ? _replace(workspace, _completed(base, timestamp, rating, resultNote,
-            actualOutcome, repeatRequested))
-        : _append(workspace, _completed(base, timestamp, rating, resultNote,
-            actualOutcome, repeatRequested));
+        ? _replace(
+            workspace,
+            _completed(
+              base,
+              timestamp,
+              rating,
+              resultNote,
+              actualOutcome,
+              repeatRequested,
+            ),
+          )
+        : _append(
+            workspace,
+            _completed(
+              base,
+              timestamp,
+              rating,
+              resultNote,
+              actualOutcome,
+              repeatRequested,
+            ),
+          );
   }
 
   /// Completes an existing record by id (e.g. from the "In Umsetzung" list).
@@ -127,8 +145,14 @@ class ActionLifecycleService {
     if (record == null) return workspace;
     return _replace(
       workspace,
-      _completed(record, now ?? DateTime.now(), rating, resultNote,
-          actualOutcome, repeatRequested),
+      _completed(
+        record,
+        now ?? DateTime.now(),
+        rating,
+        resultNote,
+        actualOutcome,
+        repeatRequested,
+      ),
     );
   }
 
@@ -167,9 +191,7 @@ class ActionLifecycleService {
       status: ActionRecordStatus.suggested,
       createdAt: timestamp,
       expectedImpact: action.impact.name,
-      sourceReasonKeys: [
-        for (final reason in action.reasons) reason.evidence,
-      ],
+      sourceReasonKeys: [for (final reason in action.reasons) reason.evidence],
     );
   }
 

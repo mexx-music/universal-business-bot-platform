@@ -1,4 +1,12 @@
 import '../models/company_workspace.dart';
+import '../models/bot_question_log.dart';
+import '../models/business_audit.dart';
+import '../models/business_rules.dart';
+import '../models/bot_configuration.dart';
+import '../models/company.dart';
+import '../models/knowledge_entry.dart';
+import '../models/product_or_service.dart';
+import '../models/source_material.dart';
 import 'tenant_context.dart';
 
 /// Single data-access boundary for company workspaces.
@@ -37,6 +45,36 @@ abstract class WorkspaceRepository {
 
   /// Persists [updated] and makes it the selected workspace.
   Future<void> saveSelectedWorkspace(CompanyWorkspace updated);
+
+  Future<Company> updateCompany(
+    Company company, {
+    BusinessRules? businessRules,
+    BotConfiguration? botConfiguration,
+  });
+
+  Future<ProductOrService> createProduct(ProductOrService product);
+
+  Future<ProductOrService> updateProduct(ProductOrService product);
+
+  Future<void> deleteProduct(String id);
+
+  Future<KnowledgeEntry> createKnowledgeEntry(KnowledgeEntry entry);
+
+  Future<KnowledgeEntry> updateKnowledgeEntry(KnowledgeEntry entry);
+
+  Future<void> deleteKnowledgeEntry(String id);
+
+  Future<SourceMaterial> createSourceMaterial(SourceMaterial source);
+
+  Future<SourceMaterial> updateSourceMaterial(SourceMaterial source);
+
+  Future<void> deleteSourceMaterial(String id);
+
+  Future<BotQuestionLog> createBotQuestionLog(BotQuestionLog log);
+
+  Future<BotQuestionLog> updateBotQuestionLog(BotQuestionLog log);
+
+  Future<BusinessAuditItem> updateAuditItem(BusinessAuditItem item);
 
   /// Removes all locally persisted data for this repository. Intended for
   /// tests and future admin/debug tooling — there is deliberately no UI for

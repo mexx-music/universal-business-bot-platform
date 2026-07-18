@@ -63,13 +63,7 @@ class KnowledgeRanking {
     var score = 0.0;
     final reasons = <String>[];
 
-    score += _termScore(
-      35,
-      'Titel passt',
-      signals.titleTerms,
-      query,
-      reasons,
-    );
+    score += _termScore(35, 'Titel passt', signals.titleTerms, query, reasons);
     score += _termScore(
       25,
       'Schlagwörter passen',
@@ -128,8 +122,13 @@ class KnowledgeRanking {
       query,
       reasons,
     );
-    score += _termScore(10, 'Notizen passen', signals.notesTerms, query,
-        reasons);
+    score += _termScore(
+      10,
+      'Notizen passen',
+      signals.notesTerms,
+      query,
+      reasons,
+    );
     final status = signals.source.status;
     if (status == SourceMaterialStatus.reviewed ||
         status == SourceMaterialStatus.converted) {

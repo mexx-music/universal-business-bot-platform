@@ -54,7 +54,10 @@ class NextBestActionEngine {
 
   /// Recommends the top actions and reports every candidate the action
   /// history suppressed — nothing disappears silently.
-  NextBestActionPlan recommendPlan(CompanyWorkspace workspace, {DateTime? now}) {
+  NextBestActionPlan recommendPlan(
+    CompanyWorkspace workspace, {
+    DateTime? now,
+  }) {
     final timestamp = now ?? DateTime.now();
     final actions = <NextBestAction>[];
     final suppressed = <SuppressedAction>[];
@@ -76,7 +79,10 @@ class NextBestActionEngine {
     );
   }
 
-  List<NextBestAction> _candidates(CompanyWorkspace workspace, DateTime timestamp) {
+  List<NextBestAction> _candidates(
+    CompanyWorkspace workspace,
+    DateTime timestamp,
+  ) {
     final candidates = <NextBestAction?>[
       _completeIntake(workspace),
       _completeCompanyProfile(workspace),
@@ -277,8 +283,7 @@ class NextBestActionEngine {
     final recorded = record.sourceReasonKeys.toSet();
     if (recorded.isEmpty) return false;
     final current = action.reasons.map((reason) => reason.evidence).toSet();
-    return current.length != recorded.length ||
-        !current.containsAll(recorded);
+    return current.length != recorded.length || !current.containsAll(recorded);
   }
 
   String _ratingLabel(ActionResultRating rating) {
@@ -321,17 +326,21 @@ class NextBestActionEngine {
           evidence: 'intakeSession: ${session?.status.name ?? 'null'}',
         ),
         ActionReason(
-          message: 'Der Projektfortschritt liegt bei '
+          message:
+              'Der Projektfortschritt liegt bei '
               '${(progress * 100).round()} %.',
-          evidence: 'projectStatus.progress = '
+          evidence:
+              'projectStatus.progress = '
               '${(progress * 100).round()} %',
         ),
       ],
       priority: ActionPriority.high,
       effort: ActionEffort.medium,
       impact: ActionImpact.high,
-      areas: const [BusinessGoalArea.companyProfile,
-          BusinessGoalArea.knowledgeBase],
+      areas: const [
+        BusinessGoalArea.companyProfile,
+        BusinessGoalArea.knowledgeBase,
+      ],
       urgency: session == null ? 25 : 15,
     );
   }
@@ -368,7 +377,8 @@ class NextBestActionEngine {
           'Bot und die Außendarstellung.',
       reasons: [
         ActionReason(
-          message: 'Es fehlen ${missing.length} von ${checks.length} '
+          message:
+              'Es fehlen ${missing.length} von ${checks.length} '
               'Profilangaben: ${missing.join(', ')}.',
           evidence: 'companyProfile: $filled/${checks.length} Feldern gefüllt',
         ),
@@ -454,12 +464,14 @@ class NextBestActionEngine {
           'zu einem nützlichen Bot und entlastet den Support sofort.',
       reasons: [
         ActionReason(
-          message: 'Die Wissensbasis enthält erst $faqCount FAQ-Einträge '
+          message:
+              'Die Wissensbasis enthält erst $faqCount FAQ-Einträge '
               '(Richtwert: mindestens 8).',
           evidence: 'knowledgeEntries: $faqCount× category=faq',
         ),
         ActionReason(
-          message: 'Der Bot ist im Status '
+          message:
+              'Der Bot ist im Status '
               '„${workspace.botConfiguration.status.name}" und braucht '
               'FAQ-Breite, um Fragen sicher zu beantworten.',
           evidence:
@@ -478,7 +490,9 @@ class NextBestActionEngine {
   NextBestAction? _addKnowledge(CompanyWorkspace workspace, DateTime now) {
     final entries = workspace.knowledgeEntries;
     final stale = entries
-        .where((entry) => now.difference(entry.createdAt) > staleKnowledgeWindow)
+        .where(
+          (entry) => now.difference(entry.createdAt) > staleKnowledgeWindow,
+        )
         .length;
     final tooFew = entries.length < 12;
     final mostlyStale = entries.isNotEmpty && stale > entries.length / 2;
@@ -492,19 +506,24 @@ class NextBestActionEngine {
       reasons: [
         if (tooFew)
           ActionReason(
-            message: 'Die Wissensbasis enthält erst ${entries.length} '
+            message:
+                'Die Wissensbasis enthält erst ${entries.length} '
                 'Einträge (Richtwert: mindestens 12).',
             evidence: 'knowledgeEntries.length = ${entries.length}',
           ),
         if (mostlyStale)
           ActionReason(
-            message: '$stale von ${entries.length} Einträgen sind älter als '
+            message:
+                '$stale von ${entries.length} Einträgen sind älter als '
                 '12 Monate und sollten geprüft werden.',
-            evidence: 'knowledgeEntries: $stale× älter als '
+            evidence:
+                'knowledgeEntries: $stale× älter als '
                 '${staleKnowledgeWindow.inDays} Tage',
           ),
       ],
-      priority: entries.length < 5 ? ActionPriority.high : ActionPriority.medium,
+      priority: entries.length < 5
+          ? ActionPriority.high
+          : ActionPriority.medium,
       effort: ActionEffort.medium,
       impact: ActionImpact.medium,
       areas: const [BusinessGoalArea.knowledgeBase],
@@ -530,17 +549,20 @@ class NextBestActionEngine {
           'beantworten.',
       reasons: [
         ActionReason(
-          message: 'Die Wissensbasis enthält $knowledgeCount geprüfte '
+          message:
+              'Die Wissensbasis enthält $knowledgeCount geprüfte '
               'Einträge.',
           evidence: 'knowledgeEntries.length = $knowledgeCount',
         ),
         ActionReason(
-          message: 'Der Audit-Score liegt bei '
+          message:
+              'Der Audit-Score liegt bei '
               '${(auditScore * 100).round()} %.',
           evidence: 'auditScore = ${(auditScore * 100).round()} %',
         ),
         ActionReason(
-          message: 'Nur $openReviews offene Review-Anfragen — der '
+          message:
+              'Nur $openReviews offene Review-Anfragen — der '
               'Review-Prozess funktioniert.',
           evidence: 'botLogs: $openReviews× reviewStatus=open',
         ),
@@ -578,10 +600,12 @@ class NextBestActionEngine {
       description: description,
       reasons: [
         ActionReason(
-          message: '${openItems.length} offene Audit-Punkte in diesem '
+          message:
+              '${openItems.length} offene Audit-Punkte in diesem '
               'Bereich: '
               '${openItems.map((item) => item.title).join('; ')}.',
-          evidence: 'auditItems[${area.name}]: ${openItems.length}× nicht '
+          evidence:
+              'auditItems[${area.name}]: ${openItems.length}× nicht '
               'complete ($missing× missing, $highPriority× hohe Priorität)',
         ),
       ],
@@ -595,8 +619,8 @@ class NextBestActionEngine {
 
   NextBestAction? _startMarketing(CompanyWorkspace workspace) {
     final strategy = marketingStrategyCalculator.calculate(workspace);
-    final started = strategy.inProgressActionCount +
-        strategy.completedActionCount;
+    final started =
+        strategy.inProgressActionCount + strategy.completedActionCount;
     if (started > 0 || strategy.recommendedActions.isEmpty) return null;
     final top = strategy.recommendedActions.take(3).toList();
     return _action(
@@ -607,15 +631,18 @@ class NextBestActionEngine {
           'empfohlenen ersten Schritten wird das Unternehmen sichtbar.',
       reasons: [
         ActionReason(
-          message: 'Keine Marketing-Maßnahme ist gestartet oder '
+          message:
+              'Keine Marketing-Maßnahme ist gestartet oder '
               'abgeschlossen.',
           evidence: 'marketing: 0× inProgress, 0× completed',
         ),
         ActionReason(
-          message: 'Der Marketing-Score liegt bei ${strategy.score}/100; '
+          message:
+              'Der Marketing-Score liegt bei ${strategy.score}/100; '
               'empfohlener Einstieg: '
               '${top.map((action) => action.type.name).join(', ')}.',
-          evidence: 'marketingStrategy.score = ${strategy.score}; '
+          evidence:
+              'marketingStrategy.score = ${strategy.score}; '
               'recommendedActions = ${strategy.recommendedActions.length}',
         ),
       ],
@@ -639,17 +666,16 @@ class NextBestActionEngine {
           'führen, den Rest bewusst pausieren.',
       reasons: [
         ActionReason(
-          message: '${strategy.inProgressActionCount} Marketing-Maßnahmen '
+          message:
+              '${strategy.inProgressActionCount} Marketing-Maßnahmen '
               'laufen gleichzeitig (Richtwert: höchstens 3).',
-          evidence:
-              'marketing: ${strategy.inProgressActionCount}× inProgress',
+          evidence: 'marketing: ${strategy.inProgressActionCount}× inProgress',
         ),
       ],
       priority: ActionPriority.medium,
       effort: ActionEffort.low,
       impact: ActionImpact.medium,
-      areas: const [BusinessGoalArea.marketing,
-          BusinessGoalArea.controlling],
+      areas: const [BusinessGoalArea.marketing, BusinessGoalArea.controlling],
       urgency: (strategy.inProgressActionCount * 2).clamp(0, 12),
     );
   }
@@ -667,11 +693,13 @@ class NextBestActionEngine {
       reasons: [
         ActionReason(
           message: 'Es sind keine Unternehmensziele hinterlegt.',
-          evidence: 'businessGoals.length = 0; '
+          evidence:
+              'businessGoals.length = 0; '
               'strategyGoals = ${strategy.goals.length}',
         ),
         ActionReason(
-          message: 'Der Projektfortschritt (${(progress * 100).round()} %) '
+          message:
+              'Der Projektfortschritt (${(progress * 100).round()} %) '
               'hat damit keinen Bezugspunkt.',
           evidence: 'projectStatus.progress = ${(progress * 100).round()} %',
         ),
@@ -679,8 +707,10 @@ class NextBestActionEngine {
       priority: ActionPriority.medium,
       effort: ActionEffort.low,
       impact: ActionImpact.medium,
-      areas: const [BusinessGoalArea.controlling,
-          BusinessGoalArea.projectStatus],
+      areas: const [
+        BusinessGoalArea.controlling,
+        BusinessGoalArea.projectStatus,
+      ],
       urgency: 5,
     );
   }
@@ -727,7 +757,8 @@ class NextBestActionEngine {
       effort: effort,
       impact: impact,
       areas: areas,
-      score: _priorityWeights[priority]! +
+      score:
+          _priorityWeights[priority]! +
           _impactWeights[impact]! +
           _effortBonus[effort]! +
           urgency.clamp(0, 25),

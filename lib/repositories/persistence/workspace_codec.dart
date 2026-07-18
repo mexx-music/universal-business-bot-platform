@@ -7,6 +7,7 @@ import '../../models/business_strategy.dart';
 import '../../models/companion_check_in.dart';
 import '../../models/company.dart';
 import '../../models/company_workspace.dart';
+import '../../models/intake_invitation.dart';
 import '../../models/intake_session.dart';
 import '../../models/knowledge_entry.dart';
 import '../../models/marketing_strategy.dart';
@@ -57,6 +58,9 @@ class WorkspaceCodec {
       'intakeSession': workspace.intakeSession == null
           ? null
           : _encodeIntakeSession(workspace.intakeSession!),
+      'intakeInvitation': workspace.intakeInvitation == null
+          ? null
+          : _encodeIntakeInvitation(workspace.intakeInvitation!),
       'actionRecords': [
         for (final record in workspace.actionRecords)
           _encodeActionRecord(record),
@@ -70,6 +74,7 @@ class WorkspaceCodec {
   static CompanyWorkspace decodeWorkspace(Map<String, Object?> json) {
     final company = _decodeCompany(_map(json, 'company'));
     final intakeJson = json['intakeSession'];
+    final invitationJson = json['intakeInvitation'];
     return CompanyWorkspace(
       company: company,
       products: [
@@ -83,8 +88,7 @@ class WorkspaceCodec {
         for (final item in _mapList(json, 'botLogs')) _decodeBotLog(item),
       ],
       auditItems: [
-        for (final item in _mapList(json, 'auditItems'))
-          _decodeAuditItem(item),
+        for (final item in _mapList(json, 'auditItems')) _decodeAuditItem(item),
       ],
       businessRules: _decodeBusinessRules(_map(json, 'businessRules')),
       botConfiguration: _decodeBotConfiguration(_map(json, 'botConfiguration')),
@@ -103,6 +107,9 @@ class WorkspaceCodec {
       intakeSession: intakeJson is Map
           ? _decodeIntakeSession(intakeJson.cast<String, Object?>())
           : null,
+      intakeInvitation: invitationJson is Map
+          ? _decodeIntakeInvitation(invitationJson.cast<String, Object?>())
+          : null,
       // Added in schema version 2; absent in v1 data → empty history.
       actionRecords: [
         for (final item in _mapList(json, 'actionRecords'))
@@ -114,6 +121,19 @@ class WorkspaceCodec {
       ],
     );
   }
+
+  static Map<String, Object?> encodeIntakeInvitation(
+    IntakeInvitation invitation,
+  ) => _encodeIntakeInvitation(invitation);
+
+  static IntakeInvitation decodeIntakeInvitation(Map<String, Object?> json) =>
+      _decodeIntakeInvitation(json);
+
+  static Map<String, Object?> encodeIntakeSession(IntakeSession session) =>
+      _encodeIntakeSession(session);
+
+  static IntakeSession decodeIntakeSession(Map<String, Object?> json) =>
+      _decodeIntakeSession(json);
 
   // --- CompanionCheckIn (companion rhythm) ---
 
@@ -591,6 +611,40 @@ class WorkspaceCodec {
   }
 
   // --- IntakeSession ---
+
+  static Map<String, Object?> _encodeIntakeInvitation(
+    IntakeInvitation invitation,
+  ) {
+    return _clean({
+      'token': invitation.token,
+      'id': invitation.id,
+      'status': invitation.status.name,
+      'greeting': invitation.greeting,
+      'createdAt': invitation.createdAt.toIso8601String(),
+      'updatedAt': invitation.updatedAt.toIso8601String(),
+      'startedAt': invitation.startedAt?.toIso8601String(),
+      'completedAt': invitation.completedAt?.toIso8601String(),
+      'disabledAt': invitation.disabledAt?.toIso8601String(),
+    });
+  }
+
+  static IntakeInvitation _decodeIntakeInvitation(Map<String, Object?> json) {
+    return IntakeInvitation(
+      id: _string(json, 'id'),
+      token: _string(json, 'token'),
+      status: _enum(
+        IntakeInvitationStatus.values,
+        json['status'],
+        IntakeInvitationStatus.invited,
+      ),
+      greeting: _string(json, 'greeting'),
+      createdAt: _dateTime(json, 'createdAt'),
+      updatedAt: _dateTime(json, 'updatedAt'),
+      startedAt: _dateTimeOrNull(json, 'startedAt'),
+      completedAt: _dateTimeOrNull(json, 'completedAt'),
+      disabledAt: _dateTimeOrNull(json, 'disabledAt'),
+    );
+  }
 
   static Map<String, Object?> _encodeIntakeSession(IntakeSession session) {
     return _clean({

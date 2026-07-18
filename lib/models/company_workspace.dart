@@ -6,6 +6,7 @@ import 'bot_configuration.dart';
 import 'bot_question_log.dart';
 import 'business_strategy.dart';
 import 'company.dart';
+import 'intake_invitation.dart';
 import 'intake_session.dart';
 import 'knowledge_entry.dart';
 import 'marketing_strategy.dart';
@@ -24,6 +25,7 @@ class CompanyWorkspace {
   final List<MarketingAction> marketingActions;
   final List<BusinessGoal> businessGoals;
   final IntakeSession? intakeSession;
+  final IntakeInvitation? intakeInvitation;
 
   /// Company memory: persisted decisions about recommended actions.
   final List<ActionRecord> actionRecords;
@@ -43,6 +45,7 @@ class CompanyWorkspace {
     this.marketingActions = const [],
     this.businessGoals = const [],
     this.intakeSession,
+    this.intakeInvitation,
     this.actionRecords = const [],
     this.checkIns = const [],
   });
@@ -59,6 +62,7 @@ class CompanyWorkspace {
     List<MarketingAction>? marketingActions,
     List<BusinessGoal>? businessGoals,
     IntakeSession? intakeSession,
+    IntakeInvitation? intakeInvitation,
     List<ActionRecord>? actionRecords,
     List<CompanionCheckIn>? checkIns,
   }) {
@@ -74,6 +78,7 @@ class CompanyWorkspace {
       marketingActions: marketingActions ?? this.marketingActions,
       businessGoals: businessGoals ?? this.businessGoals,
       intakeSession: intakeSession ?? this.intakeSession,
+      intakeInvitation: intakeInvitation ?? this.intakeInvitation,
       actionRecords: actionRecords ?? this.actionRecords,
       checkIns: checkIns ?? this.checkIns,
     );

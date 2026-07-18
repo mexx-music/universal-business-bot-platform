@@ -60,10 +60,7 @@ void main() {
       expect(actions, isNotEmpty);
       expect(actions.length, lessThanOrEqualTo(5));
       for (var i = 1; i < actions.length; i++) {
-        expect(
-          actions[i - 1].score,
-          greaterThanOrEqualTo(actions[i].score),
-        );
+        expect(actions[i - 1].score, greaterThanOrEqualTo(actions[i].score));
       }
     });
 
@@ -106,10 +103,7 @@ void main() {
         review.reasons.any((r) => r.evidence.contains('reviewStatus=open')),
         isTrue,
       );
-      expect(
-        review.reasons.any((r) => r.evidence.contains('redFlag')),
-        isTrue,
-      );
+      expect(review.reasons.any((r) => r.evidence.contains('redFlag')), isTrue);
     });
 
     test('mature workspace gets bot activation instead of basics', () {
@@ -171,10 +165,7 @@ void main() {
       expect(types, contains(NextBestActionType.activateBot));
       expect(types, isNot(contains(NextBestActionType.completeIntake)));
       expect(types, isNot(contains(NextBestActionType.expandFaq)));
-      expect(
-        types,
-        isNot(contains(NextBestActionType.completeCompanyProfile)),
-      );
+      expect(types, isNot(contains(NextBestActionType.completeCompanyProfile)));
     });
 
     test('every recommendation is explainable — reasons with evidence', () {
@@ -183,8 +174,11 @@ void main() {
         ...MockData.companyWorkspaces,
       ]) {
         for (final action in engine.recommend(workspace, now: now)) {
-          expect(action.reasons, isNotEmpty,
-              reason: '${action.type} must carry reasons');
+          expect(
+            action.reasons,
+            isNotEmpty,
+            reason: '${action.type} must carry reasons',
+          );
           for (final reason in action.reasons) {
             expect(reason.message, isNotEmpty);
             expect(reason.evidence, isNotEmpty);

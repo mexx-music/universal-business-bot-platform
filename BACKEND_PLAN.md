@@ -190,35 +190,53 @@ change_log           Audit Trail: entity, entity_id, actor, action, diff jsonb
   gegen die lokale Supabase-Instanz. Merkregel: **Jede neue Tabelle ohne
   Isolationstest gilt als unsicher.**
 
-## 5. Auth-Flow (Planung, noch keine UI)
+## 5. Auth-Flow (Block 22B Foundation)
 
-1. **Registrierung:** E-Mail + Passwort → Verifikations-Mail (Supabase) →
-   nach Bestätigung: Tenant anlegen (Name = Firmenname), Ersteller als
-   `owner`, ersten Workspace anlegen.
-2. **Login/Logout/Reset:** Standard supabase_flutter; Session-Restore beim
-   App-Start (`AppDependencies.create()` prüft Session **vor** `runApp` —
-   derselbe No-Flash-Ansatz wie heute beim Persistenz-Laden).
-3. **Tenant-Auswahl:** Nutzer mit >1 Mitgliedschaft wählen nach Login;
-   Auswahl lokal gemerkt. Die heutige `/companies`-Auswahl wird zur
-   Workspace-Auswahl *innerhalb* des Tenants.
-4. **Einladungen:** `invites`-Zeile + E-Mail mit Token-Link → Registrierung/
-   Login → `tenant_members`-Eintrag mit vordefinierter Rolle.
-5. **Ohne Login:** App läuft weiter im lokalen Modus (heutiges Verhalten) —
-   Login ist Upgrade, keine Pflicht. Das erhält die Demo-Fähigkeit.
+1. **Optionaler Start:** Ohne `SUPABASE_URL` und `SUPABASE_ANON_KEY` läuft die
+   App weiter im lokalen Modus. Login ist ein Upgrade, keine Pflicht.
+2. **Initialisierung:** Mit Build-Variablen wird Supabase vor `runApp`
+   initialisiert. Fehler führen kontrolliert in den lokalen Modus, nicht in
+   eine leere App.
+3. **Login/Logout/Reset:** Standard `supabase_flutter`, aber gekapselt hinter
+   `AuthService`; kein UI-Code greift direkt auf `SupabaseClient.auth` zu.
+4. **TenantContext:** Nach Login werden aktive Mitgliedschaften über
+   `active_tenant_memberships()` aus `tenant_members` geladen. Keine
+   Membership führt ins Onboarding, eine Membership wird automatisch aktiv,
+   mehrere Memberships nutzen die letzte gültige Tenant-Auswahl pro User-ID
+   oder führen zu `/select-tenant`. Es gibt keinen automatischen
+   „ersten Eintrag“-Fallback mehr.
+5. **Registrierung:** E-Mail + Passwort + optionaler Name. Der Trigger
+   `handle_new_auth_user()` legt `user_profiles` an. Tenant-Erstellung bleibt
+   ein späterer, serverseitiger Onboarding-/RPC-Schritt; der Client insertet
+   keine Tenants, um RLS nicht zu umgehen.
+6. **Später:** Einladungen, Rollenverwaltung, Teamverwaltung und Migration
+   lokaler Daten folgen in späteren Blöcken.
 
 ## 6. Repository-Migration & Sync
 
 - **Interface unverändert**, AppState unverändert, UI unverändert — das ist
   das Abnahmekriterium jeder Phase.
+- **22C-Stand:** `RemoteWorkspaceRepository` lädt einen tenant-gesicherten
+  Supabase-Snapshot hinter dem bestehenden Interface. Unterstützt sind
+  Workspaces, Companies, Products, Knowledge Entries, Source Materials,
+  Bot Question Logs und Audit Items. Jede Query filtert explizit auf den
+  aktiven `TenantContext.tenantId`; RLS bleibt die eigentliche Autorität.
+- **22D-Stand:** Kontrollierte Cloud-Writes sind für die bereits
+  bearbeitbaren Entitäten umgesetzt: Company-Profil inklusive Business Rules
+  und BotConfiguration, Products, Knowledge Entries, Source Materials,
+  Bot Question Logs und Audit Items. Die UI bleibt hinter `AppState` und
+  `WorkspaceRepository`; Supabase-Zugriffe liegen ausschließlich in
+  `RemoteWorkspaceDataSource`.
 - **Reads:** wie heute synchron aus dem In-Memory-Snapshot. Start: Cache
   sofort laden (schnell), dann Remote-Pull, dann `notifyListeners` über den
   bestehenden Mechanismus (AppState lauscht nicht auf Repo — der Pull läuft
   vor `runApp` oder löst einen Workspace-Replace über AppState aus; Detail
   in 22D).
-- **Writes:** In-Memory sofort → Outbox (sembast, statt heutiger reiner
-  Write-Queue) → Push pro Entität (Upsert mit `rev`-Check). Retry mit
-  Backoff bei Netzfehlern; Outbox überlebt Reloads (heute schon persistiert
-  die Queue-Reihenfolge implizit — künftig explizit als Outbox-Store).
+- **Writes:** lokal weiter local-first über IndexedDB-Queue; remote bewusst
+  server-first. Das Repository schreibt zuerst nach Supabase, erhält den
+  bestätigten Datensatz zurück, mappt ihn in den Snapshot und benachrichtigt
+  dann AppState. Es gibt noch keine Outbox, kein Realtime und keine
+  Mehr-Client-Konfliktauflösung.
 - **Konflikte (bewusst simpel für Stufe 1):** Last-Write-Wins pro Zeile via
   `updated_at`/`rev`; bei `rev`-Konflikt gewinnt der Server, die lokale
   Änderung wird als Konfliktnotiz geloggt (kein Merge-UI). Ehrlich: Bis es
@@ -275,10 +293,11 @@ change_log           Audit Trail: entity, entity_id, actor, action, diff jsonb
 | **22A Schema & lokales Backend** | Supabase-Projekt + komplettes SQL-Schema als Migrationsdateien; `supabase start` lokal läuft | nur `supabase/`-Ordner, kein App-Code | Schema-Fehlentwurf (später teuer) | pgTAP-Smoke: Tabellen, Constraints, Default-Deny | Lokale Instanz startet; Schema entspricht §3; CI kann Migrationen anwenden |
 | **22B Auth** | Registrierung/Login/Reset/Verifikation/Session-Restore in der App; Tenant+Workspace-Anlage bei Signup | `AppDependencies`, neue Auth-Screens, `TenantContext` echt | Session-Handling Web (Reload, Tabs) | Widget-Tests Auth-Flows gegen lokale Instanz; Session-Restore-Test | Nutzer kann sich registrieren, einloggen, Reload behält Session; ohne Login bleibt lokaler Modus voll funktionsfähig |
 | **22C Tenant-Sicherheit** | RLS-Policies für alle Tabellen + Rollen | nur SQL + Tests | Policy-Lücke = Datenleck | **Pflicht:** Zwei-Tenant-Isolationstests für jede Tabelle (CRUD-Matrix), Rollen-Matrix-Tests | Kein einziger Fremd-Zugriff möglich; Tests rot bei fehlender Policy neuer Tabellen |
-| **22D Remote Repository** | `SupabaseWorkspaceApi` + `SyncedWorkspaceRepository` (Pull beim Start, Outbox-Push, LWW) | `lib/repositories/`, Composition Root; **UI/AppState: 0 Zeilen** | Blob→Zeilen-Zerlegung; Outbox-Korrektheit | Bestehende 116 Tests bleiben grün; neue Sync-Tests (Pull/Push/Offline/Retry/rev-Konflikt) gegen lokale Instanz | Zwei Browser, ein Konto: Änderung erscheint nach Reload auf dem anderen; Offline-Arbeit synct nach Reconnect |
-| **22E Datenmigration** | Import-Dialog + idempotenter Upload + Protokoll/Rollback | Import-Service, ein Dialog | Duplikate/Teilimporte | Import doppelt ausführen → identischer Zustand; Abbruch → Wiederaufnahme; Rollback per Batch | Bestehender lokaler Nutzer landet verlustfrei in der Cloud, nachweisbar per Zählstände |
-| **22F Rollen & Einladungen** | Invite-Flow, Mitgliederverwaltung, Rollen-UI minimal | invites/members + kleine Settings-Seite | Token-Sicherheit | Einladung annehmen/ablehnen/ablaufen; Rollen-Schreibrechte | Zweiter Nutzer arbeitet mit passender Rolle im Tenant |
-| **22G Reminder** | pg_cron + Edge Function + Resend, Abmeldelink | nur Backend + `reminder_*`-Tabellen | Doppelversand, Zeitzonen | Fälligkeits-Query-Tests; Idempotenz via reminder_log | Fälliger Check-in erzeugt genau eine E-Mail in Nutzersprache/-zeitzone; Abmelden wirkt |
+| **22D Remote CRUD** | Kontrollierte server-first Cloud-Writes für vorhandene Workspace-Entitäten | `lib/repositories/`, `AppState`, Supabase-Tests; Widgets bleiben ohne Supabase | RLS-/Rollenlücke; versehentliche Tenant-IDs aus UI | Repository-/AppState-Tests, pgTAP CRUD/RLS-Matrix | Remote-Änderungen sind nach Reload vorhanden; Viewer/Inactive/No-Membership schreiben nicht |
+| **22E Tenant Onboarding** | Erster Tenant + Owner-Membership + Workspace + Company per RPC | `supabase/`, Auth/Onboarding-Service, Router | Doppelte Tenants, halbfertiger Setup | pgTAP RPC-Tests, Controller-/Router-/Widget-Tests, E2E-Smoke | Neuer Nutzer ohne Membership richtet Firma ein und landet nach Reload im Remote-Workspace |
+| **22F Tenant-Auswahl & Rollen** | Mehrere aktive Memberships, sichere Auswahl, Tenant-Switcher, letzte Auswahl pro User | AuthController, TenantSelectionController, AppShell, RPC `active_tenant_memberships` | Tenant-Wechsel/Rollenfehler, alte Daten sichtbar | Membership-/Router-/Widget-Tests, pgTAP Tenant-Auswahl | Nutzer mit mehreren Firmen wählt sicher; alter State wird geleert; Rollen wechseln pro Tenant |
+| **22G Team-Einladungen** | Einladungen, Membership-Verwaltung und Rollensteuerung | Auth/RLS/UI für Teams | falsche Rollen, Einladungs-Missbrauch | Rollen-/Invite-Tests | Owner/Admin können Mitglieder sicher einladen und Rollen verwalten |
+| **22H Reminder** | pg_cron + Edge Function + Resend, Abmeldelink | nur Backend + `reminder_*`-Tabellen | Doppelversand, Zeitzonen | Fälligkeits-Query-Tests; Idempotenz via reminder_log | Fälliger Check-in erzeugt genau eine E-Mail in Nutzersprache/-zeitzone; Abmelden wirkt |
 
 Reihenfolge ist bindend; jede Phase ist einzeln deploybar und lässt die App
 jederzeit im lokalen Modus voll funktionsfähig.

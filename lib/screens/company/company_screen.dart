@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import '../../data/app_state.dart';
 import '../../l10n/app_localizations.dart';
 import '../../l10n/label_helpers.dart';
 import '../../models/business_rules.dart';
 import '../../models/company.dart';
+import '../../models/intake_invitation.dart';
 import '../../models/product_or_service.dart';
 
 class CompanyScreen extends StatelessWidget {
@@ -123,6 +125,13 @@ class CompanyScreen extends StatelessWidget {
                 ? _EmptyText(text: l.companyNoInternalNotes)
                 : Text(company.internalNotes),
           ),
+          _SectionCard(
+            title: l.companyIntakeInvitationSection,
+            icon: Icons.mark_email_read_outlined,
+            onEdit: () {},
+            hideEditButton: true,
+            child: _IntakeInvitationView(state: state),
+          ),
           const SizedBox(height: 8),
           Text(
             l.companyProducts,
@@ -178,12 +187,14 @@ class _SectionCard extends StatelessWidget {
   final IconData icon;
   final Widget child;
   final VoidCallback onEdit;
+  final bool hideEditButton;
 
   const _SectionCard({
     required this.title,
     required this.icon,
     required this.child,
     required this.onEdit,
+    this.hideEditButton = false,
   });
 
   @override
@@ -209,11 +220,12 @@ class _SectionCard extends StatelessWidget {
                     ),
                   ),
                 ),
-                TextButton.icon(
-                  onPressed: onEdit,
-                  icon: const Icon(Icons.edit_outlined, size: 18),
-                  label: Text(l.btnEdit),
-                ),
+                if (!hideEditButton)
+                  TextButton.icon(
+                    onPressed: onEdit,
+                    icon: const Icon(Icons.edit_outlined, size: 18),
+                    label: Text(l.btnEdit),
+                  ),
               ],
             ),
             const SizedBox(height: 14),
@@ -223,6 +235,139 @@ class _SectionCard extends StatelessWidget {
       ),
     );
   }
+}
+
+class _IntakeInvitationView extends StatelessWidget {
+  const _IntakeInvitationView({required this.state});
+
+  final AppState state;
+
+  @override
+  Widget build(BuildContext context) {
+    final l = AppLocalizations.of(context)!;
+    final theme = Theme.of(context);
+    final invitation = state.selectedIntakeInvitation;
+    final link = state.selectedIntakeInvitationLink();
+    final canWrite = state.canWriteWorkspace;
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(l.companyIntakeInvitationDescription),
+        const SizedBox(height: 12),
+        Wrap(
+          spacing: 8,
+          runSpacing: 8,
+          children: [
+            Chip(
+              avatar: Icon(_invitationStatusIcon(invitation?.status), size: 16),
+              label: Text(_invitationStatusLabel(l, invitation?.status)),
+            ),
+            if (invitation != null)
+              Chip(
+                avatar: const Icon(Icons.lock_outline, size: 16),
+                label: Text(l.companyIntakeInvitationTokenHint),
+              ),
+          ],
+        ),
+        if (link != null) ...[
+          const SizedBox(height: 12),
+          Container(
+            width: double.infinity,
+            padding: const EdgeInsets.all(12),
+            decoration: BoxDecoration(
+              color: theme.colorScheme.surfaceContainerHighest,
+              borderRadius: BorderRadius.circular(8),
+            ),
+            child: SelectableText(link, style: theme.textTheme.bodySmall),
+          ),
+        ],
+        const SizedBox(height: 12),
+        Wrap(
+          spacing: 8,
+          runSpacing: 8,
+          children: [
+            FilledButton.icon(
+              onPressed: !canWrite || invitation != null
+                  ? null
+                  : () async {
+                      await state.createIntakeInvitation();
+                    },
+              icon: const Icon(Icons.add_link),
+              label: Text(l.companyIntakeInvitationCreate),
+            ),
+            OutlinedButton.icon(
+              onPressed: !canWrite || link == null
+                  ? null
+                  : () async {
+                      await Clipboard.setData(ClipboardData(text: link));
+                      if (context.mounted) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text(l.companyIntakeInvitationCopied),
+                          ),
+                        );
+                      }
+                    },
+              icon: const Icon(Icons.copy_outlined),
+              label: Text(l.companyIntakeInvitationCopy),
+            ),
+            OutlinedButton.icon(
+              onPressed: !canWrite || invitation == null
+                  ? null
+                  : () async {
+                      await state.regenerateIntakeInvitation();
+                    },
+              icon: const Icon(Icons.refresh),
+              label: Text(l.companyIntakeInvitationRegenerate),
+            ),
+            OutlinedButton.icon(
+              onPressed: !canWrite || invitation?.isActive != true
+                  ? null
+                  : () async {
+                      await state.deactivateIntakeInvitation();
+                    },
+              icon: const Icon(Icons.link_off_outlined),
+              label: Text(l.companyIntakeInvitationDisable),
+            ),
+            OutlinedButton.icon(
+              onPressed: () async {
+                await state.reloadWorkspaces();
+              },
+              icon: const Icon(Icons.sync_outlined),
+              label: Text(l.companyIntakeInvitationRefresh),
+            ),
+          ],
+        ),
+      ],
+    );
+  }
+}
+
+String _invitationStatusLabel(
+  AppLocalizations l,
+  IntakeInvitationStatus? status,
+) {
+  return switch (status) {
+    IntakeInvitationStatus.invited => l.companyIntakeInvitationStatusInvited,
+    IntakeInvitationStatus.started => l.companyIntakeInvitationStatusStarted,
+    IntakeInvitationStatus.partial => l.companyIntakeInvitationStatusPartial,
+    IntakeInvitationStatus.completed =>
+      l.companyIntakeInvitationStatusCompleted,
+    IntakeInvitationStatus.disabled => l.companyIntakeInvitationStatusDisabled,
+    null => l.companyIntakeInvitationStatusMissing,
+  };
+}
+
+IconData _invitationStatusIcon(IntakeInvitationStatus? status) {
+  return switch (status) {
+    IntakeInvitationStatus.invited => Icons.mark_email_unread_outlined,
+    IntakeInvitationStatus.started => Icons.play_circle_outline,
+    IntakeInvitationStatus.partial => Icons.pending_actions_outlined,
+    IntakeInvitationStatus.completed => Icons.check_circle_outline,
+    IntakeInvitationStatus.disabled => Icons.link_off_outlined,
+    null => Icons.link_outlined,
+  };
 }
 
 class _Header extends StatelessWidget {

@@ -9,7 +9,16 @@ import '../../widgets/intake_answer_dialog.dart';
 import '../../widgets/intake_choice_dialog.dart';
 
 class IntakeChatScreen extends StatefulWidget {
-  const IntakeChatScreen({super.key});
+  const IntakeChatScreen({
+    super.key,
+    this.publicMode = false,
+    this.publicCompanyName,
+    this.publicGreeting,
+  });
+
+  final bool publicMode;
+  final String? publicCompanyName;
+  final String? publicGreeting;
 
   @override
   State<IntakeChatScreen> createState() => _IntakeChatScreenState();
@@ -72,21 +81,26 @@ class _IntakeChatScreenState extends State<IntakeChatScreen> {
                   children: [
                     Expanded(
                       child: Text(
-                        l.intakeChatTitle,
+                        widget.publicCompanyName == null
+                            ? l.intakeChatTitle
+                            : l.publicIntakeTitle(widget.publicCompanyName!),
                         style: Theme.of(context).textTheme.headlineMedium
                             ?.copyWith(fontWeight: FontWeight.bold),
                       ),
                     ),
-                    OutlinedButton.icon(
-                      onPressed: () => context.go('/intake'),
-                      icon: const Icon(Icons.assignment_outlined, size: 18),
-                      label: Text(l.intakeChatOpenWizard),
-                    ),
+                    if (!widget.publicMode)
+                      OutlinedButton.icon(
+                        onPressed: () => context.go('/intake'),
+                        icon: const Icon(Icons.assignment_outlined, size: 18),
+                        label: Text(l.intakeChatOpenWizard),
+                      ),
                   ],
                 ),
                 const SizedBox(height: 4),
                 Text(
-                  l.intakeChatSubtitle,
+                  widget.publicGreeting?.trim().isNotEmpty == true
+                      ? widget.publicGreeting!.trim()
+                      : l.intakeChatSubtitle,
                   style: Theme.of(context).textTheme.bodySmall?.copyWith(
                     color: Theme.of(context).colorScheme.onSurfaceVariant,
                   ),
@@ -215,7 +229,7 @@ class _IntakeChatScreenState extends State<IntakeChatScreen> {
                       icon: const Icon(Icons.skip_next_outlined, size: 18),
                       label: Text(l.intakeChatDialogDefer),
                     ),
-                    if (question == null)
+                    if (question == null && !widget.publicMode)
                       FilledButton.icon(
                         onPressed: () => context.go('/intake'),
                         icon: const Icon(Icons.summarize_outlined, size: 18),
@@ -237,7 +251,11 @@ class _IntakeChatScreenState extends State<IntakeChatScreen> {
     final question = IntakeChatFlow.nextQuestion(state.intakeSession!);
     setState(() {
       _messages
-        ..add(_bot(l.intakeChatGreeting))
+        ..add(
+          _bot(
+            widget.publicMode ? l.publicIntakeGreeting : l.intakeChatGreeting,
+          ),
+        )
         ..add(_bot(l.intakeChatExplanation));
       if (question == null) {
         _messages.add(_bot(l.intakeChatAllDone));

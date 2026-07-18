@@ -130,33 +130,21 @@ void main() {
       expect(profile.expansions['kostet'], contains('kosten'));
     });
 
-    test(
-      'searches entries, sources, reviewed logs and bot rules; '
-      'ignored sources and open logs are excluded',
-      () {
-        const retriever = KnowledgeRetriever();
-        final workspace = buildWorkspace();
-        final result = retriever.retrieve(
-          'Was kostet das Premium-Abo?',
-          workspace,
-        );
+    test('searches entries, sources, reviewed logs and bot rules; '
+        'ignored sources and open logs are excluded', () {
+      const retriever = KnowledgeRetriever();
+      final workspace = buildWorkspace();
+      final result = retriever.retrieve(
+        'Was kostet das Premium-Abo?',
+        workspace,
+      );
 
-        expect(
-          result.entrySignals.map((s) => s.entry.id),
-          contains('e-price'),
-        );
-        expect(
-          result.sourceSignals.map((s) => s.source.id),
-          ['s-pricelist'],
-        );
-        expect(
-          result.reviewedSimilarLogs.map((log) => log.id),
-          ['log-closed'],
-        );
-        expect(result.allowedTopicHits, contains('Preise'));
-        expect(result.blockedTopicHits, isEmpty);
-      },
-    );
+      expect(result.entrySignals.map((s) => s.entry.id), contains('e-price'));
+      expect(result.sourceSignals.map((s) => s.source.id), ['s-pricelist']);
+      expect(result.reviewedSimilarLogs.map((log) => log.id), ['log-closed']);
+      expect(result.allowedTopicHits, contains('Preise'));
+      expect(result.blockedTopicHits, isEmpty);
+    });
   });
 
   group('KnowledgeRuntime', () {
@@ -199,8 +187,10 @@ void main() {
       );
       expect(
         context.openQuestions,
-        contains('Soll zu „zusatzversicherung" ein Wissenseintrag angelegt '
-            'werden?'),
+        contains(
+          'Soll zu „zusatzversicherung" ein Wissenseintrag angelegt '
+          'werden?',
+        ),
       );
     });
 
@@ -250,10 +240,7 @@ void main() {
         ),
         isTrue,
       );
-      expect(
-        context.openQuestions.any((q) => q.contains('Diagnosen')),
-        isTrue,
-      );
+      expect(context.openQuestions.any((q) => q.contains('Diagnosen')), isTrue);
     });
 
     test('title match outranks content-only match', () {

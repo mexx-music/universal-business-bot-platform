@@ -96,8 +96,8 @@ class NextActionsScreen extends StatelessWidget {
                         context,
                         onSave: (result) => state.rateActionRecord(
                           record.id,
-                          rating: result.rating ??
-                              ActionResultRating.notYetRatable,
+                          rating:
+                              result.rating ?? ActionResultRating.notYetRatable,
                           resultNote: result.note,
                           actualOutcome: result.outcome,
                           repeatRequested: result.repeat,
@@ -140,9 +140,9 @@ class _SectionHeader extends StatelessWidget {
       padding: const EdgeInsets.only(bottom: 8),
       child: Text(
         title,
-        style: Theme.of(context).textTheme.titleMedium?.copyWith(
-          fontWeight: FontWeight.bold,
-        ),
+        style: Theme.of(
+          context,
+        ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
       ),
     );
   }
@@ -387,7 +387,10 @@ Future<void> _showDeferDialog(
     ),
   );
   if (days == null) return;
-  state.deferNextAction(action, until: DateTime.now().add(Duration(days: days)));
+  state.deferNextAction(
+    action,
+    until: DateTime.now().add(Duration(days: days)),
+  );
 }
 
 Future<void> _showDeclineDialog(

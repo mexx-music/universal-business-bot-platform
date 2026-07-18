@@ -470,6 +470,108 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
+  String get workspaceLoadingTitle => 'Loading workspace';
+
+  @override
+  String get workspaceLoadingMessage =>
+      'Company data is being loaded from the active account.';
+
+  @override
+  String get workspaceEmptyTitle => 'No workspace available';
+
+  @override
+  String get workspaceEmptyMessage =>
+      'No company data is available for this account yet.';
+
+  @override
+  String get workspaceOnboardingTitle => 'Company not assigned yet';
+
+  @override
+  String get workspaceOnboardingMessage =>
+      'Your account is signed in but not assigned to a company yet. The safe onboarding step follows.';
+
+  @override
+  String get workspaceErrorTitle => 'Workspace could not be loaded';
+
+  @override
+  String get workspaceErrorMessage =>
+      'Company data could not be loaded right now. Please try again later or sign in again.';
+
+  @override
+  String get tenantSelectTitle => 'Select company';
+
+  @override
+  String get tenantSelectHeading => 'Which company do you want to open?';
+
+  @override
+  String get tenantSelectSubtitle =>
+      'Your account has access to multiple companies. Choose the company you want to work with now.';
+
+  @override
+  String get tenantOpen => 'Open';
+
+  @override
+  String get tenantCurrent => 'Current company';
+
+  @override
+  String get tenantSwitch => 'Switch company';
+
+  @override
+  String get tenantCurrentRole => 'Role';
+
+  @override
+  String tenantWorkspaceCount(int count) {
+    return '$count workspaces';
+  }
+
+  @override
+  String get tenantAccessActive => 'Access active';
+
+  @override
+  String get tenantRetry => 'Try again';
+
+  @override
+  String get tenantSwitching => 'Switching';
+
+  @override
+  String get tenantSwitchFailed =>
+      'The company could not be opened. Please try again.';
+
+  @override
+  String get tenantNoneTitle => 'No company is available for this account.';
+
+  @override
+  String get tenantAddPlaceholder => 'Add another company';
+
+  @override
+  String get tenantAddPlaceholderSubtitle =>
+      'This will be added in a later step.';
+
+  @override
+  String get tenantUnsavedChanges => 'There are unsaved changes.';
+
+  @override
+  String get tenantDiscardChanges => 'Discard changes';
+
+  @override
+  String get tenantCancelSwitch => 'Cancel switch';
+
+  @override
+  String get tenantRoleOwner => 'Owner';
+
+  @override
+  String get tenantRoleAdmin => 'Admin';
+
+  @override
+  String get tenantRoleEditor => 'Edit';
+
+  @override
+  String get tenantRoleReviewer => 'Review';
+
+  @override
+  String get tenantRoleViewer => 'Read';
+
+  @override
   String get navHome => 'Home';
 
   @override
@@ -495,6 +597,193 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get navSources => 'Sources';
+
+  @override
+  String get authLocalMode => 'Local mode';
+
+  @override
+  String get authSignedIn => 'Signed in';
+
+  @override
+  String get authLogout => 'Sign out';
+
+  @override
+  String get authSignInTitle => 'Sign in';
+
+  @override
+  String get authSignInSubtitle =>
+      'Sign in when this installation is connected to Supabase.';
+
+  @override
+  String get authSignUpTitle => 'Create account';
+
+  @override
+  String get authSignUpSubtitle =>
+      'Create an account. Company access is prepared after that.';
+
+  @override
+  String get authResetTitle => 'Reset password';
+
+  @override
+  String get authResetSubtitle =>
+      'Enter your email address. You will receive a reset link.';
+
+  @override
+  String get authEmailLabel => 'Email';
+
+  @override
+  String get authPasswordLabel => 'Password';
+
+  @override
+  String get authDisplayNameLabel => 'Name (optional)';
+
+  @override
+  String get authInvalidEmail => 'Please enter a valid email address.';
+
+  @override
+  String get authPasswordTooShort => 'Password must be at least 6 characters.';
+
+  @override
+  String get authAcceptTerms => 'I accept the privacy policy and terms of use.';
+
+  @override
+  String get authTermsRequired =>
+      'Please accept the privacy policy and terms of use.';
+
+  @override
+  String get authSignInButton => 'Sign in';
+
+  @override
+  String get authSignUpButton => 'Create account';
+
+  @override
+  String get authResetButton => 'Send reset link';
+
+  @override
+  String get authCreateAccount => 'Create account';
+
+  @override
+  String get authBackToSignIn => 'Back to sign in';
+
+  @override
+  String get authForgotPassword => 'Forgot password';
+
+  @override
+  String get authBackHome => 'Back to home';
+
+  @override
+  String get authPleaseWait => 'Please wait ...';
+
+  @override
+  String get authVerificationHint =>
+      'Account created. Please check your email if verification is enabled.';
+
+  @override
+  String get authResetSent =>
+      'If an account exists, a reset link has been sent.';
+
+  @override
+  String get authOnboardingRequired =>
+      'Your account is signed in but not assigned to a company yet. Create your first workspace now.';
+
+  @override
+  String get authGenericError =>
+      'Sign-in failed. Please check email and password.';
+
+  @override
+  String get onboardingTitle => 'Set up your first workspace';
+
+  @override
+  String get onboardingSubtitle =>
+      'Create your company. Your new workspace opens automatically afterwards.';
+
+  @override
+  String get onboardingCompanyNameLabel => 'Company name';
+
+  @override
+  String get onboardingCompanyNameHelper => 'Example: Acme Ltd.';
+
+  @override
+  String get onboardingCompanyNameRequired => 'Please enter the company name.';
+
+  @override
+  String get onboardingCompanyNameTooShort =>
+      'Company name must be at least 2 characters.';
+
+  @override
+  String get onboardingCompanyNameTooLong =>
+      'Company name must be at most 120 characters.';
+
+  @override
+  String get onboardingCompanyNameInvalid =>
+      'Please use a recognizable company name.';
+
+  @override
+  String get onboardingWebsiteLabel => 'Website (optional)';
+
+  @override
+  String get onboardingWebsiteHelper => 'Example: www.company.com';
+
+  @override
+  String get onboardingWebsiteInvalid =>
+      'Please enter a valid HTTPS website or domain.';
+
+  @override
+  String get onboardingIndustryLabel => 'Industry (optional)';
+
+  @override
+  String get onboardingIndustryHelper => 'Example: consulting, trades, hotel';
+
+  @override
+  String get onboardingDescriptionLabel => 'Short description (optional)';
+
+  @override
+  String get onboardingDescriptionHelper =>
+      'What does your company do in a few sentences?';
+
+  @override
+  String get onboardingDescriptionTooLong =>
+      'Description must be at most 600 characters.';
+
+  @override
+  String get onboardingLanguageLabel => 'Language';
+
+  @override
+  String get onboardingLanguageInvalid => 'Please choose German or English.';
+
+  @override
+  String get onboardingWorkspaceLabel => 'Workspace name (optional)';
+
+  @override
+  String get onboardingWorkspaceHelper =>
+      'Leave empty to use the company name.';
+
+  @override
+  String get onboardingSubmit => 'Create workspace';
+
+  @override
+  String get onboardingSubmitting => 'Creating workspace ...';
+
+  @override
+  String get onboardingSuccess => 'Your workspace has been created.';
+
+  @override
+  String get onboardingRemoteError =>
+      'The workspace could not be created. Please try again.';
+
+  @override
+  String get onboardingAlreadyCompleted =>
+      'Your account already has a workspace. The workspace is loading.';
+
+  @override
+  String get onboardingSessionExpired =>
+      'Your session has expired. Please sign in again.';
+
+  @override
+  String get languageGerman => 'German';
+
+  @override
+  String get languageEnglish => 'English';
 
   @override
   String get btnCancel => 'Cancel';
@@ -980,6 +1269,29 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get intakeChatGreeting =>
       'Hello! I will guide you through the company intake step by step.';
+
+  @override
+  String publicIntakeTitle(String company) {
+    return 'Company questionnaire: $company';
+  }
+
+  @override
+  String get publicIntakeGreeting =>
+      'Welcome. Your answers are saved automatically and you can continue later with the same link.';
+
+  @override
+  String get publicIntakeNotFoundTitle => 'Invitation link not found';
+
+  @override
+  String get publicIntakeNotFoundMessage =>
+      'This link is invalid or does not belong to an active invitation.';
+
+  @override
+  String get publicIntakeDisabledTitle => 'Invitation link disabled';
+
+  @override
+  String get publicIntakeDisabledMessage =>
+      'This questionnaire link has been disabled. Please contact the person who invited you.';
 
   @override
   String get intakeChatExplanation =>
@@ -1606,6 +1918,52 @@ class AppLocalizationsEn extends AppLocalizations {
   String get companyNoInternalNotes => 'No internal notes maintained yet.';
 
   @override
+  String get companyIntakeInvitationSection => 'Public company questionnaire';
+
+  @override
+  String get companyIntakeInvitationDescription =>
+      'Create a secure link that lets an invited person fill in only this company\'s questionnaire.';
+
+  @override
+  String get companyIntakeInvitationTokenHint => 'Secure token link';
+
+  @override
+  String get companyIntakeInvitationCreate => 'Create link';
+
+  @override
+  String get companyIntakeInvitationCopy => 'Copy link';
+
+  @override
+  String get companyIntakeInvitationCopied => 'Link copied.';
+
+  @override
+  String get companyIntakeInvitationRegenerate => 'Regenerate';
+
+  @override
+  String get companyIntakeInvitationDisable => 'Disable';
+
+  @override
+  String get companyIntakeInvitationRefresh => 'Refresh status';
+
+  @override
+  String get companyIntakeInvitationStatusMissing => 'No link yet';
+
+  @override
+  String get companyIntakeInvitationStatusInvited => 'Invited';
+
+  @override
+  String get companyIntakeInvitationStatusStarted => 'Started';
+
+  @override
+  String get companyIntakeInvitationStatusPartial => 'Partially filled';
+
+  @override
+  String get companyIntakeInvitationStatusCompleted => 'Completed';
+
+  @override
+  String get companyIntakeInvitationStatusDisabled => 'Disabled';
+
+  @override
   String get companyBrandVoice => 'Brand Voice / Tone';
 
   @override
@@ -2203,12 +2561,6 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get botAnswerStyleDetailed => 'Detailed';
-
-  @override
-  String get languageGerman => 'German';
-
-  @override
-  String get languageEnglish => 'English';
 
   @override
   String get navProjectStatus => 'Project Status';

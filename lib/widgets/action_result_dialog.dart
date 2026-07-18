@@ -80,9 +80,7 @@ Future<void> showActionResultDialog(
               const SizedBox(height: 8),
               TextField(
                 controller: outcomeController,
-                decoration: InputDecoration(
-                  labelText: l.completeMetricChanged,
-                ),
+                decoration: InputDecoration(labelText: l.completeMetricChanged),
               ),
               CheckboxListTile(
                 dense: true,

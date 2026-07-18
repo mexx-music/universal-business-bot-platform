@@ -2,7 +2,15 @@ import 'package:flutter/foundation.dart';
 import 'package:sembast/sembast.dart';
 
 import '../data/workspace_store.dart';
+import '../models/bot_configuration.dart';
+import '../models/bot_question_log.dart';
+import '../models/business_audit.dart';
+import '../models/business_rules.dart';
+import '../models/company.dart';
 import '../models/company_workspace.dart';
+import '../models/knowledge_entry.dart';
+import '../models/product_or_service.dart';
+import '../models/source_material.dart';
 import 'persistence/workspace_codec.dart';
 import 'tenant_context.dart';
 import 'workspace_repository.dart';
@@ -46,8 +54,8 @@ class PersistentWorkspaceRepository implements WorkspaceRepository {
       stringMapStoreFactory.store('workspaces');
   static final StoreRef<String, Map<String, Object?>> _metaStore =
       stringMapStoreFactory.store('meta');
-  static final RecordRef<String, Map<String, Object?>> _metaRecord =
-      _metaStore.record('meta');
+  static final RecordRef<String, Map<String, Object?>> _metaRecord = _metaStore
+      .record('meta');
 
   PersistentWorkspaceRepository._({
     required Database db,
@@ -249,6 +257,158 @@ class PersistentWorkspaceRepository implements WorkspaceRepository {
     final persisted = _persistWorkspace(companyId, updated);
     _enqueue(() => _metaRecord.put(_db, _metaJson(_selectedCompanyId)));
     return persisted;
+  }
+
+  @override
+  Future<Company> updateCompany(
+    Company company, {
+    BusinessRules? businessRules,
+    BotConfiguration? botConfiguration,
+  }) async {
+    await saveSelectedWorkspace(
+      selectedWorkspace.copyWith(
+        company: company,
+        businessRules: businessRules,
+        botConfiguration: botConfiguration,
+      ),
+    );
+    return company;
+  }
+
+  @override
+  Future<ProductOrService> createProduct(ProductOrService product) async {
+    await saveSelectedWorkspace(
+      selectedWorkspace.copyWith(
+        products: [...selectedWorkspace.products, product],
+      ),
+    );
+    return product;
+  }
+
+  @override
+  Future<ProductOrService> updateProduct(ProductOrService product) async {
+    await saveSelectedWorkspace(
+      selectedWorkspace.copyWith(
+        products: [
+          for (final existing in selectedWorkspace.products)
+            if (existing.id == product.id) product else existing,
+        ],
+      ),
+    );
+    return product;
+  }
+
+  @override
+  Future<void> deleteProduct(String id) {
+    return saveSelectedWorkspace(
+      selectedWorkspace.copyWith(
+        products: selectedWorkspace.products
+            .where((product) => product.id != id)
+            .toList(),
+      ),
+    );
+  }
+
+  @override
+  Future<KnowledgeEntry> createKnowledgeEntry(KnowledgeEntry entry) async {
+    await saveSelectedWorkspace(
+      selectedWorkspace.copyWith(
+        knowledgeEntries: [...selectedWorkspace.knowledgeEntries, entry],
+      ),
+    );
+    return entry;
+  }
+
+  @override
+  Future<KnowledgeEntry> updateKnowledgeEntry(KnowledgeEntry entry) async {
+    await saveSelectedWorkspace(
+      selectedWorkspace.copyWith(
+        knowledgeEntries: [
+          for (final existing in selectedWorkspace.knowledgeEntries)
+            if (existing.id == entry.id) entry else existing,
+        ],
+      ),
+    );
+    return entry;
+  }
+
+  @override
+  Future<void> deleteKnowledgeEntry(String id) {
+    return saveSelectedWorkspace(
+      selectedWorkspace.copyWith(
+        knowledgeEntries: selectedWorkspace.knowledgeEntries
+            .where((entry) => entry.id != id)
+            .toList(),
+      ),
+    );
+  }
+
+  @override
+  Future<SourceMaterial> createSourceMaterial(SourceMaterial source) async {
+    await saveSelectedWorkspace(
+      selectedWorkspace.copyWith(
+        sourceMaterials: [...selectedWorkspace.sourceMaterials, source],
+      ),
+    );
+    return source;
+  }
+
+  @override
+  Future<SourceMaterial> updateSourceMaterial(SourceMaterial source) async {
+    await saveSelectedWorkspace(
+      selectedWorkspace.copyWith(
+        sourceMaterials: [
+          for (final existing in selectedWorkspace.sourceMaterials)
+            if (existing.id == source.id) source else existing,
+        ],
+      ),
+    );
+    return source;
+  }
+
+  @override
+  Future<void> deleteSourceMaterial(String id) {
+    return saveSelectedWorkspace(
+      selectedWorkspace.copyWith(
+        sourceMaterials: selectedWorkspace.sourceMaterials
+            .where((source) => source.id != id)
+            .toList(),
+      ),
+    );
+  }
+
+  @override
+  Future<BotQuestionLog> createBotQuestionLog(BotQuestionLog log) async {
+    await saveSelectedWorkspace(
+      selectedWorkspace.copyWith(botLogs: [...selectedWorkspace.botLogs, log]),
+    );
+    return log;
+  }
+
+  @override
+  Future<BotQuestionLog> updateBotQuestionLog(BotQuestionLog log) async {
+    await saveSelectedWorkspace(
+      selectedWorkspace.copyWith(
+        botLogs: [
+          for (final existing in selectedWorkspace.botLogs)
+            if (existing.id == log.id) log else existing,
+        ],
+      ),
+    );
+    return log;
+  }
+
+  @override
+  Future<BusinessAuditItem> updateAuditItem(BusinessAuditItem item) async {
+    await saveSelectedWorkspace(
+      selectedWorkspace.copyWith(
+        auditItems: [
+          for (final existing in selectedWorkspace.auditItems)
+            if (existing.id == item.id) item else existing,
+        ],
+      ),
+    );
+    return item;
   }
 
   @override

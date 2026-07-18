@@ -46,7 +46,25 @@ jobs:
         run: flutter test
 
       - name: Build web release
-        run: flutter build web --release
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
+          AUTH_REDIRECT_URL: ${{ vars.AUTH_REDIRECT_URL }}
+        run: |
+          if [ -n "$SUPABASE_URL" ] && [ -n "$SUPABASE_ANON_KEY" ]; then
+            build_args=(
+              --release
+              --dart-define=SUPABASE_URL="$SUPABASE_URL"
+              --dart-define=SUPABASE_ANON_KEY="$SUPABASE_ANON_KEY"
+            )
+            if [ -n "$AUTH_REDIRECT_URL" ]; then
+              build_args+=(--dart-define=AUTH_REDIRECT_URL="$AUTH_REDIRECT_URL")
+            fi
+            flutter build web "${build_args[@]}"
+          else
+            echo "SUPABASE_URL or SUPABASE_ANON_KEY is missing; building local demo mode."
+            flutter build web --release
+          fi
 
       - name: Prepare Cloudflare Pages artifact
         run: bash scripts/prepare_cloudflare_pages.sh

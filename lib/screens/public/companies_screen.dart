@@ -40,6 +40,31 @@ class CompaniesScreen extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 24),
+          if (state.companies.isEmpty)
+            Card(
+              child: Padding(
+                padding: const EdgeInsets.all(18),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      state.workspaceLoadStatus == WorkspaceLoadStatus.error
+                          ? l.workspaceErrorTitle
+                          : l.workspaceEmptyTitle,
+                      style: theme.textTheme.titleMedium?.copyWith(
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    const SizedBox(height: 6),
+                    Text(
+                      state.workspaceLoadStatus == WorkspaceLoadStatus.error
+                          ? l.workspaceErrorMessage
+                          : l.workspaceEmptyMessage,
+                    ),
+                  ],
+                ),
+              ),
+            ),
           ...state.companies.map(
             (workspace) => _CompanySelectionCard(
               workspace: workspace,
