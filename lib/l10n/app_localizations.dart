@@ -2399,7 +2399,7 @@ abstract class AppLocalizations {
   /// No description provided for @publicIntakeGreeting.
   ///
   /// In de, this message translates to:
-  /// **'Willkommen. Ihre Antworten werden automatisch gespeichert und Sie können später über denselben Link fortfahren.'**
+  /// **'Willkommen bei BusinessBrain AI.\nIch begleite Sie jetzt Schritt für Schritt durch die Einrichtung Ihres Unternehmens.'**
   String get publicIntakeGreeting;
 
   /// No description provided for @publicIntakeNotFoundTitle.

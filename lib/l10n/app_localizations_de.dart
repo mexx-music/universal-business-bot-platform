@@ -1287,7 +1287,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get publicIntakeGreeting =>
-      'Willkommen. Ihre Antworten werden automatisch gespeichert und Sie können später über denselben Link fortfahren.';
+      'Willkommen bei BusinessBrain AI.\nIch begleite Sie jetzt Schritt für Schritt durch die Einrichtung Ihres Unternehmens.';
 
   @override
   String get publicIntakeNotFoundTitle => 'Einladungslink nicht gefunden';

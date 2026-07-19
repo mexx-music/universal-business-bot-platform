@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 
 import '../../data/app_state.dart';
 import '../../l10n/app_localizations.dart';
@@ -7,8 +6,8 @@ import '../../public_intake/public_intake_service.dart';
 import '../../public_intake/public_intake_workspace_repository.dart';
 import '../intake/intake_chat_screen.dart';
 
-class PublicIntakeScreen extends StatefulWidget {
-  const PublicIntakeScreen({
+class PublicOnboardingChatScreen extends StatefulWidget {
+  const PublicOnboardingChatScreen({
     super.key,
     required this.token,
     required this.publicIntakeService,
@@ -18,10 +17,12 @@ class PublicIntakeScreen extends StatefulWidget {
   final PublicIntakeService publicIntakeService;
 
   @override
-  State<PublicIntakeScreen> createState() => _PublicIntakeScreenState();
+  State<PublicOnboardingChatScreen> createState() =>
+      _PublicOnboardingChatScreenState();
 }
 
-class _PublicIntakeScreenState extends State<PublicIntakeScreen> {
+class _PublicOnboardingChatScreenState
+    extends State<PublicOnboardingChatScreen> {
   PublicIntakeOpenResult? _result;
   Future<PublicIntakeOpenResult>? _openFuture;
   AppState? _publicAppState;
@@ -139,12 +140,6 @@ class _ErrorView extends StatelessWidget {
     final l = AppLocalizations.of(context)!;
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text(l.appName),
-        actions: [
-          TextButton(onPressed: () => context.go('/'), child: Text(l.navHome)),
-        ],
-      ),
       body: Center(
         child: ConstrainedBox(
           constraints: const BoxConstraints(maxWidth: 520),
@@ -171,12 +166,6 @@ class _ErrorView extends StatelessWidget {
                     ),
                     const SizedBox(height: 8),
                     Text(_message(l, result), textAlign: TextAlign.center),
-                    const SizedBox(height: 18),
-                    FilledButton.icon(
-                      onPressed: () => context.go('/'),
-                      icon: const Icon(Icons.home_outlined),
-                      label: Text(l.navHome),
-                    ),
                   ],
                 ),
               ),

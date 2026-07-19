@@ -401,7 +401,7 @@
       "company": { "type": "String" }
     }
   },
-  "publicIntakeGreeting": "Welcome. Your answers are saved automatically and you can continue later with the same link.",
+  "publicIntakeGreeting": "Welcome to BusinessBrain AI.\nI will now guide you step by step through setting up your company.",
   "publicIntakeNotFoundTitle": "Invitation link not found",
   "publicIntakeNotFoundMessage": "This link is invalid or does not belong to an active invitation.",
   "publicIntakeDisabledTitle": "Invitation link disabled",

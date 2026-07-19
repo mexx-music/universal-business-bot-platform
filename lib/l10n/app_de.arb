@@ -473,7 +473,7 @@
       "company": { "type": "String" }
     }
   },
-  "publicIntakeGreeting": "Willkommen. Ihre Antworten werden automatisch gespeichert und Sie können später über denselben Link fortfahren.",
+  "publicIntakeGreeting": "Willkommen bei BusinessBrain AI.\nIch begleite Sie jetzt Schritt für Schritt durch die Einrichtung Ihres Unternehmens.",
   "publicIntakeNotFoundTitle": "Einladungslink nicht gefunden",
   "publicIntakeNotFoundMessage": "Dieser Link ist ungültig oder gehört zu keiner aktiven Einladung.",
   "publicIntakeDisabledTitle": "Einladungslink deaktiviert",

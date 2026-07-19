@@ -90,7 +90,7 @@ GoRouter createAppRouter(
       ),
       GoRoute(
         path: '/onboarding/:token',
-        builder: (context, state) => PublicIntakeScreen(
+        builder: (context, state) => PublicOnboardingChatScreen(
           token: state.pathParameters['token'] ?? '',
           publicIntakeService: publicIntakeService,
         ),
