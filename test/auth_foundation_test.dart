@@ -91,6 +91,21 @@ void main() {
     expect(controller.status, AuthStatus.unauthenticated);
   });
 
+  test('AuthController forwards sign-up errors to the UI', () async {
+    final controller = AuthController(
+      _FakeAuthService(signUpError: Exception('Email address not authorized')),
+    );
+    await controller.initialize();
+
+    await expectLater(
+      controller.signUp(email: 'blocked@example.test', password: 'secret1'),
+      throwsA(isA<Exception>()),
+    );
+
+    expect(controller.status, AuthStatus.unauthenticated);
+    expect(controller.errorMessage, 'Email address not authorized');
+  });
+
   test('Login validation accepts only email and six-character passwords', () {
     expect(AuthFormValidators.isValidEmail('person@example.com'), isTrue);
     expect(AuthFormValidators.isValidEmail('person'), isFalse);
@@ -140,11 +155,13 @@ class _FakeAuthService implements AuthService {
   _FakeAuthService({
     this.restoredSession,
     this.signInResult,
+    this.signUpError,
     this.tenantContext,
   });
 
   final AuthSession? restoredSession;
   final AuthOperationResult? signInResult;
+  final Object? signUpError;
   final TenantContext? tenantContext;
   final StreamController<AuthSession?> _controller =
       StreamController<AuthSession?>.broadcast();
@@ -182,6 +199,8 @@ class _FakeAuthService implements AuthService {
     required String password,
     String? displayName,
   }) async {
+    final error = signUpError;
+    if (error != null) throw error;
     return const AuthOperationResult(user: _user);
   }
 

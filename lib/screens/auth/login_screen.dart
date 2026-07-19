@@ -95,7 +95,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           const SizedBox(height: 16),
                           _InfoBanner(
                             icon: Icons.error_outline,
-                            text: l.authGenericError,
+                            text: auth.errorMessage ?? l.authGenericError,
                             isError: true,
                           ),
                         ],
@@ -255,12 +255,12 @@ class _LoginScreenState extends State<LoginScreen> {
       if (_mode == _AuthFormMode.signIn) {
         await auth.signIn(email: email, password: _passwordController.text);
       } else if (_mode == _AuthFormMode.signUp) {
-        await auth.signUp(
+        final result = await auth.signUp(
           email: email,
           password: _passwordController.text,
           displayName: _nameController.text,
         );
-        _message = l.authVerificationHint;
+        _message = result.user == null ? null : l.authVerificationHint;
       } else {
         await auth.resetPassword(email);
         _message = l.authResetSent;
@@ -275,6 +275,8 @@ class _LoginScreenState extends State<LoginScreen> {
       } else {
         setState(() {});
       }
+    } catch (_) {
+      if (mounted) setState(() {});
     } finally {
       if (mounted) setState(() => _submitting = false);
     }

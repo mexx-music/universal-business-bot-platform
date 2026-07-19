@@ -75,18 +75,21 @@ class AuthController extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> signIn({required String email, required String password}) async {
-    await _runAuthOperation(
+  Future<AuthOperationResult> signIn({
+    required String email,
+    required String password,
+  }) async {
+    return _runAuthOperation(
       () => _service.signIn(email: email, password: password),
     );
   }
 
-  Future<void> signUp({
+  Future<AuthOperationResult> signUp({
     required String email,
     required String password,
     String? displayName,
   }) async {
-    await _runAuthOperation(
+    return _runAuthOperation(
       () => _service.signUp(
         email: email,
         password: password,
@@ -154,7 +157,7 @@ class AuthController extends ChangeNotifier {
     }
   }
 
-  Future<void> _runAuthOperation(
+  Future<AuthOperationResult> _runAuthOperation(
     Future<AuthOperationResult> Function() action,
   ) async {
     try {
@@ -162,23 +165,27 @@ class AuthController extends ChangeNotifier {
       final result = await action();
       if (result.session != null) {
         await _applySession(result.session);
-        return;
+        return result;
       }
       _session = null;
       _user = result.user;
       _tenantContext = null;
-      _errorMessage = result.message;
+      _errorMessage = result.user == null
+          ? result.message ?? 'Authentication failed.'
+          : result.message;
       _setStatus(
         result.user == null
             ? AuthStatus.unauthenticated
             : AuthStatus.onboardingRequired,
       );
+      return result;
     } catch (error) {
       _errorMessage = _safeError(error);
       _session = null;
       _user = null;
       _tenantContext = null;
       _setStatus(AuthStatus.unauthenticated);
+      rethrow;
     }
   }
 
