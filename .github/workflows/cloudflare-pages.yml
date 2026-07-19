@@ -48,53 +48,94 @@ jobs:
       - name: Validate production remote configuration
         if: ${{ github.ref == 'refs/heads/main' }}
         env:
-          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
-          SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
+          SUPABASE_URL_SECRET: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_ANON_KEY_SECRET: ${{ secrets.SUPABASE_ANON_KEY }}
+          SUPABASE_URL_VAR: ${{ vars.SUPABASE_URL }}
+          SUPABASE_ANON_KEY_VAR: ${{ vars.SUPABASE_ANON_KEY }}
           CLOUDFLARE_PAGES_PROJECT_NAME: ${{ vars.CLOUDFLARE_PAGES_PROJECT_NAME }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
         run: |
-          if [ -z "$SUPABASE_URL" ] || [ -z "$SUPABASE_ANON_KEY" ]; then
-            echo "Production deploy requires SUPABASE_URL and SUPABASE_ANON_KEY so public onboarding links can resolve remotely."
-            exit 1
+          supabase_url="${SUPABASE_URL_SECRET:-$SUPABASE_URL_VAR}"
+          supabase_anon_key="${SUPABASE_ANON_KEY_SECRET:-$SUPABASE_ANON_KEY_VAR}"
+
+          missing=0
+          if [ -z "$supabase_url" ]; then
+            echo "::error title=Missing Supabase URL::Set SUPABASE_URL as a GitHub Actions secret or repository variable."
+            missing=1
+          fi
+          if [ -z "$supabase_anon_key" ]; then
+            echo "::error title=Missing Supabase anon key::Set SUPABASE_ANON_KEY as a GitHub Actions secret or repository variable."
+            missing=1
           fi
           if [ -z "$CLOUDFLARE_PAGES_PROJECT_NAME" ]; then
-            echo "Production deploy requires CLOUDFLARE_PAGES_PROJECT_NAME."
+            echo "::error title=Missing Cloudflare Pages project::Set CLOUDFLARE_PAGES_PROJECT_NAME as a GitHub repository variable."
+            missing=1
+          fi
+          if [ -z "$CLOUDFLARE_API_TOKEN" ]; then
+            echo "::error title=Missing Cloudflare API token::Set CLOUDFLARE_API_TOKEN as a GitHub Actions secret."
+            missing=1
+          fi
+          if [ -z "$CLOUDFLARE_ACCOUNT_ID" ]; then
+            echo "::error title=Missing Cloudflare account ID::Set CLOUDFLARE_ACCOUNT_ID as a GitHub Actions secret."
+            missing=1
+          fi
+          if [ "$missing" -ne 0 ]; then
             exit 1
           fi
+          if [ "${supabase_url#http://}" = "$supabase_url" ] && [ "${supabase_url#https://}" = "$supabase_url" ]; then
+            echo "::error title=Invalid Supabase URL::SUPABASE_URL must start with http:// or https://."
+            exit 1
+          fi
+          echo "Production remote configuration is present."
 
       - name: Build web release
         env:
-          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
-          SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
+          SUPABASE_URL_SECRET: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_ANON_KEY_SECRET: ${{ secrets.SUPABASE_ANON_KEY }}
+          SUPABASE_URL_VAR: ${{ vars.SUPABASE_URL }}
+          SUPABASE_ANON_KEY_VAR: ${{ vars.SUPABASE_ANON_KEY }}
           AUTH_REDIRECT_URL: ${{ vars.AUTH_REDIRECT_URL }}
           PUBLIC_APP_URL: ${{ vars.PUBLIC_APP_URL }}
           CLOUDFLARE_PAGES_PROJECT_NAME: ${{ vars.CLOUDFLARE_PAGES_PROJECT_NAME }}
         run: |
+          SUPABASE_URL="${SUPABASE_URL_SECRET:-$SUPABASE_URL_VAR}"
+          SUPABASE_ANON_KEY="${SUPABASE_ANON_KEY_SECRET:-$SUPABASE_ANON_KEY_VAR}"
+          if [ -z "$SUPABASE_URL" ] || [ -z "$SUPABASE_ANON_KEY" ]; then
+            echo "SUPABASE_URL or SUPABASE_ANON_KEY is missing; building local demo mode."
+            if [ -n "$PUBLIC_APP_URL" ]; then
+              flutter build web --release --dart-define=PUBLIC_APP_URL="$PUBLIC_APP_URL"
+            else
+              flutter build web --release
+            fi
+            exit 0
+          fi
+          if [ -z "$CLOUDFLARE_PAGES_PROJECT_NAME" ]; then
+            echo "CLOUDFLARE_PAGES_PROJECT_NAME is missing."
+            exit 1
+          fi
+          if [ "${SUPABASE_URL#http://}" = "$SUPABASE_URL" ] && [ "${SUPABASE_URL#https://}" = "$SUPABASE_URL" ]; then
+            echo "SUPABASE_URL must start with http:// or https://."
+            exit 1
+          fi
+
           public_app_url="$PUBLIC_APP_URL"
           if [ -z "$public_app_url" ] && [ -n "$CLOUDFLARE_PAGES_PROJECT_NAME" ]; then
             public_app_url="https://${CLOUDFLARE_PAGES_PROJECT_NAME}.pages.dev"
           fi
 
-          if [ -n "$SUPABASE_URL" ] && [ -n "$SUPABASE_ANON_KEY" ]; then
-            build_args=(
-              --release
-              --dart-define=SUPABASE_URL="$SUPABASE_URL"
-              --dart-define=SUPABASE_ANON_KEY="$SUPABASE_ANON_KEY"
-            )
-            if [ -n "$AUTH_REDIRECT_URL" ]; then
-              build_args+=(--dart-define=AUTH_REDIRECT_URL="$AUTH_REDIRECT_URL")
-            fi
-            if [ -n "$public_app_url" ]; then
-              build_args+=(--dart-define=PUBLIC_APP_URL="$public_app_url")
-            fi
-            flutter build web "${build_args[@]}"
-          else
-            echo "SUPABASE_URL or SUPABASE_ANON_KEY is missing; building local demo mode."
-            if [ -n "$public_app_url" ]; then
-              flutter build web --release --dart-define=PUBLIC_APP_URL="$public_app_url"
-            else
-              flutter build web --release
-            fi
+          build_args=(
+            --release
+            --dart-define=SUPABASE_URL="$SUPABASE_URL"
+            --dart-define=SUPABASE_ANON_KEY="$SUPABASE_ANON_KEY"
+          )
+          if [ -n "$AUTH_REDIRECT_URL" ]; then
+            build_args+=(--dart-define=AUTH_REDIRECT_URL="$AUTH_REDIRECT_URL")
           fi
+          if [ -n "$public_app_url" ]; then
+            build_args+=(--dart-define=PUBLIC_APP_URL="$public_app_url")
+          fi
+          flutter build web "${build_args[@]}"
 
       - name: Prepare Cloudflare Pages artifact
         run: bash scripts/prepare_cloudflare_pages.sh
