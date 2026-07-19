@@ -26,6 +26,7 @@ import '../models/intake_session.dart';
 import '../models/action_record.dart';
 import '../models/companion_check_in.dart';
 import '../models/intake_mapping_preview.dart';
+import '../public_intake/public_intake_url.dart';
 import '../recommendations/next_best_action.dart';
 import '../recommendations/next_best_action_engine.dart';
 import '../repositories/local_workspace_repository.dart';
@@ -196,20 +197,23 @@ class AppState extends ChangeNotifier {
     if (_workspaceRepository.selectCompany(companyId)) notifyListeners();
   }
 
-  String? selectedIntakeInvitationLink({Uri? baseUri}) {
+  String? selectedIntakeInvitationLink({Uri? baseUri, String? publicAppUrl}) {
     final invitation = selectedIntakeInvitation;
     if (invitation == null ||
         !invitation.isActive ||
         invitation.token.trim().isEmpty) {
       return null;
     }
-    final base = baseUri ?? Uri.base;
-    return Uri(
-      scheme: base.scheme,
-      host: base.host,
-      port: base.hasPort ? base.port : null,
-      path: '/onboarding/${invitation.token}',
-    ).toString();
+    try {
+      return buildPublicIntakeUrl(
+        invitation.token,
+        baseUri: baseUri,
+        publicAppUrl:
+            publicAppUrl ?? const String.fromEnvironment('PUBLIC_APP_URL'),
+      ).toString();
+    } on PublicIntakeUrlException {
+      return null;
+    }
   }
 
   Future<void> reloadWorkspaces() async {

@@ -19,6 +19,38 @@ void main() {
   });
 
   test(
+    'invitation link uses configured public URL when base is file',
+    () async {
+      final state = AppState()..selectCompany('hb-cure');
+      final invitation = await state.createIntakeInvitation();
+
+      final link = state.selectedIntakeInvitationLink(
+        baseUri: Uri.parse('file:///Users/demo/index.html'),
+        publicAppUrl: 'https://businessbrain.example.com/',
+      );
+
+      expect(
+        link,
+        'https://businessbrain.example.com/onboarding/${invitation.token}',
+      );
+    },
+  );
+
+  test(
+    'invitation link is unavailable for file base without public URL',
+    () async {
+      final state = AppState()..selectCompany('hb-cure');
+      await state.createIntakeInvitation();
+
+      final link = state.selectedIntakeInvitationLink(
+        baseUri: Uri.parse('file:///Users/demo/index.html'),
+      );
+
+      expect(link, isNull);
+    },
+  );
+
+  test(
     'public intake token opens only the assigned company workspace',
     () async {
       final state = AppState()..selectCompany('hb-cure');

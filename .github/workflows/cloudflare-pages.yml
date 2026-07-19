@@ -50,7 +50,14 @@ jobs:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
           AUTH_REDIRECT_URL: ${{ vars.AUTH_REDIRECT_URL }}
+          PUBLIC_APP_URL: ${{ vars.PUBLIC_APP_URL }}
+          CLOUDFLARE_PAGES_PROJECT_NAME: ${{ vars.CLOUDFLARE_PAGES_PROJECT_NAME }}
         run: |
+          public_app_url="$PUBLIC_APP_URL"
+          if [ -z "$public_app_url" ] && [ -n "$CLOUDFLARE_PAGES_PROJECT_NAME" ]; then
+            public_app_url="https://${CLOUDFLARE_PAGES_PROJECT_NAME}.pages.dev"
+          fi
+
           if [ -n "$SUPABASE_URL" ] && [ -n "$SUPABASE_ANON_KEY" ]; then
             build_args=(
               --release
@@ -60,10 +67,17 @@ jobs:
             if [ -n "$AUTH_REDIRECT_URL" ]; then
               build_args+=(--dart-define=AUTH_REDIRECT_URL="$AUTH_REDIRECT_URL")
             fi
+            if [ -n "$public_app_url" ]; then
+              build_args+=(--dart-define=PUBLIC_APP_URL="$public_app_url")
+            fi
             flutter build web "${build_args[@]}"
           else
             echo "SUPABASE_URL or SUPABASE_ANON_KEY is missing; building local demo mode."
-            flutter build web --release
+            if [ -n "$public_app_url" ]; then
+              flutter build web --release --dart-define=PUBLIC_APP_URL="$public_app_url"
+            else
+              flutter build web --release
+            fi
           fi
 
       - name: Prepare Cloudflare Pages artifact

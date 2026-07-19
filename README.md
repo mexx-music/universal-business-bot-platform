@@ -187,6 +187,7 @@ For the deployed web app to use Supabase instead of local demo storage, set thes
 - `SUPABASE_ANON_KEY`
 
 Optionally set the repository variable `AUTH_REDIRECT_URL` when the deployed authentication redirect should use an explicit URL.
+Set `PUBLIC_APP_URL` to the public Cloudflare Pages or custom-domain URL, for example `https://<project>.pages.dev`. If it is omitted, the workflow derives `https://<CLOUDFLARE_PAGES_PROJECT_NAME>.pages.dev` when the Pages project variable is available. The app never invents a public questionnaire domain at runtime; when it is not running from an HTTP(S) browser origin and no valid public URL is configured, it shows a clear error instead of creating a `file://` link.
 
 No Cloudflare tokens or secret values are stored in the repository.
 

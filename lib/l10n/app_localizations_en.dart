@@ -1957,6 +1957,35 @@ class AppLocalizationsEn extends AppLocalizations {
       'Automatic opening blocked';
 
   @override
+  String get companyIntakeInvitationUrlUnavailable =>
+      'A valid public HTTP(S) address could not be created for this questionnaire.';
+
+  @override
+  String get companyIntakeInvitationSetPublicUrl => 'Set public address';
+
+  @override
+  String get companyIntakeInvitationPublicUrlTitle =>
+      'What is this app\'s public address?';
+
+  @override
+  String get companyIntakeInvitationPublicUrlLabel => 'Public app address';
+
+  @override
+  String get companyIntakeInvitationPublicUrlHint =>
+      'https://your-app.pages.dev';
+
+  @override
+  String get companyIntakeInvitationPublicUrlHelper =>
+      'You can find this address in Cloudflare Pages. It starts with https://.';
+
+  @override
+  String get companyIntakeInvitationPublicUrlDialog => 'Open as dialog';
+
+  @override
+  String get companyIntakeInvitationPublicUrlInvalid =>
+      'Please enter a valid address with https:// or http://.';
+
+  @override
   String get companyIntakeInvitationRegenerate => 'Regenerate';
 
   @override

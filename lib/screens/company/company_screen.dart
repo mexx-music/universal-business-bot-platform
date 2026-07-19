@@ -248,8 +248,18 @@ class _IntakeInvitationView extends StatefulWidget {
 }
 
 class _IntakeInvitationViewState extends State<_IntakeInvitationView> {
+  final TextEditingController _publicUrlController = TextEditingController();
+
   String? _blockedOpenLink;
+  String? _manualPublicAppUrl;
+  String? _publicUrlError;
   bool _isCreating = false;
+
+  @override
+  void dispose() {
+    _publicUrlController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -257,7 +267,9 @@ class _IntakeInvitationViewState extends State<_IntakeInvitationView> {
     final theme = Theme.of(context);
     final state = widget.state;
     final invitation = state.selectedIntakeInvitation;
-    final link = state.selectedIntakeInvitationLink();
+    final link = state.selectedIntakeInvitationLink(
+      publicAppUrl: _manualPublicAppUrl,
+    );
     final canWrite = state.canWriteWorkspace;
 
     return Column(
@@ -290,6 +302,75 @@ class _IntakeInvitationViewState extends State<_IntakeInvitationView> {
               borderRadius: BorderRadius.circular(8),
             ),
             child: SelectableText(link, style: theme.textTheme.bodySmall),
+          ),
+        ] else if (invitation?.isActive == true) ...[
+          const SizedBox(height: 12),
+          Container(
+            width: double.infinity,
+            padding: const EdgeInsets.all(14),
+            decoration: BoxDecoration(
+              color: theme.colorScheme.errorContainer,
+              borderRadius: BorderRadius.circular(8),
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Icon(
+                      Icons.error_outline,
+                      color: theme.colorScheme.onErrorContainer,
+                    ),
+                    const SizedBox(width: 10),
+                    Expanded(
+                      child: Text(
+                        l.companyIntakeInvitationUrlUnavailable,
+                        style: theme.textTheme.bodyMedium?.copyWith(
+                          color: theme.colorScheme.onErrorContainer,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 12),
+                TextField(
+                  controller: _publicUrlController,
+                  keyboardType: TextInputType.url,
+                  decoration: InputDecoration(
+                    filled: true,
+                    fillColor: theme.colorScheme.surface,
+                    labelText: l.companyIntakeInvitationPublicUrlLabel,
+                    hintText: l.companyIntakeInvitationPublicUrlHint,
+                    helperText: l.companyIntakeInvitationPublicUrlHelper,
+                    errorText: _publicUrlError,
+                  ),
+                  onSubmitted: (_) => _applyManualPublicAppUrl(),
+                ),
+                const SizedBox(height: 12),
+                Wrap(
+                  spacing: 8,
+                  runSpacing: 8,
+                  children: [
+                    FilledButton.icon(
+                      onPressed: _applyManualPublicAppUrl,
+                      icon: const Icon(Icons.public),
+                      label: Text(l.companyIntakeInvitationSetPublicUrl),
+                    ),
+                    TextButton(
+                      onPressed: () async {
+                        final value = await _showPublicAppUrlDialog(context);
+                        if (value == null || !mounted) return;
+                        _publicUrlController.text = value;
+                        await _applyManualPublicAppUrl();
+                      },
+                      child: Text(l.companyIntakeInvitationPublicUrlDialog),
+                    ),
+                  ],
+                ),
+              ],
+            ),
           ),
         ],
         const SizedBox(height: 12),
@@ -391,37 +472,81 @@ class _IntakeInvitationViewState extends State<_IntakeInvitationView> {
 
     try {
       await state.createIntakeInvitation();
-      final link = state.selectedIntakeInvitationLink();
+      final link = state.selectedIntakeInvitationLink(
+        publicAppUrl: _manualPublicAppUrl,
+      );
       if (link == null) {
         preparedTab?.close();
+        if (context.mounted) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text(l.companyIntakeInvitationUrlUnavailable)),
+          );
+        }
         return;
       }
 
-      await Clipboard.setData(ClipboardData(text: link));
-      final opened = preparedTab?.open(link) ?? openExternalLink(link);
-      if (!opened && mounted) {
-        setState(() => _blockedOpenLink = link);
-      }
-
-      if (context.mounted) {
-        final messages = [
-          l.companyIntakeInvitationCreated,
-          l.companyIntakeInvitationCopiedShort,
-          if (opened)
-            l.companyIntakeInvitationOpened
-          else
-            l.companyIntakeInvitationOpenBlockedShort,
-        ];
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: _InvitationSnackBarContent(messages: messages)),
-        );
-      }
+      if (!mounted) return;
+      await _copyOpenAndConfirmInvitationLink(link, preparedLink: preparedTab);
     } catch (_) {
       preparedTab?.close();
       rethrow;
     } finally {
       if (mounted) setState(() => _isCreating = false);
     }
+  }
+
+  Future<void> _copyOpenAndConfirmInvitationLink(
+    String link, {
+    PreparedExternalLink? preparedLink,
+    bool includeCreatedMessage = true,
+  }) async {
+    final l = AppLocalizations.of(context)!;
+    final messenger = ScaffoldMessenger.of(context);
+    await Clipboard.setData(ClipboardData(text: link));
+    final opened = preparedLink?.open(link) ?? openExternalLink(link);
+    if (!opened && mounted) {
+      setState(() => _blockedOpenLink = link);
+    }
+
+    if (mounted) {
+      final messages = [
+        if (includeCreatedMessage) l.companyIntakeInvitationCreated,
+        l.companyIntakeInvitationCopiedShort,
+        if (opened)
+          l.companyIntakeInvitationOpened
+        else
+          l.companyIntakeInvitationOpenBlockedShort,
+      ];
+      messenger.showSnackBar(
+        SnackBar(content: _InvitationSnackBarContent(messages: messages)),
+      );
+    }
+  }
+
+  Future<void> _applyManualPublicAppUrl() async {
+    final l = AppLocalizations.of(context)!;
+    final normalized = _normalizePublicAppUrl(_publicUrlController.text);
+    if (normalized == null) {
+      setState(() {
+        _publicUrlError = l.companyIntakeInvitationPublicUrlInvalid;
+      });
+      return;
+    }
+
+    setState(() {
+      _manualPublicAppUrl = normalized;
+      _publicUrlError = null;
+      _blockedOpenLink = null;
+    });
+
+    final configuredLink = widget.state.selectedIntakeInvitationLink(
+      publicAppUrl: normalized,
+    );
+    if (configuredLink == null || !mounted) return;
+    await _copyOpenAndConfirmInvitationLink(
+      configuredLink,
+      includeCreatedMessage: false,
+    );
   }
 
   Future<void> _copyInvitationLink(BuildContext context, String link) async {
@@ -441,6 +566,70 @@ class _IntakeInvitationViewState extends State<_IntakeInvitationView> {
       setState(() => _blockedOpenLink = null);
     }
   }
+
+  Future<String?> _showPublicAppUrlDialog(BuildContext context) {
+    final l = AppLocalizations.of(context)!;
+    final controller = TextEditingController(text: _manualPublicAppUrl ?? '');
+    String? errorText;
+
+    return showDialog<String>(
+      context: context,
+      builder: (dialogContext) {
+        return StatefulBuilder(
+          builder: (context, setDialogState) {
+            return AlertDialog(
+              title: Text(l.companyIntakeInvitationPublicUrlTitle),
+              content: TextField(
+                controller: controller,
+                keyboardType: TextInputType.url,
+                decoration: InputDecoration(
+                  labelText: l.companyIntakeInvitationPublicUrlLabel,
+                  hintText: l.companyIntakeInvitationPublicUrlHint,
+                  errorText: errorText,
+                ),
+                autofocus: true,
+              ),
+              actions: [
+                TextButton(
+                  onPressed: () => Navigator.of(dialogContext).pop(),
+                  child: Text(l.btnCancel),
+                ),
+                FilledButton(
+                  onPressed: () {
+                    final normalized = _normalizePublicAppUrl(controller.text);
+                    if (normalized == null) {
+                      setDialogState(() {
+                        errorText = l.companyIntakeInvitationPublicUrlInvalid;
+                      });
+                      return;
+                    }
+                    Navigator.of(dialogContext).pop(normalized);
+                  },
+                  child: Text(l.btnSave),
+                ),
+              ],
+            );
+          },
+        );
+      },
+    );
+  }
+}
+
+String? _normalizePublicAppUrl(String input) {
+  final value = input.trim();
+  if (value.isEmpty) return null;
+  final uri = Uri.tryParse(value);
+  if (uri == null ||
+      (uri.scheme != 'http' && uri.scheme != 'https') ||
+      uri.host.trim().isEmpty) {
+    return null;
+  }
+  return Uri(
+    scheme: uri.scheme,
+    host: uri.host,
+    port: uri.hasPort ? uri.port : null,
+  ).toString();
 }
 
 class _InvitationSnackBarContent extends StatelessWidget {

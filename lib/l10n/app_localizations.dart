@@ -3512,6 +3512,54 @@ abstract class AppLocalizations {
   /// **'Automatisches Öffnen blockiert'**
   String get companyIntakeInvitationOpenBlockedShort;
 
+  /// No description provided for @companyIntakeInvitationUrlUnavailable.
+  ///
+  /// In de, this message translates to:
+  /// **'Es konnte keine gültige öffentliche HTTP-/HTTPS-Adresse für diesen Fragebogen erstellt werden.'**
+  String get companyIntakeInvitationUrlUnavailable;
+
+  /// No description provided for @companyIntakeInvitationSetPublicUrl.
+  ///
+  /// In de, this message translates to:
+  /// **'Öffentliche Adresse eintragen'**
+  String get companyIntakeInvitationSetPublicUrl;
+
+  /// No description provided for @companyIntakeInvitationPublicUrlTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Welche öffentliche Adresse hat diese App?'**
+  String get companyIntakeInvitationPublicUrlTitle;
+
+  /// No description provided for @companyIntakeInvitationPublicUrlLabel.
+  ///
+  /// In de, this message translates to:
+  /// **'Öffentliche App-Adresse'**
+  String get companyIntakeInvitationPublicUrlLabel;
+
+  /// No description provided for @companyIntakeInvitationPublicUrlHint.
+  ///
+  /// In de, this message translates to:
+  /// **'https://ihre-app.pages.dev'**
+  String get companyIntakeInvitationPublicUrlHint;
+
+  /// No description provided for @companyIntakeInvitationPublicUrlHelper.
+  ///
+  /// In de, this message translates to:
+  /// **'Die Adresse steht in Cloudflare Pages und beginnt mit https://.'**
+  String get companyIntakeInvitationPublicUrlHelper;
+
+  /// No description provided for @companyIntakeInvitationPublicUrlDialog.
+  ///
+  /// In de, this message translates to:
+  /// **'Als Dialog öffnen'**
+  String get companyIntakeInvitationPublicUrlDialog;
+
+  /// No description provided for @companyIntakeInvitationPublicUrlInvalid.
+  ///
+  /// In de, this message translates to:
+  /// **'Bitte eine gültige Adresse mit https:// oder http:// eingeben.'**
+  String get companyIntakeInvitationPublicUrlInvalid;
+
   /// No description provided for @companyIntakeInvitationRegenerate.
   ///
   /// In de, this message translates to:

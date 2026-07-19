@@ -1971,6 +1971,36 @@ class AppLocalizationsDe extends AppLocalizations {
       'Automatisches Öffnen blockiert';
 
   @override
+  String get companyIntakeInvitationUrlUnavailable =>
+      'Es konnte keine gültige öffentliche HTTP-/HTTPS-Adresse für diesen Fragebogen erstellt werden.';
+
+  @override
+  String get companyIntakeInvitationSetPublicUrl =>
+      'Öffentliche Adresse eintragen';
+
+  @override
+  String get companyIntakeInvitationPublicUrlTitle =>
+      'Welche öffentliche Adresse hat diese App?';
+
+  @override
+  String get companyIntakeInvitationPublicUrlLabel => 'Öffentliche App-Adresse';
+
+  @override
+  String get companyIntakeInvitationPublicUrlHint =>
+      'https://ihre-app.pages.dev';
+
+  @override
+  String get companyIntakeInvitationPublicUrlHelper =>
+      'Die Adresse steht in Cloudflare Pages und beginnt mit https://.';
+
+  @override
+  String get companyIntakeInvitationPublicUrlDialog => 'Als Dialog öffnen';
+
+  @override
+  String get companyIntakeInvitationPublicUrlInvalid =>
+      'Bitte eine gültige Adresse mit https:// oder http:// eingeben.';
+
+  @override
   String get companyIntakeInvitationRegenerate => 'Neu generieren';
 
   @override
