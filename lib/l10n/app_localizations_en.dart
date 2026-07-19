@@ -1294,6 +1294,27 @@ class AppLocalizationsEn extends AppLocalizations {
       'This questionnaire link has been disabled. Please contact the person who invited you.';
 
   @override
+  String get publicIntakeExpiredTitle => 'Invitation link expired';
+
+  @override
+  String get publicIntakeExpiredMessage =>
+      'This questionnaire link has expired. Please request a new link.';
+
+  @override
+  String get publicIntakeNotConfiguredTitle => 'Questionnaire not configured';
+
+  @override
+  String get publicIntakeNotConfiguredMessage =>
+      'This deployed version is not connected to the server for public questionnaires yet.';
+
+  @override
+  String get publicIntakeRemoteErrorTitle => 'Questionnaire unavailable';
+
+  @override
+  String get publicIntakeRemoteErrorMessage =>
+      'The questionnaire could not be loaded right now. Please try again later.';
+
+  @override
   String get intakeChatExplanation =>
       'Answer the current question. After that, the next relevant step appears automatically.';
 

@@ -1304,6 +1304,27 @@ class AppLocalizationsDe extends AppLocalizations {
       'Dieser Fragebogen-Link wurde deaktiviert. Bitte wenden Sie sich an die Person, die Sie eingeladen hat.';
 
   @override
+  String get publicIntakeExpiredTitle => 'Einladungslink abgelaufen';
+
+  @override
+  String get publicIntakeExpiredMessage =>
+      'Dieser Fragebogen-Link ist abgelaufen. Bitte fordern Sie einen neuen Link an.';
+
+  @override
+  String get publicIntakeNotConfiguredTitle => 'Fragebogen nicht konfiguriert';
+
+  @override
+  String get publicIntakeNotConfiguredMessage =>
+      'Der öffentliche Fragebogen ist in dieser Version noch nicht mit dem Server verbunden.';
+
+  @override
+  String get publicIntakeRemoteErrorTitle => 'Fragebogen nicht erreichbar';
+
+  @override
+  String get publicIntakeRemoteErrorMessage =>
+      'Der Fragebogen konnte gerade nicht geladen werden. Bitte versuchen Sie es später erneut.';
+
+  @override
   String get intakeChatExplanation =>
       'Beantworte einfach die aktuelle Frage. Danach geht es automatisch mit dem nächsten passenden Schritt weiter.';
 

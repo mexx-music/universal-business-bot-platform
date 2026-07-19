@@ -4,7 +4,7 @@ create extension if not exists pgtap with schema extensions;
 
 set local search_path = public, extensions;
 
-select plan(8);
+select plan(9);
 
 select set_config('request.jwt.claim.sub', '00000000-0000-4000-8000-000000000010', true);
 set local role authenticated;
@@ -17,8 +17,8 @@ select public.create_intake_invitation(
 ) as response;
 
 select ok(
-  length((select response->>'token' from _created_invitation)) >= 64,
-  'admin RPC returns a strong one-time token'
+  (select response->>'token' from _created_invitation) ~ '^[A-Za-z0-9_-]{43}$',
+  'admin RPC returns a strong one-time base64url token'
 );
 
 select is(
@@ -113,6 +113,34 @@ select is(
   public.public_open_intake_invitation('missing-token')->>'status',
   'not_found',
   'invalid token is rejected'
+);
+
+reset role;
+select set_config('request.jwt.claim.sub', '00000000-0000-4000-8000-000000000010', true);
+set local role authenticated;
+
+create temp table _expired_invitation as
+select public.create_intake_invitation(
+  '00000000-0000-4000-8000-000000000101',
+  'hb-cure',
+  'Hallo erneut.'
+) as response;
+
+update public.intake_invitations
+   set expires_at = now() - interval '1 minute'
+ where token_hash = public.hash_intake_invitation_token(
+   (select response->>'token' from _expired_invitation)
+ );
+
+reset role;
+set local role anon;
+
+select is(
+  public.public_open_intake_invitation(
+    (select response->>'token' from _expired_invitation)
+  )->>'status',
+  'expired',
+  'expired invitation is reported separately'
 );
 
 select * from finish();

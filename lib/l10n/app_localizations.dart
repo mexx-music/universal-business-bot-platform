@@ -2426,6 +2426,42 @@ abstract class AppLocalizations {
   /// **'Dieser Fragebogen-Link wurde deaktiviert. Bitte wenden Sie sich an die Person, die Sie eingeladen hat.'**
   String get publicIntakeDisabledMessage;
 
+  /// No description provided for @publicIntakeExpiredTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Einladungslink abgelaufen'**
+  String get publicIntakeExpiredTitle;
+
+  /// No description provided for @publicIntakeExpiredMessage.
+  ///
+  /// In de, this message translates to:
+  /// **'Dieser Fragebogen-Link ist abgelaufen. Bitte fordern Sie einen neuen Link an.'**
+  String get publicIntakeExpiredMessage;
+
+  /// No description provided for @publicIntakeNotConfiguredTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Fragebogen nicht konfiguriert'**
+  String get publicIntakeNotConfiguredTitle;
+
+  /// No description provided for @publicIntakeNotConfiguredMessage.
+  ///
+  /// In de, this message translates to:
+  /// **'Der öffentliche Fragebogen ist in dieser Version noch nicht mit dem Server verbunden.'**
+  String get publicIntakeNotConfiguredMessage;
+
+  /// No description provided for @publicIntakeRemoteErrorTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Fragebogen nicht erreichbar'**
+  String get publicIntakeRemoteErrorTitle;
+
+  /// No description provided for @publicIntakeRemoteErrorMessage.
+  ///
+  /// In de, this message translates to:
+  /// **'Der Fragebogen konnte gerade nicht geladen werden. Bitte versuchen Sie es später erneut.'**
+  String get publicIntakeRemoteErrorMessage;
+
   /// No description provided for @intakeChatExplanation.
   ///
   /// In de, this message translates to:

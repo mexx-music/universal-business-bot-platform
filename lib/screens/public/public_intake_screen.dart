@@ -36,8 +36,15 @@ class _PublicIntakeScreenState extends State<PublicIntakeScreen> {
     if (!widget.publicIntakeService.isSupported) {
       final state = AppState.of(context);
       final result = state.openPublicIntakeInvitation(widget.token);
-      _result = result;
-      return result;
+      debugPrint(
+        '[public-intake] rpc=local_fallback status=${result.name} '
+        'tokenLength=${widget.token.trim().length}',
+      );
+      final mapped = result == PublicIntakeOpenResult.notFound
+          ? PublicIntakeOpenResult.notConfigured
+          : result;
+      _result = mapped;
+      return mapped;
     }
 
     final response = await widget.publicIntakeService.open(widget.token);
@@ -46,6 +53,11 @@ class _PublicIntakeScreenState extends State<PublicIntakeScreen> {
       PublicIntakeRemoteStatus.opened when workspace != null =>
         PublicIntakeOpenResult.opened,
       PublicIntakeRemoteStatus.disabled => PublicIntakeOpenResult.disabled,
+      PublicIntakeRemoteStatus.expired => PublicIntakeOpenResult.expired,
+      PublicIntakeRemoteStatus.notConfigured =>
+        PublicIntakeOpenResult.notConfigured,
+      PublicIntakeRemoteStatus.remoteError =>
+        PublicIntakeOpenResult.remoteError,
       _ => PublicIntakeOpenResult.notFound,
     };
     if (result == PublicIntakeOpenResult.opened && workspace != null) {
@@ -126,7 +138,6 @@ class _ErrorView extends StatelessWidget {
   Widget build(BuildContext context) {
     final l = AppLocalizations.of(context)!;
 
-    final disabled = result == PublicIntakeOpenResult.disabled;
     return Scaffold(
       appBar: AppBar(
         title: Text(l.appName),
@@ -146,29 +157,20 @@ class _ErrorView extends StatelessWidget {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Icon(
-                      disabled
-                          ? Icons.link_off_outlined
-                          : Icons.search_off_outlined,
+                      _iconFor(result),
                       size: 48,
                       color: Theme.of(context).colorScheme.primary,
                     ),
                     const SizedBox(height: 16),
                     Text(
-                      disabled
-                          ? l.publicIntakeDisabledTitle
-                          : l.publicIntakeNotFoundTitle,
+                      _title(l, result),
                       textAlign: TextAlign.center,
                       style: Theme.of(context).textTheme.titleLarge?.copyWith(
                         fontWeight: FontWeight.bold,
                       ),
                     ),
                     const SizedBox(height: 8),
-                    Text(
-                      disabled
-                          ? l.publicIntakeDisabledMessage
-                          : l.publicIntakeNotFoundMessage,
-                      textAlign: TextAlign.center,
-                    ),
+                    Text(_message(l, result), textAlign: TextAlign.center),
                     const SizedBox(height: 18),
                     FilledButton.icon(
                       onPressed: () => context.go('/'),
@@ -183,5 +185,36 @@ class _ErrorView extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  IconData _iconFor(PublicIntakeOpenResult result) {
+    return switch (result) {
+      PublicIntakeOpenResult.disabled => Icons.link_off_outlined,
+      PublicIntakeOpenResult.expired => Icons.schedule_outlined,
+      PublicIntakeOpenResult.notConfigured => Icons.cloud_off_outlined,
+      PublicIntakeOpenResult.remoteError => Icons.sync_problem_outlined,
+      _ => Icons.search_off_outlined,
+    };
+  }
+
+  String _title(AppLocalizations l, PublicIntakeOpenResult result) {
+    return switch (result) {
+      PublicIntakeOpenResult.disabled => l.publicIntakeDisabledTitle,
+      PublicIntakeOpenResult.expired => l.publicIntakeExpiredTitle,
+      PublicIntakeOpenResult.notConfigured => l.publicIntakeNotConfiguredTitle,
+      PublicIntakeOpenResult.remoteError => l.publicIntakeRemoteErrorTitle,
+      _ => l.publicIntakeNotFoundTitle,
+    };
+  }
+
+  String _message(AppLocalizations l, PublicIntakeOpenResult result) {
+    return switch (result) {
+      PublicIntakeOpenResult.disabled => l.publicIntakeDisabledMessage,
+      PublicIntakeOpenResult.expired => l.publicIntakeExpiredMessage,
+      PublicIntakeOpenResult.notConfigured =>
+        l.publicIntakeNotConfiguredMessage,
+      PublicIntakeOpenResult.remoteError => l.publicIntakeRemoteErrorMessage,
+      _ => l.publicIntakeNotFoundMessage,
+    };
   }
 }

@@ -1,4 +1,5 @@
 import 'package:supabase_flutter/supabase_flutter.dart' as sb;
+import 'package:flutter/foundation.dart';
 
 import '../models/business_rules.dart';
 import '../models/bot_configuration.dart';
@@ -8,13 +9,25 @@ import '../models/intake_session.dart';
 import '../repositories/persistence/workspace_codec.dart';
 import '../repositories/remote_workspace_mapper.dart';
 
-enum PublicIntakeRemoteStatus { opened, notFound, disabled }
+enum PublicIntakeRemoteStatus {
+  opened,
+  notFound,
+  disabled,
+  expired,
+  notConfigured,
+  remoteError,
+}
 
 class PublicIntakeOpenResponse {
-  const PublicIntakeOpenResponse({required this.status, this.workspace});
+  const PublicIntakeOpenResponse({
+    required this.status,
+    this.workspace,
+    this.debugReason,
+  });
 
   final PublicIntakeRemoteStatus status;
   final CompanyWorkspace? workspace;
+  final String? debugReason;
 }
 
 abstract class PublicIntakeService {
@@ -53,17 +66,30 @@ class SupabasePublicIntakeService implements PublicIntakeService {
 
   final sb.SupabaseClient _client;
   static const _mapper = RemoteWorkspaceMapper();
+  static const _supabaseUrl = String.fromEnvironment('SUPABASE_URL');
 
   @override
   bool get isSupported => true;
 
   @override
   Future<PublicIntakeOpenResponse> open(String token) async {
-    final result = await _client.rpc(
-      'public_open_intake_invitation',
-      params: {'raw_token': token.trim()},
-    );
-    return _responseFromRpc(result);
+    const rpcName = 'public_open_intake_invitation';
+    _debugRpcStart(rpcName, token);
+    try {
+      final result = await _client.rpc(
+        rpcName,
+        params: {'raw_token': token.trim()},
+      );
+      final response = _responseFromRpc(result);
+      _debugRpcResult(rpcName, response);
+      return response;
+    } catch (error) {
+      _debugRpcError(rpcName, error);
+      return PublicIntakeOpenResponse(
+        status: PublicIntakeRemoteStatus.remoteError,
+        debugReason: _safeErrorCode(error),
+      );
+    }
   }
 
   @override
@@ -71,14 +97,26 @@ class SupabasePublicIntakeService implements PublicIntakeService {
     required String token,
     required IntakeSession session,
   }) async {
-    final result = await _client.rpc(
-      'public_save_intake_session',
-      params: {
-        'raw_token': token.trim(),
-        'session_payload': WorkspaceCodec.encodeIntakeSession(session),
-      },
-    );
-    return _responseFromRpc(result);
+    const rpcName = 'public_save_intake_session';
+    _debugRpcStart(rpcName, token);
+    try {
+      final result = await _client.rpc(
+        rpcName,
+        params: {
+          'raw_token': token.trim(),
+          'session_payload': WorkspaceCodec.encodeIntakeSession(session),
+        },
+      );
+      final response = _responseFromRpc(result);
+      _debugRpcResult(rpcName, response);
+      return response;
+    } catch (error) {
+      _debugRpcError(rpcName, error);
+      return PublicIntakeOpenResponse(
+        status: PublicIntakeRemoteStatus.remoteError,
+        debugReason: _safeErrorCode(error),
+      );
+    }
   }
 
   PublicIntakeOpenResponse _responseFromRpc(Object? result) {
@@ -86,10 +124,14 @@ class SupabasePublicIntakeService implements PublicIntakeService {
     final status = switch (_string(json, 'status')) {
       'opened' => PublicIntakeRemoteStatus.opened,
       'disabled' => PublicIntakeRemoteStatus.disabled,
+      'expired' => PublicIntakeRemoteStatus.expired,
       _ => PublicIntakeRemoteStatus.notFound,
     };
     if (status != PublicIntakeRemoteStatus.opened) {
-      return PublicIntakeOpenResponse(status: status);
+      return PublicIntakeOpenResponse(
+        status: status,
+        debugReason: _string(json, 'reason'),
+      );
     }
     return PublicIntakeOpenResponse(
       status: status,
@@ -127,6 +169,42 @@ class SupabasePublicIntakeService implements PublicIntakeService {
         ),
       ),
     );
+  }
+
+  void _debugRpcStart(String rpcName, String token) {
+    debugPrint(
+      '[public-intake] rpc=$rpcName project=${_projectIdentifier()} '
+      'tokenLength=${token.trim().length}',
+    );
+  }
+
+  void _debugRpcResult(String rpcName, PublicIntakeOpenResponse response) {
+    debugPrint(
+      '[public-intake] rpc=$rpcName status=${response.status.name} '
+      'reason=${response.debugReason ?? '-'} '
+      'workspaceLoaded=${response.workspace != null}',
+    );
+  }
+
+  void _debugRpcError(String rpcName, Object error) {
+    debugPrint(
+      '[public-intake] rpc=$rpcName status=remoteError '
+      'project=${_projectIdentifier()} error=${_safeErrorCode(error)}',
+    );
+  }
+
+  String _projectIdentifier() {
+    final parsed = Uri.tryParse(_supabaseUrl.trim());
+    final host = parsed?.host ?? '';
+    if (host.isEmpty) return 'unknown';
+    return host;
+  }
+
+  String _safeErrorCode(Object error) {
+    if (error is sb.PostgrestException) {
+      return error.code ?? 'postgrest';
+    }
+    return error.runtimeType.toString();
   }
 
   Company _company(Map<String, Object?> json) {

@@ -45,6 +45,22 @@ jobs:
       - name: Run tests
         run: flutter test
 
+      - name: Validate production remote configuration
+        if: ${{ github.ref == 'refs/heads/main' }}
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
+          CLOUDFLARE_PAGES_PROJECT_NAME: ${{ vars.CLOUDFLARE_PAGES_PROJECT_NAME }}
+        run: |
+          if [ -z "$SUPABASE_URL" ] || [ -z "$SUPABASE_ANON_KEY" ]; then
+            echo "Production deploy requires SUPABASE_URL and SUPABASE_ANON_KEY so public onboarding links can resolve remotely."
+            exit 1
+          fi
+          if [ -z "$CLOUDFLARE_PAGES_PROJECT_NAME" ]; then
+            echo "Production deploy requires CLOUDFLARE_PAGES_PROJECT_NAME."
+            exit 1
+          fi
+
       - name: Build web release
         env:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}

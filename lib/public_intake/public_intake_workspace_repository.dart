@@ -75,6 +75,11 @@ class PublicIntakeWorkspaceRepository implements WorkspaceRepository {
       _workspace = saved;
     } else if (response.status == PublicIntakeRemoteStatus.disabled) {
       throw const NoWritePermissionException();
+    } else if (response.status == PublicIntakeRemoteStatus.remoteError ||
+        response.status == PublicIntakeRemoteStatus.notConfigured) {
+      throw const RepositoryTechnicalException(
+        'The public questionnaire could not be saved remotely.',
+      );
     } else {
       throw const RepositoryRecordNotFoundException();
     }

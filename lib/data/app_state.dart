@@ -40,7 +40,14 @@ import '../services/workspace_mutation_service.dart';
 
 enum CompanyProfileStatus { incomplete, partial, complete }
 
-enum PublicIntakeOpenResult { opened, notFound, disabled }
+enum PublicIntakeOpenResult {
+  opened,
+  notFound,
+  disabled,
+  expired,
+  notConfigured,
+  remoteError,
+}
 
 enum WorkspaceLoadStatus {
   initial,
