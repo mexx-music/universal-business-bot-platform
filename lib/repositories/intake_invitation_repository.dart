@@ -2,13 +2,9 @@ import '../models/intake_invitation.dart';
 import '../models/intake_session.dart';
 
 abstract class IntakeInvitationRepository {
-  Future<IntakeInvitation> createIntakeInvitation({
-    required String greeting,
-  });
+  Future<IntakeInvitation> createIntakeInvitation({required String greeting});
 
-  Future<IntakeInvitation> regenerateIntakeInvitation({
-    String? greeting,
-  });
+  Future<IntakeInvitation> regenerateIntakeInvitation({String? greeting});
 
   Future<IntakeInvitation?> deactivateIntakeInvitation();
 

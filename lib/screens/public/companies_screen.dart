@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../data/app_state.dart';
+import '../../demo/demo_mode_controller.dart';
 import '../../l10n/app_localizations.dart';
 import '../../models/company_workspace.dart';
 
@@ -13,10 +14,11 @@ class CompaniesScreen extends StatelessWidget {
     final state = AppState.of(context);
     final l = AppLocalizations.of(context)!;
     final theme = Theme.of(context);
+    final isDemo = DemoModeController.of(context).isActive;
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(l.companySelectTitle),
+        title: Text(isDemo ? l.demoBadgeLabel : l.companySelectTitle),
         leading: IconButton(
           tooltip: l.landingBackHome,
           icon: const Icon(Icons.arrow_back),
@@ -27,14 +29,14 @@ class CompaniesScreen extends StatelessWidget {
         padding: const EdgeInsets.all(24),
         children: [
           Text(
-            l.companySelectHeadline,
+            isDemo ? l.demoSelectHeadline : l.companySelectHeadline,
             style: theme.textTheme.headlineMedium?.copyWith(
               fontWeight: FontWeight.bold,
             ),
           ),
           const SizedBox(height: 6),
           Text(
-            l.companySelectSubtitle,
+            isDemo ? l.demoSelectSubtitle : l.companySelectSubtitle,
             style: theme.textTheme.bodyMedium?.copyWith(
               color: theme.colorScheme.onSurfaceVariant,
             ),

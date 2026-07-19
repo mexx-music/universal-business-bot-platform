@@ -124,7 +124,7 @@ flutter run -d chrome
 ```sh
 flutter run -d chrome \
   --dart-define=SUPABASE_URL=http://127.0.0.1:54321 \
-  --dart-define=SUPABASE_ANON_KEY=<LOCAL_ANON_KEY>
+  --dart-define=SUPABASE_PUBLISHABLE_KEY=<LOCAL_PUBLISHABLE_KEY>
 ```
 
 In Supabase mode the app restores the auth session before the first frame, resolves active tenant memberships from Supabase, and redirects unauthenticated users to `/login` for internal routes. If Supabase is not configured or initialization fails, the app falls back to local mode.
@@ -184,7 +184,11 @@ The workflow in `.github/workflows/cloudflare-pages.yml` builds on every push to
 For the deployed web app to use Supabase instead of local demo storage, set these GitHub Secrets as well:
 
 - `SUPABASE_URL`
-- `SUPABASE_ANON_KEY`
+- `SUPABASE_PUBLISHABLE_KEY`
+
+Only browser-safe Supabase publishable keys may be passed to Flutter Web. Never use
+`SUPABASE_SECRET_KEY`, `service_role`, or any `sb_secret_...` key in GitHub
+Actions, Cloudflare Pages, or a `--dart-define`.
 
 Optionally set the repository variable `AUTH_REDIRECT_URL` when the deployed authentication redirect should use an explicit URL.
 Set `PUBLIC_APP_URL` to the public Cloudflare Pages or custom-domain URL, for example `https://<project>.pages.dev`. If it is omitted, the workflow derives `https://<CLOUDFLARE_PAGES_PROJECT_NAME>.pages.dev` when the Pages project variable is available. The app never invents a public questionnaire domain at runtime; when it is not running from an HTTP(S) browser origin and no valid public URL is configured, it shows a clear error instead of creating a `file://` link.

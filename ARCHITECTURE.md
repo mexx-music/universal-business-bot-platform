@@ -125,7 +125,7 @@ durchgereicht. Tests können `AppState` oder Repositories direkt mit eigenen
 Abhängigkeiten konstruieren.
 
 Seit Block 22B prüft die Composition Root zusätzlich die Build-Variablen
-`SUPABASE_URL` und `SUPABASE_ANON_KEY`. Sind beide gesetzt, wird
+`SUPABASE_URL` und `SUPABASE_PUBLISHABLE_KEY`. Sind beide gesetzt, wird
 `Supabase.initialize()` vor `runApp` ausgeführt, die Session wiederhergestellt
 und `SupabaseAuthService` verwendet. Ohne Konfiguration oder bei kontrolliertem
 Initialisierungsfehler startet die App bewusst im lokalen Modus. Interne

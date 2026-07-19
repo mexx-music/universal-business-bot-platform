@@ -1,6 +1,8 @@
+import 'package:flutter/foundation.dart';
 import 'package:go_router/go_router.dart';
 import '../auth/auth_controller.dart';
 import '../auth/auth_status.dart';
+import '../demo/demo_mode_controller.dart';
 import '../public_intake/public_intake_service.dart';
 import '../widgets/app_shell.dart';
 import '../screens/auth/login_screen.dart';
@@ -30,11 +32,18 @@ GoRouter createAppRouter(
   AuthController authController, {
   PublicIntakeService publicIntakeService =
       const UnsupportedPublicIntakeService(),
+  DemoModeController? demoModeController,
 }) {
   return GoRouter(
     initialLocation: '/',
-    refreshListenable: authController,
+    refreshListenable: demoModeController == null
+        ? authController
+        : Listenable.merge([authController, demoModeController]),
     redirect: (context, state) {
+      // The competition demo runs entirely on local demo data: every route
+      // is reachable without login, and Supabase is never contacted.
+      if (demoModeController?.isActive ?? false) return null;
+
       final location = state.uri.path;
       final isPublicRoute = location == '/' || location == '/login';
       final isPublicIntakeRoute = location.startsWith('/onboarding/');

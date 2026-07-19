@@ -7,6 +7,9 @@ import '../auth/auth_status.dart';
 import '../auth/supabase_auth_service.dart';
 import '../auth/tenant_preference_store_factory.dart';
 import '../data/app_state.dart';
+import '../demo/demo_mode_controller.dart';
+import '../demo/demo_preference_store.dart';
+import '../demo/demo_preference_store_factory.dart';
 import '../onboarding/onboarding_controller.dart';
 import '../onboarding/tenant_onboarding_data_source.dart';
 import '../onboarding/tenant_onboarding_service.dart';
@@ -37,8 +40,13 @@ class AppDependencies {
     required this.onboardingController,
     required this.tenantSelectionController,
     required this.publicIntakeService,
+    required this.demoModeController,
     RemoteWorkspaceDataSource? remoteDataSource,
   });
+
+  /// Separate IndexedDB database for the competition demo — demo writes can
+  /// never touch regular local data or Supabase.
+  static const String demoDatabaseName = 'universalbusiness_demo.db';
 
   /// Wires the app for production use: the persistent (IndexedDB-backed)
   /// repository where available, otherwise the in-memory one.
@@ -96,11 +104,24 @@ class AppDependencies {
     final tenantContext =
         authController.tenantContext ?? _fallbackTenant(authController);
 
+    // Competition demo mode survives a browser refresh: when the persisted
+    // flag is set, the app boots straight onto the demo repository — no
+    // Supabase access is needed or made for the demo.
+    final demoPreferenceStore = createDemoPreferenceStore();
+    final restoredDemoRepository = await _restoreDemoRepository(
+      demoPreferenceStore,
+    );
+
     if (authController.isSupabaseMode) {
-      final repositoryResult = await _remoteOrEmptyRepository(
-        authController: authController,
-        remoteDataSource: remoteDataSource,
-      );
+      final repositoryResult = restoredDemoRepository != null
+          ? _RepositoryResult(
+              repository: restoredDemoRepository,
+              status: WorkspaceLoadStatus.loaded,
+            )
+          : await _remoteOrEmptyRepository(
+              authController: authController,
+              remoteDataSource: remoteDataSource,
+            );
       final appState = AppState(
         workspaceRepository: repositoryResult.repository,
         workspaceLoadStatus: repositoryResult.status,
@@ -118,6 +139,17 @@ class AppDependencies {
         authController: authController,
         appState: appState,
       );
+      final demoModeController = DemoModeController(
+        appState: appState,
+        preferenceStore: demoPreferenceStore,
+        demoRepositoryFactory: _openDemoRepository,
+        exitRepositoryFactory: () async => (await _remoteOrEmptyRepository(
+          authController: authController,
+          remoteDataSource: remoteDataSource,
+        )).repository,
+        initiallyActive: restoredDemoRepository != null,
+        initialDemoRepository: restoredDemoRepository,
+      );
       final dependencies = AppDependencies._(
         tenantContext: repositoryResult.repository.tenantContext,
         authController: authController,
@@ -127,6 +159,7 @@ class AppDependencies {
         tenantSelectionController: tenantSelectionController,
         publicIntakeService:
             publicIntakeService ?? const UnsupportedPublicIntakeService(),
+        demoModeController: demoModeController,
         remoteDataSource: remoteDataSource,
       );
       dependencies._attachAuthRepositoryBridge(remoteDataSource);
@@ -134,14 +167,17 @@ class AppDependencies {
     }
 
     final databaseFactory = defaultPersistenceDatabaseFactory;
-    if (databaseFactory == null) {
+    if (databaseFactory == null && restoredDemoRepository == null) {
       return AppDependencies.local(authController: authController);
     }
     try {
-      final repository = await PersistentWorkspaceRepository.open(
-        databaseFactory: databaseFactory,
-        tenantContext: tenantContext,
-      );
+      final regularRepository = restoredDemoRepository != null
+          ? null
+          : await PersistentWorkspaceRepository.open(
+              databaseFactory: databaseFactory!,
+              tenantContext: tenantContext,
+            );
+      final repository = restoredDemoRepository ?? regularRepository!;
       final appState = AppState(workspaceRepository: repository);
       return AppDependencies._(
         tenantContext: tenantContext,
@@ -162,6 +198,16 @@ class AppDependencies {
         ),
         publicIntakeService:
             publicIntakeService ?? const UnsupportedPublicIntakeService(),
+        demoModeController: DemoModeController(
+          appState: appState,
+          preferenceStore: demoPreferenceStore,
+          demoRepositoryFactory: _openDemoRepository,
+          exitRepositoryFactory: () async =>
+              regularRepository ??
+              await _openRegularLocalRepository(tenantContext),
+          initiallyActive: restoredDemoRepository != null,
+          initialDemoRepository: restoredDemoRepository,
+        ),
       );
     } catch (error) {
       debugPrint(
@@ -197,6 +243,13 @@ class AppDependencies {
         appState: appState,
       ),
       publicIntakeService: const UnsupportedPublicIntakeService(),
+      demoModeController: DemoModeController(
+        appState: appState,
+        preferenceStore: MemoryDemoPreferenceStore(),
+        demoRepositoryFactory: () async =>
+            LocalWorkspaceRepository(tenantContext: tenantContext),
+        exitRepositoryFactory: () async => workspaceRepository,
+      ),
     );
   }
 
@@ -271,6 +324,8 @@ class AppDependencies {
 
     authController.addListener(() async {
       if (!authController.isSupabaseMode) return;
+      // A running demo owns the repository; auth changes must not clobber it.
+      if (demoModeController.isActive) return;
       final status = authController.status;
 
       if (status == AuthStatus.unauthenticated ||
@@ -323,11 +378,61 @@ class AppDependencies {
     });
   }
 
+  /// Restores the demo repository when the persisted demo flag is set.
+  static Future<WorkspaceRepository?> _restoreDemoRepository(
+    DemoPreferenceStore store,
+  ) async {
+    if (!await store.readActive()) return null;
+    try {
+      return await _openDemoRepository();
+    } catch (error) {
+      debugPrint('Demo mode could not be restored: $error');
+      await store.saveActive(false);
+      return null;
+    }
+  }
+
+  /// The demo runs on its own IndexedDB database (seeded with the showcase
+  /// mock data), falling back to in-memory — never on production storage.
+  static Future<WorkspaceRepository> _openDemoRepository() async {
+    final databaseFactory = defaultPersistenceDatabaseFactory;
+    if (databaseFactory != null) {
+      try {
+        return await PersistentWorkspaceRepository.open(
+          databaseFactory: databaseFactory,
+          dbName: demoDatabaseName,
+        );
+      } catch (error) {
+        debugPrint('Demo storage unavailable, using in-memory demo: $error');
+      }
+    }
+    return LocalWorkspaceRepository();
+  }
+
+  static Future<WorkspaceRepository> _openRegularLocalRepository(
+    TenantContext tenantContext,
+  ) async {
+    final databaseFactory = defaultPersistenceDatabaseFactory;
+    if (databaseFactory != null) {
+      try {
+        return await PersistentWorkspaceRepository.open(
+          databaseFactory: databaseFactory,
+          tenantContext: tenantContext,
+        );
+      } catch (error) {
+        debugPrint('Persistent storage unavailable after demo exit: $error');
+      }
+    }
+    return LocalWorkspaceRepository(tenantContext: tenantContext);
+  }
+
   static Future<AuthController> _createAuthController() async {
     const supabaseUrl = String.fromEnvironment('SUPABASE_URL');
-    const supabaseAnonKey = String.fromEnvironment('SUPABASE_ANON_KEY');
+    const supabasePublishableKey = String.fromEnvironment(
+      'SUPABASE_PUBLISHABLE_KEY',
+    );
 
-    if (supabaseUrl.trim().isEmpty || supabaseAnonKey.trim().isEmpty) {
+    if (supabaseUrl.trim().isEmpty || supabasePublishableKey.trim().isEmpty) {
       final controller = AuthController(LocalAuthService());
       await controller.initialize();
       return controller;
@@ -336,7 +441,7 @@ class AppDependencies {
     try {
       await Supabase.initialize(
         url: supabaseUrl.trim(),
-        publishableKey: supabaseAnonKey.trim(),
+        publishableKey: supabasePublishableKey.trim(),
       );
       final controller = AuthController(
         SupabaseAuthService(Supabase.instance.client),
@@ -361,6 +466,7 @@ class AppDependencies {
   final OnboardingController onboardingController;
   final TenantSelectionController tenantSelectionController;
   final PublicIntakeService publicIntakeService;
+  final DemoModeController demoModeController;
 }
 
 class _RepositoryResult {

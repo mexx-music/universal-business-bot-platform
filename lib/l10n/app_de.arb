@@ -1424,5 +1424,19 @@
   "checkInStatusCompleted": "Abgeschlossen",
   "checkInStatusSkipped": "Übersprungen",
   "dashboardCheckInTitle": "Monats-Check-in",
-  "dashboardStartCheckIn": "Check-in starten"
+  "dashboardStartCheckIn": "Check-in starten",
+
+  "demoStartButton": "Demo starten",
+  "demoRegisterButton": "Unternehmen anmelden",
+  "demoBadgeLabel": "Demo-Modus",
+  "demoLeaveButton": "Demo verlassen",
+  "demoCreateOwnButton": "Eigenes Unternehmen anlegen",
+  "demoSelectHeadline": "Welche Demo möchten Sie ansehen?",
+  "demoSelectSubtitle": "Wählen Sie ein Beispielunternehmen. Alle Daten sind Demo-Daten und bleiben auf Ihrem Gerät.",
+  "demoTourTitle": "So erkunden Sie die Demo",
+  "demoTourStep1": "1. Unternehmen auswählen",
+  "demoTourStep2": "2. Kundenfrage prüfen",
+  "demoTourStep3": "3. Antwort freigeben",
+  "demoTourStep4": "4. Audit ansehen",
+  "demoTourDismiss": "Hinweis ausblenden"
 }

@@ -192,7 +192,7 @@ change_log           Audit Trail: entity, entity_id, actor, action, diff jsonb
 
 ## 5. Auth-Flow (Block 22B Foundation)
 
-1. **Optionaler Start:** Ohne `SUPABASE_URL` und `SUPABASE_ANON_KEY` läuft die
+1. **Optionaler Start:** Ohne `SUPABASE_URL` und `SUPABASE_PUBLISHABLE_KEY` läuft die
    App weiter im lokalen Modus. Login ist ein Upgrade, keine Pflicht.
 2. **Initialisierung:** Mit Build-Variablen wird Supabase vor `runApp`
    initialisiert. Fehler führen kontrolliert in den lokalen Modus, nicht in

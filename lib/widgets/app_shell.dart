@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import '../auth/auth_controller.dart';
 import '../data/app_state.dart';
+import '../demo/demo_mode_controller.dart';
 import '../l10n/app_localizations.dart';
 import '../tenant_selection/tenant_selection_controller.dart';
 
@@ -244,7 +245,7 @@ class AppShell extends StatelessWidget {
                 ),
               ),
             ),
-            body: child,
+            body: _DemoAwareContent(child: child),
             bottomNavigationBar: NavigationBar(
               selectedIndex: selectedIndex,
               onDestinationSelected: (i) => context.go(_navItems[i].path),
@@ -303,7 +304,7 @@ class AppShell extends StatelessWidget {
                 ),
               ),
               const VerticalDivider(thickness: 1, width: 1),
-              Expanded(child: child),
+              Expanded(child: _DemoAwareContent(child: child)),
             ],
           ),
         );
@@ -669,6 +670,156 @@ class _ShellTextButton extends StatelessWidget {
             ),
           ),
         ],
+      ),
+    );
+  }
+}
+
+/// Wraps screen content with the demo banner and the light guided tour
+/// while the competition demo runs; renders the plain content otherwise.
+class _DemoAwareContent extends StatelessWidget {
+  final Widget child;
+
+  const _DemoAwareContent({required this.child});
+
+  @override
+  Widget build(BuildContext context) {
+    final demo = DemoModeController.of(context);
+    if (!demo.isActive) return child;
+    return Column(
+      children: [
+        const _DemoBanner(),
+        if (demo.isTourVisible) const _DemoTourBanner(),
+        Expanded(child: child),
+      ],
+    );
+  }
+}
+
+/// Clearly visible but unobtrusive: "Demo-Modus" plus the exit actions.
+class _DemoBanner extends StatelessWidget {
+  const _DemoBanner();
+
+  @override
+  Widget build(BuildContext context) {
+    final l = AppLocalizations.of(context)!;
+    final theme = Theme.of(context);
+    final demo = DemoModeController.of(context);
+    final auth = AuthController.of(context);
+
+    return Material(
+      color: theme.colorScheme.tertiaryContainer,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+        child: Wrap(
+          alignment: WrapAlignment.spaceBetween,
+          crossAxisAlignment: WrapCrossAlignment.center,
+          spacing: 12,
+          runSpacing: 6,
+          children: [
+            Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Icon(
+                  Icons.play_circle_outline,
+                  size: 18,
+                  color: theme.colorScheme.onTertiaryContainer,
+                ),
+                const SizedBox(width: 6),
+                Text(
+                  l.demoBadgeLabel,
+                  style: theme.textTheme.labelLarge?.copyWith(
+                    color: theme.colorScheme.onTertiaryContainer,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ],
+            ),
+            Wrap(
+              spacing: 8,
+              crossAxisAlignment: WrapCrossAlignment.center,
+              children: [
+                if (auth.isSupabaseMode)
+                  TextButton(
+                    onPressed: () async {
+                      await demo.exitDemo();
+                      if (context.mounted) context.go('/login');
+                    },
+                    child: Text(l.demoCreateOwnButton),
+                  ),
+                FilledButton.tonalIcon(
+                  onPressed: () async {
+                    await demo.exitDemo();
+                    if (context.mounted) context.go('/');
+                  },
+                  icon: const Icon(Icons.logout, size: 16),
+                  label: Text(l.demoLeaveButton),
+                  style: FilledButton.styleFrom(
+                    visualDensity: VisualDensity.compact,
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+/// Light guided tour: four suggested steps as tappable chips, dismissible
+/// at any time. Deliberately no tour package — a simple banner suffices.
+class _DemoTourBanner extends StatelessWidget {
+  const _DemoTourBanner();
+
+  @override
+  Widget build(BuildContext context) {
+    final l = AppLocalizations.of(context)!;
+    final theme = Theme.of(context);
+    final demo = DemoModeController.of(context);
+
+    final steps = <(String, String)>[
+      (l.demoTourStep1, '/companies'),
+      (l.demoTourStep2, '/review'),
+      (l.demoTourStep3, '/review'),
+      (l.demoTourStep4, '/audit'),
+    ];
+
+    return Material(
+      color: theme.colorScheme.surfaceContainerHighest,
+      child: Padding(
+        padding: const EdgeInsets.fromLTRB(16, 8, 8, 8),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Expanded(
+              child: Wrap(
+                spacing: 8,
+                runSpacing: 6,
+                crossAxisAlignment: WrapCrossAlignment.center,
+                children: [
+                  Text(
+                    l.demoTourTitle,
+                    style: theme.textTheme.labelLarge?.copyWith(
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  for (final (label, route) in steps)
+                    ActionChip(
+                      label: Text(label),
+                      visualDensity: VisualDensity.compact,
+                      onPressed: () => context.go(route),
+                    ),
+                ],
+              ),
+            ),
+            IconButton(
+              tooltip: l.demoTourDismiss,
+              icon: const Icon(Icons.close, size: 18),
+              onPressed: demo.dismissTour,
+            ),
+          ],
+        ),
       ),
     );
   }

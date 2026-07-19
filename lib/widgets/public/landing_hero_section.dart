@@ -5,12 +5,16 @@ import 'package:flutter/material.dart';
 import '../../l10n/app_localizations.dart';
 
 class LandingHeroSection extends StatelessWidget {
+  final VoidCallback onStartDemo;
+  final VoidCallback onRegister;
   final VoidCallback onLearnMore;
   final VoidCallback onDemo;
   final VoidCallback onContact;
 
   const LandingHeroSection({
     super.key,
+    required this.onStartDemo,
+    required this.onRegister,
     required this.onLearnMore,
     required this.onDemo,
     required this.onContact,
@@ -36,8 +40,9 @@ class LandingHeroSection extends StatelessWidget {
             final width = constraints.maxWidth;
             final twoColumn = width >= 860;
             final copy = _HeroCopy(
+              onStartDemo: onStartDemo,
+              onRegister: onRegister,
               onLearnMore: onLearnMore,
-              onDemo: onDemo,
               onContact: onContact,
             );
             const visual = _HeroIllustration();
@@ -65,13 +70,15 @@ class LandingHeroSection extends StatelessWidget {
 }
 
 class _HeroCopy extends StatelessWidget {
+  final VoidCallback onStartDemo;
+  final VoidCallback onRegister;
   final VoidCallback onLearnMore;
-  final VoidCallback onDemo;
   final VoidCallback onContact;
 
   const _HeroCopy({
+    required this.onStartDemo,
+    required this.onRegister,
     required this.onLearnMore,
-    required this.onDemo,
     required this.onContact,
   });
 
@@ -139,8 +146,9 @@ class _HeroCopy extends StatelessWidget {
               const SizedBox(height: 30),
               _HeroActions(
                 compact: compact,
+                onStartDemo: onStartDemo,
+                onRegister: onRegister,
                 onLearnMore: onLearnMore,
-                onDemo: onDemo,
                 onContact: onContact,
               ),
             ],
@@ -153,14 +161,16 @@ class _HeroCopy extends StatelessWidget {
 
 class _HeroActions extends StatelessWidget {
   final bool compact;
+  final VoidCallback onStartDemo;
+  final VoidCallback onRegister;
   final VoidCallback onLearnMore;
-  final VoidCallback onDemo;
   final VoidCallback onContact;
 
   const _HeroActions({
     required this.compact,
+    required this.onStartDemo,
+    required this.onRegister,
     required this.onLearnMore,
-    required this.onDemo,
     required this.onContact,
   });
 
@@ -168,22 +178,32 @@ class _HeroActions extends StatelessWidget {
   Widget build(BuildContext context) {
     final l = AppLocalizations.of(context)!;
     final buttons = [
+      // Primary entry for jurors: straight into the demo, no login needed.
       FilledButton.icon(
-        onPressed: onLearnMore,
-        icon: const Icon(Icons.arrow_downward_rounded),
-        label: Text(l.landingLearnMoreButton),
+        onPressed: onStartDemo,
+        icon: const Icon(Icons.play_arrow_rounded),
+        label: Text(l.demoStartButton),
         style: FilledButton.styleFrom(
           minimumSize: Size(compact ? double.infinity : 0, 54),
           padding: const EdgeInsets.symmetric(horizontal: 22),
         ),
       ),
       OutlinedButton.icon(
-        onPressed: onDemo,
-        icon: const Icon(Icons.play_circle_outline_rounded),
-        label: Text(l.landingDemoButton),
+        onPressed: onRegister,
+        icon: const Icon(Icons.business_outlined),
+        label: Text(l.demoRegisterButton),
         style: OutlinedButton.styleFrom(
           minimumSize: Size(compact ? double.infinity : 0, 54),
           padding: const EdgeInsets.symmetric(horizontal: 20),
+        ),
+      ),
+      TextButton.icon(
+        onPressed: onLearnMore,
+        icon: const Icon(Icons.arrow_downward_rounded),
+        label: Text(l.landingLearnMoreButton),
+        style: TextButton.styleFrom(
+          minimumSize: Size(compact ? double.infinity : 0, 54),
+          padding: const EdgeInsets.symmetric(horizontal: 16),
         ),
       ),
       TextButton(

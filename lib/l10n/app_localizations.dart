@@ -6631,6 +6631,84 @@ abstract class AppLocalizations {
   /// In de, this message translates to:
   /// **'Check-in starten'**
   String get dashboardStartCheckIn;
+
+  /// No description provided for @demoStartButton.
+  ///
+  /// In de, this message translates to:
+  /// **'Demo starten'**
+  String get demoStartButton;
+
+  /// No description provided for @demoRegisterButton.
+  ///
+  /// In de, this message translates to:
+  /// **'Unternehmen anmelden'**
+  String get demoRegisterButton;
+
+  /// No description provided for @demoBadgeLabel.
+  ///
+  /// In de, this message translates to:
+  /// **'Demo-Modus'**
+  String get demoBadgeLabel;
+
+  /// No description provided for @demoLeaveButton.
+  ///
+  /// In de, this message translates to:
+  /// **'Demo verlassen'**
+  String get demoLeaveButton;
+
+  /// No description provided for @demoCreateOwnButton.
+  ///
+  /// In de, this message translates to:
+  /// **'Eigenes Unternehmen anlegen'**
+  String get demoCreateOwnButton;
+
+  /// No description provided for @demoSelectHeadline.
+  ///
+  /// In de, this message translates to:
+  /// **'Welche Demo möchten Sie ansehen?'**
+  String get demoSelectHeadline;
+
+  /// No description provided for @demoSelectSubtitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Wählen Sie ein Beispielunternehmen. Alle Daten sind Demo-Daten und bleiben auf Ihrem Gerät.'**
+  String get demoSelectSubtitle;
+
+  /// No description provided for @demoTourTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'So erkunden Sie die Demo'**
+  String get demoTourTitle;
+
+  /// No description provided for @demoTourStep1.
+  ///
+  /// In de, this message translates to:
+  /// **'1. Unternehmen auswählen'**
+  String get demoTourStep1;
+
+  /// No description provided for @demoTourStep2.
+  ///
+  /// In de, this message translates to:
+  /// **'2. Kundenfrage prüfen'**
+  String get demoTourStep2;
+
+  /// No description provided for @demoTourStep3.
+  ///
+  /// In de, this message translates to:
+  /// **'3. Antwort freigeben'**
+  String get demoTourStep3;
+
+  /// No description provided for @demoTourStep4.
+  ///
+  /// In de, this message translates to:
+  /// **'4. Audit ansehen'**
+  String get demoTourStep4;
+
+  /// No description provided for @demoTourDismiss.
+  ///
+  /// In de, this message translates to:
+  /// **'Hinweis ausblenden'**
+  String get demoTourDismiss;
 }
 
 class _AppLocalizationsDelegate

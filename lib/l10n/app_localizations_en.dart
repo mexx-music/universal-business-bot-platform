@@ -3663,4 +3663,44 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get dashboardStartCheckIn => 'Start check-in';
+
+  @override
+  String get demoStartButton => 'Start demo';
+
+  @override
+  String get demoRegisterButton => 'Register your company';
+
+  @override
+  String get demoBadgeLabel => 'Demo mode';
+
+  @override
+  String get demoLeaveButton => 'Leave demo';
+
+  @override
+  String get demoCreateOwnButton => 'Create your own company';
+
+  @override
+  String get demoSelectHeadline => 'Which demo would you like to see?';
+
+  @override
+  String get demoSelectSubtitle =>
+      'Choose a sample company. All data is demo data and stays on your device.';
+
+  @override
+  String get demoTourTitle => 'How to explore the demo';
+
+  @override
+  String get demoTourStep1 => '1. Choose a company';
+
+  @override
+  String get demoTourStep2 => '2. Review a customer question';
+
+  @override
+  String get demoTourStep3 => '3. Approve an answer';
+
+  @override
+  String get demoTourStep4 => '4. Check the audit';
+
+  @override
+  String get demoTourDismiss => 'Hide this hint';
 }
