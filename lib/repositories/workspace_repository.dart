@@ -5,6 +5,8 @@ import '../models/business_rules.dart';
 import '../models/bot_configuration.dart';
 import '../models/company.dart';
 import '../models/knowledge_entry.dart';
+import '../models/intake_invitation.dart';
+import '../models/intake_session.dart';
 import '../models/product_or_service.dart';
 import '../models/source_material.dart';
 import 'tenant_context.dart';
@@ -45,6 +47,11 @@ abstract class WorkspaceRepository {
 
   /// Persists [updated] and makes it the selected workspace.
   Future<void> saveSelectedWorkspace(CompanyWorkspace updated);
+
+  Future<IntakeSession> resetIntakeSession(
+    IntakeSession session, {
+    IntakeInvitation? invitation,
+  });
 
   Future<Company> updateCompany(
     Company company, {

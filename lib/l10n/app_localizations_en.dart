@@ -1267,6 +1267,28 @@ class AppLocalizationsEn extends AppLocalizations {
   String get intakeChatGoToSummary => 'Go to intake summary';
 
   @override
+  String get intakeResetAction => 'Reset company intake';
+
+  @override
+  String get intakeResetConfirmTitle => 'Reset company intake?';
+
+  @override
+  String get intakeResetConfirmText =>
+      'All previously saved answers for this company intake will be deleted. The chat will then start again with the first question.';
+
+  @override
+  String get intakeResetCancel => 'Cancel';
+
+  @override
+  String get intakeResetConfirmAction => 'Reset';
+
+  @override
+  String get intakeResetSuccess => 'Company intake has been reset.';
+
+  @override
+  String get intakeResetFailure => 'Company intake could not be reset.';
+
+  @override
   String get intakeChatGreeting =>
       'Hello! I will guide you through the company intake step by step.';
 

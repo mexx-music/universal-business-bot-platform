@@ -8,6 +8,8 @@ import '../models/business_audit.dart';
 import '../models/business_rules.dart';
 import '../models/company.dart';
 import '../models/company_workspace.dart';
+import '../models/intake_invitation.dart';
+import '../models/intake_session.dart';
 import '../models/knowledge_entry.dart';
 import '../models/product_or_service.dart';
 import '../models/source_material.dart';
@@ -257,6 +259,20 @@ class PersistentWorkspaceRepository implements WorkspaceRepository {
     final persisted = _persistWorkspace(companyId, updated);
     _enqueue(() => _metaRecord.put(_db, _metaJson(_selectedCompanyId)));
     return persisted;
+  }
+
+  @override
+  Future<IntakeSession> resetIntakeSession(
+    IntakeSession session, {
+    IntakeInvitation? invitation,
+  }) async {
+    await saveSelectedWorkspace(
+      selectedWorkspace.copyWith(
+        intakeSession: session,
+        intakeInvitation: invitation ?? selectedWorkspace.intakeInvitation,
+      ),
+    );
+    return session;
   }
 
   @override

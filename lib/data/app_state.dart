@@ -517,6 +517,43 @@ class AppState extends ChangeNotifier {
     _markPublicIntakeCompleted();
   }
 
+  Future<bool> resetCompanyIntake() async {
+    if (_isSavingWorkspace) return false;
+    if (!canWriteWorkspace) {
+      _workspaceSaveError = _friendlyRepositoryError(
+        const NoWritePermissionException(),
+      );
+      notifyListeners();
+      return false;
+    }
+
+    final generation = _workspaceMutationGeneration;
+    _isSavingWorkspace = true;
+    _workspaceSaveError = null;
+    notifyListeners();
+    try {
+      final resetSession = IntakeSession.empty(companyId: selectedCompany.id);
+      final resetInvitation = _invitationForIntakeReset(DateTime.now());
+      await _workspaceRepository.resetIntakeSession(
+        resetSession,
+        invitation: resetInvitation,
+      );
+      if (generation != _workspaceMutationGeneration) return false;
+      _workspaceSaveError = null;
+      return true;
+    } catch (error) {
+      if (generation == _workspaceMutationGeneration) {
+        _workspaceSaveError = _friendlyRepositoryError(error);
+      }
+      return false;
+    } finally {
+      if (generation == _workspaceMutationGeneration) {
+        _isSavingWorkspace = false;
+        notifyListeners();
+      }
+    }
+  }
+
   // --- Next Best Actions & company memory ---
 
   NextBestActionPlan get nextBestActionPlan =>
@@ -1127,6 +1164,22 @@ class AppState extends ChangeNotifier {
           updatedAt: now,
         ),
       ),
+    );
+  }
+
+  IntakeInvitation? _invitationForIntakeReset(DateTime now) {
+    final invitation = selectedIntakeInvitation;
+    if (invitation == null) return null;
+    if (invitation.status == IntakeInvitationStatus.disabled) {
+      return invitation.copyWith(updatedAt: now);
+    }
+    return IntakeInvitation(
+      id: invitation.id,
+      token: invitation.token,
+      status: IntakeInvitationStatus.invited,
+      greeting: invitation.greeting,
+      createdAt: invitation.createdAt,
+      updatedAt: now,
     );
   }
 

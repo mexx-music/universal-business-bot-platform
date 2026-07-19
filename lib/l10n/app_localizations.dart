@@ -2384,6 +2384,48 @@ abstract class AppLocalizations {
   /// **'Zur Firmenaufnahme-Zusammenfassung'**
   String get intakeChatGoToSummary;
 
+  /// No description provided for @intakeResetAction.
+  ///
+  /// In de, this message translates to:
+  /// **'Firmenaufnahme zurücksetzen'**
+  String get intakeResetAction;
+
+  /// No description provided for @intakeResetConfirmTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Firmenaufnahme zurücksetzen?'**
+  String get intakeResetConfirmTitle;
+
+  /// No description provided for @intakeResetConfirmText.
+  ///
+  /// In de, this message translates to:
+  /// **'Alle bisher gespeicherten Antworten dieser Firmenaufnahme werden gelöscht. Der Chat beginnt anschließend wieder mit der ersten Frage.'**
+  String get intakeResetConfirmText;
+
+  /// No description provided for @intakeResetCancel.
+  ///
+  /// In de, this message translates to:
+  /// **'Abbrechen'**
+  String get intakeResetCancel;
+
+  /// No description provided for @intakeResetConfirmAction.
+  ///
+  /// In de, this message translates to:
+  /// **'Zurücksetzen'**
+  String get intakeResetConfirmAction;
+
+  /// No description provided for @intakeResetSuccess.
+  ///
+  /// In de, this message translates to:
+  /// **'Firmenaufnahme wurde zurückgesetzt.'**
+  String get intakeResetSuccess;
+
+  /// No description provided for @intakeResetFailure.
+  ///
+  /// In de, this message translates to:
+  /// **'Firmenaufnahme konnte nicht zurückgesetzt werden.'**
+  String get intakeResetFailure;
+
   /// No description provided for @intakeChatGreeting.
   ///
   /// In de, this message translates to:

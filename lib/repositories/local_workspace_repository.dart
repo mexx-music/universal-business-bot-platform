@@ -123,6 +123,20 @@ class LocalWorkspaceRepository
   }
 
   @override
+  Future<IntakeSession> resetIntakeSession(
+    IntakeSession session, {
+    IntakeInvitation? invitation,
+  }) async {
+    await saveSelectedWorkspace(
+      selectedWorkspace.copyWith(
+        intakeSession: session,
+        intakeInvitation: invitation ?? selectedWorkspace.intakeInvitation,
+      ),
+    );
+    return session;
+  }
+
+  @override
   Future<void> reload() async {}
 
   String _generateToken() {

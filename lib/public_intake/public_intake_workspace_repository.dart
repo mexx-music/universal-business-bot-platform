@@ -4,6 +4,7 @@ import '../models/business_audit.dart';
 import '../models/business_rules.dart';
 import '../models/company.dart';
 import '../models/company_workspace.dart';
+import '../models/intake_invitation.dart';
 import '../models/intake_session.dart';
 import '../models/knowledge_entry.dart';
 import '../models/product_or_service.dart';
@@ -83,6 +84,14 @@ class PublicIntakeWorkspaceRepository implements WorkspaceRepository {
     } else {
       throw const RepositoryRecordNotFoundException();
     }
+  }
+
+  @override
+  Future<IntakeSession> resetIntakeSession(
+    IntakeSession session, {
+    IntakeInvitation? invitation,
+  }) async {
+    throw const NoWritePermissionException();
   }
 
   @override

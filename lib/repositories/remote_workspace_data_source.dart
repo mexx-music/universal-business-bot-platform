@@ -49,6 +49,11 @@ abstract class RemoteIntakeInvitationDataSource {
     required String companyId,
     required Map<String, Object?> payload,
   });
+
+  Future<Map<String, Object?>> resetIntakeSession({
+    required String workspaceId,
+    required String companyId,
+  });
 }
 
 abstract class RemoteWorkspaceDataSource {
@@ -328,6 +333,17 @@ class SupabaseWorkspaceDataSource
         error,
       );
     }
+  }
+
+  @override
+  Future<Map<String, Object?>> resetIntakeSession({
+    required String workspaceId,
+    required String companyId,
+  }) async {
+    return _rpcRow('reset_company_intake', {
+      'target_workspace_id': workspaceId,
+      'target_company_id': companyId,
+    });
   }
 
   Future<Map<String, Object?>> _rpcRow(

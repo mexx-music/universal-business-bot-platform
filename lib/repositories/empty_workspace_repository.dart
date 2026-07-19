@@ -4,6 +4,8 @@ import '../models/bot_question_log.dart';
 import '../models/business_audit.dart';
 import '../models/business_rules.dart';
 import '../models/company.dart';
+import '../models/intake_invitation.dart';
+import '../models/intake_session.dart';
 import '../models/knowledge_entry.dart';
 import '../models/product_or_service.dart';
 import '../models/source_material.dart';
@@ -41,6 +43,14 @@ class EmptyWorkspaceRepository implements WorkspaceRepository {
 
   @override
   Future<void> saveSelectedWorkspace(CompanyWorkspace updated) async {
+    throw const NoActiveWorkspaceException();
+  }
+
+  @override
+  Future<IntakeSession> resetIntakeSession(
+    IntakeSession session, {
+    IntakeInvitation? invitation,
+  }) async {
     throw const NoActiveWorkspaceException();
   }
 

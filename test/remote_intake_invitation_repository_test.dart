@@ -49,6 +49,29 @@ void main() {
       expect(dataSource.lastIntakePayload['current_step'], 3);
     },
   );
+
+  test('remote repository resets intake through tenant-scoped RPC', () async {
+    final dataSource = _InvitationDataSource();
+    final repository = await RemoteWorkspaceRepository.open(
+      tenantContext: _tenant,
+      dataSource: dataSource,
+    );
+
+    final session = await repository.resetIntakeSession(
+      IntakeSession.empty(companyId: 'hb-cure'),
+    );
+
+    expect(dataSource.lastWorkspaceId, 'workspace-a');
+    expect(dataSource.lastCompanyId, 'hb-cure');
+    expect(session.status, IntakeStatus.draft);
+    expect(session.currentStepIndex, 0);
+    expect(session.chatCurrentQuestionIndex, 0);
+    expect(repository.selectedWorkspace.intakeSession?.id, 'intake-reset');
+    expect(
+      repository.selectedWorkspace.intakeInvitation?.status.name,
+      'invited',
+    );
+  });
 }
 
 const _tenant = TenantContext(
@@ -135,6 +158,38 @@ class _InvitationDataSource
       ...payload,
       'created_at': '2026-01-01T00:00:00Z',
       'updated_at': '2026-01-02T00:00:00Z',
+    };
+  }
+
+  @override
+  Future<Map<String, Object?>> resetIntakeSession({
+    required String workspaceId,
+    required String companyId,
+  }) async {
+    lastWorkspaceId = workspaceId;
+    lastCompanyId = companyId;
+    return {
+      'status': 'reset',
+      'invitation': _invitationRow(status: 'invited'),
+      'intakeSession': {
+        'workspace_id': workspaceId,
+        'company_id': companyId,
+        'id': 'intake-reset',
+        'status': 'draft',
+        'current_step': 0,
+        'chat_current_question_index': 0,
+        'skipped_question_keys': <Object?>[],
+        'deferred_question_keys': <Object?>[],
+        'basics': <String, Object?>{},
+        'products': <String, Object?>{},
+        'target_groups': <String, Object?>{},
+        'website_support': <String, Object?>{},
+        'sources_reviews': <String, Object?>{},
+        'marketing': <String, Object?>{},
+        'goals_risks': <String, Object?>{},
+        'created_at': '2026-01-01T00:00:00Z',
+        'updated_at': '2026-01-02T00:00:00Z',
+      },
     };
   }
 

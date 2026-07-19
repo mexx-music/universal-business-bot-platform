@@ -94,6 +94,20 @@ class _IntakeChatScreenState extends State<IntakeChatScreen> {
                         icon: const Icon(Icons.assignment_outlined, size: 18),
                         label: Text(l.intakeChatOpenWizard),
                       ),
+                    if (!widget.publicMode) ...[
+                      const SizedBox(width: 8),
+                      OutlinedButton.icon(
+                        onPressed:
+                            state.isSavingWorkspace || !state.canWriteWorkspace
+                            ? null
+                            : _confirmResetIntake,
+                        style: OutlinedButton.styleFrom(
+                          foregroundColor: Theme.of(context).colorScheme.error,
+                        ),
+                        icon: const Icon(Icons.restart_alt_outlined, size: 18),
+                        label: Text(l.intakeResetAction),
+                      ),
+                    ],
                   ],
                 ),
                 const SizedBox(height: 4),
@@ -265,6 +279,51 @@ class _IntakeChatScreenState extends State<IntakeChatScreen> {
     });
     _scrollToBottom();
     _maybeOpenDialog(question);
+  }
+
+  Future<void> _confirmResetIntake() async {
+    final l = AppLocalizations.of(context)!;
+    final state = AppState.of(context);
+    final confirmed = await showDialog<bool>(
+      context: context,
+      builder: (dialogContext) => AlertDialog(
+        title: Text(l.intakeResetConfirmTitle),
+        content: Text(l.intakeResetConfirmText),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.of(dialogContext).pop(false),
+            child: Text(l.intakeResetCancel),
+          ),
+          FilledButton(
+            onPressed: () => Navigator.of(dialogContext).pop(true),
+            style: FilledButton.styleFrom(
+              backgroundColor: Theme.of(dialogContext).colorScheme.error,
+              foregroundColor: Theme.of(dialogContext).colorScheme.onError,
+            ),
+            child: Text(l.intakeResetConfirmAction),
+          ),
+        ],
+      ),
+    );
+    if (confirmed != true || !mounted) return;
+
+    final success = await state.resetCompanyIntake();
+    if (!mounted) return;
+    if (success) {
+      setState(() {
+        _isBusy = false;
+        _dialogOpen = false;
+        _messages.clear();
+      });
+      _startConversation();
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text(l.intakeResetSuccess)));
+    } else {
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text(l.intakeResetFailure)));
+    }
   }
 
   void _submitQuickAnswer(bool yes) {

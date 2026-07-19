@@ -1277,6 +1277,29 @@ class AppLocalizationsDe extends AppLocalizations {
   String get intakeChatGoToSummary => 'Zur Firmenaufnahme-Zusammenfassung';
 
   @override
+  String get intakeResetAction => 'Firmenaufnahme zurücksetzen';
+
+  @override
+  String get intakeResetConfirmTitle => 'Firmenaufnahme zurücksetzen?';
+
+  @override
+  String get intakeResetConfirmText =>
+      'Alle bisher gespeicherten Antworten dieser Firmenaufnahme werden gelöscht. Der Chat beginnt anschließend wieder mit der ersten Frage.';
+
+  @override
+  String get intakeResetCancel => 'Abbrechen';
+
+  @override
+  String get intakeResetConfirmAction => 'Zurücksetzen';
+
+  @override
+  String get intakeResetSuccess => 'Firmenaufnahme wurde zurückgesetzt.';
+
+  @override
+  String get intakeResetFailure =>
+      'Firmenaufnahme konnte nicht zurückgesetzt werden.';
+
+  @override
   String get intakeChatGreeting =>
       'Hallo! Ich führe dich Schritt für Schritt durch die Firmenaufnahme.';
 

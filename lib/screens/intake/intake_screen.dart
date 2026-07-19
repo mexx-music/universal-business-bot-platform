@@ -180,6 +180,17 @@ class _IntakeScreenState extends State<IntakeScreen> {
                               : l.intakeChatResume,
                         ),
                       ),
+                      OutlinedButton.icon(
+                        onPressed:
+                            state.isSavingWorkspace || !state.canWriteWorkspace
+                            ? null
+                            : () => _confirmResetIntake(state),
+                        style: OutlinedButton.styleFrom(
+                          foregroundColor: theme.colorScheme.error,
+                        ),
+                        icon: const Icon(Icons.restart_alt_outlined, size: 18),
+                        label: Text(l.intakeResetAction),
+                      ),
                       Text(
                         l.intakeChatSharedDataHint,
                         style: theme.textTheme.bodySmall?.copyWith(
@@ -427,6 +438,52 @@ class _IntakeScreenState extends State<IntakeScreen> {
         ],
       ),
     );
+  }
+
+  Future<void> _confirmResetIntake(AppState state) async {
+    final l = AppLocalizations.of(context)!;
+    final confirmed = await showDialog<bool>(
+      context: context,
+      builder: (dialogContext) => AlertDialog(
+        title: Text(l.intakeResetConfirmTitle),
+        content: Text(l.intakeResetConfirmText),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.of(dialogContext).pop(false),
+            child: Text(l.intakeResetCancel),
+          ),
+          FilledButton(
+            onPressed: () => Navigator.of(dialogContext).pop(true),
+            style: FilledButton.styleFrom(
+              backgroundColor: Theme.of(dialogContext).colorScheme.error,
+              foregroundColor: Theme.of(dialogContext).colorScheme.onError,
+            ),
+            child: Text(l.intakeResetConfirmAction),
+          ),
+        ],
+      ),
+    );
+    if (confirmed != true || !mounted) return;
+
+    final success = await state.resetCompanyIntake();
+    if (!mounted) return;
+    if (success) {
+      for (final controller in _controllers.values) {
+        controller.dispose();
+      }
+      _controllers.clear();
+      setState(() {
+        _stepIndex = 0;
+        _mappingPreview = null;
+      });
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text(l.intakeResetSuccess)));
+    } else {
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text(l.intakeResetFailure)));
+    }
   }
 
   void _startIntake(AppState state) {

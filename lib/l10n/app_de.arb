@@ -466,6 +466,13 @@
   "intakeChatDialogSaveContinue": "Speichern und weiter",
   "intakeChatPause": "Später fortsetzen",
   "intakeChatGoToSummary": "Zur Firmenaufnahme-Zusammenfassung",
+  "intakeResetAction": "Firmenaufnahme zurücksetzen",
+  "intakeResetConfirmTitle": "Firmenaufnahme zurücksetzen?",
+  "intakeResetConfirmText": "Alle bisher gespeicherten Antworten dieser Firmenaufnahme werden gelöscht. Der Chat beginnt anschließend wieder mit der ersten Frage.",
+  "intakeResetCancel": "Abbrechen",
+  "intakeResetConfirmAction": "Zurücksetzen",
+  "intakeResetSuccess": "Firmenaufnahme wurde zurückgesetzt.",
+  "intakeResetFailure": "Firmenaufnahme konnte nicht zurückgesetzt werden.",
   "intakeChatGreeting": "Hallo! Ich führe dich Schritt für Schritt durch die Firmenaufnahme.",
   "publicIntakeTitle": "Firmenfragebogen: {company}",
   "@publicIntakeTitle": {

@@ -509,6 +509,32 @@ class RemoteWorkspaceRepository
   }
 
   @override
+  Future<IntakeSession> resetIntakeSession(
+    IntakeSession session, {
+    IntakeInvitation? invitation,
+  }) async {
+    _ensureWriteAllowed();
+    final dataSource = _intakeInvitationDataSource;
+    final row = await _write(
+      () => dataSource.resetIntakeSession(
+        workspaceId: _selectedWorkspaceId,
+        companyId: selectedWorkspace.company.id,
+      ),
+    );
+    final saved = _mapper.intakeSessionFromRow(_map(row['intakeSession']));
+    final savedInvitation = row['invitation'] is Map
+        ? _mapper.intakeInvitationFromRow(_map(row['invitation']))
+        : invitation ?? selectedWorkspace.intakeInvitation;
+    _replaceSelected(
+      selectedWorkspace.copyWith(
+        intakeSession: saved,
+        intakeInvitation: savedInvitation,
+      ),
+    );
+    return saved;
+  }
+
+  @override
   Future<void> clear() async {
     _companies = const [];
     _selectedCompanyId = '';
@@ -737,6 +763,11 @@ class RemoteWorkspaceRepository
       'marketing': json['marketingAndChannels'] ?? const <String, Object?>{},
       'goals_risks': json['goalsAndRisks'] ?? const <String, Object?>{},
     };
+  }
+
+  Map<String, Object?> _map(Object? value) {
+    if (value is Map) return value.cast<String, Object?>();
+    return const <String, Object?>{};
   }
 
   Map<String, Object?> _businessRulesJson(BusinessRules rules) => {

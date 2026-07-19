@@ -394,6 +394,13 @@
   "intakeChatDialogSaveContinue": "Save and continue",
   "intakeChatPause": "Continue later",
   "intakeChatGoToSummary": "Go to intake summary",
+  "intakeResetAction": "Reset company intake",
+  "intakeResetConfirmTitle": "Reset company intake?",
+  "intakeResetConfirmText": "All previously saved answers for this company intake will be deleted. The chat will then start again with the first question.",
+  "intakeResetCancel": "Cancel",
+  "intakeResetConfirmAction": "Reset",
+  "intakeResetSuccess": "Company intake has been reset.",
+  "intakeResetFailure": "Company intake could not be reset.",
   "intakeChatGreeting": "Hello! I will guide you through the company intake step by step.",
   "publicIntakeTitle": "Company questionnaire: {company}",
   "@publicIntakeTitle": {
