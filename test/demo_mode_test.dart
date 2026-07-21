@@ -117,9 +117,9 @@ void main() {
 
         // Demo company selection.
         expect(find.text('Welche Demo möchten Sie ansehen?'), findsOneWidget);
-        expect(find.text('HB Cure'), findsWidgets);
+        expect(find.text('Healing und Balance GmbH'), findsWidgets);
         expect(find.text('SchnurrPurr'), findsWidgets);
-        await tester.tap(find.text('HB Cure').first);
+        await tester.tap(find.text('Healing und Balance GmbH').first);
         await tester.pumpAndSettle();
 
         // Dashboard with visible demo badge and guided tour.

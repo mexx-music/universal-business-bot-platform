@@ -3,8 +3,10 @@ import 'dart:ui';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:universalbusiness/data/app_state.dart';
 import 'package:universalbusiness/data/intake_chat_flow.dart';
+import 'package:universalbusiness/data/mock_data.dart';
 import 'package:universalbusiness/l10n/app_localizations.dart';
 import 'package:universalbusiness/models/intake_session.dart';
+import 'package:universalbusiness/services/intake_mapping_service.dart';
 
 void main() {
   test('chat answer is saved into the selected workspace intake session', () {
@@ -727,9 +729,14 @@ void main() {
       ),
     );
 
-    final labels = state.generateIntakeMappingPreview().suggestions.map(
-      (suggestion) => suggestion.label,
+    final workspace = MockData.companyWorkspaces.first.copyWith(
+      sourceMaterials: const [],
+      intakeSession: state.intakeSession,
     );
+    final labels = const IntakeMappingService()
+        .createPreview(workspace)
+        .suggestions
+        .map((suggestion) => suggestion.label);
 
     expect(labels, contains('Google'));
     expect(labels, contains('Trustpilot'));

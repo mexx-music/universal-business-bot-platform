@@ -5,6 +5,7 @@ import '../data/app_state.dart';
 import '../demo/demo_mode_controller.dart';
 import '../l10n/app_localizations.dart';
 import '../tenant_selection/tenant_selection_controller.dart';
+import 'language_switcher.dart';
 
 class _NavItem {
   final IconData icon;
@@ -173,6 +174,11 @@ class AppShell extends StatelessWidget {
             appBar: AppBar(
               title: Text(company.name),
               actions: [
+                const Padding(
+                  padding: EdgeInsets.symmetric(vertical: 8),
+                  child: LanguageSwitcher(compact: true),
+                ),
+                const SizedBox(width: 8),
                 Padding(
                   padding: const EdgeInsets.only(right: 8),
                   child: Center(child: Text(_authLabel(auth, l))),
@@ -266,41 +272,31 @@ class AppShell extends StatelessWidget {
         return Scaffold(
           body: Row(
             children: [
-              NavigationRail(
+              _DesktopSidebar(
                 extended: extended,
                 selectedIndex: selectedIndex,
                 onDestinationSelected: (i) => context.go(_navItems[i].path),
-                leading: Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 20),
-                  child: _AppLogo(
-                    extended: extended,
-                    l: l,
-                    companyName: company.name,
-                    tenantName:
-                        tenantSelection.activeTenantName ??
-                        auth.tenantContext?.tenantName,
-                    tenantRole: auth.tenantContext?.role,
-                    authLabel: _authLabel(auth, l),
-                    showLogout: auth.isSupabaseMode,
-                    showTenantSwitcher: auth.isSupabaseMode,
-                    onGoHome: () => context.go('/'),
-                    onSwitchCompany: () => context.go('/companies'),
-                    onSwitchTenant: state.isSavingWorkspace
-                        ? null
-                        : () => context.go('/select-tenant?switch=1'),
-                    onLogout: () async {
-                      await auth.signOut();
-                      if (context.mounted) context.go('/login');
-                    },
-                  ),
-                ),
-                destinations: List.generate(
-                  _navItems.length,
-                  (i) => NavigationRailDestination(
-                    icon: Icon(_navItems[i].icon),
-                    selectedIcon: Icon(_navItems[i].selectedIcon),
-                    label: Text(labels[i]),
-                  ),
+                labels: labels,
+                header: _AppLogo(
+                  extended: extended,
+                  l: l,
+                  companyName: company.name,
+                  tenantName:
+                      tenantSelection.activeTenantName ??
+                      auth.tenantContext?.tenantName,
+                  tenantRole: auth.tenantContext?.role,
+                  authLabel: _authLabel(auth, l),
+                  showLogout: auth.isSupabaseMode,
+                  showTenantSwitcher: auth.isSupabaseMode,
+                  onGoHome: () => context.go('/'),
+                  onSwitchCompany: () => context.go('/companies'),
+                  onSwitchTenant: state.isSavingWorkspace
+                      ? null
+                      : () => context.go('/select-tenant?switch=1'),
+                  onLogout: () async {
+                    await auth.signOut();
+                    if (context.mounted) context.go('/login');
+                  },
                 ),
               ),
               const VerticalDivider(thickness: 1, width: 1),
@@ -309,6 +305,129 @@ class AppShell extends StatelessWidget {
           ),
         );
       },
+    );
+  }
+}
+
+class _DesktopSidebar extends StatelessWidget {
+  final bool extended;
+  final int selectedIndex;
+  final ValueChanged<int> onDestinationSelected;
+  final List<String> labels;
+  final Widget header;
+
+  const _DesktopSidebar({
+    required this.extended,
+    required this.selectedIndex,
+    required this.onDestinationSelected,
+    required this.labels,
+    required this.header,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final width = extended ? 256.0 : 80.0;
+
+    return Material(
+      color: theme.colorScheme.surface,
+      child: SafeArea(
+        bottom: false,
+        child: SizedBox(
+          width: width,
+          child: ListView(
+            padding: const EdgeInsets.fromLTRB(8, 16, 8, 16),
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(bottom: 12),
+                child: header,
+              ),
+              for (var i = 0; i < _navItems.length; i++)
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 2),
+                  child: _SidebarNavItem(
+                    extended: extended,
+                    selected: i == selectedIndex,
+                    icon: _navItems[i].icon,
+                    selectedIcon: _navItems[i].selectedIcon,
+                    label: labels[i],
+                    onTap: () => onDestinationSelected(i),
+                  ),
+                ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _SidebarNavItem extends StatelessWidget {
+  final bool extended;
+  final bool selected;
+  final IconData icon;
+  final IconData selectedIcon;
+  final String label;
+  final VoidCallback onTap;
+
+  const _SidebarNavItem({
+    required this.extended,
+    required this.selected,
+    required this.icon,
+    required this.selectedIcon,
+    required this.label,
+    required this.onTap,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final color = selected
+        ? theme.colorScheme.onSecondaryContainer
+        : theme.colorScheme.onSurfaceVariant;
+    final background = selected
+        ? theme.colorScheme.secondaryContainer
+        : Colors.transparent;
+
+    return Tooltip(
+      message: extended ? '' : label,
+      child: InkWell(
+        onTap: onTap,
+        borderRadius: BorderRadius.circular(28),
+        child: Container(
+          constraints: const BoxConstraints(minHeight: 48),
+          padding: EdgeInsets.symmetric(
+            horizontal: extended ? 14 : 0,
+            vertical: 8,
+          ),
+          decoration: BoxDecoration(
+            color: background,
+            borderRadius: BorderRadius.circular(28),
+          ),
+          child: Row(
+            mainAxisAlignment: extended
+                ? MainAxisAlignment.start
+                : MainAxisAlignment.center,
+            children: [
+              Icon(selected ? selectedIcon : icon, color: color),
+              if (extended) ...[
+                const SizedBox(width: 12),
+                Expanded(
+                  child: Text(
+                    label,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: theme.textTheme.labelLarge?.copyWith(
+                      color: color,
+                      fontWeight: selected ? FontWeight.w700 : FontWeight.w500,
+                    ),
+                  ),
+                ),
+              ],
+            ],
+          ),
+        ),
+      ),
     );
   }
 }
@@ -442,7 +561,6 @@ class _AppLogo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final langCode = Localizations.localeOf(context).languageCode.toUpperCase();
     if (extended) {
       return Column(
         mainAxisSize: MainAxisSize.min,
@@ -474,23 +592,10 @@ class _AppLogo extends StatelessWidget {
                   ),
                 ),
               ),
-              const SizedBox(width: 4),
-              Container(
-                padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
-                decoration: BoxDecoration(
-                  color: theme.colorScheme.secondaryContainer,
-                  borderRadius: BorderRadius.circular(4),
-                ),
-                child: Text(
-                  langCode,
-                  style: theme.textTheme.labelSmall?.copyWith(
-                    color: theme.colorScheme.onSecondaryContainer,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
             ],
           ),
+          const SizedBox(height: 10),
+          const LanguageSwitcher(compact: true),
           const SizedBox(height: 14),
           Container(
             width: 180,
@@ -597,6 +702,8 @@ class _AppLogo extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: [
         Icon(Icons.hub_rounded, size: 28, color: theme.colorScheme.primary),
+        const SizedBox(height: 10),
+        const LanguageSwitcher(compact: true),
         const SizedBox(height: 14),
         IconButton(
           tooltip: l.navHome,

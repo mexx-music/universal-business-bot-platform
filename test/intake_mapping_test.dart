@@ -51,7 +51,7 @@ void main() {
     expect(nameSuggestion.selected, isFalse);
 
     state.importSelectedIntakeMapping(preview);
-    expect(state.company.name, 'HB Cure');
+    expect(state.company.name, 'Healing und Balance GmbH');
   });
 
   test('selected conflicts overwrite explicitly', () {

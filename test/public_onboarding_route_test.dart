@@ -35,7 +35,10 @@ void main() {
     await tester.pumpAndSettle();
 
     expect(service.openedToken, 'valid-public-token');
-    expect(find.text('Firmenfragebogen: HB Cure'), findsOneWidget);
+    expect(
+      find.text('Firmenfragebogen: Healing und Balance GmbH'),
+      findsOneWidget,
+    );
     expect(
       find.textContaining('Willkommen bei BusinessBrain AI'),
       findsOneWidget,

@@ -6,6 +6,7 @@ import '../models/company.dart';
 import '../models/company_workspace.dart';
 import '../models/product_or_service.dart';
 import '../models/knowledge_entry.dart';
+import '../models/marketing_strategy.dart';
 import '../models/bot_question_log.dart';
 import '../models/source_material.dart';
 import '../models/intake_session.dart';
@@ -13,50 +14,56 @@ import '../models/intake_session.dart';
 class MockData {
   static final Company company = Company(
     id: 'hb-cure',
-    name: 'HB Cure',
-    industry: 'Digitale Gesundheits-App',
+    name: 'Healing und Balance GmbH',
+    industry: 'Gesundheit / Frequenztechnologie',
     description:
-        'HB Cure verbindet ein biometrisches Messgerät mit einer mobilen App, '
-        'die Nutzern hilft, ihre Körperwerte zu verfolgen und ihr persönliches Wohlbefinden '
-        'besser zu verstehen – einfach, sicher und datenschutzkonform nach EU-DSGVO.',
+        'Healing und Balance GmbH entwickelt und vertreibt Systeme im Bereich '
+        'Frequenztechnologie. Die Produkte dienen der ergänzenden Anwendung '
+        'und ersetzen keine medizinische Diagnose oder Behandlung.',
     country: 'Österreich',
     primaryLanguage: 'de',
-    website: 'https://www.hbcure.at',
-    email: 'support@hbcure.at',
-    phone: '+43 720 123 456',
-    address: 'Wiedner Hauptstraße 10, 1040 Wien',
+    website: 'https://www.healing-balance.com',
+    email: 'semper@healing-balance.com',
+    phone: '+43 660 6506900',
+    address: 'Europäische Union',
     socialLinks: {
-      'website': 'https://www.hbcure.at',
-      'instagram': 'https://instagram.com/hbcure',
-      'facebook': 'https://facebook.com/hbcure',
+      'website': 'https://www.healing-balance.com',
+      'social_media': 'Vorhanden, konkrete Plattformen noch zu klären',
     },
     internalNotes:
-        'Pilotdaten für regulierte Wellness-/Health-Kommunikation. Medizinische Aussagen strikt prüfen.',
+        'Ansprechpartner: GF Klaus Semper. HB Cure Workspace für Healing und '
+        'Balance GmbH. Vom Unternehmen gelieferte Ausgangsangabe intern: '
+        '"Aktivierung körpereigener Selbstheilungsprozesse". Diese Aussage '
+        'nicht ungeprüft öffentlich verwenden. Offene Unternehmensangaben: '
+        'wichtigste Angebote, konkrete Anfragekanäle, Priorität Marketing, '
+        'Priorität Website, Priorität Automatisierung, Priorität Sonstiges, '
+        'konkrete Social-Media-Plattformen und konkrete Werbekanäle.',
   );
 
   static final List<ProductOrService> products = [
     ProductOrService(
       id: 'p1',
-      name: 'HB Cure App',
+      name: 'Frequenztechnologie mit App-Unterstützung',
       description:
-          'Kostenlose iOS- & Android-App zur Anzeige und Auswertung Ihrer persönlichen Messwerte.',
+          'Systeme und Anwendungen im Bereich Frequenztechnologie mit '
+          'App-gestützter Einrichtung und verständlicher Nutzungsführung.',
       type: ProductType.produkt,
     ),
     ProductOrService(
       id: 'p2',
-      name: 'HB Cure Messgerät Pro',
+      name: 'Programme und Frequenzen',
       description:
-          'Biometrisches Messgerät mit Bluetooth-Anbindung, IPX4-Schutz und 10-Tage-Akku.',
+          'Strukturierte Programme und Frequenzinformationen für ergänzende '
+          'Anwendungsabläufe. Konkrete Inhalte müssen fachlich geprüft werden.',
       type: ProductType.produkt,
-      price: 149.0,
     ),
     ProductOrService(
       id: 'p3',
-      name: 'Premium Support',
+      name: 'Einrichtung, Anleitung und Support',
       description:
-          'Priorisierter Support, erweiterte App-Auswertungen und Datenexport (9,90 €/Monat).',
+          'Unterstützung bei App-Einrichtung, Geräteverbindung, Ablauf der '
+          'Nutzung, Anleitungen und sicheren rechtlichen Hinweisen.',
       type: ProductType.dienstleistung,
-      price: 9.90,
     ),
   ];
 
@@ -65,11 +72,12 @@ class MockData {
     KnowledgeEntry(
       id: 'k1',
       languageCode: 'de',
-      title: 'Wie starte ich mit HB Cure?',
+      title: 'Wie starte ich mit der Anwendung?',
       content:
-          'Laden Sie die HB Cure App kostenlos aus dem App Store oder Google Play herunter. '
-          'Erstellen Sie ein Konto, verbinden Sie das Messgerät per Bluetooth und folgen Sie '
-          'der Schritt-für-Schritt-Anleitung unter „Erste Schritte" in der App.',
+          'Öffnen Sie die App, folgen Sie der Einrichtung Schritt für Schritt '
+          'und verbinden Sie das zugehörige Gerät, falls dies für Ihre Anwendung '
+          'vorgesehen ist. Nutzen Sie vorhandene Anleitungen und wenden Sie '
+          'sich bei Unsicherheiten an den Support.',
       category: KnowledgeCategory.faq,
       riskLevel: RiskLevel.green,
       keywords: [
@@ -81,30 +89,30 @@ class MockData {
         'konto',
         'installieren',
       ],
-      source: 'Onboarding-Guide',
+      source: 'Firmenaufnahme Klaus / Anleitungen',
       createdAt: DateTime(2025, 1, 10),
     ),
     KnowledgeEntry(
       id: 'k2',
       languageCode: 'de',
-      title: 'Was kostet HB Cure?',
+      title: 'Welche Angebote sind aktuell erfasst?',
       content:
-          'Die HB Cure App ist kostenlos erhältlich. Das Messgerät HB Cure Pro kostet 149 €. '
-          'Ein optionales Premium-Abo (9,90 €/Monat) bietet erweiterte Auswertungen, '
-          'Datenexport und Priority-Support.',
+          'Erfasst sind Frequenztechnologie, zugehörige Geräte, Anwendungen, '
+          'Programme und App-Unterstützung. Welche Angebote am wichtigsten '
+          'sind, ist noch zu klären und darf nicht automatisch angenommen werden.',
       category: KnowledgeCategory.faq,
       riskLevel: RiskLevel.green,
       keywords: [
-        'kosten',
-        'preis',
-        'kaufen',
-        'abo',
-        'premium',
-        'euro',
-        'kostet',
-        'günstig',
+        'angebote',
+        'produkte',
+        'dienstleistungen',
+        'frequenztechnologie',
+        'geräte',
+        'programme',
+        'app',
+        'noch zu klären',
       ],
-      source: 'Preisliste',
+      source: 'Firmenaufnahme Klaus',
       createdAt: DateTime(2025, 1, 11),
     ),
 
@@ -114,9 +122,10 @@ class MockData {
       languageCode: 'de',
       title: 'Wie verbinde ich das Messgerät mit der App?',
       content:
-          'Aktivieren Sie Bluetooth auf Ihrem Smartphone. Öffnen Sie die HB Cure App, '
-          'tippen Sie auf „Gerät verbinden" und halten Sie das Messgerät nahe ans Telefon. '
-          'Die Verbindung wird automatisch in wenigen Sekunden hergestellt.',
+          'Aktivieren Sie die benötigte Verbindung am Smartphone. Öffnen Sie '
+          'die App und folgen Sie der Anleitung zur Geräteverbindung. Falls '
+          'die Verbindung nicht klappt, prüfen Sie Akku, Abstand und die '
+          'jeweilige Schritt-für-Schritt-Anleitung.',
       category: KnowledgeCategory.faq,
       riskLevel: RiskLevel.green,
       keywords: [
@@ -128,7 +137,7 @@ class MockData {
         'app verbinden',
         'pairing',
       ],
-      source: 'Geräte-Handbuch',
+      source: 'Anleitungen',
       createdAt: DateTime(2025, 1, 15),
     ),
     KnowledgeEntry(
@@ -136,8 +145,9 @@ class MockData {
       languageCode: 'de',
       title: 'Welche Smartphones werden unterstützt?',
       content:
-          'Die HB Cure App ist kompatibel mit iOS 14+ (iPhone 8 und neuer) und Android 9.0+. '
-          'Für eine stabile Bluetooth-Verbindung empfehlen wir aktuelle Betriebssystemversionen.',
+          'Die konkreten technischen Anforderungen müssen aus den aktuellen '
+          'App- und Geräteunterlagen übernommen werden. Bis dahin sollte der '
+          'Support nach Gerät, Betriebssystem und App-Version fragen.',
       category: KnowledgeCategory.faq,
       riskLevel: RiskLevel.green,
       keywords: [
@@ -150,52 +160,51 @@ class MockData {
         'iphone',
         'samsung',
       ],
-      source: 'Technische Anforderungen',
+      source: 'App- und Produktnotizen',
       createdAt: DateTime(2025, 1, 16),
     ),
     KnowledgeEntry(
       id: 'k5',
       languageCode: 'de',
-      title: 'Wie lade ich das Messgerät auf?',
+      title: 'Wo finde ich Programme und Frequenzen?',
       content:
-          'Das Messgerät wird über das mitgelieferte USB-C-Kabel aufgeladen. '
-          'Eine vollständige Ladung dauert ca. 90 Minuten und reicht für ca. 10 Messtage. '
-          'Der Ladestand wird in der App und durch eine LED am Gerät angezeigt.',
+          'Informationen zu Programmen und Frequenzen sollen aus geprüften '
+          'Unterlagen, Anleitungen oder freigegebenen App-Texten übernommen '
+          'werden. Wirkungsbezogene Aussagen müssen vor Veröffentlichung '
+          'menschlich geprüft werden.',
       category: KnowledgeCategory.produkt,
-      riskLevel: RiskLevel.green,
+      riskLevel: RiskLevel.yellow,
       keywords: [
-        'aufladen',
-        'akku',
-        'laden',
-        'usb',
-        'usb-c',
-        'batterie',
-        'ladestand',
-        'laufzeit',
+        'programme',
+        'frequenzen',
+        'wirkungsweise',
+        'app',
+        'anleitung',
+        'prüfung',
       ],
-      source: 'Geräte-Handbuch',
+      source: 'Firmenaufnahme Klaus',
       createdAt: DateTime(2025, 1, 17),
     ),
     KnowledgeEntry(
       id: 'k6',
       languageCode: 'de',
-      title: 'Ist das Messgerät wasserdicht?',
+      title: 'Welche Sicherheitshinweise gelten?',
       content:
-          'Das HB Cure Messgerät ist nach IPX4 gegen Spritzwasser von allen Seiten geschützt. '
-          'Es ist nicht zum Tauchen oder zum längeren Untertauchen geeignet. '
-          'Nach Wasserkontakt bitte sofort mit einem trockenen Tuch abtupfen.',
+          'Sicherheitshinweise müssen aus geprüften Unterlagen übernommen '
+          'werden. Der Bot darf keine Nutzung empfehlen, wenn eine Frage '
+          'medizinisch, rechtlich oder sicherheitsrelevant ist. Solche Fälle '
+          'werden an Human Review weitergeleitet.',
       category: KnowledgeCategory.produkt,
-      riskLevel: RiskLevel.green,
+      riskLevel: RiskLevel.yellow,
       keywords: [
-        'wasserdicht',
-        'ipx',
-        'wasser',
-        'spritzwasser',
-        'nass',
-        'duschen',
-        'regen',
+        'sicherheit',
+        'hinweise',
+        'nutzung',
+        'risiko',
+        'rechtlich',
+        'medizinisch',
       ],
-      source: 'Geräte-Handbuch',
+      source: 'Sicherheit und rechtliche Hinweise',
       createdAt: DateTime(2025, 1, 18),
     ),
     KnowledgeEntry(
@@ -203,11 +212,9 @@ class MockData {
       languageCode: 'de',
       title: 'Messgerät verbindet sich nicht – was tun?',
       content:
-          '1. Prüfen Sie, ob Bluetooth aktiviert ist. '
-          '2. Starten Sie App und Gerät neu. '
-          '3. Stellen Sie sicher, dass der Akku min. 20 % hat. '
-          '4. Löschen Sie die Gerätekopplung in der App und verbinden Sie neu. '
-          'Hilft das nicht, kontaktieren Sie uns unter support@hbcure.at.',
+          'Prüfen Sie zuerst die Verbindungseinstellungen, starten Sie App und '
+          'Gerät neu und folgen Sie der aktuellen Anleitung. Hilft das nicht, '
+          'kontaktieren Sie den Support unter semper@healing-balance.com.',
       category: KnowledgeCategory.faq,
       riskLevel: RiskLevel.green,
       keywords: [
@@ -219,7 +226,7 @@ class MockData {
         'kein signal',
         'hilfe',
       ],
-      source: 'Support-Wiki',
+      source: 'Anleitungen',
       createdAt: DateTime(2025, 2, 1),
     ),
 
@@ -229,42 +236,43 @@ class MockData {
       languageCode: 'de',
       title: 'Was zeigt das Dashboard in der App an?',
       content:
-          'Das App-Dashboard zeigt Ihre aktuellen Messwerte, Verlaufsgraphen der letzten 30 Tage, '
-          'eine persönliche Tagesübersicht und Push-Benachrichtigungen. '
-          'Alle Daten werden lokal verschlüsselt gespeichert.',
+          'Die App soll Einrichtung, Ablauf und relevante Nutzungshinweise '
+          'verständlich darstellen. Konkrete App-Funktionen werden erst aus '
+          'freigegebenen Produktunterlagen in die Wissensbasis übernommen.',
       category: KnowledgeCategory.produkt,
       riskLevel: RiskLevel.green,
       keywords: [
         'dashboard',
         'app',
         'anzeigen',
-        'messwerte',
+        'einrichtung',
         'übersicht',
-        'verlauf',
+        'ablauf',
         'funktionen',
       ],
-      source: 'App-Dokumentation',
+      source: 'Firmenaufnahme Klaus',
       createdAt: DateTime(2025, 2, 5),
     ),
     KnowledgeEntry(
       id: 'k9',
       languageCode: 'de',
-      title: 'Wie oft sollte ich messen?',
+      title: 'Wie läuft die Nutzung ab?',
       content:
-          'Wir empfehlen eine Messung täglich zur gleichen Zeit – vorzugsweise morgens nach dem Aufwachen – '
-          'für verlässliche Vergleichswerte. Die App erinnert Sie automatisch per Benachrichtigung.',
+          'Der konkrete Ablauf soll anhand der freigegebenen Anleitungen '
+          'beschrieben werden. Der Bot darf nur organisatorische Schritte '
+          'erklären und keine medizinische Wirkung oder Nutzungshäufigkeit '
+          'empfehlen.',
       category: KnowledgeCategory.faq,
-      riskLevel: RiskLevel.green,
+      riskLevel: RiskLevel.yellow,
       keywords: [
-        'messen',
+        'ablauf',
+        'nutzung',
+        'anwendung',
+        'schritte',
+        'anleitung',
         'häufigkeit',
-        'täglich',
-        'wann',
-        'messung',
-        'wie oft',
-        'morgens',
       ],
-      source: 'App-Dokumentation',
+      source: 'Firmenaufnahme Klaus',
       createdAt: DateTime(2025, 2, 6),
     ),
     KnowledgeEntry(
@@ -272,9 +280,9 @@ class MockData {
       languageCode: 'de',
       title: 'Wie werden meine Daten gespeichert?',
       content:
-          'Ihre Messdaten werden verschlüsselt auf Ihrem Gerät gespeichert und optional '
-          'in unserer sicheren EU-Cloud synchronisiert (DSGVO-konform, Serverstandort Wien). '
-          'Wir geben keine Daten an Dritte weiter. Details: hbcure.at/datenschutz.',
+          'Datenschutzinformationen müssen aus der aktuellen Datenschutzerklärung '
+          'übernommen werden. Bis die Details geprüft sind, verweist der Bot '
+          'auf die Website und gibt keine technischen Datenschutzversprechen ab.',
       category: KnowledgeCategory.faq,
       riskLevel: RiskLevel.green,
       keywords: [
@@ -286,7 +294,7 @@ class MockData {
         'privatsphäre',
         'gespeichert',
       ],
-      source: 'Datenschutzerklärung',
+      source: 'Rechtliche Hinweise',
       createdAt: DateTime(2025, 2, 10),
     ),
 
@@ -296,9 +304,9 @@ class MockData {
       languageCode: 'de',
       title: 'Wie erreiche ich den Support?',
       content:
-          'Unser Support-Team ist per E-Mail support@hbcure.at (Mo–Fr, 9–17 Uhr) '
-          'und über den In-App-Chat erreichbar. '
-          'Premium-Kunden haben zusätzlich Zugang zu priorisierten Support-Tickets mit 4h-Reaktionszeit.',
+          'Der interne Ansprechpartner ist GF Klaus Semper. Für Supportfragen '
+          'ist semper@healing-balance.com hinterlegt. Konkrete Anfragekanäle '
+          'wie Formular, Telefon, Messenger oder Social Media sind noch zu klären.',
       category: KnowledgeCategory.allgemein,
       riskLevel: RiskLevel.green,
       keywords: [
@@ -311,7 +319,7 @@ class MockData {
         'anrufen',
         'melden',
       ],
-      source: 'Support-Wiki',
+      source: 'Firmenaufnahme Klaus',
       createdAt: DateTime(2025, 2, 12),
     ),
 
@@ -319,12 +327,12 @@ class MockData {
     KnowledgeEntry(
       id: 'k12',
       languageCode: 'de',
-      title: 'Kann HB Cure mir bei meinem Wohlbefinden helfen?',
+      title: 'Wofür sind die Systeme gedacht?',
       content:
-          'HB Cure unterstützt Sie dabei, Ihre persönlichen Körperwerte besser zu verstehen '
-          'und Veränderungen im Zeitverlauf zu beobachten. Viele Nutzer berichten, '
-          'dass regelmäßiges Tracking ihnen hilft, einen bewussteren Lebensstil zu pflegen. '
-          'HB Cure ist kein Medizinprodukt und ersetzt keine ärztliche Beratung.',
+          'Die Systeme der Healing und Balance GmbH sind für ergänzende '
+          'Anwendungen im Bereich Frequenztechnologie beschrieben. Sie ersetzen '
+          'keine medizinische Diagnose oder Behandlung. Wirkungsbezogene Fragen '
+          'müssen menschlich geprüft werden.',
       category: KnowledgeCategory.allgemein,
       riskLevel: RiskLevel.yellow,
       keywords: [
@@ -336,30 +344,28 @@ class MockData {
         'unterstützen',
         'lebensstil',
       ],
-      source: 'Website FAQ',
+      source: 'Sichere Außenbeschreibung',
       createdAt: DateTime(2025, 3, 1),
     ),
     KnowledgeEntry(
       id: 'k13',
       languageCode: 'de',
-      title: 'Was bedeutet ein hoher oder niedriger Messwert?',
+      title: 'Wie darf Wirkungsweise beschrieben werden?',
       content:
-          'Die App zeigt Ihre Messwerte im Kontext Ihrer persönlichen Baseline. '
-          'Abweichungen können auf Faktoren wie Schlaf, Stress oder körperliche Aktivität hinweisen. '
-          'Für eine medizinische Einschätzung Ihrer Werte wenden Sie sich bitte an einen Arzt.',
+          'Beschreibungen zur Wirkungsweise müssen neutral und belegbar bleiben. '
+          'Ungeprüfte Aussagen zu Heilung, Diagnose, Therapieerfolg oder '
+          'Garantien dürfen nicht veröffentlicht werden.',
       category: KnowledgeCategory.faq,
       riskLevel: RiskLevel.yellow,
       keywords: [
-        'messwert',
-        'hoch',
-        'niedrig',
-        'wert',
-        'bedeutung',
-        'ergebnis',
-        'normal',
-        'abweichung',
+        'wirkungsweise',
+        'wirkung',
+        'heilung',
+        'garantie',
+        'belege',
+        'prüfung',
       ],
-      source: 'App-Dokumentation',
+      source: 'Rechtliche Hinweise',
       createdAt: DateTime(2025, 3, 5),
     ),
 
@@ -369,8 +375,9 @@ class MockData {
       languageCode: 'de',
       title: 'Heilversprechen und medizinische Diagnosen',
       content:
-          'HB Cure ist kein Medizinprodukt und darf keine medizinischen Diagnosen stellen '
-          'oder Heilversprechen machen. Bitte wenden Sie sich bei medizinischen Fragen an einen Arzt.',
+          'Der Bot darf keine medizinischen Diagnosen stellen, keine Heilversprechen '
+          'machen und keine Behandlungserfolge zusagen. Bitte wenden Sie sich '
+          'bei medizinischen Fragen an qualifizierte Fachstellen.',
       category: KnowledgeCategory.allgemein,
       riskLevel: RiskLevel.red,
       keywords: [
@@ -397,8 +404,10 @@ class MockData {
       languageCode: 'de',
       title: 'Spezifische Erkrankungen und Medikamentenersatz',
       content:
-          'HB Cure macht keine Aussagen zu spezifischen Erkrankungen und ersetzt keine ärztliche Behandlung. '
-          'Bei Beschwerden wenden Sie sich bitte an einen Arzt oder Apotheker.',
+          'Healing und Balance GmbH macht in der Bot-Kommunikation keine '
+          'Aussagen zu spezifischen Erkrankungen und ersetzt keine ärztliche '
+          'Behandlung. Bei Beschwerden wenden Sie sich bitte an einen Arzt '
+          'oder Apotheker.',
       category: KnowledgeCategory.allgemein,
       riskLevel: RiskLevel.red,
       keywords: [
@@ -419,6 +428,85 @@ class MockData {
       source: 'Rechtliche Richtlinien',
       createdAt: DateTime(2025, 3, 10),
     ),
+    KnowledgeEntry(
+      id: 'k16',
+      languageCode: 'de',
+      title: 'Anwendung: Inhalt fehlt',
+      content:
+          'Dokument hinzufügen: Für konkrete Anwendungsschritte fehlen noch '
+          'freigegebene Inhalte aus Anleitung, Schulung oder Support.',
+      category: KnowledgeCategory.prozess,
+      riskLevel: RiskLevel.yellow,
+      keywords: ['anwendung', 'inhalt fehlt', 'dokument hinzufügen'],
+      source: 'Offene Unternehmensangaben',
+      createdAt: DateTime(2025, 5, 24),
+    ),
+    KnowledgeEntry(
+      id: 'k17',
+      languageCode: 'de',
+      title: 'Geräte: Inhalt fehlt',
+      content:
+          'Dokument hinzufügen: Gerätespezifische Informationen müssen aus '
+          'aktuellen Produktunterlagen übernommen und geprüft werden.',
+      category: KnowledgeCategory.produkt,
+      riskLevel: RiskLevel.yellow,
+      keywords: ['geräte', 'inhalt fehlt', 'produktunterlagen'],
+      source: 'Offene Unternehmensangaben',
+      createdAt: DateTime(2025, 5, 24),
+    ),
+    KnowledgeEntry(
+      id: 'k18',
+      languageCode: 'de',
+      title: 'App und Einrichtung: Inhalt fehlt',
+      content:
+          'FAQ ergänzen: Für App-Einrichtung, Geräteverbindung und typische '
+          'Fehlerfälle sollen konkrete Schritt-für-Schritt-Antworten ergänzt werden.',
+      category: KnowledgeCategory.prozess,
+      riskLevel: RiskLevel.green,
+      keywords: ['app', 'einrichtung', 'faq ergänzen'],
+      source: 'Offene Unternehmensangaben',
+      createdAt: DateTime(2025, 5, 24),
+    ),
+    KnowledgeEntry(
+      id: 'k19',
+      languageCode: 'de',
+      title: 'Programme und Frequenzen: Prüfung erforderlich',
+      content:
+          'FAQ ergänzen: Aussagen zu Programmen, Frequenzen und Wirkungsweise '
+          'müssen vor Nutzung in Bot oder Marketing fachlich und rechtlich geprüft werden.',
+      category: KnowledgeCategory.allgemein,
+      riskLevel: RiskLevel.yellow,
+      keywords: ['programme', 'frequenzen', 'prüfung erforderlich'],
+      source: 'Offene Unternehmensangaben',
+      createdAt: DateTime(2025, 5, 24),
+    ),
+    KnowledgeEntry(
+      id: 'k20',
+      languageCode: 'de',
+      title: 'Videos: Inhalt fehlt',
+      content:
+          'Video verknüpfen: Vorhandene Videos sollen als Quelle erfasst und '
+          'erst nach Prüfung für Wissensbasis oder Marketing genutzt werden.',
+      category: KnowledgeCategory.allgemein,
+      riskLevel: RiskLevel.green,
+      keywords: ['videos', 'video verknüpfen', 'quelle'],
+      source: 'Offene Unternehmensangaben',
+      createdAt: DateTime(2025, 5, 24),
+    ),
+    KnowledgeEntry(
+      id: 'k21',
+      languageCode: 'en',
+      title: 'Safe public company description',
+      content:
+          'Healing und Balance GmbH develops and distributes systems in the '
+          'field of frequency technology. The products are intended for '
+          'complementary use and do not replace medical diagnosis or treatment.',
+      category: KnowledgeCategory.allgemein,
+      riskLevel: RiskLevel.yellow,
+      keywords: ['company', 'description', 'complementary use', 'disclaimer'],
+      source: 'Company intake Klaus',
+      createdAt: DateTime(2025, 5, 24),
+    ),
   ];
 
   static final List<BotQuestionLog> botLogs = [
@@ -435,13 +523,13 @@ class MockData {
     BotQuestionLog(
       id: 'b2',
       question: 'Was kostet die App?',
-      answer:
-          'Die HB Cure App ist kostenlos erhältlich. Das Messgerät kostet 149 €.',
-      matched: true,
+      answer: null,
+      matched: false,
       redirected: false,
       timestamp: DateTime(2025, 6, 2, 9, 45),
-      reviewStatus: ReviewStatus.closed,
-      reviewedAt: DateTime(2025, 6, 2, 9, 45),
+      reviewStatus: ReviewStatus.open,
+      reviewReason: ReviewReason.noMatch,
+      humanNote: 'Preise wurden von Klaus nicht geliefert. Nicht erfinden.',
     ),
     BotQuestionLog(
       id: 'b3',
@@ -462,6 +550,33 @@ class MockData {
       timestamp: DateTime(2025, 6, 4, 11, 30),
       reviewStatus: ReviewStatus.open,
       reviewReason: ReviewReason.noMatch,
+    ),
+    BotQuestionLog(
+      id: 'b5',
+      question: 'Welche Frequenz hilft bei Schmerzen?',
+      answer: null,
+      matched: false,
+      redirected: true,
+      timestamp: DateTime(2025, 6, 5, 15, 5),
+      reviewStatus: ReviewStatus.open,
+      reviewReason: ReviewReason.redFlag,
+      humanNote:
+          'Medizinisch sensible Wirkungsfrage. Keine automatische Freigabe.',
+    ),
+    BotQuestionLog(
+      id: 'b6',
+      question: 'Wie richte ich die App für das Gerät ein?',
+      answer:
+          'Ein Antwortvorschlag darf vorbereitet werden, muss aber vor Nutzung '
+          'gegen die aktuelle Anleitung geprüft werden.',
+      matched: true,
+      redirected: false,
+      timestamp: DateTime(2025, 6, 5, 16, 20),
+      reviewStatus: ReviewStatus.reviewed,
+      reviewReason: ReviewReason.yellowRisk,
+      humanNote:
+          'Human Review bleibt aktiv, bis konkrete Anleitung freigegeben ist.',
+      reviewedAt: DateTime(2025, 6, 5, 16, 45),
     ),
   ];
 
@@ -720,7 +835,8 @@ class MockData {
       area: AuditArea.companyProfile,
       title: 'Firmenprofil vollständig',
       description:
-          'Name, Branche, Beschreibung und Kontaktwege sind für den Workspace gepflegt.',
+          'Firmenname, Branche, Website, Ansprechpartner, E-Mail und Telefon '
+          'sind für den Workspace gepflegt.',
       status: AuditItemStatus.complete,
       priority: AuditPriority.medium,
       recommendation:
@@ -734,105 +850,136 @@ class MockData {
           'Ein Webauftritt ist vorhanden und kann als primäre Außenquelle genutzt werden.',
       status: AuditItemStatus.complete,
       priority: AuditPriority.medium,
-      note: 'Website ist im Firmenprofil hinterlegt.',
+      note: 'https://www.healing-balance.com ist im Firmenprofil hinterlegt.',
     ),
     BusinessAuditItem(
       id: 'hb-a3',
       area: AuditArea.products,
       title: 'Produkte und Leistungen erfasst',
       description:
-          'App, Messgerät und Support-Angebot sind als strukturierte Angebote angelegt.',
-      status: AuditItemStatus.complete,
-      priority: AuditPriority.medium,
+          'Frequenztechnologie, Geräte, Anwendungen, Programme und App-Unterstützung '
+          'sind grob erfasst. Die wichtigsten Angebote wurden im Formular nicht priorisiert.',
+      status: AuditItemStatus.partial,
+      priority: AuditPriority.high,
+      note: 'Offen: Welche Angebote sind am wichtigsten?',
+      recommendation:
+          'Produktprioritäten mit Klaus klären, bevor Bot- oder Marketinglogik daraus Empfehlungen ableitet.',
     ),
     BusinessAuditItem(
       id: 'hb-a4',
       area: AuditArea.supportKnowledge,
       title: 'FAQ und Supportwissen ausbauen',
       description:
-          'Grundlegende FAQ sind vorhanden, aber typische Supportfälle und Troubleshooting sollten noch vertieft werden.',
+          'FAQ, PDFs, Anleitungen, Videos und rechtliche Hinweise sind vorhanden, '
+          'aber konkrete Inhalte müssen noch strukturiert übernommen werden.',
       status: AuditItemStatus.partial,
       priority: AuditPriority.high,
       recommendation:
-          'Top-20-Supportfragen ergänzen und mit sicheren Antworten freigeben.',
+          'FAQ zu Anwendung, Bedienung, App-Einrichtung, Programmen, Frequenzen '
+          'und Fehlerbehebung ergänzen.',
     ),
     BusinessAuditItem(
       id: 'hb-a5',
       area: AuditArea.trustMaterial,
       title: 'Rezensionen auf Website vorhanden',
       description:
-          'Website-Trustsignale sind vorhanden; externe Bewertungskanäle sind noch nicht vollständig abgebildet.',
+          'Bewertungen sind vorhanden. Plattformen, Links und Freigabestatus '
+          'wurden noch nicht konkret angegeben.',
       status: AuditItemStatus.partial,
       priority: AuditPriority.medium,
       recommendation:
-          'Zentrale Review-Quellen und zulässige Zitate als Quellen dokumentieren.',
+          'Bewertungsquellen, erlaubte Zitate und Nutzungsrechte vor Marketingverwendung dokumentieren.',
     ),
     BusinessAuditItem(
       id: 'hb-a6',
       area: AuditArea.socialPresence,
       title: 'Social Reviews schwach',
       description:
-          'Social Proof und externe Community-Signale sind nur teilweise sichtbar.',
+          'Social Media ist vorhanden, konkrete Plattformen, Profile und '
+          'Leistungsdaten wurden aber noch nicht benannt.',
       status: AuditItemStatus.partial,
       priority: AuditPriority.low,
       recommendation:
-          'Öffentliche Profile, Bewertungsplattformen und erlaubte Kurzreferenzen sammeln.',
+          'Konkrete Social-Media-Plattformen und Profil-Links nacherfassen.',
     ),
     BusinessAuditItem(
       id: 'hb-a7',
       area: AuditArea.sources,
       title: 'Quellen und Dokumente strukturieren',
       description:
-          'Mehrere Wissensquellen sind vorhanden, aber Handbücher, Datenschutz und Website-Inhalte sollten klar getrennt werden.',
+          'FAQ, PDFs, Anleitungen, Videos und rechtliche Hinweise sind vorhanden; '
+          'Speicherorte, Aktualität und Freigabe müssen noch geprüft werden.',
       status: AuditItemStatus.partial,
       priority: AuditPriority.medium,
       recommendation:
-          'Quellen pro Themenbereich prüfen und fehlende Dokumentreferenzen ergänzen.',
+          'Dokumente je Kategorie erfassen: Anwendung, Geräte, App, Programme, FAQ, PDFs, Videos und Recht.',
     ),
     BusinessAuditItem(
       id: 'hb-a8',
       area: AuditArea.riskRules,
       title: 'No-Go-Regeln für medizinische Aussagen',
       description:
-          'Rote Regeln sind für Heilversprechen, Diagnosen und Medikamentenersatz erforderlich.',
+          'Rote Regeln sind für Heilversprechen, Diagnosen, Therapieerfolg, '
+          'Krankheiten, rechtliche Aussagen und Garantien erforderlich.',
       status: AuditItemStatus.partial,
       priority: AuditPriority.high,
       recommendation:
-          'No-Go-Regeln erweitern und regelmäßig gegen Bot-Testlogs prüfen.',
+          'Sensible, medizinische, rechtliche und wirkungsbezogene Fragen immer mindestens gelb oder rot einstufen.',
     ),
     BusinessAuditItem(
       id: 'hb-a9',
       area: AuditArea.botReadiness,
       title: 'Bot-Bereitschaft',
       description:
-          'Der Bot kann sichere Basisfragen beantworten, braucht aber mehr Review-Abdeckung vor breiterem Einsatz.',
+          'Automatische Antworten sind nicht freigegeben. Der Bot darf nur '
+          'Vorschläge vorbereiten; Human Review bleibt Standard.',
       status: AuditItemStatus.partial,
       priority: AuditPriority.high,
       recommendation:
-          'Offene Review-Fälle in Wissenseinträge überführen und Testabdeckung erhöhen.',
+          'Antwortvorschläge in Human Review prüfen und erst nach Freigabe für Bot-Test verwenden.',
+    ),
+    BusinessAuditItem(
+      id: 'hb-a10',
+      area: AuditArea.companyProfile,
+      title: 'Offene Unternehmensangaben',
+      description:
+          'Wichtigste Angebote, Anfragekanäle, konkrete Social-Media-Plattformen, '
+          'konkrete Werbekanäle und mehrere Prioritäten sind noch nicht ausgefüllt.',
+      status: AuditItemStatus.missing,
+      priority: AuditPriority.high,
+      note:
+          'Prioritäten Kundenservice und Wissensdatenbank sind bestätigt mit 5 von 5. Marketing, Website, Automatisierung und Sonstiges bleiben unbewertet.',
+      recommendation:
+          'Offene Angaben im Firmenfragebogen nacherfassen, bevor daraus automatische Empfehlungen abgeleitet werden.',
     ),
   ];
 
   static const BusinessRules hbCureBusinessRules = BusinessRules(
     brandVoice:
-        'Sachlich, beruhigend und präzise. Keine dramatischen Versprechen, klare Support-Verweise.',
+        'Sachlich, klar und vorsichtig. Ergänzende Anwendung erklären, ohne '
+        'medizinische Wirkung oder Therapieerfolg zu versprechen.',
     doNotSay: [
       'Keine Heilversprechen',
       'Keine Diagnosen',
       'Keine Aussagen, die ärztliche Beratung ersetzen',
       'Keine Medikamenten- oder Therapieempfehlungen',
+      'Keine Garantie für Wirkung, Behandlungserfolg oder Heilung',
+      'Die interne Ausgangsangabe "Aktivierung körpereigener Selbstheilungsprozesse" nicht ungeprüft öffentlich verwenden',
     ],
     allowedSupportTopics: [
       'App-Nutzung',
       'Geräteverbindung',
-      'Akku und Pflege',
-      'Preise und Support',
-      'Datenschutz auf allgemeiner Ebene',
+      'Ablauf der Nutzung',
+      'Anleitungen',
+      'Programme und Frequenzen ohne Wirkungsversprechen',
+      'Supportkontakt',
+      'Datenschutz und rechtliche Hinweise auf allgemeiner Ebene',
     ],
     escalationNotes:
-        'Medizinische, rechtliche oder sicherheitskritische Fragen an qualifizierte Fachstellen oder Support eskalieren.',
+        'Medizinische, rechtliche, sicherheitskritische oder wirkungsbezogene '
+        'Fragen immer an Human Review geben. Antworten dürfen nicht automatisch veröffentlicht werden.',
     disclaimerText:
-        'Allgemeine Informationen ersetzen keine medizinische Beratung.',
+        'Die Produkte dienen der ergänzenden Anwendung und ersetzen keine medizinische Diagnose oder Behandlung.',
   );
 
   static const BotConfiguration hbCureBotConfiguration = BotConfiguration(
@@ -841,25 +988,30 @@ class MockData {
     defaultLanguage: 'de',
     useDisclaimer: true,
     disclaimerText:
-        'Hinweis: Diese Antwort dient nur zur allgemeinen Information und ersetzt keine medizinische Beratung.',
+        'Hinweis: Die Produkte dienen der ergänzenden Anwendung und ersetzen keine medizinische Diagnose oder Behandlung.',
     alwaysEscalateRedFlags: true,
     escalateNoMatch: true,
     escalateYellowRisk: true,
     allowedTopics: [
       'App-Nutzung',
       'Geräteverbindung',
-      'Preise',
+      'Ablauf der Nutzung',
+      'Anleitungen',
+      'Programme und Frequenzen ohne Wirkungsversprechen',
       'Support',
-      'Datenschutz allgemein',
+      'Rechtliche Hinweise allgemein',
     ],
     blockedTopics: [
       'Diagnosen',
       'Heilversprechen',
+      'Krankheiten',
       'Medikamente',
       'Therapieempfehlungen',
+      'Garantierte Wirkung',
+      'Behandlungserfolg',
     ],
     handoverMessage:
-        'Diese Frage kann der Bot nicht sicher beantworten. Bitte wenden Sie sich an den Support oder eine qualifizierte Fachstelle.',
+        'Diese Frage muss menschlich geprüft werden. Bitte wenden Sie sich an den Support oder eine qualifizierte Fachstelle.',
   );
 
   static final List<BusinessAuditItem> schnurrPurrAuditItems = [
@@ -1012,47 +1164,152 @@ class MockData {
       id: 'hb-sm1',
       title: 'Website FAQ',
       type: SourceMaterialType.faq,
-      url: 'https://www.hbcure.at/faq',
+      url: 'https://www.healing-balance.com',
       contentSnippet:
-          'FAQ zu App, Messgerät, Preisen, Support und allgemeinen Sicherheitsgrenzen.',
+          'FAQ vorhanden. Konkrete FAQ-URL und botfähige Einzelfragen müssen '
+          'noch aus der Website übernommen und geprüft werden.',
       status: SourceMaterialStatus.converted,
-      relatedKnowledgeEntryIds: ['k1', 'k2', 'k3', 'k11'],
+      relatedKnowledgeEntryIds: ['k1', 'k2', 'k3', 'k11', 'k18'],
       createdAt: DateTime(2025, 5, 1),
       updatedAt: DateTime(2025, 5, 3),
-      notes: 'Basis für mehrere grüne FAQ-Einträge.',
+      notes: 'FAQ ergänzen; keine Wirkungsclaims ungeprüft übernehmen.',
     ),
     SourceMaterial(
       id: 'hb-sm2',
-      title: 'Website-Rezensionen',
+      title: 'Bewertungen und Website-Rezensionen',
       type: SourceMaterialType.review,
-      url: 'https://www.hbcure.at/reviews',
       contentSnippet:
-          'Kurze Website-Testimonials und Trustsignale, noch nicht vollständig für Bot-Antworten freigegeben.',
-      status: SourceMaterialStatus.reviewed,
+          'Bewertungen sind vorhanden, aber Plattformen, Links, Anzahl und '
+          'Nutzungsrechte wurden noch nicht konkret angegeben.',
+      status: SourceMaterialStatus.newItem,
       createdAt: DateTime(2025, 5, 4),
       updatedAt: DateTime(2025, 5, 5),
+      notes:
+          'Bewertungsübersicht erstellen und Content-Freigabe vor Marketingnutzung prüfen.',
     ),
     SourceMaterial(
       id: 'hb-sm3',
-      title: 'App- und Produktnotizen',
+      title: 'App-, Geräte- und Produktnotizen',
       type: SourceMaterialType.note,
       contentSnippet:
-          'Interne Stichpunkte zu Dashboard, Bluetooth-Verbindung, Akku und Gerätepflege.',
+          'Hauptangebot: Frequenztechnologie mit Geräten, Anwendungen, '
+          'Programmen und App-Unterstützung.',
       status: SourceMaterialStatus.converted,
-      relatedKnowledgeEntryIds: ['k4', 'k5', 'k6', 'k8'],
+      relatedKnowledgeEntryIds: ['k4', 'k5', 'k8', 'k17', 'k19'],
       createdAt: DateTime(2025, 5, 8),
       updatedAt: DateTime(2025, 5, 10),
+      notes: 'Produktprioritäten wurden nicht beantwortet und bleiben offen.',
     ),
     SourceMaterial(
       id: 'hb-sm4',
-      title: 'Social Reviews Sammlung',
+      title: 'Social Media vorhanden',
       type: SourceMaterialType.social,
       contentSnippet:
-          'Schwache Social-Proof-Sammlung; vor Nutzung für Bot/Marketing prüfen.',
+          'Social Media wurde als vorhanden angegeben. Konkrete Plattformen '
+          'und Profil-Links fehlen noch.',
       status: SourceMaterialStatus.newItem,
       createdAt: DateTime(2025, 5, 15),
       updatedAt: DateTime(2025, 5, 15),
-      notes: 'Noch keine belastbare Quelle.',
+      notes: 'Konkrete Social-Media-Plattformen nacherfassen.',
+    ),
+    SourceMaterial(
+      id: 'hb-sm5',
+      title: 'PDFs und Anleitungen',
+      type: SourceMaterialType.pdf,
+      contentSnippet:
+          'PDFs und Anleitungen sind vorhanden. Speicherort, Aktualität und '
+          'freigegebene Textstellen müssen noch dokumentiert werden.',
+      status: SourceMaterialStatus.newItem,
+      relatedKnowledgeEntryIds: ['k16', 'k17', 'k18'],
+      createdAt: DateTime(2025, 5, 24),
+      updatedAt: DateTime(2025, 5, 24),
+      notes: 'Dokument hinzufügen und rechtliche Freigabe prüfen.',
+    ),
+    SourceMaterial(
+      id: 'hb-sm6',
+      title: 'Videos',
+      type: SourceMaterialType.other,
+      contentSnippet:
+          'Videos sind vorhanden. Links und Inhalte müssen verknüpft werden, '
+          'bevor daraus Wissenseinträge oder Marketingentwürfe entstehen.',
+      status: SourceMaterialStatus.newItem,
+      relatedKnowledgeEntryIds: ['k20'],
+      createdAt: DateTime(2025, 5, 24),
+      updatedAt: DateTime(2025, 5, 24),
+      notes: 'Video verknüpfen.',
+    ),
+    SourceMaterial(
+      id: 'hb-sm7',
+      title: 'Offene Unternehmensangaben',
+      type: SourceMaterialType.note,
+      contentSnippet:
+          'Offen: wichtigste Angebote, konkrete Anfragekanäle, Priorität '
+          'Marketing, Website, Automatisierung, Sonstiges, Social-Plattformen '
+          'und Werbekanäle.',
+      status: SourceMaterialStatus.newItem,
+      createdAt: DateTime(2025, 5, 24),
+      updatedAt: DateTime(2025, 5, 24),
+      notes:
+          'Diese Lücken dürfen nicht automatisch mit Annahmen gefüllt werden.',
+    ),
+  ];
+
+  static final List<MarketingAction> hbCureMarketingActions = [
+    MarketingAction(
+      id: 'hb-marketing-faq',
+      type: MarketingActionType.expandFaq,
+      priority: MarketingActionPriority.high,
+      effort: MarketingActionEffort.medium,
+      impact: MarketingActionImpact.high,
+      status: MarketingActionStatus.planned,
+      notes:
+          'FAQ-basierte Aufklärung zu Anwendung, Bedienung, App-Einrichtung, '
+          'Programmen, Frequenzen und rechtlichen Hinweisen vorbereiten. '
+          'Priorität Wissensdatenbank: 5 von 5.',
+    ),
+    MarketingAction(
+      id: 'hb-marketing-reviews',
+      type: MarketingActionType.collectReviews,
+      priority: MarketingActionPriority.medium,
+      effort: MarketingActionEffort.medium,
+      impact: MarketingActionImpact.medium,
+      status: MarketingActionStatus.notStarted,
+      notes:
+          'Bewertungsübersicht erstellen. Plattformen, Links und Nutzungsrechte '
+          'sind noch offen.',
+    ),
+    MarketingAction(
+      id: 'hb-marketing-seo',
+      type: MarketingActionType.improveSeo,
+      priority: MarketingActionPriority.medium,
+      effort: MarketingActionEffort.medium,
+      impact: MarketingActionImpact.high,
+      status: MarketingActionStatus.planned,
+      notes:
+          'Website-Inhalte und rechtlich vorsichtige Aufklärung vorbereiten. '
+          'Keine medizinischen Claims ohne Prüfung.',
+    ),
+    MarketingAction(
+      id: 'hb-marketing-newsletter',
+      type: MarketingActionType.prepareNewsletter,
+      priority: MarketingActionPriority.medium,
+      effort: MarketingActionEffort.low,
+      impact: MarketingActionImpact.medium,
+      status: MarketingActionStatus.planned,
+      notes:
+          'Newsletter-Entwürfe nur als vorbereitete Inhalte. Keine automatische '
+          'Veröffentlichung; Freigabe erst nach menschlicher Prüfung.',
+    ),
+    MarketingAction(
+      id: 'hb-marketing-bot',
+      type: MarketingActionType.integrateBotWebsite,
+      priority: MarketingActionPriority.high,
+      effort: MarketingActionEffort.high,
+      impact: MarketingActionImpact.high,
+      status: MarketingActionStatus.postponed,
+      notes:
+          'Bot nicht automatisch veröffentlichen. Zuerst Human Review, No-Go-Regeln '
+          'und sensible Wirkungsfragen absichern.',
     ),
   ];
 
@@ -1107,54 +1364,124 @@ class MockData {
     id: 'intake-hb-cure',
     companyId: 'hb-cure',
     status: IntakeStatus.inProgress,
-    currentStepIndex: 4,
+    currentStepIndex: 6,
     createdAt: DateTime(2025, 5, 20),
-    updatedAt: DateTime(2025, 5, 22),
+    updatedAt: DateTime(2025, 5, 24),
     basics: IntakeBasics(
-      companyName: 'HB Cure',
+      companyName: 'Healing und Balance GmbH',
       shortDescription:
-          'Digitale Gesundheits-App mit Messgerät und Wellness-orientierter Nutzerkommunikation.',
-      industry: 'Digitale Gesundheits-App',
+          'Healing und Balance GmbH entwickelt und vertreibt Systeme im Bereich Frequenztechnologie. '
+          'Die Produkte dienen der ergänzenden Anwendung und ersetzen keine medizinische Diagnose oder Behandlung.',
+      industry: 'Gesundheit / Frequenztechnologie',
       country: 'Österreich',
       primaryLanguage: 'de',
-      website: 'https://www.hbcure.at',
-      supportEmail: 'support@hbcure.at',
-      supportPhone: '+43 720 123 456',
+      website: 'https://www.healing-balance.com',
+      supportEmail: 'semper@healing-balance.com',
+      supportPhone: '+43 660 6506900',
+      hasWebsite: true,
+      additionalLanguages: 'Englisch',
+      targetRegions: 'Europäische Union',
     ),
     products: IntakeProducts(
-      importantProducts: 'HB Cure App, Messgerät Pro, Premium Support',
-      mainProduct: 'HB Cure App mit Messgerät',
+      importantProducts: '',
+      mainProduct:
+          'Frequenztechnologie und zugehörige Geräte, Anwendungen, Programme und App-Unterstützung',
       explanationNeeded:
-          'Bluetooth-Verbindung, Messwertanzeige, Datenschutz und Grenzen der App.',
-      priorityProducts: 'App-Onboarding und sicherer Support für Messgerät.',
+          'Anwendung, Bedienung, Wirkungsweise, Programme und Frequenzen, '
+          'Einrichtung über die App, Ablauf der Nutzung, Geräteverbindung, '
+          'Anleitungen, Sicherheitshinweise und rechtliche Hinweise.',
+      priorityProducts: '',
     ),
     targetGroups: IntakeTargetGroups(
-      targetGroup:
-          'Nutzerinnen und Nutzer, die persönliche Körperwerte übersichtlich verfolgen möchten.',
-      marketType: 'B2C',
+      targetGroup: 'Ärzte\nTherapeuten\nEndverbraucher',
+      marketType: 'B2B und B2C',
       problemSolved:
-          'Messwerte werden verständlicher dokumentiert und im Alltag leichter wiedergefunden.',
+          'Kunden benötigen verständliche Informationen zu Anwendung, App-Einrichtung, '
+          'Geräteverbindung und sicheren rechtlichen Grenzen.',
       customerBenefit:
-          'Einfachere Selbstbeobachtung ohne medizinische Diagnoseversprechen.',
+          'Besser verständliche Nutzung und klarer Support ohne medizinische Heilversprechen.',
       differentiation:
-          'Kombination aus App, Gerät und bewusst vorsichtiger Kommunikation.',
+          'Frequenztechnologie mit App-Unterstützung, Anleitungen und menschlich geprüfter Kommunikation.',
     ),
     websiteAndSupport: IntakeWebsiteAndSupport(
-      importantPages: 'Startseite, FAQ, Datenschutz, Support',
+      websiteUrl: 'https://www.healing-balance.com',
+      hasFaqArea: true,
+      importantPages: 'Startseite, FAQ, rechtliche Hinweise, Support',
       frequentQuestions:
-          'App-Start, Geräteverbindung, Kosten, Datenschutz, Akku.',
+          'Anwendung, Bedienung, Wirkungsweise, Programme und Frequenzen, App-Einrichtung, Ablauf der Nutzung, Geräteverbindung, Anleitungen, Sicherheitshinweise, rechtliche Hinweise.',
+      hasSupportQuestions: true,
+      supportChannels: '',
+      preSalesQuestions:
+          'Anwendung\nWirkungsweise\nProgramme und Frequenzen\nrechtliche Hinweise',
+      afterSalesQuestions:
+          'Einrichtung über die App\nAblauf der Nutzung\nGeräteverbindung\nAnleitungen',
+      technicalProblems: 'App-Einrichtung\nGeräteverbindung',
+      complaintsOrMisunderstandings:
+          'Heilungs-, Diagnose-, Therapie- oder Garantieerwartungen',
+      supportOwner: 'GF Klaus Semper',
+      standardizableQuestions:
+          'App-Einrichtung\nAnleitungen\nGeräteverbindung\nallgemeine rechtliche Hinweise',
       supportProblems:
-          'Bluetooth-Verbindung, Konto, Gerätepflege, Exportfragen.',
+          'Anfragekanäle noch festlegen. Automatische Antworten: Nein. Menschliche Freigabe: Ja.',
       sensitiveTopics:
-          'Diagnosen, Behandlung, Heilversprechen und konkrete Erkrankungen.',
+          'Medizinische, rechtliche und wirkungsbezogene Fragen; Heilung, Krankheiten, Diagnose, Therapieerfolg und Garantien.',
+      hasSensitiveTopics: true,
     ),
     sourcesAndReviews: IntakeSourcesAndReviews(
-      existingSources: 'Website FAQ, Produktnotizen, Datenschutzseite',
+      existingSources:
+          'FAQ\nPDFs\nAnleitungen\nVideos\nrechtliche Hinweise\nWebsite\nBewertungen',
+      hasMaterials: true,
+      materialDetails: 'FAQ\nPDF\nAnleitungen\nVideos\nrechtliche Hinweise',
+      materialLocations: '',
+      materialFreshness: '',
+      importantMaterials: 'FAQ\nAnleitungen\nrechtliche Hinweise',
+      materialsUsableForKnowledgeBase: true,
       reviews:
-          'Einige Website-Testimonials vorhanden, Social Reviews noch schwach.',
-      socialMentions: 'Instagram/Facebook vorhanden, aber wenig strukturiert.',
+          'Bewertungen vorhanden; konkrete Plattformen und Links fehlen noch.',
+      reviewPlatforms: '',
+      reviewLinksOrFiles: '',
+      reviewTypes: '',
+      hasReviews: true,
+      socialMentions:
+          'Social Media vorhanden; konkrete Plattformen und Profil-Links fehlen noch.',
       trustMaterial:
-          'Datenschutz- und Supportinformationen sind wichtiger als Marketingclaims.',
+          'Bewertungen und rechtliche Hinweise vorhanden, aber vor öffentlicher Nutzung prüfen.',
+      hasSocialMentions: true,
+      hasTrustMaterial: true,
+    ),
+    marketingAndChannels: IntakeMarketingAndChannels(
+      hasSocialChannels: true,
+      socialPlatforms: '',
+      socialProfileLinks: '',
+      hasRunAds: true,
+      advertisingChannels: '',
+      approximateBudget: '',
+      campaigns:
+          'Werbung über mehrere Kanäle; möglichst automatisierte Vorbereitung; einfacher neue Kunden erreichen.',
+      futureAdChannels: '',
+      channels:
+          'Social Media vorhanden. Konkrete Social-Media- und Werbekanäle noch festlegen.',
+      reachProblems:
+          'Einfacher neue Kunden erreichen\nWerbung für alle Kanäle vorbereitet bekommen',
+    ),
+    goalsAndRisks: IntakeGoalsAndRisks(
+      hasSensitiveTopics: true,
+      sensitiveTopics:
+          'medizinische Fragen\nrechtliche Fragen\nWirkungsweise\nHeilung\nKrankheiten\nDiagnose\nTherapieerfolg\nGarantien',
+      companyGoals:
+          'Kundenservice\nWissensdatenbank\nApp-Einrichtung\nMarketingvorbereitung\nAuftragsbearbeitung\nLead-Gewinnung',
+      shortTermPriorities:
+          'Kundenservice: 5 von 5\nWissensdatenbank: 5 von 5\nMarketing: Noch nicht bewertet\nWebsite: Noch nicht bewertet\nAutomatisierung: Noch nicht bewertet\nSonstiges: Noch nicht bewertet',
+      prohibitedStatements:
+          'Keine Heilversprechen\nKeine Diagnosen\nKeine Therapieerfolge\nKeine Garantien\nKeine ungeprüften Aussagen zur Aktivierung körpereigener Selbstheilungsprozesse',
+      forbiddenClaims:
+          'Heilung\nKrankheiten behandeln\nDiagnose stellen\nTherapieerfolg garantieren\närztliche Behandlung ersetzen',
+      botRestrictedTopics:
+          'medizinische Fragen\nrechtliche Fragen\nsicherheitskritische Nutzung\nwirkungsbezogene Fragen',
+      alwaysEscalateTopics:
+          'Heilung\nKrankheiten\nDiagnose\nTherapieerfolg\nGarantien\nrechtliche Einordnung',
+      legalRestrictions:
+          'Antworten dürfen nicht automatisch veröffentlicht oder versendet werden. Human Review ist für sensible Inhalte verpflichtend.',
     ),
   );
 
@@ -1206,15 +1533,18 @@ class MockData {
   static final List<BusinessGoal> hbCureBusinessGoals = [
     BusinessGoal(
       id: 'hb-goal-support',
-      title: 'Support reduzieren',
+      title: 'Kundenservice absichern',
       description:
-          'Wiederkehrende App-, Geräte- und Datenschutzfragen sicher standardisieren.',
+          'Kundenservice ist mit 5 von 5 priorisiert. Wiederkehrende Fragen '
+          'zu Anwendung, Bedienung, App-Einrichtung und Geräteverbindung sollen '
+          'vorbereitet, aber nicht automatisch veröffentlicht werden.',
       priority: BusinessGoalPriority.high,
       startDate: DateTime(2025, 6, 1),
       targetDate: DateTime(2025, 9, 30),
       status: BusinessGoalStatus.inProgress,
-      owner: 'Demo Team',
-      comment: 'FAQ, Bot-Test und Human Review zuerst stabilisieren.',
+      owner: 'GF Klaus Semper',
+      comment:
+          'Human Review standardmäßig aktiv. Medizinische, rechtliche und wirkungsbezogene Fragen immer prüfen.',
       linkedAreas: [
         BusinessGoalArea.knowledgeBase,
         BusinessGoalArea.bot,
@@ -1223,20 +1553,43 @@ class MockData {
       ],
     ),
     BusinessGoal(
-      id: 'hb-goal-trust',
-      title: 'Website verbessern',
+      id: 'hb-goal-knowledge',
+      title: 'Wissensbasis vervollständigen',
       description:
-          'Vertrauensmaterial und sichere FAQ für die öffentliche Website vorbereiten.',
-      priority: BusinessGoalPriority.medium,
+          'Wissensdatenbank ist mit 5 von 5 priorisiert. FAQ, PDFs, Anleitungen, '
+          'Videos und rechtliche Hinweise sollen strukturiert übernommen werden.',
+      priority: BusinessGoalPriority.high,
       startDate: DateTime(2025, 6, 1),
       targetDate: DateTime(2025, 10, 15),
+      status: BusinessGoalStatus.inProgress,
+      owner: 'GF Klaus Semper',
+      comment:
+          'Konkrete Inhalte fehlen teilweise; Platzhalter nicht als fertige Bot-Antworten verwenden.',
+      linkedAreas: [
+        BusinessGoalArea.knowledgeBase,
+        BusinessGoalArea.sources,
+        BusinessGoalArea.audit,
+        BusinessGoalArea.humanReview,
+      ],
+    ),
+    BusinessGoal(
+      id: 'hb-goal-marketing',
+      title: 'Marketing vorbereiten',
+      description:
+          'Werbung und Marketinginhalte sollen für mehrere Kanäle vorbereitet '
+          'werden. Konkrete Kanäle und Budgets sind noch offen.',
+      priority: BusinessGoalPriority.medium,
+      startDate: DateTime(2025, 6, 1),
+      targetDate: DateTime(2025, 11, 30),
       status: BusinessGoalStatus.planned,
-      owner: 'Marketing',
+      owner: 'Marketing / Human Review',
+      comment:
+          'Keine automatische Veröffentlichung. Content-Freigabe und rechtliche Risikoprüfung bleiben Pflicht.',
       linkedAreas: [
         BusinessGoalArea.marketing,
         BusinessGoalArea.sources,
-        BusinessGoalArea.knowledgeBase,
-        BusinessGoalArea.companyProfile,
+        BusinessGoalArea.humanReview,
+        BusinessGoalArea.controlling,
       ],
     ),
   ];
@@ -1289,6 +1642,7 @@ class MockData {
       businessRules: hbCureBusinessRules,
       botConfiguration: hbCureBotConfiguration,
       sourceMaterials: hbCureSourceMaterials,
+      marketingActions: hbCureMarketingActions,
       businessGoals: hbCureBusinessGoals,
       intakeSession: hbCureIntakeSession,
     ),

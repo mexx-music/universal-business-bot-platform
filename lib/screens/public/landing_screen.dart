@@ -15,6 +15,7 @@ import '../../widgets/public/landing_hero_section.dart';
 import '../../widgets/public/landing_preview_section.dart';
 import '../../widgets/public/landing_workflow_section.dart';
 import '../../widgets/public/pwa_install_notice.dart';
+import '../../widgets/language_switcher.dart';
 
 class LandingScreen extends StatefulWidget {
   const LandingScreen({super.key});
@@ -169,7 +170,7 @@ class _LandingNav extends StatelessWidget {
       padding: const EdgeInsets.only(top: 18, bottom: 28),
       child: LayoutBuilder(
         builder: (context, constraints) {
-          final compact = constraints.maxWidth < 640;
+          final compact = constraints.maxWidth < 840;
           final brand = Row(
             mainAxisSize: MainAxisSize.min,
             children: [
@@ -204,7 +205,9 @@ class _LandingNav extends StatelessWidget {
             spacing: 8,
             runSpacing: 8,
             alignment: compact ? WrapAlignment.start : WrapAlignment.end,
+            crossAxisAlignment: WrapCrossAlignment.center,
             children: [
+              const LanguageSwitcher(compact: true),
               TextButton(onPressed: onDemo, child: Text(l.landingDemoButton)),
               OutlinedButton(
                 onPressed: onContact,
