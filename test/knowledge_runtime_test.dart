@@ -261,7 +261,7 @@ void main() {
     test('keeps workspaces separated', () {
       final hbCure = MockData.companyWorkspaces.first;
       final schnurrPurr = MockData.companyWorkspaces.last;
-      const question = 'Wie reinige ich den Kissenbezug?';
+      const question = 'How do I clean the pillow cover?';
 
       final hbContext = runtime.buildContext(
         userQuestion: question,
@@ -277,7 +277,7 @@ void main() {
       expect(spContext.companyId, isNot(hbContext.companyId));
       expect(
         spContext.topEntries.first.entry.title,
-        'Wie reinige ich den Kissenbezug?',
+        'How do I clean the pillow cover?',
       );
       final spTop = spContext.topEntries.first.score;
       final hbTop = hbContext.topEntries.isEmpty

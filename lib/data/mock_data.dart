@@ -15,54 +15,54 @@ class MockData {
   static final Company company = Company(
     id: 'hb-cure',
     name: 'Healing und Balance GmbH',
-    industry: 'Gesundheit / Frequenztechnologie',
+    industry: 'Health / frequency technology',
     description:
-        'Healing und Balance GmbH entwickelt und vertreibt Systeme im Bereich '
-        'Frequenztechnologie. Die Produkte dienen der ergänzenden Anwendung '
-        'und ersetzen keine medizinische Diagnose oder Behandlung.',
-    country: 'Österreich',
-    primaryLanguage: 'de',
+        'Healing und Balance GmbH develops and distributes systems in the '
+        'field of frequency technology. The products are intended for '
+        'complementary use and do not replace medical diagnosis or treatment.',
+    country: 'Austria',
+    primaryLanguage: 'en',
     website: 'https://www.healing-balance.com',
     email: 'semper@healing-balance.com',
     phone: '+43 660 6506900',
-    address: 'Europäische Union',
+    address: 'European Union',
     socialLinks: {
       'website': 'https://www.healing-balance.com',
-      'social_media': 'Vorhanden, konkrete Plattformen noch zu klären',
+      'social_media': 'Available; exact platforms still need to be clarified',
     },
     internalNotes:
-        'Ansprechpartner: GF Klaus Semper. HB Cure Workspace für Healing und '
-        'Balance GmbH. Vom Unternehmen gelieferte Ausgangsangabe intern: '
-        '"Aktivierung körpereigener Selbstheilungsprozesse". Diese Aussage '
-        'nicht ungeprüft öffentlich verwenden. Offene Unternehmensangaben: '
-        'wichtigste Angebote, konkrete Anfragekanäle, Priorität Marketing, '
-        'Priorität Website, Priorität Automatisierung, Priorität Sonstiges, '
-        'konkrete Social-Media-Plattformen und konkrete Werbekanäle.',
+        'Contact person: Managing Director Klaus Semper. HB Cure workspace '
+        'for Healing und Balance GmbH. The company provided an internal '
+        'self-healing-process wording. Do not use this claim publicly without '
+        'review. Open company details: most important offers, exact inquiry '
+        'channels, marketing priority, website priority, automation priority, '
+        'other priority, exact social media platforms and exact advertising '
+        'channels.',
   );
 
   static final List<ProductOrService> products = [
     ProductOrService(
       id: 'p1',
-      name: 'Frequenztechnologie mit App-Unterstützung',
+      name: 'Frequency technology with app support',
       description:
-          'Systeme und Anwendungen im Bereich Frequenztechnologie mit '
-          'App-gestützter Einrichtung und verständlicher Nutzungsführung.',
+          'Systems and applications in the field of frequency technology with '
+          'app-guided setup and understandable usage flows.',
       type: ProductType.produkt,
     ),
     ProductOrService(
       id: 'p2',
-      name: 'Programme und Frequenzen',
+      name: 'Programs and frequencies',
       description:
-          'Strukturierte Programme und Frequenzinformationen für ergänzende '
-          'Anwendungsabläufe. Konkrete Inhalte müssen fachlich geprüft werden.',
+          'Structured program and frequency information for complementary use '
+          'flows. Specific content must be reviewed before publication.',
       type: ProductType.produkt,
     ),
     ProductOrService(
       id: 'p3',
-      name: 'Einrichtung, Anleitung und Support',
+      name: 'Setup, guidance and support',
       description:
-          'Unterstützung bei App-Einrichtung, Geräteverbindung, Ablauf der '
-          'Nutzung, Anleitungen und sicheren rechtlichen Hinweisen.',
+          'Support for app setup, device connection, usage flow, instructions '
+          'and legally safe guidance.',
       type: ProductType.dienstleistung,
     ),
   ];
@@ -71,13 +71,12 @@ class MockData {
     // ── Einstieg ──────────────────────────────────────────────────────
     KnowledgeEntry(
       id: 'k1',
-      languageCode: 'de',
-      title: 'Wie starte ich mit der Anwendung?',
+      languageCode: 'en',
+      title: 'How do I get started?',
       content:
-          'Öffnen Sie die App, folgen Sie der Einrichtung Schritt für Schritt '
-          'und verbinden Sie das zugehörige Gerät, falls dies für Ihre Anwendung '
-          'vorgesehen ist. Nutzen Sie vorhandene Anleitungen und wenden Sie '
-          'sich bei Unsicherheiten an den Support.',
+          'Open the app, follow the setup step by step and connect the related '
+          'device if this is part of your use case. Use the available '
+          'instructions and contact support if anything is unclear.',
       category: KnowledgeCategory.faq,
       riskLevel: RiskLevel.green,
       keywords: [
@@ -89,17 +88,17 @@ class MockData {
         'konto',
         'installieren',
       ],
-      source: 'Firmenaufnahme Klaus / Anleitungen',
+      source: 'Company intake Klaus / instructions',
       createdAt: DateTime(2025, 1, 10),
     ),
     KnowledgeEntry(
       id: 'k2',
-      languageCode: 'de',
-      title: 'Welche Angebote sind aktuell erfasst?',
+      languageCode: 'en',
+      title: 'Which offers are currently captured?',
       content:
-          'Erfasst sind Frequenztechnologie, zugehörige Geräte, Anwendungen, '
-          'Programme und App-Unterstützung. Welche Angebote am wichtigsten '
-          'sind, ist noch zu klären und darf nicht automatisch angenommen werden.',
+          'Captured offers include frequency technology, related devices, '
+          'applications, programs and app support. Which offers are most '
+          'important still needs to be clarified and must not be assumed automatically.',
       category: KnowledgeCategory.faq,
       riskLevel: RiskLevel.green,
       keywords: [
@@ -112,20 +111,19 @@ class MockData {
         'app',
         'noch zu klären',
       ],
-      source: 'Firmenaufnahme Klaus',
+      source: 'Company intake Klaus',
       createdAt: DateTime(2025, 1, 11),
     ),
 
     // ── Gerät & Technik ───────────────────────────────────────────────
     KnowledgeEntry(
       id: 'k3',
-      languageCode: 'de',
-      title: 'Wie verbinde ich das Messgerät mit der App?',
+      languageCode: 'en',
+      title: 'How do I connect the device with the app?',
       content:
-          'Aktivieren Sie die benötigte Verbindung am Smartphone. Öffnen Sie '
-          'die App und folgen Sie der Anleitung zur Geräteverbindung. Falls '
-          'die Verbindung nicht klappt, prüfen Sie Akku, Abstand und die '
-          'jeweilige Schritt-für-Schritt-Anleitung.',
+          'Enable the required connection on your smartphone. Open the app and '
+          'follow the device connection instructions. If the connection does not '
+          'work, check battery level, distance and the relevant step-by-step guide.',
       category: KnowledgeCategory.faq,
       riskLevel: RiskLevel.green,
       keywords: [
@@ -137,17 +135,17 @@ class MockData {
         'app verbinden',
         'pairing',
       ],
-      source: 'Anleitungen',
+      source: 'Instructions',
       createdAt: DateTime(2025, 1, 15),
     ),
     KnowledgeEntry(
       id: 'k4',
-      languageCode: 'de',
-      title: 'Welche Smartphones werden unterstützt?',
+      languageCode: 'en',
+      title: 'Which smartphones are supported?',
       content:
-          'Die konkreten technischen Anforderungen müssen aus den aktuellen '
-          'App- und Geräteunterlagen übernommen werden. Bis dahin sollte der '
-          'Support nach Gerät, Betriebssystem und App-Version fragen.',
+          'The exact technical requirements must be taken from current app and '
+          'device documentation. Until then, support should ask for device, '
+          'operating system and app version.',
       category: KnowledgeCategory.faq,
       riskLevel: RiskLevel.green,
       keywords: [
@@ -160,18 +158,17 @@ class MockData {
         'iphone',
         'samsung',
       ],
-      source: 'App- und Produktnotizen',
+      source: 'App and product notes',
       createdAt: DateTime(2025, 1, 16),
     ),
     KnowledgeEntry(
       id: 'k5',
-      languageCode: 'de',
-      title: 'Wo finde ich Programme und Frequenzen?',
+      languageCode: 'en',
+      title: 'Where can I find programs and frequencies?',
       content:
-          'Informationen zu Programmen und Frequenzen sollen aus geprüften '
-          'Unterlagen, Anleitungen oder freigegebenen App-Texten übernommen '
-          'werden. Wirkungsbezogene Aussagen müssen vor Veröffentlichung '
-          'menschlich geprüft werden.',
+          'Information about programs and frequencies should be taken from '
+          'reviewed documents, instructions or approved app copy. Effect-related '
+          'statements require human review before publication.',
       category: KnowledgeCategory.produkt,
       riskLevel: RiskLevel.yellow,
       keywords: [
@@ -182,18 +179,17 @@ class MockData {
         'anleitung',
         'prüfung',
       ],
-      source: 'Firmenaufnahme Klaus',
+      source: 'Company intake Klaus',
       createdAt: DateTime(2025, 1, 17),
     ),
     KnowledgeEntry(
       id: 'k6',
-      languageCode: 'de',
-      title: 'Welche Sicherheitshinweise gelten?',
+      languageCode: 'en',
+      title: 'Which safety notes apply?',
       content:
-          'Sicherheitshinweise müssen aus geprüften Unterlagen übernommen '
-          'werden. Der Bot darf keine Nutzung empfehlen, wenn eine Frage '
-          'medizinisch, rechtlich oder sicherheitsrelevant ist. Solche Fälle '
-          'werden an Human Review weitergeleitet.',
+          'Safety notes must be taken from reviewed documents. The bot must not '
+          'recommend use when a question is medical, legal or safety-critical. '
+          'These cases are routed to Human Review.',
       category: KnowledgeCategory.produkt,
       riskLevel: RiskLevel.yellow,
       keywords: [
@@ -204,17 +200,17 @@ class MockData {
         'rechtlich',
         'medizinisch',
       ],
-      source: 'Sicherheit und rechtliche Hinweise',
+      source: 'Safety and legal guidance',
       createdAt: DateTime(2025, 1, 18),
     ),
     KnowledgeEntry(
       id: 'k7',
-      languageCode: 'de',
-      title: 'Messgerät verbindet sich nicht – was tun?',
+      languageCode: 'en',
+      title: 'The device does not connect. What should I do?',
       content:
-          'Prüfen Sie zuerst die Verbindungseinstellungen, starten Sie App und '
-          'Gerät neu und folgen Sie der aktuellen Anleitung. Hilft das nicht, '
-          'kontaktieren Sie den Support unter semper@healing-balance.com.',
+          'First check the connection settings, restart the app and device and '
+          'follow the current instructions. If that does not help, contact '
+          'support at semper@healing-balance.com.',
       category: KnowledgeCategory.faq,
       riskLevel: RiskLevel.green,
       keywords: [
@@ -226,19 +222,19 @@ class MockData {
         'kein signal',
         'hilfe',
       ],
-      source: 'Anleitungen',
+      source: 'Instructions',
       createdAt: DateTime(2025, 2, 1),
     ),
 
     // ── App & Funktionen ──────────────────────────────────────────────
     KnowledgeEntry(
       id: 'k8',
-      languageCode: 'de',
-      title: 'Was zeigt das Dashboard in der App an?',
+      languageCode: 'en',
+      title: 'What does the app dashboard show?',
       content:
-          'Die App soll Einrichtung, Ablauf und relevante Nutzungshinweise '
-          'verständlich darstellen. Konkrete App-Funktionen werden erst aus '
-          'freigegebenen Produktunterlagen in die Wissensbasis übernommen.',
+          'The app should present setup, flow and relevant usage guidance in an '
+          'understandable way. Specific app functions are added to the knowledge '
+          'base only from approved product documents.',
       category: KnowledgeCategory.produkt,
       riskLevel: RiskLevel.green,
       keywords: [
@@ -250,18 +246,17 @@ class MockData {
         'ablauf',
         'funktionen',
       ],
-      source: 'Firmenaufnahme Klaus',
+      source: 'Company intake Klaus',
       createdAt: DateTime(2025, 2, 5),
     ),
     KnowledgeEntry(
       id: 'k9',
-      languageCode: 'de',
-      title: 'Wie läuft die Nutzung ab?',
+      languageCode: 'en',
+      title: 'What does the usage flow look like?',
       content:
-          'Der konkrete Ablauf soll anhand der freigegebenen Anleitungen '
-          'beschrieben werden. Der Bot darf nur organisatorische Schritte '
-          'erklären und keine medizinische Wirkung oder Nutzungshäufigkeit '
-          'empfehlen.',
+          'The exact flow should be described using approved instructions. The '
+          'bot may explain organizational steps only and must not recommend '
+          'medical effects or usage frequency.',
       category: KnowledgeCategory.faq,
       riskLevel: RiskLevel.yellow,
       keywords: [
@@ -272,17 +267,17 @@ class MockData {
         'anleitung',
         'häufigkeit',
       ],
-      source: 'Firmenaufnahme Klaus',
+      source: 'Company intake Klaus',
       createdAt: DateTime(2025, 2, 6),
     ),
     KnowledgeEntry(
       id: 'k10',
-      languageCode: 'de',
-      title: 'Wie werden meine Daten gespeichert?',
+      languageCode: 'en',
+      title: 'How is my data stored?',
       content:
-          'Datenschutzinformationen müssen aus der aktuellen Datenschutzerklärung '
-          'übernommen werden. Bis die Details geprüft sind, verweist der Bot '
-          'auf die Website und gibt keine technischen Datenschutzversprechen ab.',
+          'Data protection information must be taken from the current privacy '
+          'policy. Until the details are reviewed, the bot refers to the website '
+          'and does not make technical privacy promises.',
       category: KnowledgeCategory.faq,
       riskLevel: RiskLevel.green,
       keywords: [
@@ -294,19 +289,19 @@ class MockData {
         'privatsphäre',
         'gespeichert',
       ],
-      source: 'Rechtliche Hinweise',
+      source: 'Legal guidance',
       createdAt: DateTime(2025, 2, 10),
     ),
 
     // ── Support ───────────────────────────────────────────────────────
     KnowledgeEntry(
       id: 'k11',
-      languageCode: 'de',
-      title: 'Wie erreiche ich den Support?',
+      languageCode: 'en',
+      title: 'How can I contact support?',
       content:
-          'Der interne Ansprechpartner ist GF Klaus Semper. Für Supportfragen '
-          'ist semper@healing-balance.com hinterlegt. Konkrete Anfragekanäle '
-          'wie Formular, Telefon, Messenger oder Social Media sind noch zu klären.',
+          'The internal contact person is Managing Director Klaus Semper. '
+          'Support email is semper@healing-balance.com. Exact inquiry channels '
+          'such as form, phone, messenger or social media still need to be clarified.',
       category: KnowledgeCategory.allgemein,
       riskLevel: RiskLevel.green,
       keywords: [
@@ -319,20 +314,20 @@ class MockData {
         'anrufen',
         'melden',
       ],
-      source: 'Firmenaufnahme Klaus',
+      source: 'Company intake Klaus',
       createdAt: DateTime(2025, 2, 12),
     ),
 
     // ── Wellness (Yellow) ─────────────────────────────────────────────
     KnowledgeEntry(
       id: 'k12',
-      languageCode: 'de',
-      title: 'Wofür sind die Systeme gedacht?',
+      languageCode: 'en',
+      title: 'What are the systems intended for?',
       content:
-          'Die Systeme der Healing und Balance GmbH sind für ergänzende '
-          'Anwendungen im Bereich Frequenztechnologie beschrieben. Sie ersetzen '
-          'keine medizinische Diagnose oder Behandlung. Wirkungsbezogene Fragen '
-          'müssen menschlich geprüft werden.',
+          'The systems from Healing und Balance GmbH are described for '
+          'complementary applications in the field of frequency technology. '
+          'They do not replace medical diagnosis or treatment. Effect-related '
+          'questions require human review.',
       category: KnowledgeCategory.allgemein,
       riskLevel: RiskLevel.yellow,
       keywords: [
@@ -344,17 +339,17 @@ class MockData {
         'unterstützen',
         'lebensstil',
       ],
-      source: 'Sichere Außenbeschreibung',
+      source: 'Safe public description',
       createdAt: DateTime(2025, 3, 1),
     ),
     KnowledgeEntry(
       id: 'k13',
-      languageCode: 'de',
-      title: 'Wie darf Wirkungsweise beschrieben werden?',
+      languageCode: 'en',
+      title: 'How may effects be described?',
       content:
-          'Beschreibungen zur Wirkungsweise müssen neutral und belegbar bleiben. '
-          'Ungeprüfte Aussagen zu Heilung, Diagnose, Therapieerfolg oder '
-          'Garantien dürfen nicht veröffentlicht werden.',
+          'Descriptions of effects must remain neutral and evidence-based. '
+          'Unchecked statements about healing, diagnosis, therapy success or '
+          'guarantees must not be published.',
       category: KnowledgeCategory.faq,
       riskLevel: RiskLevel.yellow,
       keywords: [
@@ -365,19 +360,19 @@ class MockData {
         'belege',
         'prüfung',
       ],
-      source: 'Rechtliche Hinweise',
+      source: 'Legal guidance',
       createdAt: DateTime(2025, 3, 5),
     ),
 
     // ── Rechtliche No-Go-Bereiche (Red – Bot verweist, antwortet nicht) ──
     KnowledgeEntry(
       id: 'k14',
-      languageCode: 'de',
-      title: 'Heilversprechen und medizinische Diagnosen',
+      languageCode: 'en',
+      title: 'Healing promises and medical diagnoses',
       content:
-          'Der Bot darf keine medizinischen Diagnosen stellen, keine Heilversprechen '
-          'machen und keine Behandlungserfolge zusagen. Bitte wenden Sie sich '
-          'bei medizinischen Fragen an qualifizierte Fachstellen.',
+          'The bot must not make medical diagnoses, healing promises or '
+          'treatment-success claims. For medical questions, users should contact '
+          'qualified professionals.',
       category: KnowledgeCategory.allgemein,
       riskLevel: RiskLevel.red,
       keywords: [
@@ -396,18 +391,17 @@ class MockData {
         'rezept',
         'verschreibung',
       ],
-      source: 'Rechtliche Richtlinien',
+      source: 'Legal guidelines',
       createdAt: DateTime(2025, 3, 10),
     ),
     KnowledgeEntry(
       id: 'k15',
-      languageCode: 'de',
-      title: 'Spezifische Erkrankungen und Medikamentenersatz',
+      languageCode: 'en',
+      title: 'Specific diseases and medication replacement',
       content:
-          'Healing und Balance GmbH macht in der Bot-Kommunikation keine '
-          'Aussagen zu spezifischen Erkrankungen und ersetzt keine ärztliche '
-          'Behandlung. Bei Beschwerden wenden Sie sich bitte an einen Arzt '
-          'oder Apotheker.',
+          'Healing und Balance GmbH does not make bot statements about specific '
+          'diseases and does not replace medical treatment. For symptoms, users '
+          'should contact a doctor or pharmacist.',
       category: KnowledgeCategory.allgemein,
       riskLevel: RiskLevel.red,
       keywords: [
@@ -425,72 +419,72 @@ class MockData {
         'insulin',
         'chemotherapie',
       ],
-      source: 'Rechtliche Richtlinien',
+      source: 'Legal guidelines',
       createdAt: DateTime(2025, 3, 10),
     ),
     KnowledgeEntry(
       id: 'k16',
-      languageCode: 'de',
-      title: 'Anwendung: Inhalt fehlt',
+      languageCode: 'en',
+      title: 'Use: content missing',
       content:
-          'Dokument hinzufügen: Für konkrete Anwendungsschritte fehlen noch '
-          'freigegebene Inhalte aus Anleitung, Schulung oder Support.',
+          'Add document: approved content from instructions, training or support '
+          'is still missing for concrete usage steps.',
       category: KnowledgeCategory.prozess,
       riskLevel: RiskLevel.yellow,
       keywords: ['anwendung', 'inhalt fehlt', 'dokument hinzufügen'],
-      source: 'Offene Unternehmensangaben',
+      source: 'Open company details',
       createdAt: DateTime(2025, 5, 24),
     ),
     KnowledgeEntry(
       id: 'k17',
-      languageCode: 'de',
-      title: 'Geräte: Inhalt fehlt',
+      languageCode: 'en',
+      title: 'Devices: content missing',
       content:
-          'Dokument hinzufügen: Gerätespezifische Informationen müssen aus '
-          'aktuellen Produktunterlagen übernommen und geprüft werden.',
+          'Add document: device-specific information must be taken from current '
+          'product documents and reviewed.',
       category: KnowledgeCategory.produkt,
       riskLevel: RiskLevel.yellow,
       keywords: ['geräte', 'inhalt fehlt', 'produktunterlagen'],
-      source: 'Offene Unternehmensangaben',
+      source: 'Open company details',
       createdAt: DateTime(2025, 5, 24),
     ),
     KnowledgeEntry(
       id: 'k18',
-      languageCode: 'de',
-      title: 'App und Einrichtung: Inhalt fehlt',
+      languageCode: 'en',
+      title: 'App and setup: content missing',
       content:
-          'FAQ ergänzen: Für App-Einrichtung, Geräteverbindung und typische '
-          'Fehlerfälle sollen konkrete Schritt-für-Schritt-Antworten ergänzt werden.',
+          'Add FAQ: concrete step-by-step answers should be added for app setup, '
+          'device connection and typical troubleshooting cases.',
       category: KnowledgeCategory.prozess,
       riskLevel: RiskLevel.green,
       keywords: ['app', 'einrichtung', 'faq ergänzen'],
-      source: 'Offene Unternehmensangaben',
+      source: 'Open company details',
       createdAt: DateTime(2025, 5, 24),
     ),
     KnowledgeEntry(
       id: 'k19',
-      languageCode: 'de',
-      title: 'Programme und Frequenzen: Prüfung erforderlich',
+      languageCode: 'en',
+      title: 'Programs and frequencies: review required',
       content:
-          'FAQ ergänzen: Aussagen zu Programmen, Frequenzen und Wirkungsweise '
-          'müssen vor Nutzung in Bot oder Marketing fachlich und rechtlich geprüft werden.',
+          'Add FAQ: statements about programs, frequencies and effects must be '
+          'professionally and legally reviewed before use in bot or marketing.',
       category: KnowledgeCategory.allgemein,
       riskLevel: RiskLevel.yellow,
       keywords: ['programme', 'frequenzen', 'prüfung erforderlich'],
-      source: 'Offene Unternehmensangaben',
+      source: 'Open company details',
       createdAt: DateTime(2025, 5, 24),
     ),
     KnowledgeEntry(
       id: 'k20',
-      languageCode: 'de',
-      title: 'Videos: Inhalt fehlt',
+      languageCode: 'en',
+      title: 'Videos: content missing',
       content:
-          'Video verknüpfen: Vorhandene Videos sollen als Quelle erfasst und '
-          'erst nach Prüfung für Wissensbasis oder Marketing genutzt werden.',
+          'Link video: existing videos should be captured as sources and used '
+          'for the knowledge base or marketing only after review.',
       category: KnowledgeCategory.allgemein,
       riskLevel: RiskLevel.green,
       keywords: ['videos', 'video verknüpfen', 'quelle'],
-      source: 'Offene Unternehmensangaben',
+      source: 'Open company details',
       createdAt: DateTime(2025, 5, 24),
     ),
     KnowledgeEntry(
@@ -512,8 +506,8 @@ class MockData {
   static final List<BotQuestionLog> botLogs = [
     BotQuestionLog(
       id: 'b1',
-      question: 'Wie verbinde ich das Messgerät?',
-      answer: 'Aktivieren Sie Bluetooth auf Ihrem Smartphone...',
+      question: 'How do I connect the device?',
+      answer: 'Enable the required connection on your smartphone...',
       matched: true,
       redirected: false,
       timestamp: DateTime(2025, 6, 1, 10, 23),
@@ -522,18 +516,18 @@ class MockData {
     ),
     BotQuestionLog(
       id: 'b2',
-      question: 'Was kostet die App?',
+      question: 'How much does the app cost?',
       answer: null,
       matched: false,
       redirected: false,
       timestamp: DateTime(2025, 6, 2, 9, 45),
       reviewStatus: ReviewStatus.open,
       reviewReason: ReviewReason.noMatch,
-      humanNote: 'Preise wurden von Klaus nicht geliefert. Nicht erfinden.',
+      humanNote: 'Prices were not provided by Klaus. Do not invent them.',
     ),
     BotQuestionLog(
       id: 'b3',
-      question: 'Kann HB Cure meinen Bluthochdruck heilen?',
+      question: 'Can HB Cure heal my high blood pressure?',
       answer: null,
       matched: false,
       redirected: true,
@@ -543,7 +537,7 @@ class MockData {
     ),
     BotQuestionLog(
       id: 'b4',
-      question: 'Wie lange hält der Akku?',
+      question: 'How long does the battery last?',
       answer: null,
       matched: false,
       redirected: false,
@@ -553,7 +547,7 @@ class MockData {
     ),
     BotQuestionLog(
       id: 'b5',
-      question: 'Welche Frequenz hilft bei Schmerzen?',
+      question: 'Which frequency helps with pain?',
       answer: null,
       matched: false,
       redirected: true,
@@ -561,21 +555,21 @@ class MockData {
       reviewStatus: ReviewStatus.open,
       reviewReason: ReviewReason.redFlag,
       humanNote:
-          'Medizinisch sensible Wirkungsfrage. Keine automatische Freigabe.',
+          'Medically sensitive effect-related question. No automatic approval.',
     ),
     BotQuestionLog(
       id: 'b6',
-      question: 'Wie richte ich die App für das Gerät ein?',
+      question: 'How do I set up the app for the device?',
       answer:
-          'Ein Antwortvorschlag darf vorbereitet werden, muss aber vor Nutzung '
-          'gegen die aktuelle Anleitung geprüft werden.',
+          'A draft answer may be prepared, but it must be checked against the '
+          'current instructions before use.',
       matched: true,
       redirected: false,
       timestamp: DateTime(2025, 6, 5, 16, 20),
       reviewStatus: ReviewStatus.reviewed,
       reviewReason: ReviewReason.yellowRisk,
       humanNote:
-          'Human Review bleibt aktiv, bis konkrete Anleitung freigegeben ist.',
+          'Human Review remains active until concrete instructions are approved.',
       reviewedAt: DateTime(2025, 6, 5, 16, 45),
     ),
   ];
@@ -583,13 +577,13 @@ class MockData {
   static final Company schnurrPurrCompany = Company(
     id: 'schnurr-purr',
     name: 'SchnurrPurr',
-    industry: 'Entspannungs-App & Komfortprodukte',
+    industry: 'Relaxation app & comfort products',
     description:
-        'SchnurrPurr entwickelt ruhige digitale Begleiter und weiche Komfortprodukte '
-        'für entspannte Pausen im Alltag. Die Angebote helfen beim Abschalten, '
-        'bei kleinen Routinen und beim bewussten Umgang mit Erholungszeiten.',
-    country: 'Österreich',
-    primaryLanguage: 'de',
+        'SchnurrPurr develops calm digital companions and soft comfort products '
+        'for relaxed everyday breaks. The offers support small routines, mindful '
+        'pauses and a gentle approach to recovery time.',
+    country: 'Austria',
+    primaryLanguage: 'en',
     website: 'https://www.schnurrpurr.example',
     email: 'support@schnurrpurr.example',
     phone: '+43 720 987 654',
@@ -600,7 +594,7 @@ class MockData {
       'youtube': 'https://youtube.com/@schnurrpurr',
     },
     internalNotes:
-        'Demo-Workspace für App- und Komfortprodukt-Kommunikation ohne medizinische Versprechen.',
+        'Demo workspace for app and comfort-product communication without medical claims.',
   );
 
   static final List<ProductOrService> schnurrPurrProducts = [
@@ -608,14 +602,14 @@ class MockData {
       id: 'sp-p1',
       name: 'SchnurrPurr Relax App',
       description:
-          'Mobile App mit Atem-Timern, ruhigen Soundlandschaften und einfachen Pausenroutinen.',
+          'Mobile app with breathing timers, calm soundscapes and simple break routines.',
       type: ProductType.produkt,
     ),
     ProductOrService(
       id: 'sp-p2',
       name: 'SchnurrPurr Kissen / Purr Pillow',
       description:
-          'Weiches Komfortkissen mit abnehmbarem Bezug für Sofa, Lesesessel oder kurze Ruhepausen.',
+          'Soft comfort pillow with removable cover for the sofa, reading chair or short quiet breaks.',
       type: ProductType.produkt,
       price: 49.0,
     ),
@@ -624,37 +618,38 @@ class MockData {
   static final List<KnowledgeEntry> schnurrPurrKnowledgeEntries = [
     KnowledgeEntry(
       id: 'sp-k1',
-      languageCode: 'de',
-      title: 'Was ist die SchnurrPurr Relax App?',
+      languageCode: 'en',
+      title: 'What is the SchnurrPurr Relax App?',
       content:
-          'Die SchnurrPurr Relax App bietet kurze Pausenroutinen, sanfte Klangwelten '
-          'und einfache Timer für bewusste Entspannungsmomente im Alltag.',
+          'The SchnurrPurr Relax App offers short break routines, gentle '
+          'soundscapes and simple timers for mindful relaxation moments in everyday life.',
       category: KnowledgeCategory.faq,
       riskLevel: RiskLevel.green,
       keywords: ['app', 'relax app', 'entspannung', 'pause', 'klang', 'timer'],
-      source: 'Produkt-FAQ',
+      source: 'Product FAQ',
       createdAt: DateTime(2025, 4, 2),
     ),
     KnowledgeEntry(
       id: 'sp-k2',
-      languageCode: 'de',
-      title: 'Wie starte ich eine Entspannungsroutine?',
+      languageCode: 'en',
+      title: 'How do I start a relaxation routine?',
       content:
-          'Öffnen Sie die App, wählen Sie eine Routine und legen Sie die gewünschte Dauer fest. '
-          'Sie können die Übung jederzeit pausieren oder beenden.',
+          'Open the app, choose a routine and set the desired duration. You can '
+          'pause or end the exercise at any time.',
       category: KnowledgeCategory.prozess,
       riskLevel: RiskLevel.green,
       keywords: ['routine', 'starten', 'dauer', 'übung', 'pause', 'beenden'],
-      source: 'App-Hilfe',
+      source: 'App help',
       createdAt: DateTime(2025, 4, 4),
     ),
     KnowledgeEntry(
       id: 'sp-k3',
-      languageCode: 'de',
-      title: 'Kann ich die App ohne Konto nutzen?',
+      languageCode: 'en',
+      title: 'Can I use the app without an account?',
       content:
-          'Ja, Basisfunktionen wie Timer und ausgewählte Klangwelten sind ohne Konto nutzbar. '
-          'Ein Konto ist nur für Synchronisierung und optionale Favoriten erforderlich.',
+          'Yes, basic functions such as timers and selected soundscapes can be '
+          'used without an account. An account is only required for synchronization '
+          'and optional favorites.',
       category: KnowledgeCategory.faq,
       riskLevel: RiskLevel.green,
       keywords: [
@@ -664,16 +659,16 @@ class MockData {
         'basisfunktionen',
         'favoriten',
       ],
-      source: 'App-Hilfe',
+      source: 'App help',
       createdAt: DateTime(2025, 4, 5),
     ),
     KnowledgeEntry(
       id: 'sp-k4',
-      languageCode: 'de',
-      title: 'Was ist das SchnurrPurr Kissen?',
+      languageCode: 'en',
+      title: 'What is the SchnurrPurr pillow?',
       content:
-          'Das SchnurrPurr Kissen ist ein weiches Komfortkissen mit waschbarem Bezug. '
-          'Es ist für gemütliche Pausen, Lesen und ruhige Momente gedacht.',
+          'The SchnurrPurr pillow is a soft comfort pillow with a washable cover. '
+          'It is designed for cozy breaks, reading and quiet moments.',
       category: KnowledgeCategory.produkt,
       riskLevel: RiskLevel.green,
       keywords: [
@@ -684,29 +679,29 @@ class MockData {
         'komfort',
         'pause',
       ],
-      source: 'Produktdatenblatt',
+      source: 'Product sheet',
       createdAt: DateTime(2025, 4, 8),
     ),
     KnowledgeEntry(
       id: 'sp-k5',
-      languageCode: 'de',
-      title: 'Wie reinige ich den Kissenbezug?',
+      languageCode: 'en',
+      title: 'How do I clean the pillow cover?',
       content:
-          'Der Bezug kann abgenommen und bei niedriger Temperatur gewaschen werden. '
-          'Bitte beachten Sie das Pflegeetikett und lassen Sie den Bezug vollständig trocknen.',
+          'The cover can be removed and washed at low temperature. Please follow '
+          'the care label and let the cover dry completely.',
       category: KnowledgeCategory.produkt,
       riskLevel: RiskLevel.green,
       keywords: ['reinigen', 'waschen', 'bezug', 'pflege', 'trocknen'],
-      source: 'Pflegehinweise',
+      source: 'Care instructions',
       createdAt: DateTime(2025, 4, 10),
     ),
     KnowledgeEntry(
       id: 'sp-k6',
-      languageCode: 'de',
-      title: 'Welche Geräte unterstützt die App?',
+      languageCode: 'en',
+      title: 'Which devices does the app support?',
       content:
-          'Die App unterstützt aktuelle iOS- und Android-Geräte. Für Klanginhalte empfehlen wir '
-          'eine stabile Internetverbindung oder zuvor gespeicherte Favoriten.',
+          'The app supports current iOS and Android devices. For sound content, '
+          'we recommend a stable internet connection or previously saved favorites.',
       category: KnowledgeCategory.faq,
       riskLevel: RiskLevel.green,
       keywords: [
@@ -717,17 +712,16 @@ class MockData {
         'internet',
         'offline',
       ],
-      source: 'Technische Anforderungen',
+      source: 'Technical requirements',
       createdAt: DateTime(2025, 4, 12),
     ),
     KnowledgeEntry(
       id: 'sp-k7',
-      languageCode: 'de',
-      title: 'Hilft SchnurrPurr bei Stress oder Schlafproblemen?',
+      languageCode: 'en',
+      title: 'Does SchnurrPurr help with stress or sleep problems?',
       content:
-          'SchnurrPurr kann ruhige Pausen und Entspannungsroutinen unterstützen. '
-          'Die Produkte stellen keine Diagnose, behandeln keine Beschwerden und ersetzen keine '
-          'professionelle medizinische Beratung.',
+          'SchnurrPurr can support calm breaks and relaxation routines. The '
+          'products do not diagnose, treat complaints or replace professional medical advice.',
       category: KnowledgeCategory.allgemein,
       riskLevel: RiskLevel.yellow,
       keywords: [
@@ -738,16 +732,16 @@ class MockData {
         'helfen',
         'beratung',
       ],
-      source: 'Sichere Kommunikationsrichtlinien',
+      source: 'Safe communication guidelines',
       createdAt: DateTime(2025, 4, 15),
     ),
     KnowledgeEntry(
       id: 'sp-k8',
-      languageCode: 'de',
-      title: 'Welche Aussagen darf der Bot nicht machen?',
+      languageCode: 'en',
+      title: 'Which statements must the bot avoid?',
       content:
-          'Der Bot darf keine Heilversprechen, Diagnosen oder Aussagen zur Behandlung von '
-          'Erkrankungen machen. Bei gesundheitlichen Fragen soll er an qualifizierte Fachstellen verweisen.',
+          'The bot must not make healing promises, diagnoses or statements about '
+          'treating diseases. For health questions, it should refer users to qualified professionals.',
       category: KnowledgeCategory.allgemein,
       riskLevel: RiskLevel.red,
       keywords: [
@@ -761,16 +755,16 @@ class MockData {
         'insomnie',
         'medizinisch',
       ],
-      source: 'Sichere Kommunikationsrichtlinien',
+      source: 'Safe communication guidelines',
       createdAt: DateTime(2025, 4, 16),
     ),
     KnowledgeEntry(
       id: 'sp-k9',
-      languageCode: 'de',
-      title: 'Wie erreiche ich den Support?',
+      languageCode: 'en',
+      title: 'How can I contact support?',
       content:
-          'Der Support ist per E-Mail unter support@schnurrpurr.example erreichbar. '
-          'Bitte nennen Sie bei App-Fragen das verwendete Gerät und die App-Version.',
+          'Support is available by email at support@schnurrpurr.example. For app '
+          'questions, please include the device you use and the app version.',
       category: KnowledgeCategory.allgemein,
       riskLevel: RiskLevel.green,
       keywords: [
@@ -781,16 +775,15 @@ class MockData {
         'app-version',
         'gerät',
       ],
-      source: 'Support-Wiki',
+      source: 'Support wiki',
       createdAt: DateTime(2025, 4, 18),
     ),
     KnowledgeEntry(
       id: 'sp-k10',
-      languageCode: 'de',
-      title: 'Kann ich Erinnerungen deaktivieren?',
+      languageCode: 'en',
+      title: 'Can I disable reminders?',
       content:
-          'Ja, Erinnerungen können in den App-Einstellungen jederzeit aktiviert, pausiert oder '
-          'vollständig deaktiviert werden.',
+          'Yes, reminders can be enabled, paused or fully disabled in the app settings at any time.',
       category: KnowledgeCategory.faq,
       riskLevel: RiskLevel.green,
       keywords: [
@@ -800,7 +793,7 @@ class MockData {
         'pausieren',
         'einstellungen',
       ],
-      source: 'App-Hilfe',
+      source: 'App help',
       createdAt: DateTime(2025, 4, 20),
     ),
   ];
@@ -808,9 +801,8 @@ class MockData {
   static final List<BotQuestionLog> schnurrPurrBotLogs = [
     BotQuestionLog(
       id: 'sp-b1',
-      question: 'Wie starte ich eine Routine?',
-      answer:
-          'Öffnen Sie die App, wählen Sie eine Routine und legen Sie die gewünschte Dauer fest.',
+      question: 'How do I start a routine?',
+      answer: 'Open the app, choose a routine and set the desired duration.',
       matched: true,
       redirected: false,
       timestamp: DateTime(2025, 6, 6, 8, 40),
@@ -819,7 +811,7 @@ class MockData {
     ),
     BotQuestionLog(
       id: 'sp-b2',
-      question: 'Kann die App meine Schlafprobleme behandeln?',
+      question: 'Can the app treat my sleep problems?',
       answer: null,
       matched: false,
       redirected: true,
@@ -833,330 +825,326 @@ class MockData {
     BusinessAuditItem(
       id: 'hb-a1',
       area: AuditArea.companyProfile,
-      title: 'Firmenprofil vollständig',
+      title: 'Company profile complete',
       description:
-          'Firmenname, Branche, Website, Ansprechpartner, E-Mail und Telefon '
-          'sind für den Workspace gepflegt.',
+          'Company name, industry, website, contact person, email and phone '
+          'are maintained for this workspace.',
       status: AuditItemStatus.complete,
       priority: AuditPriority.medium,
       recommendation:
-          'Regelmäßig prüfen, ob Kontakt- und Supportdaten noch aktuell sind.',
+          'Regularly check whether contact and support details are still current.',
     ),
     BusinessAuditItem(
       id: 'hb-a2',
       area: AuditArea.website,
-      title: 'Website vorhanden',
+      title: 'Website available',
       description:
-          'Ein Webauftritt ist vorhanden und kann als primäre Außenquelle genutzt werden.',
+          'A website is available and can be used as the primary public source.',
       status: AuditItemStatus.complete,
       priority: AuditPriority.medium,
-      note: 'https://www.healing-balance.com ist im Firmenprofil hinterlegt.',
+      note: 'https://www.healing-balance.com is stored in the company profile.',
     ),
     BusinessAuditItem(
       id: 'hb-a3',
       area: AuditArea.products,
-      title: 'Produkte und Leistungen erfasst',
+      title: 'Products and services captured',
       description:
-          'Frequenztechnologie, Geräte, Anwendungen, Programme und App-Unterstützung '
-          'sind grob erfasst. Die wichtigsten Angebote wurden im Formular nicht priorisiert.',
+          'Frequency technology, devices, applications, programs and app support '
+          'are broadly captured. The most important offers were not prioritized in the form.',
       status: AuditItemStatus.partial,
       priority: AuditPriority.high,
-      note: 'Offen: Welche Angebote sind am wichtigsten?',
+      note: 'Open: Which offers are most important?',
       recommendation:
-          'Produktprioritäten mit Klaus klären, bevor Bot- oder Marketinglogik daraus Empfehlungen ableitet.',
+          'Clarify product priorities with Klaus before bot or marketing logic derives recommendations from them.',
     ),
     BusinessAuditItem(
       id: 'hb-a4',
       area: AuditArea.supportKnowledge,
-      title: 'FAQ und Supportwissen ausbauen',
+      title: 'Expand FAQ and support knowledge',
       description:
-          'FAQ, PDFs, Anleitungen, Videos und rechtliche Hinweise sind vorhanden, '
-          'aber konkrete Inhalte müssen noch strukturiert übernommen werden.',
+          'FAQ, PDFs, instructions, videos and legal guidance exist, but concrete '
+          'content still needs to be structured and imported.',
       status: AuditItemStatus.partial,
       priority: AuditPriority.high,
       recommendation:
-          'FAQ zu Anwendung, Bedienung, App-Einrichtung, Programmen, Frequenzen '
-          'und Fehlerbehebung ergänzen.',
+          'Add FAQ content for use, operation, app setup, programs, frequencies '
+          'and troubleshooting.',
     ),
     BusinessAuditItem(
       id: 'hb-a5',
       area: AuditArea.trustMaterial,
-      title: 'Rezensionen auf Website vorhanden',
+      title: 'Website reviews available',
       description:
-          'Bewertungen sind vorhanden. Plattformen, Links und Freigabestatus '
-          'wurden noch nicht konkret angegeben.',
+          'Reviews exist. Platforms, links and approval status were not provided yet.',
       status: AuditItemStatus.partial,
       priority: AuditPriority.medium,
       recommendation:
-          'Bewertungsquellen, erlaubte Zitate und Nutzungsrechte vor Marketingverwendung dokumentieren.',
+          'Document review sources, permitted quotes and usage rights before marketing use.',
     ),
     BusinessAuditItem(
       id: 'hb-a6',
       area: AuditArea.socialPresence,
-      title: 'Social Reviews schwach',
+      title: 'Social reviews need work',
       description:
-          'Social Media ist vorhanden, konkrete Plattformen, Profile und '
-          'Leistungsdaten wurden aber noch nicht benannt.',
+          'Social media exists, but concrete platforms, profiles and performance '
+          'data have not been named yet.',
       status: AuditItemStatus.partial,
       priority: AuditPriority.low,
-      recommendation:
-          'Konkrete Social-Media-Plattformen und Profil-Links nacherfassen.',
+      recommendation: 'Capture exact social media platforms and profile links.',
     ),
     BusinessAuditItem(
       id: 'hb-a7',
       area: AuditArea.sources,
-      title: 'Quellen und Dokumente strukturieren',
+      title: 'Structure sources and documents',
       description:
-          'FAQ, PDFs, Anleitungen, Videos und rechtliche Hinweise sind vorhanden; '
-          'Speicherorte, Aktualität und Freigabe müssen noch geprüft werden.',
+          'FAQ, PDFs, instructions, videos and legal guidance exist; storage '
+          'locations, freshness and approval still need to be checked.',
       status: AuditItemStatus.partial,
       priority: AuditPriority.medium,
       recommendation:
-          'Dokumente je Kategorie erfassen: Anwendung, Geräte, App, Programme, FAQ, PDFs, Videos und Recht.',
+          'Capture documents by category: use, devices, app, programs, FAQ, PDFs, videos and legal.',
     ),
     BusinessAuditItem(
       id: 'hb-a8',
       area: AuditArea.riskRules,
-      title: 'No-Go-Regeln für medizinische Aussagen',
+      title: 'No-go rules for medical claims',
       description:
-          'Rote Regeln sind für Heilversprechen, Diagnosen, Therapieerfolg, '
-          'Krankheiten, rechtliche Aussagen und Garantien erforderlich.',
+          'Red rules are required for healing promises, diagnoses, therapy '
+          'success, diseases, legal statements and guarantees.',
       status: AuditItemStatus.partial,
       priority: AuditPriority.high,
       recommendation:
-          'Sensible, medizinische, rechtliche und wirkungsbezogene Fragen immer mindestens gelb oder rot einstufen.',
+          'Always classify sensitive, medical, legal and effect-related questions as at least yellow or red.',
     ),
     BusinessAuditItem(
       id: 'hb-a9',
       area: AuditArea.botReadiness,
-      title: 'Bot-Bereitschaft',
+      title: 'Bot readiness',
       description:
-          'Automatische Antworten sind nicht freigegeben. Der Bot darf nur '
-          'Vorschläge vorbereiten; Human Review bleibt Standard.',
+          'Automatic answers are not approved. The bot may prepare drafts only; '
+          'human review remains the default.',
       status: AuditItemStatus.partial,
       priority: AuditPriority.high,
       recommendation:
-          'Antwortvorschläge in Human Review prüfen und erst nach Freigabe für Bot-Test verwenden.',
+          'Review answer drafts in Human Review and use them for bot testing only after approval.',
     ),
     BusinessAuditItem(
       id: 'hb-a10',
       area: AuditArea.companyProfile,
-      title: 'Offene Unternehmensangaben',
+      title: 'Open company details',
       description:
-          'Wichtigste Angebote, Anfragekanäle, konkrete Social-Media-Plattformen, '
-          'konkrete Werbekanäle und mehrere Prioritäten sind noch nicht ausgefüllt.',
+          'Most important offers, inquiry channels, exact social media platforms, '
+          'exact advertising channels and several priorities are still missing.',
       status: AuditItemStatus.missing,
       priority: AuditPriority.high,
       note:
-          'Prioritäten Kundenservice und Wissensdatenbank sind bestätigt mit 5 von 5. Marketing, Website, Automatisierung und Sonstiges bleiben unbewertet.',
+          'Customer service and knowledge base priorities are confirmed as 5 out of 5. Marketing, website, automation and other remain unrated.',
       recommendation:
-          'Offene Angaben im Firmenfragebogen nacherfassen, bevor daraus automatische Empfehlungen abgeleitet werden.',
+          'Complete the open company details in the questionnaire before deriving automatic recommendations from them.',
     ),
   ];
 
   static const BusinessRules hbCureBusinessRules = BusinessRules(
     brandVoice:
-        'Sachlich, klar und vorsichtig. Ergänzende Anwendung erklären, ohne '
-        'medizinische Wirkung oder Therapieerfolg zu versprechen.',
+        'Clear, factual and careful. Explain complementary use without promising '
+        'medical effects or therapy success.',
     doNotSay: [
-      'Keine Heilversprechen',
-      'Keine Diagnosen',
-      'Keine Aussagen, die ärztliche Beratung ersetzen',
-      'Keine Medikamenten- oder Therapieempfehlungen',
-      'Keine Garantie für Wirkung, Behandlungserfolg oder Heilung',
-      'Die interne Ausgangsangabe "Aktivierung körpereigener Selbstheilungsprozesse" nicht ungeprüft öffentlich verwenden',
+      'No healing promises',
+      'No diagnoses',
+      'No statements that replace medical advice',
+      'No medication or therapy recommendations',
+      'No guarantee of effect, treatment success or healing',
+      'Do not publicly use internal self-healing-process wording without review',
     ],
     allowedSupportTopics: [
-      'App-Nutzung',
-      'Geräteverbindung',
-      'Ablauf der Nutzung',
-      'Anleitungen',
-      'Programme und Frequenzen ohne Wirkungsversprechen',
-      'Supportkontakt',
-      'Datenschutz und rechtliche Hinweise auf allgemeiner Ebene',
+      'App usage',
+      'Device connection',
+      'Usage flow',
+      'Instructions',
+      'Programs and frequencies without effect claims',
+      'Support contact',
+      'Data protection and legal guidance at a general level',
     ],
     escalationNotes:
-        'Medizinische, rechtliche, sicherheitskritische oder wirkungsbezogene '
-        'Fragen immer an Human Review geben. Antworten dürfen nicht automatisch veröffentlicht werden.',
+        'Always route medical, legal, safety-critical or effect-related questions '
+        'to Human Review. Answers must not be published automatically.',
     disclaimerText:
-        'Die Produkte dienen der ergänzenden Anwendung und ersetzen keine medizinische Diagnose oder Behandlung.',
+        'The products are intended for complementary use and do not replace medical diagnosis or treatment.',
   );
 
   static const BotConfiguration hbCureBotConfiguration = BotConfiguration(
     status: BotStatus.testReady,
     answerStyle: BotAnswerStyle.balanced,
-    defaultLanguage: 'de',
+    defaultLanguage: 'en',
     useDisclaimer: true,
     disclaimerText:
-        'Hinweis: Die Produkte dienen der ergänzenden Anwendung und ersetzen keine medizinische Diagnose oder Behandlung.',
+        'Note: The products are intended for complementary use and do not replace medical diagnosis or treatment.',
     alwaysEscalateRedFlags: true,
     escalateNoMatch: true,
     escalateYellowRisk: true,
     allowedTopics: [
-      'App-Nutzung',
-      'Geräteverbindung',
-      'Ablauf der Nutzung',
-      'Anleitungen',
-      'Programme und Frequenzen ohne Wirkungsversprechen',
+      'App usage',
+      'Device connection',
+      'Usage flow',
+      'Instructions',
+      'Programs and frequencies without effect claims',
       'Support',
-      'Rechtliche Hinweise allgemein',
+      'General legal guidance',
     ],
     blockedTopics: [
-      'Diagnosen',
-      'Heilversprechen',
-      'Krankheiten',
-      'Medikamente',
-      'Therapieempfehlungen',
-      'Garantierte Wirkung',
-      'Behandlungserfolg',
+      'Diagnoses',
+      'Healing promises',
+      'Diseases',
+      'Medication',
+      'Therapy recommendations',
+      'Guaranteed effect',
+      'Treatment success',
     ],
     handoverMessage:
-        'Diese Frage muss menschlich geprüft werden. Bitte wenden Sie sich an den Support oder eine qualifizierte Fachstelle.',
+        'This question needs human review. Please contact support or a qualified professional.',
   );
 
   static final List<BusinessAuditItem> schnurrPurrAuditItems = [
     BusinessAuditItem(
       id: 'sp-a1',
       area: AuditArea.companyProfile,
-      title: 'Firmenprofil angelegt',
+      title: 'Company profile created',
       description:
-          'Basisdaten und Kontaktwege sind vorhanden, Positionierung kann noch präzisiert werden.',
+          'Basic data and contact paths are available; positioning can still be refined.',
       status: AuditItemStatus.partial,
       priority: AuditPriority.medium,
       recommendation:
-          'Beschreibung mit klaren Produkt- und Supportgrenzen ergänzen.',
+          'Add a description with clear product and support boundaries.',
     ),
     BusinessAuditItem(
       id: 'sp-a2',
       area: AuditArea.website,
-      title: 'Website vorhanden',
+      title: 'Website available',
       description:
-          'Ein Webauftritt ist hinterlegt; Detailseiten und Supportpfade sind noch nicht vollständig beschrieben.',
+          'A website is stored; detail pages and support paths are not fully described yet.',
       status: AuditItemStatus.partial,
       priority: AuditPriority.medium,
     ),
     BusinessAuditItem(
       id: 'sp-a3',
       area: AuditArea.products,
-      title: 'App- und Produktinfos teilweise',
+      title: 'App and product information partial',
       description:
-          'Relax App und Kissen sind angelegt, aber Spezifikationen, Preise und Pflegehinweise sollten konsistenter werden.',
+          'Relax App and pillow are created, but specifications, prices and care notes should become more consistent.',
       status: AuditItemStatus.partial,
       priority: AuditPriority.high,
-      recommendation:
-          'Produktdatenblatt für App-Funktionen und Kissenpflege ergänzen.',
+      recommendation: 'Add a product sheet for app features and pillow care.',
     ),
     BusinessAuditItem(
       id: 'sp-a4',
       area: AuditArea.supportKnowledge,
-      title: 'Supportwissen teilweise',
+      title: 'Support knowledge partial',
       description:
-          'FAQ zur App, Nutzung und Support sind vorhanden; Rückgaben, Bestellung und technische Fehler fehlen noch.',
+          'FAQ content for app, usage and support exists; returns, ordering and technical errors are still missing.',
       status: AuditItemStatus.partial,
       priority: AuditPriority.high,
       recommendation:
-          'Supportwissen für Kauf, Nutzung, Konto und technische Probleme ergänzen.',
+          'Add support knowledge for purchase, usage, account and technical problems.',
     ),
     BusinessAuditItem(
       id: 'sp-a5',
       area: AuditArea.trustMaterial,
-      title: 'Rezensionen und Trustmaterial fehlen',
+      title: 'Reviews and trust material missing',
       description:
-          'Für externe Glaubwürdigkeit fehlen dokumentierte Rezensionen, Testimonials oder Pressestimmen.',
+          'Documented reviews, testimonials or press quotes are missing for external credibility.',
       status: AuditItemStatus.missing,
       priority: AuditPriority.medium,
       recommendation:
-          'Erlaubte Rezensionen und kurze Trust-Quellen sammeln und als Quellen ablegen.',
+          'Collect permitted reviews and short trust sources and store them as source material.',
     ),
     BusinessAuditItem(
       id: 'sp-a6',
       area: AuditArea.socialPresence,
-      title: 'Social und Community ausbaufähig',
+      title: 'Social and community can be improved',
       description:
-          'Community- und Social-Media-Signale sind für den Demo-Workspace noch kaum dokumentiert.',
+          'Community and social media signals are barely documented for the demo workspace.',
       status: AuditItemStatus.partial,
       priority: AuditPriority.low,
       recommendation:
-          'Öffentliche Kanäle und häufige Community-Fragen strukturiert erfassen.',
+          'Capture public channels and frequent community questions in a structured way.',
     ),
     BusinessAuditItem(
       id: 'sp-a7',
       area: AuditArea.sources,
-      title: 'Quellenbasis erweitern',
+      title: 'Expand source base',
       description:
-          'App-Hilfe und Produktdaten sind vorhanden, aber Website-, Pflege- und Supportquellen sollten sauber getrennt werden.',
+          'App help and product data exist, but website, care and support sources should be separated clearly.',
       status: AuditItemStatus.partial,
       priority: AuditPriority.medium,
     ),
     BusinessAuditItem(
       id: 'sp-a8',
       area: AuditArea.riskRules,
-      title: 'No-Go-Regeln für Wellness-Kommunikation',
+      title: 'No-go rules for wellness communication',
       description:
-          'Regeln gegen Heilversprechen und Diagnosen sind vorhanden, sollten aber für Entspannungs- und Schlaf-Fragen präzisiert werden.',
+          'Rules against healing promises and diagnoses exist, but should be refined for relaxation and sleep questions.',
       status: AuditItemStatus.partial,
       priority: AuditPriority.high,
       recommendation:
-          'Grenzen für Wellness-Aussagen und Support-Verweise klarer dokumentieren.',
+          'Document clearer boundaries for wellness statements and support handovers.',
     ),
     BusinessAuditItem(
       id: 'sp-a9',
       area: AuditArea.botReadiness,
-      title: 'Bot-Bereitschaft',
+      title: 'Bot readiness',
       description:
-          'Der Bot kann Basisfragen beantworten, ist aber vor Marketing-Ausbau noch nicht vollständig abgesichert.',
+          'The bot can answer basic questions, but is not fully secured before marketing expansion.',
       status: AuditItemStatus.partial,
       priority: AuditPriority.high,
       recommendation:
-          'Review-Fälle schließen, FAQ erweitern und rote Regeln mit Testfragen prüfen.',
+          'Close review cases, expand the FAQ and test red rules with sample questions.',
     ),
   ];
 
   static const BusinessRules schnurrPurrBusinessRules = BusinessRules(
     brandVoice:
-        'Ruhig, freundlich und alltagsnah. Fokus auf Nutzung, Komfort und Support.',
+        'Calm, friendly and practical. Focus on usage, comfort and support.',
     doNotSay: [
-      'Keine Heilversprechen',
-      'Keine Diagnose- oder Therapieaussagen',
-      'Keine Garantie für Schlaf, Stressreduktion oder Gesundheit',
+      'No healing promises',
+      'No diagnosis or therapy statements',
+      'No guarantees for sleep, stress reduction or health',
     ],
     allowedSupportTopics: [
-      'Relax-App Nutzung',
-      'Pausenroutinen',
-      'Kissenpflege',
-      'Support und App-Version',
-      'Benachrichtigungseinstellungen',
+      'Relax App usage',
+      'Break routines',
+      'Pillow care',
+      'Support and app version',
+      'Notification settings',
     ],
-    escalationNotes:
-        'Bei gesundheitlichen oder rechtlichen Fragen an professionelle Beratung verweisen.',
+    escalationNotes: 'Refer health or legal questions to professional advice.',
     disclaimerText:
-        'SchnurrPurr bietet Komfort- und Entspannungsinformationen, keine medizinische Beratung.',
+        'SchnurrPurr provides comfort and relaxation information, not medical advice.',
   );
 
   static const BotConfiguration schnurrPurrBotConfiguration = BotConfiguration(
     status: BotStatus.draft,
     answerStyle: BotAnswerStyle.balanced,
-    defaultLanguage: 'de',
+    defaultLanguage: 'en',
     useDisclaimer: true,
     disclaimerText:
-        'Hinweis: SchnurrPurr bietet Komfort- und Entspannungsinformationen, keine medizinische Beratung.',
+        'Note: SchnurrPurr provides comfort and relaxation information, not medical advice.',
     alwaysEscalateRedFlags: true,
     escalateNoMatch: true,
     escalateYellowRisk: false,
     allowedTopics: [
-      'Relax-App Nutzung',
-      'Pausenroutinen',
-      'Kissenpflege',
+      'Relax App usage',
+      'Break routines',
+      'Pillow care',
       'Support',
     ],
     blockedTopics: [
-      'Diagnosen',
-      'Behandlung',
-      'Therapie',
-      'Garantierte Gesundheitswirkung',
+      'Diagnoses',
+      'Treatment',
+      'Therapy',
+      'Guaranteed health effect',
     ],
     handoverMessage:
-        'Diese Frage sollte vom Support geprüft werden. Bitte kontaktieren Sie SchnurrPurr direkt.',
+        'This question should be reviewed by support. Please contact SchnurrPurr directly.',
   );
 
   static final List<SourceMaterial> hbCureSourceMaterials = [
@@ -1166,91 +1154,90 @@ class MockData {
       type: SourceMaterialType.faq,
       url: 'https://www.healing-balance.com',
       contentSnippet:
-          'FAQ vorhanden. Konkrete FAQ-URL und botfähige Einzelfragen müssen '
-          'noch aus der Website übernommen und geprüft werden.',
+          'FAQ exists. The exact FAQ URL and bot-ready individual questions '
+          'still need to be imported from the website and reviewed.',
       status: SourceMaterialStatus.converted,
       relatedKnowledgeEntryIds: ['k1', 'k2', 'k3', 'k11', 'k18'],
       createdAt: DateTime(2025, 5, 1),
       updatedAt: DateTime(2025, 5, 3),
-      notes: 'FAQ ergänzen; keine Wirkungsclaims ungeprüft übernehmen.',
+      notes: 'Add FAQ content; do not import effect claims without review.',
     ),
     SourceMaterial(
       id: 'hb-sm2',
-      title: 'Bewertungen und Website-Rezensionen',
+      title: 'Reviews and website testimonials',
       type: SourceMaterialType.review,
       contentSnippet:
-          'Bewertungen sind vorhanden, aber Plattformen, Links, Anzahl und '
-          'Nutzungsrechte wurden noch nicht konkret angegeben.',
+          'Reviews exist, but platforms, links, counts and usage rights were '
+          'not provided yet.',
       status: SourceMaterialStatus.newItem,
       createdAt: DateTime(2025, 5, 4),
       updatedAt: DateTime(2025, 5, 5),
       notes:
-          'Bewertungsübersicht erstellen und Content-Freigabe vor Marketingnutzung prüfen.',
+          'Create a review overview and check content approval before marketing use.',
     ),
     SourceMaterial(
       id: 'hb-sm3',
-      title: 'App-, Geräte- und Produktnotizen',
+      title: 'App, device and product notes',
       type: SourceMaterialType.note,
       contentSnippet:
-          'Hauptangebot: Frequenztechnologie mit Geräten, Anwendungen, '
-          'Programmen und App-Unterstützung.',
+          'Main offer: frequency technology with devices, applications, '
+          'programs and app support.',
       status: SourceMaterialStatus.converted,
       relatedKnowledgeEntryIds: ['k4', 'k5', 'k8', 'k17', 'k19'],
       createdAt: DateTime(2025, 5, 8),
       updatedAt: DateTime(2025, 5, 10),
-      notes: 'Produktprioritäten wurden nicht beantwortet und bleiben offen.',
+      notes: 'Product priorities were not answered and remain open.',
     ),
     SourceMaterial(
       id: 'hb-sm4',
-      title: 'Social Media vorhanden',
+      title: 'Social media exists',
       type: SourceMaterialType.social,
       contentSnippet:
-          'Social Media wurde als vorhanden angegeben. Konkrete Plattformen '
-          'und Profil-Links fehlen noch.',
+          'Social media was marked as present. Concrete platforms and profile '
+          'links are still missing.',
       status: SourceMaterialStatus.newItem,
       createdAt: DateTime(2025, 5, 15),
       updatedAt: DateTime(2025, 5, 15),
-      notes: 'Konkrete Social-Media-Plattformen nacherfassen.',
+      notes: 'Capture exact social media platforms.',
     ),
     SourceMaterial(
       id: 'hb-sm5',
-      title: 'PDFs und Anleitungen',
+      title: 'PDFs and instructions',
       type: SourceMaterialType.pdf,
       contentSnippet:
-          'PDFs und Anleitungen sind vorhanden. Speicherort, Aktualität und '
-          'freigegebene Textstellen müssen noch dokumentiert werden.',
+          'PDFs and instructions exist. Storage location, freshness and approved '
+          'text passages still need to be documented.',
       status: SourceMaterialStatus.newItem,
       relatedKnowledgeEntryIds: ['k16', 'k17', 'k18'],
       createdAt: DateTime(2025, 5, 24),
       updatedAt: DateTime(2025, 5, 24),
-      notes: 'Dokument hinzufügen und rechtliche Freigabe prüfen.',
+      notes: 'Add document and check legal approval.',
     ),
     SourceMaterial(
       id: 'hb-sm6',
       title: 'Videos',
       type: SourceMaterialType.other,
       contentSnippet:
-          'Videos sind vorhanden. Links und Inhalte müssen verknüpft werden, '
-          'bevor daraus Wissenseinträge oder Marketingentwürfe entstehen.',
+          'Videos exist. Links and content need to be connected before creating '
+          'knowledge entries or marketing drafts from them.',
       status: SourceMaterialStatus.newItem,
       relatedKnowledgeEntryIds: ['k20'],
       createdAt: DateTime(2025, 5, 24),
       updatedAt: DateTime(2025, 5, 24),
-      notes: 'Video verknüpfen.',
+      notes: 'Link video material.',
     ),
     SourceMaterial(
       id: 'hb-sm7',
-      title: 'Offene Unternehmensangaben',
+      title: 'Open company details',
       type: SourceMaterialType.note,
       contentSnippet:
-          'Offen: wichtigste Angebote, konkrete Anfragekanäle, Priorität '
-          'Marketing, Website, Automatisierung, Sonstiges, Social-Plattformen '
-          'und Werbekanäle.',
+          'Open: most important offers, exact inquiry channels, marketing '
+          'priority, website priority, automation priority, other priority, '
+          'social platforms and advertising channels.',
       status: SourceMaterialStatus.newItem,
       createdAt: DateTime(2025, 5, 24),
       updatedAt: DateTime(2025, 5, 24),
-      notes:
-          'Diese Lücken dürfen nicht automatisch mit Annahmen gefüllt werden.',
+      notes: 'These gaps must not be filled automatically with assumptions.',
     ),
   ];
 
@@ -1263,9 +1250,9 @@ class MockData {
       impact: MarketingActionImpact.high,
       status: MarketingActionStatus.planned,
       notes:
-          'FAQ-basierte Aufklärung zu Anwendung, Bedienung, App-Einrichtung, '
-          'Programmen, Frequenzen und rechtlichen Hinweisen vorbereiten. '
-          'Priorität Wissensdatenbank: 5 von 5.',
+          'Prepare FAQ-based education about use, operation, app setup, '
+          'programs, frequencies and legal guidance. Knowledge base priority: '
+          '5 out of 5.',
     ),
     MarketingAction(
       id: 'hb-marketing-reviews',
@@ -1275,8 +1262,8 @@ class MockData {
       impact: MarketingActionImpact.medium,
       status: MarketingActionStatus.notStarted,
       notes:
-          'Bewertungsübersicht erstellen. Plattformen, Links und Nutzungsrechte '
-          'sind noch offen.',
+          'Create a review overview. Platforms, links and usage rights are '
+          'still open.',
     ),
     MarketingAction(
       id: 'hb-marketing-seo',
@@ -1286,8 +1273,8 @@ class MockData {
       impact: MarketingActionImpact.high,
       status: MarketingActionStatus.planned,
       notes:
-          'Website-Inhalte und rechtlich vorsichtige Aufklärung vorbereiten. '
-          'Keine medizinischen Claims ohne Prüfung.',
+          'Prepare website content and legally careful educational copy. No '
+          'medical claims without review.',
     ),
     MarketingAction(
       id: 'hb-marketing-newsletter',
@@ -1297,8 +1284,8 @@ class MockData {
       impact: MarketingActionImpact.medium,
       status: MarketingActionStatus.planned,
       notes:
-          'Newsletter-Entwürfe nur als vorbereitete Inhalte. Keine automatische '
-          'Veröffentlichung; Freigabe erst nach menschlicher Prüfung.',
+          'Newsletter drafts only as prepared content. No automatic publishing; '
+          'approval only after human review.',
     ),
     MarketingAction(
       id: 'hb-marketing-bot',
@@ -1308,19 +1295,19 @@ class MockData {
       impact: MarketingActionImpact.high,
       status: MarketingActionStatus.postponed,
       notes:
-          'Bot nicht automatisch veröffentlichen. Zuerst Human Review, No-Go-Regeln '
-          'und sensible Wirkungsfragen absichern.',
+          'Do not publish the bot automatically. First secure Human Review, '
+          'no-go rules and sensitive effect-related questions.',
     ),
   ];
 
   static final List<SourceMaterial> schnurrPurrSourceMaterials = [
     SourceMaterial(
       id: 'sp-sm1',
-      title: 'Website Produktübersicht',
+      title: 'Website product overview',
       type: SourceMaterialType.website,
       url: 'https://www.schnurrpurr.example',
       contentSnippet:
-          'Kurzbeschreibung der Relax App und des Purr Pillow mit Supportkontakt.',
+          'Short description of the Relax App and the Purr Pillow with support contact.',
       status: SourceMaterialStatus.reviewed,
       relatedKnowledgeEntryIds: ['sp-k1', 'sp-k4'],
       createdAt: DateTime(2025, 5, 2),
@@ -1328,10 +1315,10 @@ class MockData {
     ),
     SourceMaterial(
       id: 'sp-sm2',
-      title: 'App-Store Notizen',
+      title: 'App store notes',
       type: SourceMaterialType.note,
       contentSnippet:
-          'Entwurfstexte zu Klangwelten, Timern, Erinnerungen und Kontofunktionen.',
+          'Draft text for soundscapes, timers, reminders and account features.',
       status: SourceMaterialStatus.converted,
       relatedKnowledgeEntryIds: ['sp-k2', 'sp-k3', 'sp-k10'],
       createdAt: DateTime(2025, 5, 6),
@@ -1339,10 +1326,10 @@ class MockData {
     ),
     SourceMaterial(
       id: 'sp-sm3',
-      title: 'Kissen- und Relax-Konzeptnotizen',
+      title: 'Pillow and relaxation concept notes',
       type: SourceMaterialType.note,
       contentSnippet:
-          'Material- und Pflegehinweise, Nutzungskontext für Pausen und Komfort.',
+          'Material and care notes plus usage context for breaks and comfort.',
       status: SourceMaterialStatus.converted,
       relatedKnowledgeEntryIds: ['sp-k4', 'sp-k5'],
       createdAt: DateTime(2025, 5, 10),
@@ -1350,10 +1337,10 @@ class MockData {
     ),
     SourceMaterial(
       id: 'sp-sm4',
-      title: 'Review-/Trustmaterial Sammlung',
+      title: 'Review and trust material collection',
       type: SourceMaterialType.review,
       contentSnippet:
-          'Trustmaterial ist erst teilweise vorhanden und noch nicht botfähig freigegeben.',
+          'Trust material is only partially available and is not yet approved for the bot.',
       status: SourceMaterialStatus.newItem,
       createdAt: DateTime(2025, 5, 16),
       updatedAt: DateTime(2025, 5, 16),
@@ -1370,82 +1357,80 @@ class MockData {
     basics: IntakeBasics(
       companyName: 'Healing und Balance GmbH',
       shortDescription:
-          'Healing und Balance GmbH entwickelt und vertreibt Systeme im Bereich Frequenztechnologie. '
-          'Die Produkte dienen der ergänzenden Anwendung und ersetzen keine medizinische Diagnose oder Behandlung.',
-      industry: 'Gesundheit / Frequenztechnologie',
-      country: 'Österreich',
-      primaryLanguage: 'de',
+          'Healing und Balance GmbH develops and distributes systems in the field of frequency technology. '
+          'The products are intended for complementary use and do not replace medical diagnosis or treatment.',
+      industry: 'Health / frequency technology',
+      country: 'Austria',
+      primaryLanguage: 'en',
       website: 'https://www.healing-balance.com',
       supportEmail: 'semper@healing-balance.com',
       supportPhone: '+43 660 6506900',
       hasWebsite: true,
-      additionalLanguages: 'Englisch',
-      targetRegions: 'Europäische Union',
+      additionalLanguages: 'German',
+      targetRegions: 'European Union',
     ),
     products: IntakeProducts(
       importantProducts: '',
       mainProduct:
-          'Frequenztechnologie und zugehörige Geräte, Anwendungen, Programme und App-Unterstützung',
+          'Frequency technology and related devices, applications, programs and app support',
       explanationNeeded:
-          'Anwendung, Bedienung, Wirkungsweise, Programme und Frequenzen, '
-          'Einrichtung über die App, Ablauf der Nutzung, Geräteverbindung, '
-          'Anleitungen, Sicherheitshinweise und rechtliche Hinweise.',
+          'Use, operation, mode of action, programs and frequencies, app setup, '
+          'usage flow, device connection, instructions, safety notes and legal guidance.',
       priorityProducts: '',
     ),
     targetGroups: IntakeTargetGroups(
-      targetGroup: 'Ärzte\nTherapeuten\nEndverbraucher',
-      marketType: 'B2B und B2C',
+      targetGroup: 'Doctors\nTherapists\nEnd customers',
+      marketType: 'B2B and B2C',
       problemSolved:
-          'Kunden benötigen verständliche Informationen zu Anwendung, App-Einrichtung, '
-          'Geräteverbindung und sicheren rechtlichen Grenzen.',
+          'Customers need clear information about use, app setup, device connection '
+          'and safe legal boundaries.',
       customerBenefit:
-          'Besser verständliche Nutzung und klarer Support ohne medizinische Heilversprechen.',
+          'Clearer usage guidance and safer support without medical healing claims.',
       differentiation:
-          'Frequenztechnologie mit App-Unterstützung, Anleitungen und menschlich geprüfter Kommunikation.',
+          'Frequency technology with app support, instructions and human-reviewed communication.',
     ),
     websiteAndSupport: IntakeWebsiteAndSupport(
       websiteUrl: 'https://www.healing-balance.com',
       hasFaqArea: true,
-      importantPages: 'Startseite, FAQ, rechtliche Hinweise, Support',
+      importantPages: 'Homepage, FAQ, legal notices, support',
       frequentQuestions:
-          'Anwendung, Bedienung, Wirkungsweise, Programme und Frequenzen, App-Einrichtung, Ablauf der Nutzung, Geräteverbindung, Anleitungen, Sicherheitshinweise, rechtliche Hinweise.',
+          'Use, operation, mode of action, programs and frequencies, app setup, usage flow, device connection, instructions, safety notes, legal guidance.',
       hasSupportQuestions: true,
       supportChannels: '',
       preSalesQuestions:
-          'Anwendung\nWirkungsweise\nProgramme und Frequenzen\nrechtliche Hinweise',
+          'Use\nMode of action\nPrograms and frequencies\nLegal guidance',
       afterSalesQuestions:
-          'Einrichtung über die App\nAblauf der Nutzung\nGeräteverbindung\nAnleitungen',
-      technicalProblems: 'App-Einrichtung\nGeräteverbindung',
+          'App setup\nUsage flow\nDevice connection\nInstructions',
+      technicalProblems: 'App setup\nDevice connection',
       complaintsOrMisunderstandings:
-          'Heilungs-, Diagnose-, Therapie- oder Garantieerwartungen',
-      supportOwner: 'GF Klaus Semper',
+          'Healing, diagnosis, therapy or guarantee expectations',
+      supportOwner: 'Managing Director Klaus Semper',
       standardizableQuestions:
-          'App-Einrichtung\nAnleitungen\nGeräteverbindung\nallgemeine rechtliche Hinweise',
+          'App setup\nInstructions\nDevice connection\ngeneral legal guidance',
       supportProblems:
-          'Anfragekanäle noch festlegen. Automatische Antworten: Nein. Menschliche Freigabe: Ja.',
+          'Inquiry channels still need to be defined. Automatic answers: No. Human approval: Yes.',
       sensitiveTopics:
-          'Medizinische, rechtliche und wirkungsbezogene Fragen; Heilung, Krankheiten, Diagnose, Therapieerfolg und Garantien.',
+          'Medical, legal and effect-related questions; healing, diseases, diagnosis, therapy success and guarantees.',
       hasSensitiveTopics: true,
     ),
     sourcesAndReviews: IntakeSourcesAndReviews(
       existingSources:
-          'FAQ\nPDFs\nAnleitungen\nVideos\nrechtliche Hinweise\nWebsite\nBewertungen',
+          'FAQ\nPDFs\nInstructions\nVideos\nLegal guidance\nWebsite\nReviews',
       hasMaterials: true,
-      materialDetails: 'FAQ\nPDF\nAnleitungen\nVideos\nrechtliche Hinweise',
+      materialDetails: 'FAQ\nPDF\nInstructions\nVideos\nLegal guidance',
       materialLocations: '',
       materialFreshness: '',
-      importantMaterials: 'FAQ\nAnleitungen\nrechtliche Hinweise',
+      importantMaterials: 'FAQ\nInstructions\nLegal guidance',
       materialsUsableForKnowledgeBase: true,
-      reviews:
-          'Bewertungen vorhanden; konkrete Plattformen und Links fehlen noch.',
+      reviews: 'Reviews exist; exact platforms and links are still missing.',
       reviewPlatforms: '',
       reviewLinksOrFiles: '',
       reviewTypes: '',
       hasReviews: true,
       socialMentions:
-          'Social Media vorhanden; konkrete Plattformen und Profil-Links fehlen noch.',
+          'Social media exists; exact platforms and profile links are still missing.',
       trustMaterial:
-          'Bewertungen und rechtliche Hinweise vorhanden, aber vor öffentlicher Nutzung prüfen.',
+          'Reviews and legal guidance exist, but must be reviewed before public use.',
       hasSocialMentions: true,
       hasTrustMaterial: true,
     ),
@@ -1457,31 +1442,31 @@ class MockData {
       advertisingChannels: '',
       approximateBudget: '',
       campaigns:
-          'Werbung über mehrere Kanäle; möglichst automatisierte Vorbereitung; einfacher neue Kunden erreichen.',
+          'Advertising across multiple channels; automated preparation where possible; easier customer acquisition.',
       futureAdChannels: '',
       channels:
-          'Social Media vorhanden. Konkrete Social-Media- und Werbekanäle noch festlegen.',
+          'Social media exists. Exact social media and advertising channels still need to be defined.',
       reachProblems:
-          'Einfacher neue Kunden erreichen\nWerbung für alle Kanäle vorbereitet bekommen',
+          'Reach new customers more easily\nPrepare advertising for all channels',
     ),
     goalsAndRisks: IntakeGoalsAndRisks(
       hasSensitiveTopics: true,
       sensitiveTopics:
-          'medizinische Fragen\nrechtliche Fragen\nWirkungsweise\nHeilung\nKrankheiten\nDiagnose\nTherapieerfolg\nGarantien',
+          'medical questions\nlegal questions\nmode of action\nhealing\ndiseases\ndiagnosis\ntherapy success\nguarantees',
       companyGoals:
-          'Kundenservice\nWissensdatenbank\nApp-Einrichtung\nMarketingvorbereitung\nAuftragsbearbeitung\nLead-Gewinnung',
+          'Customer service\nKnowledge base\nApp setup\nMarketing preparation\nOrder handling\nLead generation',
       shortTermPriorities:
-          'Kundenservice: 5 von 5\nWissensdatenbank: 5 von 5\nMarketing: Noch nicht bewertet\nWebsite: Noch nicht bewertet\nAutomatisierung: Noch nicht bewertet\nSonstiges: Noch nicht bewertet',
+          'Customer service: 5 out of 5\nKnowledge base: 5 out of 5\nMarketing: not rated yet\nWebsite: not rated yet\nAutomation: not rated yet\nOther: not rated yet',
       prohibitedStatements:
-          'Keine Heilversprechen\nKeine Diagnosen\nKeine Therapieerfolge\nKeine Garantien\nKeine ungeprüften Aussagen zur Aktivierung körpereigener Selbstheilungsprozesse',
+          'No healing promises\nNo diagnoses\nNo therapy success claims\nNo guarantees\nNo unchecked claims about activating the body’s self-healing processes',
       forbiddenClaims:
-          'Heilung\nKrankheiten behandeln\nDiagnose stellen\nTherapieerfolg garantieren\närztliche Behandlung ersetzen',
+          'Healing\nTreating diseases\nMaking diagnoses\nGuaranteeing therapy success\nReplacing medical treatment',
       botRestrictedTopics:
-          'medizinische Fragen\nrechtliche Fragen\nsicherheitskritische Nutzung\nwirkungsbezogene Fragen',
+          'medical questions\nlegal questions\nsafety-critical use\neffect-related questions',
       alwaysEscalateTopics:
-          'Heilung\nKrankheiten\nDiagnose\nTherapieerfolg\nGarantien\nrechtliche Einordnung',
+          'Healing\nDiseases\nDiagnosis\nTherapy success\nGuarantees\nLegal classification',
       legalRestrictions:
-          'Antworten dürfen nicht automatisch veröffentlicht oder versendet werden. Human Review ist für sensible Inhalte verpflichtend.',
+          'Answers must not be published or sent automatically. Human review is mandatory for sensitive content.',
     ),
   );
 
@@ -1495,56 +1480,54 @@ class MockData {
     basics: IntakeBasics(
       companyName: 'SchnurrPurr',
       shortDescription:
-          'Entspannungs-App und Komfortprodukte für ruhige Pausen im Alltag.',
-      industry: 'Entspannungs-App & Komfortprodukte',
-      country: 'Deutschland',
-      primaryLanguage: 'de',
+          'Relaxation app and comfort products for calm everyday breaks.',
+      industry: 'Relaxation app & comfort products',
+      country: 'Germany',
+      primaryLanguage: 'en',
       website: 'https://www.schnurrpurr.example',
       supportEmail: 'support@schnurrpurr.example',
     ),
     products: IntakeProducts(
       importantProducts: 'SchnurrPurr Relax App, Purr Pillow',
       mainProduct: 'SchnurrPurr Relax App',
-      explanationNeeded:
-          'App-Nutzung, Klangwelten, Pausenroutinen, Kissenpflege.',
-      priorityProducts: 'Relax App und Kissen-Komfortinformationen.',
+      explanationNeeded: 'App usage, soundscapes, break routines, pillow care.',
+      priorityProducts: 'Relax App and pillow comfort information.',
     ),
     targetGroups: IntakeTargetGroups(
       targetGroup:
-          'Menschen, die kurze entspannte Pausen und weiche Komfortprodukte suchen.',
+          'People looking for short relaxed breaks and soft comfort products.',
       marketType: 'B2C',
       problemSolved:
-          'Alltagspausen werden einfacher vorbereitet und angenehmer gestaltet.',
+          'Everyday breaks become easier to prepare and more pleasant.',
       customerBenefit:
-          'Ruhige Routinen und klare Produktinformationen ohne Gesundheitsversprechen.',
+          'Calm routines and clear product information without health promises.',
       differentiation:
-          'Freundlicher Ton, einfache Nutzung und Kombination aus App und Produkt.',
+          'Friendly tone, simple usage and a combination of app and product.',
     ),
     websiteAndSupport: IntakeWebsiteAndSupport(
-      importantPages: 'Website, Produktseite, Support, App-Hilfe',
+      importantPages: 'Website, product page, support, app help',
       frequentQuestions:
-          'App-Start, Timer, Klangwelten, Kissenpflege, Versand.',
-      supportProblems: 'Account, App-Erinnerungen, Pflegehinweise.',
-      sensitiveTopics:
-          'Stress, Schlaf, Therapie oder medizinische Wirkversprechen.',
+          'App start, timer, soundscapes, pillow care, shipping.',
+      supportProblems: 'Account, app reminders, care instructions.',
+      sensitiveTopics: 'Stress, sleep, therapy or medical effect claims.',
     ),
   );
 
   static final List<BusinessGoal> hbCureBusinessGoals = [
     BusinessGoal(
       id: 'hb-goal-support',
-      title: 'Kundenservice absichern',
+      title: 'Secure customer service',
       description:
-          'Kundenservice ist mit 5 von 5 priorisiert. Wiederkehrende Fragen '
-          'zu Anwendung, Bedienung, App-Einrichtung und Geräteverbindung sollen '
-          'vorbereitet, aber nicht automatisch veröffentlicht werden.',
+          'Customer service is prioritized as 5 out of 5. Recurring questions '
+          'about use, operation, app setup and device connection should be '
+          'prepared, but not published automatically.',
       priority: BusinessGoalPriority.high,
       startDate: DateTime(2025, 6, 1),
       targetDate: DateTime(2025, 9, 30),
       status: BusinessGoalStatus.inProgress,
-      owner: 'GF Klaus Semper',
+      owner: 'Managing Director Klaus Semper',
       comment:
-          'Human Review standardmäßig aktiv. Medizinische, rechtliche und wirkungsbezogene Fragen immer prüfen.',
+          'Human Review is active by default. Always review medical, legal and effect-related questions.',
       linkedAreas: [
         BusinessGoalArea.knowledgeBase,
         BusinessGoalArea.bot,
@@ -1554,17 +1537,17 @@ class MockData {
     ),
     BusinessGoal(
       id: 'hb-goal-knowledge',
-      title: 'Wissensbasis vervollständigen',
+      title: 'Complete the knowledge base',
       description:
-          'Wissensdatenbank ist mit 5 von 5 priorisiert. FAQ, PDFs, Anleitungen, '
-          'Videos und rechtliche Hinweise sollen strukturiert übernommen werden.',
+          'The knowledge base is prioritized as 5 out of 5. FAQ, PDFs, '
+          'instructions, videos and legal guidance should be imported in a structured way.',
       priority: BusinessGoalPriority.high,
       startDate: DateTime(2025, 6, 1),
       targetDate: DateTime(2025, 10, 15),
       status: BusinessGoalStatus.inProgress,
-      owner: 'GF Klaus Semper',
+      owner: 'Managing Director Klaus Semper',
       comment:
-          'Konkrete Inhalte fehlen teilweise; Platzhalter nicht als fertige Bot-Antworten verwenden.',
+          'Some concrete content is still missing; do not use placeholders as final bot answers.',
       linkedAreas: [
         BusinessGoalArea.knowledgeBase,
         BusinessGoalArea.sources,
@@ -1574,17 +1557,17 @@ class MockData {
     ),
     BusinessGoal(
       id: 'hb-goal-marketing',
-      title: 'Marketing vorbereiten',
+      title: 'Prepare marketing',
       description:
-          'Werbung und Marketinginhalte sollen für mehrere Kanäle vorbereitet '
-          'werden. Konkrete Kanäle und Budgets sind noch offen.',
+          'Advertising and marketing content should be prepared for multiple '
+          'channels. Exact channels and budgets are still open.',
       priority: BusinessGoalPriority.medium,
       startDate: DateTime(2025, 6, 1),
       targetDate: DateTime(2025, 11, 30),
       status: BusinessGoalStatus.planned,
       owner: 'Marketing / Human Review',
       comment:
-          'Keine automatische Veröffentlichung. Content-Freigabe und rechtliche Risikoprüfung bleiben Pflicht.',
+          'No automatic publishing. Content approval and legal risk review remain mandatory.',
       linkedAreas: [
         BusinessGoalArea.marketing,
         BusinessGoalArea.sources,
@@ -1597,15 +1580,16 @@ class MockData {
   static final List<BusinessGoal> schnurrPurrBusinessGoals = [
     BusinessGoal(
       id: 'sp-goal-customers',
-      title: 'Mehr Kunden gewinnen',
+      title: 'Win more customers',
       description:
-          'Website, Social Proof und einfache Inhalte für App und Komfortprodukte ausbauen.',
+          'Expand website, social proof and simple content for app and comfort products.',
       priority: BusinessGoalPriority.high,
       startDate: DateTime(2025, 6, 1),
       targetDate: DateTime(2025, 11, 30),
       status: BusinessGoalStatus.inProgress,
       owner: 'Demo Team',
-      comment: 'Trustmaterial und Marketing-Basics fehlen noch teilweise.',
+      comment:
+          'Trust material and marketing basics are still partially missing.',
       linkedAreas: [
         BusinessGoalArea.marketing,
         BusinessGoalArea.sources,
@@ -1615,9 +1599,9 @@ class MockData {
     ),
     BusinessGoal(
       id: 'sp-goal-bot',
-      title: 'Bot ausbauen',
+      title: 'Expand the bot',
       description:
-          'Supportfragen rund um App, Pausenroutinen und Kissenpflege sicher beantworten.',
+          'Safely answer support questions around app, break routines and pillow care.',
       priority: BusinessGoalPriority.medium,
       startDate: DateTime(2025, 6, 5),
       targetDate: DateTime(2025, 10, 31),

@@ -1,6 +1,17 @@
 # Universal Business Bot Platform
 
-Universal Business Bot Platform is a Flutter web MVP for small and medium-sized businesses that need one place to understand their company, structure operational knowledge, prioritize next actions, and safely test support automation.
+AI-powered multi-tenant business workspace for company knowledge, human-reviewed customer support, and business intelligence.
+
+## At a Glance
+
+- Multi-tenant workspaces
+- Human Review workflow
+- Knowledge Base
+- Company Intake
+- Business Audit
+- Business Intelligence
+- Local Demo Mode (no login)
+- Flutter Web + Cloudflare Pages
 
 Built during OpenAI Build Week with Codex as the primary engineering collaborator and GPT-5.6 as the intended reasoning layer for future recommendation and assistant workflows. The current submitted MVP keeps runtime decisions deterministic and local by design: no live OpenAI API calls are required to run the demo.
 
@@ -9,7 +20,7 @@ Built during OpenAI Build Week with Codex as the primary engineering collaborato
 - **Track fit:** Work and Productivity
 - **Primary user:** small and medium-sized business owners and operators
 - **Core idea:** a digital company companion that turns company memory into explainable next best actions
-- **Public demo:** add the deployed Cloudflare Pages URL in the Devpost submission
+- **Public demo:** https://universal-business-bot-platform.pages.dev/
 - **Repository:** `https://github.com/mexx-music/universal-business-bot-platform`
 - **Runtime AI:** not required for this MVP; deterministic local logic keeps the demo reproducible and safe
 - **Human-in-the-loop:** risky or low-confidence support questions are routed into Human Review instead of being blindly automated
@@ -76,6 +87,13 @@ Recommended judging path:
 6. Open Human Review and convert a review item into a Knowledge Base entry.
 7. Switch companies and confirm that demo data stays separated.
 
+## Demo Mode
+
+The public demo can be explored without login. Use the landing page, start the
+demo, and select either Healing and Balance GmbH or SchnurrPurr. Demo workspaces
+are isolated from each other and run on local demo data unless Supabase mode is
+explicitly configured for an authenticated environment.
+
 ## Not Included
 
 This MVP intentionally does not include:
@@ -108,6 +126,13 @@ The default local mode requires no login and no backend. It opens with local dem
 - Repository layer with local IndexedDB persistence (sembast) and in-memory fallback
 - Optional Supabase Auth via `supabase_flutter`
 - Supabase remote workspace reads and controlled CRUD writes behind the same repository interface
+
+## Supported Platforms
+
+The current MVP is optimized for Flutter Web on modern desktop browsers, with
+responsive support for tablet and smartphone widths. The Flutter codebase can be
+extended toward mobile and desktop targets later, but the Build Week demo should
+be evaluated in a browser.
 
 ## Local and Authenticated Modes
 

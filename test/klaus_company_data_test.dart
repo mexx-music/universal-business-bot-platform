@@ -17,10 +17,14 @@ void main() {
     expect(workspace.company.website, 'https://www.healing-balance.com');
     expect(workspace.company.supportEmail, 'semper@healing-balance.com');
     expect(workspace.company.supportPhone, '+43 660 6506900');
-    expect(workspace.company.industry, 'Gesundheit / Frequenztechnologie');
-    expect(workspace.company.description, contains('ergänzenden Anwendung'));
-    expect(workspace.company.description, contains('ersetzen keine'));
-    expect(workspace.company.internalNotes, contains('GF Klaus Semper'));
+    expect(workspace.company.industry, 'Health / frequency technology');
+    expect(workspace.company.primaryLanguage, 'en');
+    expect(workspace.company.description, contains('complementary use'));
+    expect(workspace.company.description, contains('do not replace'));
+    expect(
+      workspace.company.internalNotes,
+      contains('Managing Director Klaus Semper'),
+    );
   });
 
   test(
@@ -32,19 +36,19 @@ void main() {
 
       expect(
         session.goalsAndRisks.shortTermPriorities,
-        contains('Kundenservice: 5 von 5'),
+        contains('Customer service: 5 out of 5'),
       );
       expect(
         session.goalsAndRisks.shortTermPriorities,
-        contains('Wissensdatenbank: 5 von 5'),
+        contains('Knowledge base: 5 out of 5'),
       );
       expect(
         session.goalsAndRisks.shortTermPriorities,
-        contains('Marketing: Noch nicht bewertet'),
+        contains('Marketing: not rated yet'),
       );
       expect(
         session.goalsAndRisks.shortTermPriorities,
-        contains('Website: Noch nicht bewertet'),
+        contains('Website: not rated yet'),
       );
       expect(session.products.importantProducts, isEmpty);
       expect(session.products.priorityProducts, isEmpty);
@@ -59,7 +63,7 @@ void main() {
     expect(
       workspace.auditItems.any(
         (item) =>
-            item.title == 'Offene Unternehmensangaben' &&
+            item.title == 'Open company details' &&
             item.status == AuditItemStatus.missing &&
             item.priority == AuditPriority.high,
       ),
@@ -68,12 +72,12 @@ void main() {
     expect(
       workspace.sourceMaterials.any(
         (source) =>
-            source.title == 'Offene Unternehmensangaben' &&
+            source.title == 'Open company details' &&
             source.status == SourceMaterialStatus.newItem,
       ),
       isTrue,
     );
-    expect(workspace.company.internalNotes, contains('konkrete Anfragekanäle'));
+    expect(workspace.company.internalNotes, contains('exact inquiry channels'));
   });
 
   test('HB Cure keeps Human Review active for sensitive content', () {
@@ -86,7 +90,7 @@ void main() {
     expect(workspace.botConfiguration.escalateYellowRisk, isTrue);
     expect(
       workspace.botConfiguration.handoverMessage,
-      contains('menschlich geprüft'),
+      contains('human review'),
     );
   });
 
@@ -140,13 +144,13 @@ void main() {
 
     expect(
       workspace.marketingActions.map((action) => action.notes).join('\n'),
-      contains('Keine automatische Veröffentlichung'),
+      contains('No automatic publishing'),
     );
     expect(
       workspace.businessGoals.where(
         (goal) =>
             goal.priority == BusinessGoalPriority.high &&
-            goal.description.contains('5 von 5'),
+            goal.description.contains('5 out of 5'),
       ),
       hasLength(2),
     );

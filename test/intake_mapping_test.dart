@@ -76,7 +76,8 @@ void main() {
     final state = AppState();
     state.updateIntakeProducts(
       const IntakeProducts(
-        importantProducts: 'HB Cure App\nUnique Intake Product',
+        importantProducts:
+            'Frequency technology with app support\nUnique Intake Product',
         mainProduct: 'Unique Intake Product',
       ),
     );
@@ -91,6 +92,15 @@ void main() {
     expect(matches, 1);
     expect(
       state.products.where((product) => product.name == 'HB Cure App').length,
+      0,
+    );
+    expect(
+      state.products
+          .where(
+            (product) =>
+                product.name == 'Frequency technology with app support',
+          )
+          .length,
       1,
     );
   });
