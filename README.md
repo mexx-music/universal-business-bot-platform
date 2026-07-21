@@ -25,6 +25,18 @@ Built during OpenAI Build Week with Codex as the primary engineering collaborato
 - **Runtime AI:** not required for this MVP; deterministic local logic keeps the demo reproducible and safe
 - **Human-in-the-loop:** risky or low-confidence support questions are routed into Human Review instead of being blindly automated
 
+## Build Week Development
+
+This repository had an early Flutter/PWA foundation before the official
+submission period started. The actual platform shape was developed during
+OpenAI Build Week with Codex and GPT-5.6 guiding architecture, implementation,
+and review decisions. The main development window was July 14-21, 2026, with
+more than 20 commits in that period. Core capabilities added or hardened during
+that window include multi-tenant workspaces, Public Intake, Demo Mode, Business
+Intelligence, the Supabase foundation, Cloudflare deployment, and competition
+documentation. The current submission reflects that Build Week work rather than
+the pre-existing starter foundation alone.
+
 ## Idea
 
 The project explores a platform layer for three connected areas:
