@@ -38,6 +38,12 @@ class CommunityMember {
     required this.disclosureRequirements,
     required this.status,
     this.completedTaskCount = 0,
+    this.preferredActions = const [],
+    this.supportedDomains = const [HumanIntelligenceDomain.communityEngagement],
+    this.excludedTopics = const [],
+    this.excludedCompanyIds = const [],
+    this.profileAnalysisConsent = true,
+    this.isAvailable = true,
   });
 
   final String id;
@@ -81,6 +87,25 @@ class CommunityMember {
 
   final MemberStatus status;
   final int completedTaskCount;
+
+  /// Reaction types the member prefers to perform.
+  final List<CommunityActionType> preferredActions;
+
+  /// Human Intelligence Network domains the member is willing to work in.
+  final List<HumanIntelligenceDomain> supportedDomains;
+
+  /// Topics the member never wants tasks about (hard exclusion in matching).
+  final List<String> excludedTopics;
+
+  /// Company ids the member never wants tasks for (hard exclusion).
+  final List<String> excludedCompanyIds;
+
+  /// Whether the member consented to analysis of their public activity. When
+  /// false, matching must NOT use [publicActivityTopics].
+  final bool profileAnalysisConsent;
+
+  /// Whether the member is currently available for tasks (hard gate).
+  final bool isAvailable;
 
   Set<CommunityPlatform> get platforms =>
       platformProfiles.map((p) => p.platform).toSet();

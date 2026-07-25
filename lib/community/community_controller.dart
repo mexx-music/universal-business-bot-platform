@@ -29,8 +29,19 @@ class CommunityController extends ChangeNotifier {
 
   CommunityMember? member(String id) => _repository.findMember(id);
 
+  /// All members ranked against a content item (eligible first).
   List<ProfileMatch> matchesForContent(String contentId) =>
       _repository.matchesForContent(contentId);
+
+  /// Only eligible matches for a content item — used where we suggest people.
+  List<ProfileMatch> eligibleMatchesForContent(String contentId) => _repository
+      .matchesForContent(contentId)
+      .where((m) => m.eligible)
+      .toList();
+
+  /// All content ranked against a member (eligible first).
+  List<ProfileMatch> matchesForMember(String memberId) =>
+      _repository.matchesForMember(memberId);
 
   List<CommunityTask> tasksForContent(String contentId) =>
       _repository.tasksForContent(contentId);

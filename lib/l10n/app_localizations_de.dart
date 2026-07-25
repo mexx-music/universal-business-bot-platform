@@ -3943,4 +3943,224 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get communityActionSkip => 'Überspringen';
+
+  @override
+  String get navCommunityMembers => 'Community-Mitglieder';
+
+  @override
+  String get communityNavGroupPlatform => 'Plattform';
+
+  @override
+  String get communityNavGroupCommunity => 'Community';
+
+  @override
+  String get communityMembersTitle => 'Community-Mitglieder';
+
+  @override
+  String get communityMembersSubtitle =>
+      'Ein globaler, firmenunabhängiger Pool echter Menschen. Freiwillige Teilnahme, eigene Entscheidung.';
+
+  @override
+  String get communityMembersSearchHint => 'Mitglied suchen …';
+
+  @override
+  String get communityMembersEmpty => 'Keine Mitglieder für diese Filter.';
+
+  @override
+  String get communityFilterTopic => 'Thema';
+
+  @override
+  String get communityFilterDomain => 'Bereich';
+
+  @override
+  String get communityMemberQuality => 'Qualität';
+
+  @override
+  String get communityMemberAuthenticity => 'Authentizitätssignal';
+
+  @override
+  String get communityMemberCompletedTasks => 'Erledigte Aufgaben';
+
+  @override
+  String get communityMemberVerified => 'Verifiziert';
+
+  @override
+  String get communityMemberNotVerified => 'Nicht verifiziert';
+
+  @override
+  String get communityMemberAvailable => 'Verfügbar';
+
+  @override
+  String get communityMemberUnavailable => 'Zurzeit nicht verfügbar';
+
+  @override
+  String get communityMemberConsentGranted => 'Profilanalyse erlaubt';
+
+  @override
+  String get communityMemberConsentMissing => 'Profilanalyse nicht erlaubt';
+
+  @override
+  String get communityMemberLanguages => 'Sprachen';
+
+  @override
+  String get communityMemberCountry => 'Land';
+
+  @override
+  String get communityMemberInterests => 'Interessen';
+
+  @override
+  String get communityMemberExperience => 'Erfahrungskategorien';
+
+  @override
+  String get communityMemberPlatforms => 'Plattformprofile';
+
+  @override
+  String get communityMemberPublicTopics => 'Öffentlich besprochene Themen';
+
+  @override
+  String get communityMemberPreferredActions => 'Bevorzugte Aufgabenarten';
+
+  @override
+  String get communityMemberExcludedTopics => 'Ausgeschlossene Themen';
+
+  @override
+  String get communityMemberExcludedCompanies => 'Ausgeschlossene Firmen';
+
+  @override
+  String get communityMemberConsentStatus => 'Einwilligungsstatus';
+
+  @override
+  String get communityMemberAvailability => 'Verfügbarkeit';
+
+  @override
+  String get communityMemberDomains => 'Mögliche Bereiche';
+
+  @override
+  String get communityMemberMatchesTitle => 'Passende Beiträge';
+
+  @override
+  String get communityMemberNone => '—';
+
+  @override
+  String get communityMemberStatusActive => 'Aktiv';
+
+  @override
+  String get communityMemberStatusPending => 'Ausstehend';
+
+  @override
+  String get communityMemberStatusPaused => 'Pausiert';
+
+  @override
+  String get communityMemberStatusBlocked => 'Gesperrt';
+
+  @override
+  String get communityDomainCommunityEngagement => 'Community-Beteiligung';
+
+  @override
+  String get communityDomainProductTest => 'Produkttest';
+
+  @override
+  String get communityDomainIdeaResearch => 'Ideenforschung';
+
+  @override
+  String get communityDomainTranslation => 'Übersetzung';
+
+  @override
+  String get communityDomainOther => 'Sonstiges';
+
+  @override
+  String get communityFactorLanguage => 'Sprache';
+
+  @override
+  String get communityFactorCountry => 'Land';
+
+  @override
+  String get communityFactorTopic => 'Thema';
+
+  @override
+  String get communityFactorExperience => 'Erfahrung';
+
+  @override
+  String get communityFactorPlatform => 'Plattform';
+
+  @override
+  String get communityFactorPublicActivity => 'Öffentliche Aktivität';
+
+  @override
+  String get communityFactorPreferredAction => 'Bevorzugte Aktion';
+
+  @override
+  String get communityWarningNoExperience =>
+      'Keine eigene Erfahrung zu diesem Thema angegeben';
+
+  @override
+  String get communityWarningNotOnPlatform =>
+      'Nicht auf dieser Plattform aktiv';
+
+  @override
+  String get communityWarningLowAuthenticity =>
+      'Niedrigeres Authentizitätssignal';
+
+  @override
+  String get communityWarningProfileAnalysisNoConsent =>
+      'Profilanalyse ohne Einwilligung nicht möglich – öffentliche Aktivität wird nicht verwendet';
+
+  @override
+  String get communityBlockCompanyExcluded => 'Firma ausgeschlossen';
+
+  @override
+  String get communityBlockTopicExcluded => 'Thema ausgeschlossen';
+
+  @override
+  String get communityBlockUnavailable => 'Aktuell nicht verfügbar';
+
+  @override
+  String get communityBlockAccountBlocked => 'Konto gesperrt';
+
+  @override
+  String get communityBlockDomainUnsupported =>
+      'Bereich wird nicht unterstützt';
+
+  @override
+  String get communityMatchingTitle => 'Matching-Ansicht';
+
+  @override
+  String get communityMatchingFromContent => 'Ausgangspunkt: Beitrag';
+
+  @override
+  String get communityMatchingFromMember => 'Ausgangspunkt: Mitglied';
+
+  @override
+  String get communityMatchComponents => 'Score-Komponenten';
+
+  @override
+  String get communityMatchWarningsTitle => 'Hinweise';
+
+  @override
+  String get communityMatchBlockedTitle => 'Ausgeschlossen';
+
+  @override
+  String get communityMatchPossibleActions => 'Mögliche Reaktionsarten';
+
+  @override
+  String get communityMatchNoAssignNote =>
+      'Kein automatisches Zuweisen – ein Mensch entscheidet.';
+
+  @override
+  String get communityMatchEligible => 'Für Zuweisung geeignet';
+
+  @override
+  String get communityMatchIneligible => 'Nicht für Zuweisung geeignet';
+
+  @override
+  String get communityViewMatching => 'Matching-Ansicht öffnen';
+
+  @override
+  String get communityViewProfile => 'Profil ansehen';
+
+  @override
+  String get communityViewContent => 'Beitrag ansehen';
+
+  @override
+  String get communityMatchingEmpty => 'Keine Bewertung verfügbar.';
 }

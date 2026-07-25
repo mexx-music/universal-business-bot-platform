@@ -1,4 +1,5 @@
 import 'community_demo_data.dart';
+import 'community_matching_service.dart';
 import 'community_repository.dart';
 import 'models/community_member.dart';
 import 'models/community_task.dart';
@@ -6,29 +7,30 @@ import 'models/discovered_content.dart';
 import 'models/human_action_report.dart';
 import 'models/profile_match.dart';
 
-/// In-memory [CommunityRepository] backed by fictional demo data.
+/// In-memory [CommunityRepository] backed by fictional demo data. Matches are
+/// computed by the deterministic [CommunityMatchingService], never stored by
+/// hand — so scores stay explainable and consistent.
 ///
-/// CR-1 runs entirely locally: no APIs, no scraping, no persistence, nothing
-/// published. This mirrors the maturity of most other entities in the app,
-/// which are also local-first today.
+/// CR-2 remains entirely local and read-only: no APIs, no scraping, no
+/// persistence, nothing published.
 class LocalCommunityRepository implements CommunityRepository {
   LocalCommunityRepository({
     List<DiscoveredContent>? discoveredContent,
     List<CommunityMember>? members,
-    List<ProfileMatch>? matches,
     List<CommunityTask>? tasks,
     List<HumanActionReport>? reports,
+    CommunityMatchingService matchingService = const CommunityMatchingService(),
   }) : _discoveredContent = discoveredContent ?? CommunityDemoData.content(),
        _members = members ?? CommunityDemoData.members(),
-       _matches = matches ?? CommunityDemoData.matches(),
        _tasks = tasks ?? CommunityDemoData.tasks(),
-       _reports = reports ?? CommunityDemoData.reports();
+       _reports = reports ?? CommunityDemoData.reports(),
+       _matching = matchingService;
 
   final List<DiscoveredContent> _discoveredContent;
   final List<CommunityMember> _members;
-  final List<ProfileMatch> _matches;
   final List<CommunityTask> _tasks;
   final List<HumanActionReport> _reports;
+  final CommunityMatchingService _matching;
 
   @override
   List<DiscoveredContent> get discoveredContent =>
@@ -36,9 +38,6 @@ class LocalCommunityRepository implements CommunityRepository {
 
   @override
   List<CommunityMember> get members => List.unmodifiable(_members);
-
-  @override
-  List<ProfileMatch> get matches => List.unmodifiable(_matches);
 
   @override
   List<CommunityTask> get tasks => List.unmodifiable(_tasks);
@@ -64,9 +63,16 @@ class LocalCommunityRepository implements CommunityRepository {
 
   @override
   List<ProfileMatch> matchesForContent(String contentId) {
-    final result = _matches.where((m) => m.contentId == contentId).toList()
-      ..sort((a, b) => b.overallMatchScore.compareTo(a.overallMatchScore));
-    return result;
+    final content = findContent(contentId);
+    if (content == null) return const [];
+    return _matching.matchContent(content, _members);
+  }
+
+  @override
+  List<ProfileMatch> matchesForMember(String memberId) {
+    final member = findMember(memberId);
+    if (member == null) return const [];
+    return _matching.matchMember(member, _discoveredContent);
   }
 
   @override

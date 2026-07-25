@@ -54,7 +54,6 @@ void main() {
   group('Demo data integrity', () {
     final content = CommunityDemoData.content();
     final members = CommunityDemoData.members();
-    final matches = CommunityDemoData.matches();
     final tasks = CommunityDemoData.tasks();
     final reports = CommunityDemoData.reports();
 
@@ -110,15 +109,11 @@ void main() {
       }
     });
 
-    test('references are consistent (matches, tasks, reports)', () {
+    test('references are consistent (tasks, reports)', () {
       final contentIds = {for (final c in content) c.id};
       final memberIds = {for (final m in members) m.id};
       final taskIds = {for (final t in tasks) t.id};
 
-      for (final m in matches) {
-        expect(contentIds, contains(m.contentId));
-        expect(memberIds, contains(m.memberId));
-      }
       for (final t in tasks) {
         expect(contentIds, contains(t.contentId));
         if (t.assignedMemberId != null) {
@@ -132,28 +127,42 @@ void main() {
     });
 
     test('member pool is company-independent (spans multiple companies)', () {
-      // The same demo data serves several companies; members carry no company.
       final companyIds = {for (final c in content) c.companyId};
       expect(companyIds.length, greaterThan(1));
-      // Members reference no company field at all — verified structurally by
-      // the fact that matches from different companies reuse the same pool.
-      final companiesWithMatches = {
-        for (final m in matches)
-          content.firstWhere((c) => c.id == m.contentId).companyId,
-      };
-      expect(companiesWithMatches.length, greaterThan(1));
+      // The same member can be matched to content from different companies —
+      // proving the pool is not owned by any single company.
+      final repo = LocalCommunityRepository();
+      final byMemberCompanies = <String, Set<String>>{};
+      for (final c in content) {
+        for (final m in repo.matchesForContent(c.id)) {
+          byMemberCompanies.putIfAbsent(m.memberId, () => {}).add(c.companyId);
+        }
+      }
+      expect(
+        byMemberCompanies.values.any((companies) => companies.length > 1),
+        isTrue,
+      );
     });
   });
 
   group('LocalCommunityRepository', () {
-    test('matchesForContent is sorted by score descending', () {
+    test('matchesForContent lists eligible first, score descending', () {
       final repo = LocalCommunityRepository();
       final matches = repo.matchesForContent('dc-1');
       expect(matches, isNotEmpty);
-      for (var i = 1; i < matches.length; i++) {
+      // All eligible come before any ineligible.
+      final firstIneligible = matches.indexWhere((m) => !m.eligible);
+      if (firstIneligible != -1) {
+        for (var i = firstIneligible; i < matches.length; i++) {
+          expect(matches[i].eligible, isFalse);
+        }
+      }
+      // Scores descending within the eligible sublist.
+      final eligible = matches.where((m) => m.eligible).toList();
+      for (var i = 1; i < eligible.length; i++) {
         expect(
-          matches[i - 1].overallMatchScore,
-          greaterThanOrEqualTo(matches[i].overallMatchScore),
+          eligible[i - 1].overallMatchScore,
+          greaterThanOrEqualTo(eligible[i].overallMatchScore),
         );
       }
     });

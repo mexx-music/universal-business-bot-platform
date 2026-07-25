@@ -100,6 +100,11 @@ const _navItems = [
     selectedIcon: Icons.radar,
     path: '/community',
   ),
+  _NavItem(
+    icon: Icons.groups_outlined,
+    selectedIcon: Icons.groups,
+    path: '/community-members',
+  ),
 ];
 
 int _indexFromLocation(String location) {
@@ -118,6 +123,8 @@ int _indexFromLocation(String location) {
   if (location.startsWith('/bot-settings')) return 12;
   if (location.startsWith('/sources')) return 13;
   if (location.startsWith('/review')) return 14;
+  // Members must be checked before '/community' since it shares the prefix.
+  if (location.startsWith('/community-members')) return 16;
   if (location.startsWith('/community')) return 15;
   return 0;
 }
@@ -139,6 +146,7 @@ List<String> _navLabels(AppLocalizations l) => [
   l.navSources,
   l.navReview,
   l.navCommunityRadar,
+  l.navCommunityMembers,
 ];
 
 class AppShell extends StatelessWidget {
@@ -334,6 +342,7 @@ class _DesktopSidebar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final l = AppLocalizations.of(context)!;
     final width = extended ? 256.0 : 80.0;
 
     return Material(
@@ -349,7 +358,13 @@ class _DesktopSidebar extends StatelessWidget {
                 padding: const EdgeInsets.only(bottom: 12),
                 child: header,
               ),
-              for (var i = 0; i < _navItems.length; i++)
+              for (var i = 0; i < _navItems.length; i++) ...[
+                // Start of the visually grouped Community section.
+                if (_navItems[i].path == '/community')
+                  _SidebarSectionHeader(
+                    extended: extended,
+                    label: l.communityNavGroupCommunity,
+                  ),
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 2),
                   child: _SidebarNavItem(
@@ -361,9 +376,47 @@ class _DesktopSidebar extends StatelessWidget {
                     onTap: () => onDestinationSelected(i),
                   ),
                 ),
+              ],
             ],
           ),
         ),
+      ),
+    );
+  }
+}
+
+/// Group header inside the sidebar: a labelled divider in extended mode, a
+/// plain divider in compact mode.
+class _SidebarSectionHeader extends StatelessWidget {
+  final bool extended;
+  final String label;
+
+  const _SidebarSectionHeader({required this.extended, required this.label});
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    if (!extended) {
+      return const Padding(
+        padding: EdgeInsets.symmetric(vertical: 8, horizontal: 12),
+        child: Divider(height: 1),
+      );
+    }
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(14, 16, 14, 6),
+      child: Row(
+        children: [
+          Text(
+            label.toUpperCase(),
+            style: theme.textTheme.labelSmall?.copyWith(
+              color: theme.colorScheme.onSurfaceVariant,
+              fontWeight: FontWeight.bold,
+              letterSpacing: 0.6,
+            ),
+          ),
+          const SizedBox(width: 8),
+          const Expanded(child: Divider(height: 1)),
+        ],
       ),
     );
   }

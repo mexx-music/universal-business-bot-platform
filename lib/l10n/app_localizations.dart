@@ -7129,6 +7129,432 @@ abstract class AppLocalizations {
   /// In de, this message translates to:
   /// **'Überspringen'**
   String get communityActionSkip;
+
+  /// No description provided for @navCommunityMembers.
+  ///
+  /// In de, this message translates to:
+  /// **'Community-Mitglieder'**
+  String get navCommunityMembers;
+
+  /// No description provided for @communityNavGroupPlatform.
+  ///
+  /// In de, this message translates to:
+  /// **'Plattform'**
+  String get communityNavGroupPlatform;
+
+  /// No description provided for @communityNavGroupCommunity.
+  ///
+  /// In de, this message translates to:
+  /// **'Community'**
+  String get communityNavGroupCommunity;
+
+  /// No description provided for @communityMembersTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Community-Mitglieder'**
+  String get communityMembersTitle;
+
+  /// No description provided for @communityMembersSubtitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Ein globaler, firmenunabhängiger Pool echter Menschen. Freiwillige Teilnahme, eigene Entscheidung.'**
+  String get communityMembersSubtitle;
+
+  /// No description provided for @communityMembersSearchHint.
+  ///
+  /// In de, this message translates to:
+  /// **'Mitglied suchen …'**
+  String get communityMembersSearchHint;
+
+  /// No description provided for @communityMembersEmpty.
+  ///
+  /// In de, this message translates to:
+  /// **'Keine Mitglieder für diese Filter.'**
+  String get communityMembersEmpty;
+
+  /// No description provided for @communityFilterTopic.
+  ///
+  /// In de, this message translates to:
+  /// **'Thema'**
+  String get communityFilterTopic;
+
+  /// No description provided for @communityFilterDomain.
+  ///
+  /// In de, this message translates to:
+  /// **'Bereich'**
+  String get communityFilterDomain;
+
+  /// No description provided for @communityMemberQuality.
+  ///
+  /// In de, this message translates to:
+  /// **'Qualität'**
+  String get communityMemberQuality;
+
+  /// No description provided for @communityMemberAuthenticity.
+  ///
+  /// In de, this message translates to:
+  /// **'Authentizitätssignal'**
+  String get communityMemberAuthenticity;
+
+  /// No description provided for @communityMemberCompletedTasks.
+  ///
+  /// In de, this message translates to:
+  /// **'Erledigte Aufgaben'**
+  String get communityMemberCompletedTasks;
+
+  /// No description provided for @communityMemberVerified.
+  ///
+  /// In de, this message translates to:
+  /// **'Verifiziert'**
+  String get communityMemberVerified;
+
+  /// No description provided for @communityMemberNotVerified.
+  ///
+  /// In de, this message translates to:
+  /// **'Nicht verifiziert'**
+  String get communityMemberNotVerified;
+
+  /// No description provided for @communityMemberAvailable.
+  ///
+  /// In de, this message translates to:
+  /// **'Verfügbar'**
+  String get communityMemberAvailable;
+
+  /// No description provided for @communityMemberUnavailable.
+  ///
+  /// In de, this message translates to:
+  /// **'Zurzeit nicht verfügbar'**
+  String get communityMemberUnavailable;
+
+  /// No description provided for @communityMemberConsentGranted.
+  ///
+  /// In de, this message translates to:
+  /// **'Profilanalyse erlaubt'**
+  String get communityMemberConsentGranted;
+
+  /// No description provided for @communityMemberConsentMissing.
+  ///
+  /// In de, this message translates to:
+  /// **'Profilanalyse nicht erlaubt'**
+  String get communityMemberConsentMissing;
+
+  /// No description provided for @communityMemberLanguages.
+  ///
+  /// In de, this message translates to:
+  /// **'Sprachen'**
+  String get communityMemberLanguages;
+
+  /// No description provided for @communityMemberCountry.
+  ///
+  /// In de, this message translates to:
+  /// **'Land'**
+  String get communityMemberCountry;
+
+  /// No description provided for @communityMemberInterests.
+  ///
+  /// In de, this message translates to:
+  /// **'Interessen'**
+  String get communityMemberInterests;
+
+  /// No description provided for @communityMemberExperience.
+  ///
+  /// In de, this message translates to:
+  /// **'Erfahrungskategorien'**
+  String get communityMemberExperience;
+
+  /// No description provided for @communityMemberPlatforms.
+  ///
+  /// In de, this message translates to:
+  /// **'Plattformprofile'**
+  String get communityMemberPlatforms;
+
+  /// No description provided for @communityMemberPublicTopics.
+  ///
+  /// In de, this message translates to:
+  /// **'Öffentlich besprochene Themen'**
+  String get communityMemberPublicTopics;
+
+  /// No description provided for @communityMemberPreferredActions.
+  ///
+  /// In de, this message translates to:
+  /// **'Bevorzugte Aufgabenarten'**
+  String get communityMemberPreferredActions;
+
+  /// No description provided for @communityMemberExcludedTopics.
+  ///
+  /// In de, this message translates to:
+  /// **'Ausgeschlossene Themen'**
+  String get communityMemberExcludedTopics;
+
+  /// No description provided for @communityMemberExcludedCompanies.
+  ///
+  /// In de, this message translates to:
+  /// **'Ausgeschlossene Firmen'**
+  String get communityMemberExcludedCompanies;
+
+  /// No description provided for @communityMemberConsentStatus.
+  ///
+  /// In de, this message translates to:
+  /// **'Einwilligungsstatus'**
+  String get communityMemberConsentStatus;
+
+  /// No description provided for @communityMemberAvailability.
+  ///
+  /// In de, this message translates to:
+  /// **'Verfügbarkeit'**
+  String get communityMemberAvailability;
+
+  /// No description provided for @communityMemberDomains.
+  ///
+  /// In de, this message translates to:
+  /// **'Mögliche Bereiche'**
+  String get communityMemberDomains;
+
+  /// No description provided for @communityMemberMatchesTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Passende Beiträge'**
+  String get communityMemberMatchesTitle;
+
+  /// No description provided for @communityMemberNone.
+  ///
+  /// In de, this message translates to:
+  /// **'—'**
+  String get communityMemberNone;
+
+  /// No description provided for @communityMemberStatusActive.
+  ///
+  /// In de, this message translates to:
+  /// **'Aktiv'**
+  String get communityMemberStatusActive;
+
+  /// No description provided for @communityMemberStatusPending.
+  ///
+  /// In de, this message translates to:
+  /// **'Ausstehend'**
+  String get communityMemberStatusPending;
+
+  /// No description provided for @communityMemberStatusPaused.
+  ///
+  /// In de, this message translates to:
+  /// **'Pausiert'**
+  String get communityMemberStatusPaused;
+
+  /// No description provided for @communityMemberStatusBlocked.
+  ///
+  /// In de, this message translates to:
+  /// **'Gesperrt'**
+  String get communityMemberStatusBlocked;
+
+  /// No description provided for @communityDomainCommunityEngagement.
+  ///
+  /// In de, this message translates to:
+  /// **'Community-Beteiligung'**
+  String get communityDomainCommunityEngagement;
+
+  /// No description provided for @communityDomainProductTest.
+  ///
+  /// In de, this message translates to:
+  /// **'Produkttest'**
+  String get communityDomainProductTest;
+
+  /// No description provided for @communityDomainIdeaResearch.
+  ///
+  /// In de, this message translates to:
+  /// **'Ideenforschung'**
+  String get communityDomainIdeaResearch;
+
+  /// No description provided for @communityDomainTranslation.
+  ///
+  /// In de, this message translates to:
+  /// **'Übersetzung'**
+  String get communityDomainTranslation;
+
+  /// No description provided for @communityDomainOther.
+  ///
+  /// In de, this message translates to:
+  /// **'Sonstiges'**
+  String get communityDomainOther;
+
+  /// No description provided for @communityFactorLanguage.
+  ///
+  /// In de, this message translates to:
+  /// **'Sprache'**
+  String get communityFactorLanguage;
+
+  /// No description provided for @communityFactorCountry.
+  ///
+  /// In de, this message translates to:
+  /// **'Land'**
+  String get communityFactorCountry;
+
+  /// No description provided for @communityFactorTopic.
+  ///
+  /// In de, this message translates to:
+  /// **'Thema'**
+  String get communityFactorTopic;
+
+  /// No description provided for @communityFactorExperience.
+  ///
+  /// In de, this message translates to:
+  /// **'Erfahrung'**
+  String get communityFactorExperience;
+
+  /// No description provided for @communityFactorPlatform.
+  ///
+  /// In de, this message translates to:
+  /// **'Plattform'**
+  String get communityFactorPlatform;
+
+  /// No description provided for @communityFactorPublicActivity.
+  ///
+  /// In de, this message translates to:
+  /// **'Öffentliche Aktivität'**
+  String get communityFactorPublicActivity;
+
+  /// No description provided for @communityFactorPreferredAction.
+  ///
+  /// In de, this message translates to:
+  /// **'Bevorzugte Aktion'**
+  String get communityFactorPreferredAction;
+
+  /// No description provided for @communityWarningNoExperience.
+  ///
+  /// In de, this message translates to:
+  /// **'Keine eigene Erfahrung zu diesem Thema angegeben'**
+  String get communityWarningNoExperience;
+
+  /// No description provided for @communityWarningNotOnPlatform.
+  ///
+  /// In de, this message translates to:
+  /// **'Nicht auf dieser Plattform aktiv'**
+  String get communityWarningNotOnPlatform;
+
+  /// No description provided for @communityWarningLowAuthenticity.
+  ///
+  /// In de, this message translates to:
+  /// **'Niedrigeres Authentizitätssignal'**
+  String get communityWarningLowAuthenticity;
+
+  /// No description provided for @communityWarningProfileAnalysisNoConsent.
+  ///
+  /// In de, this message translates to:
+  /// **'Profilanalyse ohne Einwilligung nicht möglich – öffentliche Aktivität wird nicht verwendet'**
+  String get communityWarningProfileAnalysisNoConsent;
+
+  /// No description provided for @communityBlockCompanyExcluded.
+  ///
+  /// In de, this message translates to:
+  /// **'Firma ausgeschlossen'**
+  String get communityBlockCompanyExcluded;
+
+  /// No description provided for @communityBlockTopicExcluded.
+  ///
+  /// In de, this message translates to:
+  /// **'Thema ausgeschlossen'**
+  String get communityBlockTopicExcluded;
+
+  /// No description provided for @communityBlockUnavailable.
+  ///
+  /// In de, this message translates to:
+  /// **'Aktuell nicht verfügbar'**
+  String get communityBlockUnavailable;
+
+  /// No description provided for @communityBlockAccountBlocked.
+  ///
+  /// In de, this message translates to:
+  /// **'Konto gesperrt'**
+  String get communityBlockAccountBlocked;
+
+  /// No description provided for @communityBlockDomainUnsupported.
+  ///
+  /// In de, this message translates to:
+  /// **'Bereich wird nicht unterstützt'**
+  String get communityBlockDomainUnsupported;
+
+  /// No description provided for @communityMatchingTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Matching-Ansicht'**
+  String get communityMatchingTitle;
+
+  /// No description provided for @communityMatchingFromContent.
+  ///
+  /// In de, this message translates to:
+  /// **'Ausgangspunkt: Beitrag'**
+  String get communityMatchingFromContent;
+
+  /// No description provided for @communityMatchingFromMember.
+  ///
+  /// In de, this message translates to:
+  /// **'Ausgangspunkt: Mitglied'**
+  String get communityMatchingFromMember;
+
+  /// No description provided for @communityMatchComponents.
+  ///
+  /// In de, this message translates to:
+  /// **'Score-Komponenten'**
+  String get communityMatchComponents;
+
+  /// No description provided for @communityMatchWarningsTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Hinweise'**
+  String get communityMatchWarningsTitle;
+
+  /// No description provided for @communityMatchBlockedTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Ausgeschlossen'**
+  String get communityMatchBlockedTitle;
+
+  /// No description provided for @communityMatchPossibleActions.
+  ///
+  /// In de, this message translates to:
+  /// **'Mögliche Reaktionsarten'**
+  String get communityMatchPossibleActions;
+
+  /// No description provided for @communityMatchNoAssignNote.
+  ///
+  /// In de, this message translates to:
+  /// **'Kein automatisches Zuweisen – ein Mensch entscheidet.'**
+  String get communityMatchNoAssignNote;
+
+  /// No description provided for @communityMatchEligible.
+  ///
+  /// In de, this message translates to:
+  /// **'Für Zuweisung geeignet'**
+  String get communityMatchEligible;
+
+  /// No description provided for @communityMatchIneligible.
+  ///
+  /// In de, this message translates to:
+  /// **'Nicht für Zuweisung geeignet'**
+  String get communityMatchIneligible;
+
+  /// No description provided for @communityViewMatching.
+  ///
+  /// In de, this message translates to:
+  /// **'Matching-Ansicht öffnen'**
+  String get communityViewMatching;
+
+  /// No description provided for @communityViewProfile.
+  ///
+  /// In de, this message translates to:
+  /// **'Profil ansehen'**
+  String get communityViewProfile;
+
+  /// No description provided for @communityViewContent.
+  ///
+  /// In de, this message translates to:
+  /// **'Beitrag ansehen'**
+  String get communityViewContent;
+
+  /// No description provided for @communityMatchingEmpty.
+  ///
+  /// In de, this message translates to:
+  /// **'Keine Bewertung verfügbar.'**
+  String get communityMatchingEmpty;
 }
 
 class _AppLocalizationsDelegate

@@ -3,15 +3,16 @@ import 'package:go_router/go_router.dart';
 
 import '../../community/community_controller.dart';
 import '../../community/community_labels.dart';
-import '../../community/models/community_member.dart';
-import '../../community/models/profile_match.dart';
+import '../../data/app_state.dart';
 import '../../l10n/app_localizations.dart';
 import '../../l10n/label_helpers.dart';
 import '../../models/knowledge_entry.dart' show RiskLevelX;
+import 'match_breakdown_card.dart';
 
 /// Read-only detail view of a discovered content item: original text, AI
-/// analysis, risks, permitted/prohibited reactions and the matching community
-/// members. No actions are performed here in CR-1.
+/// analysis, risks, permitted/prohibited reactions, related knowledge (titles
+/// resolved read-only from the workspace) and the matching community members.
+/// No actions are performed here.
 class ContentDetailScreen extends StatelessWidget {
   final String contentId;
 
@@ -36,7 +37,7 @@ class ContentDetailScreen extends StatelessWidget {
       );
     }
 
-    final matches = controller.matchesForContent(contentId);
+    final matches = controller.eligibleMatchesForContent(contentId);
 
     return Scaffold(
       body: Center(
@@ -196,8 +197,13 @@ class ContentDetailScreen extends StatelessWidget {
                         children: [
                           for (final id in content.relatedKnowledgeEntryIds)
                             Chip(
-                              avatar: const Icon(Icons.link, size: 14),
-                              label: Text(id),
+                              avatar: const Icon(
+                                Icons.menu_book_outlined,
+                                size: 14,
+                              ),
+                              label: Text(
+                                _knowledgeTitle(context, content.companyId, id),
+                              ),
                               visualDensity: VisualDensity.compact,
                               materialTapTargetSize:
                                   MaterialTapTargetSize.shrinkWrap,
@@ -206,11 +212,23 @@ class ContentDetailScreen extends StatelessWidget {
                       ),
               ),
               const SizedBox(height: 8),
-              Text(
-                l.communityDetailMatches,
-                style: theme.textTheme.titleMedium?.copyWith(
-                  fontWeight: FontWeight.bold,
-                ),
+              Row(
+                children: [
+                  Expanded(
+                    child: Text(
+                      l.communityDetailMatches,
+                      style: theme.textTheme.titleMedium?.copyWith(
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                  TextButton.icon(
+                    onPressed: () =>
+                        context.go('/community/matching?content=$contentId'),
+                    icon: const Icon(Icons.compare_arrows, size: 18),
+                    label: Text(l.communityViewMatching),
+                  ),
+                ],
               ),
               const SizedBox(height: 8),
               if (matches.isEmpty)
@@ -220,9 +238,15 @@ class ContentDetailScreen extends StatelessWidget {
                 )
               else
                 for (final match in matches)
-                  _MatchCard(
+                  MatchBreakdownCard(
                     match: match,
-                    member: controller.member(match.memberId),
+                    title:
+                        controller.member(match.memberId)?.displayName ??
+                        match.memberId,
+                    subtitle: _memberSubtitle(controller, match.memberId),
+                    dense: true,
+                    onTap: () =>
+                        context.go('/community-members/${match.memberId}'),
                   ),
               const SizedBox(height: 24),
             ],
@@ -230,6 +254,27 @@ class ContentDetailScreen extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  /// Resolves a knowledge entry id to its title by reading the workspace
+  /// read-only from AppState. Community data is never moved into the workspace;
+  /// this is a one-way, presentation-only lookup. Falls back to the id.
+  String _knowledgeTitle(BuildContext context, String companyId, String id) {
+    final state = AppState.of(context);
+    for (final workspace in state.companies) {
+      if (workspace.company.id != companyId) continue;
+      for (final entry in workspace.knowledgeEntries) {
+        if (entry.id == id) return entry.title;
+      }
+    }
+    return id;
+  }
+
+  String? _memberSubtitle(CommunityController controller, String memberId) {
+    final member = controller.member(memberId);
+    if (member == null) return null;
+    return '${member.country} · '
+        '${member.languages.map((e) => e.toUpperCase()).join(', ')}';
   }
 }
 
@@ -292,127 +337,6 @@ class _BulletList extends StatelessWidget {
             ),
           ),
       ],
-    );
-  }
-}
-
-class _MatchCard extends StatelessWidget {
-  final ProfileMatch match;
-  final CommunityMember? member;
-
-  const _MatchCard({required this.match, required this.member});
-
-  @override
-  Widget build(BuildContext context) {
-    final l = AppLocalizations.of(context)!;
-    final theme = Theme.of(context);
-    final name = member?.displayName ?? match.memberId;
-
-    return Card(
-      margin: const EdgeInsets.only(bottom: 10),
-      child: Padding(
-        padding: const EdgeInsets.all(14),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
-              children: [
-                Expanded(
-                  child: Text(
-                    name,
-                    style: theme.textTheme.titleSmall?.copyWith(
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
-                Container(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 10,
-                    vertical: 4,
-                  ),
-                  decoration: BoxDecoration(
-                    color: theme.colorScheme.primaryContainer,
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                  child: Text(
-                    '${l.communityMatchScore} ${match.overallMatchScore}%',
-                    style: theme.textTheme.labelSmall?.copyWith(
-                      color: theme.colorScheme.onPrimaryContainer,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
-              ],
-            ),
-            if (member != null) ...[
-              const SizedBox(height: 4),
-              Text(
-                '${member!.country} · ${member!.languages.map((e) => e.toUpperCase()).join(', ')}',
-                style: theme.textTheme.bodySmall?.copyWith(
-                  color: theme.colorScheme.onSurfaceVariant,
-                ),
-              ),
-            ],
-            const SizedBox(height: 8),
-            Text(
-              l.communityMatchReasons,
-              style: theme.textTheme.labelMedium?.copyWith(
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            const SizedBox(height: 2),
-            for (final reason in match.matchReasons)
-              Padding(
-                padding: const EdgeInsets.only(bottom: 2),
-                child: Text('• $reason', style: theme.textTheme.bodySmall),
-              ),
-            if (match.warnings.isNotEmpty) ...[
-              const SizedBox(height: 6),
-              Text(
-                l.communityMatchWarnings,
-                style: theme.textTheme.labelMedium?.copyWith(
-                  fontWeight: FontWeight.bold,
-                  color: theme.colorScheme.error,
-                ),
-              ),
-              const SizedBox(height: 2),
-              for (final warning in match.warnings)
-                Padding(
-                  padding: const EdgeInsets.only(bottom: 2),
-                  child: Text(
-                    '• $warning',
-                    style: theme.textTheme.bodySmall?.copyWith(
-                      color: theme.colorScheme.error,
-                    ),
-                  ),
-                ),
-            ],
-            if (member != null &&
-                member!.disclosureRequirements.isNotEmpty) ...[
-              const SizedBox(height: 6),
-              Row(
-                children: [
-                  Icon(
-                    Icons.info_outline,
-                    size: 14,
-                    color: theme.colorScheme.onSurfaceVariant,
-                  ),
-                  const SizedBox(width: 4),
-                  Expanded(
-                    child: Text(
-                      '${l.communityDisclosureRequired}: '
-                      '${member!.disclosureRequirements.join(', ')}',
-                      style: theme.textTheme.bodySmall?.copyWith(
-                        color: theme.colorScheme.onSurfaceVariant,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ],
-          ],
-        ),
-      ),
     );
   }
 }

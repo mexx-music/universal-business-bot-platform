@@ -14,6 +14,9 @@ import '../screens/public/public_intake_screen.dart';
 import '../screens/check_in/check_in_screen.dart';
 import '../screens/community/community_radar_screen.dart';
 import '../screens/community/content_detail_screen.dart';
+import '../screens/community/matching_screen.dart';
+import '../screens/community/member_detail_screen.dart';
+import '../screens/community/members_screen.dart';
 import '../screens/dashboard/dashboard_screen.dart';
 import '../screens/next_actions/next_actions_screen.dart';
 import '../screens/project_status/project_status_screen.dart';
@@ -185,6 +188,22 @@ GoRouter createAppRouter(
           GoRoute(
             path: '/community',
             builder: (context, state) => const CommunityRadarScreen(),
+          ),
+          GoRoute(
+            path: '/community-members',
+            builder: (context, state) => const MembersScreen(),
+          ),
+          GoRoute(
+            path: '/community-members/:id',
+            builder: (context, state) =>
+                MemberDetailScreen(memberId: state.pathParameters['id'] ?? ''),
+          ),
+          GoRoute(
+            path: '/community/matching',
+            builder: (context, state) => MatchingScreen(
+              contentId: state.uri.queryParameters['content'],
+              memberId: state.uri.queryParameters['member'],
+            ),
           ),
           GoRoute(
             path: '/community/:id',
