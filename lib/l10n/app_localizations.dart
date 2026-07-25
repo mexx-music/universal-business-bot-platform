@@ -6709,6 +6709,426 @@ abstract class AppLocalizations {
   /// In de, this message translates to:
   /// **'Hinweis ausblenden'**
   String get demoTourDismiss;
+
+  /// No description provided for @navCommunityRadar.
+  ///
+  /// In de, this message translates to:
+  /// **'Community Radar'**
+  String get navCommunityRadar;
+
+  /// No description provided for @communityRadarTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Community Radar'**
+  String get communityRadarTitle;
+
+  /// No description provided for @communityRadarSubtitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Öffentliche Diskussionen, die zu Ihren Unternehmen passen. Die KI findet und bewertet – veröffentlicht wird nichts automatisch.'**
+  String get communityRadarSubtitle;
+
+  /// No description provided for @communityDemoNote.
+  ///
+  /// In de, this message translates to:
+  /// **'Demo-Daten. Es wird nichts veröffentlicht.'**
+  String get communityDemoNote;
+
+  /// No description provided for @communityReadOnlyNote.
+  ///
+  /// In de, this message translates to:
+  /// **'Nur-Lese-Vorschau (CR-1): Aufgaben-Aktionen folgen in einem späteren Schritt.'**
+  String get communityReadOnlyNote;
+
+  /// No description provided for @communityFilterCompany.
+  ///
+  /// In de, this message translates to:
+  /// **'Unternehmen'**
+  String get communityFilterCompany;
+
+  /// No description provided for @communityFilterPlatform.
+  ///
+  /// In de, this message translates to:
+  /// **'Plattform'**
+  String get communityFilterPlatform;
+
+  /// No description provided for @communityFilterLanguage.
+  ///
+  /// In de, this message translates to:
+  /// **'Sprache'**
+  String get communityFilterLanguage;
+
+  /// No description provided for @communityFilterCountry.
+  ///
+  /// In de, this message translates to:
+  /// **'Land'**
+  String get communityFilterCountry;
+
+  /// No description provided for @communityFilterRisk.
+  ///
+  /// In de, this message translates to:
+  /// **'Risiko'**
+  String get communityFilterRisk;
+
+  /// No description provided for @communityFilterStatus.
+  ///
+  /// In de, this message translates to:
+  /// **'Status'**
+  String get communityFilterStatus;
+
+  /// No description provided for @communityFilterAll.
+  ///
+  /// In de, this message translates to:
+  /// **'Alle'**
+  String get communityFilterAll;
+
+  /// No description provided for @communityRelevance.
+  ///
+  /// In de, this message translates to:
+  /// **'Relevanz'**
+  String get communityRelevance;
+
+  /// No description provided for @communityEmpty.
+  ///
+  /// In de, this message translates to:
+  /// **'Keine Beiträge für diese Filter.'**
+  String get communityEmpty;
+
+  /// No description provided for @communityRecommendedAction.
+  ///
+  /// In de, this message translates to:
+  /// **'Empfohlene Aktion'**
+  String get communityRecommendedAction;
+
+  /// No description provided for @communityDetailOriginalText.
+  ///
+  /// In de, this message translates to:
+  /// **'Originalinhalt'**
+  String get communityDetailOriginalText;
+
+  /// No description provided for @communityDetailSource.
+  ///
+  /// In de, this message translates to:
+  /// **'Quelle'**
+  String get communityDetailSource;
+
+  /// No description provided for @communityDetailSummary.
+  ///
+  /// In de, this message translates to:
+  /// **'KI-Zusammenfassung'**
+  String get communityDetailSummary;
+
+  /// No description provided for @communityDetailIntent.
+  ///
+  /// In de, this message translates to:
+  /// **'Erkannte Absicht'**
+  String get communityDetailIntent;
+
+  /// No description provided for @communityDetailSentiment.
+  ///
+  /// In de, this message translates to:
+  /// **'Stimmung'**
+  String get communityDetailSentiment;
+
+  /// No description provided for @communityDetailRelevanceReason.
+  ///
+  /// In de, this message translates to:
+  /// **'Relevanzbegründung'**
+  String get communityDetailRelevanceReason;
+
+  /// No description provided for @communityDetailRisks.
+  ///
+  /// In de, this message translates to:
+  /// **'Risiken'**
+  String get communityDetailRisks;
+
+  /// No description provided for @communityDetailNoRisks.
+  ///
+  /// In de, this message translates to:
+  /// **'Keine besonderen Risiken erkannt.'**
+  String get communityDetailNoRisks;
+
+  /// No description provided for @communityDetailKnowledge.
+  ///
+  /// In de, this message translates to:
+  /// **'Passende Wissenseinträge'**
+  String get communityDetailKnowledge;
+
+  /// No description provided for @communityDetailNoKnowledge.
+  ///
+  /// In de, this message translates to:
+  /// **'Keine passenden Wissenseinträge hinterlegt.'**
+  String get communityDetailNoKnowledge;
+
+  /// No description provided for @communityDetailAllowedActions.
+  ///
+  /// In de, this message translates to:
+  /// **'Zulässige Reaktionsarten'**
+  String get communityDetailAllowedActions;
+
+  /// No description provided for @communityDetailProhibited.
+  ///
+  /// In de, this message translates to:
+  /// **'Ungeeignete Aussagen'**
+  String get communityDetailProhibited;
+
+  /// No description provided for @communityDetailNoProhibited.
+  ///
+  /// In de, this message translates to:
+  /// **'Keine gesperrten Aussagen für diesen Beitrag.'**
+  String get communityDetailNoProhibited;
+
+  /// No description provided for @communityDetailMatches.
+  ///
+  /// In de, this message translates to:
+  /// **'Passende Community-Mitglieder'**
+  String get communityDetailMatches;
+
+  /// No description provided for @communityDetailNoMatches.
+  ///
+  /// In de, this message translates to:
+  /// **'Noch keine passenden Mitglieder ermittelt.'**
+  String get communityDetailNoMatches;
+
+  /// No description provided for @communityMatchScore.
+  ///
+  /// In de, this message translates to:
+  /// **'Übereinstimmung'**
+  String get communityMatchScore;
+
+  /// No description provided for @communityMatchReasons.
+  ///
+  /// In de, this message translates to:
+  /// **'Warum es passt'**
+  String get communityMatchReasons;
+
+  /// No description provided for @communityMatchWarnings.
+  ///
+  /// In de, this message translates to:
+  /// **'Hinweise'**
+  String get communityMatchWarnings;
+
+  /// No description provided for @communityOpenOriginal.
+  ///
+  /// In de, this message translates to:
+  /// **'Original öffnen'**
+  String get communityOpenOriginal;
+
+  /// No description provided for @communityDisclosureRequired.
+  ///
+  /// In de, this message translates to:
+  /// **'Offenlegung erforderlich'**
+  String get communityDisclosureRequired;
+
+  /// No description provided for @communityBackToRadar.
+  ///
+  /// In de, this message translates to:
+  /// **'Zurück zum Radar'**
+  String get communityBackToRadar;
+
+  /// No description provided for @communityPlatformReddit.
+  ///
+  /// In de, this message translates to:
+  /// **'Reddit'**
+  String get communityPlatformReddit;
+
+  /// No description provided for @communityPlatformFacebookGroup.
+  ///
+  /// In de, this message translates to:
+  /// **'Facebook-Gruppe'**
+  String get communityPlatformFacebookGroup;
+
+  /// No description provided for @communityPlatformForum.
+  ///
+  /// In de, this message translates to:
+  /// **'Forum'**
+  String get communityPlatformForum;
+
+  /// No description provided for @communityPlatformInstagram.
+  ///
+  /// In de, this message translates to:
+  /// **'Instagram'**
+  String get communityPlatformInstagram;
+
+  /// No description provided for @communityPlatformX.
+  ///
+  /// In de, this message translates to:
+  /// **'X'**
+  String get communityPlatformX;
+
+  /// No description provided for @communityPlatformYoutube.
+  ///
+  /// In de, this message translates to:
+  /// **'YouTube'**
+  String get communityPlatformYoutube;
+
+  /// No description provided for @communityPlatformOther.
+  ///
+  /// In de, this message translates to:
+  /// **'Andere'**
+  String get communityPlatformOther;
+
+  /// No description provided for @communityIntentQuestion.
+  ///
+  /// In de, this message translates to:
+  /// **'Frage'**
+  String get communityIntentQuestion;
+
+  /// No description provided for @communityIntentComplaint.
+  ///
+  /// In de, this message translates to:
+  /// **'Beschwerde'**
+  String get communityIntentComplaint;
+
+  /// No description provided for @communityIntentRecommendationRequest.
+  ///
+  /// In de, this message translates to:
+  /// **'Empfehlung gesucht'**
+  String get communityIntentRecommendationRequest;
+
+  /// No description provided for @communityIntentDiscussion.
+  ///
+  /// In de, this message translates to:
+  /// **'Diskussion'**
+  String get communityIntentDiscussion;
+
+  /// No description provided for @communityIntentComparison.
+  ///
+  /// In de, this message translates to:
+  /// **'Vergleich'**
+  String get communityIntentComparison;
+
+  /// No description provided for @communityIntentExperienceShare.
+  ///
+  /// In de, this message translates to:
+  /// **'Erfahrungsbericht'**
+  String get communityIntentExperienceShare;
+
+  /// No description provided for @communityIntentOther.
+  ///
+  /// In de, this message translates to:
+  /// **'Sonstiges'**
+  String get communityIntentOther;
+
+  /// No description provided for @communitySentimentPositive.
+  ///
+  /// In de, this message translates to:
+  /// **'Positiv'**
+  String get communitySentimentPositive;
+
+  /// No description provided for @communitySentimentNeutral.
+  ///
+  /// In de, this message translates to:
+  /// **'Neutral'**
+  String get communitySentimentNeutral;
+
+  /// No description provided for @communitySentimentNegative.
+  ///
+  /// In de, this message translates to:
+  /// **'Negativ'**
+  String get communitySentimentNegative;
+
+  /// No description provided for @communitySentimentMixed.
+  ///
+  /// In de, this message translates to:
+  /// **'Gemischt'**
+  String get communitySentimentMixed;
+
+  /// No description provided for @communityStatusNew.
+  ///
+  /// In de, this message translates to:
+  /// **'Neu'**
+  String get communityStatusNew;
+
+  /// No description provided for @communityStatusReviewing.
+  ///
+  /// In de, this message translates to:
+  /// **'In Prüfung'**
+  String get communityStatusReviewing;
+
+  /// No description provided for @communityStatusMatched.
+  ///
+  /// In de, this message translates to:
+  /// **'Zugeordnet'**
+  String get communityStatusMatched;
+
+  /// No description provided for @communityStatusTaskCreated.
+  ///
+  /// In de, this message translates to:
+  /// **'Aufgabe erstellt'**
+  String get communityStatusTaskCreated;
+
+  /// No description provided for @communityStatusActioned.
+  ///
+  /// In de, this message translates to:
+  /// **'Bearbeitet'**
+  String get communityStatusActioned;
+
+  /// No description provided for @communityStatusDismissed.
+  ///
+  /// In de, this message translates to:
+  /// **'Verworfen'**
+  String get communityStatusDismissed;
+
+  /// No description provided for @communityActionViewOnly.
+  ///
+  /// In de, this message translates to:
+  /// **'Nur ansehen'**
+  String get communityActionViewOnly;
+
+  /// No description provided for @communityActionLike.
+  ///
+  /// In de, this message translates to:
+  /// **'Liken'**
+  String get communityActionLike;
+
+  /// No description provided for @communityActionShare.
+  ///
+  /// In de, this message translates to:
+  /// **'Teilen'**
+  String get communityActionShare;
+
+  /// No description provided for @communityActionRepost.
+  ///
+  /// In de, this message translates to:
+  /// **'Reposten'**
+  String get communityActionRepost;
+
+  /// No description provided for @communityActionShortPersonalComment.
+  ///
+  /// In de, this message translates to:
+  /// **'Kurzer eigener Kommentar'**
+  String get communityActionShortPersonalComment;
+
+  /// No description provided for @communityActionPersonalExperience.
+  ///
+  /// In de, this message translates to:
+  /// **'Eigene Erfahrung'**
+  String get communityActionPersonalExperience;
+
+  /// No description provided for @communityActionFactualAnswer.
+  ///
+  /// In de, this message translates to:
+  /// **'Sachliche Antwort'**
+  String get communityActionFactualAnswer;
+
+  /// No description provided for @communityActionAskFollowUpQuestion.
+  ///
+  /// In de, this message translates to:
+  /// **'Nachfrage stellen'**
+  String get communityActionAskFollowUpQuestion;
+
+  /// No description provided for @communityActionOpenOriginal.
+  ///
+  /// In de, this message translates to:
+  /// **'Original öffnen'**
+  String get communityActionOpenOriginal;
+
+  /// No description provided for @communityActionSkip.
+  ///
+  /// In de, this message translates to:
+  /// **'Überspringen'**
+  String get communityActionSkip;
 }
 
 class _AppLocalizationsDelegate

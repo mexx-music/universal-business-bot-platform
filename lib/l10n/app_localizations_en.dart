@@ -3703,4 +3703,218 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get demoTourDismiss => 'Hide this hint';
+
+  @override
+  String get navCommunityRadar => 'Community Radar';
+
+  @override
+  String get communityRadarTitle => 'Community Radar';
+
+  @override
+  String get communityRadarSubtitle =>
+      'Public discussions that fit your companies. The AI finds and assesses them — nothing is posted automatically.';
+
+  @override
+  String get communityDemoNote => 'Demo data. Nothing is published.';
+
+  @override
+  String get communityReadOnlyNote =>
+      'Read-only preview (CR-1): task actions arrive in a later step.';
+
+  @override
+  String get communityFilterCompany => 'Company';
+
+  @override
+  String get communityFilterPlatform => 'Platform';
+
+  @override
+  String get communityFilterLanguage => 'Language';
+
+  @override
+  String get communityFilterCountry => 'Country';
+
+  @override
+  String get communityFilterRisk => 'Risk';
+
+  @override
+  String get communityFilterStatus => 'Status';
+
+  @override
+  String get communityFilterAll => 'All';
+
+  @override
+  String get communityRelevance => 'Relevance';
+
+  @override
+  String get communityEmpty => 'No content for these filters.';
+
+  @override
+  String get communityRecommendedAction => 'Recommended action';
+
+  @override
+  String get communityDetailOriginalText => 'Original content';
+
+  @override
+  String get communityDetailSource => 'Source';
+
+  @override
+  String get communityDetailSummary => 'AI summary';
+
+  @override
+  String get communityDetailIntent => 'Detected intent';
+
+  @override
+  String get communityDetailSentiment => 'Sentiment';
+
+  @override
+  String get communityDetailRelevanceReason => 'Why it is relevant';
+
+  @override
+  String get communityDetailRisks => 'Risks';
+
+  @override
+  String get communityDetailNoRisks => 'No particular risks detected.';
+
+  @override
+  String get communityDetailKnowledge => 'Matching knowledge entries';
+
+  @override
+  String get communityDetailNoKnowledge =>
+      'No matching knowledge entries linked.';
+
+  @override
+  String get communityDetailAllowedActions => 'Permitted reaction types';
+
+  @override
+  String get communityDetailProhibited => 'Unsuitable statements';
+
+  @override
+  String get communityDetailNoProhibited =>
+      'No blocked statements for this content.';
+
+  @override
+  String get communityDetailMatches => 'Matching community members';
+
+  @override
+  String get communityDetailNoMatches => 'No matching members identified yet.';
+
+  @override
+  String get communityMatchScore => 'Match';
+
+  @override
+  String get communityMatchReasons => 'Why it fits';
+
+  @override
+  String get communityMatchWarnings => 'Notes';
+
+  @override
+  String get communityOpenOriginal => 'Open original';
+
+  @override
+  String get communityDisclosureRequired => 'Disclosure required';
+
+  @override
+  String get communityBackToRadar => 'Back to radar';
+
+  @override
+  String get communityPlatformReddit => 'Reddit';
+
+  @override
+  String get communityPlatformFacebookGroup => 'Facebook group';
+
+  @override
+  String get communityPlatformForum => 'Forum';
+
+  @override
+  String get communityPlatformInstagram => 'Instagram';
+
+  @override
+  String get communityPlatformX => 'X';
+
+  @override
+  String get communityPlatformYoutube => 'YouTube';
+
+  @override
+  String get communityPlatformOther => 'Other';
+
+  @override
+  String get communityIntentQuestion => 'Question';
+
+  @override
+  String get communityIntentComplaint => 'Complaint';
+
+  @override
+  String get communityIntentRecommendationRequest => 'Recommendation request';
+
+  @override
+  String get communityIntentDiscussion => 'Discussion';
+
+  @override
+  String get communityIntentComparison => 'Comparison';
+
+  @override
+  String get communityIntentExperienceShare => 'Experience report';
+
+  @override
+  String get communityIntentOther => 'Other';
+
+  @override
+  String get communitySentimentPositive => 'Positive';
+
+  @override
+  String get communitySentimentNeutral => 'Neutral';
+
+  @override
+  String get communitySentimentNegative => 'Negative';
+
+  @override
+  String get communitySentimentMixed => 'Mixed';
+
+  @override
+  String get communityStatusNew => 'New';
+
+  @override
+  String get communityStatusReviewing => 'Reviewing';
+
+  @override
+  String get communityStatusMatched => 'Matched';
+
+  @override
+  String get communityStatusTaskCreated => 'Task created';
+
+  @override
+  String get communityStatusActioned => 'Actioned';
+
+  @override
+  String get communityStatusDismissed => 'Dismissed';
+
+  @override
+  String get communityActionViewOnly => 'View only';
+
+  @override
+  String get communityActionLike => 'Like';
+
+  @override
+  String get communityActionShare => 'Share';
+
+  @override
+  String get communityActionRepost => 'Repost';
+
+  @override
+  String get communityActionShortPersonalComment => 'Short personal comment';
+
+  @override
+  String get communityActionPersonalExperience => 'Personal experience';
+
+  @override
+  String get communityActionFactualAnswer => 'Factual answer';
+
+  @override
+  String get communityActionAskFollowUpQuestion => 'Ask a follow-up question';
+
+  @override
+  String get communityActionOpenOriginal => 'Open original';
+
+  @override
+  String get communityActionSkip => 'Skip';
 }

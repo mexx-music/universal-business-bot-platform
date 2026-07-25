@@ -6,6 +6,8 @@ import '../auth/local_auth_service.dart';
 import '../auth/auth_status.dart';
 import '../auth/supabase_auth_service.dart';
 import '../auth/tenant_preference_store_factory.dart';
+import '../community/community_controller.dart';
+import '../community/local_community_repository.dart';
 import '../data/app_state.dart';
 import '../demo/demo_mode_controller.dart';
 import '../demo/demo_preference_store.dart';
@@ -41,8 +43,15 @@ class AppDependencies {
     required this.tenantSelectionController,
     required this.publicIntakeService,
     required this.demoModeController,
+    required this.communityController,
     RemoteWorkspaceDataSource? remoteDataSource,
   });
+
+  /// Community Radar / Human Intelligence Network controller. CR-1 wires a
+  /// local, read-only demo repository in every mode — no APIs, no persistence,
+  /// nothing published.
+  static CommunityController _buildCommunityController() =>
+      CommunityController(LocalCommunityRepository());
 
   /// Separate IndexedDB database for the competition demo — demo writes can
   /// never touch regular local data or Supabase.
@@ -160,6 +169,7 @@ class AppDependencies {
         publicIntakeService:
             publicIntakeService ?? const UnsupportedPublicIntakeService(),
         demoModeController: demoModeController,
+        communityController: _buildCommunityController(),
         remoteDataSource: remoteDataSource,
       );
       dependencies._attachAuthRepositoryBridge(remoteDataSource);
@@ -208,6 +218,7 @@ class AppDependencies {
           initiallyActive: restoredDemoRepository != null,
           initialDemoRepository: restoredDemoRepository,
         ),
+        communityController: _buildCommunityController(),
       );
     } catch (error) {
       debugPrint(
@@ -250,6 +261,7 @@ class AppDependencies {
             LocalWorkspaceRepository(tenantContext: tenantContext),
         exitRepositoryFactory: () async => workspaceRepository,
       ),
+      communityController: _buildCommunityController(),
     );
   }
 
@@ -467,6 +479,7 @@ class AppDependencies {
   final TenantSelectionController tenantSelectionController;
   final PublicIntakeService publicIntakeService;
   final DemoModeController demoModeController;
+  final CommunityController communityController;
 }
 
 class _RepositoryResult {

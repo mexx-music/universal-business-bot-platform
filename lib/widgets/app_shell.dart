@@ -95,6 +95,11 @@ const _navItems = [
     selectedIcon: Icons.rate_review,
     path: '/review',
   ),
+  _NavItem(
+    icon: Icons.radar_outlined,
+    selectedIcon: Icons.radar,
+    path: '/community',
+  ),
 ];
 
 int _indexFromLocation(String location) {
@@ -113,6 +118,7 @@ int _indexFromLocation(String location) {
   if (location.startsWith('/bot-settings')) return 12;
   if (location.startsWith('/sources')) return 13;
   if (location.startsWith('/review')) return 14;
+  if (location.startsWith('/community')) return 15;
   return 0;
 }
 
@@ -132,6 +138,7 @@ List<String> _navLabels(AppLocalizations l) => [
   l.navBotSettings,
   l.navSources,
   l.navReview,
+  l.navCommunityRadar,
 ];
 
 class AppShell extends StatelessWidget {

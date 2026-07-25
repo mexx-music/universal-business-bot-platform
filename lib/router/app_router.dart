@@ -12,6 +12,8 @@ import '../screens/public/landing_screen.dart';
 import '../screens/public/companies_screen.dart';
 import '../screens/public/public_intake_screen.dart';
 import '../screens/check_in/check_in_screen.dart';
+import '../screens/community/community_radar_screen.dart';
+import '../screens/community/content_detail_screen.dart';
 import '../screens/dashboard/dashboard_screen.dart';
 import '../screens/next_actions/next_actions_screen.dart';
 import '../screens/project_status/project_status_screen.dart';
@@ -179,6 +181,16 @@ GoRouter createAppRouter(
           GoRoute(
             path: '/review',
             builder: (context, state) => const ReviewScreen(),
+          ),
+          GoRoute(
+            path: '/community',
+            builder: (context, state) => const CommunityRadarScreen(),
+          ),
+          GoRoute(
+            path: '/community/:id',
+            builder: (context, state) => ContentDetailScreen(
+              contentId: state.pathParameters['id'] ?? '',
+            ),
           ),
         ],
       ),
