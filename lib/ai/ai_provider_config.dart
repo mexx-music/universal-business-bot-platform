@@ -97,10 +97,12 @@ class AiProviderCatalog {
       apiKeyEnvVar: 'OPENAI_API_KEY',
     ),
     AiProviderConfig(
+      // Default model hint; the server-side Edge Function stays free to
+      // enforce the final model. Kept in this single config spot on purpose.
       id: AiProviderId.googleGemini,
       displayName: 'Google Gemini',
       region: AiProviderRegion.western,
-      defaultModel: 'gemini-1.5-flash',
+      defaultModel: 'gemini-3.6-flash',
       capabilities: _cloudCaps,
       baseUrl: 'https://generativelanguage.googleapis.com/v1beta',
       apiKeyEnvVar: 'GEMINI_API_KEY',
