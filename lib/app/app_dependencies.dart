@@ -5,6 +5,8 @@ import '../auth/auth_controller.dart';
 import '../auth/local_auth_service.dart';
 import '../auth/auth_status.dart';
 import '../auth/supabase_auth_service.dart';
+import '../ai/ai_controller.dart';
+import '../ai/ai_provider_registry.dart';
 import '../auth/tenant_preference_store_factory.dart';
 import '../community/community_controller.dart';
 import '../community/local_community_repository.dart';
@@ -44,6 +46,7 @@ class AppDependencies {
     required this.publicIntakeService,
     required this.demoModeController,
     required this.communityController,
+    required this.aiController,
     RemoteWorkspaceDataSource? remoteDataSource,
   });
 
@@ -52,6 +55,12 @@ class AppDependencies {
   /// nothing published.
   static CommunityController _buildCommunityController() =>
       CommunityController(LocalCommunityRepository());
+
+  /// Vendor-neutral AI layer. This phase wires offline mock adapters for every
+  /// supported provider (western, Chinese, local) — no API calls, no secrets.
+  /// Real HTTP adapters swap in behind [AiProvider] without caller changes.
+  static AiController _buildAiController() =>
+      AiController(AiProviderRegistry.mock());
 
   /// Separate IndexedDB database for the competition demo — demo writes can
   /// never touch regular local data or Supabase.
@@ -170,6 +179,7 @@ class AppDependencies {
             publicIntakeService ?? const UnsupportedPublicIntakeService(),
         demoModeController: demoModeController,
         communityController: _buildCommunityController(),
+        aiController: _buildAiController(),
         remoteDataSource: remoteDataSource,
       );
       dependencies._attachAuthRepositoryBridge(remoteDataSource);
@@ -219,6 +229,7 @@ class AppDependencies {
           initialDemoRepository: restoredDemoRepository,
         ),
         communityController: _buildCommunityController(),
+        aiController: _buildAiController(),
       );
     } catch (error) {
       debugPrint(
@@ -262,6 +273,7 @@ class AppDependencies {
         exitRepositoryFactory: () async => workspaceRepository,
       ),
       communityController: _buildCommunityController(),
+      aiController: _buildAiController(),
     );
   }
 
@@ -480,6 +492,7 @@ class AppDependencies {
   final PublicIntakeService publicIntakeService;
   final DemoModeController demoModeController;
   final CommunityController communityController;
+  final AiController aiController;
 }
 
 class _RepositoryResult {
