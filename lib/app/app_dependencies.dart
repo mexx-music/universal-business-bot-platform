@@ -6,7 +6,11 @@ import '../auth/local_auth_service.dart';
 import '../auth/auth_status.dart';
 import '../auth/supabase_auth_service.dart';
 import '../ai/ai_controller.dart';
-import '../ai/ai_provider_registry.dart';
+import '../ai/ai_provider_selection.dart';
+import '../ai/ai_transport.dart';
+import '../ai/transports/edge_function_client.dart';
+import '../ai/transports/supabase_ai_transport.dart';
+import '../ai/transports/supabase_edge_function_client.dart';
 import '../auth/tenant_preference_store_factory.dart';
 import '../community/community_controller.dart';
 import '../community/local_community_repository.dart';
@@ -56,11 +60,29 @@ class AppDependencies {
   static CommunityController _buildCommunityController() =>
       CommunityController(LocalCommunityRepository());
 
-  /// Vendor-neutral AI layer. This phase wires offline mock adapters for every
-  /// supported provider (western, Chinese, local) — no API calls, no secrets.
-  /// Real HTTP adapters swap in behind [AiProvider] without caller changes.
-  static AiController _buildAiController() =>
-      AiController(AiProviderRegistry.mock());
+  /// Vendor-neutral AI layer. Provider choice comes from the non-secret
+  /// `AI_PROVIDER` dart-define (unset/`mock` -> offline mock adapters;
+  /// `gemini` -> real [GeminiProvider] via the Supabase Edge Function). The
+  /// Gemini API key never reaches the client. Passing no [edgeClient] means no
+  /// real transport is available, so selecting `gemini` raises a clear
+  /// configuration error instead of silently downgrading to mock.
+  static AiController _buildAiController(
+    EdgeFunctionClient? Function()? edgeClientFactory,
+  ) {
+    const providerFlag = String.fromEnvironment('AI_PROVIDER');
+    // Construct the (Supabase-touching) transport only when Gemini is actually
+    // selected. In mock mode and in tests the factory is never invoked, so
+    // Supabase.instance is not accessed.
+    AiTransport? transport;
+    if (providerFlag.trim().toLowerCase() == 'gemini') {
+      final edgeClient = edgeClientFactory?.call();
+      transport = edgeClient == null ? null : SupabaseAiTransport(edgeClient);
+    }
+    return buildAiController(
+      providerFlag: providerFlag,
+      geminiTransport: transport,
+    );
+  }
 
   /// Separate IndexedDB database for the competition demo — demo writes can
   /// never touch regular local data or Supabase.
@@ -179,7 +201,9 @@ class AppDependencies {
             publicIntakeService ?? const UnsupportedPublicIntakeService(),
         demoModeController: demoModeController,
         communityController: _buildCommunityController(),
-        aiController: _buildAiController(),
+        aiController: _buildAiController(
+          () => SupabaseEdgeFunctionClient(Supabase.instance.client),
+        ),
         remoteDataSource: remoteDataSource,
       );
       dependencies._attachAuthRepositoryBridge(remoteDataSource);
@@ -229,7 +253,7 @@ class AppDependencies {
           initialDemoRepository: restoredDemoRepository,
         ),
         communityController: _buildCommunityController(),
-        aiController: _buildAiController(),
+        aiController: _buildAiController(null),
       );
     } catch (error) {
       debugPrint(
@@ -273,7 +297,7 @@ class AppDependencies {
         exitRepositoryFactory: () async => workspaceRepository,
       ),
       communityController: _buildCommunityController(),
-      aiController: _buildAiController(),
+      aiController: _buildAiController(null),
     );
   }
 

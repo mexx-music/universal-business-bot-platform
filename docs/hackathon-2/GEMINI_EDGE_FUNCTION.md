@@ -65,7 +65,7 @@ Exakt das, was der Client-`AiTransport` sendet (G-1):
 ```jsonc
 {
   "provider": "googleGemini",     // Pflicht
-  "model": "gemini-3.6-flash",    // optional, nur als Hinweis (Allowlist)
+  "model": "gemini-3.6-flash",    // optional, einziger kanonischer Modell-Hinweis (Allowlist)
   "maxTokens": 2048,              // optional, serverseitig geklemmt
   "temperature": 0.3,             // optional — wird ignoriert
   "messages": [                   // 1..20

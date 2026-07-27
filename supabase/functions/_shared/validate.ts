@@ -30,7 +30,7 @@ function isObject(v: unknown): v is Record<string, unknown> {
 /**
  * Validates the neutral transport payload (the exact shape the Flutter
  * AiTransport sends). Throws ApiError('invalid_request') on any problem.
- * Accepts `model` or `modelHint` as the (allow-list-checked) model hint.
+ * The single canonical model field is `model` (allow-list-checked hint).
  */
 export function validate(bodyUnknown: unknown): ValidatedRequest {
   if (!isObject(bodyUnknown)) {
@@ -48,7 +48,7 @@ export function validate(bodyUnknown: unknown): ValidatedRequest {
   }
 
   // Model hint is checked against the server allowlist (never free-override).
-  const model = resolveModel(body.model ?? body.modelHint);
+  const model = resolveModel(body.model);
   const maxTokens = clampMaxTokens(body.maxTokens);
 
   if (action === "ping") {

@@ -1,6 +1,8 @@
 import 'ai_provider.dart';
 import 'ai_provider_config.dart';
 import 'ai_provider_id.dart';
+import 'ai_transport.dart';
+import 'providers/gemini_provider.dart';
 import 'providers/mock_ai_provider.dart';
 
 /// Builds and holds one [AiProvider] per configured vendor.
@@ -23,6 +25,19 @@ class AiProviderRegistry {
   /// Default registry: the full catalogue backed by offline mock adapters.
   factory AiProviderRegistry.mock() {
     return AiProviderRegistry(configs: AiProviderCatalog.defaults());
+  }
+
+  /// Registry where Google Gemini is backed by a real [transport] (the
+  /// Supabase Edge Function) and every other provider stays a mock adapter.
+  /// Selecting Gemini therefore performs real calls; there is no silent
+  /// mock fallback for it.
+  factory AiProviderRegistry.gemini(AiTransport transport) {
+    return AiProviderRegistry(
+      configs: AiProviderCatalog.defaults(),
+      adapterFactory: (config) => config.id == AiProviderId.googleGemini
+          ? GeminiProvider(config: config, transport: transport)
+          : MockAiProvider(config),
+    );
   }
 
   final List<AiProviderConfig> _configs;

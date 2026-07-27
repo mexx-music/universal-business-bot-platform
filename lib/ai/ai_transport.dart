@@ -90,6 +90,10 @@ class AiTransportResponse {
 }
 
 /// Why a transport call failed. Providers map these to health/exception state.
+///
+/// Added in G-3 (additive, existing meanings unchanged): [configuration] for a
+/// missing server-side setup (e.g. no key on the server) and [contentBlocked]
+/// for an upstream safety block.
 enum AiTransportErrorKind {
   timeout,
   network,
@@ -98,6 +102,8 @@ enum AiTransportErrorKind {
   badRequest,
   server,
   badResponse,
+  configuration,
+  contentBlocked,
   unknown,
 }
 

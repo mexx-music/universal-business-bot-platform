@@ -132,12 +132,15 @@ class GeminiProvider implements AiProvider {
   AiProviderHealthStatus _mapHealthStatus(AiTransportErrorKind kind) {
     return switch (kind) {
       AiTransportErrorKind.unauthorized => AiProviderHealthStatus.unauthorized,
+      AiTransportErrorKind.configuration =>
+        AiProviderHealthStatus.notConfigured,
       AiTransportErrorKind.timeout ||
       AiTransportErrorKind.network => AiProviderHealthStatus.unreachable,
       AiTransportErrorKind.rateLimited ||
       AiTransportErrorKind.badRequest ||
       AiTransportErrorKind.server ||
       AiTransportErrorKind.badResponse ||
+      AiTransportErrorKind.contentBlocked ||
       AiTransportErrorKind.unknown => AiProviderHealthStatus.error,
     };
   }
