@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import '../ai/ai_controller.dart';
 import '../auth/auth_controller.dart';
 import '../community/community_controller.dart';
 import '../data/app_state.dart';
@@ -61,32 +62,35 @@ class _UniversalBusinessAppState extends State<UniversalBusinessApp> {
                   notifier: dependencies.tenantSelectionController,
                   child: CommunityScope(
                     notifier: dependencies.communityController,
-                    child: AppStateScope(
-                      notifier: dependencies.appState,
-                      child: MaterialApp.router(
-                        title: 'Universal Business Bot Platform',
-                        debugShowCheckedModeBanner: false,
-                        localizationsDelegates:
-                            AppLocalizations.localizationsDelegates,
-                        supportedLocales: AppLocalizations.supportedLocales,
-                        locale: _localeController.locale,
-                        theme: ThemeData(
-                          useMaterial3: true,
-                          colorScheme: ColorScheme.fromSeed(
-                            seedColor: const Color(0xFF3F51B5),
-                            brightness: Brightness.light,
-                          ),
-                          cardTheme: CardThemeData(
-                            elevation: 0,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(12),
-                              side: BorderSide(
-                                color: const Color(0xFF3F51B5).withAlpha(30),
+                    child: AiScope(
+                      notifier: dependencies.aiController,
+                      child: AppStateScope(
+                        notifier: dependencies.appState,
+                        child: MaterialApp.router(
+                          title: 'Universal Business Bot Platform',
+                          debugShowCheckedModeBanner: false,
+                          localizationsDelegates:
+                              AppLocalizations.localizationsDelegates,
+                          supportedLocales: AppLocalizations.supportedLocales,
+                          locale: _localeController.locale,
+                          theme: ThemeData(
+                            useMaterial3: true,
+                            colorScheme: ColorScheme.fromSeed(
+                              seedColor: const Color(0xFF3F51B5),
+                              brightness: Brightness.light,
+                            ),
+                            cardTheme: CardThemeData(
+                              elevation: 0,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(12),
+                                side: BorderSide(
+                                  color: const Color(0xFF3F51B5).withAlpha(30),
+                                ),
                               ),
                             ),
                           ),
+                          routerConfig: _router,
                         ),
-                        routerConfig: _router,
                       ),
                     ),
                   ),

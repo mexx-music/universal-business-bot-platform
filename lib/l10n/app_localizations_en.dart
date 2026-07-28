@@ -4134,4 +4134,81 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get communityMatchingEmpty => 'No evaluation available.';
+
+  @override
+  String get botDemoTitle => 'Knowledge-based AI answer';
+
+  @override
+  String get botDemoIntro =>
+      'The AI answers only from the approved company knowledge base. Sources stay visible; nothing is published.';
+
+  @override
+  String get botDemoQuestionHint => 'Your company question';
+
+  @override
+  String get botDemoSubmit => 'Generate answer';
+
+  @override
+  String get botDemoLoading => 'Generating answer …';
+
+  @override
+  String get botDemoAnswerTitle => 'Answer';
+
+  @override
+  String get botDemoSources => 'Sources';
+
+  @override
+  String get botDemoGrounded => 'Knowledge-based';
+
+  @override
+  String get botDemoNotGrounded => 'No match';
+
+  @override
+  String get botDemoNoKnowledge =>
+      'No matching knowledge was found in the knowledge base for this question.';
+
+  @override
+  String get botDemoBlocked =>
+      'Sensitive topic – please hand over to a human. No AI answer was generated.';
+
+  @override
+  String get botDemoHumanReview => 'AI suggestion – review before publishing.';
+
+  @override
+  String get botDemoProviderLabel => 'Provider';
+
+  @override
+  String get botDemoProviderMock => 'Offline mock';
+
+  @override
+  String get botDemoModelLabel => 'Model';
+
+  @override
+  String get botDemoError => 'The answer could not be generated.';
+
+  @override
+  String get botDemoRetry => 'Try again';
+
+  @override
+  String get botDemoErrorConfig =>
+      'AI is not configured. Please check the server configuration.';
+
+  @override
+  String get botDemoErrorNetwork =>
+      'AI service unreachable. Please try again later.';
+
+  @override
+  String get botDemoErrorTimeout =>
+      'The AI service timed out. Please try again.';
+
+  @override
+  String get botDemoErrorRateLimit =>
+      'Too many requests. Please wait a moment and try again.';
+
+  @override
+  String get botDemoErrorBlocked =>
+      'The response was blocked by safety filters.';
+
+  @override
+  String get botDemoErrorServer => 'The AI service is currently unavailable.';
 }

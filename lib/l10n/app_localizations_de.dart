@@ -4163,4 +4163,82 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get communityMatchingEmpty => 'Keine Bewertung verfügbar.';
+
+  @override
+  String get botDemoTitle => 'Wissensbasierte KI-Antwort';
+
+  @override
+  String get botDemoIntro =>
+      'Die KI antwortet ausschließlich auf Basis der freigegebenen Unternehmens-Wissensbasis. Quellen bleiben sichtbar; nichts wird veröffentlicht.';
+
+  @override
+  String get botDemoQuestionHint => 'Ihre Unternehmensfrage';
+
+  @override
+  String get botDemoSubmit => 'Antwort erstellen';
+
+  @override
+  String get botDemoLoading => 'Antwort wird erstellt …';
+
+  @override
+  String get botDemoAnswerTitle => 'Antwort';
+
+  @override
+  String get botDemoSources => 'Quellen';
+
+  @override
+  String get botDemoGrounded => 'Wissensbasiert';
+
+  @override
+  String get botDemoNotGrounded => 'Kein Treffer';
+
+  @override
+  String get botDemoNoKnowledge =>
+      'Zu dieser Frage wurde kein passendes Wissen in der Wissensbasis gefunden.';
+
+  @override
+  String get botDemoBlocked =>
+      'Sensibles Thema – bitte an einen Menschen übergeben. Es wurde keine KI-Antwort erzeugt.';
+
+  @override
+  String get botDemoHumanReview =>
+      'KI-Vorschlag – vor Veröffentlichung prüfen.';
+
+  @override
+  String get botDemoProviderLabel => 'Provider';
+
+  @override
+  String get botDemoProviderMock => 'Offline-Mock';
+
+  @override
+  String get botDemoModelLabel => 'Modell';
+
+  @override
+  String get botDemoError => 'Antwort konnte nicht erstellt werden.';
+
+  @override
+  String get botDemoRetry => 'Erneut versuchen';
+
+  @override
+  String get botDemoErrorConfig =>
+      'KI ist nicht konfiguriert. Bitte Server-Konfiguration prüfen.';
+
+  @override
+  String get botDemoErrorNetwork =>
+      'KI-Dienst nicht erreichbar. Bitte später erneut versuchen.';
+
+  @override
+  String get botDemoErrorTimeout =>
+      'Zeitüberschreitung beim KI-Dienst. Bitte erneut versuchen.';
+
+  @override
+  String get botDemoErrorRateLimit =>
+      'Zu viele Anfragen. Bitte kurz warten und erneut versuchen.';
+
+  @override
+  String get botDemoErrorBlocked =>
+      'Die Antwort wurde durch Sicherheitsfilter blockiert.';
+
+  @override
+  String get botDemoErrorServer => 'Der KI-Dienst ist derzeit nicht verfügbar.';
 }

@@ -4,6 +4,7 @@ import '../../l10n/app_localizations.dart';
 import '../../models/bot_configuration.dart';
 import '../../models/bot_question_log.dart';
 import '../../models/knowledge_entry.dart';
+import 'grounded_answer_panel.dart';
 
 class BotTestScreen extends StatefulWidget {
   const BotTestScreen({super.key});
@@ -75,7 +76,15 @@ class _BotTestScreenState extends State<BotTestScreen> {
             ),
           ),
           const SizedBox(height: 12),
+          // Grounded AI demo: question -> KnowledgeRuntime -> AiController.
+          const Flexible(
+            flex: 3,
+            child: SingleChildScrollView(child: GroundedAnswerPanel()),
+          ),
+          const Divider(height: 1),
+          // Existing local keyword bot test (unchanged).
           Expanded(
+            flex: 2,
             child: ListView.builder(
               controller: _scrollController,
               padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 8),

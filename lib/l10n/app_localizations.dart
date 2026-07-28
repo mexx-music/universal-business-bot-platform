@@ -7555,6 +7555,144 @@ abstract class AppLocalizations {
   /// In de, this message translates to:
   /// **'Keine Bewertung verfügbar.'**
   String get communityMatchingEmpty;
+
+  /// No description provided for @botDemoTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Wissensbasierte KI-Antwort'**
+  String get botDemoTitle;
+
+  /// No description provided for @botDemoIntro.
+  ///
+  /// In de, this message translates to:
+  /// **'Die KI antwortet ausschließlich auf Basis der freigegebenen Unternehmens-Wissensbasis. Quellen bleiben sichtbar; nichts wird veröffentlicht.'**
+  String get botDemoIntro;
+
+  /// No description provided for @botDemoQuestionHint.
+  ///
+  /// In de, this message translates to:
+  /// **'Ihre Unternehmensfrage'**
+  String get botDemoQuestionHint;
+
+  /// No description provided for @botDemoSubmit.
+  ///
+  /// In de, this message translates to:
+  /// **'Antwort erstellen'**
+  String get botDemoSubmit;
+
+  /// No description provided for @botDemoLoading.
+  ///
+  /// In de, this message translates to:
+  /// **'Antwort wird erstellt …'**
+  String get botDemoLoading;
+
+  /// No description provided for @botDemoAnswerTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Antwort'**
+  String get botDemoAnswerTitle;
+
+  /// No description provided for @botDemoSources.
+  ///
+  /// In de, this message translates to:
+  /// **'Quellen'**
+  String get botDemoSources;
+
+  /// No description provided for @botDemoGrounded.
+  ///
+  /// In de, this message translates to:
+  /// **'Wissensbasiert'**
+  String get botDemoGrounded;
+
+  /// No description provided for @botDemoNotGrounded.
+  ///
+  /// In de, this message translates to:
+  /// **'Kein Treffer'**
+  String get botDemoNotGrounded;
+
+  /// No description provided for @botDemoNoKnowledge.
+  ///
+  /// In de, this message translates to:
+  /// **'Zu dieser Frage wurde kein passendes Wissen in der Wissensbasis gefunden.'**
+  String get botDemoNoKnowledge;
+
+  /// No description provided for @botDemoBlocked.
+  ///
+  /// In de, this message translates to:
+  /// **'Sensibles Thema – bitte an einen Menschen übergeben. Es wurde keine KI-Antwort erzeugt.'**
+  String get botDemoBlocked;
+
+  /// No description provided for @botDemoHumanReview.
+  ///
+  /// In de, this message translates to:
+  /// **'KI-Vorschlag – vor Veröffentlichung prüfen.'**
+  String get botDemoHumanReview;
+
+  /// No description provided for @botDemoProviderLabel.
+  ///
+  /// In de, this message translates to:
+  /// **'Provider'**
+  String get botDemoProviderLabel;
+
+  /// No description provided for @botDemoProviderMock.
+  ///
+  /// In de, this message translates to:
+  /// **'Offline-Mock'**
+  String get botDemoProviderMock;
+
+  /// No description provided for @botDemoModelLabel.
+  ///
+  /// In de, this message translates to:
+  /// **'Modell'**
+  String get botDemoModelLabel;
+
+  /// No description provided for @botDemoError.
+  ///
+  /// In de, this message translates to:
+  /// **'Antwort konnte nicht erstellt werden.'**
+  String get botDemoError;
+
+  /// No description provided for @botDemoRetry.
+  ///
+  /// In de, this message translates to:
+  /// **'Erneut versuchen'**
+  String get botDemoRetry;
+
+  /// No description provided for @botDemoErrorConfig.
+  ///
+  /// In de, this message translates to:
+  /// **'KI ist nicht konfiguriert. Bitte Server-Konfiguration prüfen.'**
+  String get botDemoErrorConfig;
+
+  /// No description provided for @botDemoErrorNetwork.
+  ///
+  /// In de, this message translates to:
+  /// **'KI-Dienst nicht erreichbar. Bitte später erneut versuchen.'**
+  String get botDemoErrorNetwork;
+
+  /// No description provided for @botDemoErrorTimeout.
+  ///
+  /// In de, this message translates to:
+  /// **'Zeitüberschreitung beim KI-Dienst. Bitte erneut versuchen.'**
+  String get botDemoErrorTimeout;
+
+  /// No description provided for @botDemoErrorRateLimit.
+  ///
+  /// In de, this message translates to:
+  /// **'Zu viele Anfragen. Bitte kurz warten und erneut versuchen.'**
+  String get botDemoErrorRateLimit;
+
+  /// No description provided for @botDemoErrorBlocked.
+  ///
+  /// In de, this message translates to:
+  /// **'Die Antwort wurde durch Sicherheitsfilter blockiert.'**
+  String get botDemoErrorBlocked;
+
+  /// No description provided for @botDemoErrorServer.
+  ///
+  /// In de, this message translates to:
+  /// **'Der KI-Dienst ist derzeit nicht verfügbar.'**
+  String get botDemoErrorServer;
 }
 
 class _AppLocalizationsDelegate
