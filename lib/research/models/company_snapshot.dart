@@ -8,6 +8,8 @@ class CompanySnapshot {
     required this.companyId,
     required this.companyName,
     required this.capturedAt,
+    this.industry = '',
+    this.foundedYear,
     this.knownProducts = const [],
     this.countries = const [],
     this.website = '',
@@ -21,6 +23,12 @@ class CompanySnapshot {
 
   /// When this snapshot was taken.
   final DateTime capturedAt;
+
+  /// Broad industry the company operates in (e.g. 'Lebensmittel & Getränke').
+  final String industry;
+
+  /// Year the company was founded, or null if unknown.
+  final int? foundedYear;
 
   final List<String> knownProducts;
 

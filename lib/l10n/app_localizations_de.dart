@@ -4241,4 +4241,196 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get botDemoErrorServer => 'Der KI-Dienst ist derzeit nicht verfügbar.';
+
+  @override
+  String get navCompanyEvolution => 'Unternehmens-Evolution';
+
+  @override
+  String get navGroupResearch => 'Recherche';
+
+  @override
+  String get companyEvolutionTitle => 'Unternehmens-Evolution';
+
+  @override
+  String get companyEvolutionSubtitle =>
+      'Strukturierte externe Informationen zu einem Unternehmen – aus Demo-Daten, ohne Live-Recherche.';
+
+  @override
+  String get companyEvolutionSelectCompany => 'Unternehmen';
+
+  @override
+  String get companyEvolutionSnapshotTitle => 'Unternehmensprofil';
+
+  @override
+  String get companyEvolutionTimelineTitle => 'Zeitleiste';
+
+  @override
+  String get companyEvolutionSourcesTitle => 'Recherche-Quellen';
+
+  @override
+  String get companyEvolutionEvidenceForDocument =>
+      'Belege aus diesem Dokument';
+
+  @override
+  String get companyEvolutionFieldIndustry => 'Branche';
+
+  @override
+  String get companyEvolutionFieldFounded => 'Gründungsjahr';
+
+  @override
+  String get companyEvolutionFieldCountries => 'Länder';
+
+  @override
+  String get companyEvolutionFieldProducts => 'Bekannte Produkte';
+
+  @override
+  String get companyEvolutionFieldWebsite => 'Website';
+
+  @override
+  String get companyEvolutionFieldSocial => 'Social-Media-Kanäle';
+
+  @override
+  String get companyEvolutionFieldSegment => 'Marktsegment';
+
+  @override
+  String get companyEvolutionFieldRating => 'Bewertung';
+
+  @override
+  String get companyEvolutionFieldUpdated => 'Letzter Datenstand';
+
+  @override
+  String get companyEvolutionDocSource => 'Quelle';
+
+  @override
+  String get companyEvolutionDocType => 'Typ';
+
+  @override
+  String get companyEvolutionDocPublished => 'Veröffentlicht';
+
+  @override
+  String get companyEvolutionDocLanguage => 'Sprache';
+
+  @override
+  String get companyEvolutionDocCountry => 'Land';
+
+  @override
+  String get companyEvolutionDocUrl => 'URL';
+
+  @override
+  String get companyEvolutionEvidenceConfidence => 'Konfidenz';
+
+  @override
+  String get companyEvolutionEvidenceExtracted => 'Extrahiert';
+
+  @override
+  String get companyEvolutionTrustTitle => 'Transparenzhinweis';
+
+  @override
+  String get companyEvolutionTrustBody =>
+      'Demo-Daten – keine Live-Recherche, keine KI-generierten Schlussfolgerungen. Quellen und Aussagen sind getrennt modelliert.';
+
+  @override
+  String get companyEvolutionEmptyCompanies => 'Keine Unternehmen verfügbar.';
+
+  @override
+  String get companyEvolutionEmptyTimeline =>
+      'Keine Zeitleisten-Einträge vorhanden.';
+
+  @override
+  String get companyEvolutionEmptyDocuments =>
+      'Keine Recherche-Dokumente vorhanden.';
+
+  @override
+  String get companyEvolutionEmptyEvidence =>
+      'Keine Belege zu diesem Dokument.';
+
+  @override
+  String get timelineCategoryFounding => 'Gründung';
+
+  @override
+  String get timelineCategoryProduct => 'Produkt';
+
+  @override
+  String get timelineCategoryMarketing => 'Marketing';
+
+  @override
+  String get timelineCategoryPartnership => 'Partnerschaft';
+
+  @override
+  String get timelineCategoryExpansion => 'Expansion';
+
+  @override
+  String get timelineCategoryLegal => 'Recht';
+
+  @override
+  String get timelineCategoryFinance => 'Finanzen';
+
+  @override
+  String get timelineCategoryHiring => 'Personal';
+
+  @override
+  String get timelineCategoryStrategy => 'Strategie';
+
+  @override
+  String get timelineCategoryCrisis => 'Krise';
+
+  @override
+  String get timelineCategoryMilestone => 'Meilenstein';
+
+  @override
+  String get researchDocTypeWebsite => 'Website';
+
+  @override
+  String get researchDocTypeNews => 'News';
+
+  @override
+  String get researchDocTypeBlog => 'Blog';
+
+  @override
+  String get researchDocTypeSocialPost => 'Social Post';
+
+  @override
+  String get researchDocTypeReview => 'Bewertung';
+
+  @override
+  String get researchDocTypePressRelease => 'Pressemitteilung';
+
+  @override
+  String get researchDocTypeForum => 'Forum';
+
+  @override
+  String get researchDocTypeVideo => 'Video';
+
+  @override
+  String get researchDocTypeFinancial => 'Finanzbericht';
+
+  @override
+  String get researchDocTypeUnknown => 'Unbekannt';
+
+  @override
+  String get researchEvidenceCategoryProduct => 'Produkt';
+
+  @override
+  String get researchEvidenceCategoryMarketing => 'Marketing';
+
+  @override
+  String get researchEvidenceCategoryExpansion => 'Expansion';
+
+  @override
+  String get researchEvidenceCategoryHiring => 'Personal';
+
+  @override
+  String get researchEvidenceCategoryFinance => 'Finanzen';
+
+  @override
+  String get researchEvidenceCategoryPartnership => 'Partnerschaft';
+
+  @override
+  String get researchEvidenceCategoryReputation => 'Reputation';
+
+  @override
+  String get researchEvidenceCategoryStrategy => 'Strategie';
+
+  @override
+  String get researchEvidenceCategoryOther => 'Sonstiges';
 }

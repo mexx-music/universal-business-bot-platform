@@ -105,6 +105,11 @@ const _navItems = [
     selectedIcon: Icons.groups,
     path: '/community-members',
   ),
+  _NavItem(
+    icon: Icons.timeline_outlined,
+    selectedIcon: Icons.timeline,
+    path: '/company-evolution',
+  ),
 ];
 
 int _indexFromLocation(String location) {
@@ -116,6 +121,8 @@ int _indexFromLocation(String location) {
   if (location.startsWith('/business-strategy')) return 5;
   if (location.startsWith('/marketing-strategy')) return 6;
   if (location.startsWith('/intake')) return 7;
+  // Evolution must be checked before '/company' since it shares the prefix.
+  if (location.startsWith('/company-evolution')) return 17;
   if (location.startsWith('/company')) return 8;
   if (location.startsWith('/audit')) return 9;
   if (location.startsWith('/knowledge')) return 10;
@@ -147,6 +154,7 @@ List<String> _navLabels(AppLocalizations l) => [
   l.navReview,
   l.navCommunityRadar,
   l.navCommunityMembers,
+  l.navCompanyEvolution,
 ];
 
 class AppShell extends StatelessWidget {
@@ -364,6 +372,12 @@ class _DesktopSidebar extends StatelessWidget {
                   _SidebarSectionHeader(
                     extended: extended,
                     label: l.communityNavGroupCommunity,
+                  ),
+                // Start of the visually grouped Research section.
+                if (_navItems[i].path == '/company-evolution')
+                  _SidebarSectionHeader(
+                    extended: extended,
+                    label: l.navGroupResearch,
                   ),
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 2),

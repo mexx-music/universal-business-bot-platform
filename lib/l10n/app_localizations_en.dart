@@ -4211,4 +4211,194 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get botDemoErrorServer => 'The AI service is currently unavailable.';
+
+  @override
+  String get navCompanyEvolution => 'Company Evolution';
+
+  @override
+  String get navGroupResearch => 'Research';
+
+  @override
+  String get companyEvolutionTitle => 'Company Evolution';
+
+  @override
+  String get companyEvolutionSubtitle =>
+      'Structured external information about a company – from demo data, without live research.';
+
+  @override
+  String get companyEvolutionSelectCompany => 'Company';
+
+  @override
+  String get companyEvolutionSnapshotTitle => 'Company profile';
+
+  @override
+  String get companyEvolutionTimelineTitle => 'Timeline';
+
+  @override
+  String get companyEvolutionSourcesTitle => 'Research sources';
+
+  @override
+  String get companyEvolutionEvidenceForDocument =>
+      'Evidence from this document';
+
+  @override
+  String get companyEvolutionFieldIndustry => 'Industry';
+
+  @override
+  String get companyEvolutionFieldFounded => 'Founded';
+
+  @override
+  String get companyEvolutionFieldCountries => 'Countries';
+
+  @override
+  String get companyEvolutionFieldProducts => 'Known products';
+
+  @override
+  String get companyEvolutionFieldWebsite => 'Website';
+
+  @override
+  String get companyEvolutionFieldSocial => 'Social media channels';
+
+  @override
+  String get companyEvolutionFieldSegment => 'Market segment';
+
+  @override
+  String get companyEvolutionFieldRating => 'Rating';
+
+  @override
+  String get companyEvolutionFieldUpdated => 'Last updated';
+
+  @override
+  String get companyEvolutionDocSource => 'Source';
+
+  @override
+  String get companyEvolutionDocType => 'Type';
+
+  @override
+  String get companyEvolutionDocPublished => 'Published';
+
+  @override
+  String get companyEvolutionDocLanguage => 'Language';
+
+  @override
+  String get companyEvolutionDocCountry => 'Country';
+
+  @override
+  String get companyEvolutionDocUrl => 'URL';
+
+  @override
+  String get companyEvolutionEvidenceConfidence => 'Confidence';
+
+  @override
+  String get companyEvolutionEvidenceExtracted => 'Extracted';
+
+  @override
+  String get companyEvolutionTrustTitle => 'Transparency note';
+
+  @override
+  String get companyEvolutionTrustBody =>
+      'Demo data – no live research, no AI-generated conclusions. Sources and statements are modelled separately.';
+
+  @override
+  String get companyEvolutionEmptyCompanies => 'No companies available.';
+
+  @override
+  String get companyEvolutionEmptyTimeline => 'No timeline entries available.';
+
+  @override
+  String get companyEvolutionEmptyDocuments =>
+      'No research documents available.';
+
+  @override
+  String get companyEvolutionEmptyEvidence => 'No evidence for this document.';
+
+  @override
+  String get timelineCategoryFounding => 'Founding';
+
+  @override
+  String get timelineCategoryProduct => 'Product';
+
+  @override
+  String get timelineCategoryMarketing => 'Marketing';
+
+  @override
+  String get timelineCategoryPartnership => 'Partnership';
+
+  @override
+  String get timelineCategoryExpansion => 'Expansion';
+
+  @override
+  String get timelineCategoryLegal => 'Legal';
+
+  @override
+  String get timelineCategoryFinance => 'Finance';
+
+  @override
+  String get timelineCategoryHiring => 'Hiring';
+
+  @override
+  String get timelineCategoryStrategy => 'Strategy';
+
+  @override
+  String get timelineCategoryCrisis => 'Crisis';
+
+  @override
+  String get timelineCategoryMilestone => 'Milestone';
+
+  @override
+  String get researchDocTypeWebsite => 'Website';
+
+  @override
+  String get researchDocTypeNews => 'News';
+
+  @override
+  String get researchDocTypeBlog => 'Blog';
+
+  @override
+  String get researchDocTypeSocialPost => 'Social post';
+
+  @override
+  String get researchDocTypeReview => 'Review';
+
+  @override
+  String get researchDocTypePressRelease => 'Press release';
+
+  @override
+  String get researchDocTypeForum => 'Forum';
+
+  @override
+  String get researchDocTypeVideo => 'Video';
+
+  @override
+  String get researchDocTypeFinancial => 'Financial report';
+
+  @override
+  String get researchDocTypeUnknown => 'Unknown';
+
+  @override
+  String get researchEvidenceCategoryProduct => 'Product';
+
+  @override
+  String get researchEvidenceCategoryMarketing => 'Marketing';
+
+  @override
+  String get researchEvidenceCategoryExpansion => 'Expansion';
+
+  @override
+  String get researchEvidenceCategoryHiring => 'Hiring';
+
+  @override
+  String get researchEvidenceCategoryFinance => 'Finance';
+
+  @override
+  String get researchEvidenceCategoryPartnership => 'Partnership';
+
+  @override
+  String get researchEvidenceCategoryReputation => 'Reputation';
+
+  @override
+  String get researchEvidenceCategoryStrategy => 'Strategy';
+
+  @override
+  String get researchEvidenceCategoryOther => 'Other';
 }

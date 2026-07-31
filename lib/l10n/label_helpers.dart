@@ -2,6 +2,7 @@ import 'package:flutter/widgets.dart';
 import '../models/bot_question_log.dart';
 import '../models/knowledge_entry.dart';
 import '../models/product_or_service.dart';
+import '../research/models/research_enums.dart';
 import 'app_localizations.dart';
 
 /// Locale-aware label for [KnowledgeCategory].
@@ -56,5 +57,63 @@ String reviewReasonLabel(BuildContext context, ReviewReason reason) {
     ReviewReason.redFlag => l.reviewReasonRedFlag,
     ReviewReason.yellowRisk => l.reviewReasonYellowRisk,
     ReviewReason.lowConfidence => l.reviewReasonLowConfidence,
+  };
+}
+
+/// Locale-aware label for [TimelineCategory].
+String timelineCategoryLabel(BuildContext context, TimelineCategory category) {
+  final l = AppLocalizations.of(context)!;
+  return switch (category) {
+    TimelineCategory.founding => l.timelineCategoryFounding,
+    TimelineCategory.product => l.timelineCategoryProduct,
+    TimelineCategory.marketing => l.timelineCategoryMarketing,
+    TimelineCategory.partnership => l.timelineCategoryPartnership,
+    TimelineCategory.expansion => l.timelineCategoryExpansion,
+    TimelineCategory.legal => l.timelineCategoryLegal,
+    TimelineCategory.finance => l.timelineCategoryFinance,
+    TimelineCategory.hiring => l.timelineCategoryHiring,
+    TimelineCategory.strategy => l.timelineCategoryStrategy,
+    TimelineCategory.crisis => l.timelineCategoryCrisis,
+    TimelineCategory.milestone => l.timelineCategoryMilestone,
+  };
+}
+
+/// Locale-aware label for [ResearchDocumentType].
+String researchDocumentTypeLabel(
+  BuildContext context,
+  ResearchDocumentType type,
+) {
+  final l = AppLocalizations.of(context)!;
+  return switch (type) {
+    ResearchDocumentType.website => l.researchDocTypeWebsite,
+    ResearchDocumentType.news => l.researchDocTypeNews,
+    ResearchDocumentType.blog => l.researchDocTypeBlog,
+    ResearchDocumentType.socialPost => l.researchDocTypeSocialPost,
+    ResearchDocumentType.review => l.researchDocTypeReview,
+    ResearchDocumentType.pressRelease => l.researchDocTypePressRelease,
+    ResearchDocumentType.forum => l.researchDocTypeForum,
+    ResearchDocumentType.video => l.researchDocTypeVideo,
+    ResearchDocumentType.financial => l.researchDocTypeFinancial,
+    ResearchDocumentType.unknown => l.researchDocTypeUnknown,
+  };
+}
+
+/// Locale-aware label for [ResearchEvidenceCategory].
+String researchEvidenceCategoryLabel(
+  BuildContext context,
+  ResearchEvidenceCategory category,
+) {
+  final l = AppLocalizations.of(context)!;
+  return switch (category) {
+    ResearchEvidenceCategory.product => l.researchEvidenceCategoryProduct,
+    ResearchEvidenceCategory.marketing => l.researchEvidenceCategoryMarketing,
+    ResearchEvidenceCategory.expansion => l.researchEvidenceCategoryExpansion,
+    ResearchEvidenceCategory.hiring => l.researchEvidenceCategoryHiring,
+    ResearchEvidenceCategory.finance => l.researchEvidenceCategoryFinance,
+    ResearchEvidenceCategory.partnership =>
+      l.researchEvidenceCategoryPartnership,
+    ResearchEvidenceCategory.reputation => l.researchEvidenceCategoryReputation,
+    ResearchEvidenceCategory.strategy => l.researchEvidenceCategoryStrategy,
+    ResearchEvidenceCategory.other => l.researchEvidenceCategoryOther,
   };
 }

@@ -26,6 +26,7 @@ import '../screens/marketing_strategy/marketing_strategy_screen.dart';
 import '../screens/intake/intake_chat_screen.dart';
 import '../screens/intake/intake_screen.dart';
 import '../screens/company/company_screen.dart';
+import '../screens/company_evolution/company_evolution_screen.dart';
 import '../screens/audit/audit_screen.dart';
 import '../screens/knowledge/knowledge_screen.dart';
 import '../screens/bot_test/bot_test_screen.dart';
@@ -210,6 +211,10 @@ GoRouter createAppRouter(
             builder: (context, state) => ContentDetailScreen(
               contentId: state.pathParameters['id'] ?? '',
             ),
+          ),
+          GoRoute(
+            path: '/company-evolution',
+            builder: (context, state) => const CompanyEvolutionScreen(),
           ),
         ],
       ),

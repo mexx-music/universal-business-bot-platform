@@ -7693,6 +7693,378 @@ abstract class AppLocalizations {
   /// In de, this message translates to:
   /// **'Der KI-Dienst ist derzeit nicht verfügbar.'**
   String get botDemoErrorServer;
+
+  /// No description provided for @navCompanyEvolution.
+  ///
+  /// In de, this message translates to:
+  /// **'Unternehmens-Evolution'**
+  String get navCompanyEvolution;
+
+  /// No description provided for @navGroupResearch.
+  ///
+  /// In de, this message translates to:
+  /// **'Recherche'**
+  String get navGroupResearch;
+
+  /// No description provided for @companyEvolutionTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Unternehmens-Evolution'**
+  String get companyEvolutionTitle;
+
+  /// No description provided for @companyEvolutionSubtitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Strukturierte externe Informationen zu einem Unternehmen – aus Demo-Daten, ohne Live-Recherche.'**
+  String get companyEvolutionSubtitle;
+
+  /// No description provided for @companyEvolutionSelectCompany.
+  ///
+  /// In de, this message translates to:
+  /// **'Unternehmen'**
+  String get companyEvolutionSelectCompany;
+
+  /// No description provided for @companyEvolutionSnapshotTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Unternehmensprofil'**
+  String get companyEvolutionSnapshotTitle;
+
+  /// No description provided for @companyEvolutionTimelineTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Zeitleiste'**
+  String get companyEvolutionTimelineTitle;
+
+  /// No description provided for @companyEvolutionSourcesTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Recherche-Quellen'**
+  String get companyEvolutionSourcesTitle;
+
+  /// No description provided for @companyEvolutionEvidenceForDocument.
+  ///
+  /// In de, this message translates to:
+  /// **'Belege aus diesem Dokument'**
+  String get companyEvolutionEvidenceForDocument;
+
+  /// No description provided for @companyEvolutionFieldIndustry.
+  ///
+  /// In de, this message translates to:
+  /// **'Branche'**
+  String get companyEvolutionFieldIndustry;
+
+  /// No description provided for @companyEvolutionFieldFounded.
+  ///
+  /// In de, this message translates to:
+  /// **'Gründungsjahr'**
+  String get companyEvolutionFieldFounded;
+
+  /// No description provided for @companyEvolutionFieldCountries.
+  ///
+  /// In de, this message translates to:
+  /// **'Länder'**
+  String get companyEvolutionFieldCountries;
+
+  /// No description provided for @companyEvolutionFieldProducts.
+  ///
+  /// In de, this message translates to:
+  /// **'Bekannte Produkte'**
+  String get companyEvolutionFieldProducts;
+
+  /// No description provided for @companyEvolutionFieldWebsite.
+  ///
+  /// In de, this message translates to:
+  /// **'Website'**
+  String get companyEvolutionFieldWebsite;
+
+  /// No description provided for @companyEvolutionFieldSocial.
+  ///
+  /// In de, this message translates to:
+  /// **'Social-Media-Kanäle'**
+  String get companyEvolutionFieldSocial;
+
+  /// No description provided for @companyEvolutionFieldSegment.
+  ///
+  /// In de, this message translates to:
+  /// **'Marktsegment'**
+  String get companyEvolutionFieldSegment;
+
+  /// No description provided for @companyEvolutionFieldRating.
+  ///
+  /// In de, this message translates to:
+  /// **'Bewertung'**
+  String get companyEvolutionFieldRating;
+
+  /// No description provided for @companyEvolutionFieldUpdated.
+  ///
+  /// In de, this message translates to:
+  /// **'Letzter Datenstand'**
+  String get companyEvolutionFieldUpdated;
+
+  /// No description provided for @companyEvolutionDocSource.
+  ///
+  /// In de, this message translates to:
+  /// **'Quelle'**
+  String get companyEvolutionDocSource;
+
+  /// No description provided for @companyEvolutionDocType.
+  ///
+  /// In de, this message translates to:
+  /// **'Typ'**
+  String get companyEvolutionDocType;
+
+  /// No description provided for @companyEvolutionDocPublished.
+  ///
+  /// In de, this message translates to:
+  /// **'Veröffentlicht'**
+  String get companyEvolutionDocPublished;
+
+  /// No description provided for @companyEvolutionDocLanguage.
+  ///
+  /// In de, this message translates to:
+  /// **'Sprache'**
+  String get companyEvolutionDocLanguage;
+
+  /// No description provided for @companyEvolutionDocCountry.
+  ///
+  /// In de, this message translates to:
+  /// **'Land'**
+  String get companyEvolutionDocCountry;
+
+  /// No description provided for @companyEvolutionDocUrl.
+  ///
+  /// In de, this message translates to:
+  /// **'URL'**
+  String get companyEvolutionDocUrl;
+
+  /// No description provided for @companyEvolutionEvidenceConfidence.
+  ///
+  /// In de, this message translates to:
+  /// **'Konfidenz'**
+  String get companyEvolutionEvidenceConfidence;
+
+  /// No description provided for @companyEvolutionEvidenceExtracted.
+  ///
+  /// In de, this message translates to:
+  /// **'Extrahiert'**
+  String get companyEvolutionEvidenceExtracted;
+
+  /// No description provided for @companyEvolutionTrustTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Transparenzhinweis'**
+  String get companyEvolutionTrustTitle;
+
+  /// No description provided for @companyEvolutionTrustBody.
+  ///
+  /// In de, this message translates to:
+  /// **'Demo-Daten – keine Live-Recherche, keine KI-generierten Schlussfolgerungen. Quellen und Aussagen sind getrennt modelliert.'**
+  String get companyEvolutionTrustBody;
+
+  /// No description provided for @companyEvolutionEmptyCompanies.
+  ///
+  /// In de, this message translates to:
+  /// **'Keine Unternehmen verfügbar.'**
+  String get companyEvolutionEmptyCompanies;
+
+  /// No description provided for @companyEvolutionEmptyTimeline.
+  ///
+  /// In de, this message translates to:
+  /// **'Keine Zeitleisten-Einträge vorhanden.'**
+  String get companyEvolutionEmptyTimeline;
+
+  /// No description provided for @companyEvolutionEmptyDocuments.
+  ///
+  /// In de, this message translates to:
+  /// **'Keine Recherche-Dokumente vorhanden.'**
+  String get companyEvolutionEmptyDocuments;
+
+  /// No description provided for @companyEvolutionEmptyEvidence.
+  ///
+  /// In de, this message translates to:
+  /// **'Keine Belege zu diesem Dokument.'**
+  String get companyEvolutionEmptyEvidence;
+
+  /// No description provided for @timelineCategoryFounding.
+  ///
+  /// In de, this message translates to:
+  /// **'Gründung'**
+  String get timelineCategoryFounding;
+
+  /// No description provided for @timelineCategoryProduct.
+  ///
+  /// In de, this message translates to:
+  /// **'Produkt'**
+  String get timelineCategoryProduct;
+
+  /// No description provided for @timelineCategoryMarketing.
+  ///
+  /// In de, this message translates to:
+  /// **'Marketing'**
+  String get timelineCategoryMarketing;
+
+  /// No description provided for @timelineCategoryPartnership.
+  ///
+  /// In de, this message translates to:
+  /// **'Partnerschaft'**
+  String get timelineCategoryPartnership;
+
+  /// No description provided for @timelineCategoryExpansion.
+  ///
+  /// In de, this message translates to:
+  /// **'Expansion'**
+  String get timelineCategoryExpansion;
+
+  /// No description provided for @timelineCategoryLegal.
+  ///
+  /// In de, this message translates to:
+  /// **'Recht'**
+  String get timelineCategoryLegal;
+
+  /// No description provided for @timelineCategoryFinance.
+  ///
+  /// In de, this message translates to:
+  /// **'Finanzen'**
+  String get timelineCategoryFinance;
+
+  /// No description provided for @timelineCategoryHiring.
+  ///
+  /// In de, this message translates to:
+  /// **'Personal'**
+  String get timelineCategoryHiring;
+
+  /// No description provided for @timelineCategoryStrategy.
+  ///
+  /// In de, this message translates to:
+  /// **'Strategie'**
+  String get timelineCategoryStrategy;
+
+  /// No description provided for @timelineCategoryCrisis.
+  ///
+  /// In de, this message translates to:
+  /// **'Krise'**
+  String get timelineCategoryCrisis;
+
+  /// No description provided for @timelineCategoryMilestone.
+  ///
+  /// In de, this message translates to:
+  /// **'Meilenstein'**
+  String get timelineCategoryMilestone;
+
+  /// No description provided for @researchDocTypeWebsite.
+  ///
+  /// In de, this message translates to:
+  /// **'Website'**
+  String get researchDocTypeWebsite;
+
+  /// No description provided for @researchDocTypeNews.
+  ///
+  /// In de, this message translates to:
+  /// **'News'**
+  String get researchDocTypeNews;
+
+  /// No description provided for @researchDocTypeBlog.
+  ///
+  /// In de, this message translates to:
+  /// **'Blog'**
+  String get researchDocTypeBlog;
+
+  /// No description provided for @researchDocTypeSocialPost.
+  ///
+  /// In de, this message translates to:
+  /// **'Social Post'**
+  String get researchDocTypeSocialPost;
+
+  /// No description provided for @researchDocTypeReview.
+  ///
+  /// In de, this message translates to:
+  /// **'Bewertung'**
+  String get researchDocTypeReview;
+
+  /// No description provided for @researchDocTypePressRelease.
+  ///
+  /// In de, this message translates to:
+  /// **'Pressemitteilung'**
+  String get researchDocTypePressRelease;
+
+  /// No description provided for @researchDocTypeForum.
+  ///
+  /// In de, this message translates to:
+  /// **'Forum'**
+  String get researchDocTypeForum;
+
+  /// No description provided for @researchDocTypeVideo.
+  ///
+  /// In de, this message translates to:
+  /// **'Video'**
+  String get researchDocTypeVideo;
+
+  /// No description provided for @researchDocTypeFinancial.
+  ///
+  /// In de, this message translates to:
+  /// **'Finanzbericht'**
+  String get researchDocTypeFinancial;
+
+  /// No description provided for @researchDocTypeUnknown.
+  ///
+  /// In de, this message translates to:
+  /// **'Unbekannt'**
+  String get researchDocTypeUnknown;
+
+  /// No description provided for @researchEvidenceCategoryProduct.
+  ///
+  /// In de, this message translates to:
+  /// **'Produkt'**
+  String get researchEvidenceCategoryProduct;
+
+  /// No description provided for @researchEvidenceCategoryMarketing.
+  ///
+  /// In de, this message translates to:
+  /// **'Marketing'**
+  String get researchEvidenceCategoryMarketing;
+
+  /// No description provided for @researchEvidenceCategoryExpansion.
+  ///
+  /// In de, this message translates to:
+  /// **'Expansion'**
+  String get researchEvidenceCategoryExpansion;
+
+  /// No description provided for @researchEvidenceCategoryHiring.
+  ///
+  /// In de, this message translates to:
+  /// **'Personal'**
+  String get researchEvidenceCategoryHiring;
+
+  /// No description provided for @researchEvidenceCategoryFinance.
+  ///
+  /// In de, this message translates to:
+  /// **'Finanzen'**
+  String get researchEvidenceCategoryFinance;
+
+  /// No description provided for @researchEvidenceCategoryPartnership.
+  ///
+  /// In de, this message translates to:
+  /// **'Partnerschaft'**
+  String get researchEvidenceCategoryPartnership;
+
+  /// No description provided for @researchEvidenceCategoryReputation.
+  ///
+  /// In de, this message translates to:
+  /// **'Reputation'**
+  String get researchEvidenceCategoryReputation;
+
+  /// No description provided for @researchEvidenceCategoryStrategy.
+  ///
+  /// In de, this message translates to:
+  /// **'Strategie'**
+  String get researchEvidenceCategoryStrategy;
+
+  /// No description provided for @researchEvidenceCategoryOther.
+  ///
+  /// In de, this message translates to:
+  /// **'Sonstiges'**
+  String get researchEvidenceCategoryOther;
 }
 
 class _AppLocalizationsDelegate

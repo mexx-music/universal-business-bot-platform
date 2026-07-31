@@ -19,6 +19,8 @@ import '../demo/demo_mode_controller.dart';
 import '../demo/demo_preference_store.dart';
 import '../demo/demo_preference_store_factory.dart';
 import '../onboarding/onboarding_controller.dart';
+import '../research/company_evolution_controller.dart';
+import '../research/research_runtime.dart';
 import '../onboarding/tenant_onboarding_data_source.dart';
 import '../onboarding/tenant_onboarding_service.dart';
 import '../public_intake/public_intake_service.dart';
@@ -50,9 +52,15 @@ class AppDependencies {
     required this.publicIntakeService,
     required this.demoModeController,
     required this.communityController,
+    required this.companyEvolutionController,
     required this.aiController,
     RemoteWorkspaceDataSource? remoteDataSource,
   });
+
+  /// Company Evolution view-model over the local Research Engine (G-5). Fully
+  /// local demo data in every mode — no web research, no APIs, no persistence.
+  static CompanyEvolutionController _buildCompanyEvolutionController() =>
+      CompanyEvolutionController(ResearchRuntime());
 
   /// Community Radar / Human Intelligence Network controller. CR-1 wires a
   /// local, read-only demo repository in every mode — no APIs, no persistence,
@@ -201,6 +209,7 @@ class AppDependencies {
             publicIntakeService ?? const UnsupportedPublicIntakeService(),
         demoModeController: demoModeController,
         communityController: _buildCommunityController(),
+        companyEvolutionController: _buildCompanyEvolutionController(),
         aiController: _buildAiController(
           () => SupabaseEdgeFunctionClient(Supabase.instance.client),
         ),
@@ -253,6 +262,7 @@ class AppDependencies {
           initialDemoRepository: restoredDemoRepository,
         ),
         communityController: _buildCommunityController(),
+        companyEvolutionController: _buildCompanyEvolutionController(),
         aiController: _buildAiController(null),
       );
     } catch (error) {
@@ -297,6 +307,7 @@ class AppDependencies {
         exitRepositoryFactory: () async => workspaceRepository,
       ),
       communityController: _buildCommunityController(),
+      companyEvolutionController: _buildCompanyEvolutionController(),
       aiController: _buildAiController(null),
     );
   }
@@ -516,6 +527,7 @@ class AppDependencies {
   final PublicIntakeService publicIntakeService;
   final DemoModeController demoModeController;
   final CommunityController communityController;
+  final CompanyEvolutionController companyEvolutionController;
   final AiController aiController;
 }
 

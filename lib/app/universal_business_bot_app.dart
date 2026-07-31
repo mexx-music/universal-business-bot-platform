@@ -7,6 +7,7 @@ import '../data/app_state.dart';
 import '../demo/demo_mode_controller.dart';
 import '../l10n/app_localizations.dart';
 import '../onboarding/onboarding_controller.dart';
+import '../research/company_evolution_controller.dart';
 import '../router/app_router.dart';
 import '../tenant_selection/tenant_selection_controller.dart';
 import 'app_dependencies.dart';
@@ -64,32 +65,37 @@ class _UniversalBusinessAppState extends State<UniversalBusinessApp> {
                     notifier: dependencies.communityController,
                     child: AiScope(
                       notifier: dependencies.aiController,
-                      child: AppStateScope(
-                        notifier: dependencies.appState,
-                        child: MaterialApp.router(
-                          title: 'Universal Business Bot Platform',
-                          debugShowCheckedModeBanner: false,
-                          localizationsDelegates:
-                              AppLocalizations.localizationsDelegates,
-                          supportedLocales: AppLocalizations.supportedLocales,
-                          locale: _localeController.locale,
-                          theme: ThemeData(
-                            useMaterial3: true,
-                            colorScheme: ColorScheme.fromSeed(
-                              seedColor: const Color(0xFF3F51B5),
-                              brightness: Brightness.light,
-                            ),
-                            cardTheme: CardThemeData(
-                              elevation: 0,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(12),
-                                side: BorderSide(
-                                  color: const Color(0xFF3F51B5).withAlpha(30),
+                      child: CompanyEvolutionScope(
+                        notifier: dependencies.companyEvolutionController,
+                        child: AppStateScope(
+                          notifier: dependencies.appState,
+                          child: MaterialApp.router(
+                            title: 'Universal Business Bot Platform',
+                            debugShowCheckedModeBanner: false,
+                            localizationsDelegates:
+                                AppLocalizations.localizationsDelegates,
+                            supportedLocales: AppLocalizations.supportedLocales,
+                            locale: _localeController.locale,
+                            theme: ThemeData(
+                              useMaterial3: true,
+                              colorScheme: ColorScheme.fromSeed(
+                                seedColor: const Color(0xFF3F51B5),
+                                brightness: Brightness.light,
+                              ),
+                              cardTheme: CardThemeData(
+                                elevation: 0,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(12),
+                                  side: BorderSide(
+                                    color: const Color(
+                                      0xFF3F51B5,
+                                    ).withAlpha(30),
+                                  ),
                                 ),
                               ),
                             ),
+                            routerConfig: _router,
                           ),
-                          routerConfig: _router,
                         ),
                       ),
                     ),
