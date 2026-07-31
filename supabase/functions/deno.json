@@ -10,7 +10,7 @@
     "rules": { "tags": ["recommended"] }
   },
   "tasks": {
-    "test": "deno test --allow-none tests/",
+    "test": "deno test tests/",
     "check": "deno check ai-generate/index.ts",
     "fmt": "deno fmt"
   }

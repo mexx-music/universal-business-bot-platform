@@ -1,8 +1,12 @@
-// Unit tests for the ai-generate pipeline. No network: a fake fetch is
-// injected. Run locally with: `deno test --allow-none supabase/functions`.
+// Unit tests for the ai-generate pipeline. No network at runtime: a fake fetch
+// is injected, so the tests need no Deno permissions.
 //
-// NOTE: These tests were authored without a local Deno runtime available and
-// therefore have not been executed in CI/dev yet (see GEMINI_EDGE_FUNCTION.md).
+// Run from the functions dir:  deno task test        (i.e. `deno test tests/`)
+// Or from the repo root:       deno test supabase/functions/tests/
+//
+// NOTE: This environment has no Deno runtime installed, so these 23 tests have
+// not been executed here. They are written to run with no permission flags once
+// Deno is available. See docs/hackathon-2/GEMINI_LIVE_DEPLOYMENT.md.
 
 import {
   assert,
