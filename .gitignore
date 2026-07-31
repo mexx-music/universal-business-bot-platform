@@ -13,6 +13,9 @@
 # NEVER a client dart-define; it lives only as a server-side Supabase secret.
 config/gemini-live.json
 config/*.local.json
+
+# Supabase CLI local link metadata (per-machine; never commit)
+supabase/.temp/
 .atom/
 .build/
 .buildlog/
