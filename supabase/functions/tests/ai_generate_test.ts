@@ -13,7 +13,7 @@ import {
   assertEquals,
   assertFalse,
 } from "https://deno.land/std@0.224.0/assert/mod.ts";
-import { handleRequest, type Deps } from "../ai-generate/index.ts";
+import { type Deps, handleRequest } from "../ai-generate/handler.ts";
 import type { FetchLike } from "../_shared/gemini.ts";
 
 const KEY_SENTINEL = "SECRET-KEY-SENTINEL-DO-NOT-LEAK";
@@ -27,7 +27,9 @@ interface FakeFetch {
 }
 
 function fakeFetch(
-  handler: (url: string) => { ok: boolean; status: number; json: () => Promise<unknown> } | Promise<never>,
+  handler: (
+    url: string,
+  ) => { ok: boolean; status: number; json: () => Promise<unknown> } | Promise<never>,
 ): FakeFetch {
   const state: FakeFetch = {
     calls: 0,
@@ -150,7 +152,10 @@ Deno.test("message too long is rejected", async () => {
 // 7. total input too large
 Deno.test("total input too large is rejected", async () => {
   const { d } = deps();
-  const messages = Array.from({ length: 5 }, () => ({ role: "user", content: "x".repeat(7000) }));
+  const messages = Array.from(
+    { length: 5 },
+    () => ({ role: "user", content: "x".repeat(7000) }),
+  );
   const res = await handleRequest(post({ provider: "googleGemini", messages }), d);
   assertEquals(res.status, 400);
 });
@@ -170,7 +175,7 @@ Deno.test("maxTokens is clamped to the server cap", async () => {
   const ff = fakeFetch(() => geminiOk("ok"));
   const { d } = deps({ fetch: ff });
   await handleRequest(post({ ...validBody, maxTokens: 999999 }), d);
-  const gen = (ff.lastBody!.generationConfig as { maxOutputTokens: number });
+  const gen = ff.lastBody!.generationConfig as { maxOutputTokens: number };
   assertEquals(gen.maxOutputTokens, 2048);
 });
 
@@ -216,7 +221,10 @@ Deno.test("request mapping: system instruction and roles", async () => {
     d,
   );
   const body = ff.lastBody!;
-  assertEquals((body.systemInstruction as { parts: { text: string }[] }).parts[0].text, "SYS");
+  assertEquals(
+    (body.systemInstruction as { parts: { text: string }[] }).parts[0].text,
+    "SYS",
+  );
   const contents = body.contents as { role: string; parts: { text: string }[] }[];
   assertEquals(contents.map((c) => c.role), ["user", "model"]);
 });
@@ -280,7 +288,11 @@ Deno.test("upstream timeout maps to 504", async () => {
 
 // 19. HTTP 429 from Gemini
 Deno.test("upstream 429 maps to rate_limited", async () => {
-  const ff = fakeFetch(() => ({ ok: false, status: 429, json: () => Promise.resolve({}) }));
+  const ff = fakeFetch(() => ({
+    ok: false,
+    status: 429,
+    json: () => Promise.resolve({}),
+  }));
   const { d } = deps({ fetch: ff });
   const res = await handleRequest(post(validBody), d);
   assertEquals(res.status, 429);
@@ -331,7 +343,11 @@ Deno.test("ping performs no upstream call", async () => {
 
 // 23. API key never appears in error bodies or logs
 Deno.test("api key never leaks into logs or client errors", async () => {
-  const ff = fakeFetch(() => ({ ok: false, status: 500, json: () => Promise.resolve({}) }));
+  const ff = fakeFetch(() => ({
+    ok: false,
+    status: 500,
+    json: () => Promise.resolve({}),
+  }));
   const { d, logs } = deps({ fetch: ff });
 
   const errRes = await handleRequest(post(validBody), d);
