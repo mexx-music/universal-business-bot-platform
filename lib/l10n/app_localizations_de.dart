@@ -4921,4 +4921,215 @@ class AppLocalizationsDe extends AppLocalizations {
   @override
   String get gdClosingLine2 =>
       'Jede bestätigte Ergänzung verbessert alle zukünftigen Antworten.';
+
+  @override
+  String get navBusinessStory => 'Business Story';
+
+  @override
+  String get bsTitle => 'BusinessBrain für Unternehmen';
+
+  @override
+  String get bsSubtitle =>
+      'In zwei Minuten: welches Problem wir lösen, warum das kein gewöhnlicher KI-Chat ist und welcher Nutzen für Unternehmen entsteht.';
+
+  @override
+  String get bsProblemTitle => 'Das Problem';
+
+  @override
+  String get bsProblemBody =>
+      'Viele Unternehmen besitzen enormes Wissen – verteilt auf PDFs, E-Mails, Webseiten, Mitarbeiter, Handbücher und Support-Anfragen. Dadurch gehen Zeit, Wissen und Qualität verloren.';
+
+  @override
+  String get bsSolutionTitle => 'Die Lösung';
+
+  @override
+  String get bsSolutionBody =>
+      'BusinessBrain bündelt dieses Wissen in einer zentralen Wissensbasis. Die KI beantwortet Fragen ausschließlich auf Basis dieses Wissens und zeigt ihre Quellen. Fehlendes Wissen wird erkannt und als Verbesserungsvorschlag vorbereitet – Mitarbeiter entscheiden jederzeit selbst, was übernommen wird.';
+
+  @override
+  String get bsCycleTitle => 'Der Kreislauf';
+
+  @override
+  String get bsBenefitsTitle => 'Der Nutzen für Unternehmen';
+
+  @override
+  String get bsBenefit1Title => 'Schnellerer Kundensupport';
+
+  @override
+  String get bsBenefit1Body =>
+      'Antworten kommen direkt aus dem freigegebenen Firmenwissen.';
+
+  @override
+  String get bsBenefit2Title => 'Einheitliche Antworten';
+
+  @override
+  String get bsBenefit2Body => 'Alle greifen auf dieselbe Wissensbasis zu.';
+
+  @override
+  String get bsBenefit3Title => 'Zentrale Wissensbasis';
+
+  @override
+  String get bsBenefit3Body =>
+      'Eine Quelle der Wahrheit statt verstreuter Dokumente.';
+
+  @override
+  String get bsBenefit4Title => 'Entlastung der Mitarbeiter';
+
+  @override
+  String get bsBenefit4Body =>
+      'Wiederkehrende Fragen werden zuverlässig beantwortet.';
+
+  @override
+  String get bsBenefit5Title => 'Kontinuierliche Verbesserung';
+
+  @override
+  String get bsBenefit5Body =>
+      'Bestätigtes Wissen verbessert alle zukünftigen Antworten.';
+
+  @override
+  String get bsBenefit6Title => 'Transparente Quellen';
+
+  @override
+  String get bsBenefit6Body =>
+      'Jede Antwort zeigt die verwendeten Wissenseinträge.';
+
+  @override
+  String get bsBenefit7Title => 'Keine Halluzinationen';
+
+  @override
+  String get bsBenefit7Body => 'Es wird nur belegtes Firmenwissen verwendet.';
+
+  @override
+  String get bsBenefit8Title => 'Mensch behält die Kontrolle';
+
+  @override
+  String get bsBenefit8Body =>
+      'Nichts wird automatisch veröffentlicht oder gespeichert.';
+
+  @override
+  String get bsContrastTitle => 'Bewusst mit Grenzen';
+
+  @override
+  String get bsNotTitle => 'Was BusinessBrain bewusst nicht macht';
+
+  @override
+  String get bsDoesTitle => 'Was BusinessBrain tut';
+
+  @override
+  String get bsNot1 => 'Erfindet keine Fakten';
+
+  @override
+  String get bsNot2 => 'Veröffentlicht nichts automatisch';
+
+  @override
+  String get bsNot3 => 'Ersetzt keine Mitarbeiter';
+
+  @override
+  String get bsNot4 => 'Entscheidet nichts selbstständig';
+
+  @override
+  String get bsDoes1 => 'Unterstützt Mitarbeiter';
+
+  @override
+  String get bsDoes2 => 'Erkennt Wissenslücken';
+
+  @override
+  String get bsDoes3 => 'Erstellt Verbesserungsvorschläge';
+
+  @override
+  String get bsDoes4 => 'Lernt durch bestätigtes Firmenwissen';
+
+  @override
+  String get bsVisionTitle => 'Vision';
+
+  @override
+  String get bsVisionBadge => 'Zukünftige Entwicklung';
+
+  @override
+  String get bsVision1 => 'Autonome Research-Agenten';
+
+  @override
+  String get bsVision2 => 'Wettbewerbsanalyse';
+
+  @override
+  String get bsVision3 => 'Sichtbarkeitsüberwachung';
+
+  @override
+  String get bsVision4 => 'Morning Briefings';
+
+  @override
+  String get bsVision5 => 'Trendanalysen';
+
+  @override
+  String get bsVision6 => 'Strategische Handlungsempfehlungen';
+
+  @override
+  String get bsVision7 => 'Intelligente Aufgabenverteilung';
+
+  @override
+  String get bsVision8 => 'Kontinuierliche Unternehmensbeobachtung';
+
+  @override
+  String get bsClosingTitle =>
+      'BusinessBrain entwickelt sich vom Wissenssystem zum digitalen Unternehmensgehirn.';
+
+  @override
+  String get bsClosingBody =>
+      'Heute unterstützt BusinessBrain Unternehmen dabei, ihr Wissen effizient zu organisieren, Kundenfragen zuverlässig zu beantworten und Wissenslücken sichtbar zu machen. Zukünftig soll die Plattform Unternehmen zusätzlich aktiv unterstützen, Entwicklungen beobachten, Chancen erkennen und strategische Empfehlungen liefern.';
+
+  @override
+  String get bsStatusTitle => 'Status-Übersicht';
+
+  @override
+  String get bsStatusIntro =>
+      'Transparente Zuordnung: Was ist heute real, was ist in Arbeit, was ist Vision?';
+
+  @override
+  String get bsStatusAvailable => 'Bereits verfügbar';
+
+  @override
+  String get bsStatusInDev => 'In Entwicklung';
+
+  @override
+  String get bsStatusVision => 'Langfristige Vision';
+
+  @override
+  String get bsFeatKnowledgeBase => 'Zentrale Wissensbasis';
+
+  @override
+  String get bsFeatGrounded => 'Grounded KI-Assistent mit Quellen';
+
+  @override
+  String get bsFeatGapDetection => 'Wissenslücken-Erkennung';
+
+  @override
+  String get bsFeatBuilder => 'AI Knowledge Builder (Import)';
+
+  @override
+  String get bsFeatSuggestions =>
+      'Verbesserungsvorschläge (Mensch entscheidet)';
+
+  @override
+  String get bsFeatLoop => 'Lernkreislauf-Visualisierung';
+
+  @override
+  String get bsFeatEvolution => 'Company Evolution (Demo-Daten)';
+
+  @override
+  String get bsFeatPortals => 'Rollen & Portale (Vorschau)';
+
+  @override
+  String get bsFeatI18n => 'Zweisprachig (DE/EN)';
+
+  @override
+  String get bsFeatLiveGemini => 'Live-Gemini in Produktion (in Härtung)';
+
+  @override
+  String get bsFeatRoleEnforcement => 'Rollen-Durchsetzung & Login-Guards';
+
+  @override
+  String get bsFeatResearchLive => 'Live-Recherche-Pipeline mit echten Quellen';
+
+  @override
+  String get bsFeatCommunity => 'Community-Radar (read-only Demo)';
 }

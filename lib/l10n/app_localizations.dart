@@ -8965,6 +8965,402 @@ abstract class AppLocalizations {
   /// In de, this message translates to:
   /// **'Jede bestätigte Ergänzung verbessert alle zukünftigen Antworten.'**
   String get gdClosingLine2;
+
+  /// No description provided for @navBusinessStory.
+  ///
+  /// In de, this message translates to:
+  /// **'Business Story'**
+  String get navBusinessStory;
+
+  /// No description provided for @bsTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'BusinessBrain für Unternehmen'**
+  String get bsTitle;
+
+  /// No description provided for @bsSubtitle.
+  ///
+  /// In de, this message translates to:
+  /// **'In zwei Minuten: welches Problem wir lösen, warum das kein gewöhnlicher KI-Chat ist und welcher Nutzen für Unternehmen entsteht.'**
+  String get bsSubtitle;
+
+  /// No description provided for @bsProblemTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Das Problem'**
+  String get bsProblemTitle;
+
+  /// No description provided for @bsProblemBody.
+  ///
+  /// In de, this message translates to:
+  /// **'Viele Unternehmen besitzen enormes Wissen – verteilt auf PDFs, E-Mails, Webseiten, Mitarbeiter, Handbücher und Support-Anfragen. Dadurch gehen Zeit, Wissen und Qualität verloren.'**
+  String get bsProblemBody;
+
+  /// No description provided for @bsSolutionTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Die Lösung'**
+  String get bsSolutionTitle;
+
+  /// No description provided for @bsSolutionBody.
+  ///
+  /// In de, this message translates to:
+  /// **'BusinessBrain bündelt dieses Wissen in einer zentralen Wissensbasis. Die KI beantwortet Fragen ausschließlich auf Basis dieses Wissens und zeigt ihre Quellen. Fehlendes Wissen wird erkannt und als Verbesserungsvorschlag vorbereitet – Mitarbeiter entscheiden jederzeit selbst, was übernommen wird.'**
+  String get bsSolutionBody;
+
+  /// No description provided for @bsCycleTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Der Kreislauf'**
+  String get bsCycleTitle;
+
+  /// No description provided for @bsBenefitsTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Der Nutzen für Unternehmen'**
+  String get bsBenefitsTitle;
+
+  /// No description provided for @bsBenefit1Title.
+  ///
+  /// In de, this message translates to:
+  /// **'Schnellerer Kundensupport'**
+  String get bsBenefit1Title;
+
+  /// No description provided for @bsBenefit1Body.
+  ///
+  /// In de, this message translates to:
+  /// **'Antworten kommen direkt aus dem freigegebenen Firmenwissen.'**
+  String get bsBenefit1Body;
+
+  /// No description provided for @bsBenefit2Title.
+  ///
+  /// In de, this message translates to:
+  /// **'Einheitliche Antworten'**
+  String get bsBenefit2Title;
+
+  /// No description provided for @bsBenefit2Body.
+  ///
+  /// In de, this message translates to:
+  /// **'Alle greifen auf dieselbe Wissensbasis zu.'**
+  String get bsBenefit2Body;
+
+  /// No description provided for @bsBenefit3Title.
+  ///
+  /// In de, this message translates to:
+  /// **'Zentrale Wissensbasis'**
+  String get bsBenefit3Title;
+
+  /// No description provided for @bsBenefit3Body.
+  ///
+  /// In de, this message translates to:
+  /// **'Eine Quelle der Wahrheit statt verstreuter Dokumente.'**
+  String get bsBenefit3Body;
+
+  /// No description provided for @bsBenefit4Title.
+  ///
+  /// In de, this message translates to:
+  /// **'Entlastung der Mitarbeiter'**
+  String get bsBenefit4Title;
+
+  /// No description provided for @bsBenefit4Body.
+  ///
+  /// In de, this message translates to:
+  /// **'Wiederkehrende Fragen werden zuverlässig beantwortet.'**
+  String get bsBenefit4Body;
+
+  /// No description provided for @bsBenefit5Title.
+  ///
+  /// In de, this message translates to:
+  /// **'Kontinuierliche Verbesserung'**
+  String get bsBenefit5Title;
+
+  /// No description provided for @bsBenefit5Body.
+  ///
+  /// In de, this message translates to:
+  /// **'Bestätigtes Wissen verbessert alle zukünftigen Antworten.'**
+  String get bsBenefit5Body;
+
+  /// No description provided for @bsBenefit6Title.
+  ///
+  /// In de, this message translates to:
+  /// **'Transparente Quellen'**
+  String get bsBenefit6Title;
+
+  /// No description provided for @bsBenefit6Body.
+  ///
+  /// In de, this message translates to:
+  /// **'Jede Antwort zeigt die verwendeten Wissenseinträge.'**
+  String get bsBenefit6Body;
+
+  /// No description provided for @bsBenefit7Title.
+  ///
+  /// In de, this message translates to:
+  /// **'Keine Halluzinationen'**
+  String get bsBenefit7Title;
+
+  /// No description provided for @bsBenefit7Body.
+  ///
+  /// In de, this message translates to:
+  /// **'Es wird nur belegtes Firmenwissen verwendet.'**
+  String get bsBenefit7Body;
+
+  /// No description provided for @bsBenefit8Title.
+  ///
+  /// In de, this message translates to:
+  /// **'Mensch behält die Kontrolle'**
+  String get bsBenefit8Title;
+
+  /// No description provided for @bsBenefit8Body.
+  ///
+  /// In de, this message translates to:
+  /// **'Nichts wird automatisch veröffentlicht oder gespeichert.'**
+  String get bsBenefit8Body;
+
+  /// No description provided for @bsContrastTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Bewusst mit Grenzen'**
+  String get bsContrastTitle;
+
+  /// No description provided for @bsNotTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Was BusinessBrain bewusst nicht macht'**
+  String get bsNotTitle;
+
+  /// No description provided for @bsDoesTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Was BusinessBrain tut'**
+  String get bsDoesTitle;
+
+  /// No description provided for @bsNot1.
+  ///
+  /// In de, this message translates to:
+  /// **'Erfindet keine Fakten'**
+  String get bsNot1;
+
+  /// No description provided for @bsNot2.
+  ///
+  /// In de, this message translates to:
+  /// **'Veröffentlicht nichts automatisch'**
+  String get bsNot2;
+
+  /// No description provided for @bsNot3.
+  ///
+  /// In de, this message translates to:
+  /// **'Ersetzt keine Mitarbeiter'**
+  String get bsNot3;
+
+  /// No description provided for @bsNot4.
+  ///
+  /// In de, this message translates to:
+  /// **'Entscheidet nichts selbstständig'**
+  String get bsNot4;
+
+  /// No description provided for @bsDoes1.
+  ///
+  /// In de, this message translates to:
+  /// **'Unterstützt Mitarbeiter'**
+  String get bsDoes1;
+
+  /// No description provided for @bsDoes2.
+  ///
+  /// In de, this message translates to:
+  /// **'Erkennt Wissenslücken'**
+  String get bsDoes2;
+
+  /// No description provided for @bsDoes3.
+  ///
+  /// In de, this message translates to:
+  /// **'Erstellt Verbesserungsvorschläge'**
+  String get bsDoes3;
+
+  /// No description provided for @bsDoes4.
+  ///
+  /// In de, this message translates to:
+  /// **'Lernt durch bestätigtes Firmenwissen'**
+  String get bsDoes4;
+
+  /// No description provided for @bsVisionTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Vision'**
+  String get bsVisionTitle;
+
+  /// No description provided for @bsVisionBadge.
+  ///
+  /// In de, this message translates to:
+  /// **'Zukünftige Entwicklung'**
+  String get bsVisionBadge;
+
+  /// No description provided for @bsVision1.
+  ///
+  /// In de, this message translates to:
+  /// **'Autonome Research-Agenten'**
+  String get bsVision1;
+
+  /// No description provided for @bsVision2.
+  ///
+  /// In de, this message translates to:
+  /// **'Wettbewerbsanalyse'**
+  String get bsVision2;
+
+  /// No description provided for @bsVision3.
+  ///
+  /// In de, this message translates to:
+  /// **'Sichtbarkeitsüberwachung'**
+  String get bsVision3;
+
+  /// No description provided for @bsVision4.
+  ///
+  /// In de, this message translates to:
+  /// **'Morning Briefings'**
+  String get bsVision4;
+
+  /// No description provided for @bsVision5.
+  ///
+  /// In de, this message translates to:
+  /// **'Trendanalysen'**
+  String get bsVision5;
+
+  /// No description provided for @bsVision6.
+  ///
+  /// In de, this message translates to:
+  /// **'Strategische Handlungsempfehlungen'**
+  String get bsVision6;
+
+  /// No description provided for @bsVision7.
+  ///
+  /// In de, this message translates to:
+  /// **'Intelligente Aufgabenverteilung'**
+  String get bsVision7;
+
+  /// No description provided for @bsVision8.
+  ///
+  /// In de, this message translates to:
+  /// **'Kontinuierliche Unternehmensbeobachtung'**
+  String get bsVision8;
+
+  /// No description provided for @bsClosingTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'BusinessBrain entwickelt sich vom Wissenssystem zum digitalen Unternehmensgehirn.'**
+  String get bsClosingTitle;
+
+  /// No description provided for @bsClosingBody.
+  ///
+  /// In de, this message translates to:
+  /// **'Heute unterstützt BusinessBrain Unternehmen dabei, ihr Wissen effizient zu organisieren, Kundenfragen zuverlässig zu beantworten und Wissenslücken sichtbar zu machen. Zukünftig soll die Plattform Unternehmen zusätzlich aktiv unterstützen, Entwicklungen beobachten, Chancen erkennen und strategische Empfehlungen liefern.'**
+  String get bsClosingBody;
+
+  /// No description provided for @bsStatusTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Status-Übersicht'**
+  String get bsStatusTitle;
+
+  /// No description provided for @bsStatusIntro.
+  ///
+  /// In de, this message translates to:
+  /// **'Transparente Zuordnung: Was ist heute real, was ist in Arbeit, was ist Vision?'**
+  String get bsStatusIntro;
+
+  /// No description provided for @bsStatusAvailable.
+  ///
+  /// In de, this message translates to:
+  /// **'Bereits verfügbar'**
+  String get bsStatusAvailable;
+
+  /// No description provided for @bsStatusInDev.
+  ///
+  /// In de, this message translates to:
+  /// **'In Entwicklung'**
+  String get bsStatusInDev;
+
+  /// No description provided for @bsStatusVision.
+  ///
+  /// In de, this message translates to:
+  /// **'Langfristige Vision'**
+  String get bsStatusVision;
+
+  /// No description provided for @bsFeatKnowledgeBase.
+  ///
+  /// In de, this message translates to:
+  /// **'Zentrale Wissensbasis'**
+  String get bsFeatKnowledgeBase;
+
+  /// No description provided for @bsFeatGrounded.
+  ///
+  /// In de, this message translates to:
+  /// **'Grounded KI-Assistent mit Quellen'**
+  String get bsFeatGrounded;
+
+  /// No description provided for @bsFeatGapDetection.
+  ///
+  /// In de, this message translates to:
+  /// **'Wissenslücken-Erkennung'**
+  String get bsFeatGapDetection;
+
+  /// No description provided for @bsFeatBuilder.
+  ///
+  /// In de, this message translates to:
+  /// **'AI Knowledge Builder (Import)'**
+  String get bsFeatBuilder;
+
+  /// No description provided for @bsFeatSuggestions.
+  ///
+  /// In de, this message translates to:
+  /// **'Verbesserungsvorschläge (Mensch entscheidet)'**
+  String get bsFeatSuggestions;
+
+  /// No description provided for @bsFeatLoop.
+  ///
+  /// In de, this message translates to:
+  /// **'Lernkreislauf-Visualisierung'**
+  String get bsFeatLoop;
+
+  /// No description provided for @bsFeatEvolution.
+  ///
+  /// In de, this message translates to:
+  /// **'Company Evolution (Demo-Daten)'**
+  String get bsFeatEvolution;
+
+  /// No description provided for @bsFeatPortals.
+  ///
+  /// In de, this message translates to:
+  /// **'Rollen & Portale (Vorschau)'**
+  String get bsFeatPortals;
+
+  /// No description provided for @bsFeatI18n.
+  ///
+  /// In de, this message translates to:
+  /// **'Zweisprachig (DE/EN)'**
+  String get bsFeatI18n;
+
+  /// No description provided for @bsFeatLiveGemini.
+  ///
+  /// In de, this message translates to:
+  /// **'Live-Gemini in Produktion (in Härtung)'**
+  String get bsFeatLiveGemini;
+
+  /// No description provided for @bsFeatRoleEnforcement.
+  ///
+  /// In de, this message translates to:
+  /// **'Rollen-Durchsetzung & Login-Guards'**
+  String get bsFeatRoleEnforcement;
+
+  /// No description provided for @bsFeatResearchLive.
+  ///
+  /// In de, this message translates to:
+  /// **'Live-Recherche-Pipeline mit echten Quellen'**
+  String get bsFeatResearchLive;
+
+  /// No description provided for @bsFeatCommunity.
+  ///
+  /// In de, this message translates to:
+  /// **'Community-Radar (read-only Demo)'**
+  String get bsFeatCommunity;
 }
 
 class _AppLocalizationsDelegate
