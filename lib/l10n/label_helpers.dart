@@ -4,6 +4,7 @@ import '../models/knowledge_entry.dart';
 import '../models/product_or_service.dart';
 import '../knowledge_builder/models/knowledge_import_models.dart';
 import '../research/models/research_enums.dart';
+import '../roles/models/portal_role.dart';
 import 'app_localizations.dart';
 
 /// Locale-aware label for [KnowledgeCategory].
@@ -96,6 +97,63 @@ String researchDocumentTypeLabel(
     ResearchDocumentType.video => l.researchDocTypeVideo,
     ResearchDocumentType.financial => l.researchDocTypeFinancial,
     ResearchDocumentType.unknown => l.researchDocTypeUnknown,
+  };
+}
+
+/// Locale-aware title for a portal [PortalTier].
+String portalTierTitle(BuildContext context, PortalTier tier) {
+  final l = AppLocalizations.of(context)!;
+  return switch (tier) {
+    PortalTier.company => l.rolePortalCompanyTitle,
+    PortalTier.employee => l.rolePortalEmployeeTitle,
+    PortalTier.customer => l.rolePortalCustomerTitle,
+  };
+}
+
+/// Locale-aware name of a [PortalTier] persona.
+String portalTierLabel(BuildContext context, PortalTier tier) {
+  final l = AppLocalizations.of(context)!;
+  return switch (tier) {
+    PortalTier.company => l.roleTierCompany,
+    PortalTier.employee => l.roleTierEmployee,
+    PortalTier.customer => l.roleTierCustomer,
+  };
+}
+
+/// Locale-aware name of an [EmployeeRole] department.
+String employeeRoleLabel(BuildContext context, EmployeeRole role) {
+  final l = AppLocalizations.of(context)!;
+  return switch (role) {
+    EmployeeRole.support => l.roleDeptSupport,
+    EmployeeRole.marketing => l.roleDeptMarketing,
+    EmployeeRole.technical => l.roleDeptTechnical,
+    EmployeeRole.sales => l.roleDeptSales,
+  };
+}
+
+/// Locale-aware label for a [PortalSection]. Reuses existing navigation labels
+/// where a section maps to an existing area.
+String portalSectionLabel(BuildContext context, PortalSection section) {
+  final l = AppLocalizations.of(context)!;
+  return switch (section) {
+    PortalSection.dashboard => l.navDashboard,
+    PortalSection.knowledge => l.navKnowledge,
+    PortalSection.knowledgeBuilder => l.navKnowledgeBuilder,
+    PortalSection.products => l.roleSecProducts,
+    PortalSection.aiAssistant => l.navBotTest,
+    PortalSection.reviewAnswers => l.navReview,
+    PortalSection.community => l.navCommunityRadar,
+    PortalSection.analytics => l.navBusinessIntelligence,
+    PortalSection.companyEvolution => l.navCompanyEvolution,
+    PortalSection.research => l.roleSecResearch,
+    PortalSection.competitors => l.roleSecCompetitors,
+    PortalSection.marketing => l.navMarketingStrategy,
+    PortalSection.sources => l.navSources,
+    PortalSection.employees => l.roleSecEmployees,
+    PortalSection.roles => l.roleSecRoles,
+    PortalSection.aiSettings => l.navBotSettings,
+    PortalSection.customerAssistant => l.roleSecCustomerAssistant,
+    PortalSection.contact => l.roleSecContact,
   };
 }
 

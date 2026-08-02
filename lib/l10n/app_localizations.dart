@@ -8377,6 +8377,216 @@ abstract class AppLocalizations {
   /// In de, this message translates to:
   /// **'Allgemein'**
   String get kbCatGeneral;
+
+  /// No description provided for @navRolePortals.
+  ///
+  /// In de, this message translates to:
+  /// **'Portale'**
+  String get navRolePortals;
+
+  /// No description provided for @roleOverviewTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Rollen & Portale'**
+  String get roleOverviewTitle;
+
+  /// No description provided for @roleOverviewIntro.
+  ///
+  /// In de, this message translates to:
+  /// **'Drei Ebenen, eine Wissensbasis. Vorschau der reduzierten Navigation je Rolle – ohne Login und ohne echte Rechtevergabe.'**
+  String get roleOverviewIntro;
+
+  /// No description provided for @roleTrustNotice.
+  ///
+  /// In de, this message translates to:
+  /// **'Demo-Struktur: keine Anmeldung, keine Berechtigungsprüfung, keine Backend-Änderung. Nur zur Veranschaulichung.'**
+  String get roleTrustNotice;
+
+  /// No description provided for @roleSharedKnowledgeNote.
+  ///
+  /// In de, this message translates to:
+  /// **'Alle drei Ebenen greifen auf dieselbe Wissensbasis zu – neue Informationen werden ausschließlich im Firmenportal gepflegt.'**
+  String get roleSharedKnowledgeNote;
+
+  /// No description provided for @roleSectionsTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Sichtbare Bereiche'**
+  String get roleSectionsTitle;
+
+  /// No description provided for @roleDayTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Beispiel-Tagesablauf'**
+  String get roleDayTitle;
+
+  /// No description provided for @roleSelectTier.
+  ///
+  /// In de, this message translates to:
+  /// **'Ebene'**
+  String get roleSelectTier;
+
+  /// No description provided for @roleSelectDepartment.
+  ///
+  /// In de, this message translates to:
+  /// **'Abteilung'**
+  String get roleSelectDepartment;
+
+  /// No description provided for @rolePortalCompanyTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Firmenportal'**
+  String get rolePortalCompanyTitle;
+
+  /// No description provided for @rolePortalEmployeeTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Mitarbeiterportal'**
+  String get rolePortalEmployeeTitle;
+
+  /// No description provided for @rolePortalCustomerTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Kundenportal'**
+  String get rolePortalCustomerTitle;
+
+  /// No description provided for @roleTierCompany.
+  ///
+  /// In de, this message translates to:
+  /// **'Firmenadministrator'**
+  String get roleTierCompany;
+
+  /// No description provided for @roleTierEmployee.
+  ///
+  /// In de, this message translates to:
+  /// **'Mitarbeiter'**
+  String get roleTierEmployee;
+
+  /// No description provided for @roleTierCustomer.
+  ///
+  /// In de, this message translates to:
+  /// **'Kunde'**
+  String get roleTierCustomer;
+
+  /// No description provided for @roleDeptSupport.
+  ///
+  /// In de, this message translates to:
+  /// **'Support'**
+  String get roleDeptSupport;
+
+  /// No description provided for @roleDeptMarketing.
+  ///
+  /// In de, this message translates to:
+  /// **'Marketing'**
+  String get roleDeptMarketing;
+
+  /// No description provided for @roleDeptTechnical.
+  ///
+  /// In de, this message translates to:
+  /// **'Technik'**
+  String get roleDeptTechnical;
+
+  /// No description provided for @roleDeptSales.
+  ///
+  /// In de, this message translates to:
+  /// **'Vertrieb'**
+  String get roleDeptSales;
+
+  /// No description provided for @roleSecProducts.
+  ///
+  /// In de, this message translates to:
+  /// **'Produkte'**
+  String get roleSecProducts;
+
+  /// No description provided for @roleSecResearch.
+  ///
+  /// In de, this message translates to:
+  /// **'Research'**
+  String get roleSecResearch;
+
+  /// No description provided for @roleSecCompetitors.
+  ///
+  /// In de, this message translates to:
+  /// **'Wettbewerber'**
+  String get roleSecCompetitors;
+
+  /// No description provided for @roleSecEmployees.
+  ///
+  /// In de, this message translates to:
+  /// **'Mitarbeiter'**
+  String get roleSecEmployees;
+
+  /// No description provided for @roleSecRoles.
+  ///
+  /// In de, this message translates to:
+  /// **'Rollen'**
+  String get roleSecRoles;
+
+  /// No description provided for @roleSecCustomerAssistant.
+  ///
+  /// In de, this message translates to:
+  /// **'Kunden-Assistent'**
+  String get roleSecCustomerAssistant;
+
+  /// No description provided for @roleSecContact.
+  ///
+  /// In de, this message translates to:
+  /// **'Kontakt'**
+  String get roleSecContact;
+
+  /// No description provided for @roleDayCompany1.
+  ///
+  /// In de, this message translates to:
+  /// **'Dokumente importieren und mit dem Knowledge Builder strukturieren.'**
+  String get roleDayCompany1;
+
+  /// No description provided for @roleDayCompany2.
+  ///
+  /// In de, this message translates to:
+  /// **'Rollen vergeben und Analysen im Dashboard prüfen.'**
+  String get roleDayCompany2;
+
+  /// No description provided for @roleDayCompany3.
+  ///
+  /// In de, this message translates to:
+  /// **'Company Evolution und Wettbewerber im Blick behalten.'**
+  String get roleDayCompany3;
+
+  /// No description provided for @roleDayEmployee1.
+  ///
+  /// In de, this message translates to:
+  /// **'Nur die zugewiesenen Bereiche öffnen (z. B. Support: FAQ & Prüfung).'**
+  String get roleDayEmployee1;
+
+  /// No description provided for @roleDayEmployee2.
+  ///
+  /// In de, this message translates to:
+  /// **'Antworten für Kunden vorbereiten und Wissen ergänzen.'**
+  String get roleDayEmployee2;
+
+  /// No description provided for @roleDayEmployee3.
+  ///
+  /// In de, this message translates to:
+  /// **'Keine Systemeinstellungen – Fokus auf die tägliche Arbeit.'**
+  String get roleDayEmployee3;
+
+  /// No description provided for @roleDayCustomer1.
+  ///
+  /// In de, this message translates to:
+  /// **'Eine Frage im öffentlichen Bereich stellen.'**
+  String get roleDayCustomer1;
+
+  /// No description provided for @roleDayCustomer2.
+  ///
+  /// In de, this message translates to:
+  /// **'Antwort mit Quellen lesen und freigegebene Dokumente öffnen.'**
+  String get roleDayCustomer2;
+
+  /// No description provided for @roleDayCustomer3.
+  ///
+  /// In de, this message translates to:
+  /// **'Bei Bedarf Kontakt aufnehmen – keine internen Daten sichtbar.'**
+  String get roleDayCustomer3;
 }
 
 class _AppLocalizationsDelegate

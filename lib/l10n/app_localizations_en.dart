@@ -4562,4 +4562,119 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get kbCatGeneral => 'General';
+
+  @override
+  String get navRolePortals => 'Portals';
+
+  @override
+  String get roleOverviewTitle => 'Roles & Portals';
+
+  @override
+  String get roleOverviewIntro =>
+      'Three tiers, one knowledge base. Preview of the reduced navigation per role – without login and without real permission assignment.';
+
+  @override
+  String get roleTrustNotice =>
+      'Demo structure: no login, no permission check, no backend change. For illustration only.';
+
+  @override
+  String get roleSharedKnowledgeNote =>
+      'All three tiers read from the same knowledge base – new information is maintained only in the company portal.';
+
+  @override
+  String get roleSectionsTitle => 'Visible areas';
+
+  @override
+  String get roleDayTitle => 'Example day';
+
+  @override
+  String get roleSelectTier => 'Tier';
+
+  @override
+  String get roleSelectDepartment => 'Department';
+
+  @override
+  String get rolePortalCompanyTitle => 'Company portal';
+
+  @override
+  String get rolePortalEmployeeTitle => 'Employee portal';
+
+  @override
+  String get rolePortalCustomerTitle => 'Customer portal';
+
+  @override
+  String get roleTierCompany => 'Company administrator';
+
+  @override
+  String get roleTierEmployee => 'Employee';
+
+  @override
+  String get roleTierCustomer => 'Customer';
+
+  @override
+  String get roleDeptSupport => 'Support';
+
+  @override
+  String get roleDeptMarketing => 'Marketing';
+
+  @override
+  String get roleDeptTechnical => 'Technical';
+
+  @override
+  String get roleDeptSales => 'Sales';
+
+  @override
+  String get roleSecProducts => 'Products';
+
+  @override
+  String get roleSecResearch => 'Research';
+
+  @override
+  String get roleSecCompetitors => 'Competitors';
+
+  @override
+  String get roleSecEmployees => 'Employees';
+
+  @override
+  String get roleSecRoles => 'Roles';
+
+  @override
+  String get roleSecCustomerAssistant => 'Customer assistant';
+
+  @override
+  String get roleSecContact => 'Contact';
+
+  @override
+  String get roleDayCompany1 =>
+      'Import documents and structure them with the Knowledge Builder.';
+
+  @override
+  String get roleDayCompany2 =>
+      'Assign roles and review analytics on the dashboard.';
+
+  @override
+  String get roleDayCompany3 =>
+      'Keep an eye on Company Evolution and competitors.';
+
+  @override
+  String get roleDayEmployee1 =>
+      'Open only the assigned areas (e.g. Support: FAQ & review).';
+
+  @override
+  String get roleDayEmployee2 =>
+      'Prepare customer answers and add missing knowledge.';
+
+  @override
+  String get roleDayEmployee3 => 'No system settings – focus on daily work.';
+
+  @override
+  String get roleDayCustomer1 => 'Ask a question in the public area.';
+
+  @override
+  String get roleDayCustomer2 =>
+      'Read the answer with sources and open released documents.';
+
+  @override
+  String get roleDayCustomer3 =>
+      'Get in touch if needed – no internal data is visible.';
 }
