@@ -36,34 +36,41 @@ class _JuryTourScreenState extends State<JuryTourScreen> {
   void _go(int i) =>
       setState(() => _step = i.clamp(0, JuryTourScreen.stepCount - 1));
 
-  ({String title, String intro, Widget? child}) _stepData(AppLocalizations l) {
+  ({String title, String intro, String transition, Widget? child}) _stepData(
+    AppLocalizations l,
+  ) {
     return switch (_step) {
       0 => (
         title: l.juryStep1Title,
         intro: l.juryStep1Intro,
+        transition: l.juryTrans1,
         child: const BusinessStoryScreen(),
       ),
       1 => (
         title: l.juryStep2Title,
         intro: l.juryStep2Intro,
+        transition: l.juryTrans2,
         child: const OperationsDashboardScreen(),
       ),
       2 => (
         title: l.juryStep3Title,
         intro: l.juryStep3Intro,
+        transition: l.juryTrans3,
         child: const GuidedDemoScreen(),
       ),
       3 => (
         title: l.juryStep4Title,
         intro: l.juryStep4Intro,
+        transition: l.juryTrans4,
         child: const SingleChildScrollView(child: GroundedAnswerPanel()),
       ),
       4 => (
         title: l.juryStep5Title,
         intro: l.juryStep5Intro,
+        transition: l.juryTrans5,
         child: const KnowledgeWorkflowScreen(),
       ),
-      _ => (title: l.juryStep6Title, intro: '', child: null),
+      _ => (title: l.juryStep6Title, intro: '', transition: '', child: null),
     };
   }
 
@@ -93,7 +100,7 @@ class _JuryTourScreenState extends State<JuryTourScreen> {
                     ),
                   ),
                   Text(
-                    '${l.kiStep} ${_step + 1} / ${JuryTourScreen.stepCount}',
+                    '${l.kiStep} ${_step + 1} ${l.juryOf} ${JuryTourScreen.stepCount}',
                     style: theme.textTheme.labelMedium?.copyWith(
                       color: theme.colorScheme.onSurfaceVariant,
                     ),
@@ -120,8 +127,20 @@ class _JuryTourScreenState extends State<JuryTourScreen> {
               ),
             ),
             const SizedBox(height: 8),
-            _IntroBanner(title: data.title, intro: data.intro),
-            Expanded(child: data.child ?? _ClosingView()),
+            _IntroBanner(
+              title: data.title,
+              intro: data.intro,
+              transition: data.transition,
+            ),
+            Expanded(
+              child: AnimatedSwitcher(
+                duration: const Duration(milliseconds: 350),
+                child: KeyedSubtree(
+                  key: ValueKey(_step),
+                  child: data.child ?? _ClosingView(),
+                ),
+              ),
+            ),
             _Controls(
               onBack: _step == 0 ? null : () => _go(_step - 1),
               onNext: isLast ? null : () => _go(_step + 1),
@@ -135,10 +154,15 @@ class _JuryTourScreenState extends State<JuryTourScreen> {
 }
 
 class _IntroBanner extends StatelessWidget {
-  const _IntroBanner({required this.title, required this.intro});
+  const _IntroBanner({
+    required this.title,
+    required this.intro,
+    required this.transition,
+  });
 
   final String title;
   final String intro;
+  final String transition;
 
   @override
   Widget build(BuildContext context) {
@@ -164,16 +188,21 @@ class _IntroBanner extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  title,
-                  style: theme.textTheme.titleSmall?.copyWith(
-                    fontWeight: FontWeight.bold,
-                    color: theme.colorScheme.onSecondaryContainer,
+                // Soft, high-quality station transition line (fades per step).
+                AnimatedSwitcher(
+                  duration: const Duration(milliseconds: 350),
+                  child: Text(
+                    transition,
+                    key: ValueKey(transition),
+                    style: theme.textTheme.titleSmall?.copyWith(
+                      fontWeight: FontWeight.bold,
+                      color: theme.colorScheme.onSecondaryContainer,
+                    ),
                   ),
                 ),
-                const SizedBox(height: 2),
+                const SizedBox(height: 4),
                 Text(
-                  intro,
+                  '$title · $intro',
                   style: theme.textTheme.bodySmall?.copyWith(
                     color: theme.colorScheme.onSecondaryContainer,
                     height: 1.3,
@@ -193,46 +222,122 @@ class _ClosingView extends StatelessWidget {
   Widget build(BuildContext context) {
     final l = AppLocalizations.of(context)!;
     final theme = Theme.of(context);
+    final seen = [
+      l.oxSeen1,
+      l.oxSeen2,
+      l.oxSeen3,
+      l.oxSeen4,
+      l.oxSeen5,
+      l.oxSeen6,
+      l.oxSeen7,
+    ];
+    final links = [
+      (Icons.qr_code_2, l.oxLinkProject),
+      (Icons.code, l.oxLinkGithub),
+      (Icons.play_circle_outline, l.oxLinkVideo),
+      (Icons.description_outlined, l.oxLinkDocs),
+    ];
     return SingleChildScrollView(
       padding: const EdgeInsets.all(24),
       child: Center(
         child: ConstrainedBox(
-          constraints: const BoxConstraints(maxWidth: 640),
-          child: Container(
-            width: double.infinity,
-            padding: const EdgeInsets.all(28),
-            decoration: BoxDecoration(
-              color: theme.colorScheme.primaryContainer,
-              borderRadius: BorderRadius.circular(20),
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Icon(
-                  Icons.emoji_events_outlined,
-                  size: 44,
-                  color: theme.colorScheme.onPrimaryContainer,
+          constraints: const BoxConstraints(maxWidth: 680),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(
+                width: double.infinity,
+                padding: const EdgeInsets.all(28),
+                decoration: BoxDecoration(
+                  color: theme.colorScheme.primaryContainer,
+                  borderRadius: BorderRadius.circular(20),
                 ),
-                const SizedBox(height: 16),
-                Text(
-                  l.juryClosingTitle,
-                  style: theme.textTheme.headlineSmall?.copyWith(
-                    fontWeight: FontWeight.bold,
-                    color: theme.colorScheme.onPrimaryContainer,
-                  ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Icon(
+                      Icons.emoji_events_outlined,
+                      size: 44,
+                      color: theme.colorScheme.onPrimaryContainer,
+                    ),
+                    const SizedBox(height: 16),
+                    Text(
+                      l.oxClosingTitle,
+                      style: theme.textTheme.headlineSmall?.copyWith(
+                        fontWeight: FontWeight.bold,
+                        color: theme.colorScheme.onPrimaryContainer,
+                      ),
+                    ),
+                    const SizedBox(height: 10),
+                    Text(
+                      l.oxClosingSubtitle,
+                      style: theme.textTheme.bodyLarge?.copyWith(
+                        height: 1.45,
+                        color: theme.colorScheme.onPrimaryContainer,
+                      ),
+                    ),
+                  ],
                 ),
-                const SizedBox(height: 12),
-                Text(
-                  l.juryClosingBody,
-                  style: theme.textTheme.bodyLarge?.copyWith(
-                    height: 1.45,
-                    color: theme.colorScheme.onPrimaryContainer,
-                  ),
+              ),
+              const SizedBox(height: 20),
+              Text(
+                l.oxSeenTitle,
+                style: theme.textTheme.titleMedium?.copyWith(
+                  fontWeight: FontWeight.bold,
                 ),
-              ],
-            ),
+              ),
+              const SizedBox(height: 8),
+              Wrap(
+                spacing: 8,
+                runSpacing: 8,
+                children: [for (final s in seen) _SeenChip(label: s)],
+              ),
+              const SizedBox(height: 20),
+              Text(
+                l.oxThanks,
+                style: theme.textTheme.titleMedium?.copyWith(
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+              const SizedBox(height: 12),
+              Wrap(
+                spacing: 8,
+                runSpacing: 8,
+                children: [
+                  for (final link in links)
+                    Chip(avatar: Icon(link.$1, size: 18), label: Text(link.$2)),
+                ],
+              ),
+            ],
           ),
         ),
+      ),
+    );
+  }
+}
+
+class _SeenChip extends StatelessWidget {
+  const _SeenChip({required this.label});
+
+  final String label;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+      decoration: BoxDecoration(
+        color: Colors.green.withAlpha(28),
+        borderRadius: BorderRadius.circular(20),
+        border: Border.all(color: Colors.green.withAlpha(120)),
+      ),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          const Icon(Icons.check, size: 15, color: Colors.green),
+          const SizedBox(width: 6),
+          Text(label, style: theme.textTheme.labelLarge),
+        ],
       ),
     );
   }
@@ -257,6 +362,7 @@ class _Controls extends StatelessWidget {
       child: Row(
         children: [
           OutlinedButton.icon(
+            key: const Key('jury-back'),
             onPressed: onBack,
             icon: const Icon(Icons.arrow_back, size: 18),
             label: Text(l.juryBack),
@@ -264,12 +370,14 @@ class _Controls extends StatelessWidget {
           const Spacer(),
           if (onNext != null)
             FilledButton.icon(
+              key: const Key('jury-next'),
               onPressed: onNext,
               icon: const Icon(Icons.arrow_forward, size: 18),
               label: Text(l.juryNext),
             )
           else if (onFinish != null)
             FilledButton.icon(
+              key: const Key('jury-finish'),
               onPressed: onFinish,
               icon: const Icon(Icons.check, size: 18),
               label: Text(l.juryFinish),

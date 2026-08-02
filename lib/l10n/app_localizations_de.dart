@@ -5503,4 +5503,103 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get rcItem13 => 'Submission-Dokument aktuell';
+
+  @override
+  String get heroSubtitle => 'Die lernende Unternehmens-KI.';
+
+  @override
+  String get heroBody =>
+      'BusinessBrain organisiert Unternehmenswissen, beantwortet Kundenfragen ausschließlich auf Basis bestätigter Informationen und verbessert sich kontinuierlich durch menschlich freigegebene Wissensbausteine.';
+
+  @override
+  String get heroStartDemo => 'Jury-Demo starten';
+
+  @override
+  String get heroExplore => 'Plattform erkunden';
+
+  @override
+  String get heroFlow1 => 'Unternehmenswissen';
+
+  @override
+  String get heroFlow2 => 'Kundenfragen';
+
+  @override
+  String get heroFlow3 => 'Wissenslücken';
+
+  @override
+  String get heroFlow4 => 'Verbesserungen';
+
+  @override
+  String get heroFlow5 => 'Lernkreislauf';
+
+  @override
+  String get heroFlow6 => 'BusinessBrain';
+
+  @override
+  String get juryOf => 'von';
+
+  @override
+  String get juryTrans1 =>
+      'BusinessBrain beginnt mit dem Wissen Ihres Unternehmens.';
+
+  @override
+  String get juryTrans2 => 'Jetzt beantwortet die KI eine echte Kundenfrage.';
+
+  @override
+  String get juryTrans3 => 'Fehlendes Wissen wird erkannt.';
+
+  @override
+  String get juryTrans4 => 'Der Mitarbeiter entscheidet.';
+
+  @override
+  String get juryTrans5 => 'Die Wissensbasis wächst.';
+
+  @override
+  String get juryTrans6 => 'Alle zukünftigen Antworten profitieren.';
+
+  @override
+  String get oxClosingTitle => 'BusinessBrain lernt niemals durch Vermutungen.';
+
+  @override
+  String get oxClosingSubtitle =>
+      'Jede Verbesserung basiert auf bestätigtem Unternehmenswissen.';
+
+  @override
+  String get oxSeenTitle => 'Heute gesehen:';
+
+  @override
+  String get oxSeen1 => 'Grounded AI';
+
+  @override
+  String get oxSeen2 => 'Wissensbasis';
+
+  @override
+  String get oxSeen3 => 'Human Review';
+
+  @override
+  String get oxSeen4 => 'Knowledge Builder';
+
+  @override
+  String get oxSeen5 => 'Lernkreislauf';
+
+  @override
+  String get oxSeen6 => 'Operations Dashboard';
+
+  @override
+  String get oxSeen7 => 'Business Story';
+
+  @override
+  String get oxThanks => 'Vielen Dank für Ihr Interesse an BusinessBrain.';
+
+  @override
+  String get oxLinkProject => 'Projektseite';
+
+  @override
+  String get oxLinkGithub => 'GitHub';
+
+  @override
+  String get oxLinkVideo => 'Projektvideo';
+
+  @override
+  String get oxLinkDocs => 'Dokumentation';
 }

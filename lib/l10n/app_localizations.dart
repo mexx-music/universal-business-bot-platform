@@ -10057,6 +10057,198 @@ abstract class AppLocalizations {
   /// In de, this message translates to:
   /// **'Submission-Dokument aktuell'**
   String get rcItem13;
+
+  /// No description provided for @heroSubtitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Die lernende Unternehmens-KI.'**
+  String get heroSubtitle;
+
+  /// No description provided for @heroBody.
+  ///
+  /// In de, this message translates to:
+  /// **'BusinessBrain organisiert Unternehmenswissen, beantwortet Kundenfragen ausschließlich auf Basis bestätigter Informationen und verbessert sich kontinuierlich durch menschlich freigegebene Wissensbausteine.'**
+  String get heroBody;
+
+  /// No description provided for @heroStartDemo.
+  ///
+  /// In de, this message translates to:
+  /// **'Jury-Demo starten'**
+  String get heroStartDemo;
+
+  /// No description provided for @heroExplore.
+  ///
+  /// In de, this message translates to:
+  /// **'Plattform erkunden'**
+  String get heroExplore;
+
+  /// No description provided for @heroFlow1.
+  ///
+  /// In de, this message translates to:
+  /// **'Unternehmenswissen'**
+  String get heroFlow1;
+
+  /// No description provided for @heroFlow2.
+  ///
+  /// In de, this message translates to:
+  /// **'Kundenfragen'**
+  String get heroFlow2;
+
+  /// No description provided for @heroFlow3.
+  ///
+  /// In de, this message translates to:
+  /// **'Wissenslücken'**
+  String get heroFlow3;
+
+  /// No description provided for @heroFlow4.
+  ///
+  /// In de, this message translates to:
+  /// **'Verbesserungen'**
+  String get heroFlow4;
+
+  /// No description provided for @heroFlow5.
+  ///
+  /// In de, this message translates to:
+  /// **'Lernkreislauf'**
+  String get heroFlow5;
+
+  /// No description provided for @heroFlow6.
+  ///
+  /// In de, this message translates to:
+  /// **'BusinessBrain'**
+  String get heroFlow6;
+
+  /// No description provided for @juryOf.
+  ///
+  /// In de, this message translates to:
+  /// **'von'**
+  String get juryOf;
+
+  /// No description provided for @juryTrans1.
+  ///
+  /// In de, this message translates to:
+  /// **'BusinessBrain beginnt mit dem Wissen Ihres Unternehmens.'**
+  String get juryTrans1;
+
+  /// No description provided for @juryTrans2.
+  ///
+  /// In de, this message translates to:
+  /// **'Jetzt beantwortet die KI eine echte Kundenfrage.'**
+  String get juryTrans2;
+
+  /// No description provided for @juryTrans3.
+  ///
+  /// In de, this message translates to:
+  /// **'Fehlendes Wissen wird erkannt.'**
+  String get juryTrans3;
+
+  /// No description provided for @juryTrans4.
+  ///
+  /// In de, this message translates to:
+  /// **'Der Mitarbeiter entscheidet.'**
+  String get juryTrans4;
+
+  /// No description provided for @juryTrans5.
+  ///
+  /// In de, this message translates to:
+  /// **'Die Wissensbasis wächst.'**
+  String get juryTrans5;
+
+  /// No description provided for @juryTrans6.
+  ///
+  /// In de, this message translates to:
+  /// **'Alle zukünftigen Antworten profitieren.'**
+  String get juryTrans6;
+
+  /// No description provided for @oxClosingTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'BusinessBrain lernt niemals durch Vermutungen.'**
+  String get oxClosingTitle;
+
+  /// No description provided for @oxClosingSubtitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Jede Verbesserung basiert auf bestätigtem Unternehmenswissen.'**
+  String get oxClosingSubtitle;
+
+  /// No description provided for @oxSeenTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Heute gesehen:'**
+  String get oxSeenTitle;
+
+  /// No description provided for @oxSeen1.
+  ///
+  /// In de, this message translates to:
+  /// **'Grounded AI'**
+  String get oxSeen1;
+
+  /// No description provided for @oxSeen2.
+  ///
+  /// In de, this message translates to:
+  /// **'Wissensbasis'**
+  String get oxSeen2;
+
+  /// No description provided for @oxSeen3.
+  ///
+  /// In de, this message translates to:
+  /// **'Human Review'**
+  String get oxSeen3;
+
+  /// No description provided for @oxSeen4.
+  ///
+  /// In de, this message translates to:
+  /// **'Knowledge Builder'**
+  String get oxSeen4;
+
+  /// No description provided for @oxSeen5.
+  ///
+  /// In de, this message translates to:
+  /// **'Lernkreislauf'**
+  String get oxSeen5;
+
+  /// No description provided for @oxSeen6.
+  ///
+  /// In de, this message translates to:
+  /// **'Operations Dashboard'**
+  String get oxSeen6;
+
+  /// No description provided for @oxSeen7.
+  ///
+  /// In de, this message translates to:
+  /// **'Business Story'**
+  String get oxSeen7;
+
+  /// No description provided for @oxThanks.
+  ///
+  /// In de, this message translates to:
+  /// **'Vielen Dank für Ihr Interesse an BusinessBrain.'**
+  String get oxThanks;
+
+  /// No description provided for @oxLinkProject.
+  ///
+  /// In de, this message translates to:
+  /// **'Projektseite'**
+  String get oxLinkProject;
+
+  /// No description provided for @oxLinkGithub.
+  ///
+  /// In de, this message translates to:
+  /// **'GitHub'**
+  String get oxLinkGithub;
+
+  /// No description provided for @oxLinkVideo.
+  ///
+  /// In de, this message translates to:
+  /// **'Projektvideo'**
+  String get oxLinkVideo;
+
+  /// No description provided for @oxLinkDocs.
+  ///
+  /// In de, this message translates to:
+  /// **'Dokumentation'**
+  String get oxLinkDocs;
 }
 
 class _AppLocalizationsDelegate

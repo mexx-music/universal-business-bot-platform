@@ -41,9 +41,10 @@ void main() {
         ),
       );
       final l = l10nOf(tester, JuryStartScreen);
-      expect(find.text(l.juryStartTitle), findsOneWidget);
-      expect(find.text(l.juryStartGuided), findsOneWidget);
-      expect(find.text(l.juryStartExplore), findsOneWidget);
+      expect(find.text('BusinessBrain'), findsWidgets);
+      expect(find.text(l.heroSubtitle), findsOneWidget);
+      expect(find.text(l.heroStartDemo), findsOneWidget);
+      expect(find.text(l.heroExplore), findsOneWidget);
       expect(tester.takeException(), isNull);
     });
 
@@ -56,8 +57,8 @@ void main() {
         ),
         locale: const Locale('en'),
       );
-      expect(find.text('Start guided jury demo'), findsOneWidget);
-      expect(find.text('Explore the platform freely'), findsOneWidget);
+      expect(find.text('Start jury demo'), findsOneWidget);
+      expect(find.text('Explore the platform'), findsOneWidget);
     });
   });
 

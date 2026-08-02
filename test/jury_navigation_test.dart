@@ -33,7 +33,7 @@ void main() {
     final l = AppLocalizations.of(
       tester.element(find.byType(JuryStartScreen)),
     )!;
-    await tester.tap(find.text(l.juryStartExplore));
+    await tester.tap(find.text(l.heroExplore));
     await tester.pumpAndSettle();
 
     // Simplified jury navigation: the 5 main areas + "Weitere Module", with an
@@ -52,13 +52,13 @@ void main() {
     final l = AppLocalizations.of(tester.element(find.byType(JuryTourScreen)))!;
 
     // Step 1: Business Story embedded with its intro.
-    expect(find.text(l.juryStep1Intro), findsOneWidget);
+    expect(find.text(l.juryTrans1), findsOneWidget);
     expect(find.byType(BusinessStoryScreen), findsOneWidget);
 
     // Step 2: Operations Dashboard embedded.
-    await tester.tap(find.text(l.juryNext));
+    await tester.tap(find.byKey(const Key('jury-next')));
     await tester.pumpAndSettle();
-    expect(find.text(l.juryStep2Intro), findsOneWidget);
+    expect(find.text(l.juryTrans2), findsOneWidget);
     expect(find.byType(OperationsDashboardScreen), findsOneWidget);
   });
 }
