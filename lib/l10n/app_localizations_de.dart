@@ -5602,4 +5602,308 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get oxLinkDocs => 'Dokumentation';
+
+  @override
+  String get navBusinessBrainVision => 'BusinessBrain Vision';
+
+  @override
+  String get visionBadge => 'VISION';
+
+  @override
+  String get visionFutureLabel => 'Zukünftige Entwicklung';
+
+  @override
+  String get visionHeroTitle =>
+      'Vom Wissenssystem zum digitalen Unternehmensgehirn';
+
+  @override
+  String get visionHeroBody =>
+      'BusinessBrain soll Unternehmen eines Tages dabei unterstützen, relevante Signale früh zu erkennen, Zusammenhänge verständlich zu machen und die sinnvollsten nächsten Schritte vorzuschlagen – ohne jemals selbst zu entscheiden oder zu veröffentlichen.';
+
+  @override
+  String get visionTodayLabel => 'HEUTE';
+
+  @override
+  String get visionTodayTitle => 'Der Ausgangspunkt ist bestätigt';
+
+  @override
+  String get visionTodayBody =>
+      'BusinessBrain beantwortet Kundenfragen aus bestätigtem Unternehmenswissen, erkennt Lücken und verbessert die Wissensbasis ausschließlich nach menschlicher Freigabe.';
+
+  @override
+  String get visionJourneyTitle => 'Eine Entwicklung in drei klaren Phasen';
+
+  @override
+  String get visionJourneyBody =>
+      'Jede Phase baut auf der vorherigen auf. Die Vision erweitert den bestehenden Wissenskern, ersetzt ihn aber nicht.';
+
+  @override
+  String get visionPhase1Eyebrow => 'Phase 1';
+
+  @override
+  String get visionPhase1Title => 'Wissenssystem';
+
+  @override
+  String get visionPhase1Body =>
+      'Bestätigtes Unternehmenswissen wird strukturiert, auffindbar und sicher für Kundenfragen nutzbar.';
+
+  @override
+  String get visionPhase2Eyebrow => 'Phase 2';
+
+  @override
+  String get visionPhase2Title => 'Unternehmensassistent';
+
+  @override
+  String get visionPhase2Body =>
+      'BusinessBrain ordnet neue Signale ein, fasst Entwicklungen zusammen und schlägt prüfbare Maßnahmen vor.';
+
+  @override
+  String get visionPhase3Eyebrow => 'Phase 3';
+
+  @override
+  String get visionPhase3Title => 'Digitales Unternehmensgehirn';
+
+  @override
+  String get visionPhase3Body =>
+      'Wissen, Marktbeobachtung und bestätigte Erfahrungen verbinden sich zu einem kontinuierlichen Orientierungssystem für das Unternehmen.';
+
+  @override
+  String get visionFlowTitle => 'Von Signalen zu verantwortbaren Vorschlägen';
+
+  @override
+  String get visionFlowBody =>
+      'BusinessBrain beobachtet nicht, um selbst zu handeln. Es verdichtet Informationen, erklärt ihre Bedeutung und legt Entscheidungen in die Hände des Unternehmens.';
+
+  @override
+  String get visionFlow1 => 'Signale beobachten';
+
+  @override
+  String get visionFlow2 => 'Zusammenhänge erkennen';
+
+  @override
+  String get visionFlow3 => 'Maßnahmen vorschlagen';
+
+  @override
+  String get visionFlow4 => 'Der Mensch entscheidet';
+
+  @override
+  String get visionPresenceTitle => 'Digitale Präsenz verstehen';
+
+  @override
+  String get visionPresenceBody =>
+      'Öffentliche Signale könnten in einer gemeinsamen, verständlichen Sicht zusammenlaufen.';
+
+  @override
+  String get visionWebsiteTitle => 'Unternehmenswebsite beobachten';
+
+  @override
+  String get visionWebsiteBody =>
+      'Veränderungen, veraltete Inhalte und neue Informationslücken kontinuierlich sichtbar machen.';
+
+  @override
+  String get visionSeoTitle => 'SEO-Entwicklung analysieren';
+
+  @override
+  String get visionSeoBody =>
+      'Suchthemen, Auffindbarkeit und Optimierungspotenziale verständlich zusammenfassen.';
+
+  @override
+  String get visionGoogleTitle => 'Verbesserungen für Google vorschlagen';
+
+  @override
+  String get visionGoogleBody =>
+      'Konkrete, prüfbare Vorschläge für Inhalte, Suchintentionen und lokale Sichtbarkeit vorbereiten.';
+
+  @override
+  String get visionSocialTitle => 'Relevante Plattformsignale bündeln';
+
+  @override
+  String get visionSocialBody =>
+      'Facebook, Instagram, Reddit, LinkedIn, YouTube und TikTok in einer gemeinsamen Unternehmenssicht einordnen.';
+
+  @override
+  String get visionReputationTitle =>
+      'Google Business und Bewertungen verstehen';
+
+  @override
+  String get visionReputationBody =>
+      'Wiederkehrende Rückmeldungen, Chancen und mögliche Reputationsrisiken früh sichtbar machen.';
+
+  @override
+  String get visionCustomerTitle => 'Die Stimme der Kunden erkennen';
+
+  @override
+  String get visionCustomerBody =>
+      'Wiederkehrende Fragen und Probleme sollen zu strukturierten, überprüfbaren Erkenntnissen werden.';
+
+  @override
+  String get visionEmailTitle => 'Support-E-Mails zusammenfassen';
+
+  @override
+  String get visionEmailBody =>
+      'Häufige Anliegen und neue Themen erkennen, ohne Nachrichten selbst zu beantworten oder zu verändern.';
+
+  @override
+  String get visionQuestionsTitle => 'Häufige Kundenfragen erkennen';
+
+  @override
+  String get visionQuestionsBody =>
+      'Ähnliche Fragen über verschiedene Kontaktpunkte hinweg als gemeinsames Muster sichtbar machen.';
+
+  @override
+  String get visionProblemsTitle => 'Wiederkehrende Kundenprobleme erkennen';
+
+  @override
+  String get visionProblemsBody =>
+      'Häufungen, Ursachen und betroffene Produkte verständlich für das Unternehmen aufbereiten.';
+
+  @override
+  String get visionExternalGapsTitle =>
+      'Wissenslücken außerhalb der Wissensbasis erkennen';
+
+  @override
+  String get visionExternalGapsBody =>
+      'Fehlende Informationen aus Kundenkontakten und öffentlichen Signalen als Vorschläge zurückführen.';
+
+  @override
+  String get visionMarketTitle => 'Marktbewegungen einordnen';
+
+  @override
+  String get visionMarketBody =>
+      'Die Vision verbindet externe Entwicklungen mit dem bestätigten Wissen und den Zielen des Unternehmens.';
+
+  @override
+  String get visionCompetitorsTitle => 'Wettbewerber beobachten';
+
+  @override
+  String get visionCompetitorsBody =>
+      'Relevante Veränderungen sachlich zusammenfassen, ohne automatische Bewertungen oder Entscheidungen.';
+
+  @override
+  String get visionTrendsTitle => 'Trends und Marktchancen erkennen';
+
+  @override
+  String get visionTrendsBody =>
+      'Neue Themen nach Relevanz, möglichem Nutzen und offenen Fragen für das Unternehmen einordnen.';
+
+  @override
+  String get visionProductsTitle => 'Neue Produkte analysieren';
+
+  @override
+  String get visionProductsBody =>
+      'Produktideen und Marktangebote mit vorhandenem Wissen, Kundenproblemen und Chancen vergleichen.';
+
+  @override
+  String get visionProposalsTitle => 'Aus Erkenntnissen werden Vorschläge';
+
+  @override
+  String get visionProposalsBody =>
+      'Jeder Vorschlag bleibt Entwurf. Erst ein Mensch entscheidet, ob daraus eine Maßnahme wird.';
+
+  @override
+  String get visionFaqTitle => 'Neue FAQ vorschlagen';
+
+  @override
+  String get visionFaqBody =>
+      'Wiederkehrende Fragen in konkrete Vorschläge für bestätigtes Kundenwissen überführen.';
+
+  @override
+  String get visionDocsTitle => 'Neue Dokumentationen vorschlagen';
+
+  @override
+  String get visionDocsBody =>
+      'Erkannte Erklärungsbedarfe als nachvollziehbare Dokumentationsentwürfe strukturieren.';
+
+  @override
+  String get visionLandingTitle => 'Neue Landingpages vorschlagen';
+
+  @override
+  String get visionLandingBody =>
+      'Relevante Kundenbedürfnisse und Suchthemen in begründete Seitenthemen übersetzen.';
+
+  @override
+  String get visionCampaignTitle => 'Marketingkampagnen vorschlagen';
+
+  @override
+  String get visionCampaignBody =>
+      'Chancen in überprüfbare Kampagnenideen mit Begründung und erwartetem Nutzen überführen.';
+
+  @override
+  String get visionTasksTitle => 'Aufgaben für Mitarbeiter vorschlagen';
+
+  @override
+  String get visionTasksBody =>
+      'Aus offenen Themen klare Arbeitsvorschläge ableiten, ohne Aufgaben automatisch zuzuweisen.';
+
+  @override
+  String get visionPriorityTitle => 'Offene Themen priorisieren';
+
+  @override
+  String get visionPriorityBody =>
+      'Dringlichkeit, Nutzen und Wissenslage transparent gegenüberstellen; die Reihenfolge bestätigt der Mensch.';
+
+  @override
+  String get visionBriefingTitle => 'Orientierung für jeden neuen Arbeitstag';
+
+  @override
+  String get visionBriefingBody =>
+      'Statt weiterer Dashboards könnte BusinessBrain die wichtigsten Veränderungen in einer ruhigen, entscheidungsfähigen Übersicht zusammenführen.';
+
+  @override
+  String get visionMorningTitle => 'Morning Briefing';
+
+  @override
+  String get visionMorningBody =>
+      'Die wichtigsten neuen Signale, offenen Entscheidungen und empfohlenen nächsten Schritte am Morgen.';
+
+  @override
+  String get visionDailyTitle => 'Tägliche Zusammenfassung';
+
+  @override
+  String get visionDailyBody =>
+      'Was sich verändert hat, welche Themen zunehmen und wo Aufmerksamkeit erforderlich sein könnte.';
+
+  @override
+  String get visionLearningTitle => 'Aus bestätigten Informationen lernen';
+
+  @override
+  String get visionLearningBody =>
+      'Nur bestätigte Erkenntnisse erweitern das Unternehmenswissen und verbessern spätere Vorschläge.';
+
+  @override
+  String get visionControlTitle =>
+      'Die Entscheidungsgewalt bleibt beim Unternehmen';
+
+  @override
+  String get visionControlBody =>
+      'Auch als digitales Unternehmensgehirn bleibt BusinessBrain ein Vorschlagssystem mit klaren Grenzen.';
+
+  @override
+  String get visionNeverDecides =>
+      'trifft niemals selbst Unternehmensentscheidungen';
+
+  @override
+  String get visionNeverPublishes => 'veröffentlicht niemals selbst Inhalte';
+
+  @override
+  String get visionNeverChanges =>
+      'verändert niemals selbst Unternehmenswissen';
+
+  @override
+  String get visionOnlySuggests =>
+      'schlägt ausschließlich nachvollziehbare Maßnahmen vor';
+
+  @override
+  String get visionHumanAlways => 'Der Mensch entscheidet immer.';
+
+  @override
+  String get visionClosingTitle =>
+      'Schritt für Schritt zu besserer Orientierung';
+
+  @override
+  String get visionClosingBody =>
+      'BusinessBrain wächst nicht durch unkontrollierte Autonomie, sondern durch nachvollziehbare Vorschläge, bestätigtes Wissen und menschliche Entscheidungen. So kann aus einem Wissenssystem langfristig ein glaubwürdiges digitales Unternehmensgehirn entstehen.';
+
+  @override
+  String get visionBack => 'Zurück zu BusinessBrain';
 }

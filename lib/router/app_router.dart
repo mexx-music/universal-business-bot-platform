@@ -40,6 +40,7 @@ import '../screens/operations/operations_dashboard_screen.dart';
 import '../screens/knowledge_improvement/knowledge_improvement_screen.dart';
 import '../screens/knowledge_workflow/knowledge_workflow_screen.dart';
 import '../screens/roles/role_overview_screen.dart';
+import '../screens/vision/businessbrain_vision_screen.dart';
 import '../screens/bot_test/bot_test_screen.dart';
 import '../screens/bot_settings/bot_settings_screen.dart';
 import '../screens/sources/sources_screen.dart';
@@ -62,7 +63,8 @@ GoRouter createAppRouter(
       if (demoModeController?.isActive ?? false) return null;
 
       final location = state.uri.path;
-      final isPublicRoute = location == '/' || location == '/login';
+      final isPublicRoute =
+          location == '/' || location == '/login' || location == '/vision';
       final isPublicIntakeRoute = location.startsWith('/onboarding/');
       final isLogin = location == '/login';
       final isOnboarding = location == '/onboarding';
@@ -116,6 +118,10 @@ GoRouter createAppRouter(
       GoRoute(
         path: '/jury-demo',
         builder: (context, state) => const JuryTourScreen(),
+      ),
+      GoRoute(
+        path: '/vision',
+        builder: (context, state) => const BusinessBrainVisionScreen(),
       ),
       GoRoute(path: '/login', builder: (context, state) => const LoginScreen()),
       GoRoute(

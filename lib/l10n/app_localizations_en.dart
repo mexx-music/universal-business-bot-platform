@@ -5563,4 +5563,303 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get oxLinkDocs => 'Documentation';
+
+  @override
+  String get navBusinessBrainVision => 'BusinessBrain Vision';
+
+  @override
+  String get visionBadge => 'VISION';
+
+  @override
+  String get visionFutureLabel => 'Future development';
+
+  @override
+  String get visionHeroTitle =>
+      'From knowledge system to digital business brain';
+
+  @override
+  String get visionHeroBody =>
+      'One day, BusinessBrain could help companies recognise relevant signals early, make connections understandable and propose the most useful next steps — without ever deciding or publishing on its own.';
+
+  @override
+  String get visionTodayLabel => 'TODAY';
+
+  @override
+  String get visionTodayTitle => 'The starting point is confirmed';
+
+  @override
+  String get visionTodayBody =>
+      'BusinessBrain answers customer questions from confirmed company knowledge, detects gaps and improves the knowledge base only after human approval.';
+
+  @override
+  String get visionJourneyTitle => 'An evolution in three clear phases';
+
+  @override
+  String get visionJourneyBody =>
+      'Each phase builds on the one before it. The vision extends the existing knowledge core; it does not replace it.';
+
+  @override
+  String get visionPhase1Eyebrow => 'Phase 1';
+
+  @override
+  String get visionPhase1Title => 'Knowledge system';
+
+  @override
+  String get visionPhase1Body =>
+      'Confirmed company knowledge becomes structured, discoverable and safe to use for customer questions.';
+
+  @override
+  String get visionPhase2Eyebrow => 'Phase 2';
+
+  @override
+  String get visionPhase2Title => 'Business assistant';
+
+  @override
+  String get visionPhase2Body =>
+      'BusinessBrain organises new signals, summarises developments and proposes reviewable actions.';
+
+  @override
+  String get visionPhase3Eyebrow => 'Phase 3';
+
+  @override
+  String get visionPhase3Title => 'Digital business brain';
+
+  @override
+  String get visionPhase3Body =>
+      'Knowledge, market observation and confirmed experience combine into a continuous orientation system for the company.';
+
+  @override
+  String get visionFlowTitle => 'From signals to accountable proposals';
+
+  @override
+  String get visionFlowBody =>
+      'BusinessBrain observes in order to inform, not to act. It condenses information, explains its significance and leaves decisions in the hands of the company.';
+
+  @override
+  String get visionFlow1 => 'Observe signals';
+
+  @override
+  String get visionFlow2 => 'Recognise connections';
+
+  @override
+  String get visionFlow3 => 'Propose actions';
+
+  @override
+  String get visionFlow4 => 'The human decides';
+
+  @override
+  String get visionPresenceTitle => 'Understand the digital presence';
+
+  @override
+  String get visionPresenceBody =>
+      'Public signals could come together in one shared, understandable view.';
+
+  @override
+  String get visionWebsiteTitle => 'Monitor the company website';
+
+  @override
+  String get visionWebsiteBody =>
+      'Continuously surface changes, outdated content and emerging information gaps.';
+
+  @override
+  String get visionSeoTitle => 'Analyse SEO development';
+
+  @override
+  String get visionSeoBody =>
+      'Summarise search topics, discoverability and optimisation potential in plain language.';
+
+  @override
+  String get visionGoogleTitle => 'Propose Google improvements';
+
+  @override
+  String get visionGoogleBody =>
+      'Prepare concrete, reviewable proposals for content, search intent and local visibility.';
+
+  @override
+  String get visionSocialTitle => 'Bring relevant platform signals together';
+
+  @override
+  String get visionSocialBody =>
+      'Place Facebook, Instagram, Reddit, LinkedIn, YouTube and TikTok into one shared business view.';
+
+  @override
+  String get visionReputationTitle => 'Understand Google Business and reviews';
+
+  @override
+  String get visionReputationBody =>
+      'Surface recurring feedback, opportunities and potential reputation risks early.';
+
+  @override
+  String get visionCustomerTitle => 'Recognise the voice of the customer';
+
+  @override
+  String get visionCustomerBody =>
+      'Recurring questions and problems could become structured, reviewable insights.';
+
+  @override
+  String get visionEmailTitle => 'Summarise support emails';
+
+  @override
+  String get visionEmailBody =>
+      'Recognise frequent concerns and new themes without answering or changing messages automatically.';
+
+  @override
+  String get visionQuestionsTitle => 'Recognise frequent customer questions';
+
+  @override
+  String get visionQuestionsBody =>
+      'Make similar questions across different contact points visible as one shared pattern.';
+
+  @override
+  String get visionProblemsTitle => 'Recognise recurring customer problems';
+
+  @override
+  String get visionProblemsBody =>
+      'Explain clusters, possible causes and affected products clearly for the company.';
+
+  @override
+  String get visionExternalGapsTitle =>
+      'Detect knowledge gaps beyond the knowledge base';
+
+  @override
+  String get visionExternalGapsBody =>
+      'Bring missing information from customer contacts and public signals back as proposals.';
+
+  @override
+  String get visionMarketTitle => 'Put market movements into context';
+
+  @override
+  String get visionMarketBody =>
+      'The vision connects external developments with the company\'s confirmed knowledge and goals.';
+
+  @override
+  String get visionCompetitorsTitle => 'Monitor competitors';
+
+  @override
+  String get visionCompetitorsBody =>
+      'Summarise relevant changes factually, without automatic judgements or decisions.';
+
+  @override
+  String get visionTrendsTitle => 'Recognise trends and market opportunities';
+
+  @override
+  String get visionTrendsBody =>
+      'Frame new themes by relevance, potential value and open questions for the company.';
+
+  @override
+  String get visionProductsTitle => 'Analyse new products';
+
+  @override
+  String get visionProductsBody =>
+      'Compare product ideas and market offerings with existing knowledge, customer problems and opportunities.';
+
+  @override
+  String get visionProposalsTitle => 'Insights become proposals';
+
+  @override
+  String get visionProposalsBody =>
+      'Every proposal remains a draft. A human decides whether it becomes an action.';
+
+  @override
+  String get visionFaqTitle => 'Propose new FAQs';
+
+  @override
+  String get visionFaqBody =>
+      'Turn recurring questions into concrete proposals for confirmed customer knowledge.';
+
+  @override
+  String get visionDocsTitle => 'Propose new documentation';
+
+  @override
+  String get visionDocsBody =>
+      'Structure recognised explanation needs into traceable documentation drafts.';
+
+  @override
+  String get visionLandingTitle => 'Propose new landing pages';
+
+  @override
+  String get visionLandingBody =>
+      'Translate relevant customer needs and search topics into well-reasoned page concepts.';
+
+  @override
+  String get visionCampaignTitle => 'Propose marketing campaigns';
+
+  @override
+  String get visionCampaignBody =>
+      'Turn opportunities into reviewable campaign ideas with rationale and expected value.';
+
+  @override
+  String get visionTasksTitle => 'Propose employee tasks';
+
+  @override
+  String get visionTasksBody =>
+      'Derive clear work proposals from open topics without assigning tasks automatically.';
+
+  @override
+  String get visionPriorityTitle => 'Prioritise open topics';
+
+  @override
+  String get visionPriorityBody =>
+      'Compare urgency, value and available knowledge transparently; the human confirms the order.';
+
+  @override
+  String get visionBriefingTitle => 'Orientation for every new working day';
+
+  @override
+  String get visionBriefingBody =>
+      'Instead of another dashboard, BusinessBrain could bring the most important changes into one calm, decision-ready overview.';
+
+  @override
+  String get visionMorningTitle => 'Morning briefing';
+
+  @override
+  String get visionMorningBody =>
+      'The most important new signals, open decisions and recommended next steps each morning.';
+
+  @override
+  String get visionDailyTitle => 'Daily summary';
+
+  @override
+  String get visionDailyBody =>
+      'What changed, which themes are growing and where attention may be required.';
+
+  @override
+  String get visionLearningTitle => 'Learn from confirmed information';
+
+  @override
+  String get visionLearningBody =>
+      'Only confirmed insights extend company knowledge and improve later proposals.';
+
+  @override
+  String get visionControlTitle =>
+      'Decision-making authority stays with the company';
+
+  @override
+  String get visionControlBody =>
+      'Even as a digital business brain, BusinessBrain remains a proposal system with clear boundaries.';
+
+  @override
+  String get visionNeverDecides => 'never makes business decisions on its own';
+
+  @override
+  String get visionNeverPublishes => 'never publishes content on its own';
+
+  @override
+  String get visionNeverChanges => 'never changes company knowledge on its own';
+
+  @override
+  String get visionOnlySuggests => 'only proposes traceable actions';
+
+  @override
+  String get visionHumanAlways => 'The human always decides.';
+
+  @override
+  String get visionClosingTitle => 'Step by step towards better orientation';
+
+  @override
+  String get visionClosingBody =>
+      'BusinessBrain grows not through uncontrolled autonomy, but through traceable proposals, confirmed knowledge and human decisions. That is how a knowledge system can gradually become a credible digital business brain.';
+
+  @override
+  String get visionBack => 'Back to BusinessBrain';
 }

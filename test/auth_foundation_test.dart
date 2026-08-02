@@ -16,6 +16,7 @@ import 'package:universalbusiness/data/app_state.dart';
 import 'package:universalbusiness/l10n/app_localizations.dart';
 import 'package:universalbusiness/repositories/tenant_context.dart';
 import 'package:universalbusiness/router/app_router.dart';
+import 'package:universalbusiness/screens/vision/businessbrain_vision_screen.dart';
 
 void main() {
   test('LocalAuthService restores local demo session', () async {
@@ -140,6 +141,36 @@ void main() {
     await tester.pumpAndSettle();
 
     expect(find.text('Anmelden'), findsWidgets);
+  });
+
+  testWidgets('Vision route stays public for unauthenticated users', (
+    tester,
+  ) async {
+    final authController = AuthController(_FakeAuthService());
+    await authController.initialize();
+    final dependencies = AppDependencies.local(authController: authController);
+    final router = createAppRouter(authController);
+
+    await tester.pumpWidget(
+      AuthScope(
+        notifier: authController,
+        child: AppStateScope(
+          notifier: dependencies.appState,
+          child: MaterialApp.router(
+            localizationsDelegates: AppLocalizations.localizationsDelegates,
+            supportedLocales: AppLocalizations.supportedLocales,
+            locale: const Locale('de'),
+            routerConfig: router,
+          ),
+        ),
+      ),
+    );
+
+    router.go('/vision');
+    await tester.pumpAndSettle();
+
+    expect(find.byType(BusinessBrainVisionScreen), findsOneWidget);
+    expect(find.text('Anmelden'), findsNothing);
   });
 }
 

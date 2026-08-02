@@ -17,6 +17,7 @@ class MoreModulesScreen extends StatelessWidget {
     final demo = DemoDataController.maybeOf(context);
 
     final modules = <(IconData, String, String)>[
+      (Icons.auto_awesome_outlined, l.navBusinessBrainVision, '/vision'),
       (Icons.dashboard_outlined, l.navDashboard, '/dashboard'),
       (Icons.checklist_outlined, l.navNextActions, '/next-actions'),
       (Icons.event_available_outlined, l.navCheckIn, '/check-in'),

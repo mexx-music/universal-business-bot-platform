@@ -75,6 +75,7 @@ void main() {
 
       expect(find.text(l.moreTitle), findsOneWidget);
       // A few remaining modules are present (nothing removed).
+      expect(find.text(l.navBusinessBrainVision), findsOneWidget);
       expect(find.text(l.navKnowledge), findsWidgets);
       expect(find.text(l.navCommunityRadar), findsWidgets);
       // Central demo switch flips the controller.

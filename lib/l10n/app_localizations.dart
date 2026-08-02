@@ -10249,6 +10249,528 @@ abstract class AppLocalizations {
   /// In de, this message translates to:
   /// **'Dokumentation'**
   String get oxLinkDocs;
+
+  /// No description provided for @navBusinessBrainVision.
+  ///
+  /// In de, this message translates to:
+  /// **'BusinessBrain Vision'**
+  String get navBusinessBrainVision;
+
+  /// No description provided for @visionBadge.
+  ///
+  /// In de, this message translates to:
+  /// **'VISION'**
+  String get visionBadge;
+
+  /// No description provided for @visionFutureLabel.
+  ///
+  /// In de, this message translates to:
+  /// **'Zukünftige Entwicklung'**
+  String get visionFutureLabel;
+
+  /// No description provided for @visionHeroTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Vom Wissenssystem zum digitalen Unternehmensgehirn'**
+  String get visionHeroTitle;
+
+  /// No description provided for @visionHeroBody.
+  ///
+  /// In de, this message translates to:
+  /// **'BusinessBrain soll Unternehmen eines Tages dabei unterstützen, relevante Signale früh zu erkennen, Zusammenhänge verständlich zu machen und die sinnvollsten nächsten Schritte vorzuschlagen – ohne jemals selbst zu entscheiden oder zu veröffentlichen.'**
+  String get visionHeroBody;
+
+  /// No description provided for @visionTodayLabel.
+  ///
+  /// In de, this message translates to:
+  /// **'HEUTE'**
+  String get visionTodayLabel;
+
+  /// No description provided for @visionTodayTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Der Ausgangspunkt ist bestätigt'**
+  String get visionTodayTitle;
+
+  /// No description provided for @visionTodayBody.
+  ///
+  /// In de, this message translates to:
+  /// **'BusinessBrain beantwortet Kundenfragen aus bestätigtem Unternehmenswissen, erkennt Lücken und verbessert die Wissensbasis ausschließlich nach menschlicher Freigabe.'**
+  String get visionTodayBody;
+
+  /// No description provided for @visionJourneyTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Eine Entwicklung in drei klaren Phasen'**
+  String get visionJourneyTitle;
+
+  /// No description provided for @visionJourneyBody.
+  ///
+  /// In de, this message translates to:
+  /// **'Jede Phase baut auf der vorherigen auf. Die Vision erweitert den bestehenden Wissenskern, ersetzt ihn aber nicht.'**
+  String get visionJourneyBody;
+
+  /// No description provided for @visionPhase1Eyebrow.
+  ///
+  /// In de, this message translates to:
+  /// **'Phase 1'**
+  String get visionPhase1Eyebrow;
+
+  /// No description provided for @visionPhase1Title.
+  ///
+  /// In de, this message translates to:
+  /// **'Wissenssystem'**
+  String get visionPhase1Title;
+
+  /// No description provided for @visionPhase1Body.
+  ///
+  /// In de, this message translates to:
+  /// **'Bestätigtes Unternehmenswissen wird strukturiert, auffindbar und sicher für Kundenfragen nutzbar.'**
+  String get visionPhase1Body;
+
+  /// No description provided for @visionPhase2Eyebrow.
+  ///
+  /// In de, this message translates to:
+  /// **'Phase 2'**
+  String get visionPhase2Eyebrow;
+
+  /// No description provided for @visionPhase2Title.
+  ///
+  /// In de, this message translates to:
+  /// **'Unternehmensassistent'**
+  String get visionPhase2Title;
+
+  /// No description provided for @visionPhase2Body.
+  ///
+  /// In de, this message translates to:
+  /// **'BusinessBrain ordnet neue Signale ein, fasst Entwicklungen zusammen und schlägt prüfbare Maßnahmen vor.'**
+  String get visionPhase2Body;
+
+  /// No description provided for @visionPhase3Eyebrow.
+  ///
+  /// In de, this message translates to:
+  /// **'Phase 3'**
+  String get visionPhase3Eyebrow;
+
+  /// No description provided for @visionPhase3Title.
+  ///
+  /// In de, this message translates to:
+  /// **'Digitales Unternehmensgehirn'**
+  String get visionPhase3Title;
+
+  /// No description provided for @visionPhase3Body.
+  ///
+  /// In de, this message translates to:
+  /// **'Wissen, Marktbeobachtung und bestätigte Erfahrungen verbinden sich zu einem kontinuierlichen Orientierungssystem für das Unternehmen.'**
+  String get visionPhase3Body;
+
+  /// No description provided for @visionFlowTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Von Signalen zu verantwortbaren Vorschlägen'**
+  String get visionFlowTitle;
+
+  /// No description provided for @visionFlowBody.
+  ///
+  /// In de, this message translates to:
+  /// **'BusinessBrain beobachtet nicht, um selbst zu handeln. Es verdichtet Informationen, erklärt ihre Bedeutung und legt Entscheidungen in die Hände des Unternehmens.'**
+  String get visionFlowBody;
+
+  /// No description provided for @visionFlow1.
+  ///
+  /// In de, this message translates to:
+  /// **'Signale beobachten'**
+  String get visionFlow1;
+
+  /// No description provided for @visionFlow2.
+  ///
+  /// In de, this message translates to:
+  /// **'Zusammenhänge erkennen'**
+  String get visionFlow2;
+
+  /// No description provided for @visionFlow3.
+  ///
+  /// In de, this message translates to:
+  /// **'Maßnahmen vorschlagen'**
+  String get visionFlow3;
+
+  /// No description provided for @visionFlow4.
+  ///
+  /// In de, this message translates to:
+  /// **'Der Mensch entscheidet'**
+  String get visionFlow4;
+
+  /// No description provided for @visionPresenceTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Digitale Präsenz verstehen'**
+  String get visionPresenceTitle;
+
+  /// No description provided for @visionPresenceBody.
+  ///
+  /// In de, this message translates to:
+  /// **'Öffentliche Signale könnten in einer gemeinsamen, verständlichen Sicht zusammenlaufen.'**
+  String get visionPresenceBody;
+
+  /// No description provided for @visionWebsiteTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Unternehmenswebsite beobachten'**
+  String get visionWebsiteTitle;
+
+  /// No description provided for @visionWebsiteBody.
+  ///
+  /// In de, this message translates to:
+  /// **'Veränderungen, veraltete Inhalte und neue Informationslücken kontinuierlich sichtbar machen.'**
+  String get visionWebsiteBody;
+
+  /// No description provided for @visionSeoTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'SEO-Entwicklung analysieren'**
+  String get visionSeoTitle;
+
+  /// No description provided for @visionSeoBody.
+  ///
+  /// In de, this message translates to:
+  /// **'Suchthemen, Auffindbarkeit und Optimierungspotenziale verständlich zusammenfassen.'**
+  String get visionSeoBody;
+
+  /// No description provided for @visionGoogleTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Verbesserungen für Google vorschlagen'**
+  String get visionGoogleTitle;
+
+  /// No description provided for @visionGoogleBody.
+  ///
+  /// In de, this message translates to:
+  /// **'Konkrete, prüfbare Vorschläge für Inhalte, Suchintentionen und lokale Sichtbarkeit vorbereiten.'**
+  String get visionGoogleBody;
+
+  /// No description provided for @visionSocialTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Relevante Plattformsignale bündeln'**
+  String get visionSocialTitle;
+
+  /// No description provided for @visionSocialBody.
+  ///
+  /// In de, this message translates to:
+  /// **'Facebook, Instagram, Reddit, LinkedIn, YouTube und TikTok in einer gemeinsamen Unternehmenssicht einordnen.'**
+  String get visionSocialBody;
+
+  /// No description provided for @visionReputationTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Google Business und Bewertungen verstehen'**
+  String get visionReputationTitle;
+
+  /// No description provided for @visionReputationBody.
+  ///
+  /// In de, this message translates to:
+  /// **'Wiederkehrende Rückmeldungen, Chancen und mögliche Reputationsrisiken früh sichtbar machen.'**
+  String get visionReputationBody;
+
+  /// No description provided for @visionCustomerTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Die Stimme der Kunden erkennen'**
+  String get visionCustomerTitle;
+
+  /// No description provided for @visionCustomerBody.
+  ///
+  /// In de, this message translates to:
+  /// **'Wiederkehrende Fragen und Probleme sollen zu strukturierten, überprüfbaren Erkenntnissen werden.'**
+  String get visionCustomerBody;
+
+  /// No description provided for @visionEmailTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Support-E-Mails zusammenfassen'**
+  String get visionEmailTitle;
+
+  /// No description provided for @visionEmailBody.
+  ///
+  /// In de, this message translates to:
+  /// **'Häufige Anliegen und neue Themen erkennen, ohne Nachrichten selbst zu beantworten oder zu verändern.'**
+  String get visionEmailBody;
+
+  /// No description provided for @visionQuestionsTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Häufige Kundenfragen erkennen'**
+  String get visionQuestionsTitle;
+
+  /// No description provided for @visionQuestionsBody.
+  ///
+  /// In de, this message translates to:
+  /// **'Ähnliche Fragen über verschiedene Kontaktpunkte hinweg als gemeinsames Muster sichtbar machen.'**
+  String get visionQuestionsBody;
+
+  /// No description provided for @visionProblemsTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Wiederkehrende Kundenprobleme erkennen'**
+  String get visionProblemsTitle;
+
+  /// No description provided for @visionProblemsBody.
+  ///
+  /// In de, this message translates to:
+  /// **'Häufungen, Ursachen und betroffene Produkte verständlich für das Unternehmen aufbereiten.'**
+  String get visionProblemsBody;
+
+  /// No description provided for @visionExternalGapsTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Wissenslücken außerhalb der Wissensbasis erkennen'**
+  String get visionExternalGapsTitle;
+
+  /// No description provided for @visionExternalGapsBody.
+  ///
+  /// In de, this message translates to:
+  /// **'Fehlende Informationen aus Kundenkontakten und öffentlichen Signalen als Vorschläge zurückführen.'**
+  String get visionExternalGapsBody;
+
+  /// No description provided for @visionMarketTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Marktbewegungen einordnen'**
+  String get visionMarketTitle;
+
+  /// No description provided for @visionMarketBody.
+  ///
+  /// In de, this message translates to:
+  /// **'Die Vision verbindet externe Entwicklungen mit dem bestätigten Wissen und den Zielen des Unternehmens.'**
+  String get visionMarketBody;
+
+  /// No description provided for @visionCompetitorsTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Wettbewerber beobachten'**
+  String get visionCompetitorsTitle;
+
+  /// No description provided for @visionCompetitorsBody.
+  ///
+  /// In de, this message translates to:
+  /// **'Relevante Veränderungen sachlich zusammenfassen, ohne automatische Bewertungen oder Entscheidungen.'**
+  String get visionCompetitorsBody;
+
+  /// No description provided for @visionTrendsTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Trends und Marktchancen erkennen'**
+  String get visionTrendsTitle;
+
+  /// No description provided for @visionTrendsBody.
+  ///
+  /// In de, this message translates to:
+  /// **'Neue Themen nach Relevanz, möglichem Nutzen und offenen Fragen für das Unternehmen einordnen.'**
+  String get visionTrendsBody;
+
+  /// No description provided for @visionProductsTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Neue Produkte analysieren'**
+  String get visionProductsTitle;
+
+  /// No description provided for @visionProductsBody.
+  ///
+  /// In de, this message translates to:
+  /// **'Produktideen und Marktangebote mit vorhandenem Wissen, Kundenproblemen und Chancen vergleichen.'**
+  String get visionProductsBody;
+
+  /// No description provided for @visionProposalsTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Aus Erkenntnissen werden Vorschläge'**
+  String get visionProposalsTitle;
+
+  /// No description provided for @visionProposalsBody.
+  ///
+  /// In de, this message translates to:
+  /// **'Jeder Vorschlag bleibt Entwurf. Erst ein Mensch entscheidet, ob daraus eine Maßnahme wird.'**
+  String get visionProposalsBody;
+
+  /// No description provided for @visionFaqTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Neue FAQ vorschlagen'**
+  String get visionFaqTitle;
+
+  /// No description provided for @visionFaqBody.
+  ///
+  /// In de, this message translates to:
+  /// **'Wiederkehrende Fragen in konkrete Vorschläge für bestätigtes Kundenwissen überführen.'**
+  String get visionFaqBody;
+
+  /// No description provided for @visionDocsTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Neue Dokumentationen vorschlagen'**
+  String get visionDocsTitle;
+
+  /// No description provided for @visionDocsBody.
+  ///
+  /// In de, this message translates to:
+  /// **'Erkannte Erklärungsbedarfe als nachvollziehbare Dokumentationsentwürfe strukturieren.'**
+  String get visionDocsBody;
+
+  /// No description provided for @visionLandingTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Neue Landingpages vorschlagen'**
+  String get visionLandingTitle;
+
+  /// No description provided for @visionLandingBody.
+  ///
+  /// In de, this message translates to:
+  /// **'Relevante Kundenbedürfnisse und Suchthemen in begründete Seitenthemen übersetzen.'**
+  String get visionLandingBody;
+
+  /// No description provided for @visionCampaignTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Marketingkampagnen vorschlagen'**
+  String get visionCampaignTitle;
+
+  /// No description provided for @visionCampaignBody.
+  ///
+  /// In de, this message translates to:
+  /// **'Chancen in überprüfbare Kampagnenideen mit Begründung und erwartetem Nutzen überführen.'**
+  String get visionCampaignBody;
+
+  /// No description provided for @visionTasksTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Aufgaben für Mitarbeiter vorschlagen'**
+  String get visionTasksTitle;
+
+  /// No description provided for @visionTasksBody.
+  ///
+  /// In de, this message translates to:
+  /// **'Aus offenen Themen klare Arbeitsvorschläge ableiten, ohne Aufgaben automatisch zuzuweisen.'**
+  String get visionTasksBody;
+
+  /// No description provided for @visionPriorityTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Offene Themen priorisieren'**
+  String get visionPriorityTitle;
+
+  /// No description provided for @visionPriorityBody.
+  ///
+  /// In de, this message translates to:
+  /// **'Dringlichkeit, Nutzen und Wissenslage transparent gegenüberstellen; die Reihenfolge bestätigt der Mensch.'**
+  String get visionPriorityBody;
+
+  /// No description provided for @visionBriefingTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Orientierung für jeden neuen Arbeitstag'**
+  String get visionBriefingTitle;
+
+  /// No description provided for @visionBriefingBody.
+  ///
+  /// In de, this message translates to:
+  /// **'Statt weiterer Dashboards könnte BusinessBrain die wichtigsten Veränderungen in einer ruhigen, entscheidungsfähigen Übersicht zusammenführen.'**
+  String get visionBriefingBody;
+
+  /// No description provided for @visionMorningTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Morning Briefing'**
+  String get visionMorningTitle;
+
+  /// No description provided for @visionMorningBody.
+  ///
+  /// In de, this message translates to:
+  /// **'Die wichtigsten neuen Signale, offenen Entscheidungen und empfohlenen nächsten Schritte am Morgen.'**
+  String get visionMorningBody;
+
+  /// No description provided for @visionDailyTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Tägliche Zusammenfassung'**
+  String get visionDailyTitle;
+
+  /// No description provided for @visionDailyBody.
+  ///
+  /// In de, this message translates to:
+  /// **'Was sich verändert hat, welche Themen zunehmen und wo Aufmerksamkeit erforderlich sein könnte.'**
+  String get visionDailyBody;
+
+  /// No description provided for @visionLearningTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Aus bestätigten Informationen lernen'**
+  String get visionLearningTitle;
+
+  /// No description provided for @visionLearningBody.
+  ///
+  /// In de, this message translates to:
+  /// **'Nur bestätigte Erkenntnisse erweitern das Unternehmenswissen und verbessern spätere Vorschläge.'**
+  String get visionLearningBody;
+
+  /// No description provided for @visionControlTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Die Entscheidungsgewalt bleibt beim Unternehmen'**
+  String get visionControlTitle;
+
+  /// No description provided for @visionControlBody.
+  ///
+  /// In de, this message translates to:
+  /// **'Auch als digitales Unternehmensgehirn bleibt BusinessBrain ein Vorschlagssystem mit klaren Grenzen.'**
+  String get visionControlBody;
+
+  /// No description provided for @visionNeverDecides.
+  ///
+  /// In de, this message translates to:
+  /// **'trifft niemals selbst Unternehmensentscheidungen'**
+  String get visionNeverDecides;
+
+  /// No description provided for @visionNeverPublishes.
+  ///
+  /// In de, this message translates to:
+  /// **'veröffentlicht niemals selbst Inhalte'**
+  String get visionNeverPublishes;
+
+  /// No description provided for @visionNeverChanges.
+  ///
+  /// In de, this message translates to:
+  /// **'verändert niemals selbst Unternehmenswissen'**
+  String get visionNeverChanges;
+
+  /// No description provided for @visionOnlySuggests.
+  ///
+  /// In de, this message translates to:
+  /// **'schlägt ausschließlich nachvollziehbare Maßnahmen vor'**
+  String get visionOnlySuggests;
+
+  /// No description provided for @visionHumanAlways.
+  ///
+  /// In de, this message translates to:
+  /// **'Der Mensch entscheidet immer.'**
+  String get visionHumanAlways;
+
+  /// No description provided for @visionClosingTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Schritt für Schritt zu besserer Orientierung'**
+  String get visionClosingTitle;
+
+  /// No description provided for @visionClosingBody.
+  ///
+  /// In de, this message translates to:
+  /// **'BusinessBrain wächst nicht durch unkontrollierte Autonomie, sondern durch nachvollziehbare Vorschläge, bestätigtes Wissen und menschliche Entscheidungen. So kann aus einem Wissenssystem langfristig ein glaubwürdiges digitales Unternehmensgehirn entstehen.'**
+  String get visionClosingBody;
+
+  /// No description provided for @visionBack.
+  ///
+  /// In de, this message translates to:
+  /// **'Zurück zu BusinessBrain'**
+  String get visionBack;
 }
 
 class _AppLocalizationsDelegate
