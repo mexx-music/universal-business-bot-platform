@@ -8587,6 +8587,204 @@ abstract class AppLocalizations {
   /// In de, this message translates to:
   /// **'Bei Bedarf Kontakt aufnehmen – keine internen Daten sichtbar.'**
   String get roleDayCustomer3;
+
+  /// No description provided for @navKnowledgeImprovement.
+  ///
+  /// In de, this message translates to:
+  /// **'Lernkreislauf'**
+  String get navKnowledgeImprovement;
+
+  /// No description provided for @kiTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Knowledge Improvement'**
+  String get kiTitle;
+
+  /// No description provided for @kiIntro.
+  ///
+  /// In de, this message translates to:
+  /// **'So wird BusinessBrain mit jeder Frage besser: der Wissens-Lernkreislauf in sieben Schritten.'**
+  String get kiIntro;
+
+  /// No description provided for @kiTrustNotice.
+  ///
+  /// In de, this message translates to:
+  /// **'Illustrative Demo – kein Live-KI-Aufruf, keine Speicherung. Das Prinzip in 30 Sekunden.'**
+  String get kiTrustNotice;
+
+  /// No description provided for @kiStart.
+  ///
+  /// In de, this message translates to:
+  /// **'Start'**
+  String get kiStart;
+
+  /// No description provided for @kiNext.
+  ///
+  /// In de, this message translates to:
+  /// **'Weiter'**
+  String get kiNext;
+
+  /// No description provided for @kiRestart.
+  ///
+  /// In de, this message translates to:
+  /// **'Neu starten'**
+  String get kiRestart;
+
+  /// No description provided for @kiStep.
+  ///
+  /// In de, this message translates to:
+  /// **'Schritt'**
+  String get kiStep;
+
+  /// No description provided for @kiStage1Title.
+  ///
+  /// In de, this message translates to:
+  /// **'Kundenfrage'**
+  String get kiStage1Title;
+
+  /// No description provided for @kiStage1Body.
+  ///
+  /// In de, this message translates to:
+  /// **'Ein Kunde stellt eine konkrete Frage.'**
+  String get kiStage1Body;
+
+  /// No description provided for @kiStage2Title.
+  ///
+  /// In de, this message translates to:
+  /// **'KI-Antwort'**
+  String get kiStage2Title;
+
+  /// No description provided for @kiStage2Body.
+  ///
+  /// In de, this message translates to:
+  /// **'Die KI antwortet ausschließlich aus der freigegebenen Wissensbasis.'**
+  String get kiStage2Body;
+
+  /// No description provided for @kiStage3Title.
+  ///
+  /// In de, this message translates to:
+  /// **'Wissenslücke erkannt'**
+  String get kiStage3Title;
+
+  /// No description provided for @kiStage3Body.
+  ///
+  /// In de, this message translates to:
+  /// **'Fehlt Wissen, bleibt die KI ehrlich und markiert die Lücke.'**
+  String get kiStage3Body;
+
+  /// No description provided for @kiStage4Title.
+  ///
+  /// In de, this message translates to:
+  /// **'Verbesserungsvorschlag'**
+  String get kiStage4Title;
+
+  /// No description provided for @kiStage4Body.
+  ///
+  /// In de, this message translates to:
+  /// **'BusinessBrain schlägt automatisch einen passenden Wissenseintrag vor.'**
+  String get kiStage4Body;
+
+  /// No description provided for @kiStage5Title.
+  ///
+  /// In de, this message translates to:
+  /// **'Mitarbeiter übernimmt'**
+  String get kiStage5Title;
+
+  /// No description provided for @kiStage5Body.
+  ///
+  /// In de, this message translates to:
+  /// **'Ein Mensch prüft und übernimmt die Ergänzung – nichts wird automatisch gespeichert.'**
+  String get kiStage5Body;
+
+  /// No description provided for @kiStage6Title.
+  ///
+  /// In de, this message translates to:
+  /// **'Wissensbasis wächst'**
+  String get kiStage6Title;
+
+  /// No description provided for @kiStage6Body.
+  ///
+  /// In de, this message translates to:
+  /// **'Der neue Eintrag wird Teil der einen Wissensbasis.'**
+  String get kiStage6Body;
+
+  /// No description provided for @kiStage7Title.
+  ///
+  /// In de, this message translates to:
+  /// **'Alle Antworten profitieren'**
+  String get kiStage7Title;
+
+  /// No description provided for @kiStage7Body.
+  ///
+  /// In de, this message translates to:
+  /// **'Dieselbe Frage wird künftig präzise und belegt beantwortet.'**
+  String get kiStage7Body;
+
+  /// No description provided for @kiQuestion.
+  ///
+  /// In de, this message translates to:
+  /// **'Wie verbinde ich mein Gerät über Bluetooth?'**
+  String get kiQuestion;
+
+  /// No description provided for @kiGapAnswer.
+  ///
+  /// In de, this message translates to:
+  /// **'Dazu liegen aktuell noch nicht genügend Informationen in der Wissensbasis vor.'**
+  String get kiGapAnswer;
+
+  /// No description provided for @kiSuggestionTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Gerät über Bluetooth verbinden'**
+  String get kiSuggestionTitle;
+
+  /// No description provided for @kiSuggestionContent.
+  ///
+  /// In de, this message translates to:
+  /// **'Bluetooth aktivieren und das Gerät in der App auswählen, um die Verbindung herzustellen.'**
+  String get kiSuggestionContent;
+
+  /// No description provided for @kiImprovedAnswer.
+  ///
+  /// In de, this message translates to:
+  /// **'Aktiviere Bluetooth und wähle dein Gerät in der App aus – anschließend ist die Verbindung hergestellt.'**
+  String get kiImprovedAnswer;
+
+  /// No description provided for @kiKbCountLabel.
+  ///
+  /// In de, this message translates to:
+  /// **'Wissenseinträge'**
+  String get kiKbCountLabel;
+
+  /// No description provided for @kiBeforeLabel.
+  ///
+  /// In de, this message translates to:
+  /// **'Vorher'**
+  String get kiBeforeLabel;
+
+  /// No description provided for @kiAfterLabel.
+  ///
+  /// In de, this message translates to:
+  /// **'Nachher'**
+  String get kiAfterLabel;
+
+  /// No description provided for @kiAhaTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Der Aha-Moment'**
+  String get kiAhaTitle;
+
+  /// No description provided for @kiAhaBody.
+  ///
+  /// In de, this message translates to:
+  /// **'Aus einer Wissenslücke wird dauerhaftes Wissen – jede zukünftige Antwort profitiert.'**
+  String get kiAhaBody;
+
+  /// No description provided for @kiSourceLabel.
+  ///
+  /// In de, this message translates to:
+  /// **'Quelle'**
+  String get kiSourceLabel;
 }
 
 class _AppLocalizationsDelegate

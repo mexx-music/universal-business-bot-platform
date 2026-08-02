@@ -4677,4 +4677,115 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get roleDayCustomer3 =>
       'Get in touch if needed – no internal data is visible.';
+
+  @override
+  String get navKnowledgeImprovement => 'Learning loop';
+
+  @override
+  String get kiTitle => 'Knowledge Improvement';
+
+  @override
+  String get kiIntro =>
+      'How BusinessBrain gets better with every question: the knowledge learning loop in seven steps.';
+
+  @override
+  String get kiTrustNotice =>
+      'Illustrative demo – no live AI call, no saving. The principle in 30 seconds.';
+
+  @override
+  String get kiStart => 'Start';
+
+  @override
+  String get kiNext => 'Next';
+
+  @override
+  String get kiRestart => 'Restart';
+
+  @override
+  String get kiStep => 'Step';
+
+  @override
+  String get kiStage1Title => 'Customer question';
+
+  @override
+  String get kiStage1Body => 'A customer asks a specific question.';
+
+  @override
+  String get kiStage2Title => 'AI answer';
+
+  @override
+  String get kiStage2Body =>
+      'The AI answers only from the approved knowledge base.';
+
+  @override
+  String get kiStage3Title => 'Knowledge gap detected';
+
+  @override
+  String get kiStage3Body =>
+      'When knowledge is missing, the AI stays honest and flags the gap.';
+
+  @override
+  String get kiStage4Title => 'Improvement suggestion';
+
+  @override
+  String get kiStage4Body =>
+      'BusinessBrain automatically proposes a suitable knowledge entry.';
+
+  @override
+  String get kiStage5Title => 'Employee accepts';
+
+  @override
+  String get kiStage5Body =>
+      'A human reviews and accepts the addition – nothing is saved automatically.';
+
+  @override
+  String get kiStage6Title => 'Knowledge base grows';
+
+  @override
+  String get kiStage6Body =>
+      'The new entry becomes part of the one knowledge base.';
+
+  @override
+  String get kiStage7Title => 'All answers benefit';
+
+  @override
+  String get kiStage7Body =>
+      'The same question is answered precisely and with a source from now on.';
+
+  @override
+  String get kiQuestion => 'How do I connect my device via Bluetooth?';
+
+  @override
+  String get kiGapAnswer =>
+      'There isn\'t yet enough information in the knowledge base to answer this.';
+
+  @override
+  String get kiSuggestionTitle => 'Connect a device via Bluetooth';
+
+  @override
+  String get kiSuggestionContent =>
+      'Enable Bluetooth and select the device in the app to establish the connection.';
+
+  @override
+  String get kiImprovedAnswer =>
+      'Enable Bluetooth and select your device in the app – the connection is then established.';
+
+  @override
+  String get kiKbCountLabel => 'Knowledge entries';
+
+  @override
+  String get kiBeforeLabel => 'Before';
+
+  @override
+  String get kiAfterLabel => 'After';
+
+  @override
+  String get kiAhaTitle => 'The aha moment';
+
+  @override
+  String get kiAhaBody =>
+      'A knowledge gap becomes permanent knowledge – every future answer benefits.';
+
+  @override
+  String get kiSourceLabel => 'Source';
 }

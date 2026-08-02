@@ -4710,4 +4710,115 @@ class AppLocalizationsDe extends AppLocalizations {
   @override
   String get roleDayCustomer3 =>
       'Bei Bedarf Kontakt aufnehmen – keine internen Daten sichtbar.';
+
+  @override
+  String get navKnowledgeImprovement => 'Lernkreislauf';
+
+  @override
+  String get kiTitle => 'Knowledge Improvement';
+
+  @override
+  String get kiIntro =>
+      'So wird BusinessBrain mit jeder Frage besser: der Wissens-Lernkreislauf in sieben Schritten.';
+
+  @override
+  String get kiTrustNotice =>
+      'Illustrative Demo – kein Live-KI-Aufruf, keine Speicherung. Das Prinzip in 30 Sekunden.';
+
+  @override
+  String get kiStart => 'Start';
+
+  @override
+  String get kiNext => 'Weiter';
+
+  @override
+  String get kiRestart => 'Neu starten';
+
+  @override
+  String get kiStep => 'Schritt';
+
+  @override
+  String get kiStage1Title => 'Kundenfrage';
+
+  @override
+  String get kiStage1Body => 'Ein Kunde stellt eine konkrete Frage.';
+
+  @override
+  String get kiStage2Title => 'KI-Antwort';
+
+  @override
+  String get kiStage2Body =>
+      'Die KI antwortet ausschließlich aus der freigegebenen Wissensbasis.';
+
+  @override
+  String get kiStage3Title => 'Wissenslücke erkannt';
+
+  @override
+  String get kiStage3Body =>
+      'Fehlt Wissen, bleibt die KI ehrlich und markiert die Lücke.';
+
+  @override
+  String get kiStage4Title => 'Verbesserungsvorschlag';
+
+  @override
+  String get kiStage4Body =>
+      'BusinessBrain schlägt automatisch einen passenden Wissenseintrag vor.';
+
+  @override
+  String get kiStage5Title => 'Mitarbeiter übernimmt';
+
+  @override
+  String get kiStage5Body =>
+      'Ein Mensch prüft und übernimmt die Ergänzung – nichts wird automatisch gespeichert.';
+
+  @override
+  String get kiStage6Title => 'Wissensbasis wächst';
+
+  @override
+  String get kiStage6Body =>
+      'Der neue Eintrag wird Teil der einen Wissensbasis.';
+
+  @override
+  String get kiStage7Title => 'Alle Antworten profitieren';
+
+  @override
+  String get kiStage7Body =>
+      'Dieselbe Frage wird künftig präzise und belegt beantwortet.';
+
+  @override
+  String get kiQuestion => 'Wie verbinde ich mein Gerät über Bluetooth?';
+
+  @override
+  String get kiGapAnswer =>
+      'Dazu liegen aktuell noch nicht genügend Informationen in der Wissensbasis vor.';
+
+  @override
+  String get kiSuggestionTitle => 'Gerät über Bluetooth verbinden';
+
+  @override
+  String get kiSuggestionContent =>
+      'Bluetooth aktivieren und das Gerät in der App auswählen, um die Verbindung herzustellen.';
+
+  @override
+  String get kiImprovedAnswer =>
+      'Aktiviere Bluetooth und wähle dein Gerät in der App aus – anschließend ist die Verbindung hergestellt.';
+
+  @override
+  String get kiKbCountLabel => 'Wissenseinträge';
+
+  @override
+  String get kiBeforeLabel => 'Vorher';
+
+  @override
+  String get kiAfterLabel => 'Nachher';
+
+  @override
+  String get kiAhaTitle => 'Der Aha-Moment';
+
+  @override
+  String get kiAhaBody =>
+      'Aus einer Wissenslücke wird dauerhaftes Wissen – jede zukünftige Antwort profitiert.';
+
+  @override
+  String get kiSourceLabel => 'Quelle';
 }
