@@ -9361,6 +9361,252 @@ abstract class AppLocalizations {
   /// In de, this message translates to:
   /// **'Community-Radar (read-only Demo)'**
   String get bsFeatCommunity;
+
+  /// No description provided for @navOperations.
+  ///
+  /// In de, this message translates to:
+  /// **'Operations'**
+  String get navOperations;
+
+  /// No description provided for @opTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Operations Dashboard'**
+  String get opTitle;
+
+  /// No description provided for @opSubtitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Der heutige Arbeitstag – so arbeitet BusinessBrain aktiv für ein Unternehmen.'**
+  String get opSubtitle;
+
+  /// No description provided for @opDemoBadge.
+  ///
+  /// In de, this message translates to:
+  /// **'DEMO'**
+  String get opDemoBadge;
+
+  /// No description provided for @opTodayTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'BusinessBrain heute'**
+  String get opTodayTitle;
+
+  /// No description provided for @opTodayBody.
+  ///
+  /// In de, this message translates to:
+  /// **'Ein Überblick über den heutigen Tag – alle Werte sind Demo-Daten zur Veranschaulichung.'**
+  String get opTodayBody;
+
+  /// No description provided for @opMetricQuestions.
+  ///
+  /// In de, this message translates to:
+  /// **'Kundenfragen heute'**
+  String get opMetricQuestions;
+
+  /// No description provided for @opMetricAnswered.
+  ///
+  /// In de, this message translates to:
+  /// **'Erfolgreich beantwortet'**
+  String get opMetricAnswered;
+
+  /// No description provided for @opMetricGaps.
+  ///
+  /// In de, this message translates to:
+  /// **'Neue Wissenslücken erkannt'**
+  String get opMetricGaps;
+
+  /// No description provided for @opMetricSuggestions.
+  ///
+  /// In de, this message translates to:
+  /// **'Verbesserungsvorschläge erstellt'**
+  String get opMetricSuggestions;
+
+  /// No description provided for @opMetricSources.
+  ///
+  /// In de, this message translates to:
+  /// **'Quellen genutzt'**
+  String get opMetricSources;
+
+  /// No description provided for @opMetricEntriesAdopted.
+  ///
+  /// In de, this message translates to:
+  /// **'Neue Wissenseinträge übernommen'**
+  String get opMetricEntriesAdopted;
+
+  /// No description provided for @opTimelineTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Aktivitäts-Timeline'**
+  String get opTimelineTitle;
+
+  /// No description provided for @opTl1.
+  ///
+  /// In de, this message translates to:
+  /// **'Kundenfrage beantwortet'**
+  String get opTl1;
+
+  /// No description provided for @opTl2.
+  ///
+  /// In de, this message translates to:
+  /// **'Wissenslücke erkannt'**
+  String get opTl2;
+
+  /// No description provided for @opTl3.
+  ///
+  /// In de, this message translates to:
+  /// **'Verbesserungsvorschlag erstellt'**
+  String get opTl3;
+
+  /// No description provided for @opTl4.
+  ///
+  /// In de, this message translates to:
+  /// **'Mitarbeiter bestätigt neuen Wissenseintrag'**
+  String get opTl4;
+
+  /// No description provided for @opTl5.
+  ///
+  /// In de, this message translates to:
+  /// **'Wissensbasis erweitert'**
+  String get opTl5;
+
+  /// No description provided for @opTl6.
+  ///
+  /// In de, this message translates to:
+  /// **'Zukünftige Antworten verbessert'**
+  String get opTl6;
+
+  /// No description provided for @opDetectedTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Heute erkannt'**
+  String get opDetectedTitle;
+
+  /// No description provided for @opDetected1.
+  ///
+  /// In de, this message translates to:
+  /// **'Häufig gestellte Frage erkannt'**
+  String get opDetected1;
+
+  /// No description provided for @opDetected2.
+  ///
+  /// In de, this message translates to:
+  /// **'Mehrere Kunden fragen nach demselben Thema'**
+  String get opDetected2;
+
+  /// No description provided for @opDetected3.
+  ///
+  /// In de, this message translates to:
+  /// **'Neue FAQ empfohlen'**
+  String get opDetected3;
+
+  /// No description provided for @opDetected4.
+  ///
+  /// In de, this message translates to:
+  /// **'Bedienungsanleitung empfohlen'**
+  String get opDetected4;
+
+  /// No description provided for @opDetected5.
+  ///
+  /// In de, this message translates to:
+  /// **'Technische Voraussetzung fehlt'**
+  String get opDetected5;
+
+  /// No description provided for @opDetected6.
+  ///
+  /// In de, this message translates to:
+  /// **'Schritt-für-Schritt-Anleitung empfohlen'**
+  String get opDetected6;
+
+  /// No description provided for @opDecisionsTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Menschliche Entscheidungen'**
+  String get opDecisionsTitle;
+
+  /// No description provided for @opDecTotal.
+  ///
+  /// In de, this message translates to:
+  /// **'Vorschläge insgesamt'**
+  String get opDecTotal;
+
+  /// No description provided for @opDecAdopted.
+  ///
+  /// In de, this message translates to:
+  /// **'Übernommen'**
+  String get opDecAdopted;
+
+  /// No description provided for @opDecInProgress.
+  ///
+  /// In de, this message translates to:
+  /// **'In Bearbeitung'**
+  String get opDecInProgress;
+
+  /// No description provided for @opDecRejected.
+  ///
+  /// In de, this message translates to:
+  /// **'Abgelehnt'**
+  String get opDecRejected;
+
+  /// No description provided for @opDecisionsNote.
+  ///
+  /// In de, this message translates to:
+  /// **'BusinessBrain trifft keine Entscheidungen selbst – jede Änderung wird von einem Menschen bestätigt.'**
+  String get opDecisionsNote;
+
+  /// No description provided for @opQualityTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Qualität der Wissensbasis'**
+  String get opQualityTitle;
+
+  /// No description provided for @opQualEntries.
+  ///
+  /// In de, this message translates to:
+  /// **'Wissenseinträge'**
+  String get opQualEntries;
+
+  /// No description provided for @opQualFaq.
+  ///
+  /// In de, this message translates to:
+  /// **'FAQ'**
+  String get opQualFaq;
+
+  /// No description provided for @opQualGuides.
+  ///
+  /// In de, this message translates to:
+  /// **'Anleitungen'**
+  String get opQualGuides;
+
+  /// No description provided for @opQualTechnical.
+  ///
+  /// In de, this message translates to:
+  /// **'Technische Informationen'**
+  String get opQualTechnical;
+
+  /// No description provided for @opQualProblems.
+  ///
+  /// In de, this message translates to:
+  /// **'Problemlösungen'**
+  String get opQualProblems;
+
+  /// No description provided for @opQualDefinitions.
+  ///
+  /// In de, this message translates to:
+  /// **'Definitionen'**
+  String get opQualDefinitions;
+
+  /// No description provided for @opClosingTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'BusinessBrain arbeitet kontinuierlich – der Mensch entscheidet.'**
+  String get opClosingTitle;
+
+  /// No description provided for @opClosingBody.
+  ///
+  /// In de, this message translates to:
+  /// **'BusinessBrain beantwortet Fragen, erkennt Wissenslücken und erstellt Verbesserungsvorschläge. Mitarbeiter behalten jederzeit die Kontrolle über alle Änderungen.'**
+  String get opClosingBody;
 }
 
 class _AppLocalizationsDelegate

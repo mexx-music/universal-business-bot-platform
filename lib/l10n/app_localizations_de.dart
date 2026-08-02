@@ -5132,4 +5132,132 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get bsFeatCommunity => 'Community-Radar (read-only Demo)';
+
+  @override
+  String get navOperations => 'Operations';
+
+  @override
+  String get opTitle => 'Operations Dashboard';
+
+  @override
+  String get opSubtitle =>
+      'Der heutige Arbeitstag – so arbeitet BusinessBrain aktiv für ein Unternehmen.';
+
+  @override
+  String get opDemoBadge => 'DEMO';
+
+  @override
+  String get opTodayTitle => 'BusinessBrain heute';
+
+  @override
+  String get opTodayBody =>
+      'Ein Überblick über den heutigen Tag – alle Werte sind Demo-Daten zur Veranschaulichung.';
+
+  @override
+  String get opMetricQuestions => 'Kundenfragen heute';
+
+  @override
+  String get opMetricAnswered => 'Erfolgreich beantwortet';
+
+  @override
+  String get opMetricGaps => 'Neue Wissenslücken erkannt';
+
+  @override
+  String get opMetricSuggestions => 'Verbesserungsvorschläge erstellt';
+
+  @override
+  String get opMetricSources => 'Quellen genutzt';
+
+  @override
+  String get opMetricEntriesAdopted => 'Neue Wissenseinträge übernommen';
+
+  @override
+  String get opTimelineTitle => 'Aktivitäts-Timeline';
+
+  @override
+  String get opTl1 => 'Kundenfrage beantwortet';
+
+  @override
+  String get opTl2 => 'Wissenslücke erkannt';
+
+  @override
+  String get opTl3 => 'Verbesserungsvorschlag erstellt';
+
+  @override
+  String get opTl4 => 'Mitarbeiter bestätigt neuen Wissenseintrag';
+
+  @override
+  String get opTl5 => 'Wissensbasis erweitert';
+
+  @override
+  String get opTl6 => 'Zukünftige Antworten verbessert';
+
+  @override
+  String get opDetectedTitle => 'Heute erkannt';
+
+  @override
+  String get opDetected1 => 'Häufig gestellte Frage erkannt';
+
+  @override
+  String get opDetected2 => 'Mehrere Kunden fragen nach demselben Thema';
+
+  @override
+  String get opDetected3 => 'Neue FAQ empfohlen';
+
+  @override
+  String get opDetected4 => 'Bedienungsanleitung empfohlen';
+
+  @override
+  String get opDetected5 => 'Technische Voraussetzung fehlt';
+
+  @override
+  String get opDetected6 => 'Schritt-für-Schritt-Anleitung empfohlen';
+
+  @override
+  String get opDecisionsTitle => 'Menschliche Entscheidungen';
+
+  @override
+  String get opDecTotal => 'Vorschläge insgesamt';
+
+  @override
+  String get opDecAdopted => 'Übernommen';
+
+  @override
+  String get opDecInProgress => 'In Bearbeitung';
+
+  @override
+  String get opDecRejected => 'Abgelehnt';
+
+  @override
+  String get opDecisionsNote =>
+      'BusinessBrain trifft keine Entscheidungen selbst – jede Änderung wird von einem Menschen bestätigt.';
+
+  @override
+  String get opQualityTitle => 'Qualität der Wissensbasis';
+
+  @override
+  String get opQualEntries => 'Wissenseinträge';
+
+  @override
+  String get opQualFaq => 'FAQ';
+
+  @override
+  String get opQualGuides => 'Anleitungen';
+
+  @override
+  String get opQualTechnical => 'Technische Informationen';
+
+  @override
+  String get opQualProblems => 'Problemlösungen';
+
+  @override
+  String get opQualDefinitions => 'Definitionen';
+
+  @override
+  String get opClosingTitle =>
+      'BusinessBrain arbeitet kontinuierlich – der Mensch entscheidet.';
+
+  @override
+  String get opClosingBody =>
+      'BusinessBrain beantwortet Fragen, erkennt Wissenslücken und erstellt Verbesserungsvorschläge. Mitarbeiter behalten jederzeit die Kontrolle über alle Änderungen.';
 }

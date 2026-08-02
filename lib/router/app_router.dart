@@ -32,6 +32,7 @@ import '../screens/knowledge/knowledge_screen.dart';
 import '../screens/knowledge_builder/knowledge_builder_screen.dart';
 import '../screens/business_story/business_story_screen.dart';
 import '../screens/guided_demo/guided_demo_screen.dart';
+import '../screens/operations/operations_dashboard_screen.dart';
 import '../screens/knowledge_improvement/knowledge_improvement_screen.dart';
 import '../screens/roles/role_overview_screen.dart';
 import '../screens/bot_test/bot_test_screen.dart';
@@ -240,6 +241,10 @@ GoRouter createAppRouter(
           GoRoute(
             path: '/business-story',
             builder: (context, state) => const BusinessStoryScreen(),
+          ),
+          GoRoute(
+            path: '/operations-dashboard',
+            builder: (context, state) => const OperationsDashboardScreen(),
           ),
         ],
       ),

@@ -135,6 +135,11 @@ const _navItems = [
     selectedIcon: Icons.auto_graph,
     path: '/business-story',
   ),
+  _NavItem(
+    icon: Icons.monitor_heart_outlined,
+    selectedIcon: Icons.monitor_heart,
+    path: '/operations-dashboard',
+  ),
 ];
 
 int _indexFromLocation(String location) {
@@ -152,6 +157,7 @@ int _indexFromLocation(String location) {
   if (location.startsWith('/audit')) return 9;
   if (location.startsWith('/guided-demo')) return 21;
   if (location.startsWith('/business-story')) return 22;
+  if (location.startsWith('/operations-dashboard')) return 23;
   if (location.startsWith('/portals')) return 19;
   // These share the '/knowledge' prefix — check the longer paths first.
   if (location.startsWith('/knowledge-improvement')) return 20;
@@ -191,6 +197,7 @@ List<String> _navLabels(AppLocalizations l) => [
   l.navKnowledgeImprovement,
   l.navGuidedDemo,
   l.navBusinessStory,
+  l.navOperations,
 ];
 
 class AppShell extends StatelessWidget {

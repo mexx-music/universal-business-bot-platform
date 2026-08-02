@@ -5095,4 +5095,132 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get bsFeatCommunity => 'Community Radar (read-only demo)';
+
+  @override
+  String get navOperations => 'Operations';
+
+  @override
+  String get opTitle => 'Operations Dashboard';
+
+  @override
+  String get opSubtitle =>
+      'Today\'s working day – how BusinessBrain actively works for a company.';
+
+  @override
+  String get opDemoBadge => 'DEMO';
+
+  @override
+  String get opTodayTitle => 'BusinessBrain today';
+
+  @override
+  String get opTodayBody =>
+      'An overview of today – all figures are demo data for illustration.';
+
+  @override
+  String get opMetricQuestions => 'Customer questions today';
+
+  @override
+  String get opMetricAnswered => 'Answered successfully';
+
+  @override
+  String get opMetricGaps => 'New knowledge gaps detected';
+
+  @override
+  String get opMetricSuggestions => 'Improvement suggestions created';
+
+  @override
+  String get opMetricSources => 'Sources used';
+
+  @override
+  String get opMetricEntriesAdopted => 'New knowledge entries adopted';
+
+  @override
+  String get opTimelineTitle => 'Activity timeline';
+
+  @override
+  String get opTl1 => 'Customer question answered';
+
+  @override
+  String get opTl2 => 'Knowledge gap detected';
+
+  @override
+  String get opTl3 => 'Improvement suggestion created';
+
+  @override
+  String get opTl4 => 'Employee confirms new knowledge entry';
+
+  @override
+  String get opTl5 => 'Knowledge base extended';
+
+  @override
+  String get opTl6 => 'Future answers improved';
+
+  @override
+  String get opDetectedTitle => 'Detected today';
+
+  @override
+  String get opDetected1 => 'Frequently asked question detected';
+
+  @override
+  String get opDetected2 => 'Multiple customers ask about the same topic';
+
+  @override
+  String get opDetected3 => 'New FAQ recommended';
+
+  @override
+  String get opDetected4 => 'User manual recommended';
+
+  @override
+  String get opDetected5 => 'Technical requirement missing';
+
+  @override
+  String get opDetected6 => 'Step-by-step guide recommended';
+
+  @override
+  String get opDecisionsTitle => 'Human decisions';
+
+  @override
+  String get opDecTotal => 'Suggestions total';
+
+  @override
+  String get opDecAdopted => 'Adopted';
+
+  @override
+  String get opDecInProgress => 'In progress';
+
+  @override
+  String get opDecRejected => 'Rejected';
+
+  @override
+  String get opDecisionsNote =>
+      'BusinessBrain makes no decisions on its own – every change is confirmed by a human.';
+
+  @override
+  String get opQualityTitle => 'Knowledge base quality';
+
+  @override
+  String get opQualEntries => 'Knowledge entries';
+
+  @override
+  String get opQualFaq => 'FAQ';
+
+  @override
+  String get opQualGuides => 'Guides';
+
+  @override
+  String get opQualTechnical => 'Technical information';
+
+  @override
+  String get opQualProblems => 'Troubleshooting';
+
+  @override
+  String get opQualDefinitions => 'Definitions';
+
+  @override
+  String get opClosingTitle =>
+      'BusinessBrain works continuously – the human decides.';
+
+  @override
+  String get opClosingBody =>
+      'BusinessBrain answers questions, detects knowledge gaps and creates improvement suggestions. Employees stay in control of every change at all times.';
 }
