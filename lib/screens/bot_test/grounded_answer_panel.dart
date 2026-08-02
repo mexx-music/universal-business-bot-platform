@@ -196,8 +196,7 @@ class _ResultView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final l = AppLocalizations.of(context)!;
-    final theme = Theme.of(context);
+    final answered = result.outcome == GroundedOutcome.answered;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -211,68 +210,278 @@ class _ResultView extends StatelessWidget {
             _GroundedChip(grounded: result.grounded),
           ],
         ),
-        const SizedBox(height: 10),
-        Container(
-          width: double.infinity,
-          padding: const EdgeInsets.all(12),
-          decoration: BoxDecoration(
-            color: theme.colorScheme.surfaceContainerHighest,
-            borderRadius: BorderRadius.circular(8),
-          ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                l.botDemoAnswerTitle,
-                style: theme.textTheme.labelMedium?.copyWith(
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              const SizedBox(height: 4),
-              Text(_answerText(l)),
-            ],
-          ),
-        ),
-        if (result.sources.isNotEmpty) ...[
-          const SizedBox(height: 12),
-          Text(
-            l.botDemoSources,
-            style: theme.textTheme.titleSmall?.copyWith(
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-          const SizedBox(height: 6),
-          for (final s in result.sources) _SourceCard(source: s),
-        ],
-        const SizedBox(height: 10),
-        Row(
-          children: [
-            Icon(
-              Icons.verified_user_outlined,
-              size: 16,
-              color: theme.colorScheme.onSurfaceVariant,
-            ),
-            const SizedBox(width: 6),
-            Expanded(
-              child: Text(
-                l.botDemoHumanReview,
-                style: theme.textTheme.bodySmall?.copyWith(
-                  color: theme.colorScheme.onSurfaceVariant,
-                ),
-              ),
-            ),
-          ],
-        ),
+        const SizedBox(height: 16),
+        if (answered)
+          ..._answeredBody(context)
+        else
+          _KnowledgeGapCard(result: result),
       ],
     );
   }
 
-  String _answerText(AppLocalizations l) {
-    return switch (result.outcome) {
-      GroundedOutcome.answered => result.answer,
-      GroundedOutcome.noKnowledge => l.botDemoNoKnowledge,
-      GroundedOutcome.blockedTopic => l.botDemoBlocked,
-    };
+  List<Widget> _answeredBody(BuildContext context) {
+    final l = AppLocalizations.of(context)!;
+    final theme = Theme.of(context);
+    return [
+      _AnswerCard(answer: result.answer),
+      if (result.sources.isNotEmpty) ...[
+        const SizedBox(height: 20),
+        Text(
+          l.botDemoSources,
+          style: theme.textTheme.titleSmall?.copyWith(
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        const SizedBox(height: 8),
+        for (final s in result.sources) _SourceCard(source: s),
+      ],
+      const SizedBox(height: 12),
+      _HumanReviewHint(),
+    ];
+  }
+}
+
+/// Presentational card for a provider-generated answer. The wording is never
+/// altered here — only the presentation is elevated.
+class _AnswerCard extends StatelessWidget {
+  const _AnswerCard({required this.answer});
+
+  final String answer;
+
+  @override
+  Widget build(BuildContext context) {
+    final l = AppLocalizations.of(context)!;
+    final theme = Theme.of(context);
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        color: theme.colorScheme.surfaceContainerHigh,
+        borderRadius: BorderRadius.circular(12),
+        border: Border.all(color: theme.colorScheme.outlineVariant),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              Icon(
+                Icons.chat_bubble_outline,
+                size: 18,
+                color: theme.colorScheme.primary,
+              ),
+              const SizedBox(width: 8),
+              Text(
+                l.botDemoAnswerTitle,
+                style: theme.textTheme.titleSmall?.copyWith(
+                  fontWeight: FontWeight.bold,
+                  color: theme.colorScheme.primary,
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 10),
+          SelectableText(
+            answer,
+            style: theme.textTheme.bodyLarge?.copyWith(height: 1.45),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+/// Honest, value-adding rendering for the [GroundedOutcome.noKnowledge] and
+/// [GroundedOutcome.blockedTopic] cases. Never invents facts: recommendations
+/// are generic content-type suggestions, and the term chips come verbatim from
+/// [GroundedAnswerResult.missingTerms].
+class _KnowledgeGapCard extends StatelessWidget {
+  const _KnowledgeGapCard({required this.result});
+
+  final GroundedAnswerResult result;
+
+  @override
+  Widget build(BuildContext context) {
+    final blocked = result.outcome == GroundedOutcome.blockedTopic;
+    final l = AppLocalizations.of(context)!;
+    final theme = Theme.of(context);
+
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        color: blocked
+            ? theme.colorScheme.errorContainer
+            : theme.colorScheme.tertiaryContainer,
+        borderRadius: BorderRadius.circular(12),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              Icon(
+                blocked ? Icons.shield_outlined : Icons.lightbulb_outline,
+                size: 20,
+                color: blocked
+                    ? theme.colorScheme.onErrorContainer
+                    : theme.colorScheme.onTertiaryContainer,
+              ),
+              const SizedBox(width: 8),
+              Expanded(
+                child: Text(
+                  blocked ? l.botDemoBlocked : l.botDemoGapTitle,
+                  style: theme.textTheme.titleSmall?.copyWith(
+                    fontWeight: FontWeight.bold,
+                    color: blocked
+                        ? theme.colorScheme.onErrorContainer
+                        : theme.colorScheme.onTertiaryContainer,
+                  ),
+                ),
+              ),
+            ],
+          ),
+          // Blocked topics show only the safe handover message — never any
+          // knowledge recommendations.
+          if (!blocked) ..._gapBody(context, l, theme),
+        ],
+      ),
+    );
+  }
+
+  List<Widget> _gapBody(
+    BuildContext context,
+    AppLocalizations l,
+    ThemeData theme,
+  ) {
+    final onColor = theme.colorScheme.onTertiaryContainer;
+    final recommendations = <String>[
+      l.botDemoGapItemFaq,
+      l.botDemoGapItemFeatures,
+      l.botDemoGapItemGuide,
+      l.botDemoGapItemSteps,
+      l.botDemoGapItemScreenshots,
+      l.botDemoGapItemRequirements,
+    ];
+    return [
+      const SizedBox(height: 10),
+      Text(
+        l.botDemoNoKnowledge,
+        style: theme.textTheme.bodyMedium?.copyWith(
+          color: onColor,
+          height: 1.4,
+        ),
+      ),
+      if (result.missingTerms.isNotEmpty) ...[
+        const SizedBox(height: 12),
+        Text(
+          l.botDemoGapTermsLabel,
+          style: theme.textTheme.labelMedium?.copyWith(
+            color: onColor,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        const SizedBox(height: 6),
+        Wrap(
+          spacing: 6,
+          runSpacing: 6,
+          children: [
+            for (final term in result.missingTerms) _TermChip(term: term),
+          ],
+        ),
+      ],
+      const SizedBox(height: 14),
+      Text(
+        l.botDemoGapRecommendTitle,
+        style: theme.textTheme.labelMedium?.copyWith(
+          color: onColor,
+          fontWeight: FontWeight.bold,
+        ),
+      ),
+      const SizedBox(height: 6),
+      for (final item in recommendations) _Bullet(text: item, color: onColor),
+      const SizedBox(height: 12),
+      Text(
+        l.botDemoGapClosing,
+        style: theme.textTheme.bodySmall?.copyWith(color: onColor, height: 1.4),
+      ),
+    ];
+  }
+}
+
+class _Bullet extends StatelessWidget {
+  const _Bullet({required this.text, required this.color});
+
+  final String text;
+  final Color color;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 2),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            '•  ',
+            style: theme.textTheme.bodyMedium?.copyWith(color: color),
+          ),
+          Expanded(
+            child: Text(
+              text,
+              style: theme.textTheme.bodyMedium?.copyWith(color: color),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _TermChip extends StatelessWidget {
+  const _TermChip({required this.term});
+
+  final String term;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+      decoration: BoxDecoration(
+        color: theme.colorScheme.surface.withAlpha(160),
+        borderRadius: BorderRadius.circular(20),
+        border: Border.all(color: theme.colorScheme.outlineVariant),
+      ),
+      child: Text(term, style: theme.textTheme.labelSmall),
+    );
+  }
+}
+
+class _HumanReviewHint extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    final l = AppLocalizations.of(context)!;
+    final theme = Theme.of(context);
+    return Row(
+      children: [
+        Icon(
+          Icons.verified_user_outlined,
+          size: 16,
+          color: theme.colorScheme.onSurfaceVariant,
+        ),
+        const SizedBox(width: 6),
+        Expanded(
+          child: Text(
+            l.botDemoHumanReview,
+            style: theme.textTheme.bodySmall?.copyWith(
+              color: theme.colorScheme.onSurfaceVariant,
+            ),
+          ),
+        ),
+      ],
+    );
   }
 }
 
@@ -354,14 +563,27 @@ class _SourceCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     return Card(
-      margin: const EdgeInsets.only(bottom: 8),
+      margin: const EdgeInsets.only(bottom: 10),
+      elevation: 0,
+      color: theme.colorScheme.surfaceContainerLow,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(12),
+        side: BorderSide(color: theme.colorScheme.outlineVariant),
+      ),
       child: Padding(
-        padding: const EdgeInsets.all(12),
+        padding: const EdgeInsets.all(14),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                Icon(
+                  Icons.description_outlined,
+                  size: 18,
+                  color: theme.colorScheme.primary,
+                ),
+                const SizedBox(width: 8),
                 Expanded(
                   child: Text(
                     source.title,
@@ -370,17 +592,31 @@ class _SourceCard extends StatelessWidget {
                     ),
                   ),
                 ),
-                Text(
-                  knowledgeCategoryLabel(context, source.category),
-                  style: theme.textTheme.labelSmall?.copyWith(
-                    color: theme.colorScheme.onSurfaceVariant,
+                const SizedBox(width: 8),
+                Container(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 8,
+                    vertical: 3,
+                  ),
+                  decoration: BoxDecoration(
+                    color: theme.colorScheme.secondaryContainer,
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  child: Text(
+                    knowledgeCategoryLabel(context, source.category),
+                    style: theme.textTheme.labelSmall?.copyWith(
+                      color: theme.colorScheme.onSecondaryContainer,
+                    ),
                   ),
                 ),
               ],
             ),
-            const SizedBox(height: 4),
-            Text(source.excerpt, style: theme.textTheme.bodySmall),
-            const SizedBox(height: 4),
+            const SizedBox(height: 8),
+            Text(
+              source.excerpt,
+              style: theme.textTheme.bodyMedium?.copyWith(height: 1.4),
+            ),
+            const SizedBox(height: 8),
             Text(
               source.id,
               style: theme.textTheme.labelSmall?.copyWith(

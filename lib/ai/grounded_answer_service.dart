@@ -63,6 +63,7 @@ class GroundedAnswerResult {
     required this.isMock,
     this.answer = '',
     this.sources = const [],
+    this.missingTerms = const [],
     this.model,
     this.requestId,
   });
@@ -74,6 +75,12 @@ class GroundedAnswerResult {
 
   /// Exactly the knowledge entries used to ground the answer.
   final List<GroundedSource> sources;
+
+  /// Question terms not (sufficiently) covered by approved knowledge. Only
+  /// populated for [GroundedOutcome.noKnowledge] and
+  /// [GroundedOutcome.blockedTopic]; taken verbatim from the runtime
+  /// (gap/query terms) — never invented, never expanded.
+  final List<String> missingTerms;
 
   final AiProviderId providerId;
   final String providerDisplayName;
@@ -119,13 +126,16 @@ class GroundedAnswerService {
     }
     final isMock = provider is MockAiProvider;
 
-    GroundedAnswerResult nonGrounded(GroundedOutcome outcome) =>
-        GroundedAnswerResult(
-          outcome: outcome,
-          providerId: provider.id,
-          providerDisplayName: provider.displayName,
-          isMock: isMock,
-        );
+    GroundedAnswerResult nonGrounded(
+      GroundedOutcome outcome, {
+      List<String> missingTerms = const [],
+    }) => GroundedAnswerResult(
+      outcome: outcome,
+      providerId: provider.id,
+      providerDisplayName: provider.displayName,
+      isMock: isMock,
+      missingTerms: missingTerms,
+    );
 
     // Only the active company's knowledge is consulted (the workspace passed
     // in), through the runtime — no cross-tenant data, no full dump.
@@ -134,9 +144,24 @@ class GroundedAnswerService {
       workspace: request.workspace,
     );
 
+    // The uncovered terms come straight from the runtime — the gap's missing
+    // terms if present, otherwise the raw query terms. Order-preserving,
+    // de-duplicated, capped. Nothing here is invented or inferred.
+    final gapTerms = <String>[
+      ...?context.gap?.missingTerms,
+      if (context.gap?.missingTerms.isEmpty ?? true) ...context.queryTerms,
+    ];
+    final missingTerms = <String>{
+      for (final t in gapTerms)
+        if (t.trim().isNotEmpty) t.trim(),
+    }.take(8).toList();
+
     // Sensitive/blocked topics never reach the model — hand over to a human.
     if (context.blockedTopicHits.isNotEmpty || context.requiresHumanHandover) {
-      return nonGrounded(GroundedOutcome.blockedTopic);
+      return nonGrounded(
+        GroundedOutcome.blockedTopic,
+        missingTerms: missingTerms,
+      );
     }
 
     // Only green, actually-relevant entries, capped in count.
@@ -147,7 +172,10 @@ class GroundedAnswerService {
 
     // No usable knowledge -> honest "not found", and crucially NO AI call.
     if (usable.isEmpty) {
-      return nonGrounded(GroundedOutcome.noKnowledge);
+      return nonGrounded(
+        GroundedOutcome.noKnowledge,
+        missingTerms: missingTerms,
+      );
     }
 
     final sources = [

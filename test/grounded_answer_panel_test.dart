@@ -50,18 +50,39 @@ GroundedAnswerResult answered({
   );
 }
 
-GroundedAnswerResult noKnowledge() => const GroundedAnswerResult(
+GroundedAnswerResult noKnowledge({
+  List<String> missingTerms = const ['xylophon', 'preise'],
+}) => GroundedAnswerResult(
   outcome: GroundedOutcome.noKnowledge,
   providerId: AiProviderId.openAi,
   providerDisplayName: 'Mock',
   isMock: true,
+  missingTerms: missingTerms,
 );
 
-Future<void> pumpPanel(WidgetTester tester, GroundedAnswerService service) {
-  return tester.pumpWidget(
+GroundedAnswerResult blocked({
+  List<String> missingTerms = const ['diagnose'],
+}) => GroundedAnswerResult(
+  outcome: GroundedOutcome.blockedTopic,
+  providerId: AiProviderId.openAi,
+  providerDisplayName: 'Mock',
+  isMock: true,
+  missingTerms: missingTerms,
+);
+
+Future<void> pumpPanel(
+  WidgetTester tester,
+  GroundedAnswerService service, {
+  Locale locale = const Locale('de'),
+  Size size = const Size(900, 1400),
+}) async {
+  await tester.binding.setSurfaceSize(size);
+  addTearDown(() => tester.binding.setSurfaceSize(null));
+  await tester.pumpWidget(
     MaterialApp(
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
+      locale: locale,
       home: Scaffold(
         body: SingleChildScrollView(
           child: AppStateScope(
@@ -118,16 +139,86 @@ void main() {
     expect(find.byType(CircularProgressIndicator), findsNothing);
   });
 
-  testWidgets('honest not-found state without sources', (tester) async {
+  testWidgets('knowledge-gap card: intro, recommendations, closing, chips', (
+    tester,
+  ) async {
     await pumpPanel(tester, StubService((_) async => noKnowledge()));
     final l = l10n(tester);
 
     await ask(tester, 'Etwas Unbekanntes');
     await tester.pumpAndSettle();
 
-    expect(find.text(l.botDemoNoKnowledge), findsWidgets);
+    // Professional gap assistant instead of a bare technical sentence.
+    expect(find.text(l.botDemoGapTitle), findsOneWidget);
+    expect(find.text(l.botDemoNoKnowledge), findsOneWidget); // friendly intro
+    expect(find.text(l.botDemoGapRecommendTitle), findsOneWidget);
+    expect(find.text(l.botDemoGapItemFaq), findsOneWidget); // a recommendation
+    expect(find.text(l.botDemoGapClosing), findsOneWidget);
+    // Term chips come verbatim from missingTerms.
+    expect(find.text(l.botDemoGapTermsLabel), findsOneWidget);
+    expect(find.text('xylophon'), findsOneWidget);
+    expect(find.text('preise'), findsOneWidget);
+    // No sources, and no "review before publish" hint (nothing was generated).
     expect(find.text(l.botDemoSources), findsNothing);
-    expect(find.text(l.botDemoHumanReview), findsOneWidget);
+    expect(find.text(l.botDemoHumanReview), findsNothing);
+  });
+
+  testWidgets('blocked topic: safe handover, no recommendations', (
+    tester,
+  ) async {
+    await pumpPanel(tester, StubService((_) async => blocked()));
+    final l = l10n(tester);
+
+    await ask(tester, 'Diagnose bitte');
+    await tester.pumpAndSettle();
+
+    expect(find.text(l.botDemoBlocked), findsOneWidget);
+    // Blocked path must NOT surface knowledge recommendations or term chips.
+    expect(find.text(l.botDemoGapRecommendTitle), findsNothing);
+    expect(find.text(l.botDemoGapItemFaq), findsNothing);
+    expect(find.text(l.botDemoGapTermsLabel), findsNothing);
+  });
+
+  testWidgets('knowledge-gap card is localized in English', (tester) async {
+    await pumpPanel(
+      tester,
+      StubService((_) async => noKnowledge()),
+      locale: const Locale('en'),
+    );
+    final l = l10n(tester);
+    expect(
+      l.botDemoGapRecommendTitle,
+      'Recommended content to add to the knowledge base:',
+    );
+
+    await ask(tester, 'Something unknown');
+    await tester.pumpAndSettle();
+
+    expect(find.text(l.botDemoGapTitle), findsOneWidget);
+    expect(find.text(l.botDemoGapRecommendTitle), findsOneWidget);
+    expect(find.text(l.botDemoGapItemFaq), findsOneWidget);
+  });
+
+  testWidgets('gap card lays out without overflow (mobile and desktop)', (
+    tester,
+  ) async {
+    await pumpPanel(
+      tester,
+      StubService((_) async => noKnowledge()),
+      size: const Size(360, 900),
+    );
+    await ask(tester, 'Frage');
+    await tester.pumpAndSettle();
+    expect(tester.takeException(), isNull);
+
+    await pumpPanel(
+      tester,
+      StubService((_) async => noKnowledge()),
+      size: const Size(1400, 1000),
+    );
+    await ask(tester, 'Frage');
+    await tester.pumpAndSettle();
+    expect(tester.takeException(), isNull);
   });
 
   testWidgets('maps a transport error to a localized message with retry', (

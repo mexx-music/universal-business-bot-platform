@@ -7613,14 +7613,74 @@ abstract class AppLocalizations {
   /// No description provided for @botDemoNoKnowledge.
   ///
   /// In de, this message translates to:
-  /// **'Zu dieser Frage wurde kein passendes Wissen in der Wissensbasis gefunden.'**
+  /// **'Ich habe erkannt, dass zu deiner Frage aktuell noch keine ausreichenden Informationen in der Wissensbasis vorhanden sind.'**
   String get botDemoNoKnowledge;
 
   /// No description provided for @botDemoBlocked.
   ///
   /// In de, this message translates to:
-  /// **'Sensibles Thema – bitte an einen Menschen übergeben. Es wurde keine KI-Antwort erzeugt.'**
+  /// **'Diese Frage berührt ein sensibles Thema. Sie wird bewusst nicht automatisch beantwortet, sondern an einen Menschen übergeben – es wurde keine KI-Antwort erzeugt.'**
   String get botDemoBlocked;
+
+  /// No description provided for @botDemoGapTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Wissenslücke erkannt'**
+  String get botDemoGapTitle;
+
+  /// No description provided for @botDemoGapRecommendTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Empfohlene Inhalte zur Ergänzung der Wissensbasis:'**
+  String get botDemoGapRecommendTitle;
+
+  /// No description provided for @botDemoGapItemFaq.
+  ///
+  /// In de, this message translates to:
+  /// **'Häufig gestellte Fragen (FAQ)'**
+  String get botDemoGapItemFaq;
+
+  /// No description provided for @botDemoGapItemFeatures.
+  ///
+  /// In de, this message translates to:
+  /// **'Funktionsbeschreibung'**
+  String get botDemoGapItemFeatures;
+
+  /// No description provided for @botDemoGapItemGuide.
+  ///
+  /// In de, this message translates to:
+  /// **'Bedienungsanleitung'**
+  String get botDemoGapItemGuide;
+
+  /// No description provided for @botDemoGapItemSteps.
+  ///
+  /// In de, this message translates to:
+  /// **'Schritt-für-Schritt-Anleitung'**
+  String get botDemoGapItemSteps;
+
+  /// No description provided for @botDemoGapItemScreenshots.
+  ///
+  /// In de, this message translates to:
+  /// **'Screenshots'**
+  String get botDemoGapItemScreenshots;
+
+  /// No description provided for @botDemoGapItemRequirements.
+  ///
+  /// In de, this message translates to:
+  /// **'Technische Voraussetzungen'**
+  String get botDemoGapItemRequirements;
+
+  /// No description provided for @botDemoGapClosing.
+  ///
+  /// In de, this message translates to:
+  /// **'Sobald diese Inhalte ergänzt sind, können zukünftige Kundenfragen deutlich präziser beantwortet werden.'**
+  String get botDemoGapClosing;
+
+  /// No description provided for @botDemoGapTermsLabel.
+  ///
+  /// In de, this message translates to:
+  /// **'Betroffene Begriffe aus deiner Frage:'**
+  String get botDemoGapTermsLabel;
 
   /// No description provided for @botDemoHumanReview.
   ///

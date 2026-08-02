@@ -173,6 +173,8 @@ void main() {
         }
         expect(result.model, 'gemini-3.6-flash');
         expect(result.requestId, 'req-xyz');
+        // An answered result never carries gap terms.
+        expect(result.missingTerms, isEmpty);
       },
     );
 
@@ -245,6 +247,9 @@ void main() {
       expect(result.usedKnowledge, isFalse);
       expect(result.sources, isEmpty);
       expect(fake.calls, 0);
+      // Missing terms come verbatim from the question (never invented).
+      expect(result.missingTerms, isNotEmpty);
+      expect(result.missingTerms, contains('xylophonbau'));
     });
 
     test('blocked topic -> no AI call, blockedTopic outcome', () async {

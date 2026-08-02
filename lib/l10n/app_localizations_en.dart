@@ -4165,11 +4165,43 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get botDemoNoKnowledge =>
-      'No matching knowledge was found in the knowledge base for this question.';
+      'I\'ve noticed that there isn\'t yet enough information in the knowledge base to answer your question.';
 
   @override
   String get botDemoBlocked =>
-      'Sensitive topic – please hand over to a human. No AI answer was generated.';
+      'This question touches a sensitive topic. It is deliberately not answered automatically but handed over to a human – no AI answer was generated.';
+
+  @override
+  String get botDemoGapTitle => 'Knowledge gap detected';
+
+  @override
+  String get botDemoGapRecommendTitle =>
+      'Recommended content to add to the knowledge base:';
+
+  @override
+  String get botDemoGapItemFaq => 'Frequently asked questions (FAQ)';
+
+  @override
+  String get botDemoGapItemFeatures => 'Feature descriptions';
+
+  @override
+  String get botDemoGapItemGuide => 'User manual';
+
+  @override
+  String get botDemoGapItemSteps => 'Step-by-step instructions';
+
+  @override
+  String get botDemoGapItemScreenshots => 'Screenshots';
+
+  @override
+  String get botDemoGapItemRequirements => 'Technical requirements';
+
+  @override
+  String get botDemoGapClosing =>
+      'Once this content is added, future customer questions can be answered much more precisely.';
+
+  @override
+  String get botDemoGapTermsLabel => 'Relevant terms from your question:';
 
   @override
   String get botDemoHumanReview => 'AI suggestion – review before publishing.';

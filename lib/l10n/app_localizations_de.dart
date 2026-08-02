@@ -4194,11 +4194,43 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get botDemoNoKnowledge =>
-      'Zu dieser Frage wurde kein passendes Wissen in der Wissensbasis gefunden.';
+      'Ich habe erkannt, dass zu deiner Frage aktuell noch keine ausreichenden Informationen in der Wissensbasis vorhanden sind.';
 
   @override
   String get botDemoBlocked =>
-      'Sensibles Thema – bitte an einen Menschen übergeben. Es wurde keine KI-Antwort erzeugt.';
+      'Diese Frage berührt ein sensibles Thema. Sie wird bewusst nicht automatisch beantwortet, sondern an einen Menschen übergeben – es wurde keine KI-Antwort erzeugt.';
+
+  @override
+  String get botDemoGapTitle => 'Wissenslücke erkannt';
+
+  @override
+  String get botDemoGapRecommendTitle =>
+      'Empfohlene Inhalte zur Ergänzung der Wissensbasis:';
+
+  @override
+  String get botDemoGapItemFaq => 'Häufig gestellte Fragen (FAQ)';
+
+  @override
+  String get botDemoGapItemFeatures => 'Funktionsbeschreibung';
+
+  @override
+  String get botDemoGapItemGuide => 'Bedienungsanleitung';
+
+  @override
+  String get botDemoGapItemSteps => 'Schritt-für-Schritt-Anleitung';
+
+  @override
+  String get botDemoGapItemScreenshots => 'Screenshots';
+
+  @override
+  String get botDemoGapItemRequirements => 'Technische Voraussetzungen';
+
+  @override
+  String get botDemoGapClosing =>
+      'Sobald diese Inhalte ergänzt sind, können zukünftige Kundenfragen deutlich präziser beantwortet werden.';
+
+  @override
+  String get botDemoGapTermsLabel => 'Betroffene Begriffe aus deiner Frage:';
 
   @override
   String get botDemoHumanReview =>
