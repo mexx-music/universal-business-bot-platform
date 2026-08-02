@@ -363,3 +363,72 @@ Deno.test("api key never leaks into logs or client errors", async () => {
   const allLogs = JSON.stringify([...logs, ...okDeps.logs]);
   assertFalse(allLogs.includes(KEY_SENTINEL));
 });
+
+// --- CORS: allow the exact headers the Supabase browser client sends -------
+
+// Deps with a configured ALLOWED_ORIGINS allowlist (localhost + 127.0.0.1).
+function corsDeps(): Deps {
+  const allow = "http://localhost:5000,http://127.0.0.1:5000";
+  return {
+    env: (k) =>
+      k === "ALLOWED_ORIGINS" ? allow : k === "GEMINI_API_KEY" ? KEY_SENTINEL : undefined,
+    fetchImpl: fakeFetch(() => geminiOk("should not happen")).impl,
+    requestId: () => "req-cors",
+    now: () => 0,
+    log: () => {},
+  };
+}
+
+function optionsReq(origin: string): Request {
+  return new Request("http://localhost/ai-generate", {
+    method: "OPTIONS",
+    headers: {
+      "Origin": origin,
+      "Access-Control-Request-Method": "POST",
+      "Access-Control-Request-Headers":
+        "authorization, apikey, x-client-info, content-type",
+    },
+  });
+}
+
+// 24. Preflight allows authorization, apikey, x-client-info and content-type
+Deno.test("preflight allows supabase client headers", async () => {
+  const res = await handleRequest(optionsReq("http://localhost:5000"), corsDeps());
+  assertEquals(res.status, 204);
+  const allowHeaders = (res.headers.get("access-control-allow-headers") ?? "")
+    .toLowerCase();
+  assert(allowHeaders.includes("authorization"));
+  assert(allowHeaders.includes("apikey"));
+  assert(allowHeaders.includes("x-client-info"));
+  assert(allowHeaders.includes("content-type"));
+});
+
+// 25. localhost origin is allowed (echoed)
+Deno.test("preflight allows http://localhost:5000", async () => {
+  const res = await handleRequest(optionsReq("http://localhost:5000"), corsDeps());
+  assertEquals(res.status, 204);
+  assertEquals(
+    res.headers.get("access-control-allow-origin"),
+    "http://localhost:5000",
+  );
+});
+
+// 26. 127.0.0.1 origin is allowed (echoed)
+Deno.test("preflight allows http://127.0.0.1:5000", async () => {
+  const res = await handleRequest(optionsReq("http://127.0.0.1:5000"), corsDeps());
+  assertEquals(res.status, 204);
+  assertEquals(
+    res.headers.get("access-control-allow-origin"),
+    "http://127.0.0.1:5000",
+  );
+});
+
+// 27. an unknown origin is NOT allowed (no ACAO echoed)
+Deno.test("preflight rejects an unknown origin", async () => {
+  const res = await handleRequest(
+    optionsReq("https://evil.example.com"),
+    corsDeps(),
+  );
+  assertEquals(res.status, 204);
+  assertEquals(res.headers.get("access-control-allow-origin"), null);
+});

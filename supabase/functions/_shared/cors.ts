@@ -38,7 +38,10 @@ export function corsHeaders(
   const headers: Record<string, string> = {
     "Vary": "Origin",
     "Access-Control-Allow-Methods": "POST, GET, OPTIONS",
-    "Access-Control-Allow-Headers": "content-type",
+    // Exactly the headers the Supabase browser client sends on functions.invoke
+    // (Authorization + apikey for auth, x-client-info for the SDK), plus the
+    // JSON content-type. No dynamic mirroring of arbitrary request headers.
+    "Access-Control-Allow-Headers": "authorization, apikey, x-client-info, content-type",
     "Access-Control-Max-Age": "600",
   };
   if (isOriginAllowed(origin, allowed)) {
