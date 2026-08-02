@@ -4433,4 +4433,133 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get researchEvidenceCategoryOther => 'Other';
+
+  @override
+  String get navKnowledgeBuilder => 'Knowledge Builder';
+
+  @override
+  String get kbTitle => 'Knowledge Builder';
+
+  @override
+  String get kbIntro =>
+      'Paste a long text (e.g. manual, docs, notes). The analysis proposes structured knowledge entries – without inventing anything or saving.';
+
+  @override
+  String get kbInputHint => 'Paste company knowledge here …';
+
+  @override
+  String get kbAnalyze => 'Analyze';
+
+  @override
+  String get kbAnalyzing => 'Analyzing …';
+
+  @override
+  String get kbReset => 'Reset';
+
+  @override
+  String get kbTrustNotice =>
+      'Nothing is saved automatically. The AI invents no facts – content stays unchanged; only titles, questions and keywords are generated.';
+
+  @override
+  String get kbNoResults =>
+      'No usable statements found. Please paste more text.';
+
+  @override
+  String get kbStatsTitle => 'Analysis overview';
+
+  @override
+  String get kbStatSentences => 'Analyzed sentences';
+
+  @override
+  String get kbStatTopics => 'Detected topics';
+
+  @override
+  String get kbStatNew => 'New knowledge entries';
+
+  @override
+  String get kbStatExisting => 'Existing entries';
+
+  @override
+  String get kbStatDuplicates => 'Possible duplicates';
+
+  @override
+  String get kbStatUnclear => 'Unclear statements';
+
+  @override
+  String get kbDraftsTitle => 'Proposed entries';
+
+  @override
+  String get kbDecisionAccept => 'Accept';
+
+  @override
+  String get kbDecisionEdit => 'Edit';
+
+  @override
+  String get kbDecisionIgnore => 'Ignore';
+
+  @override
+  String get kbFieldTitle => 'Title';
+
+  @override
+  String get kbFieldQuestion => 'Question';
+
+  @override
+  String get kbFieldContent => 'Content';
+
+  @override
+  String get kbFieldKeywords => 'Keywords';
+
+  @override
+  String get kbDuplicateBadge => 'Possible duplicate';
+
+  @override
+  String get kbExistingTitle => 'Existing entry';
+
+  @override
+  String get kbNewInfoTitle => 'New information';
+
+  @override
+  String get kbSuggestionTitle => 'Suggestion';
+
+  @override
+  String get kbMergeAugment => 'Augment';
+
+  @override
+  String get kbMergeReplace => 'Replace';
+
+  @override
+  String get kbMergeNew => 'Create new entry';
+
+  @override
+  String get kbCatFaq => 'FAQ';
+
+  @override
+  String get kbCatInstallation => 'Installation guide';
+
+  @override
+  String get kbCatStepByStep => 'Step-by-step';
+
+  @override
+  String get kbCatTechnicalRequirement => 'Technical requirement';
+
+  @override
+  String get kbCatWarning => 'Warning';
+
+  @override
+  String get kbCatTroubleshooting => 'Troubleshooting';
+
+  @override
+  String get kbCatProductFeature => 'Product feature';
+
+  @override
+  String get kbCatTip => 'Tip';
+
+  @override
+  String get kbCatDefinition => 'Definition';
+
+  @override
+  String get kbCatContact => 'Contact information';
+
+  @override
+  String get kbCatGeneral => 'General';
 }

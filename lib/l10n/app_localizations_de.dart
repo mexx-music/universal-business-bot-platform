@@ -4465,4 +4465,133 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get researchEvidenceCategoryOther => 'Sonstiges';
+
+  @override
+  String get navKnowledgeBuilder => 'Wissens-Builder';
+
+  @override
+  String get kbTitle => 'Knowledge Builder';
+
+  @override
+  String get kbIntro =>
+      'Füge einen langen Text ein (z. B. Anleitung, Doku, Notizen). Die Analyse schlägt strukturierte Wissenseinträge vor – ohne etwas zu erfinden oder zu speichern.';
+
+  @override
+  String get kbInputHint => 'Unternehmenswissen hier einfügen …';
+
+  @override
+  String get kbAnalyze => 'Analysieren';
+
+  @override
+  String get kbAnalyzing => 'Analysiere …';
+
+  @override
+  String get kbReset => 'Zurücksetzen';
+
+  @override
+  String get kbTrustNotice =>
+      'Nichts wird automatisch gespeichert. Die KI erfindet keine Fakten – Inhalte bleiben unverändert, nur Titel, Fragen und Schlagwörter werden erzeugt.';
+
+  @override
+  String get kbNoResults =>
+      'Keine auswertbaren Aussagen gefunden. Bitte mehr Text einfügen.';
+
+  @override
+  String get kbStatsTitle => 'Analyse-Übersicht';
+
+  @override
+  String get kbStatSentences => 'Analysierte Sätze';
+
+  @override
+  String get kbStatTopics => 'Erkannte Themen';
+
+  @override
+  String get kbStatNew => 'Neue Wissenseinträge';
+
+  @override
+  String get kbStatExisting => 'Vorhandene Einträge';
+
+  @override
+  String get kbStatDuplicates => 'Mögliche Dubletten';
+
+  @override
+  String get kbStatUnclear => 'Unklare Aussagen';
+
+  @override
+  String get kbDraftsTitle => 'Vorgeschlagene Einträge';
+
+  @override
+  String get kbDecisionAccept => 'Übernehmen';
+
+  @override
+  String get kbDecisionEdit => 'Bearbeiten';
+
+  @override
+  String get kbDecisionIgnore => 'Ignorieren';
+
+  @override
+  String get kbFieldTitle => 'Titel';
+
+  @override
+  String get kbFieldQuestion => 'Frage';
+
+  @override
+  String get kbFieldContent => 'Inhalt';
+
+  @override
+  String get kbFieldKeywords => 'Schlagwörter';
+
+  @override
+  String get kbDuplicateBadge => 'Mögliche Dublette';
+
+  @override
+  String get kbExistingTitle => 'Bestehender Eintrag';
+
+  @override
+  String get kbNewInfoTitle => 'Neue Information';
+
+  @override
+  String get kbSuggestionTitle => 'Vorschlag';
+
+  @override
+  String get kbMergeAugment => 'Ergänzen';
+
+  @override
+  String get kbMergeReplace => 'Ersetzen';
+
+  @override
+  String get kbMergeNew => 'Neuen Eintrag anlegen';
+
+  @override
+  String get kbCatFaq => 'FAQ';
+
+  @override
+  String get kbCatInstallation => 'Installationsanleitung';
+
+  @override
+  String get kbCatStepByStep => 'Schritt-für-Schritt';
+
+  @override
+  String get kbCatTechnicalRequirement => 'Technische Voraussetzung';
+
+  @override
+  String get kbCatWarning => 'Warnhinweis';
+
+  @override
+  String get kbCatTroubleshooting => 'Problemlösung';
+
+  @override
+  String get kbCatProductFeature => 'Produktfunktion';
+
+  @override
+  String get kbCatTip => 'Tipp';
+
+  @override
+  String get kbCatDefinition => 'Definition';
+
+  @override
+  String get kbCatContact => 'Kontaktinformation';
+
+  @override
+  String get kbCatGeneral => 'Allgemein';
 }

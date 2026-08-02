@@ -8125,6 +8125,258 @@ abstract class AppLocalizations {
   /// In de, this message translates to:
   /// **'Sonstiges'**
   String get researchEvidenceCategoryOther;
+
+  /// No description provided for @navKnowledgeBuilder.
+  ///
+  /// In de, this message translates to:
+  /// **'Wissens-Builder'**
+  String get navKnowledgeBuilder;
+
+  /// No description provided for @kbTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Knowledge Builder'**
+  String get kbTitle;
+
+  /// No description provided for @kbIntro.
+  ///
+  /// In de, this message translates to:
+  /// **'Füge einen langen Text ein (z. B. Anleitung, Doku, Notizen). Die Analyse schlägt strukturierte Wissenseinträge vor – ohne etwas zu erfinden oder zu speichern.'**
+  String get kbIntro;
+
+  /// No description provided for @kbInputHint.
+  ///
+  /// In de, this message translates to:
+  /// **'Unternehmenswissen hier einfügen …'**
+  String get kbInputHint;
+
+  /// No description provided for @kbAnalyze.
+  ///
+  /// In de, this message translates to:
+  /// **'Analysieren'**
+  String get kbAnalyze;
+
+  /// No description provided for @kbAnalyzing.
+  ///
+  /// In de, this message translates to:
+  /// **'Analysiere …'**
+  String get kbAnalyzing;
+
+  /// No description provided for @kbReset.
+  ///
+  /// In de, this message translates to:
+  /// **'Zurücksetzen'**
+  String get kbReset;
+
+  /// No description provided for @kbTrustNotice.
+  ///
+  /// In de, this message translates to:
+  /// **'Nichts wird automatisch gespeichert. Die KI erfindet keine Fakten – Inhalte bleiben unverändert, nur Titel, Fragen und Schlagwörter werden erzeugt.'**
+  String get kbTrustNotice;
+
+  /// No description provided for @kbNoResults.
+  ///
+  /// In de, this message translates to:
+  /// **'Keine auswertbaren Aussagen gefunden. Bitte mehr Text einfügen.'**
+  String get kbNoResults;
+
+  /// No description provided for @kbStatsTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Analyse-Übersicht'**
+  String get kbStatsTitle;
+
+  /// No description provided for @kbStatSentences.
+  ///
+  /// In de, this message translates to:
+  /// **'Analysierte Sätze'**
+  String get kbStatSentences;
+
+  /// No description provided for @kbStatTopics.
+  ///
+  /// In de, this message translates to:
+  /// **'Erkannte Themen'**
+  String get kbStatTopics;
+
+  /// No description provided for @kbStatNew.
+  ///
+  /// In de, this message translates to:
+  /// **'Neue Wissenseinträge'**
+  String get kbStatNew;
+
+  /// No description provided for @kbStatExisting.
+  ///
+  /// In de, this message translates to:
+  /// **'Vorhandene Einträge'**
+  String get kbStatExisting;
+
+  /// No description provided for @kbStatDuplicates.
+  ///
+  /// In de, this message translates to:
+  /// **'Mögliche Dubletten'**
+  String get kbStatDuplicates;
+
+  /// No description provided for @kbStatUnclear.
+  ///
+  /// In de, this message translates to:
+  /// **'Unklare Aussagen'**
+  String get kbStatUnclear;
+
+  /// No description provided for @kbDraftsTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Vorgeschlagene Einträge'**
+  String get kbDraftsTitle;
+
+  /// No description provided for @kbDecisionAccept.
+  ///
+  /// In de, this message translates to:
+  /// **'Übernehmen'**
+  String get kbDecisionAccept;
+
+  /// No description provided for @kbDecisionEdit.
+  ///
+  /// In de, this message translates to:
+  /// **'Bearbeiten'**
+  String get kbDecisionEdit;
+
+  /// No description provided for @kbDecisionIgnore.
+  ///
+  /// In de, this message translates to:
+  /// **'Ignorieren'**
+  String get kbDecisionIgnore;
+
+  /// No description provided for @kbFieldTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Titel'**
+  String get kbFieldTitle;
+
+  /// No description provided for @kbFieldQuestion.
+  ///
+  /// In de, this message translates to:
+  /// **'Frage'**
+  String get kbFieldQuestion;
+
+  /// No description provided for @kbFieldContent.
+  ///
+  /// In de, this message translates to:
+  /// **'Inhalt'**
+  String get kbFieldContent;
+
+  /// No description provided for @kbFieldKeywords.
+  ///
+  /// In de, this message translates to:
+  /// **'Schlagwörter'**
+  String get kbFieldKeywords;
+
+  /// No description provided for @kbDuplicateBadge.
+  ///
+  /// In de, this message translates to:
+  /// **'Mögliche Dublette'**
+  String get kbDuplicateBadge;
+
+  /// No description provided for @kbExistingTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Bestehender Eintrag'**
+  String get kbExistingTitle;
+
+  /// No description provided for @kbNewInfoTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Neue Information'**
+  String get kbNewInfoTitle;
+
+  /// No description provided for @kbSuggestionTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Vorschlag'**
+  String get kbSuggestionTitle;
+
+  /// No description provided for @kbMergeAugment.
+  ///
+  /// In de, this message translates to:
+  /// **'Ergänzen'**
+  String get kbMergeAugment;
+
+  /// No description provided for @kbMergeReplace.
+  ///
+  /// In de, this message translates to:
+  /// **'Ersetzen'**
+  String get kbMergeReplace;
+
+  /// No description provided for @kbMergeNew.
+  ///
+  /// In de, this message translates to:
+  /// **'Neuen Eintrag anlegen'**
+  String get kbMergeNew;
+
+  /// No description provided for @kbCatFaq.
+  ///
+  /// In de, this message translates to:
+  /// **'FAQ'**
+  String get kbCatFaq;
+
+  /// No description provided for @kbCatInstallation.
+  ///
+  /// In de, this message translates to:
+  /// **'Installationsanleitung'**
+  String get kbCatInstallation;
+
+  /// No description provided for @kbCatStepByStep.
+  ///
+  /// In de, this message translates to:
+  /// **'Schritt-für-Schritt'**
+  String get kbCatStepByStep;
+
+  /// No description provided for @kbCatTechnicalRequirement.
+  ///
+  /// In de, this message translates to:
+  /// **'Technische Voraussetzung'**
+  String get kbCatTechnicalRequirement;
+
+  /// No description provided for @kbCatWarning.
+  ///
+  /// In de, this message translates to:
+  /// **'Warnhinweis'**
+  String get kbCatWarning;
+
+  /// No description provided for @kbCatTroubleshooting.
+  ///
+  /// In de, this message translates to:
+  /// **'Problemlösung'**
+  String get kbCatTroubleshooting;
+
+  /// No description provided for @kbCatProductFeature.
+  ///
+  /// In de, this message translates to:
+  /// **'Produktfunktion'**
+  String get kbCatProductFeature;
+
+  /// No description provided for @kbCatTip.
+  ///
+  /// In de, this message translates to:
+  /// **'Tipp'**
+  String get kbCatTip;
+
+  /// No description provided for @kbCatDefinition.
+  ///
+  /// In de, this message translates to:
+  /// **'Definition'**
+  String get kbCatDefinition;
+
+  /// No description provided for @kbCatContact.
+  ///
+  /// In de, this message translates to:
+  /// **'Kontaktinformation'**
+  String get kbCatContact;
+
+  /// No description provided for @kbCatGeneral.
+  ///
+  /// In de, this message translates to:
+  /// **'Allgemein'**
+  String get kbCatGeneral;
 }
 
 class _AppLocalizationsDelegate

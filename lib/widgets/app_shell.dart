@@ -110,6 +110,11 @@ const _navItems = [
     selectedIcon: Icons.timeline,
     path: '/company-evolution',
   ),
+  _NavItem(
+    icon: Icons.auto_stories_outlined,
+    selectedIcon: Icons.auto_stories,
+    path: '/knowledge-builder',
+  ),
 ];
 
 int _indexFromLocation(String location) {
@@ -125,6 +130,8 @@ int _indexFromLocation(String location) {
   if (location.startsWith('/company-evolution')) return 17;
   if (location.startsWith('/company')) return 8;
   if (location.startsWith('/audit')) return 9;
+  // Builder must be checked before '/knowledge' since it shares the prefix.
+  if (location.startsWith('/knowledge-builder')) return 18;
   if (location.startsWith('/knowledge')) return 10;
   if (location.startsWith('/bot-test')) return 11;
   if (location.startsWith('/bot-settings')) return 12;
@@ -155,6 +162,7 @@ List<String> _navLabels(AppLocalizations l) => [
   l.navCommunityRadar,
   l.navCommunityMembers,
   l.navCompanyEvolution,
+  l.navKnowledgeBuilder,
 ];
 
 class AppShell extends StatelessWidget {

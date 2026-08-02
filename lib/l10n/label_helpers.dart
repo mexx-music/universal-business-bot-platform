@@ -2,6 +2,7 @@ import 'package:flutter/widgets.dart';
 import '../models/bot_question_log.dart';
 import '../models/knowledge_entry.dart';
 import '../models/product_or_service.dart';
+import '../knowledge_builder/models/knowledge_import_models.dart';
 import '../research/models/research_enums.dart';
 import 'app_localizations.dart';
 
@@ -95,6 +96,27 @@ String researchDocumentTypeLabel(
     ResearchDocumentType.video => l.researchDocTypeVideo,
     ResearchDocumentType.financial => l.researchDocTypeFinancial,
     ResearchDocumentType.unknown => l.researchDocTypeUnknown,
+  };
+}
+
+/// Locale-aware label for a Knowledge Builder [KnowledgeDraftCategory].
+String knowledgeDraftCategoryLabel(
+  BuildContext context,
+  KnowledgeDraftCategory category,
+) {
+  final l = AppLocalizations.of(context)!;
+  return switch (category) {
+    KnowledgeDraftCategory.faq => l.kbCatFaq,
+    KnowledgeDraftCategory.installation => l.kbCatInstallation,
+    KnowledgeDraftCategory.stepByStep => l.kbCatStepByStep,
+    KnowledgeDraftCategory.technicalRequirement => l.kbCatTechnicalRequirement,
+    KnowledgeDraftCategory.warning => l.kbCatWarning,
+    KnowledgeDraftCategory.troubleshooting => l.kbCatTroubleshooting,
+    KnowledgeDraftCategory.productFeature => l.kbCatProductFeature,
+    KnowledgeDraftCategory.tip => l.kbCatTip,
+    KnowledgeDraftCategory.definition => l.kbCatDefinition,
+    KnowledgeDraftCategory.contact => l.kbCatContact,
+    KnowledgeDraftCategory.general => l.kbCatGeneral,
   };
 }
 
