@@ -5223,4 +5223,81 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get opClosingBody =>
       'BusinessBrain answers questions, detects knowledge gaps and creates improvement suggestions. Employees stay in control of every change at all times.';
+
+  @override
+  String get navKnowledgeWorkflow => 'Learning workflow';
+
+  @override
+  String get kwTitle => 'Knowledge improvement – end to end';
+
+  @override
+  String get kwIntro =>
+      'A real, reproducible learning loop: a knowledge gap becomes permanent company knowledge. Uses the same knowledge base as the assistant.';
+
+  @override
+  String get kwQuestion => 'How can I export my reports as a CSV file?';
+
+  @override
+  String get kwAsk => 'Ask question';
+
+  @override
+  String get kwSuggestionTitle => 'Improvement suggestion (human review)';
+
+  @override
+  String get kwSuggestedEntryTitle => 'Export reports as CSV';
+
+  @override
+  String get kwSuggestedEntryContent =>
+      'Reports can be downloaded as a CSV file from the menu under \"Export\".';
+
+  @override
+  String get kwAccept => 'Accept';
+
+  @override
+  String get kwReject => 'Reject';
+
+  @override
+  String get kwReset => 'Reset';
+
+  @override
+  String get kwFirstAnswerTitle => 'First answer';
+
+  @override
+  String get kwImprovedAnswerTitle => 'Improved answer';
+
+  @override
+  String get kwImprovedInfo =>
+      'This answer was improved by a newly confirmed knowledge entry.';
+
+  @override
+  String get kwRejectedInfo =>
+      'Suggestion rejected – the knowledge base stays unchanged, and the same question still returns the honest knowledge gap.';
+
+  @override
+  String get kwProcessTitle => 'Process';
+
+  @override
+  String get kwStep1 => 'Question asked';
+
+  @override
+  String get kwStep2 => 'Knowledge gap detected';
+
+  @override
+  String get kwStep3 => 'Improvement suggestion created';
+
+  @override
+  String get kwStep4 => 'Employee confirms';
+
+  @override
+  String get kwStep5 => 'Knowledge entry saved';
+
+  @override
+  String get kwStep6 => 'Answer improved';
+
+  @override
+  String get kwClosingTitle => 'The learning loop completed successfully.';
+
+  @override
+  String get kwClosingBody =>
+      'BusinessBrain improves its answers exclusively through confirmed company knowledge.';
 }

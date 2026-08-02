@@ -9607,6 +9607,150 @@ abstract class AppLocalizations {
   /// In de, this message translates to:
   /// **'BusinessBrain beantwortet Fragen, erkennt Wissenslücken und erstellt Verbesserungsvorschläge. Mitarbeiter behalten jederzeit die Kontrolle über alle Änderungen.'**
   String get opClosingBody;
+
+  /// No description provided for @navKnowledgeWorkflow.
+  ///
+  /// In de, this message translates to:
+  /// **'Lern-Workflow'**
+  String get navKnowledgeWorkflow;
+
+  /// No description provided for @kwTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Wissens-Verbesserung – End-to-End'**
+  String get kwTitle;
+
+  /// No description provided for @kwIntro.
+  ///
+  /// In de, this message translates to:
+  /// **'Ein echter, reproduzierbarer Lernkreislauf: aus einer Wissenslücke entsteht dauerhaftes Firmenwissen. Verwendet dieselbe Wissensbasis wie der Assistent.'**
+  String get kwIntro;
+
+  /// No description provided for @kwQuestion.
+  ///
+  /// In de, this message translates to:
+  /// **'Wie kann ich meine Berichte als CSV-Datei exportieren?'**
+  String get kwQuestion;
+
+  /// No description provided for @kwAsk.
+  ///
+  /// In de, this message translates to:
+  /// **'Frage stellen'**
+  String get kwAsk;
+
+  /// No description provided for @kwSuggestionTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Verbesserungsvorschlag (Human Review)'**
+  String get kwSuggestionTitle;
+
+  /// No description provided for @kwSuggestedEntryTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Berichte als CSV exportieren'**
+  String get kwSuggestedEntryTitle;
+
+  /// No description provided for @kwSuggestedEntryContent.
+  ///
+  /// In de, this message translates to:
+  /// **'Berichte lassen sich im Menü unter „Export“ als CSV-Datei herunterladen.'**
+  String get kwSuggestedEntryContent;
+
+  /// No description provided for @kwAccept.
+  ///
+  /// In de, this message translates to:
+  /// **'Übernehmen'**
+  String get kwAccept;
+
+  /// No description provided for @kwReject.
+  ///
+  /// In de, this message translates to:
+  /// **'Ablehnen'**
+  String get kwReject;
+
+  /// No description provided for @kwReset.
+  ///
+  /// In de, this message translates to:
+  /// **'Zurücksetzen'**
+  String get kwReset;
+
+  /// No description provided for @kwFirstAnswerTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Erste Antwort'**
+  String get kwFirstAnswerTitle;
+
+  /// No description provided for @kwImprovedAnswerTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Verbesserte Antwort'**
+  String get kwImprovedAnswerTitle;
+
+  /// No description provided for @kwImprovedInfo.
+  ///
+  /// In de, this message translates to:
+  /// **'Diese Antwort wurde durch einen neu bestätigten Wissenseintrag verbessert.'**
+  String get kwImprovedInfo;
+
+  /// No description provided for @kwRejectedInfo.
+  ///
+  /// In de, this message translates to:
+  /// **'Vorschlag abgelehnt – die Wissensbasis bleibt unverändert, dieselbe Frage liefert weiterhin die ehrliche Wissenslücke.'**
+  String get kwRejectedInfo;
+
+  /// No description provided for @kwProcessTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Prozess'**
+  String get kwProcessTitle;
+
+  /// No description provided for @kwStep1.
+  ///
+  /// In de, this message translates to:
+  /// **'Frage gestellt'**
+  String get kwStep1;
+
+  /// No description provided for @kwStep2.
+  ///
+  /// In de, this message translates to:
+  /// **'Wissenslücke erkannt'**
+  String get kwStep2;
+
+  /// No description provided for @kwStep3.
+  ///
+  /// In de, this message translates to:
+  /// **'Verbesserungsvorschlag erstellt'**
+  String get kwStep3;
+
+  /// No description provided for @kwStep4.
+  ///
+  /// In de, this message translates to:
+  /// **'Mitarbeiter bestätigt'**
+  String get kwStep4;
+
+  /// No description provided for @kwStep5.
+  ///
+  /// In de, this message translates to:
+  /// **'Wissenseintrag gespeichert'**
+  String get kwStep5;
+
+  /// No description provided for @kwStep6.
+  ///
+  /// In de, this message translates to:
+  /// **'Antwort verbessert'**
+  String get kwStep6;
+
+  /// No description provided for @kwClosingTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Der Lernkreislauf wurde erfolgreich abgeschlossen.'**
+  String get kwClosingTitle;
+
+  /// No description provided for @kwClosingBody.
+  ///
+  /// In de, this message translates to:
+  /// **'BusinessBrain verbessert seine Antworten ausschließlich durch bestätigtes Unternehmenswissen.'**
+  String get kwClosingBody;
 }
 
 class _AppLocalizationsDelegate

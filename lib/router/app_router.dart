@@ -34,6 +34,7 @@ import '../screens/business_story/business_story_screen.dart';
 import '../screens/guided_demo/guided_demo_screen.dart';
 import '../screens/operations/operations_dashboard_screen.dart';
 import '../screens/knowledge_improvement/knowledge_improvement_screen.dart';
+import '../screens/knowledge_workflow/knowledge_workflow_screen.dart';
 import '../screens/roles/role_overview_screen.dart';
 import '../screens/bot_test/bot_test_screen.dart';
 import '../screens/bot_settings/bot_settings_screen.dart';
@@ -245,6 +246,10 @@ GoRouter createAppRouter(
           GoRoute(
             path: '/operations-dashboard',
             builder: (context, state) => const OperationsDashboardScreen(),
+          ),
+          GoRoute(
+            path: '/knowledge-workflow',
+            builder: (context, state) => const KnowledgeWorkflowScreen(),
           ),
         ],
       ),

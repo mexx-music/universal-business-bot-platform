@@ -5260,4 +5260,83 @@ class AppLocalizationsDe extends AppLocalizations {
   @override
   String get opClosingBody =>
       'BusinessBrain beantwortet Fragen, erkennt Wissenslücken und erstellt Verbesserungsvorschläge. Mitarbeiter behalten jederzeit die Kontrolle über alle Änderungen.';
+
+  @override
+  String get navKnowledgeWorkflow => 'Lern-Workflow';
+
+  @override
+  String get kwTitle => 'Wissens-Verbesserung – End-to-End';
+
+  @override
+  String get kwIntro =>
+      'Ein echter, reproduzierbarer Lernkreislauf: aus einer Wissenslücke entsteht dauerhaftes Firmenwissen. Verwendet dieselbe Wissensbasis wie der Assistent.';
+
+  @override
+  String get kwQuestion =>
+      'Wie kann ich meine Berichte als CSV-Datei exportieren?';
+
+  @override
+  String get kwAsk => 'Frage stellen';
+
+  @override
+  String get kwSuggestionTitle => 'Verbesserungsvorschlag (Human Review)';
+
+  @override
+  String get kwSuggestedEntryTitle => 'Berichte als CSV exportieren';
+
+  @override
+  String get kwSuggestedEntryContent =>
+      'Berichte lassen sich im Menü unter „Export“ als CSV-Datei herunterladen.';
+
+  @override
+  String get kwAccept => 'Übernehmen';
+
+  @override
+  String get kwReject => 'Ablehnen';
+
+  @override
+  String get kwReset => 'Zurücksetzen';
+
+  @override
+  String get kwFirstAnswerTitle => 'Erste Antwort';
+
+  @override
+  String get kwImprovedAnswerTitle => 'Verbesserte Antwort';
+
+  @override
+  String get kwImprovedInfo =>
+      'Diese Antwort wurde durch einen neu bestätigten Wissenseintrag verbessert.';
+
+  @override
+  String get kwRejectedInfo =>
+      'Vorschlag abgelehnt – die Wissensbasis bleibt unverändert, dieselbe Frage liefert weiterhin die ehrliche Wissenslücke.';
+
+  @override
+  String get kwProcessTitle => 'Prozess';
+
+  @override
+  String get kwStep1 => 'Frage gestellt';
+
+  @override
+  String get kwStep2 => 'Wissenslücke erkannt';
+
+  @override
+  String get kwStep3 => 'Verbesserungsvorschlag erstellt';
+
+  @override
+  String get kwStep4 => 'Mitarbeiter bestätigt';
+
+  @override
+  String get kwStep5 => 'Wissenseintrag gespeichert';
+
+  @override
+  String get kwStep6 => 'Antwort verbessert';
+
+  @override
+  String get kwClosingTitle =>
+      'Der Lernkreislauf wurde erfolgreich abgeschlossen.';
+
+  @override
+  String get kwClosingBody =>
+      'BusinessBrain verbessert seine Antworten ausschließlich durch bestätigtes Unternehmenswissen.';
 }
