@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import '../auth/auth_controller.dart';
 import '../data/app_state.dart';
 import '../demo/demo_mode_controller.dart';
+import '../jury/jury_mode_controller.dart';
 import '../l10n/app_localizations.dart';
 import '../tenant_selection/tenant_selection_controller.dart';
 import 'language_switcher.dart';
@@ -239,6 +240,13 @@ class AppShell extends StatelessWidget {
       );
     }
     final company = state.selectedCompany;
+
+    // Jury mode (BLOCK 9): a simplified navigation with the five main areas and
+    // a single "Weitere Module" entry. Default off — the full navigation below
+    // is unchanged. No feature is removed.
+    if (JuryModeController.maybeOf(context)?.active ?? false) {
+      return _JuryShell(currentLocation: currentLocation, child: child);
+    }
 
     return LayoutBuilder(
       builder: (context, constraints) {
@@ -1052,6 +1060,157 @@ class _DemoTourBanner extends StatelessWidget {
           ],
         ),
       ),
+    );
+  }
+}
+
+class _JuryNavItem {
+  final IconData icon;
+  final IconData selectedIcon;
+  final String path;
+
+  const _JuryNavItem({
+    required this.icon,
+    required this.selectedIcon,
+    required this.path,
+  });
+}
+
+const _juryNavItems = [
+  _JuryNavItem(
+    icon: Icons.auto_graph_outlined,
+    selectedIcon: Icons.auto_graph,
+    path: '/business-story',
+  ),
+  _JuryNavItem(
+    icon: Icons.monitor_heart_outlined,
+    selectedIcon: Icons.monitor_heart,
+    path: '/operations-dashboard',
+  ),
+  _JuryNavItem(
+    icon: Icons.slideshow_outlined,
+    selectedIcon: Icons.slideshow,
+    path: '/guided-demo',
+  ),
+  _JuryNavItem(
+    icon: Icons.smart_toy_outlined,
+    selectedIcon: Icons.smart_toy,
+    path: '/bot-test',
+  ),
+  _JuryNavItem(
+    icon: Icons.sync_alt_outlined,
+    selectedIcon: Icons.sync_alt,
+    path: '/knowledge-workflow',
+  ),
+  _JuryNavItem(
+    icon: Icons.apps_outlined,
+    selectedIcon: Icons.apps,
+    path: '/more',
+  ),
+];
+
+List<String> _juryLabels(AppLocalizations l) => [
+  l.navBusinessStory,
+  l.navOperations,
+  l.navGuidedDemo,
+  l.juryNavGroundedAi,
+  l.navKnowledgeWorkflow,
+  l.navMore,
+];
+
+int _juryIndex(String location) {
+  if (location.startsWith('/business-story')) return 0;
+  if (location.startsWith('/operations-dashboard')) return 1;
+  if (location.startsWith('/guided-demo')) return 2;
+  if (location.startsWith('/bot-test')) return 3;
+  if (location.startsWith('/knowledge-workflow')) return 4;
+  // Everything else lives under "Weitere Module".
+  return 5;
+}
+
+/// Simplified shell used while jury mode is active.
+class _JuryShell extends StatelessWidget {
+  final Widget child;
+  final String currentLocation;
+
+  const _JuryShell({required this.child, required this.currentLocation});
+
+  @override
+  Widget build(BuildContext context) {
+    final l = AppLocalizations.of(context)!;
+    final theme = Theme.of(context);
+    final labels = _juryLabels(l);
+    final selectedIndex = _juryIndex(currentLocation);
+
+    PreferredSizeWidget appBar() => AppBar(
+      title: Text(l.appName),
+      actions: [
+        const Padding(
+          padding: EdgeInsets.symmetric(vertical: 8),
+          child: LanguageSwitcher(compact: true),
+        ),
+        TextButton.icon(
+          onPressed: () {
+            JuryModeController.maybeOf(context)?.disable();
+            context.go('/');
+          },
+          icon: const Icon(Icons.close, size: 18),
+          label: Text(l.juryExit),
+        ),
+        const SizedBox(width: 8),
+      ],
+    );
+
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        if (constraints.maxWidth < 640) {
+          return Scaffold(
+            appBar: appBar(),
+            body: _DemoAwareContent(child: child),
+            bottomNavigationBar: NavigationBar(
+              selectedIndex: selectedIndex,
+              onDestinationSelected: (i) => context.go(_juryNavItems[i].path),
+              destinations: List.generate(
+                _juryNavItems.length,
+                (i) => NavigationDestination(
+                  icon: Icon(_juryNavItems[i].icon),
+                  selectedIcon: Icon(_juryNavItems[i].selectedIcon),
+                  label: labels[i],
+                ),
+              ),
+            ),
+          );
+        }
+        final extended = constraints.maxWidth >= 1100;
+        return Scaffold(
+          appBar: appBar(),
+          body: Row(
+            children: [
+              NavigationRail(
+                extended: extended,
+                selectedIndex: selectedIndex,
+                onDestinationSelected: (i) => context.go(_juryNavItems[i].path),
+                labelType: extended
+                    ? NavigationRailLabelType.none
+                    : NavigationRailLabelType.all,
+                destinations: [
+                  for (var i = 0; i < _juryNavItems.length; i++)
+                    NavigationRailDestination(
+                      icon: Icon(_juryNavItems[i].icon),
+                      selectedIcon: Icon(_juryNavItems[i].selectedIcon),
+                      label: Text(labels[i]),
+                    ),
+                ],
+              ),
+              VerticalDivider(
+                width: 1,
+                color: theme.colorScheme.outlineVariant,
+              ),
+              Expanded(child: _DemoAwareContent(child: child)),
+            ],
+          ),
+        );
+      },
     );
   }
 }

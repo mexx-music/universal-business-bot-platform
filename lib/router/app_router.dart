@@ -32,6 +32,10 @@ import '../screens/knowledge/knowledge_screen.dart';
 import '../screens/knowledge_builder/knowledge_builder_screen.dart';
 import '../screens/business_story/business_story_screen.dart';
 import '../screens/guided_demo/guided_demo_screen.dart';
+import '../screens/jury/jury_start_screen.dart';
+import '../screens/jury/jury_tour_screen.dart';
+import '../screens/more/more_modules_screen.dart';
+import '../screens/release/release_checklist_screen.dart';
 import '../screens/operations/operations_dashboard_screen.dart';
 import '../screens/knowledge_improvement/knowledge_improvement_screen.dart';
 import '../screens/knowledge_workflow/knowledge_workflow_screen.dart';
@@ -105,6 +109,14 @@ GoRouter createAppRouter(
     },
     routes: [
       GoRoute(path: '/', builder: (context, state) => const LandingScreen()),
+      GoRoute(
+        path: '/jury',
+        builder: (context, state) => const JuryStartScreen(),
+      ),
+      GoRoute(
+        path: '/jury-demo',
+        builder: (context, state) => const JuryTourScreen(),
+      ),
       GoRoute(path: '/login', builder: (context, state) => const LoginScreen()),
       GoRoute(
         path: '/onboarding',
@@ -250,6 +262,14 @@ GoRouter createAppRouter(
           GoRoute(
             path: '/knowledge-workflow',
             builder: (context, state) => const KnowledgeWorkflowScreen(),
+          ),
+          GoRoute(
+            path: '/more',
+            builder: (context, state) => const MoreModulesScreen(),
+          ),
+          GoRoute(
+            path: '/release-check',
+            builder: (context, state) => const ReleaseChecklistScreen(),
           ),
         ],
       ),

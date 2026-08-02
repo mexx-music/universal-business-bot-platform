@@ -5300,4 +5300,168 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get kwClosingBody =>
       'BusinessBrain improves its answers exclusively through confirmed company knowledge.';
+
+  @override
+  String get navJuryStart => 'Jury mode';
+
+  @override
+  String get navMore => 'More modules';
+
+  @override
+  String get navReleaseCheck => 'Release check';
+
+  @override
+  String get juryNavGroundedAi => 'Grounded AI';
+
+  @override
+  String get juryStartTitle => 'Welcome to BusinessBrain';
+
+  @override
+  String get juryStartIntro =>
+      'A company\'s digital knowledge centre. Choose how you would like to start.';
+
+  @override
+  String get juryStartGuided => 'Start guided jury demo';
+
+  @override
+  String get juryStartExplore => 'Explore the platform freely';
+
+  @override
+  String get juryStartNote =>
+      'In jury mode the navigation shows only the main areas. All other modules remain available under \"More modules\".';
+
+  @override
+  String get juryTourTitle => 'Guided jury demo';
+
+  @override
+  String get juryBack => 'Back';
+
+  @override
+  String get juryNext => 'Next';
+
+  @override
+  String get juryFinish => 'Finish demo';
+
+  @override
+  String get juryExit => 'Exit jury mode';
+
+  @override
+  String get juryStep1Title => 'Business Story';
+
+  @override
+  String get juryStep1Intro =>
+      'First the big picture: which problem BusinessBrain solves and why it is not a normal AI chat.';
+
+  @override
+  String get juryStep2Title => 'Operations Dashboard';
+
+  @override
+  String get juryStep2Intro =>
+      'How BusinessBrain works for a company today – at a glance (demo data).';
+
+  @override
+  String get juryStep3Title => 'Guided Demo';
+
+  @override
+  String get juryStep3Intro =>
+      'The entire workflow in seven steps, brought together clearly.';
+
+  @override
+  String get juryStep4Title => 'Grounded Assistant';
+
+  @override
+  String get juryStep4Intro =>
+      'Questions are answered only from company knowledge – with sources, without hallucination.';
+
+  @override
+  String get juryStep5Title => 'Knowledge Workflow';
+
+  @override
+  String get juryStep5Intro =>
+      'The reproducible proof: a knowledge gap becomes permanent, confirmed company knowledge.';
+
+  @override
+  String get juryStep6Title => 'Conclusion';
+
+  @override
+  String get juryClosingTitle => 'Thank you.';
+
+  @override
+  String get juryClosingBody =>
+      'BusinessBrain organises company knowledge, answers customer questions reliably and improves exclusively through confirmed company knowledge – the human stays in control at all times.';
+
+  @override
+  String get moreTitle => 'More modules';
+
+  @override
+  String get moreIntro =>
+      'All remaining areas of the platform – nothing was removed.';
+
+  @override
+  String get demoSwitchTitle => 'Demo data';
+
+  @override
+  String get demoSwitchSubtitle =>
+      'Central switch for demo content (e.g. Operations Dashboard).';
+
+  @override
+  String get demoSwitchOn => 'Demo on';
+
+  @override
+  String get demoSwitchOff => 'Live';
+
+  @override
+  String get releaseTitle => 'Release checklist';
+
+  @override
+  String get releaseIntro =>
+      'Internal team checklist for the hackathon submission – not public.';
+
+  @override
+  String get rcNotStarted => 'Not started';
+
+  @override
+  String get rcInProgress => 'In progress';
+
+  @override
+  String get rcDone => 'Done';
+
+  @override
+  String get rcItem1 => 'Current branch published';
+
+  @override
+  String get rcItem2 => 'Cloudflare deployment successful';
+
+  @override
+  String get rcItem3 => 'Live Gemini active';
+
+  @override
+  String get rcItem4 => 'AI_PROVIDER set correctly';
+
+  @override
+  String get rcItem5 => 'Demo data present';
+
+  @override
+  String get rcItem6 => 'Guided Demo complete';
+
+  @override
+  String get rcItem7 => 'Business Story complete';
+
+  @override
+  String get rcItem8 => 'Operations Dashboard complete';
+
+  @override
+  String get rcItem9 => 'Knowledge Workflow complete';
+
+  @override
+  String get rcItem10 => 'README up to date';
+
+  @override
+  String get rcItem11 => 'Screenshots available';
+
+  @override
+  String get rcItem12 => 'Pitch video available';
+
+  @override
+  String get rcItem13 => 'Submission document up to date';
 }

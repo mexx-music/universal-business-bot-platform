@@ -5339,4 +5339,168 @@ class AppLocalizationsDe extends AppLocalizations {
   @override
   String get kwClosingBody =>
       'BusinessBrain verbessert seine Antworten ausschließlich durch bestätigtes Unternehmenswissen.';
+
+  @override
+  String get navJuryStart => 'Jury-Modus';
+
+  @override
+  String get navMore => 'Weitere Module';
+
+  @override
+  String get navReleaseCheck => 'Release-Check';
+
+  @override
+  String get juryNavGroundedAi => 'Grounded AI';
+
+  @override
+  String get juryStartTitle => 'Willkommen bei BusinessBrain';
+
+  @override
+  String get juryStartIntro =>
+      'Das digitale Wissenszentrum eines Unternehmens. Wählen Sie, wie Sie starten möchten.';
+
+  @override
+  String get juryStartGuided => 'Geführte Jury-Demo starten';
+
+  @override
+  String get juryStartExplore => 'Plattform frei erkunden';
+
+  @override
+  String get juryStartNote =>
+      'Im Jury-Modus zeigt die Navigation nur die wichtigsten Bereiche. Alle weiteren Module bleiben unter „Weitere Module“ erreichbar.';
+
+  @override
+  String get juryTourTitle => 'Geführte Jury-Demo';
+
+  @override
+  String get juryBack => 'Zurück';
+
+  @override
+  String get juryNext => 'Weiter';
+
+  @override
+  String get juryFinish => 'Demo beenden';
+
+  @override
+  String get juryExit => 'Jury-Modus beenden';
+
+  @override
+  String get juryStep1Title => 'Business Story';
+
+  @override
+  String get juryStep1Intro =>
+      'Zuerst das große Bild: welches Problem BusinessBrain löst und warum es kein gewöhnlicher KI-Chat ist.';
+
+  @override
+  String get juryStep2Title => 'Operations Dashboard';
+
+  @override
+  String get juryStep2Intro =>
+      'So arbeitet BusinessBrain heute für ein Unternehmen – auf einen Blick (Demo-Daten).';
+
+  @override
+  String get juryStep3Title => 'Guided Demo';
+
+  @override
+  String get juryStep3Intro =>
+      'Der gesamte Workflow in sieben Schritten, verständlich zusammengeführt.';
+
+  @override
+  String get juryStep4Title => 'Grounded Assistant';
+
+  @override
+  String get juryStep4Intro =>
+      'Fragen werden ausschließlich aus dem Firmenwissen beantwortet – mit Quellen, ohne Halluzination.';
+
+  @override
+  String get juryStep5Title => 'Knowledge Workflow';
+
+  @override
+  String get juryStep5Intro =>
+      'Der reproduzierbare Beweis: aus einer Wissenslücke entsteht dauerhaftes, bestätigtes Firmenwissen.';
+
+  @override
+  String get juryStep6Title => 'Abschluss';
+
+  @override
+  String get juryClosingTitle => 'Vielen Dank.';
+
+  @override
+  String get juryClosingBody =>
+      'BusinessBrain organisiert Firmenwissen, beantwortet Kundenfragen zuverlässig und verbessert sich ausschließlich durch bestätigtes Unternehmenswissen – der Mensch behält jederzeit die Kontrolle.';
+
+  @override
+  String get moreTitle => 'Weitere Module';
+
+  @override
+  String get moreIntro =>
+      'Alle übrigen Bereiche der Plattform – nichts wurde entfernt.';
+
+  @override
+  String get demoSwitchTitle => 'Demo-Daten';
+
+  @override
+  String get demoSwitchSubtitle =>
+      'Zentraler Schalter für Demo-Inhalte (z. B. Operations Dashboard).';
+
+  @override
+  String get demoSwitchOn => 'Demo aktiv';
+
+  @override
+  String get demoSwitchOff => 'Live';
+
+  @override
+  String get releaseTitle => 'Release-Checkliste';
+
+  @override
+  String get releaseIntro =>
+      'Interne Team-Checkliste für die Hackathon-Einreichung – nicht öffentlich.';
+
+  @override
+  String get rcNotStarted => 'Nicht begonnen';
+
+  @override
+  String get rcInProgress => 'In Arbeit';
+
+  @override
+  String get rcDone => 'Erledigt';
+
+  @override
+  String get rcItem1 => 'Aktueller Branch veröffentlicht';
+
+  @override
+  String get rcItem2 => 'Cloudflare Deployment erfolgreich';
+
+  @override
+  String get rcItem3 => 'Live Gemini aktiv';
+
+  @override
+  String get rcItem4 => 'AI_PROVIDER korrekt gesetzt';
+
+  @override
+  String get rcItem5 => 'Demo-Daten vorhanden';
+
+  @override
+  String get rcItem6 => 'Guided Demo vollständig';
+
+  @override
+  String get rcItem7 => 'Business Story vollständig';
+
+  @override
+  String get rcItem8 => 'Operations Dashboard vollständig';
+
+  @override
+  String get rcItem9 => 'Knowledge Workflow vollständig';
+
+  @override
+  String get rcItem10 => 'README aktuell';
+
+  @override
+  String get rcItem11 => 'Screenshots vorhanden';
+
+  @override
+  String get rcItem12 => 'Pitch-Video vorhanden';
+
+  @override
+  String get rcItem13 => 'Submission-Dokument aktuell';
 }

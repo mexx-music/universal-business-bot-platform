@@ -9751,6 +9751,312 @@ abstract class AppLocalizations {
   /// In de, this message translates to:
   /// **'BusinessBrain verbessert seine Antworten ausschließlich durch bestätigtes Unternehmenswissen.'**
   String get kwClosingBody;
+
+  /// No description provided for @navJuryStart.
+  ///
+  /// In de, this message translates to:
+  /// **'Jury-Modus'**
+  String get navJuryStart;
+
+  /// No description provided for @navMore.
+  ///
+  /// In de, this message translates to:
+  /// **'Weitere Module'**
+  String get navMore;
+
+  /// No description provided for @navReleaseCheck.
+  ///
+  /// In de, this message translates to:
+  /// **'Release-Check'**
+  String get navReleaseCheck;
+
+  /// No description provided for @juryNavGroundedAi.
+  ///
+  /// In de, this message translates to:
+  /// **'Grounded AI'**
+  String get juryNavGroundedAi;
+
+  /// No description provided for @juryStartTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Willkommen bei BusinessBrain'**
+  String get juryStartTitle;
+
+  /// No description provided for @juryStartIntro.
+  ///
+  /// In de, this message translates to:
+  /// **'Das digitale Wissenszentrum eines Unternehmens. Wählen Sie, wie Sie starten möchten.'**
+  String get juryStartIntro;
+
+  /// No description provided for @juryStartGuided.
+  ///
+  /// In de, this message translates to:
+  /// **'Geführte Jury-Demo starten'**
+  String get juryStartGuided;
+
+  /// No description provided for @juryStartExplore.
+  ///
+  /// In de, this message translates to:
+  /// **'Plattform frei erkunden'**
+  String get juryStartExplore;
+
+  /// No description provided for @juryStartNote.
+  ///
+  /// In de, this message translates to:
+  /// **'Im Jury-Modus zeigt die Navigation nur die wichtigsten Bereiche. Alle weiteren Module bleiben unter „Weitere Module“ erreichbar.'**
+  String get juryStartNote;
+
+  /// No description provided for @juryTourTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Geführte Jury-Demo'**
+  String get juryTourTitle;
+
+  /// No description provided for @juryBack.
+  ///
+  /// In de, this message translates to:
+  /// **'Zurück'**
+  String get juryBack;
+
+  /// No description provided for @juryNext.
+  ///
+  /// In de, this message translates to:
+  /// **'Weiter'**
+  String get juryNext;
+
+  /// No description provided for @juryFinish.
+  ///
+  /// In de, this message translates to:
+  /// **'Demo beenden'**
+  String get juryFinish;
+
+  /// No description provided for @juryExit.
+  ///
+  /// In de, this message translates to:
+  /// **'Jury-Modus beenden'**
+  String get juryExit;
+
+  /// No description provided for @juryStep1Title.
+  ///
+  /// In de, this message translates to:
+  /// **'Business Story'**
+  String get juryStep1Title;
+
+  /// No description provided for @juryStep1Intro.
+  ///
+  /// In de, this message translates to:
+  /// **'Zuerst das große Bild: welches Problem BusinessBrain löst und warum es kein gewöhnlicher KI-Chat ist.'**
+  String get juryStep1Intro;
+
+  /// No description provided for @juryStep2Title.
+  ///
+  /// In de, this message translates to:
+  /// **'Operations Dashboard'**
+  String get juryStep2Title;
+
+  /// No description provided for @juryStep2Intro.
+  ///
+  /// In de, this message translates to:
+  /// **'So arbeitet BusinessBrain heute für ein Unternehmen – auf einen Blick (Demo-Daten).'**
+  String get juryStep2Intro;
+
+  /// No description provided for @juryStep3Title.
+  ///
+  /// In de, this message translates to:
+  /// **'Guided Demo'**
+  String get juryStep3Title;
+
+  /// No description provided for @juryStep3Intro.
+  ///
+  /// In de, this message translates to:
+  /// **'Der gesamte Workflow in sieben Schritten, verständlich zusammengeführt.'**
+  String get juryStep3Intro;
+
+  /// No description provided for @juryStep4Title.
+  ///
+  /// In de, this message translates to:
+  /// **'Grounded Assistant'**
+  String get juryStep4Title;
+
+  /// No description provided for @juryStep4Intro.
+  ///
+  /// In de, this message translates to:
+  /// **'Fragen werden ausschließlich aus dem Firmenwissen beantwortet – mit Quellen, ohne Halluzination.'**
+  String get juryStep4Intro;
+
+  /// No description provided for @juryStep5Title.
+  ///
+  /// In de, this message translates to:
+  /// **'Knowledge Workflow'**
+  String get juryStep5Title;
+
+  /// No description provided for @juryStep5Intro.
+  ///
+  /// In de, this message translates to:
+  /// **'Der reproduzierbare Beweis: aus einer Wissenslücke entsteht dauerhaftes, bestätigtes Firmenwissen.'**
+  String get juryStep5Intro;
+
+  /// No description provided for @juryStep6Title.
+  ///
+  /// In de, this message translates to:
+  /// **'Abschluss'**
+  String get juryStep6Title;
+
+  /// No description provided for @juryClosingTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Vielen Dank.'**
+  String get juryClosingTitle;
+
+  /// No description provided for @juryClosingBody.
+  ///
+  /// In de, this message translates to:
+  /// **'BusinessBrain organisiert Firmenwissen, beantwortet Kundenfragen zuverlässig und verbessert sich ausschließlich durch bestätigtes Unternehmenswissen – der Mensch behält jederzeit die Kontrolle.'**
+  String get juryClosingBody;
+
+  /// No description provided for @moreTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Weitere Module'**
+  String get moreTitle;
+
+  /// No description provided for @moreIntro.
+  ///
+  /// In de, this message translates to:
+  /// **'Alle übrigen Bereiche der Plattform – nichts wurde entfernt.'**
+  String get moreIntro;
+
+  /// No description provided for @demoSwitchTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Demo-Daten'**
+  String get demoSwitchTitle;
+
+  /// No description provided for @demoSwitchSubtitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Zentraler Schalter für Demo-Inhalte (z. B. Operations Dashboard).'**
+  String get demoSwitchSubtitle;
+
+  /// No description provided for @demoSwitchOn.
+  ///
+  /// In de, this message translates to:
+  /// **'Demo aktiv'**
+  String get demoSwitchOn;
+
+  /// No description provided for @demoSwitchOff.
+  ///
+  /// In de, this message translates to:
+  /// **'Live'**
+  String get demoSwitchOff;
+
+  /// No description provided for @releaseTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Release-Checkliste'**
+  String get releaseTitle;
+
+  /// No description provided for @releaseIntro.
+  ///
+  /// In de, this message translates to:
+  /// **'Interne Team-Checkliste für die Hackathon-Einreichung – nicht öffentlich.'**
+  String get releaseIntro;
+
+  /// No description provided for @rcNotStarted.
+  ///
+  /// In de, this message translates to:
+  /// **'Nicht begonnen'**
+  String get rcNotStarted;
+
+  /// No description provided for @rcInProgress.
+  ///
+  /// In de, this message translates to:
+  /// **'In Arbeit'**
+  String get rcInProgress;
+
+  /// No description provided for @rcDone.
+  ///
+  /// In de, this message translates to:
+  /// **'Erledigt'**
+  String get rcDone;
+
+  /// No description provided for @rcItem1.
+  ///
+  /// In de, this message translates to:
+  /// **'Aktueller Branch veröffentlicht'**
+  String get rcItem1;
+
+  /// No description provided for @rcItem2.
+  ///
+  /// In de, this message translates to:
+  /// **'Cloudflare Deployment erfolgreich'**
+  String get rcItem2;
+
+  /// No description provided for @rcItem3.
+  ///
+  /// In de, this message translates to:
+  /// **'Live Gemini aktiv'**
+  String get rcItem3;
+
+  /// No description provided for @rcItem4.
+  ///
+  /// In de, this message translates to:
+  /// **'AI_PROVIDER korrekt gesetzt'**
+  String get rcItem4;
+
+  /// No description provided for @rcItem5.
+  ///
+  /// In de, this message translates to:
+  /// **'Demo-Daten vorhanden'**
+  String get rcItem5;
+
+  /// No description provided for @rcItem6.
+  ///
+  /// In de, this message translates to:
+  /// **'Guided Demo vollständig'**
+  String get rcItem6;
+
+  /// No description provided for @rcItem7.
+  ///
+  /// In de, this message translates to:
+  /// **'Business Story vollständig'**
+  String get rcItem7;
+
+  /// No description provided for @rcItem8.
+  ///
+  /// In de, this message translates to:
+  /// **'Operations Dashboard vollständig'**
+  String get rcItem8;
+
+  /// No description provided for @rcItem9.
+  ///
+  /// In de, this message translates to:
+  /// **'Knowledge Workflow vollständig'**
+  String get rcItem9;
+
+  /// No description provided for @rcItem10.
+  ///
+  /// In de, this message translates to:
+  /// **'README aktuell'**
+  String get rcItem10;
+
+  /// No description provided for @rcItem11.
+  ///
+  /// In de, this message translates to:
+  /// **'Screenshots vorhanden'**
+  String get rcItem11;
+
+  /// No description provided for @rcItem12.
+  ///
+  /// In de, this message translates to:
+  /// **'Pitch-Video vorhanden'**
+  String get rcItem12;
+
+  /// No description provided for @rcItem13.
+  ///
+  /// In de, this message translates to:
+  /// **'Submission-Dokument aktuell'**
+  String get rcItem13;
 }
 
 class _AppLocalizationsDelegate

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../demo_data/demo_data_controller.dart';
 import '../../l10n/app_localizations.dart';
 import '../../operations/operations_demo.dart';
 
@@ -69,6 +70,8 @@ class _DemoBadge extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Central demo switch: when demo is turned off, badges disappear.
+    if (!DemoDataController.enabledOf(context)) return const SizedBox.shrink();
     final l = AppLocalizations.of(context)!;
     final theme = Theme.of(context);
     final bg = onPrimary
