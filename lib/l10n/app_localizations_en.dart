@@ -4788,4 +4788,103 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get kiSourceLabel => 'Source';
+
+  @override
+  String get navGuidedDemo => 'Guided demo';
+
+  @override
+  String get gdStart => 'Start demo';
+
+  @override
+  String get gdBack => 'Back';
+
+  @override
+  String get gdNext => 'Next';
+
+  @override
+  String get gdWelcomeStatement =>
+      'BusinessBrain is a company\'s digital knowledge centre.';
+
+  @override
+  String get gdWelcomeSubtitle =>
+      'Through the whole workflow in two minutes – from company knowledge to a learning answer.';
+
+  @override
+  String get gdStep1Title => 'Welcome';
+
+  @override
+  String get gdStep2Title => 'Build knowledge';
+
+  @override
+  String get gdStep3Title => 'Grounded answer';
+
+  @override
+  String get gdStep4Title => 'Knowledge gap';
+
+  @override
+  String get gdStep5Title => 'Improvement & control';
+
+  @override
+  String get gdStep6Title => 'Learning loop';
+
+  @override
+  String get gdStep7Title => 'Conclusion';
+
+  @override
+  String get gdNarr2 =>
+      'Unstructured text becomes structured company knowledge automatically – nothing is saved without review.';
+
+  @override
+  String get gdNarr3 =>
+      'BusinessBrain answers only from the approved company knowledge and shows the sources – it invents nothing.';
+
+  @override
+  String get gdNarr4 =>
+      'When knowledge is missing, BusinessBrain stays honest and flags the gap instead of hallucinating.';
+
+  @override
+  String get gdNarr5 =>
+      'BusinessBrain proposes an addition. An employee decides – nothing is adopted automatically.';
+
+  @override
+  String get gdNarr6 =>
+      'The full loop at a glance: confirmed knowledge improves every future answer.';
+
+  @override
+  String get gdLoopTitle => 'The learning loop';
+
+  @override
+  String get gdLoop1 => 'Company knowledge';
+
+  @override
+  String get gdLoop2 => 'Answer customer questions';
+
+  @override
+  String get gdLoop3 => 'New questions arise';
+
+  @override
+  String get gdLoop4 => 'Knowledge gaps detected';
+
+  @override
+  String get gdLoop5 => 'Improvement suggestions';
+
+  @override
+  String get gdLoop6 => 'Employee decides';
+
+  @override
+  String get gdLoop7 => 'Knowledge base grows';
+
+  @override
+  String get gdLoop8 => 'Better answers';
+
+  @override
+  String get gdClosingTitle =>
+      'BusinessBrain does not learn through hallucinations.';
+
+  @override
+  String get gdClosingLine1 => 'The company stays in control at all times.';
+
+  @override
+  String get gdClosingLine2 =>
+      'Every confirmed addition improves all future answers.';
 }

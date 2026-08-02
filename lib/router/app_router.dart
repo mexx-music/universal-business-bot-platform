@@ -30,6 +30,7 @@ import '../screens/company_evolution/company_evolution_screen.dart';
 import '../screens/audit/audit_screen.dart';
 import '../screens/knowledge/knowledge_screen.dart';
 import '../screens/knowledge_builder/knowledge_builder_screen.dart';
+import '../screens/guided_demo/guided_demo_screen.dart';
 import '../screens/knowledge_improvement/knowledge_improvement_screen.dart';
 import '../screens/roles/role_overview_screen.dart';
 import '../screens/bot_test/bot_test_screen.dart';
@@ -230,6 +231,10 @@ GoRouter createAppRouter(
           GoRoute(
             path: '/knowledge-improvement',
             builder: (context, state) => const KnowledgeImprovementScreen(),
+          ),
+          GoRoute(
+            path: '/guided-demo',
+            builder: (context, state) => const GuidedDemoScreen(),
           ),
         ],
       ),

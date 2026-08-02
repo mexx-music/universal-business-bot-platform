@@ -8785,6 +8785,186 @@ abstract class AppLocalizations {
   /// In de, this message translates to:
   /// **'Quelle'**
   String get kiSourceLabel;
+
+  /// No description provided for @navGuidedDemo.
+  ///
+  /// In de, this message translates to:
+  /// **'Geführte Demo'**
+  String get navGuidedDemo;
+
+  /// No description provided for @gdStart.
+  ///
+  /// In de, this message translates to:
+  /// **'Demo starten'**
+  String get gdStart;
+
+  /// No description provided for @gdBack.
+  ///
+  /// In de, this message translates to:
+  /// **'Zurück'**
+  String get gdBack;
+
+  /// No description provided for @gdNext.
+  ///
+  /// In de, this message translates to:
+  /// **'Weiter'**
+  String get gdNext;
+
+  /// No description provided for @gdWelcomeStatement.
+  ///
+  /// In de, this message translates to:
+  /// **'BusinessBrain ist das digitale Wissenszentrum eines Unternehmens.'**
+  String get gdWelcomeStatement;
+
+  /// No description provided for @gdWelcomeSubtitle.
+  ///
+  /// In de, this message translates to:
+  /// **'In zwei Minuten durch den gesamten Workflow – vom Firmenwissen bis zur lernenden Antwort.'**
+  String get gdWelcomeSubtitle;
+
+  /// No description provided for @gdStep1Title.
+  ///
+  /// In de, this message translates to:
+  /// **'Willkommen'**
+  String get gdStep1Title;
+
+  /// No description provided for @gdStep2Title.
+  ///
+  /// In de, this message translates to:
+  /// **'Wissen aufbauen'**
+  String get gdStep2Title;
+
+  /// No description provided for @gdStep3Title.
+  ///
+  /// In de, this message translates to:
+  /// **'Grounded Antwort'**
+  String get gdStep3Title;
+
+  /// No description provided for @gdStep4Title.
+  ///
+  /// In de, this message translates to:
+  /// **'Wissenslücke'**
+  String get gdStep4Title;
+
+  /// No description provided for @gdStep5Title.
+  ///
+  /// In de, this message translates to:
+  /// **'Verbesserung & Kontrolle'**
+  String get gdStep5Title;
+
+  /// No description provided for @gdStep6Title.
+  ///
+  /// In de, this message translates to:
+  /// **'Lernkreislauf'**
+  String get gdStep6Title;
+
+  /// No description provided for @gdStep7Title.
+  ///
+  /// In de, this message translates to:
+  /// **'Fazit'**
+  String get gdStep7Title;
+
+  /// No description provided for @gdNarr2.
+  ///
+  /// In de, this message translates to:
+  /// **'Aus unstrukturiertem Text entsteht automatisch strukturiertes Firmenwissen – nichts wird ohne Prüfung gespeichert.'**
+  String get gdNarr2;
+
+  /// No description provided for @gdNarr3.
+  ///
+  /// In de, this message translates to:
+  /// **'BusinessBrain beantwortet Fragen ausschließlich aus dem freigegebenen Firmenwissen und zeigt die Quellen – es erfindet nichts.'**
+  String get gdNarr3;
+
+  /// No description provided for @gdNarr4.
+  ///
+  /// In de, this message translates to:
+  /// **'Fehlt Wissen, bleibt BusinessBrain ehrlich und markiert die Lücke, statt zu halluzinieren.'**
+  String get gdNarr4;
+
+  /// No description provided for @gdNarr5.
+  ///
+  /// In de, this message translates to:
+  /// **'BusinessBrain schlägt eine Ergänzung vor. Ein Mitarbeiter entscheidet – nichts wird automatisch übernommen.'**
+  String get gdNarr5;
+
+  /// No description provided for @gdNarr6.
+  ///
+  /// In de, this message translates to:
+  /// **'Der komplette Kreislauf auf einen Blick: bestätigtes Wissen verbessert alle zukünftigen Antworten.'**
+  String get gdNarr6;
+
+  /// No description provided for @gdLoopTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Der Lernkreislauf'**
+  String get gdLoopTitle;
+
+  /// No description provided for @gdLoop1.
+  ///
+  /// In de, this message translates to:
+  /// **'Firmenwissen'**
+  String get gdLoop1;
+
+  /// No description provided for @gdLoop2.
+  ///
+  /// In de, this message translates to:
+  /// **'Kundenfragen beantworten'**
+  String get gdLoop2;
+
+  /// No description provided for @gdLoop3.
+  ///
+  /// In de, this message translates to:
+  /// **'Neue Fragen entstehen'**
+  String get gdLoop3;
+
+  /// No description provided for @gdLoop4.
+  ///
+  /// In de, this message translates to:
+  /// **'Wissenslücken erkannt'**
+  String get gdLoop4;
+
+  /// No description provided for @gdLoop5.
+  ///
+  /// In de, this message translates to:
+  /// **'Verbesserungsvorschläge'**
+  String get gdLoop5;
+
+  /// No description provided for @gdLoop6.
+  ///
+  /// In de, this message translates to:
+  /// **'Mitarbeiter entscheidet'**
+  String get gdLoop6;
+
+  /// No description provided for @gdLoop7.
+  ///
+  /// In de, this message translates to:
+  /// **'Wissensbasis wächst'**
+  String get gdLoop7;
+
+  /// No description provided for @gdLoop8.
+  ///
+  /// In de, this message translates to:
+  /// **'Bessere Antworten'**
+  String get gdLoop8;
+
+  /// No description provided for @gdClosingTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'BusinessBrain lernt nicht durch Halluzinationen.'**
+  String get gdClosingTitle;
+
+  /// No description provided for @gdClosingLine1.
+  ///
+  /// In de, this message translates to:
+  /// **'Das Unternehmen behält jederzeit die Kontrolle.'**
+  String get gdClosingLine1;
+
+  /// No description provided for @gdClosingLine2.
+  ///
+  /// In de, this message translates to:
+  /// **'Jede bestätigte Ergänzung verbessert alle zukünftigen Antworten.'**
+  String get gdClosingLine2;
 }
 
 class _AppLocalizationsDelegate

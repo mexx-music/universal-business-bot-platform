@@ -4821,4 +4821,104 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get kiSourceLabel => 'Quelle';
+
+  @override
+  String get navGuidedDemo => 'Geführte Demo';
+
+  @override
+  String get gdStart => 'Demo starten';
+
+  @override
+  String get gdBack => 'Zurück';
+
+  @override
+  String get gdNext => 'Weiter';
+
+  @override
+  String get gdWelcomeStatement =>
+      'BusinessBrain ist das digitale Wissenszentrum eines Unternehmens.';
+
+  @override
+  String get gdWelcomeSubtitle =>
+      'In zwei Minuten durch den gesamten Workflow – vom Firmenwissen bis zur lernenden Antwort.';
+
+  @override
+  String get gdStep1Title => 'Willkommen';
+
+  @override
+  String get gdStep2Title => 'Wissen aufbauen';
+
+  @override
+  String get gdStep3Title => 'Grounded Antwort';
+
+  @override
+  String get gdStep4Title => 'Wissenslücke';
+
+  @override
+  String get gdStep5Title => 'Verbesserung & Kontrolle';
+
+  @override
+  String get gdStep6Title => 'Lernkreislauf';
+
+  @override
+  String get gdStep7Title => 'Fazit';
+
+  @override
+  String get gdNarr2 =>
+      'Aus unstrukturiertem Text entsteht automatisch strukturiertes Firmenwissen – nichts wird ohne Prüfung gespeichert.';
+
+  @override
+  String get gdNarr3 =>
+      'BusinessBrain beantwortet Fragen ausschließlich aus dem freigegebenen Firmenwissen und zeigt die Quellen – es erfindet nichts.';
+
+  @override
+  String get gdNarr4 =>
+      'Fehlt Wissen, bleibt BusinessBrain ehrlich und markiert die Lücke, statt zu halluzinieren.';
+
+  @override
+  String get gdNarr5 =>
+      'BusinessBrain schlägt eine Ergänzung vor. Ein Mitarbeiter entscheidet – nichts wird automatisch übernommen.';
+
+  @override
+  String get gdNarr6 =>
+      'Der komplette Kreislauf auf einen Blick: bestätigtes Wissen verbessert alle zukünftigen Antworten.';
+
+  @override
+  String get gdLoopTitle => 'Der Lernkreislauf';
+
+  @override
+  String get gdLoop1 => 'Firmenwissen';
+
+  @override
+  String get gdLoop2 => 'Kundenfragen beantworten';
+
+  @override
+  String get gdLoop3 => 'Neue Fragen entstehen';
+
+  @override
+  String get gdLoop4 => 'Wissenslücken erkannt';
+
+  @override
+  String get gdLoop5 => 'Verbesserungsvorschläge';
+
+  @override
+  String get gdLoop6 => 'Mitarbeiter entscheidet';
+
+  @override
+  String get gdLoop7 => 'Wissensbasis wächst';
+
+  @override
+  String get gdLoop8 => 'Bessere Antworten';
+
+  @override
+  String get gdClosingTitle =>
+      'BusinessBrain lernt nicht durch Halluzinationen.';
+
+  @override
+  String get gdClosingLine1 =>
+      'Das Unternehmen behält jederzeit die Kontrolle.';
+
+  @override
+  String get gdClosingLine2 =>
+      'Jede bestätigte Ergänzung verbessert alle zukünftigen Antworten.';
 }
