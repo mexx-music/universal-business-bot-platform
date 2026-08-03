@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../data/app_state.dart';
 import '../../knowledge/knowledge_context.dart';
 import '../../knowledge_builder/knowledge_import_analyzer.dart';
+import '../../knowledge_builder/models/knowledge_analysis_presentation.dart';
 import '../../knowledge_builder/models/knowledge_import_models.dart';
 import '../../l10n/app_localizations.dart';
 import '../../l10n/label_helpers.dart';
@@ -21,15 +22,44 @@ class KnowledgeBuilderScreen extends StatefulWidget {
   State<KnowledgeBuilderScreen> createState() => _KnowledgeBuilderScreenState();
 }
 
-class _KnowledgeBuilderScreenState extends State<KnowledgeBuilderScreen> {
+class _KnowledgeBuilderScreenState extends State<KnowledgeBuilderScreen>
+    with SingleTickerProviderStateMixin {
+  static const _journeyDuration = Duration(milliseconds: 2400);
+
   final _input = TextEditingController();
   KnowledgeImportAnalysis? _analysis;
+  KnowledgeAnalysisPresentation? _presentation;
+  late final AnimationController _journey;
+  int _stage = 0;
 
   KnowledgeImportAnalyzer get _analyzer =>
       widget.analyzer ?? const KnowledgeImportAnalyzer();
 
   @override
+  void initState() {
+    super.initState();
+    _journey = AnimationController(vsync: this, duration: _journeyDuration)
+      ..addListener(_updateStage)
+      ..addStatusListener((status) {
+        if (status == AnimationStatus.completed && mounted && _stage != 4) {
+          setState(() => _stage = 4);
+        }
+      });
+  }
+
+  void _updateStage() {
+    final next = switch (_journey.value) {
+      < 0.30 => 0,
+      < 0.60 => 1,
+      < 0.82 => 2,
+      _ => 3,
+    };
+    if (next != _stage && mounted) setState(() => _stage = next);
+  }
+
+  @override
   void dispose() {
+    _journey.dispose();
     _input.dispose();
     super.dispose();
   }
@@ -38,19 +68,36 @@ class _KnowledgeBuilderScreenState extends State<KnowledgeBuilderScreen> {
     final text = _input.text.trim();
     if (text.isEmpty) return;
     final workspace = AppState.of(context).selectedWorkspace;
+    final analysis = _analyzer.analyze(
+      text,
+      existingEntries: workspace.knowledgeEntries,
+      workspace: workspace,
+    );
+    _journey.stop();
+    _journey.value = 0;
     setState(() {
-      _analysis = _analyzer.analyze(
-        text,
-        existingEntries: workspace.knowledgeEntries,
-        workspace: workspace,
-      );
+      _analysis = analysis;
+      _presentation = KnowledgeAnalysisPresentation.fromAnalysis(analysis);
+      _stage = 0;
     });
+    if (analysis.isEmpty || MediaQuery.of(context).disableAnimations) {
+      _journey.value = 1;
+      setState(() => _stage = 4);
+    } else {
+      _journey.forward();
+    }
   }
 
-  void _reset() => setState(() {
-    _analysis = null;
-    _input.clear();
-  });
+  void _reset() {
+    _journey.stop();
+    _journey.value = 0;
+    setState(() {
+      _analysis = null;
+      _presentation = null;
+      _stage = 0;
+      _input.clear();
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -95,52 +142,31 @@ class _KnowledgeBuilderScreenState extends State<KnowledgeBuilderScreen> {
                   const SizedBox(height: 12),
                   _TrustNotice(),
                   const SizedBox(height: 16),
-                  TextField(
-                    key: const Key('kb-input'),
-                    controller: _input,
-                    minLines: 6,
-                    maxLines: 14,
-                    decoration: InputDecoration(
-                      labelText: l.kbInputHint,
-                      alignLabelWithHint: true,
-                      border: const OutlineInputBorder(),
+                  if (analysis == null) ...[
+                    TextField(
+                      key: const Key('kb-input'),
+                      controller: _input,
+                      minLines: 6,
+                      maxLines: 14,
+                      decoration: InputDecoration(
+                        labelText: l.kbInputHint,
+                        alignLabelWithHint: true,
+                        border: const OutlineInputBorder(),
+                      ),
                     ),
-                  ),
-                  const SizedBox(height: 12),
-                  Wrap(
-                    spacing: 12,
-                    runSpacing: 8,
-                    children: [
-                      FilledButton.icon(
-                        onPressed: _analyze,
-                        icon: const Icon(Icons.insights, size: 18),
-                        label: Text(l.kbAnalyze),
-                      ),
-                      if (analysis != null)
-                        OutlinedButton.icon(
-                          onPressed: _reset,
-                          icon: const Icon(Icons.refresh, size: 18),
-                          label: Text(l.kbReset),
-                        ),
-                    ],
-                  ),
-                  if (analysis != null) ...[
-                    const SizedBox(height: 20),
-                    if (analysis.isEmpty)
-                      _EmptyResults()
-                    else ...[
-                      _StatsCard(analysis: analysis),
-                      const SizedBox(height: 20),
-                      Text(
-                        l.kbDraftsTitle,
-                        style: theme.textTheme.titleMedium?.copyWith(
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      const SizedBox(height: 10),
-                      for (final draft in analysis.drafts)
-                        _DraftCard(draft: draft),
-                    ],
+                    const SizedBox(height: 12),
+                    FilledButton.icon(
+                      onPressed: _analyze,
+                      icon: const Icon(Icons.insights, size: 18),
+                      label: Text(l.kbAnalyze),
+                    ),
+                  ] else ...[
+                    _AnalysisJourney(
+                      presentation: _presentation!,
+                      stage: _stage,
+                      progress: _journey,
+                      onReset: _reset,
+                    ),
                   ],
                 ],
               ),
@@ -213,47 +239,238 @@ class _EmptyResults extends StatelessWidget {
   }
 }
 
-class _StatsCard extends StatelessWidget {
-  const _StatsCard({required this.analysis});
+class _AnalysisJourney extends StatelessWidget {
+  const _AnalysisJourney({
+    required this.presentation,
+    required this.stage,
+    required this.progress,
+    required this.onReset,
+  });
 
-  final KnowledgeImportAnalysis analysis;
+  final KnowledgeAnalysisPresentation presentation;
+  final int stage;
+  final Animation<double> progress;
+  final VoidCallback onReset;
+
+  @override
+  Widget build(BuildContext context) {
+    final l = AppLocalizations.of(context)!;
+    final analysis = presentation.analysis;
+    final language = _languageLabel(l, analysis.inputLanguageCode);
+    final area = KnowledgeAreas.label(
+      analysis.knowledgeArea,
+      languageCode: Localizations.localeOf(context).languageCode,
+    );
+    final documentType = _documentTypeLabel(l, presentation.documentType);
+
+    if (analysis.isEmpty) {
+      return Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          _EmptyResults(),
+          const SizedBox(height: 12),
+          OutlinedButton.icon(
+            onPressed: onReset,
+            icon: const Icon(Icons.refresh, size: 18),
+            label: Text(l.kbReset),
+          ),
+        ],
+      );
+    }
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        _JourneyHeader(stage: stage, progress: progress, onReset: onReset),
+        const SizedBox(height: 16),
+        _ProgressPhaseCard(
+          key: const Key('kb-phase-recognize'),
+          index: 0,
+          stage: stage,
+          icon: Icons.manage_search,
+          title: l.kbPhaseRecognizeTitle,
+          facts: [
+            _AnalysisFactData(l.kbDetectedLanguage, language),
+            _AnalysisFactData(l.kbFieldArea, area),
+            _AnalysisFactData(l.kbDetectedDocumentType, documentType),
+            _AnalysisFactData(
+              l.kbDetectedStatements,
+              '${analysis.drafts.length}',
+            ),
+          ],
+        ),
+        const SizedBox(height: 10),
+        _ProgressPhaseCard(
+          key: const Key('kb-phase-structure'),
+          index: 1,
+          stage: stage,
+          icon: Icons.account_tree_outlined,
+          title: l.kbPhaseStructureTitle,
+          facts: [
+            _AnalysisFactData(l.kbMetricFaq, '${presentation.faqCount}'),
+            _AnalysisFactData(
+              l.kbMetricProductFeatures,
+              '${presentation.productFeatureCount}',
+            ),
+            _AnalysisFactData(l.kbMetricSteps, '${presentation.stepCount}'),
+            _AnalysisFactData(
+              l.kbMetricWarnings,
+              '${presentation.warningCount}',
+            ),
+            _AnalysisFactData(
+              l.kbMetricRequirements,
+              '${presentation.requirementCount}',
+            ),
+            _AnalysisFactData(
+              l.kbMetricDefinitions,
+              '${presentation.definitionCount}',
+            ),
+            _AnalysisFactData(l.kbMetricTips, '${presentation.tipCount}'),
+            _AnalysisFactData(
+              l.kbMetricKeywords,
+              '${presentation.keywordCount}',
+            ),
+          ],
+        ),
+        const SizedBox(height: 10),
+        _ProgressPhaseCard(
+          key: const Key('kb-phase-compare'),
+          index: 2,
+          stage: stage,
+          icon: Icons.fact_check_outlined,
+          title: l.kbPhaseCompareTitle,
+          facts: [
+            _AnalysisFactData(l.kbStatExisting, '${analysis.existingMatches}'),
+            _AnalysisFactData(
+              l.kbStatDuplicates,
+              '${analysis.possibleDuplicates}',
+            ),
+            _AnalysisFactData(l.kbStatNew, '${analysis.newEntries}'),
+            _AnalysisFactData(
+              l.kbMetricSimilarTopics,
+              '${presentation.similarTopicCount}',
+            ),
+            _AnalysisFactData(
+              l.kbMetricProducts,
+              '${presentation.productCount}',
+            ),
+            _AnalysisFactData(l.kbMetricDevices, '${presentation.deviceCount}'),
+            _AnalysisFactData(
+              l.kbMetricFunctions,
+              '${presentation.functionCount}',
+            ),
+          ],
+        ),
+        AnimatedSize(
+          duration: const Duration(milliseconds: 420),
+          curve: Curves.easeOutCubic,
+          child: stage >= 3
+              ? Padding(
+                  padding: const EdgeInsets.only(top: 16),
+                  child: _AnalysisSummary(
+                    presentation: presentation,
+                    language: language,
+                    area: area,
+                    documentType: documentType,
+                  ),
+                )
+              : const SizedBox.shrink(),
+        ),
+        AnimatedSize(
+          duration: const Duration(milliseconds: 450),
+          curve: Curves.easeOutCubic,
+          child: stage >= 4
+              ? Padding(
+                  padding: const EdgeInsets.only(top: 24),
+                  child: _DraftPreview(analysis: analysis),
+                )
+              : const SizedBox.shrink(),
+        ),
+      ],
+    );
+  }
+}
+
+class _JourneyHeader extends StatelessWidget {
+  const _JourneyHeader({
+    required this.stage,
+    required this.progress,
+    required this.onReset,
+  });
+
+  final int stage;
+  final Animation<double> progress;
+  final VoidCallback onReset;
 
   @override
   Widget build(BuildContext context) {
     final l = AppLocalizations.of(context)!;
     final theme = Theme.of(context);
-    final tiles = <(String, int)>[
-      (l.kbStatSentences, analysis.analyzedSentences),
-      (l.kbStatTopics, analysis.detectedTopics),
-      (l.kbStatNew, analysis.newEntries),
-      (l.kbStatExisting, analysis.existingMatches),
-      (l.kbStatDuplicates, analysis.possibleDuplicates),
-      (l.kbStatUnclear, analysis.unclearStatements),
-    ];
+    final complete = stage >= 4;
     return Container(
       width: double.infinity,
-      padding: const EdgeInsets.all(16),
+      padding: const EdgeInsets.all(18),
       decoration: BoxDecoration(
-        color: theme.colorScheme.surfaceContainerHigh,
-        borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: theme.colorScheme.outlineVariant),
+        color: theme.colorScheme.primaryContainer,
+        borderRadius: BorderRadius.circular(16),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            l.kbStatsTitle,
-            style: theme.textTheme.titleSmall?.copyWith(
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-          const SizedBox(height: 12),
-          Wrap(
-            spacing: 12,
-            runSpacing: 12,
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              for (final t in tiles) _StatTile(label: t.$1, value: t.$2),
+              Container(
+                width: 42,
+                height: 42,
+                decoration: BoxDecoration(
+                  color: theme.colorScheme.primary,
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: Icon(
+                  complete ? Icons.check_rounded : Icons.psychology_outlined,
+                  color: theme.colorScheme.onPrimary,
+                ),
+              ),
+              const SizedBox(width: 12),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      complete ? l.kbAnalysisComplete : l.kbAnalysisTitle,
+                      style: theme.textTheme.titleMedium?.copyWith(
+                        fontWeight: FontWeight.bold,
+                        color: theme.colorScheme.onPrimaryContainer,
+                      ),
+                    ),
+                    const SizedBox(height: 3),
+                    Text(
+                      l.kbAnalysisIntro,
+                      style: theme.textTheme.bodySmall?.copyWith(
+                        color: theme.colorScheme.onPrimaryContainer,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              IconButton(
+                tooltip: l.kbReset,
+                onPressed: onReset,
+                icon: const Icon(Icons.refresh),
+                color: theme.colorScheme.onPrimaryContainer,
+              ),
             ],
+          ),
+          const SizedBox(height: 14),
+          AnimatedBuilder(
+            animation: progress,
+            builder: (context, _) => LinearProgressIndicator(
+              value: complete ? 1 : progress.value,
+              minHeight: 6,
+              borderRadius: BorderRadius.circular(8),
+              backgroundColor: theme.colorScheme.surface.withAlpha(120),
+            ),
           ),
         ],
       ),
@@ -261,35 +478,354 @@ class _StatsCard extends StatelessWidget {
   }
 }
 
-class _StatTile extends StatelessWidget {
-  const _StatTile({required this.label, required this.value});
+class _AnalysisFactData {
+  const _AnalysisFactData(this.label, this.value);
 
   final String label;
-  final int value;
+  final String value;
+}
+
+class _ProgressPhaseCard extends StatelessWidget {
+  const _ProgressPhaseCard({
+    super.key,
+    required this.index,
+    required this.stage,
+    required this.icon,
+    required this.title,
+    required this.facts,
+  });
+
+  final int index;
+  final int stage;
+  final IconData icon;
+  final String title;
+  final List<_AnalysisFactData> facts;
+
+  @override
+  Widget build(BuildContext context) {
+    final l = AppLocalizations.of(context)!;
+    final theme = Theme.of(context);
+    final complete = stage > index;
+    final active = stage == index;
+    final visible = active || complete;
+    final color = complete
+        ? theme.colorScheme.tertiary
+        : active
+        ? theme.colorScheme.primary
+        : theme.colorScheme.outline;
+
+    return AnimatedContainer(
+      duration: const Duration(milliseconds: 350),
+      curve: Curves.easeOutCubic,
+      width: double.infinity,
+      padding: const EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        color: visible
+            ? theme.colorScheme.surfaceContainerHigh
+            : theme.colorScheme.surfaceContainerLow,
+        borderRadius: BorderRadius.circular(14),
+        border: Border.all(
+          color: visible
+              ? color.withAlpha(120)
+              : theme.colorScheme.outlineVariant,
+        ),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              AnimatedSwitcher(
+                duration: const Duration(milliseconds: 300),
+                child: complete
+                    ? Icon(
+                        Icons.check_circle,
+                        key: const ValueKey('complete'),
+                        color: color,
+                      )
+                    : active
+                    ? SizedBox(
+                        key: const ValueKey('active'),
+                        width: 22,
+                        height: 22,
+                        child: CircularProgressIndicator(
+                          strokeWidth: 2.5,
+                          color: color,
+                        ),
+                      )
+                    : Icon(icon, key: const ValueKey('pending'), color: color),
+              ),
+              const SizedBox(width: 10),
+              Expanded(
+                child: Text(
+                  title,
+                  style: theme.textTheme.titleSmall?.copyWith(
+                    fontWeight: FontWeight.bold,
+                    color: visible ? null : theme.colorScheme.onSurfaceVariant,
+                  ),
+                ),
+              ),
+              Text(
+                complete
+                    ? l.kbPhaseComplete
+                    : active
+                    ? l.kbPhaseActive
+                    : l.kbPhasePending,
+                style: theme.textTheme.labelSmall?.copyWith(color: color),
+              ),
+            ],
+          ),
+          AnimatedSize(
+            duration: const Duration(milliseconds: 420),
+            curve: Curves.easeOutCubic,
+            child: visible
+                ? Padding(
+                    padding: const EdgeInsets.only(top: 12),
+                    child: Wrap(
+                      spacing: 10,
+                      runSpacing: 10,
+                      children: [
+                        for (final fact in facts)
+                          _AnalysisFact(fact: fact, complete: complete),
+                      ],
+                    ),
+                  )
+                : const SizedBox.shrink(),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _AnalysisFact extends StatelessWidget {
+  const _AnalysisFact({required this.fact, required this.complete});
+
+  final _AnalysisFactData fact;
+  final bool complete;
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    return SizedBox(
-      width: 150,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+    final color = complete
+        ? theme.colorScheme.tertiary
+        : theme.colorScheme.primary;
+    return Container(
+      constraints: const BoxConstraints(minWidth: 190),
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+      decoration: BoxDecoration(
+        color: theme.colorScheme.surface,
+        borderRadius: BorderRadius.circular(10),
+        border: Border.all(color: theme.colorScheme.outlineVariant),
+      ),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
         children: [
-          Text(
-            '$value',
-            style: theme.textTheme.headlineSmall?.copyWith(
-              fontWeight: FontWeight.bold,
-              color: theme.colorScheme.primary,
-            ),
-          ),
-          Text(
-            label,
-            style: theme.textTheme.labelSmall?.copyWith(
-              color: theme.colorScheme.onSurfaceVariant,
+          Icon(Icons.check_circle_outline, size: 18, color: color),
+          const SizedBox(width: 8),
+          Flexible(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  fact.label,
+                  style: theme.textTheme.labelSmall?.copyWith(
+                    color: theme.colorScheme.onSurfaceVariant,
+                  ),
+                ),
+                Text(
+                  fact.value,
+                  style: theme.textTheme.bodyMedium?.copyWith(
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+              ],
             ),
           ),
         ],
       ),
+    );
+  }
+}
+
+class _AnalysisSummary extends StatelessWidget {
+  const _AnalysisSummary({
+    required this.presentation,
+    required this.language,
+    required this.area,
+    required this.documentType,
+  });
+
+  final KnowledgeAnalysisPresentation presentation;
+  final String language;
+  final String area;
+  final String documentType;
+
+  @override
+  Widget build(BuildContext context) {
+    final l = AppLocalizations.of(context)!;
+    final theme = Theme.of(context);
+    final analysis = presentation.analysis;
+    final metrics = <_AnalysisFactData>[
+      _AnalysisFactData(l.kbDetectedLanguage, language),
+      _AnalysisFactData(l.kbFieldArea, area),
+      _AnalysisFactData(l.kbDetectedDocumentType, documentType),
+      _AnalysisFactData(l.kbDetectedStatements, '${analysis.drafts.length}'),
+      _AnalysisFactData(l.kbMetricFaq, '${presentation.faqCount}'),
+      _AnalysisFactData(
+        l.kbMetricProductFeatures,
+        '${presentation.productFeatureCount}',
+      ),
+      _AnalysisFactData(l.kbMetricWarnings, '${presentation.warningCount}'),
+      _AnalysisFactData(
+        l.kbMetricRequirements,
+        '${presentation.requirementCount}',
+      ),
+      _AnalysisFactData(l.kbStatNew, '${analysis.newEntries}'),
+      _AnalysisFactData(l.kbStatExisting, '${analysis.existingMatches}'),
+      _AnalysisFactData(l.kbStatDuplicates, '${analysis.possibleDuplicates}'),
+    ];
+
+    return Container(
+      key: const Key('kb-analysis-summary'),
+      width: double.infinity,
+      padding: const EdgeInsets.all(20),
+      decoration: BoxDecoration(
+        color: theme.colorScheme.tertiaryContainer,
+        borderRadius: BorderRadius.circular(18),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Icon(
+                Icons.task_alt,
+                size: 30,
+                color: theme.colorScheme.onTertiaryContainer,
+              ),
+              const SizedBox(width: 12),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      l.kbSummaryTitle,
+                      style: theme.textTheme.titleLarge?.copyWith(
+                        fontWeight: FontWeight.bold,
+                        color: theme.colorScheme.onTertiaryContainer,
+                      ),
+                    ),
+                    const SizedBox(height: 4),
+                    Text(
+                      l.kbSummaryIntro,
+                      style: theme.textTheme.bodyMedium?.copyWith(
+                        color: theme.colorScheme.onTertiaryContainer,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 18),
+          LayoutBuilder(
+            builder: (context, constraints) {
+              final columns = constraints.maxWidth >= 720
+                  ? 3
+                  : constraints.maxWidth >= 460
+                  ? 2
+                  : 1;
+              const gap = 10.0;
+              final width =
+                  (constraints.maxWidth - gap * (columns - 1)) / columns;
+              return Wrap(
+                spacing: gap,
+                runSpacing: gap,
+                children: [
+                  for (final metric in metrics)
+                    SizedBox(
+                      width: width,
+                      child: _SummaryMetric(metric: metric),
+                    ),
+                ],
+              );
+            },
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _SummaryMetric extends StatelessWidget {
+  const _SummaryMetric({required this.metric});
+
+  final _AnalysisFactData metric;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    return Container(
+      padding: const EdgeInsets.all(12),
+      decoration: BoxDecoration(
+        color: theme.colorScheme.surface.withAlpha(210),
+        borderRadius: BorderRadius.circular(12),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            metric.label,
+            style: theme.textTheme.labelSmall?.copyWith(
+              color: theme.colorScheme.onSurfaceVariant,
+            ),
+          ),
+          const SizedBox(height: 3),
+          Text(
+            metric.value,
+            maxLines: 2,
+            overflow: TextOverflow.ellipsis,
+            style: theme.textTheme.titleSmall?.copyWith(
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _DraftPreview extends StatelessWidget {
+  const _DraftPreview({required this.analysis});
+
+  final KnowledgeImportAnalysis analysis;
+
+  @override
+  Widget build(BuildContext context) {
+    final l = AppLocalizations.of(context)!;
+    final theme = Theme.of(context);
+    return Column(
+      key: const Key('kb-draft-preview'),
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          l.kbDraftsTitle,
+          style: theme.textTheme.titleLarge?.copyWith(
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        const SizedBox(height: 4),
+        Text(
+          l.kbPreviewIntro,
+          style: theme.textTheme.bodyMedium?.copyWith(
+            color: theme.colorScheme.onSurfaceVariant,
+          ),
+        ),
+        const SizedBox(height: 12),
+        for (final draft in analysis.drafts) _DraftCard(draft: draft),
+      ],
     );
   }
 }
@@ -400,6 +936,8 @@ class _DraftCardState extends State<_DraftCard> {
               const SizedBox(height: 6),
               _Labelled(label: l.kbFieldContent, value: draft.content),
             ],
+            const SizedBox(height: 10),
+            _OriginBlock(sourceSentence: draft.sourceSentence),
             if (draft.keywords.isNotEmpty) ...[
               const SizedBox(height: 10),
               Text(
@@ -583,6 +1121,57 @@ class _MergeChoiceChip extends StatelessWidget {
   }
 }
 
+class _OriginBlock extends StatelessWidget {
+  const _OriginBlock({required this.sourceSentence});
+
+  final String sourceSentence;
+
+  @override
+  Widget build(BuildContext context) {
+    final l = AppLocalizations.of(context)!;
+    final theme = Theme.of(context);
+    return Container(
+      key: const Key('kb-entry-origin'),
+      width: double.infinity,
+      padding: const EdgeInsets.all(12),
+      decoration: BoxDecoration(
+        color: theme.colorScheme.primaryContainer.withAlpha(115),
+        borderRadius: BorderRadius.circular(10),
+        border: Border.all(color: theme.colorScheme.outlineVariant),
+      ),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Icon(Icons.format_quote, size: 20, color: theme.colorScheme.primary),
+          const SizedBox(width: 8),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  l.kbCreatedFrom,
+                  style: theme.textTheme.labelMedium?.copyWith(
+                    color: theme.colorScheme.primary,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                const SizedBox(height: 3),
+                SelectableText(
+                  '“$sourceSentence”',
+                  style: theme.textTheme.bodyMedium?.copyWith(
+                    fontStyle: FontStyle.italic,
+                    height: 1.35,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
 class _Labelled extends StatelessWidget {
   const _Labelled({required this.label, required this.value});
 
@@ -737,3 +1326,22 @@ String _draftCategoryLabel(BuildContext context, KnowledgeImportDraft draft) {
     KnowledgeDraftCategory.general => de ? 'Allgemein' : 'General',
   };
 }
+
+String _languageLabel(AppLocalizations l, String? languageCode) =>
+    switch (languageCode) {
+      'de' => l.kbLanguageGerman,
+      'en' => l.kbLanguageEnglish,
+      _ => l.kbLanguageUnknown,
+    };
+
+String _documentTypeLabel(
+  AppLocalizations l,
+  KnowledgeDocumentType documentType,
+) => switch (documentType) {
+  KnowledgeDocumentType.faqCollection => l.kbDocTypeFaqCollection,
+  KnowledgeDocumentType.productDescription => l.kbDocTypeProductDescription,
+  KnowledgeDocumentType.instructions => l.kbDocTypeInstructions,
+  KnowledgeDocumentType.technicalDocumentation =>
+    l.kbDocTypeTechnicalDocumentation,
+  KnowledgeDocumentType.companyKnowledge => l.kbDocTypeCompanyKnowledge,
+};

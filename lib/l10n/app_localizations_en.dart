@@ -4448,7 +4448,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get kbInputHint => 'Paste company knowledge here …';
 
   @override
-  String get kbAnalyze => 'Analyze';
+  String get kbAnalyze => 'Analyze knowledge';
 
   @override
   String get kbAnalyzing => 'Analyzing …';
@@ -4571,6 +4571,119 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get kbCatGeneral => 'General';
+
+  @override
+  String get kbAnalysisTitle => 'BusinessBrain is analyzing your knowledge';
+
+  @override
+  String get kbAnalysisComplete => 'Analysis complete';
+
+  @override
+  String get kbAnalysisIntro =>
+      'Every step stays visible: recognize, structure, and compare with the knowledge base.';
+
+  @override
+  String get kbPhaseRecognizeTitle => 'BusinessBrain recognizes the context';
+
+  @override
+  String get kbPhaseStructureTitle => 'BusinessBrain structures the knowledge';
+
+  @override
+  String get kbPhaseCompareTitle =>
+      'BusinessBrain checks the existing knowledge base';
+
+  @override
+  String get kbPhasePending => 'Pending';
+
+  @override
+  String get kbPhaseActive => 'In progress';
+
+  @override
+  String get kbPhaseComplete => 'Complete';
+
+  @override
+  String get kbDetectedLanguage => 'Language';
+
+  @override
+  String get kbDetectedDocumentType => 'Document type';
+
+  @override
+  String get kbDetectedStatements => 'Detected statements';
+
+  @override
+  String get kbMetricFaq => 'FAQ';
+
+  @override
+  String get kbMetricProductFeatures => 'Product features';
+
+  @override
+  String get kbMetricSteps => 'Step-by-step instructions';
+
+  @override
+  String get kbMetricWarnings => 'Warnings';
+
+  @override
+  String get kbMetricRequirements => 'Technical requirements';
+
+  @override
+  String get kbMetricDefinitions => 'Definitions';
+
+  @override
+  String get kbMetricTips => 'Tips';
+
+  @override
+  String get kbMetricKeywords => 'Keywords';
+
+  @override
+  String get kbMetricSimilarTopics => 'Similar topics';
+
+  @override
+  String get kbMetricProducts => 'Detected products';
+
+  @override
+  String get kbMetricDevices => 'Detected devices';
+
+  @override
+  String get kbMetricFunctions => 'Detected functions';
+
+  @override
+  String get kbSummaryTitle =>
+      'BusinessBrain has successfully analyzed your text.';
+
+  @override
+  String get kbSummaryIntro =>
+      'The results are derived entirely from your input and the comparison with the existing knowledge base.';
+
+  @override
+  String get kbPreviewIntro =>
+      'You can now review every proposed entry and trace it back to the original text.';
+
+  @override
+  String get kbCreatedFrom => 'Created from:';
+
+  @override
+  String get kbLanguageGerman => 'German';
+
+  @override
+  String get kbLanguageEnglish => 'English';
+
+  @override
+  String get kbLanguageUnknown => 'Not conclusive';
+
+  @override
+  String get kbDocTypeFaqCollection => 'FAQ collection';
+
+  @override
+  String get kbDocTypeProductDescription => 'Product description';
+
+  @override
+  String get kbDocTypeInstructions => 'Instructions';
+
+  @override
+  String get kbDocTypeTechnicalDocumentation => 'Technical documentation';
+
+  @override
+  String get kbDocTypeCompanyKnowledge => 'Company knowledge';
 
   @override
   String get navRolePortals => 'Portals';

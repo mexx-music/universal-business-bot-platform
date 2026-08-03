@@ -24,6 +24,9 @@ class _FakeAnalyzer extends KnowledgeImportAnalyzer {
 const _scripted = KnowledgeImportAnalysis(
   analyzedSentences: 5,
   unclearStatements: 1,
+  inputLanguageCode: 'de',
+  knowledgeArea: 'hb_cure_app',
+  detectedTopicLabels: ['Bluetooth', 'App', 'Android'],
   drafts: [
     KnowledgeImportDraft(
       id: 'd1',
@@ -85,7 +88,7 @@ Future<void> pumpScreen(
       locale: locale,
       home: AppStateScope(
         notifier: state ?? AppState(),
-        child: KnowledgeBuilderScreen(analyzer: analyzer),
+        child: KnowledgeBuilderScreen(key: UniqueKey(), analyzer: analyzer),
       ),
     ),
   );
@@ -116,8 +119,8 @@ void main() {
       'Die App benötigt mindestens Android Version 9.',
     );
 
-    expect(find.text(l.kbStatsTitle), findsOneWidget);
-    expect(find.text(l.kbStatSentences), findsOneWidget);
+    expect(find.text(l.kbSummaryTitle), findsOneWidget);
+    expect(find.text(l.kbDetectedStatements), findsWidgets);
     expect(find.text(l.kbDraftsTitle), findsOneWidget);
     // At least one FAQ category chip and a decision control are rendered.
     expect(find.text(l.kbCatFaq), findsWidgets);
@@ -125,6 +128,39 @@ void main() {
     expect(find.text(l.kbFieldArea), findsWidgets);
     expect(find.text('HB Cure App'), findsWidgets);
     expect(find.text(l.kbFieldDetectedTopics), findsWidgets);
+    expect(find.text(l.kbSummaryTitle), findsOneWidget);
+    expect(find.byKey(const Key('kb-analysis-summary')), findsOneWidget);
+  });
+
+  testWidgets('reveals analysis phases before the entry preview', (
+    tester,
+  ) async {
+    await pumpScreen(tester, analyzer: const _FakeAnalyzer(_scripted));
+    final l = l10n(tester);
+
+    await tester.enterText(find.byKey(const Key('kb-input')), 'Text');
+    await tester.tap(find.byIcon(Icons.insights));
+    await tester.pump();
+
+    expect(find.text(l.kbAnalysisTitle), findsOneWidget);
+    expect(find.byKey(const Key('kb-phase-recognize')), findsOneWidget);
+    expect(find.byKey(const Key('kb-draft-preview')), findsNothing);
+
+    await tester.pump(const Duration(milliseconds: 800));
+    expect(find.text(l.kbPhaseStructureTitle), findsOneWidget);
+    expect(find.byKey(const Key('kb-draft-preview')), findsNothing);
+
+    await tester.pump(const Duration(milliseconds: 800));
+    expect(find.text(l.kbPhaseCompareTitle), findsOneWidget);
+    expect(find.byKey(const Key('kb-draft-preview')), findsNothing);
+
+    await tester.pump(const Duration(milliseconds: 500));
+    expect(find.byKey(const Key('kb-analysis-summary')), findsOneWidget);
+    expect(find.byKey(const Key('kb-draft-preview')), findsNothing);
+
+    await tester.pumpAndSettle();
+    expect(find.text(l.kbAnalysisComplete), findsOneWidget);
+    expect(find.byKey(const Key('kb-draft-preview')), findsOneWidget);
   });
 
   testWidgets('renders duplicate badge, existing match and merge choices', (
@@ -135,8 +171,8 @@ void main() {
 
     await analyze(tester, 'irgendein langer text');
 
-    // Stats reflect the analysis.
-    expect(find.text(l.kbStatsTitle), findsOneWidget);
+    // The transparent summary reflects the analysis.
+    expect(find.text(l.kbSummaryTitle), findsOneWidget);
     // Duplicate detection is surfaced.
     expect(find.text(l.kbDuplicateBadge), findsOneWidget);
     // Existing entry suggestion with merge options.
@@ -147,6 +183,8 @@ void main() {
     expect(find.text(l.kbMergeNew), findsOneWidget);
     // A generated FAQ question is shown.
     expect(find.text('Muss Bluetooth aktiviert sein?'), findsWidgets);
+    expect(find.text(l.kbCreatedFrom), findsNWidgets(3));
+    expect(find.text('“Bluetooth muss aktiviert sein”'), findsOneWidget);
   });
 
   testWidgets('generated category follows input language, not UI locale', (
@@ -165,14 +203,17 @@ void main() {
     final l = l10n(tester);
     await analyze(tester, 'text');
 
-    // Only the input field before editing.
-    expect(find.byType(TextField), findsOneWidget);
+    // The source input is replaced by the analysis journey.
+    expect(find.byType(TextField), findsNothing);
 
-    await tester.tap(find.text(l.kbDecisionEdit).first);
+    final edit = find.text(l.kbDecisionEdit).first;
+    await tester.ensureVisible(edit);
+    await tester.pumpAndSettle();
+    await tester.tap(edit);
     await tester.pumpAndSettle();
 
-    // Input + editable title + editable content.
-    expect(find.byType(TextField), findsNWidgets(3));
+    // Editable title + editable content.
+    expect(find.byType(TextField), findsNWidgets(2));
   });
 
   testWidgets('empty analysis shows the no-results hint', (tester) async {

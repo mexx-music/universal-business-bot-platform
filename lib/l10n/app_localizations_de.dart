@@ -4480,7 +4480,7 @@ class AppLocalizationsDe extends AppLocalizations {
   String get kbInputHint => 'Unternehmenswissen hier einfügen …';
 
   @override
-  String get kbAnalyze => 'Analysieren';
+  String get kbAnalyze => 'Wissen analysieren';
 
   @override
   String get kbAnalyzing => 'Analysiere …';
@@ -4603,6 +4603,119 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get kbCatGeneral => 'Allgemein';
+
+  @override
+  String get kbAnalysisTitle => 'BusinessBrain analysiert Ihr Wissen';
+
+  @override
+  String get kbAnalysisComplete => 'Analyse abgeschlossen';
+
+  @override
+  String get kbAnalysisIntro =>
+      'Jeder Schritt bleibt sichtbar: erkennen, strukturieren und mit der Wissensbasis abgleichen.';
+
+  @override
+  String get kbPhaseRecognizeTitle => 'BusinessBrain erkennt den Kontext';
+
+  @override
+  String get kbPhaseStructureTitle => 'BusinessBrain strukturiert das Wissen';
+
+  @override
+  String get kbPhaseCompareTitle =>
+      'BusinessBrain prüft die vorhandene Wissensbasis';
+
+  @override
+  String get kbPhasePending => 'Ausstehend';
+
+  @override
+  String get kbPhaseActive => 'In Arbeit';
+
+  @override
+  String get kbPhaseComplete => 'Abgeschlossen';
+
+  @override
+  String get kbDetectedLanguage => 'Sprache';
+
+  @override
+  String get kbDetectedDocumentType => 'Dokumenttyp';
+
+  @override
+  String get kbDetectedStatements => 'Erkannte Aussagen';
+
+  @override
+  String get kbMetricFaq => 'FAQ';
+
+  @override
+  String get kbMetricProductFeatures => 'Produktfunktionen';
+
+  @override
+  String get kbMetricSteps => 'Schritt-für-Schritt-Anleitungen';
+
+  @override
+  String get kbMetricWarnings => 'Warnhinweise';
+
+  @override
+  String get kbMetricRequirements => 'Technische Voraussetzungen';
+
+  @override
+  String get kbMetricDefinitions => 'Definitionen';
+
+  @override
+  String get kbMetricTips => 'Tipps';
+
+  @override
+  String get kbMetricKeywords => 'Schlagwörter';
+
+  @override
+  String get kbMetricSimilarTopics => 'Ähnliche Themen';
+
+  @override
+  String get kbMetricProducts => 'Erkannte Produkte';
+
+  @override
+  String get kbMetricDevices => 'Erkannte Geräte';
+
+  @override
+  String get kbMetricFunctions => 'Erkannte Funktionen';
+
+  @override
+  String get kbSummaryTitle =>
+      'BusinessBrain hat Ihren Text erfolgreich analysiert.';
+
+  @override
+  String get kbSummaryIntro =>
+      'Die Ergebnisse sind vollständig aus dem eingegebenen Text und dem Abgleich mit der vorhandenen Wissensbasis abgeleitet.';
+
+  @override
+  String get kbPreviewIntro =>
+      'Prüfen Sie jetzt jeden vorgeschlagenen Eintrag und seine Herkunft im Originaltext.';
+
+  @override
+  String get kbCreatedFrom => 'Erstellt aus:';
+
+  @override
+  String get kbLanguageGerman => 'Deutsch';
+
+  @override
+  String get kbLanguageEnglish => 'Englisch';
+
+  @override
+  String get kbLanguageUnknown => 'Nicht eindeutig';
+
+  @override
+  String get kbDocTypeFaqCollection => 'FAQ-Sammlung';
+
+  @override
+  String get kbDocTypeProductDescription => 'Produktbeschreibung';
+
+  @override
+  String get kbDocTypeInstructions => 'Anleitung';
+
+  @override
+  String get kbDocTypeTechnicalDocumentation => 'Technische Dokumentation';
+
+  @override
+  String get kbDocTypeCompanyKnowledge => 'Unternehmenswissen';
 
   @override
   String get navRolePortals => 'Portale';

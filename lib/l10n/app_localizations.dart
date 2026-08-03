@@ -8153,7 +8153,7 @@ abstract class AppLocalizations {
   /// No description provided for @kbAnalyze.
   ///
   /// In de, this message translates to:
-  /// **'Analysieren'**
+  /// **'Wissen analysieren'**
   String get kbAnalyze;
 
   /// No description provided for @kbAnalyzing.
@@ -8395,6 +8395,222 @@ abstract class AppLocalizations {
   /// In de, this message translates to:
   /// **'Allgemein'**
   String get kbCatGeneral;
+
+  /// No description provided for @kbAnalysisTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'BusinessBrain analysiert Ihr Wissen'**
+  String get kbAnalysisTitle;
+
+  /// No description provided for @kbAnalysisComplete.
+  ///
+  /// In de, this message translates to:
+  /// **'Analyse abgeschlossen'**
+  String get kbAnalysisComplete;
+
+  /// No description provided for @kbAnalysisIntro.
+  ///
+  /// In de, this message translates to:
+  /// **'Jeder Schritt bleibt sichtbar: erkennen, strukturieren und mit der Wissensbasis abgleichen.'**
+  String get kbAnalysisIntro;
+
+  /// No description provided for @kbPhaseRecognizeTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'BusinessBrain erkennt den Kontext'**
+  String get kbPhaseRecognizeTitle;
+
+  /// No description provided for @kbPhaseStructureTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'BusinessBrain strukturiert das Wissen'**
+  String get kbPhaseStructureTitle;
+
+  /// No description provided for @kbPhaseCompareTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'BusinessBrain prüft die vorhandene Wissensbasis'**
+  String get kbPhaseCompareTitle;
+
+  /// No description provided for @kbPhasePending.
+  ///
+  /// In de, this message translates to:
+  /// **'Ausstehend'**
+  String get kbPhasePending;
+
+  /// No description provided for @kbPhaseActive.
+  ///
+  /// In de, this message translates to:
+  /// **'In Arbeit'**
+  String get kbPhaseActive;
+
+  /// No description provided for @kbPhaseComplete.
+  ///
+  /// In de, this message translates to:
+  /// **'Abgeschlossen'**
+  String get kbPhaseComplete;
+
+  /// No description provided for @kbDetectedLanguage.
+  ///
+  /// In de, this message translates to:
+  /// **'Sprache'**
+  String get kbDetectedLanguage;
+
+  /// No description provided for @kbDetectedDocumentType.
+  ///
+  /// In de, this message translates to:
+  /// **'Dokumenttyp'**
+  String get kbDetectedDocumentType;
+
+  /// No description provided for @kbDetectedStatements.
+  ///
+  /// In de, this message translates to:
+  /// **'Erkannte Aussagen'**
+  String get kbDetectedStatements;
+
+  /// No description provided for @kbMetricFaq.
+  ///
+  /// In de, this message translates to:
+  /// **'FAQ'**
+  String get kbMetricFaq;
+
+  /// No description provided for @kbMetricProductFeatures.
+  ///
+  /// In de, this message translates to:
+  /// **'Produktfunktionen'**
+  String get kbMetricProductFeatures;
+
+  /// No description provided for @kbMetricSteps.
+  ///
+  /// In de, this message translates to:
+  /// **'Schritt-für-Schritt-Anleitungen'**
+  String get kbMetricSteps;
+
+  /// No description provided for @kbMetricWarnings.
+  ///
+  /// In de, this message translates to:
+  /// **'Warnhinweise'**
+  String get kbMetricWarnings;
+
+  /// No description provided for @kbMetricRequirements.
+  ///
+  /// In de, this message translates to:
+  /// **'Technische Voraussetzungen'**
+  String get kbMetricRequirements;
+
+  /// No description provided for @kbMetricDefinitions.
+  ///
+  /// In de, this message translates to:
+  /// **'Definitionen'**
+  String get kbMetricDefinitions;
+
+  /// No description provided for @kbMetricTips.
+  ///
+  /// In de, this message translates to:
+  /// **'Tipps'**
+  String get kbMetricTips;
+
+  /// No description provided for @kbMetricKeywords.
+  ///
+  /// In de, this message translates to:
+  /// **'Schlagwörter'**
+  String get kbMetricKeywords;
+
+  /// No description provided for @kbMetricSimilarTopics.
+  ///
+  /// In de, this message translates to:
+  /// **'Ähnliche Themen'**
+  String get kbMetricSimilarTopics;
+
+  /// No description provided for @kbMetricProducts.
+  ///
+  /// In de, this message translates to:
+  /// **'Erkannte Produkte'**
+  String get kbMetricProducts;
+
+  /// No description provided for @kbMetricDevices.
+  ///
+  /// In de, this message translates to:
+  /// **'Erkannte Geräte'**
+  String get kbMetricDevices;
+
+  /// No description provided for @kbMetricFunctions.
+  ///
+  /// In de, this message translates to:
+  /// **'Erkannte Funktionen'**
+  String get kbMetricFunctions;
+
+  /// No description provided for @kbSummaryTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'BusinessBrain hat Ihren Text erfolgreich analysiert.'**
+  String get kbSummaryTitle;
+
+  /// No description provided for @kbSummaryIntro.
+  ///
+  /// In de, this message translates to:
+  /// **'Die Ergebnisse sind vollständig aus dem eingegebenen Text und dem Abgleich mit der vorhandenen Wissensbasis abgeleitet.'**
+  String get kbSummaryIntro;
+
+  /// No description provided for @kbPreviewIntro.
+  ///
+  /// In de, this message translates to:
+  /// **'Prüfen Sie jetzt jeden vorgeschlagenen Eintrag und seine Herkunft im Originaltext.'**
+  String get kbPreviewIntro;
+
+  /// No description provided for @kbCreatedFrom.
+  ///
+  /// In de, this message translates to:
+  /// **'Erstellt aus:'**
+  String get kbCreatedFrom;
+
+  /// No description provided for @kbLanguageGerman.
+  ///
+  /// In de, this message translates to:
+  /// **'Deutsch'**
+  String get kbLanguageGerman;
+
+  /// No description provided for @kbLanguageEnglish.
+  ///
+  /// In de, this message translates to:
+  /// **'Englisch'**
+  String get kbLanguageEnglish;
+
+  /// No description provided for @kbLanguageUnknown.
+  ///
+  /// In de, this message translates to:
+  /// **'Nicht eindeutig'**
+  String get kbLanguageUnknown;
+
+  /// No description provided for @kbDocTypeFaqCollection.
+  ///
+  /// In de, this message translates to:
+  /// **'FAQ-Sammlung'**
+  String get kbDocTypeFaqCollection;
+
+  /// No description provided for @kbDocTypeProductDescription.
+  ///
+  /// In de, this message translates to:
+  /// **'Produktbeschreibung'**
+  String get kbDocTypeProductDescription;
+
+  /// No description provided for @kbDocTypeInstructions.
+  ///
+  /// In de, this message translates to:
+  /// **'Anleitung'**
+  String get kbDocTypeInstructions;
+
+  /// No description provided for @kbDocTypeTechnicalDocumentation.
+  ///
+  /// In de, this message translates to:
+  /// **'Technische Dokumentation'**
+  String get kbDocTypeTechnicalDocumentation;
+
+  /// No description provided for @kbDocTypeCompanyKnowledge.
+  ///
+  /// In de, this message translates to:
+  /// **'Unternehmenswissen'**
+  String get kbDocTypeCompanyKnowledge;
 
   /// No description provided for @navRolePortals.
   ///
