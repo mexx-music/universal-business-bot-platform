@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../demo/demo_mode_controller.dart';
 import '../../l10n/app_localizations.dart';
+import '../../navigation/platform_entry.dart';
 import '../../platform/pwa_install.dart';
 import '../../widgets/public/landing_audience_section.dart';
 import '../../widgets/public/landing_benefits_section.dart';
@@ -28,7 +28,6 @@ class _LandingScreenState extends State<LandingScreen> {
   static bool _pwaHintDismissedInSession = false;
 
   final _scrollController = ScrollController();
-  final _platformKey = GlobalKey();
   final _demoKey = GlobalKey();
   final _contactKey = GlobalKey();
   late final PwaInstallController _pwaInstallController;
@@ -79,9 +78,9 @@ class _LandingScreenState extends State<LandingScreen> {
                       onContact: () => _scrollTo(_contactKey),
                     ),
                     LandingHeroSection(
-                      onStartDemo: () => _startDemo(context),
+                      onStartDemo: () => _startJuryDemo(context),
                       onRegister: () => context.go('/login'),
-                      onLearnMore: () => _scrollTo(_platformKey),
+                      onLearnMore: () => openFullPlatform(context),
                       onDemo: () => _scrollTo(_demoKey),
                       onContact: () => _scrollTo(_contactKey),
                     ),
@@ -99,15 +98,14 @@ class _LandingScreenState extends State<LandingScreen> {
                 ),
               ),
               const _PageBand(child: LandingBenefitsSection()),
-              _PageBand(
-                key: _platformKey,
-                child: const LandingWorkflowSection(),
-              ),
+              const _PageBand(child: LandingWorkflowSection()),
               const _PageBand(child: LandingPreviewSection()),
               const _PageBand(child: LandingFeaturesSection()),
               _PageBand(
                 key: _demoKey,
-                child: LandingDemoSection(onDemo: () => _startDemo(context)),
+                child: LandingDemoSection(
+                  onDemo: () => _startJuryDemo(context),
+                ),
               ),
               const _PageBand(child: LandingAudienceSection()),
               const _PageBand(child: LandingFaqSection()),
@@ -128,13 +126,9 @@ class _LandingScreenState extends State<LandingScreen> {
     );
   }
 
-  /// Enters the competition demo (no login, no Supabase) and opens the
-  /// demo company selection.
-  Future<void> _startDemo(BuildContext context) async {
-    final demo = DemoModeController.of(context);
-    await demo.enterDemo();
-    if (context.mounted) context.go('/companies');
-  }
+  /// Opens the existing guided jury story. It activates Jury Mode itself and
+  /// remains separate from the unrestricted platform entry.
+  void _startJuryDemo(BuildContext context) => context.go('/jury-demo');
 
   void _scrollTo(GlobalKey key) {
     final context = key.currentContext;

@@ -1426,7 +1426,7 @@
   "dashboardCheckInTitle": "Monats-Check-in",
   "dashboardStartCheckIn": "Check-in starten",
 
-  "demoStartButton": "Demo starten",
+  "demoStartButton": "BusinessBrain in 2 Minuten erleben",
   "demoRegisterButton": "Unternehmen anmelden",
   "demoBadgeLabel": "Demo-Modus",
   "demoLeaveButton": "Demo verlassen",
@@ -1970,7 +1970,7 @@
   "juryTourTitle": "Geführte Jury-Demo",
   "juryBack": "Zurück",
   "juryNext": "Weiter",
-  "juryFinish": "Demo beenden",
+  "juryFinish": "Jetzt selbst die Plattform erkunden",
   "juryExit": "Jury-Modus beenden",
   "juryStep1Title": "Business Story",
   "juryStep1Intro": "Zuerst das große Bild: welches Problem BusinessBrain löst und warum es kein gewöhnlicher KI-Chat ist.",
@@ -2012,7 +2012,7 @@
 
   "heroSubtitle": "Die lernende Unternehmens-KI.",
   "heroBody": "BusinessBrain organisiert Unternehmenswissen, beantwortet Kundenfragen ausschließlich auf Basis bestätigter Informationen und verbessert sich kontinuierlich durch menschlich freigegebene Wissensbausteine.",
-  "heroStartDemo": "Jury-Demo starten",
+  "heroStartDemo": "BusinessBrain in 2 Minuten erleben",
   "heroExplore": "Plattform erkunden",
   "heroFlow1": "Unternehmenswissen",
   "heroFlow2": "Kundenfragen",

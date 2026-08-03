@@ -6635,7 +6635,7 @@ abstract class AppLocalizations {
   /// No description provided for @demoStartButton.
   ///
   /// In de, this message translates to:
-  /// **'Demo starten'**
+  /// **'BusinessBrain in 2 Minuten erleben'**
   String get demoStartButton;
 
   /// No description provided for @demoRegisterButton.
@@ -9827,7 +9827,7 @@ abstract class AppLocalizations {
   /// No description provided for @juryFinish.
   ///
   /// In de, this message translates to:
-  /// **'Demo beenden'**
+  /// **'Jetzt selbst die Plattform erkunden'**
   String get juryFinish;
 
   /// No description provided for @juryExit.
@@ -10073,7 +10073,7 @@ abstract class AppLocalizations {
   /// No description provided for @heroStartDemo.
   ///
   /// In de, this message translates to:
-  /// **'Jury-Demo starten'**
+  /// **'BusinessBrain in 2 Minuten erleben'**
   String get heroStartDemo;
 
   /// No description provided for @heroExplore.

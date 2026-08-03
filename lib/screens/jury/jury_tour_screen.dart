@@ -1,8 +1,11 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../jury/jury_mode_controller.dart';
 import '../../l10n/app_localizations.dart';
+import '../../navigation/platform_entry.dart';
 import '../bot_test/grounded_answer_panel.dart';
 import '../business_story/business_story_screen.dart';
 import '../guided_demo/guided_demo_screen.dart';
@@ -23,14 +26,30 @@ class JuryTourScreen extends StatefulWidget {
 
 class _JuryTourScreenState extends State<JuryTourScreen> {
   int _step = 0;
+  JuryModeController? _juryMode;
 
   @override
   void initState() {
     super.initState();
     // Entering the tour puts the app into jury mode (simplified navigation).
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      if (mounted) JuryModeController.maybeOf(context)?.enable();
+      if (mounted) _juryMode?.enable();
     });
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    _juryMode = JuryModeController.maybeOf(context);
+  }
+
+  @override
+  void dispose() {
+    // Route lifecycle is the source of truth: browser back/forward can never
+    // leave the full platform trapped in the simplified jury navigation.
+    final juryMode = _juryMode;
+    scheduleMicrotask(() => juryMode?.disable());
+    super.dispose();
   }
 
   void _go(int i) =>
@@ -144,7 +163,7 @@ class _JuryTourScreenState extends State<JuryTourScreen> {
             _Controls(
               onBack: _step == 0 ? null : () => _go(_step - 1),
               onNext: isLast ? null : () => _go(_step + 1),
-              onFinish: isLast ? () => context.go('/business-story') : null,
+              onFinish: isLast ? () => openFullPlatform(context) : null,
             ),
           ],
         ),
@@ -379,7 +398,7 @@ class _Controls extends StatelessWidget {
             FilledButton.icon(
               key: const Key('jury-finish'),
               onPressed: onFinish,
-              icon: const Icon(Icons.check, size: 18),
+              icon: const Icon(Icons.explore_outlined, size: 18),
               label: Text(l.juryFinish),
             ),
         ],

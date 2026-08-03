@@ -3,7 +3,9 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:go_router/go_router.dart';
 import 'package:universalbusiness/app/app_dependencies.dart';
 import 'package:universalbusiness/app/universal_business_bot_app.dart';
+import 'package:universalbusiness/jury/jury_mode_controller.dart';
 import 'package:universalbusiness/l10n/app_localizations.dart';
+import 'package:universalbusiness/screens/dashboard/dashboard_screen.dart';
 import 'package:universalbusiness/screens/business_story/business_story_screen.dart';
 import 'package:universalbusiness/screens/jury/jury_start_screen.dart';
 import 'package:universalbusiness/screens/jury/jury_tour_screen.dart';
@@ -23,7 +25,7 @@ void goTo(WidgetTester tester, String route) {
 }
 
 void main() {
-  testWidgets('explore activates jury mode with simplified navigation', (
+  testWidgets('explore opens the unrestricted platform without jury mode', (
     tester,
   ) async {
     await pumpApp(tester);
@@ -33,15 +35,21 @@ void main() {
     final l = AppLocalizations.of(
       tester.element(find.byType(JuryStartScreen)),
     )!;
+    final juryMode = JuryModeController.of(
+      tester.element(find.byType(JuryStartScreen)),
+    );
+    juryMode.enable();
+    await tester.pump();
+
     await tester.tap(find.text(l.heroExplore));
     await tester.pumpAndSettle();
 
-    // Simplified jury navigation: the 5 main areas + "Weitere Module", with an
-    // exit action. Other full-nav areas are folded away (not shown directly).
-    expect(find.text(l.navMore), findsWidgets);
-    expect(find.text(l.juryExit), findsWidgets);
-    expect(find.text(l.navBusinessStory), findsWidgets);
-    expect(find.text(l.navBotSettings), findsNothing);
+    expect(find.byType(DashboardScreen), findsOneWidget);
+    expect(juryMode.active, isFalse);
+    // The original full AppShell is visible; nothing is folded away.
+    expect(find.byKey(const Key('full-platform-shell')), findsOneWidget);
+    expect(find.text(l.navDashboard), findsWidgets);
+    expect(find.text(l.juryExit), findsNothing);
   });
 
   testWidgets('guided jury demo walks the existing screens', (tester) async {

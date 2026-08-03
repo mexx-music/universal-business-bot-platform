@@ -3690,7 +3690,7 @@ class AppLocalizationsDe extends AppLocalizations {
   String get dashboardStartCheckIn => 'Check-in starten';
 
   @override
-  String get demoStartButton => 'Demo starten';
+  String get demoStartButton => 'BusinessBrain in 2 Minuten erleben';
 
   @override
   String get demoRegisterButton => 'Unternehmen anmelden';
@@ -5379,7 +5379,7 @@ class AppLocalizationsDe extends AppLocalizations {
   String get juryNext => 'Weiter';
 
   @override
-  String get juryFinish => 'Demo beenden';
+  String get juryFinish => 'Jetzt selbst die Plattform erkunden';
 
   @override
   String get juryExit => 'Jury-Modus beenden';
@@ -5512,7 +5512,7 @@ class AppLocalizationsDe extends AppLocalizations {
       'BusinessBrain organisiert Unternehmenswissen, beantwortet Kundenfragen ausschließlich auf Basis bestätigter Informationen und verbessert sich kontinuierlich durch menschlich freigegebene Wissensbausteine.';
 
   @override
-  String get heroStartDemo => 'Jury-Demo starten';
+  String get heroStartDemo => 'BusinessBrain in 2 Minuten erleben';
 
   @override
   String get heroExplore => 'Plattform erkunden';

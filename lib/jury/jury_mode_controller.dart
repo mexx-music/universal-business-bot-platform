@@ -6,17 +6,18 @@ import 'package:flutter/widgets.dart';
 /// information architecture for jury/investor viewing. Default: inactive.
 class JuryModeController extends ChangeNotifier {
   bool _active = false;
+  bool _disposed = false;
 
   bool get active => _active;
 
   void enable() {
-    if (_active) return;
+    if (_disposed || _active) return;
     _active = true;
     notifyListeners();
   }
 
   void disable() {
-    if (!_active) return;
+    if (_disposed || !_active) return;
     _active = false;
     notifyListeners();
   }
@@ -26,6 +27,12 @@ class JuryModeController extends ChangeNotifier {
 
   static JuryModeController? maybeOf(BuildContext context) =>
       context.dependOnInheritedWidgetOfExactType<JuryModeScope>()?.notifier;
+
+  @override
+  void dispose() {
+    _disposed = true;
+    super.dispose();
+  }
 }
 
 class JuryModeScope extends InheritedNotifier<JuryModeController> {

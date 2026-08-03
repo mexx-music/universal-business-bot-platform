@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:universalbusiness/app/app_dependencies.dart';
+import 'package:universalbusiness/app/universal_business_bot_app.dart';
 import 'package:universalbusiness/auth/auth_controller.dart';
 import 'package:universalbusiness/auth/auth_form_validators.dart';
 import 'package:universalbusiness/auth/auth_operation_result.dart';
@@ -16,6 +17,8 @@ import 'package:universalbusiness/data/app_state.dart';
 import 'package:universalbusiness/l10n/app_localizations.dart';
 import 'package:universalbusiness/repositories/tenant_context.dart';
 import 'package:universalbusiness/router/app_router.dart';
+import 'package:universalbusiness/screens/dashboard/dashboard_screen.dart';
+import 'package:universalbusiness/screens/jury/jury_tour_screen.dart';
 import 'package:universalbusiness/screens/vision/businessbrain_vision_screen.dart';
 
 void main() {
@@ -172,6 +175,70 @@ void main() {
     expect(find.byType(BusinessBrainVisionScreen), findsOneWidget);
     expect(find.text('Anmelden'), findsNothing);
   });
+
+  testWidgets('Jury demo deep link stays public for unauthenticated users', (
+    tester,
+  ) async {
+    tester.binding.platformDispatcher.defaultRouteNameTestValue = '/jury-demo';
+    addTearDown(
+      tester.binding.platformDispatcher.clearDefaultRouteNameTestValue,
+    );
+    final authController = AuthController(_FakeAuthService());
+    await authController.initialize();
+
+    await tester.pumpWidget(
+      UniversalBusinessApp(
+        dependencies: AppDependencies.local(authController: authController),
+      ),
+    );
+    await tester.pumpAndSettle();
+
+    expect(find.byType(JuryTourScreen), findsOneWidget);
+    expect(find.text('Anmelden'), findsNothing);
+    expect(tester.takeException(), isNull);
+  });
+
+  testWidgets(
+    'public Explore starts the existing demo workspace and refreshes on '
+    'the full platform',
+    (tester) async {
+      await tester.binding.setSurfaceSize(const Size(1200, 900));
+      addTearDown(() => tester.binding.setSurfaceSize(null));
+      final authController = AuthController(_FakeAuthService());
+      await authController.initialize();
+      final dependencies = AppDependencies.local(
+        authController: authController,
+      );
+
+      await tester.pumpWidget(UniversalBusinessApp(dependencies: dependencies));
+      await tester.pumpAndSettle();
+      await tester.tap(find.text('Plattform kennenlernen'));
+      await tester.pumpAndSettle();
+
+      expect(find.byType(DashboardScreen), findsOneWidget);
+      expect(dependencies.demoModeController.isActive, isTrue);
+      expect(find.byKey(const Key('full-platform-shell')), findsOneWidget);
+      expect(find.text('Jury-Modus beenden'), findsNothing);
+      expect(find.text('So erkunden Sie die Demo'), findsNothing);
+
+      // A browser refresh reconstructs the router from the current URL. The
+      // active demo session remains the route-guard bypass.
+      await tester.pumpWidget(const SizedBox.shrink());
+      await tester.pumpAndSettle();
+      tester.binding.platformDispatcher.defaultRouteNameTestValue =
+          '/dashboard';
+      addTearDown(
+        tester.binding.platformDispatcher.clearDefaultRouteNameTestValue,
+      );
+      await tester.pumpWidget(UniversalBusinessApp(dependencies: dependencies));
+      await tester.pumpAndSettle();
+
+      expect(find.byType(DashboardScreen), findsOneWidget);
+      expect(dependencies.demoModeController.isActive, isTrue);
+      expect(find.text('Jury-Modus beenden'), findsNothing);
+      expect(tester.takeException(), isNull);
+    },
+  );
 }
 
 const _user = AuthUser(

@@ -249,6 +249,7 @@ class AppShell extends StatelessWidget {
     }
 
     return LayoutBuilder(
+      key: const Key('full-platform-shell'),
       builder: (context, constraints) {
         if (constraints.maxWidth < 640) {
           return Scaffold(
@@ -333,15 +334,27 @@ class AppShell extends StatelessWidget {
               ),
             ),
             body: _DemoAwareContent(child: child),
-            bottomNavigationBar: NavigationBar(
-              selectedIndex: selectedIndex,
-              onDestinationSelected: (i) => context.go(_navItems[i].path),
-              destinations: List.generate(
-                _navItems.length,
-                (i) => NavigationDestination(
-                  icon: Icon(_navItems[i].icon),
-                  selectedIcon: Icon(_navItems[i].selectedIcon),
-                  label: labels[i],
+            bottomNavigationBar: SizedBox(
+              key: const Key('full-platform-mobile-navigation'),
+              height: 80,
+              child: SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: SizedBox(
+                  width: _navItems.length * 80,
+                  child: NavigationBar(
+                    selectedIndex: selectedIndex,
+                    labelBehavior:
+                        NavigationDestinationLabelBehavior.onlyShowSelected,
+                    onDestinationSelected: (i) => context.go(_navItems[i].path),
+                    destinations: List.generate(
+                      _navItems.length,
+                      (i) => NavigationDestination(
+                        icon: Icon(_navItems[i].icon),
+                        selectedIcon: Icon(_navItems[i].selectedIcon),
+                        label: labels[i],
+                      ),
+                    ),
+                  ),
                 ),
               ),
             ),

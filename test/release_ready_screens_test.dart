@@ -57,7 +57,10 @@ void main() {
         ),
         locale: const Locale('en'),
       );
-      expect(find.text('Start jury demo'), findsOneWidget);
+      expect(
+        find.text('Experience BusinessBrain in 2 minutes'),
+        findsOneWidget,
+      );
       expect(find.text('Explore the platform'), findsOneWidget);
     });
   });

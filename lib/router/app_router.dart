@@ -64,7 +64,11 @@ GoRouter createAppRouter(
 
       final location = state.uri.path;
       final isPublicRoute =
-          location == '/' || location == '/login' || location == '/vision';
+          location == '/' ||
+          location == '/login' ||
+          location == '/jury' ||
+          location == '/jury-demo' ||
+          location == '/vision';
       final isPublicIntakeRoute = location.startsWith('/onboarding/');
       final isLogin = location == '/login';
       final isOnboarding = location == '/onboarding';

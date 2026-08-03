@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 
 import '../../jury/jury_mode_controller.dart';
 import '../../l10n/app_localizations.dart';
+import '../../navigation/platform_entry.dart';
 import '../../widgets/language_switcher.dart';
 
 /// Landing experience / first 60 seconds (BLOCK 10). A calm, high-quality entry
@@ -41,10 +42,7 @@ class _JuryStartScreenState extends State<JuryStartScreen>
     context.go('/jury-demo');
   }
 
-  void _explore() {
-    JuryModeController.maybeOf(context)?.enable();
-    context.go('/dashboard');
-  }
+  Future<void> _explore() => openFullPlatform(context);
 
   @override
   Widget build(BuildContext context) {

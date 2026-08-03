@@ -93,6 +93,6 @@ void main() {
   testWidgets('landing hero is localized in English', (tester) async {
     await pump(tester, const JuryStartScreen(), locale: const Locale('en'));
     expect(find.text('The learning company AI.'), findsOneWidget);
-    expect(find.text('Start jury demo'), findsOneWidget);
+    expect(find.text('Experience BusinessBrain in 2 minutes'), findsOneWidget);
   });
 }
