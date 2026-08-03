@@ -259,8 +259,77 @@ void main() {
         ),
       );
 
-      expect(result.sources.first.id, 'z-de');
+      expect(result.sources.map((source) => source.id), ['z-de']);
+      expect(
+        fake.lastRequest!.messages.last.content,
+        isNot(contains('English source content')),
+      );
     });
+
+    test('known foreign-language entries never reach Gemini', () async {
+      final fake = FakeAiProvider(text: 'Die Verbindung erfolgt automatisch.');
+      final service = GroundedAnswerService(aiController: controllerWith(fake));
+      final result = await service.answer(
+        GroundedAnswerRequest(
+          question: 'Wie funktioniert die Bluetooth-Verbindung?',
+          workspace: workspace(
+            entries: [
+              entry(
+                'en',
+                'Bluetooth connection',
+                'The device connects automatically through Bluetooth.',
+                keywords: const ['bluetooth', 'verbindung'],
+                languageCode: 'en',
+              ),
+              entry(
+                'de',
+                'Bluetooth-Verbindung',
+                'Das Gerät verbindet sich automatisch über Bluetooth.',
+                keywords: const ['bluetooth', 'verbindung'],
+                languageCode: 'de',
+              ),
+            ],
+          ),
+          language: 'en',
+        ),
+      );
+
+      expect(result.sources.map((source) => source.id), ['de']);
+      final prompt = fake.lastRequest!.messages.last.content;
+      expect(prompt, contains('Das Gerät verbindet sich'));
+      expect(prompt, isNot(contains('The device connects')));
+    });
+
+    test(
+      'only foreign-language knowledge is treated as insufficient',
+      () async {
+        final fake = FakeAiProvider();
+        final service = GroundedAnswerService(
+          aiController: controllerWith(fake),
+        );
+        final result = await service.answer(
+          GroundedAnswerRequest(
+            question: 'Wie funktioniert die Bluetooth-Verbindung?',
+            workspace: workspace(
+              entries: [
+                entry(
+                  'en',
+                  'Bluetooth connection',
+                  'The device connects automatically through Bluetooth.',
+                  keywords: const ['bluetooth', 'verbindung'],
+                  languageCode: 'en',
+                ),
+              ],
+            ),
+            language: 'de',
+          ),
+        );
+
+        expect(result.outcome, GroundedOutcome.noKnowledge);
+        expect(result.sources, isEmpty);
+        expect(fake.calls, 0);
+      },
+    );
 
     test('limits context size and excerpt length', () async {
       final fake = FakeAiProvider();
@@ -275,7 +344,7 @@ void main() {
         maxEntryChars: 100,
         maxContextChars: 500,
       );
-      await service.answer(
+      final result = await service.answer(
         GroundedAnswerRequest(
           question: 'kaffee',
           workspace: workspace(entries: [long]),
@@ -286,20 +355,90 @@ void main() {
       // Context is bounded; the ellipsis marks truncation.
       expect(userMsg.length, lessThan(1200));
       expect(userMsg, contains('…'));
+      expect(result.sources.single.excerpt, contains('…'));
+      expect(userMsg, contains(result.sources.single.excerpt));
     });
 
-    test('passes the requested language into the system prompt', () async {
+    test('question language overrides a different UI language', () async {
       final fake = FakeAiProvider();
       final service = GroundedAnswerService(aiController: controllerWith(fake));
       await service.answer(
         GroundedAnswerRequest(
-          question: 'kaffee',
-          workspace: workspace(entries: coffeeEntries(1)),
+          question: 'Wie wird der Kaffee geröstet?',
+          workspace: workspace(
+            entries: [
+              entry(
+                'de',
+                'Kaffee rösten',
+                'Der Kaffee wird täglich frisch geröstet.',
+                keywords: const ['kaffee', 'geröstet'],
+                languageCode: 'de',
+              ),
+            ],
+          ),
           language: 'en',
         ),
       );
       final sys = fake.lastRequest!.messages.first.content;
-      expect(sys, contains('"en"'));
+      expect(sys, contains('"de"'));
+      expect(fake.lastRequest!.metadata['answer_language'], 'de');
+    });
+
+    test('English question produces an English-only model contract', () async {
+      final fake = FakeAiProvider(text: 'The app connects automatically.');
+      final service = GroundedAnswerService(aiController: controllerWith(fake));
+      final result = await service.answer(
+        GroundedAnswerRequest(
+          question: 'How does the app connect?',
+          workspace: workspace(
+            entries: [
+              entry(
+                'en',
+                'App connection',
+                'The app connects automatically through Bluetooth.',
+                keywords: const ['app', 'connect'],
+                languageCode: 'en',
+              ),
+            ],
+          ),
+          language: 'de',
+        ),
+      );
+
+      expect(result.answer, 'The app connects automatically.');
+      expect(fake.lastRequest!.messages.first.content, contains('"en"'));
+      expect(fake.lastRequest!.metadata['answer_language'], 'en');
+    });
+
+    test('recognizably wrong-language model output is not displayed', () async {
+      final fake = FakeAiProvider(
+        text: 'The device connects automatically with the application.',
+      );
+      final service = GroundedAnswerService(aiController: controllerWith(fake));
+      final result = await service.answer(
+        GroundedAnswerRequest(
+          question: 'Wie verbindet sich das Gerät mit der App?',
+          workspace: workspace(
+            entries: [
+              entry(
+                'de',
+                'Gerät verbinden',
+                'Das Gerät verbindet sich automatisch mit der App.',
+                keywords: const ['gerät', 'app', 'verbindet'],
+                languageCode: 'de',
+              ),
+            ],
+          ),
+          language: 'de',
+        ),
+      );
+
+      expect(
+        result.answer,
+        'Die Wissensbasis enthält nicht genügend Informationen, um diese '
+        'Frage zuverlässig zu beantworten.',
+      );
+      expect(result.answer, isNot(contains('The device')));
     });
 
     test('no usable knowledge -> no AI call, grounded false', () async {
@@ -405,15 +544,105 @@ void main() {
         final sys = fake.lastRequest!.messages.first.content;
         final user = fake.lastRequest!.messages.last.content;
 
-        expect(sys, contains('Answer ONLY using'));
-        expect(sys, contains('not found in the knowledge base'));
+        expect(sys, contains('ONLY allowed source'));
+        expect(sys, contains('Never add facts from general knowledge'));
+        expect(sys, contains('synthesize ALL documents'));
+        expect(sys, contains('explicitly say so'));
         // Selected entries present; unrelated one absent.
         expect(user, contains('Kaffee Thema 1'));
         expect(user, isNot(contains('Regenschirm')));
         // No secrets and no full dump (bounded number of blocks).
         expect(user, isNot(contains('GEMINI_API_KEY')));
         expect(user, isNot(contains('AIza')));
-        expect('['.allMatches(user).length, lessThanOrEqualTo(2));
+        expect('<document'.allMatches(user).length, lessThanOrEqualTo(2));
+      },
+    );
+
+    test('all selected matching entries are sent for synthesis', () async {
+      final fake = FakeAiProvider(
+        text: 'Die App verbindet, startet und stoppt.',
+      );
+      final service = GroundedAnswerService(aiController: controllerWith(fake));
+      final result = await service.answer(
+        GroundedAnswerRequest(
+          question: 'Was kann die CureBase App?',
+          workspace: workspace(
+            entries: [
+              entry(
+                'one',
+                'CureBase verbinden',
+                'Die CureBase App verbindet sich mit dem Gerät.',
+                keywords: const ['curebase', 'app'],
+                languageCode: 'de',
+              ),
+              entry(
+                'two',
+                'CureBase starten',
+                'Die CureBase App startet gespeicherte Programme.',
+                keywords: const ['curebase', 'app'],
+                languageCode: 'de',
+              ),
+              entry(
+                'three',
+                'CureBase stoppen',
+                'Die CureBase App stoppt ein laufendes Programm.',
+                keywords: const ['curebase', 'app'],
+                languageCode: 'de',
+              ),
+            ],
+          ),
+          language: 'de',
+        ),
+      );
+
+      expect(result.sources.map((source) => source.id).toSet(), {
+        'one',
+        'two',
+        'three',
+      });
+      final prompt = fake.lastRequest!.messages.last.content;
+      for (final source in result.sources) {
+        expect(prompt, contains(source.excerpt));
+      }
+      expect('<document'.allMatches(prompt).length, 3);
+    });
+
+    test(
+      'partial retrieval requires an explicit insufficiency statement',
+      () async {
+        final fake = FakeAiProvider();
+        final service = GroundedAnswerService(
+          aiController: controllerWith(fake),
+        );
+        await service.answer(
+          GroundedAnswerRequest(
+            question:
+                'Wie verbindet sich die App mit dem unbekannten Satellit?',
+            workspace: workspace(
+              entries: [
+                entry(
+                  'de',
+                  'App verbinden',
+                  'Die App verbindet sich automatisch über Bluetooth.',
+                  keywords: const ['app', 'verbindet', 'bluetooth'],
+                  languageCode: 'de',
+                ),
+              ],
+            ),
+            language: 'de',
+          ),
+        );
+
+        final request = fake.lastRequest!;
+        expect(
+          request.messages.last.content,
+          contains('Knowledge coverage: PARTIAL'),
+        );
+        expect(request.messages.last.content, contains('satellit'));
+        expect(
+          request.messages.first.content,
+          contains('explicitly say so and answer only the supported part'),
+        );
       },
     );
   });
@@ -434,6 +663,8 @@ void main() {
       expect(result.grounded, isTrue);
       // Mock echoes the context-bearing user message.
       expect(result.answer.toLowerCase(), contains('kaffee'));
+      expect(result.answer, contains('nummer 1'));
+      expect(result.answer, contains('nummer 2'));
       expect(result.answer, isNot(contains('[mock:')));
       expect(result.answer, isNot(contains('Company knowledge:')));
     });
