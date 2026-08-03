@@ -4516,6 +4516,77 @@ class AppLocalizationsDe extends AppLocalizations {
   String get kbExampleReady => 'Bereit zur Analyse.';
 
   @override
+  String get kbPackageBadge => 'Umfangreiches Hauptbeispiel';
+
+  @override
+  String get kbPackageLoad => 'Gesamtes HB-Cure-Wissen laden';
+
+  @override
+  String get kbPackageLoaded => 'HB-Cure-Wissenspaket geladen';
+
+  @override
+  String get kbPackageNotAnalyzed =>
+      'Die Quelldokumente wurden nur in den Editor geladen. Es wurde noch nichts analysiert oder gespeichert.';
+
+  @override
+  String get kbPackageIncludedAreas => 'Enthaltene Bereiche';
+
+  @override
+  String get kbPackageDocuments => 'Quelldokumente';
+
+  @override
+  String get kbPackageLanguage => 'Sprache';
+
+  @override
+  String get kbPackageAreas => 'Wissensbereiche';
+
+  @override
+  String get kbPackageTimeSensitive => 'Zeitabhängige Inhalte';
+
+  @override
+  String get kbPackageReviewRequired => 'Prüfpflichtige Aussagen';
+
+  @override
+  String get kbPackageSourcesTitle => 'Inhalte und Quellenherkunft ansehen';
+
+  @override
+  String get kbPackageSourcesHint =>
+      'Website-Daten und interne Projektdokumentation bleiben klar getrennt.';
+
+  @override
+  String get kbPackageSourceLabel => 'Quelle';
+
+  @override
+  String get kbPackageSourceTypeLabel => 'Quellentyp';
+
+  @override
+  String get kbPackageDataStatusLabel => 'Datenstand';
+
+  @override
+  String get kbPackageLastCheckedLabel => 'Zuletzt geprüft';
+
+  @override
+  String get kbPackageRiskReview =>
+      'Rechtliche beziehungsweise fachliche Prüfung erforderlich';
+
+  @override
+  String get kbPackageRiskImpact =>
+      'Wirkungsbezogene Aussage – vor Veröffentlichung prüfen';
+
+  @override
+  String get kbPackageRiskTestimonial =>
+      'Erfahrungsbericht – nicht als Tatsachenbehauptung verwenden';
+
+  @override
+  String get kbPackageTimeSensitiveBadge => 'Zeitabhängig';
+
+  @override
+  String get kbPackageReviewRecommendedLabel => 'Erneute Prüfung';
+
+  @override
+  String get kbPackageReviewRecommended => 'Vor Veröffentlichung empfohlen';
+
+  @override
   String get kbAnalyzeReady => 'Dokument bereit';
 
   @override

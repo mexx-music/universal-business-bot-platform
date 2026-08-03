@@ -4,6 +4,19 @@ abstract final class KnowledgeEntrySources {
   /// Stable source marker for entries explicitly confirmed in Knowledge
   /// Builder. It is persisted in the already-existing `source` field.
   static const knowledgeBuilder = 'Knowledge Builder';
+
+  static const _separator = ' · ';
+
+  static String knowledgeBuilderWithOrigin(String origin) {
+    final clean = origin.trim();
+    return clean.isEmpty
+        ? knowledgeBuilder
+        : '$knowledgeBuilder$_separator$clean';
+  }
+
+  static bool isKnowledgeBuilder(String source) =>
+      source == knowledgeBuilder ||
+      source.startsWith('$knowledgeBuilder$_separator');
 }
 
 enum RiskLevel { green, yellow, red }

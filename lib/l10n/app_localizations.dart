@@ -8216,6 +8216,138 @@ abstract class AppLocalizations {
   /// **'Bereit zur Analyse.'**
   String get kbExampleReady;
 
+  /// No description provided for @kbPackageBadge.
+  ///
+  /// In de, this message translates to:
+  /// **'Umfangreiches Hauptbeispiel'**
+  String get kbPackageBadge;
+
+  /// No description provided for @kbPackageLoad.
+  ///
+  /// In de, this message translates to:
+  /// **'Gesamtes HB-Cure-Wissen laden'**
+  String get kbPackageLoad;
+
+  /// No description provided for @kbPackageLoaded.
+  ///
+  /// In de, this message translates to:
+  /// **'HB-Cure-Wissenspaket geladen'**
+  String get kbPackageLoaded;
+
+  /// No description provided for @kbPackageNotAnalyzed.
+  ///
+  /// In de, this message translates to:
+  /// **'Die Quelldokumente wurden nur in den Editor geladen. Es wurde noch nichts analysiert oder gespeichert.'**
+  String get kbPackageNotAnalyzed;
+
+  /// No description provided for @kbPackageIncludedAreas.
+  ///
+  /// In de, this message translates to:
+  /// **'Enthaltene Bereiche'**
+  String get kbPackageIncludedAreas;
+
+  /// No description provided for @kbPackageDocuments.
+  ///
+  /// In de, this message translates to:
+  /// **'Quelldokumente'**
+  String get kbPackageDocuments;
+
+  /// No description provided for @kbPackageLanguage.
+  ///
+  /// In de, this message translates to:
+  /// **'Sprache'**
+  String get kbPackageLanguage;
+
+  /// No description provided for @kbPackageAreas.
+  ///
+  /// In de, this message translates to:
+  /// **'Wissensbereiche'**
+  String get kbPackageAreas;
+
+  /// No description provided for @kbPackageTimeSensitive.
+  ///
+  /// In de, this message translates to:
+  /// **'Zeitabhängige Inhalte'**
+  String get kbPackageTimeSensitive;
+
+  /// No description provided for @kbPackageReviewRequired.
+  ///
+  /// In de, this message translates to:
+  /// **'Prüfpflichtige Aussagen'**
+  String get kbPackageReviewRequired;
+
+  /// No description provided for @kbPackageSourcesTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Inhalte und Quellenherkunft ansehen'**
+  String get kbPackageSourcesTitle;
+
+  /// No description provided for @kbPackageSourcesHint.
+  ///
+  /// In de, this message translates to:
+  /// **'Website-Daten und interne Projektdokumentation bleiben klar getrennt.'**
+  String get kbPackageSourcesHint;
+
+  /// No description provided for @kbPackageSourceLabel.
+  ///
+  /// In de, this message translates to:
+  /// **'Quelle'**
+  String get kbPackageSourceLabel;
+
+  /// No description provided for @kbPackageSourceTypeLabel.
+  ///
+  /// In de, this message translates to:
+  /// **'Quellentyp'**
+  String get kbPackageSourceTypeLabel;
+
+  /// No description provided for @kbPackageDataStatusLabel.
+  ///
+  /// In de, this message translates to:
+  /// **'Datenstand'**
+  String get kbPackageDataStatusLabel;
+
+  /// No description provided for @kbPackageLastCheckedLabel.
+  ///
+  /// In de, this message translates to:
+  /// **'Zuletzt geprüft'**
+  String get kbPackageLastCheckedLabel;
+
+  /// No description provided for @kbPackageRiskReview.
+  ///
+  /// In de, this message translates to:
+  /// **'Rechtliche beziehungsweise fachliche Prüfung erforderlich'**
+  String get kbPackageRiskReview;
+
+  /// No description provided for @kbPackageRiskImpact.
+  ///
+  /// In de, this message translates to:
+  /// **'Wirkungsbezogene Aussage – vor Veröffentlichung prüfen'**
+  String get kbPackageRiskImpact;
+
+  /// No description provided for @kbPackageRiskTestimonial.
+  ///
+  /// In de, this message translates to:
+  /// **'Erfahrungsbericht – nicht als Tatsachenbehauptung verwenden'**
+  String get kbPackageRiskTestimonial;
+
+  /// No description provided for @kbPackageTimeSensitiveBadge.
+  ///
+  /// In de, this message translates to:
+  /// **'Zeitabhängig'**
+  String get kbPackageTimeSensitiveBadge;
+
+  /// No description provided for @kbPackageReviewRecommendedLabel.
+  ///
+  /// In de, this message translates to:
+  /// **'Erneute Prüfung'**
+  String get kbPackageReviewRecommendedLabel;
+
+  /// No description provided for @kbPackageReviewRecommended.
+  ///
+  /// In de, this message translates to:
+  /// **'Vor Veröffentlichung empfohlen'**
+  String get kbPackageReviewRecommended;
+
   /// No description provided for @kbAnalyzeReady.
   ///
   /// In de, this message translates to:

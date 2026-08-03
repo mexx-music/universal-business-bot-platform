@@ -29,11 +29,17 @@ class KnowledgeImportMapper {
       title: draft.title,
       content: draft.content,
       category: _category(draft.category),
-      riskLevel: draft.category == KnowledgeDraftCategory.warning
+      riskLevel:
+          draft.category == KnowledgeDraftCategory.warning ||
+              (draft.packageMetadata?.risk.requiresExplicitReview ?? false)
           ? RiskLevel.yellow
           : RiskLevel.green,
       keywords: List.unmodifiable(draft.keywords),
-      source: KnowledgeEntrySources.knowledgeBuilder,
+      source: draft.packageMetadata == null
+          ? KnowledgeEntrySources.knowledgeBuilder
+          : KnowledgeEntrySources.knowledgeBuilderWithOrigin(
+              draft.packageMetadata!.sourceName,
+            ),
       createdAt: timestamp,
       languageCode: draft.languageCode,
       knowledgeArea: draft.knowledgeArea,

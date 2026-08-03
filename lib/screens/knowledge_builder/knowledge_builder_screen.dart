@@ -3,14 +3,18 @@ import 'package:go_router/go_router.dart';
 
 import '../../data/app_state.dart';
 import '../../knowledge/knowledge_context.dart';
+import '../../knowledge_builder/data/hb_cure_knowledge_package.dart';
 import '../../knowledge_builder/knowledge_import_analyzer.dart';
 import '../../knowledge_builder/knowledge_import_mapper.dart';
+import '../../knowledge_builder/knowledge_package_analysis_enricher.dart';
 import '../../knowledge_builder/models/knowledge_analysis_presentation.dart';
+import '../../knowledge_builder/models/company_knowledge_package.dart';
 import '../../knowledge_builder/models/knowledge_demo_document.dart';
 import '../../knowledge_builder/models/knowledge_import_models.dart';
 import '../../l10n/app_localizations.dart';
 import '../../l10n/label_helpers.dart';
 import '../../models/knowledge_entry.dart';
+import 'knowledge_package_widgets.dart';
 
 /// Knowledge Builder: paste unstructured company text, get a *preview* of
 /// structured knowledge drafts. Analysis is deterministic and offline (no
@@ -32,10 +36,12 @@ class _KnowledgeBuilderScreenState extends State<KnowledgeBuilderScreen>
 
   final _input = TextEditingController();
   final _editorAnchor = GlobalKey();
+  final _packageAnchor = GlobalKey();
   final _demoAnchor = GlobalKey();
   KnowledgeImportAnalysis? _analysis;
   KnowledgeAnalysisPresentation? _presentation;
   KnowledgeDemoDocument? _loadedDemo;
+  CompanyKnowledgePackage? _loadedPackage;
   _WorkspaceImportSuccess? _importSuccess;
   bool _importing = false;
   bool _importFailed = false;
@@ -95,11 +101,19 @@ class _KnowledgeBuilderScreenState extends State<KnowledgeBuilderScreen>
     final text = _input.text.trim();
     if (text.isEmpty) return;
     final workspace = AppState.of(context).selectedWorkspace;
-    final analysis = _analyzer.analyze(
+    final rawAnalysis = _analyzer.analyze(
       text,
       existingEntries: workspace.knowledgeEntries,
       workspace: workspace,
     );
+    final package = _loadedPackage;
+    final analysis = package == null
+        ? rawAnalysis
+        : const KnowledgePackageAnalysisEnricher().enrich(
+            analysis: rawAnalysis,
+            package: package,
+            languageCode: Localizations.localeOf(context).languageCode,
+          );
     _journey.stop();
     _journey.value = 0;
     setState(() {
@@ -126,8 +140,46 @@ class _KnowledgeBuilderScreenState extends State<KnowledgeBuilderScreen>
       text: content,
       selection: TextSelection.collapsed(offset: content.length),
     );
-    setState(() => _loadedDemo = document);
+    setState(() {
+      _loadedDemo = document;
+      _loadedPackage = null;
+    });
 
+    _scrollToEditor();
+  }
+
+  void _scrollToPackageNotice() {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      final target = _packageAnchor.currentContext;
+      if (!mounted || target == null) return;
+      final reduceMotion = MediaQuery.of(context).disableAnimations;
+      Scrollable.ensureVisible(
+        target,
+        duration: reduceMotion
+            ? Duration.zero
+            : const Duration(milliseconds: 500),
+        curve: Curves.easeInOutCubic,
+        alignment: 0.08,
+      );
+    });
+  }
+
+  void _loadPackage(CompanyKnowledgePackage package) {
+    final languageCode = Localizations.localeOf(context).languageCode;
+    final content = package.editorContent(languageCode);
+    _input.value = TextEditingValue(
+      text: content,
+      selection: TextSelection.collapsed(offset: content.length),
+    );
+    setState(() {
+      _loadedPackage = package;
+      _loadedDemo = null;
+    });
+
+    _scrollToPackageNotice();
+  }
+
+  void _scrollToEditor() {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       final target = _editorAnchor.currentContext;
       if (!mounted || target == null) return;
@@ -208,7 +260,8 @@ class _KnowledgeBuilderScreenState extends State<KnowledgeBuilderScreen>
           newFaq: presentation.faqCount,
           newProductFeatures: presentation.productFeatureCount,
           newRequirements: presentation.requirementCount,
-          documents: state.sourceMaterials.length,
+          documents:
+              _loadedPackage?.documents.length ?? state.sourceMaterials.length,
           knowledgeEntries: entriesNow.length,
           faqEntries: entriesNow
               .where((entry) => entry.category == KnowledgeCategory.faq)
@@ -235,6 +288,7 @@ class _KnowledgeBuilderScreenState extends State<KnowledgeBuilderScreen>
       _stage = 0;
       _hasRevealedDemo = false;
       _loadedDemo = null;
+      _loadedPackage = null;
       _importSuccess = null;
       _importing = false;
       _importFailed = false;
@@ -293,7 +347,12 @@ class _KnowledgeBuilderScreenState extends State<KnowledgeBuilderScreen>
                   _TrustNotice(),
                   const SizedBox(height: 16),
                   if (analysis == null) ...[
-                    _DemoDocumentsSection(onLoad: _loadDemo),
+                    _DemoDocumentsSection(
+                      onLoad: _loadDemo,
+                      onLoadPackage: _loadPackage,
+                      loadedPackage: _loadedPackage,
+                      packageAnchor: _packageAnchor,
+                    ),
                     const SizedBox(height: 16),
                     if (_loadedDemo case final loaded?) ...[
                       _LoadedDemoNotice(document: loaded),
@@ -795,9 +854,17 @@ class _SuccessDialogActions extends StatelessWidget {
 }
 
 class _DemoDocumentsSection extends StatelessWidget {
-  const _DemoDocumentsSection({required this.onLoad});
+  const _DemoDocumentsSection({
+    required this.onLoad,
+    required this.onLoadPackage,
+    required this.loadedPackage,
+    required this.packageAnchor,
+  });
 
   final ValueChanged<KnowledgeDemoDocument> onLoad;
+  final ValueChanged<CompanyKnowledgePackage> onLoadPackage;
+  final CompanyKnowledgePackage? loadedPackage;
+  final GlobalKey packageAnchor;
 
   @override
   Widget build(BuildContext context) {
@@ -841,6 +908,18 @@ class _DemoDocumentsSection extends StatelessWidget {
               color: theme.colorScheme.onSurfaceVariant,
             ),
           ),
+          const SizedBox(height: 14),
+          KnowledgePackageDemoCard(
+            package: hbCureKnowledgePackage,
+            onLoad: () => onLoadPackage(hbCureKnowledgePackage),
+          ),
+          if (loadedPackage case final loaded?) ...[
+            const SizedBox(height: 14),
+            KeyedSubtree(
+              key: packageAnchor,
+              child: LoadedKnowledgePackageNotice(package: loaded),
+            ),
+          ],
           const SizedBox(height: 14),
           LayoutBuilder(
             builder: (context, constraints) {
@@ -2392,6 +2471,10 @@ class _DraftCardState extends State<_DraftCard> {
             ],
             const SizedBox(height: 10),
             _OriginBlock(sourceSentence: draft.sourceSentence),
+            if (draft.packageMetadata case final metadata?) ...[
+              const SizedBox(height: 10),
+              KnowledgePackageDraftMetadata(metadata: metadata),
+            ],
             if (draft.keywords.isNotEmpty) ...[
               const SizedBox(height: 10),
               Text(

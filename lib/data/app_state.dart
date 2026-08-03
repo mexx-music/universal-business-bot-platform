@@ -209,7 +209,7 @@ class AppState extends ChangeNotifier {
   CompanyWorkspace get groundedAnswerWorkspace {
     final confirmed = selectedKnowledgeEntries
         .where(
-          (entry) => entry.source == KnowledgeEntrySources.knowledgeBuilder,
+          (entry) => KnowledgeEntrySources.isKnowledgeBuilder(entry.source),
         )
         .toList(growable: false);
     if (confirmed.isEmpty) return selectedWorkspace;

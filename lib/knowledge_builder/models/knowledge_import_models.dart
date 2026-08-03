@@ -5,6 +5,8 @@
 // titles, questions and keywords are generated (explicitly allowed), and
 // duplicates/existing matches are detected, never merged automatically.
 
+import 'company_knowledge_package.dart';
+
 /// The category a detected statement most likely belongs to.
 enum KnowledgeDraftCategory {
   faq,
@@ -58,6 +60,7 @@ class KnowledgeImportDraft {
     this.languageCode,
     this.knowledgeArea,
     this.detectedTopics = const [],
+    this.packageMetadata,
     this.existingMatch,
     this.isPossibleDuplicate = false,
   });
@@ -91,6 +94,11 @@ class KnowledgeImportDraft {
 
   /// Topics recognized in the source text and shown in the preview.
   final List<String> detectedTopics;
+
+  /// Present only when this draft came from a prepared multi-document package.
+  /// The analyzer still derives the draft from the raw sentence; this metadata
+  /// only preserves source, review and freshness context for human review.
+  final KnowledgePackageDocumentMetadata? packageMetadata;
 
   /// Set when a similar entry already exists — the human decides how to merge.
   final KnowledgeImportMatch? existingMatch;

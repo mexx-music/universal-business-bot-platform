@@ -4484,6 +4484,76 @@ class AppLocalizationsEn extends AppLocalizations {
   String get kbExampleReady => 'Ready to analyze.';
 
   @override
+  String get kbPackageBadge => 'Comprehensive primary example';
+
+  @override
+  String get kbPackageLoad => 'Load all HB Cure knowledge';
+
+  @override
+  String get kbPackageLoaded => 'HB Cure knowledge package loaded';
+
+  @override
+  String get kbPackageNotAnalyzed =>
+      'The source documents were only loaded into the editor. Nothing has been analyzed or saved yet.';
+
+  @override
+  String get kbPackageIncludedAreas => 'Included areas';
+
+  @override
+  String get kbPackageDocuments => 'Source documents';
+
+  @override
+  String get kbPackageLanguage => 'Language';
+
+  @override
+  String get kbPackageAreas => 'Knowledge areas';
+
+  @override
+  String get kbPackageTimeSensitive => 'Time-sensitive content';
+
+  @override
+  String get kbPackageReviewRequired => 'Statements requiring review';
+
+  @override
+  String get kbPackageSourcesTitle => 'View content and source provenance';
+
+  @override
+  String get kbPackageSourcesHint =>
+      'Website data and internal project documentation remain clearly separated.';
+
+  @override
+  String get kbPackageSourceLabel => 'Source';
+
+  @override
+  String get kbPackageSourceTypeLabel => 'Source type';
+
+  @override
+  String get kbPackageDataStatusLabel => 'Data status';
+
+  @override
+  String get kbPackageLastCheckedLabel => 'Last checked';
+
+  @override
+  String get kbPackageRiskReview => 'Legal or professional review required';
+
+  @override
+  String get kbPackageRiskImpact =>
+      'Impact-related statement – review before publication';
+
+  @override
+  String get kbPackageRiskTestimonial =>
+      'Testimonial – do not use as a general factual claim';
+
+  @override
+  String get kbPackageTimeSensitiveBadge => 'Time-sensitive';
+
+  @override
+  String get kbPackageReviewRecommendedLabel => 'Recheck';
+
+  @override
+  String get kbPackageReviewRecommended => 'Recommended before publication';
+
+  @override
   String get kbAnalyzeReady => 'Document ready';
 
   @override
