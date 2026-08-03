@@ -4451,6 +4451,40 @@ class AppLocalizationsEn extends AppLocalizations {
   String get kbAnalyze => 'Analyze knowledge';
 
   @override
+  String get kbDemoDocumentsTitle => 'Demo documents';
+
+  @override
+  String get kbDemoDocumentsIntro =>
+      'You can paste your own document or load one of the prepared example documents.';
+
+  @override
+  String get kbLoadExample => 'Load example';
+
+  @override
+  String get kbExampleLoaded => 'Example document loaded';
+
+  @override
+  String get kbExampleLanguage => 'Language';
+
+  @override
+  String get kbExampleArea => 'Knowledge area';
+
+  @override
+  String get kbExampleDocumentType => 'Document type';
+
+  @override
+  String get kbExampleReady => 'Ready to analyze.';
+
+  @override
+  String get kbAnalyzeReady => 'Document ready';
+
+  @override
+  String get kbAnalyzeEmptyHint => 'Paste a document or load an example';
+
+  @override
+  String get kbCharacters => 'characters';
+
+  @override
   String get kbAnalyzing => 'Analyzing …';
 
   @override

@@ -106,6 +106,127 @@ Future<void> analyze(WidgetTester tester, String text) async {
 }
 
 void main() {
+  testWidgets('shows four prepared demo documents', (tester) async {
+    await pumpScreen(tester);
+    final l = l10n(tester);
+
+    expect(find.text(l.kbDemoDocumentsTitle), findsOneWidget);
+    expect(
+      find.byKey(const Key('kb-demo-document-hb-cure-app')),
+      findsOneWidget,
+    );
+    expect(find.byKey(const Key('kb-demo-document-curebase')), findsOneWidget);
+    expect(
+      find.byKey(const Key('kb-demo-document-schnurrpurr')),
+      findsOneWidget,
+    );
+    expect(
+      find.byKey(const Key('kb-demo-document-support-faq')),
+      findsOneWidget,
+    );
+    expect(find.byKey(const Key('kb-analyze-action-bar')), findsOneWidget);
+  });
+
+  testWidgets('loads an editable example without analyzing or saving', (
+    tester,
+  ) async {
+    final state = AppState();
+    final before = state.selectedWorkspace.knowledgeEntries.length;
+    await pumpScreen(tester, state: state);
+    final l = l10n(tester);
+    final load = find.byKey(const Key('kb-load-demo-hb-cure-app'));
+
+    await tester.tap(load);
+    await tester.pumpAndSettle();
+
+    final input = tester.widget<TextField>(find.byKey(const Key('kb-input')));
+    expect(input.controller!.text, contains('HB Cure App'));
+    expect(input.controller!.text, contains('Bluetooth'));
+    expect(find.byKey(const Key('kb-loaded-demo-notice')), findsOneWidget);
+    expect(find.text(l.kbExampleLoaded), findsOneWidget);
+    expect(find.text('HB Cure App'), findsWidgets);
+    expect(find.text('Bedienungsanleitung'), findsWidgets);
+    expect(find.byKey(const Key('kb-analysis-summary')), findsNothing);
+    expect(find.byKey(const Key('kb-phase-recognize')), findsNothing);
+    expect(state.selectedWorkspace.knowledgeEntries.length, before);
+
+    await tester.enterText(
+      find.byKey(const Key('kb-input')),
+      '${input.controller!.text}\nEigene Ergänzung.',
+    );
+    await tester.pump();
+
+    expect(
+      tester
+          .widget<TextField>(find.byKey(const Key('kb-input')))
+          .controller!
+          .text,
+      endsWith('Eigene Ergänzung.'),
+    );
+    expect(find.byKey(const Key('kb-loaded-demo-notice')), findsNothing);
+    expect(state.selectedWorkspace.knowledgeEntries.length, before);
+  });
+
+  testWidgets('loads English example content for an English interface', (
+    tester,
+  ) async {
+    await pumpScreen(tester, locale: const Locale('en'));
+    final load = find.byKey(const Key('kb-load-demo-curebase'));
+
+    await tester.tap(load);
+    await tester.pumpAndSettle();
+
+    final input = tester.widget<TextField>(find.byKey(const Key('kb-input')));
+    expect(input.controller!.text, contains('CureBase – Device description'));
+    expect(
+      input.controller!.text,
+      contains('The battery must be fully charged'),
+    );
+    expect(find.text('Device description'), findsWidgets);
+    expect(find.textContaining('English'), findsOneWidget);
+  });
+
+  testWidgets('loaded example enters the existing analysis flow in one click', (
+    tester,
+  ) async {
+    final state = AppState();
+    final before = state.selectedWorkspace.knowledgeEntries.length;
+    await pumpScreen(tester, state: state);
+
+    await tester.tap(find.byKey(const Key('kb-load-demo-support-faq')));
+    await tester.pumpAndSettle();
+    await tester.tap(find.byKey(const Key('kb-analyze-action')));
+    await tester.pumpAndSettle();
+
+    expect(find.byKey(const Key('kb-analysis-summary')), findsOneWidget);
+    expect(find.byKey(const Key('kb-draft-preview')), findsOneWidget);
+    expect(find.byKey(const Key('kb-analyze-action-bar')), findsNothing);
+    expect(state.selectedWorkspace.knowledgeEntries.length, before);
+  });
+
+  testWidgets('keeps the analyze action visible with a long mobile document', (
+    tester,
+  ) async {
+    await pumpScreen(tester, size: const Size(360, 800));
+    final input = find.byKey(const Key('kb-input'));
+    await tester.ensureVisible(input);
+    await tester.enterText(
+      input,
+      List.filled(
+        80,
+        'Dies ist eine längere dokumentierte Aussage.',
+      ).join('\n'),
+    );
+    await tester.pump();
+
+    final action = find.byKey(const Key('kb-analyze-action'));
+    final actionRect = tester.getRect(action);
+    expect(action.hitTestable(), findsOneWidget);
+    expect(actionRect.top, greaterThanOrEqualTo(0));
+    expect(actionRect.bottom, lessThanOrEqualTo(800));
+    expect(tester.takeException(), isNull);
+  });
+
   testWidgets('analyzes real free text and shows stats + drafts', (
     tester,
   ) async {
@@ -144,6 +265,7 @@ void main() {
     final l = l10n(tester);
 
     await tester.enterText(find.byKey(const Key('kb-input')), 'Text');
+    await tester.pump();
     await tester.tap(find.byIcon(Icons.insights));
     await tester.pump();
 

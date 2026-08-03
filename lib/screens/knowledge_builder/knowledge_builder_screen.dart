@@ -4,6 +4,7 @@ import '../../data/app_state.dart';
 import '../../knowledge/knowledge_context.dart';
 import '../../knowledge_builder/knowledge_import_analyzer.dart';
 import '../../knowledge_builder/models/knowledge_analysis_presentation.dart';
+import '../../knowledge_builder/models/knowledge_demo_document.dart';
 import '../../knowledge_builder/models/knowledge_import_models.dart';
 import '../../l10n/app_localizations.dart';
 import '../../l10n/label_helpers.dart';
@@ -27,9 +28,11 @@ class _KnowledgeBuilderScreenState extends State<KnowledgeBuilderScreen>
   static const _journeyDuration = Duration(milliseconds: 2400);
 
   final _input = TextEditingController();
+  final _editorAnchor = GlobalKey();
   final _demoAnchor = GlobalKey();
   KnowledgeImportAnalysis? _analysis;
   KnowledgeAnalysisPresentation? _presentation;
+  KnowledgeDemoDocument? _loadedDemo;
   late final AnimationController _journey;
   int _stage = 0;
   bool _hasRevealedDemo = false;
@@ -107,6 +110,34 @@ class _KnowledgeBuilderScreenState extends State<KnowledgeBuilderScreen>
     }
   }
 
+  void _loadDemo(KnowledgeDemoDocument document) {
+    final languageCode = Localizations.localeOf(context).languageCode;
+    final content = document.content(languageCode);
+    _input.value = TextEditingValue(
+      text: content,
+      selection: TextSelection.collapsed(offset: content.length),
+    );
+    setState(() => _loadedDemo = document);
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      final target = _editorAnchor.currentContext;
+      if (!mounted || target == null) return;
+      final reduceMotion = MediaQuery.of(context).disableAnimations;
+      Scrollable.ensureVisible(
+        target,
+        duration: reduceMotion
+            ? Duration.zero
+            : const Duration(milliseconds: 500),
+        curve: Curves.easeInOutCubic,
+        alignment: 0.2,
+      );
+    });
+  }
+
+  void _onInputChanged(String _) {
+    setState(() => _loadedDemo = null);
+  }
+
   void _reset() {
     _journey.stop();
     _journey.value = 0;
@@ -115,6 +146,7 @@ class _KnowledgeBuilderScreenState extends State<KnowledgeBuilderScreen>
       _presentation = null;
       _stage = 0;
       _hasRevealedDemo = false;
+      _loadedDemo = null;
       _input.clear();
     });
   }
@@ -126,6 +158,13 @@ class _KnowledgeBuilderScreenState extends State<KnowledgeBuilderScreen>
     final analysis = _analysis;
 
     return Scaffold(
+      bottomNavigationBar: analysis == null
+          ? _AnalyzeActionBar(
+              canAnalyze: _input.text.trim().isNotEmpty,
+              characterCount: _input.text.length,
+              onAnalyze: _analyze,
+            )
+          : null,
       body: SafeArea(
         child: SingleChildScrollView(
           padding: const EdgeInsets.all(16),
@@ -163,23 +202,28 @@ class _KnowledgeBuilderScreenState extends State<KnowledgeBuilderScreen>
                   _TrustNotice(),
                   const SizedBox(height: 16),
                   if (analysis == null) ...[
-                    TextField(
-                      key: const Key('kb-input'),
-                      controller: _input,
-                      minLines: 6,
-                      maxLines: 14,
-                      decoration: InputDecoration(
-                        labelText: l.kbInputHint,
-                        alignLabelWithHint: true,
-                        border: const OutlineInputBorder(),
+                    _DemoDocumentsSection(onLoad: _loadDemo),
+                    const SizedBox(height: 16),
+                    if (_loadedDemo case final loaded?) ...[
+                      _LoadedDemoNotice(document: loaded),
+                      const SizedBox(height: 12),
+                    ],
+                    KeyedSubtree(
+                      key: _editorAnchor,
+                      child: TextField(
+                        key: const Key('kb-input'),
+                        controller: _input,
+                        onChanged: _onInputChanged,
+                        minLines: 6,
+                        maxLines: 14,
+                        decoration: InputDecoration(
+                          labelText: l.kbInputHint,
+                          alignLabelWithHint: true,
+                          border: const OutlineInputBorder(),
+                        ),
                       ),
                     ),
-                    const SizedBox(height: 12),
-                    FilledButton.icon(
-                      onPressed: _analyze,
-                      icon: const Icon(Icons.insights, size: 18),
-                      label: Text(l.kbAnalyze),
-                    ),
+                    const SizedBox(height: 16),
                   ] else ...[
                     _AnalysisJourney(
                       presentation: _presentation!,
@@ -192,6 +236,345 @@ class _KnowledgeBuilderScreenState extends State<KnowledgeBuilderScreen>
                   ],
                 ],
               ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _DemoDocumentsSection extends StatelessWidget {
+  const _DemoDocumentsSection({required this.onLoad});
+
+  final ValueChanged<KnowledgeDemoDocument> onLoad;
+
+  @override
+  Widget build(BuildContext context) {
+    final l = AppLocalizations.of(context)!;
+    final theme = Theme.of(context);
+    final languageCode = Localizations.localeOf(context).languageCode;
+
+    return Container(
+      key: const Key('kb-demo-documents'),
+      width: double.infinity,
+      padding: const EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        color: theme.colorScheme.surfaceContainerLow,
+        borderRadius: BorderRadius.circular(16),
+        border: Border.all(color: theme.colorScheme.outlineVariant),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              Icon(
+                Icons.folder_copy_outlined,
+                color: theme.colorScheme.primary,
+              ),
+              const SizedBox(width: 10),
+              Expanded(
+                child: Text(
+                  l.kbDemoDocumentsTitle,
+                  style: theme.textTheme.titleMedium?.copyWith(
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 6),
+          Text(
+            l.kbDemoDocumentsIntro,
+            style: theme.textTheme.bodyMedium?.copyWith(
+              color: theme.colorScheme.onSurfaceVariant,
+            ),
+          ),
+          const SizedBox(height: 14),
+          LayoutBuilder(
+            builder: (context, constraints) {
+              final columns = constraints.maxWidth >= 680 ? 2 : 1;
+              const spacing = 12.0;
+              final cardWidth =
+                  (constraints.maxWidth - spacing * (columns - 1)) / columns;
+              return Wrap(
+                spacing: spacing,
+                runSpacing: spacing,
+                children: [
+                  for (final document in knowledgeDemoDocuments)
+                    SizedBox(
+                      width: cardWidth,
+                      child: _DemoDocumentCard(
+                        document: document,
+                        languageCode: languageCode,
+                        onLoad: () => onLoad(document),
+                      ),
+                    ),
+                ],
+              );
+            },
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _DemoDocumentCard extends StatelessWidget {
+  const _DemoDocumentCard({
+    required this.document,
+    required this.languageCode,
+    required this.onLoad,
+  });
+
+  final KnowledgeDemoDocument document;
+  final String languageCode;
+  final VoidCallback onLoad;
+
+  IconData get _icon => switch (document.id) {
+    'hb-cure-app' => Icons.phone_android,
+    'curebase' => Icons.electric_bolt,
+    'schnurrpurr' => Icons.pets,
+    _ => Icons.quiz_outlined,
+  };
+
+  @override
+  Widget build(BuildContext context) {
+    final l = AppLocalizations.of(context)!;
+    final theme = Theme.of(context);
+    return Card(
+      key: Key('kb-demo-document-${document.id}'),
+      margin: EdgeInsets.zero,
+      color: theme.colorScheme.surface,
+      child: Padding(
+        padding: const EdgeInsets.all(14),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Container(
+              width: 40,
+              height: 40,
+              decoration: BoxDecoration(
+                color: theme.colorScheme.secondaryContainer,
+                borderRadius: BorderRadius.circular(11),
+              ),
+              child: Icon(
+                _icon,
+                size: 22,
+                color: theme.colorScheme.onSecondaryContainer,
+              ),
+            ),
+            const SizedBox(width: 12),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    document.title,
+                    style: theme.textTheme.titleSmall?.copyWith(
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  const SizedBox(height: 2),
+                  Text(
+                    document.documentType(languageCode),
+                    style: theme.textTheme.bodySmall?.copyWith(
+                      color: theme.colorScheme.onSurfaceVariant,
+                    ),
+                  ),
+                  const SizedBox(height: 10),
+                  OutlinedButton.icon(
+                    key: Key('kb-load-demo-${document.id}'),
+                    onPressed: onLoad,
+                    icon: const Icon(Icons.file_download_outlined, size: 18),
+                    label: Text(l.kbLoadExample),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class _LoadedDemoNotice extends StatelessWidget {
+  const _LoadedDemoNotice({required this.document});
+
+  final KnowledgeDemoDocument document;
+
+  @override
+  Widget build(BuildContext context) {
+    final l = AppLocalizations.of(context)!;
+    final theme = Theme.of(context);
+    final languageCode = Localizations.localeOf(context).languageCode;
+    final language = _languageLabel(l, languageCode);
+    return Container(
+      key: const Key('kb-loaded-demo-notice'),
+      width: double.infinity,
+      padding: const EdgeInsets.all(14),
+      decoration: BoxDecoration(
+        color: theme.colorScheme.primaryContainer,
+        borderRadius: BorderRadius.circular(14),
+        border: Border.all(color: theme.colorScheme.primary.withAlpha(90)),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              Icon(
+                Icons.check_circle,
+                size: 20,
+                color: theme.colorScheme.primary,
+              ),
+              const SizedBox(width: 8),
+              Expanded(
+                child: Text(
+                  l.kbExampleLoaded,
+                  style: theme.textTheme.titleSmall?.copyWith(
+                    fontWeight: FontWeight.bold,
+                    color: theme.colorScheme.onPrimaryContainer,
+                  ),
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 10),
+          Wrap(
+            spacing: 10,
+            runSpacing: 8,
+            children: [
+              _LoadedDemoFact(label: l.kbExampleLanguage, value: language),
+              _LoadedDemoFact(label: l.kbExampleArea, value: document.area),
+              _LoadedDemoFact(
+                label: l.kbExampleDocumentType,
+                value: document.documentType(languageCode),
+              ),
+            ],
+          ),
+          const SizedBox(height: 10),
+          Text(
+            l.kbExampleReady,
+            style: theme.textTheme.bodySmall?.copyWith(
+              fontWeight: FontWeight.w600,
+              color: theme.colorScheme.onPrimaryContainer,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _LoadedDemoFact extends StatelessWidget {
+  const _LoadedDemoFact({required this.label, required this.value});
+
+  final String label;
+  final String value;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 7),
+      decoration: BoxDecoration(
+        color: theme.colorScheme.surface.withAlpha(190),
+        borderRadius: BorderRadius.circular(9),
+      ),
+      child: Text.rich(
+        TextSpan(
+          children: [
+            TextSpan(
+              text: '$label: ',
+              style: const TextStyle(fontWeight: FontWeight.w600),
+            ),
+            TextSpan(text: value),
+          ],
+        ),
+        style: theme.textTheme.bodySmall,
+      ),
+    );
+  }
+}
+
+class _AnalyzeActionBar extends StatelessWidget {
+  const _AnalyzeActionBar({
+    required this.canAnalyze,
+    required this.characterCount,
+    required this.onAnalyze,
+  });
+
+  final bool canAnalyze;
+  final int characterCount;
+  final VoidCallback onAnalyze;
+
+  @override
+  Widget build(BuildContext context) {
+    final l = AppLocalizations.of(context)!;
+    final theme = Theme.of(context);
+    return Material(
+      key: const Key('kb-analyze-action-bar'),
+      color: theme.colorScheme.surface,
+      elevation: 8,
+      shadowColor: theme.colorScheme.shadow.withAlpha(70),
+      child: SafeArea(
+        top: false,
+        minimum: const EdgeInsets.fromLTRB(16, 10, 16, 10),
+        child: Center(
+          heightFactor: 1,
+          child: ConstrainedBox(
+            constraints: const BoxConstraints(maxWidth: 1000),
+            child: LayoutBuilder(
+              builder: (context, constraints) {
+                final button = FilledButton.icon(
+                  key: const Key('kb-analyze-action'),
+                  onPressed: canAnalyze ? onAnalyze : null,
+                  icon: const Icon(Icons.insights, size: 18),
+                  label: Text(l.kbAnalyze),
+                );
+                final status = Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      canAnalyze ? l.kbAnalyzeReady : l.kbAnalyzeEmptyHint,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: theme.textTheme.labelLarge?.copyWith(
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                    if (canAnalyze)
+                      Text(
+                        '$characterCount ${l.kbCharacters}',
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style: theme.textTheme.bodySmall?.copyWith(
+                          color: theme.colorScheme.onSurfaceVariant,
+                        ),
+                      ),
+                  ],
+                );
+
+                if (constraints.maxWidth < 520) {
+                  return Column(
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [status, const SizedBox(height: 8), button],
+                  );
+                }
+
+                return Row(
+                  children: [
+                    Expanded(child: status),
+                    const SizedBox(width: 12),
+                    button,
+                  ],
+                );
+              },
             ),
           ),
         ),

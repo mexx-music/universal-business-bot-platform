@@ -4483,6 +4483,40 @@ class AppLocalizationsDe extends AppLocalizations {
   String get kbAnalyze => 'Wissen analysieren';
 
   @override
+  String get kbDemoDocumentsTitle => 'Demo-Dokumente';
+
+  @override
+  String get kbDemoDocumentsIntro =>
+      'Sie können ein eigenes Dokument einfügen oder eines der vorbereiteten Beispieldokumente laden.';
+
+  @override
+  String get kbLoadExample => 'Beispiel laden';
+
+  @override
+  String get kbExampleLoaded => 'Beispieldokument geladen';
+
+  @override
+  String get kbExampleLanguage => 'Sprache';
+
+  @override
+  String get kbExampleArea => 'Wissensbereich';
+
+  @override
+  String get kbExampleDocumentType => 'Dokumenttyp';
+
+  @override
+  String get kbExampleReady => 'Bereit zur Analyse.';
+
+  @override
+  String get kbAnalyzeReady => 'Dokument bereit';
+
+  @override
+  String get kbAnalyzeEmptyHint => 'Dokument einfügen oder Beispiel laden';
+
+  @override
+  String get kbCharacters => 'Zeichen';
+
+  @override
   String get kbAnalyzing => 'Analysiere …';
 
   @override

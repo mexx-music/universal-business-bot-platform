@@ -8156,6 +8156,72 @@ abstract class AppLocalizations {
   /// **'Wissen analysieren'**
   String get kbAnalyze;
 
+  /// No description provided for @kbDemoDocumentsTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Demo-Dokumente'**
+  String get kbDemoDocumentsTitle;
+
+  /// No description provided for @kbDemoDocumentsIntro.
+  ///
+  /// In de, this message translates to:
+  /// **'Sie können ein eigenes Dokument einfügen oder eines der vorbereiteten Beispieldokumente laden.'**
+  String get kbDemoDocumentsIntro;
+
+  /// No description provided for @kbLoadExample.
+  ///
+  /// In de, this message translates to:
+  /// **'Beispiel laden'**
+  String get kbLoadExample;
+
+  /// No description provided for @kbExampleLoaded.
+  ///
+  /// In de, this message translates to:
+  /// **'Beispieldokument geladen'**
+  String get kbExampleLoaded;
+
+  /// No description provided for @kbExampleLanguage.
+  ///
+  /// In de, this message translates to:
+  /// **'Sprache'**
+  String get kbExampleLanguage;
+
+  /// No description provided for @kbExampleArea.
+  ///
+  /// In de, this message translates to:
+  /// **'Wissensbereich'**
+  String get kbExampleArea;
+
+  /// No description provided for @kbExampleDocumentType.
+  ///
+  /// In de, this message translates to:
+  /// **'Dokumenttyp'**
+  String get kbExampleDocumentType;
+
+  /// No description provided for @kbExampleReady.
+  ///
+  /// In de, this message translates to:
+  /// **'Bereit zur Analyse.'**
+  String get kbExampleReady;
+
+  /// No description provided for @kbAnalyzeReady.
+  ///
+  /// In de, this message translates to:
+  /// **'Dokument bereit'**
+  String get kbAnalyzeReady;
+
+  /// No description provided for @kbAnalyzeEmptyHint.
+  ///
+  /// In de, this message translates to:
+  /// **'Dokument einfügen oder Beispiel laden'**
+  String get kbAnalyzeEmptyHint;
+
+  /// No description provided for @kbCharacters.
+  ///
+  /// In de, this message translates to:
+  /// **'Zeichen'**
+  String get kbCharacters;
+
   /// No description provided for @kbAnalyzing.
   ///
   /// In de, this message translates to:
