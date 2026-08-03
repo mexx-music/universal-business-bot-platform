@@ -4172,6 +4172,14 @@ class AppLocalizationsDe extends AppLocalizations {
       'Die KI antwortet ausschließlich auf Basis der freigegebenen Unternehmens-Wissensbasis. Quellen bleiben sichtbar; nichts wird veröffentlicht.';
 
   @override
+  String get botDemoRecentImportTitle =>
+      'Dieses Dokument wurde gerade in die Wissensbasis übernommen.';
+
+  @override
+  String get botDemoRecentImportBody =>
+      'Sie können BusinessBrain jetzt Fragen zu diesem Dokument stellen.';
+
+  @override
   String get botDemoQuestionHint => 'Ihre Unternehmensfrage';
 
   @override
@@ -4812,6 +4820,73 @@ class AppLocalizationsDe extends AppLocalizations {
   @override
   String get kbImportError =>
       'Die Wissenseinträge konnten nicht vollständig übernommen werden. Bitte versuchen Sie es erneut.';
+
+  @override
+  String get kbSuccessDialogTitle => 'Unternehmenswissen erfolgreich erweitert';
+
+  @override
+  String get kbSuccessDialogBody =>
+      'BusinessBrain hat die vorgeschlagenen Wissenseinträge übernommen.';
+
+  @override
+  String get kbSuccessBefore => 'Vorher';
+
+  @override
+  String get kbSuccessNow => 'Jetzt';
+
+  @override
+  String get kbSuccessImported => 'Übernommene Einträge';
+
+  @override
+  String kbSuccessEntryValue(int count) {
+    return '$count Wissenseinträge';
+  }
+
+  @override
+  String get kbSuccessNewFaq => 'Neue FAQ';
+
+  @override
+  String get kbSuccessNewProductFeatures => 'Neue Produktfunktionen';
+
+  @override
+  String get kbSuccessNewRequirements => 'Neue technische Voraussetzungen';
+
+  @override
+  String get kbSuccessWorkspaceTitle => 'Unternehmenswissen';
+
+  @override
+  String get kbSuccessDocuments => 'Dokumente';
+
+  @override
+  String get kbSuccessKnowledgeEntries => 'Wissenseinträge';
+
+  @override
+  String get kbSuccessFaq => 'FAQ';
+
+  @override
+  String get kbSuccessKeywords => 'Schlagwörter';
+
+  @override
+  String get kbSuccessGroundedReady =>
+      'Das neue Wissen steht jetzt für Grounded Answers zur Verfügung.';
+
+  @override
+  String get kbSuccessAddDocument => 'Weiteres Dokument hinzufügen';
+
+  @override
+  String get kbSuccessAskNow => 'BusinessBrain jetzt befragen';
+
+  @override
+  String get kbCycleDocument => 'Dokument';
+
+  @override
+  String get kbCycleStructured => 'Strukturiert';
+
+  @override
+  String get kbCycleAccepted => 'Übernommen';
+
+  @override
+  String get kbCycleAnswerable => 'Ab jetzt beantwortbar';
 
   @override
   String get navRolePortals => 'Portale';

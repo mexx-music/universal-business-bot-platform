@@ -1585,6 +1585,8 @@
 
   "botDemoTitle": "Wissensbasierte KI-Antwort",
   "botDemoIntro": "Die KI antwortet ausschließlich auf Basis der freigegebenen Unternehmens-Wissensbasis. Quellen bleiben sichtbar; nichts wird veröffentlicht.",
+  "botDemoRecentImportTitle": "Dieses Dokument wurde gerade in die Wissensbasis übernommen.",
+  "botDemoRecentImportBody": "Sie können BusinessBrain jetzt Fragen zu diesem Dokument stellen.",
   "botDemoQuestionHint": "Ihre Unternehmensfrage",
   "botDemoSubmit": "Antwort erstellen",
   "botDemoLoading": "Antwort wird erstellt …",
@@ -1801,6 +1803,32 @@
   },
   "kbImportGroundedReady": "Grounded AI verwendet jetzt dieses Unternehmenswissen.",
   "kbImportError": "Die Wissenseinträge konnten nicht vollständig übernommen werden. Bitte versuchen Sie es erneut.",
+  "kbSuccessDialogTitle": "Unternehmenswissen erfolgreich erweitert",
+  "kbSuccessDialogBody": "BusinessBrain hat die vorgeschlagenen Wissenseinträge übernommen.",
+  "kbSuccessBefore": "Vorher",
+  "kbSuccessNow": "Jetzt",
+  "kbSuccessImported": "Übernommene Einträge",
+  "kbSuccessEntryValue": "{count} Wissenseinträge",
+  "@kbSuccessEntryValue": {
+    "placeholders": {
+      "count": { "type": "int" }
+    }
+  },
+  "kbSuccessNewFaq": "Neue FAQ",
+  "kbSuccessNewProductFeatures": "Neue Produktfunktionen",
+  "kbSuccessNewRequirements": "Neue technische Voraussetzungen",
+  "kbSuccessWorkspaceTitle": "Unternehmenswissen",
+  "kbSuccessDocuments": "Dokumente",
+  "kbSuccessKnowledgeEntries": "Wissenseinträge",
+  "kbSuccessFaq": "FAQ",
+  "kbSuccessKeywords": "Schlagwörter",
+  "kbSuccessGroundedReady": "Das neue Wissen steht jetzt für Grounded Answers zur Verfügung.",
+  "kbSuccessAddDocument": "Weiteres Dokument hinzufügen",
+  "kbSuccessAskNow": "BusinessBrain jetzt befragen",
+  "kbCycleDocument": "Dokument",
+  "kbCycleStructured": "Strukturiert",
+  "kbCycleAccepted": "Übernommen",
+  "kbCycleAnswerable": "Ab jetzt beantwortbar",
 
   "navRolePortals": "Portale",
   "roleOverviewTitle": "Rollen & Portale",

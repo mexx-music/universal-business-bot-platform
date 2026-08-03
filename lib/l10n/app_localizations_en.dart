@@ -4143,6 +4143,14 @@ class AppLocalizationsEn extends AppLocalizations {
       'The AI answers only from the approved company knowledge base. Sources stay visible; nothing is published.';
 
   @override
+  String get botDemoRecentImportTitle =>
+      'This document was just added to the knowledge base.';
+
+  @override
+  String get botDemoRecentImportBody =>
+      'You can now ask BusinessBrain questions about this document.';
+
+  @override
   String get botDemoQuestionHint => 'Your company question';
 
   @override
@@ -4780,6 +4788,73 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get kbImportError =>
       'The knowledge entries could not be added completely. Please try again.';
+
+  @override
+  String get kbSuccessDialogTitle => 'Company knowledge successfully expanded';
+
+  @override
+  String get kbSuccessDialogBody =>
+      'BusinessBrain added the proposed knowledge entries.';
+
+  @override
+  String get kbSuccessBefore => 'Before';
+
+  @override
+  String get kbSuccessNow => 'Now';
+
+  @override
+  String get kbSuccessImported => 'Entries added';
+
+  @override
+  String kbSuccessEntryValue(int count) {
+    return '$count knowledge entries';
+  }
+
+  @override
+  String get kbSuccessNewFaq => 'New FAQ';
+
+  @override
+  String get kbSuccessNewProductFeatures => 'New product features';
+
+  @override
+  String get kbSuccessNewRequirements => 'New technical requirements';
+
+  @override
+  String get kbSuccessWorkspaceTitle => 'Company knowledge';
+
+  @override
+  String get kbSuccessDocuments => 'Documents';
+
+  @override
+  String get kbSuccessKnowledgeEntries => 'Knowledge entries';
+
+  @override
+  String get kbSuccessFaq => 'FAQ';
+
+  @override
+  String get kbSuccessKeywords => 'Keywords';
+
+  @override
+  String get kbSuccessGroundedReady =>
+      'The new knowledge is now available for grounded answers.';
+
+  @override
+  String get kbSuccessAddDocument => 'Add another document';
+
+  @override
+  String get kbSuccessAskNow => 'Ask BusinessBrain now';
+
+  @override
+  String get kbCycleDocument => 'Document';
+
+  @override
+  String get kbCycleStructured => 'Structured';
+
+  @override
+  String get kbCycleAccepted => 'Added';
+
+  @override
+  String get kbCycleAnswerable => 'Ready to answer';
 
   @override
   String get navRolePortals => 'Portals';

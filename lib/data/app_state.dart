@@ -110,6 +110,7 @@ class AppState extends ChangeNotifier {
   bool _isSavingWorkspace = false;
   String? _workspaceSaveError;
   int _workspaceMutationGeneration = 0;
+  String? _recentKnowledgeImportWorkspaceId;
 
   WorkspaceLoadStatus get workspaceLoadStatus => _workspaceLoadStatus;
   String? get workspaceLoadError => _workspaceLoadError;
@@ -216,6 +217,22 @@ class AppState extends ChangeNotifier {
       knowledgeEntries: confirmed,
       sourceMaterials: const [],
     );
+  }
+
+  /// Transient UX hand-off from Knowledge Builder to Grounded Answer. This is
+  /// deliberately not persisted and contains no business data.
+  bool get hasRecentKnowledgeImportForGroundedAnswer =>
+      _recentKnowledgeImportWorkspaceId == selectedCompanyId;
+
+  void markRecentKnowledgeImportForGroundedAnswer() {
+    _recentKnowledgeImportWorkspaceId = selectedCompanyId;
+    notifyListeners();
+  }
+
+  void consumeRecentKnowledgeImportForGroundedAnswer() {
+    if (!hasRecentKnowledgeImportForGroundedAnswer) return;
+    _recentKnowledgeImportWorkspaceId = null;
+    notifyListeners();
   }
 
   void selectCompany(String companyId) {

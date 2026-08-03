@@ -7568,6 +7568,18 @@ abstract class AppLocalizations {
   /// **'Die KI antwortet ausschließlich auf Basis der freigegebenen Unternehmens-Wissensbasis. Quellen bleiben sichtbar; nichts wird veröffentlicht.'**
   String get botDemoIntro;
 
+  /// No description provided for @botDemoRecentImportTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Dieses Dokument wurde gerade in die Wissensbasis übernommen.'**
+  String get botDemoRecentImportTitle;
+
+  /// No description provided for @botDemoRecentImportBody.
+  ///
+  /// In de, this message translates to:
+  /// **'Sie können BusinessBrain jetzt Fragen zu diesem Dokument stellen.'**
+  String get botDemoRecentImportBody;
+
   /// No description provided for @botDemoQuestionHint.
   ///
   /// In de, this message translates to:
@@ -8785,6 +8797,132 @@ abstract class AppLocalizations {
   /// In de, this message translates to:
   /// **'Die Wissenseinträge konnten nicht vollständig übernommen werden. Bitte versuchen Sie es erneut.'**
   String get kbImportError;
+
+  /// No description provided for @kbSuccessDialogTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Unternehmenswissen erfolgreich erweitert'**
+  String get kbSuccessDialogTitle;
+
+  /// No description provided for @kbSuccessDialogBody.
+  ///
+  /// In de, this message translates to:
+  /// **'BusinessBrain hat die vorgeschlagenen Wissenseinträge übernommen.'**
+  String get kbSuccessDialogBody;
+
+  /// No description provided for @kbSuccessBefore.
+  ///
+  /// In de, this message translates to:
+  /// **'Vorher'**
+  String get kbSuccessBefore;
+
+  /// No description provided for @kbSuccessNow.
+  ///
+  /// In de, this message translates to:
+  /// **'Jetzt'**
+  String get kbSuccessNow;
+
+  /// No description provided for @kbSuccessImported.
+  ///
+  /// In de, this message translates to:
+  /// **'Übernommene Einträge'**
+  String get kbSuccessImported;
+
+  /// No description provided for @kbSuccessEntryValue.
+  ///
+  /// In de, this message translates to:
+  /// **'{count} Wissenseinträge'**
+  String kbSuccessEntryValue(int count);
+
+  /// No description provided for @kbSuccessNewFaq.
+  ///
+  /// In de, this message translates to:
+  /// **'Neue FAQ'**
+  String get kbSuccessNewFaq;
+
+  /// No description provided for @kbSuccessNewProductFeatures.
+  ///
+  /// In de, this message translates to:
+  /// **'Neue Produktfunktionen'**
+  String get kbSuccessNewProductFeatures;
+
+  /// No description provided for @kbSuccessNewRequirements.
+  ///
+  /// In de, this message translates to:
+  /// **'Neue technische Voraussetzungen'**
+  String get kbSuccessNewRequirements;
+
+  /// No description provided for @kbSuccessWorkspaceTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Unternehmenswissen'**
+  String get kbSuccessWorkspaceTitle;
+
+  /// No description provided for @kbSuccessDocuments.
+  ///
+  /// In de, this message translates to:
+  /// **'Dokumente'**
+  String get kbSuccessDocuments;
+
+  /// No description provided for @kbSuccessKnowledgeEntries.
+  ///
+  /// In de, this message translates to:
+  /// **'Wissenseinträge'**
+  String get kbSuccessKnowledgeEntries;
+
+  /// No description provided for @kbSuccessFaq.
+  ///
+  /// In de, this message translates to:
+  /// **'FAQ'**
+  String get kbSuccessFaq;
+
+  /// No description provided for @kbSuccessKeywords.
+  ///
+  /// In de, this message translates to:
+  /// **'Schlagwörter'**
+  String get kbSuccessKeywords;
+
+  /// No description provided for @kbSuccessGroundedReady.
+  ///
+  /// In de, this message translates to:
+  /// **'Das neue Wissen steht jetzt für Grounded Answers zur Verfügung.'**
+  String get kbSuccessGroundedReady;
+
+  /// No description provided for @kbSuccessAddDocument.
+  ///
+  /// In de, this message translates to:
+  /// **'Weiteres Dokument hinzufügen'**
+  String get kbSuccessAddDocument;
+
+  /// No description provided for @kbSuccessAskNow.
+  ///
+  /// In de, this message translates to:
+  /// **'BusinessBrain jetzt befragen'**
+  String get kbSuccessAskNow;
+
+  /// No description provided for @kbCycleDocument.
+  ///
+  /// In de, this message translates to:
+  /// **'Dokument'**
+  String get kbCycleDocument;
+
+  /// No description provided for @kbCycleStructured.
+  ///
+  /// In de, this message translates to:
+  /// **'Strukturiert'**
+  String get kbCycleStructured;
+
+  /// No description provided for @kbCycleAccepted.
+  ///
+  /// In de, this message translates to:
+  /// **'Übernommen'**
+  String get kbCycleAccepted;
+
+  /// No description provided for @kbCycleAnswerable.
+  ///
+  /// In de, this message translates to:
+  /// **'Ab jetzt beantwortbar'**
+  String get kbCycleAnswerable;
 
   /// No description provided for @navRolePortals.
   ///

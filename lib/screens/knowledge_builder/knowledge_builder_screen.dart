@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../data/app_state.dart';
 import '../../knowledge/knowledge_context.dart';
@@ -9,6 +10,7 @@ import '../../knowledge_builder/models/knowledge_demo_document.dart';
 import '../../knowledge_builder/models/knowledge_import_models.dart';
 import '../../l10n/app_localizations.dart';
 import '../../l10n/label_helpers.dart';
+import '../../models/knowledge_entry.dart';
 
 /// Knowledge Builder: paste unstructured company text, get a *preview* of
 /// structured knowledge drafts. Analysis is deterministic and offline (no
@@ -147,7 +149,13 @@ class _KnowledgeBuilderScreenState extends State<KnowledgeBuilderScreen>
 
   Future<void> _importAllDrafts() async {
     final analysis = _analysis;
-    if (analysis == null || analysis.drafts.isEmpty || _importing) return;
+    final presentation = _presentation;
+    if (analysis == null ||
+        presentation == null ||
+        analysis.drafts.isEmpty ||
+        _importing) {
+      return;
+    }
 
     final state = AppState.of(context);
     final before = state.knowledgeEntries.length;
@@ -168,17 +176,54 @@ class _KnowledgeBuilderScreenState extends State<KnowledgeBuilderScreen>
         .length;
     final complete =
         imported == entries.length && state.workspaceSaveError == null;
+    final success = complete
+        ? _WorkspaceImportSuccess(
+            imported: imported,
+            before: before,
+            after: state.knowledgeEntries.length,
+          )
+        : null;
     setState(() {
       _importing = false;
       _importFailed = !complete;
-      _importSuccess = complete
-          ? _WorkspaceImportSuccess(
-              imported: imported,
-              before: before,
-              after: state.knowledgeEntries.length,
-            )
-          : null;
+      _importSuccess = success;
     });
+    if (!complete || success == null) return;
+
+    state.markRecentKnowledgeImportForGroundedAnswer();
+    final entriesNow = state.knowledgeEntries;
+    final normalizedKeywords = <String>{
+      for (final entry in entriesNow)
+        for (final keyword in entry.keywords)
+          if (keyword.trim().isNotEmpty) keyword.trim().toLowerCase(),
+    };
+    final action = await showDialog<_PostImportAction>(
+      context: context,
+      barrierDismissible: false,
+      builder: (context) => _KnowledgeImportSuccessDialog(
+        data: _KnowledgeImportSuccessData(
+          before: success.before,
+          after: success.after,
+          imported: success.imported,
+          newFaq: presentation.faqCount,
+          newProductFeatures: presentation.productFeatureCount,
+          newRequirements: presentation.requirementCount,
+          documents: state.sourceMaterials.length,
+          knowledgeEntries: entriesNow.length,
+          faqEntries: entriesNow
+              .where((entry) => entry.category == KnowledgeCategory.faq)
+              .length,
+          keywords: normalizedKeywords.length,
+        ),
+      ),
+    );
+    if (!mounted || action == null) return;
+    switch (action) {
+      case _PostImportAction.addDocument:
+        _reset();
+      case _PostImportAction.askBusinessBrain:
+        context.go('/bot-test');
+    }
   }
 
   void _reset() {
@@ -304,6 +349,449 @@ class _WorkspaceImportSuccess {
   final int imported;
   final int before;
   final int after;
+}
+
+enum _PostImportAction { addDocument, askBusinessBrain }
+
+class _KnowledgeImportSuccessData {
+  const _KnowledgeImportSuccessData({
+    required this.before,
+    required this.after,
+    required this.imported,
+    required this.newFaq,
+    required this.newProductFeatures,
+    required this.newRequirements,
+    required this.documents,
+    required this.knowledgeEntries,
+    required this.faqEntries,
+    required this.keywords,
+  });
+
+  final int before;
+  final int after;
+  final int imported;
+  final int newFaq;
+  final int newProductFeatures;
+  final int newRequirements;
+  final int documents;
+  final int knowledgeEntries;
+  final int faqEntries;
+  final int keywords;
+}
+
+class _KnowledgeImportSuccessDialog extends StatelessWidget {
+  const _KnowledgeImportSuccessDialog({required this.data});
+
+  final _KnowledgeImportSuccessData data;
+
+  @override
+  Widget build(BuildContext context) {
+    final l = AppLocalizations.of(context)!;
+    final theme = Theme.of(context);
+    return Dialog(
+      key: const Key('kb-import-success-dialog'),
+      insetPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
+      child: ConstrainedBox(
+        constraints: const BoxConstraints(maxWidth: 720, maxHeight: 760),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Flexible(
+              child: SingleChildScrollView(
+                padding: const EdgeInsets.fromLTRB(24, 24, 24, 12),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Container(
+                          width: 48,
+                          height: 48,
+                          decoration: BoxDecoration(
+                            color: theme.colorScheme.tertiaryContainer,
+                            borderRadius: BorderRadius.circular(14),
+                          ),
+                          child: Icon(
+                            Icons.check_circle,
+                            color: theme.colorScheme.onTertiaryContainer,
+                            size: 30,
+                          ),
+                        ),
+                        const SizedBox(width: 14),
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                l.kbSuccessDialogTitle,
+                                style: theme.textTheme.headlineSmall?.copyWith(
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              const SizedBox(height: 5),
+                              Text(
+                                l.kbSuccessDialogBody,
+                                style: theme.textTheme.bodyMedium?.copyWith(
+                                  color: theme.colorScheme.onSurfaceVariant,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 20),
+                    _KnowledgeGrowthSummary(data: data),
+                    const SizedBox(height: 18),
+                    _LearningCycle(),
+                    const SizedBox(height: 18),
+                    Text(
+                      l.kbSuccessWorkspaceTitle,
+                      style: theme.textTheme.titleMedium?.copyWith(
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    const SizedBox(height: 10),
+                    _WorkspaceKnowledgeStats(data: data),
+                    const SizedBox(height: 14),
+                    Container(
+                      width: double.infinity,
+                      padding: const EdgeInsets.all(12),
+                      decoration: BoxDecoration(
+                        color: theme.colorScheme.primaryContainer,
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Icon(
+                            Icons.auto_awesome,
+                            size: 20,
+                            color: theme.colorScheme.onPrimaryContainer,
+                          ),
+                          const SizedBox(width: 9),
+                          Expanded(
+                            child: Text(
+                              l.kbSuccessGroundedReady,
+                              style: theme.textTheme.bodyMedium?.copyWith(
+                                color: theme.colorScheme.onPrimaryContainer,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(24, 10, 24, 24),
+              child: _SuccessDialogActions(),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class _KnowledgeGrowthSummary extends StatelessWidget {
+  const _KnowledgeGrowthSummary({required this.data});
+
+  final _KnowledgeImportSuccessData data;
+
+  @override
+  Widget build(BuildContext context) {
+    final l = AppLocalizations.of(context)!;
+    final theme = Theme.of(context);
+    final metrics = [
+      ('before', l.kbSuccessBefore, l.kbSuccessEntryValue(data.before)),
+      ('after', l.kbSuccessNow, l.kbSuccessEntryValue(data.after)),
+      ('imported', l.kbSuccessImported, '${data.imported}'),
+      ('faq', l.kbSuccessNewFaq, '${data.newFaq}'),
+      ('features', l.kbSuccessNewProductFeatures, '${data.newProductFeatures}'),
+      ('requirements', l.kbSuccessNewRequirements, '${data.newRequirements}'),
+    ];
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        final columns = constraints.maxWidth >= 600
+            ? 3
+            : constraints.maxWidth >= 380
+            ? 2
+            : 1;
+        const gap = 10.0;
+        final width = (constraints.maxWidth - gap * (columns - 1)) / columns;
+        return Wrap(
+          spacing: gap,
+          runSpacing: gap,
+          children: [
+            for (final metric in metrics)
+              SizedBox(
+                width: width,
+                child: Container(
+                  key: Key('kb-growth-${metric.$1}'),
+                  padding: const EdgeInsets.all(12),
+                  decoration: BoxDecoration(
+                    color: theme.colorScheme.surfaceContainerHigh,
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        metric.$2,
+                        style: theme.textTheme.labelMedium?.copyWith(
+                          color: theme.colorScheme.onSurfaceVariant,
+                        ),
+                      ),
+                      const SizedBox(height: 3),
+                      Text(
+                        metric.$3,
+                        style: theme.textTheme.titleMedium?.copyWith(
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+          ],
+        );
+      },
+    );
+  }
+}
+
+class _LearningCycle extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    final l = AppLocalizations.of(context)!;
+    final theme = Theme.of(context);
+    final steps = [
+      (Icons.description_outlined, l.kbCycleDocument),
+      (Icons.account_tree_outlined, l.kbCycleStructured),
+      (Icons.library_add_check_outlined, l.kbCycleAccepted),
+      (Icons.question_answer_outlined, l.kbCycleAnswerable),
+    ];
+    return Container(
+      key: const Key('kb-learning-cycle'),
+      width: double.infinity,
+      padding: const EdgeInsets.all(14),
+      decoration: BoxDecoration(
+        color: theme.colorScheme.secondaryContainer,
+        borderRadius: BorderRadius.circular(14),
+      ),
+      child: LayoutBuilder(
+        builder: (context, constraints) {
+          if (constraints.maxWidth < 500) {
+            return Column(
+              children: [
+                for (var index = 0; index < steps.length; index++) ...[
+                  _LearningCycleStep(
+                    icon: steps[index].$1,
+                    label: steps[index].$2,
+                  ),
+                  if (index != steps.length - 1)
+                    Icon(
+                      Icons.arrow_downward_rounded,
+                      size: 18,
+                      color: theme.colorScheme.onSecondaryContainer,
+                    ),
+                ],
+              ],
+            );
+          }
+          return Row(
+            children: [
+              for (var index = 0; index < steps.length; index++) ...[
+                Expanded(
+                  child: _LearningCycleStep(
+                    icon: steps[index].$1,
+                    label: steps[index].$2,
+                  ),
+                ),
+                if (index != steps.length - 1)
+                  Icon(
+                    Icons.arrow_forward_rounded,
+                    size: 18,
+                    color: theme.colorScheme.onSecondaryContainer,
+                  ),
+              ],
+            ],
+          );
+        },
+      ),
+    );
+  }
+}
+
+class _LearningCycleStep extends StatelessWidget {
+  const _LearningCycleStep({required this.icon, required this.label});
+
+  final IconData icon;
+  final String label;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 3),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Icon(icon, color: theme.colorScheme.onSecondaryContainer, size: 22),
+          const SizedBox(height: 4),
+          Text(
+            label,
+            textAlign: TextAlign.center,
+            style: theme.textTheme.labelMedium?.copyWith(
+              color: theme.colorScheme.onSecondaryContainer,
+              fontWeight: FontWeight.w600,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _WorkspaceKnowledgeStats extends StatelessWidget {
+  const _WorkspaceKnowledgeStats({required this.data});
+
+  final _KnowledgeImportSuccessData data;
+
+  @override
+  Widget build(BuildContext context) {
+    final l = AppLocalizations.of(context)!;
+    final stats = [
+      (
+        'documents',
+        Icons.description_outlined,
+        l.kbSuccessDocuments,
+        data.documents,
+      ),
+      (
+        'entries',
+        Icons.psychology_outlined,
+        l.kbSuccessKnowledgeEntries,
+        data.knowledgeEntries,
+      ),
+      ('faq', Icons.help_outline, l.kbSuccessFaq, data.faqEntries),
+      ('keywords', Icons.sell_outlined, l.kbSuccessKeywords, data.keywords),
+    ];
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        final width = (constraints.maxWidth - 10) / 2;
+        return Wrap(
+          spacing: 10,
+          runSpacing: 10,
+          children: [
+            for (final stat in stats)
+              SizedBox(
+                width: width,
+                child: _WorkspaceStat(
+                  key: Key('kb-workspace-stat-${stat.$1}'),
+                  icon: stat.$2,
+                  label: stat.$3,
+                  value: stat.$4,
+                ),
+              ),
+          ],
+        );
+      },
+    );
+  }
+}
+
+class _WorkspaceStat extends StatelessWidget {
+  const _WorkspaceStat({
+    super.key,
+    required this.icon,
+    required this.label,
+    required this.value,
+  });
+
+  final IconData icon;
+  final String label;
+  final int value;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    return Container(
+      padding: const EdgeInsets.all(11),
+      decoration: BoxDecoration(
+        border: Border.all(color: theme.colorScheme.outlineVariant),
+        borderRadius: BorderRadius.circular(12),
+      ),
+      child: Row(
+        children: [
+          Icon(icon, size: 20, color: theme.colorScheme.primary),
+          const SizedBox(width: 9),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  label,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: theme.textTheme.labelSmall,
+                ),
+                Text(
+                  '$value',
+                  style: theme.textTheme.titleMedium?.copyWith(
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _SuccessDialogActions extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    final l = AppLocalizations.of(context)!;
+    final addDocument = FilledButton.icon(
+      key: const Key('kb-success-add-document'),
+      onPressed: () => Navigator.of(context).pop(_PostImportAction.addDocument),
+      icon: const Icon(Icons.note_add_outlined),
+      label: Text(l.kbSuccessAddDocument),
+    );
+    final ask = FilledButton.icon(
+      key: const Key('kb-success-ask'),
+      onPressed: () =>
+          Navigator.of(context).pop(_PostImportAction.askBusinessBrain),
+      icon: const Icon(Icons.chat_bubble_outline),
+      label: Text(l.kbSuccessAskNow),
+    );
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        if (constraints.maxWidth < 540) {
+          return Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [addDocument, const SizedBox(height: 10), ask],
+          );
+        }
+        return Row(
+          children: [
+            Expanded(child: addDocument),
+            const SizedBox(width: 12),
+            Expanded(child: ask),
+          ],
+        );
+      },
+    );
+  }
 }
 
 class _DemoDocumentsSection extends StatelessWidget {

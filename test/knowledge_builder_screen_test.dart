@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:go_router/go_router.dart';
 import 'package:universalbusiness/data/app_state.dart';
 import 'package:universalbusiness/knowledge_builder/knowledge_import_analyzer.dart';
 import 'package:universalbusiness/knowledge_builder/models/knowledge_import_models.dart';
@@ -239,6 +240,25 @@ void main() {
       for (final draft in _scripted.drafts) draft.content,
     ]);
     expect(find.byKey(const Key('kb-import-success')), findsOneWidget);
+    expect(find.byKey(const Key('kb-import-success-dialog')), findsOneWidget);
+    expect(find.text(l.kbSuccessDialogTitle), findsOneWidget);
+    expect(
+      find.descendant(
+        of: find.byKey(const Key('kb-growth-before')),
+        matching: find.text(l.kbSuccessEntryValue(before)),
+      ),
+      findsOneWidget,
+    );
+    expect(
+      find.descendant(
+        of: find.byKey(const Key('kb-growth-after')),
+        matching: find.text(
+          l.kbSuccessEntryValue(before + _scripted.drafts.length),
+        ),
+      ),
+      findsOneWidget,
+    );
+    expect(find.byKey(const Key('kb-learning-cycle')), findsOneWidget);
     expect(
       find.text(l.kbImportSuccessTitle(_scripted.drafts.length)),
       findsOneWidget,
@@ -267,6 +287,141 @@ void main() {
       isFalse,
     );
     expect(state.groundedAnswerWorkspace.sourceMaterials, isEmpty);
+
+    final workspaceFaq = workspaceEntries
+        .where((entry) => entry.category == KnowledgeCategory.faq)
+        .length;
+    final workspaceKeywords = <String>{
+      for (final entry in workspaceEntries)
+        for (final keyword in entry.keywords)
+          if (keyword.trim().isNotEmpty) keyword.trim().toLowerCase(),
+    }.length;
+    final expectedStats = {
+      'documents': state.sourceMaterials.length,
+      'entries': workspaceEntries.length,
+      'faq': workspaceFaq,
+      'keywords': workspaceKeywords,
+    };
+    for (final stat in expectedStats.entries) {
+      expect(
+        find.descendant(
+          of: find.byKey(Key('kb-workspace-stat-${stat.key}')),
+          matching: find.text('${stat.value}'),
+        ),
+        findsOneWidget,
+      );
+    }
+  });
+
+  testWidgets('success dialog can reset the builder for another document', (
+    tester,
+  ) async {
+    final state = AppState();
+    await pumpScreen(
+      tester,
+      analyzer: const _FakeAnalyzer(_scripted),
+      state: state,
+    );
+    await analyze(tester, 'Text');
+
+    final acceptAll = find.byKey(const Key('kb-import-all'));
+    await tester.ensureVisible(acceptAll);
+    await tester.tap(acceptAll);
+    await tester.pumpAndSettle();
+    await tester.tap(find.byKey(const Key('kb-success-add-document')));
+    await tester.pumpAndSettle();
+
+    expect(find.byKey(const Key('kb-import-success-dialog')), findsNothing);
+    expect(find.byKey(const Key('kb-demo-documents')), findsOneWidget);
+    expect(find.byKey(const Key('kb-analysis-summary')), findsNothing);
+    expect(find.byKey(const Key('kb-draft-preview')), findsNothing);
+    expect(find.byKey(const Key('kb-analyze-action-bar')), findsOneWidget);
+    expect(
+      tester
+          .widget<TextField>(find.byKey(const Key('kb-input')))
+          .controller!
+          .text,
+      isEmpty,
+    );
+  });
+
+  testWidgets('success dialog navigates directly to Grounded Answer', (
+    tester,
+  ) async {
+    final state = AppState();
+    final router = GoRouter(
+      initialLocation: '/knowledge-builder',
+      routes: [
+        GoRoute(
+          path: '/knowledge-builder',
+          builder: (context, routeState) =>
+              const KnowledgeBuilderScreen(analyzer: _FakeAnalyzer(_scripted)),
+        ),
+        GoRoute(
+          path: '/bot-test',
+          builder: (context, routeState) => const Scaffold(
+            body: Center(
+              child: Text('Grounded Answer', key: Key('grounded-target')),
+            ),
+          ),
+        ),
+      ],
+    );
+    addTearDown(router.dispose);
+    await tester.pumpWidget(
+      MaterialApp.router(
+        routerConfig: router,
+        localizationsDelegates: AppLocalizations.localizationsDelegates,
+        supportedLocales: AppLocalizations.supportedLocales,
+        locale: const Locale('de'),
+        builder: (context, child) =>
+            AppStateScope(notifier: state, child: child!),
+      ),
+    );
+    await tester.pumpAndSettle();
+    await analyze(tester, 'Text');
+
+    final acceptAll = find.byKey(const Key('kb-import-all'));
+    await tester.ensureVisible(acceptAll);
+    await tester.tap(acceptAll);
+    await tester.pumpAndSettle();
+    await tester.tap(find.byKey(const Key('kb-success-ask')));
+    await tester.pumpAndSettle();
+
+    expect(find.byKey(const Key('grounded-target')), findsOneWidget);
+    expect(router.routeInformationProvider.value.uri.path, '/bot-test');
+    expect(state.hasRecentKnowledgeImportForGroundedAnswer, isTrue);
+  });
+
+  testWidgets('success dialog is responsive and localized in English', (
+    tester,
+  ) async {
+    await pumpScreen(
+      tester,
+      analyzer: const _FakeAnalyzer(_scripted),
+      locale: const Locale('en'),
+      size: const Size(360, 800),
+    );
+    final l = l10n(tester);
+    await analyze(tester, 'Text');
+
+    final acceptAll = find.byKey(const Key('kb-import-all'));
+    await tester.ensureVisible(acceptAll);
+    await tester.tap(acceptAll);
+    await tester.pumpAndSettle();
+
+    expect(find.text(l.kbSuccessDialogTitle), findsOneWidget);
+    expect(find.text(l.kbSuccessAddDocument), findsOneWidget);
+    expect(find.text(l.kbSuccessAskNow), findsOneWidget);
+    expect(
+      find.byKey(const Key('kb-success-add-document')).hitTestable(),
+      findsOneWidget,
+    );
+    expect(
+      find.byKey(const Key('kb-success-ask')).hitTestable(),
+      findsOneWidget,
+    );
+    expect(tester.takeException(), isNull);
   });
 
   testWidgets('keeps the analyze action visible with a long mobile document', (

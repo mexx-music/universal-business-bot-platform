@@ -1400,6 +1400,8 @@
 
   "botDemoTitle": "Knowledge-based AI answer",
   "botDemoIntro": "The AI answers only from the approved company knowledge base. Sources stay visible; nothing is published.",
+  "botDemoRecentImportTitle": "This document was just added to the knowledge base.",
+  "botDemoRecentImportBody": "You can now ask BusinessBrain questions about this document.",
   "botDemoQuestionHint": "Your company question",
   "botDemoSubmit": "Generate answer",
   "botDemoLoading": "Generating answer …",
@@ -1616,6 +1618,32 @@
   },
   "kbImportGroundedReady": "Grounded AI now uses this company knowledge.",
   "kbImportError": "The knowledge entries could not be added completely. Please try again.",
+  "kbSuccessDialogTitle": "Company knowledge successfully expanded",
+  "kbSuccessDialogBody": "BusinessBrain added the proposed knowledge entries.",
+  "kbSuccessBefore": "Before",
+  "kbSuccessNow": "Now",
+  "kbSuccessImported": "Entries added",
+  "kbSuccessEntryValue": "{count} knowledge entries",
+  "@kbSuccessEntryValue": {
+    "placeholders": {
+      "count": { "type": "int" }
+    }
+  },
+  "kbSuccessNewFaq": "New FAQ",
+  "kbSuccessNewProductFeatures": "New product features",
+  "kbSuccessNewRequirements": "New technical requirements",
+  "kbSuccessWorkspaceTitle": "Company knowledge",
+  "kbSuccessDocuments": "Documents",
+  "kbSuccessKnowledgeEntries": "Knowledge entries",
+  "kbSuccessFaq": "FAQ",
+  "kbSuccessKeywords": "Keywords",
+  "kbSuccessGroundedReady": "The new knowledge is now available for grounded answers.",
+  "kbSuccessAddDocument": "Add another document",
+  "kbSuccessAskNow": "Ask BusinessBrain now",
+  "kbCycleDocument": "Document",
+  "kbCycleStructured": "Structured",
+  "kbCycleAccepted": "Added",
+  "kbCycleAnswerable": "Ready to answer",
 
   "navRolePortals": "Portals",
   "roleOverviewTitle": "Roles & Portals",

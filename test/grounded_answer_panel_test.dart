@@ -119,6 +119,37 @@ Future<void> ask(WidgetTester tester, String text) async {
 }
 
 void main() {
+  testWidgets('recent-import hint disappears after the first question', (
+    tester,
+  ) async {
+    final state = AppState()..markRecentKnowledgeImportForGroundedAnswer();
+    final service = StubService((_) async => noKnowledge());
+    await pumpPanel(tester, service, state: state);
+    await tester.pumpAndSettle();
+
+    expect(
+      find.byKey(const Key('grounded-recent-import-notice')),
+      findsOneWidget,
+    );
+    expect(
+      tester
+          .widget<TextField>(find.byKey(const Key('grounded-question-field')))
+          .autofocus,
+      isTrue,
+    );
+    expect(state.hasRecentKnowledgeImportForGroundedAnswer, isTrue);
+
+    await ask(tester, 'Wie funktioniert das neue Dokument?');
+    await tester.pumpAndSettle();
+
+    expect(
+      find.byKey(const Key('grounded-recent-import-notice')),
+      findsNothing,
+    );
+    expect(state.hasRecentKnowledgeImportForGroundedAnswer, isFalse);
+    expect(service.calls, 1);
+  });
+
   testWidgets(
     'passes only confirmed builder knowledge after workspace integration',
     (tester) async {

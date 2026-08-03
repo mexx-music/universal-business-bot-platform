@@ -56,6 +56,8 @@ class _GroundedAnswerPanelState extends State<GroundedAnswerPanel> {
     final question = _controller.text.trim();
     if (question.isEmpty) return;
 
+    AppState.of(context).consumeRecentKnowledgeImportForGroundedAnswer();
+
     setState(() {
       _loading = true;
       _error = null;
@@ -115,6 +117,7 @@ class _GroundedAnswerPanelState extends State<GroundedAnswerPanel> {
   Widget build(BuildContext context) {
     final l = AppLocalizations.of(context)!;
     final theme = Theme.of(context);
+    final state = AppState.of(context);
     final canSubmit = !_loading && _controller.text.trim().isNotEmpty;
 
     return Card(
@@ -146,8 +149,14 @@ class _GroundedAnswerPanelState extends State<GroundedAnswerPanel> {
               ),
             ),
             const SizedBox(height: 12),
+            if (state.hasRecentKnowledgeImportForGroundedAnswer) ...[
+              _RecentKnowledgeImportNotice(),
+              const SizedBox(height: 12),
+            ],
             TextField(
+              key: const Key('grounded-question-field'),
               controller: _controller,
+              autofocus: state.hasRecentKnowledgeImportForGroundedAnswer,
               minLines: 1,
               maxLines: 3,
               enabled: !_loading,
@@ -184,6 +193,56 @@ class _GroundedAnswerPanelState extends State<GroundedAnswerPanel> {
             ],
           ],
         ),
+      ),
+    );
+  }
+}
+
+class _RecentKnowledgeImportNotice extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    final l = AppLocalizations.of(context)!;
+    final theme = Theme.of(context);
+    return Container(
+      key: const Key('grounded-recent-import-notice'),
+      width: double.infinity,
+      padding: const EdgeInsets.all(14),
+      decoration: BoxDecoration(
+        color: theme.colorScheme.tertiaryContainer,
+        borderRadius: BorderRadius.circular(14),
+        border: Border.all(color: theme.colorScheme.tertiary.withAlpha(90)),
+      ),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Icon(
+            Icons.check_circle,
+            color: theme.colorScheme.onTertiaryContainer,
+            size: 22,
+          ),
+          const SizedBox(width: 10),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  l.botDemoRecentImportTitle,
+                  style: theme.textTheme.titleSmall?.copyWith(
+                    color: theme.colorScheme.onTertiaryContainer,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                const SizedBox(height: 3),
+                Text(
+                  l.botDemoRecentImportBody,
+                  style: theme.textTheme.bodyMedium?.copyWith(
+                    color: theme.colorScheme.onTertiaryContainer,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }
