@@ -4115,13 +4115,13 @@ abstract class AppLocalizations {
   /// No description provided for @botTestTitle.
   ///
   /// In de, this message translates to:
-  /// **'Bot-Test'**
+  /// **'BusinessBrain Grounded Answers'**
   String get botTestTitle;
 
   /// No description provided for @botTestSubtitle.
   ///
   /// In de, this message translates to:
-  /// **'Simulierter Bot ohne echte KI – Antworten basieren auf der Wissensbasis.'**
+  /// **'BusinessBrain beantwortet Fragen ausschließlich mit bestätigtem Wissen aus dem aktiven Unternehmens-Workspace.'**
   String get botTestSubtitle;
 
   /// No description provided for @botTestGreeting.

@@ -691,8 +691,8 @@
   "knowledgeNoSourceMaterial": "Do not link a source",
   "knowledgeMarkSourceConverted": "Mark source as converted",
 
-  "botTestTitle": "Bot Test",
-  "botTestSubtitle": "Simulated bot without real AI – answers based on the knowledge base.",
+  "botTestTitle": "BusinessBrain Grounded Answers",
+  "botTestSubtitle": "BusinessBrain answers questions exclusively with confirmed knowledge from the active company workspace.",
   "botTestGreeting": "Hello! I am your bot assistant. Ask me a question about the company.",
   "botTestInputHint": "Enter question …",
   "botTestNoMatch": "No matching answer found. Please contact us directly.",

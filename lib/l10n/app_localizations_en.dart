@@ -2293,11 +2293,11 @@ class AppLocalizationsEn extends AppLocalizations {
   String get knowledgeMarkSourceConverted => 'Mark source as converted';
 
   @override
-  String get botTestTitle => 'Bot Test';
+  String get botTestTitle => 'BusinessBrain Grounded Answers';
 
   @override
   String get botTestSubtitle =>
-      'Simulated bot without real AI – answers based on the knowledge base.';
+      'BusinessBrain answers questions exclusively with confirmed knowledge from the active company workspace.';
 
   @override
   String get botTestGreeting =>

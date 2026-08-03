@@ -830,8 +830,8 @@
   "knowledgeNoSourceMaterial": "Keine Quelle verknüpfen",
   "knowledgeMarkSourceConverted": "Quelle als übernommen markieren",
 
-  "botTestTitle": "Bot-Test",
-  "botTestSubtitle": "Simulierter Bot ohne echte KI – Antworten basieren auf der Wissensbasis.",
+  "botTestTitle": "BusinessBrain Grounded Answers",
+  "botTestSubtitle": "BusinessBrain beantwortet Fragen ausschließlich mit bestätigtem Wissen aus dem aktiven Unternehmens-Workspace.",
   "botTestGreeting": "Hallo! Ich bin dein Bot-Assistent. Stelle mir eine Frage über das Unternehmen.",
   "botTestInputHint": "Frage eingeben …",
   "botTestNoMatch": "Keine passende Antwort gefunden. Bitte kontaktieren Sie uns direkt.",
