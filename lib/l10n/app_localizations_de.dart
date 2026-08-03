@@ -4542,6 +4542,15 @@ class AppLocalizationsDe extends AppLocalizations {
   String get kbFieldKeywords => 'Schlagwörter';
 
   @override
+  String get kbFieldArea => 'Bereich';
+
+  @override
+  String get kbFieldCategory => 'Kategorie';
+
+  @override
+  String get kbFieldDetectedTopics => 'Erkannte Themen';
+
+  @override
   String get kbDuplicateBadge => 'Mögliche Dublette';
 
   @override

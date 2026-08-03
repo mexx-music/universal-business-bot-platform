@@ -142,6 +142,7 @@ class GroundedAnswerService {
     final context = runtime.buildContext(
       userQuestion: question,
       workspace: request.workspace,
+      preferredLanguageCode: request.language,
     );
 
     // The uncovered terms come straight from the runtime — the gap's missing
@@ -190,10 +191,13 @@ class GroundedAnswerService {
 
     final aiRequest = _buildRequest(question, request.language, usable);
     final response = await aiController.generate(aiRequest); // errors propagate
+    final answer = isMock
+        ? _mockDisplayAnswer(usable)
+        : _sanitizeDisplayText(response.text);
 
     return GroundedAnswerResult(
       outcome: GroundedOutcome.answered,
-      answer: response.text.trim(),
+      answer: answer,
       sources: sources,
       providerId: provider.id,
       providerDisplayName: provider.displayName,
@@ -245,4 +249,14 @@ class GroundedAnswerService {
     if (normalized.length <= maxEntryChars) return normalized;
     return '${normalized.substring(0, maxEntryChars).trimRight()}…';
   }
+
+  String _mockDisplayAnswer(List<ScoredKnowledgeMatch> usable) {
+    // The offline adapter's diagnostic response contains provider markers and
+    // the full prompt. The public UI instead receives approved knowledge only.
+    return _excerpt(usable.first.entry.content);
+  }
+
+  String _sanitizeDisplayText(String text) => text
+      .replaceAll(RegExp(r'\[mock:[^\]]+\]\s*', caseSensitive: false), '')
+      .trim();
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../data/app_state.dart';
+import '../../knowledge/knowledge_context.dart';
 import '../../knowledge_builder/knowledge_import_analyzer.dart';
 import '../../knowledge_builder/models/knowledge_import_models.dart';
 import '../../l10n/app_localizations.dart';
@@ -36,9 +37,13 @@ class _KnowledgeBuilderScreenState extends State<KnowledgeBuilderScreen> {
   void _analyze() {
     final text = _input.text.trim();
     if (text.isEmpty) return;
-    final entries = AppState.of(context).selectedWorkspace.knowledgeEntries;
+    final workspace = AppState.of(context).selectedWorkspace;
     setState(() {
-      _analysis = _analyzer.analyze(text, existingEntries: entries);
+      _analysis = _analyzer.analyze(
+        text,
+        existingEntries: workspace.knowledgeEntries,
+        workspace: workspace,
+      );
     });
   }
 
@@ -347,14 +352,27 @@ class _DraftCardState extends State<_DraftCard> {
               runSpacing: 6,
               crossAxisAlignment: WrapCrossAlignment.center,
               children: [
-                _CategoryChip(
-                  label: knowledgeDraftCategoryLabel(context, draft.category),
-                ),
+                _CategoryChip(label: _draftCategoryLabel(context, draft)),
                 if (draft.isPossibleDuplicate)
                   _WarnChip(label: l.kbDuplicateBadge),
               ],
             ),
             const SizedBox(height: 10),
+            _Labelled(
+              label: l.kbFieldArea,
+              value: KnowledgeAreas.label(
+                draft.knowledgeArea,
+                languageCode:
+                    draft.languageCode ??
+                    Localizations.localeOf(context).languageCode,
+              ),
+            ),
+            const SizedBox(height: 6),
+            _Labelled(
+              label: l.kbFieldCategory,
+              value: _draftCategoryLabel(context, draft),
+            ),
+            const SizedBox(height: 6),
             if (editing) ...[
               TextField(
                 controller: _titleCtrl,
@@ -374,12 +392,7 @@ class _DraftCardState extends State<_DraftCard> {
                 ),
               ),
             ] else ...[
-              Text(
-                draft.title,
-                style: theme.textTheme.titleSmall?.copyWith(
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
+              _Labelled(label: l.kbFieldTitle, value: draft.title),
               if (draft.question != null) ...[
                 const SizedBox(height: 6),
                 _Labelled(label: l.kbFieldQuestion, value: draft.question!),
@@ -389,11 +402,36 @@ class _DraftCardState extends State<_DraftCard> {
             ],
             if (draft.keywords.isNotEmpty) ...[
               const SizedBox(height: 10),
+              Text(
+                l.kbFieldKeywords,
+                style: theme.textTheme.labelMedium?.copyWith(
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              const SizedBox(height: 6),
               Wrap(
                 spacing: 6,
                 runSpacing: 6,
                 children: [
                   for (final k in draft.keywords) _KeywordChip(term: k),
+                ],
+              ),
+            ],
+            if (draft.detectedTopics.isNotEmpty) ...[
+              const SizedBox(height: 10),
+              Text(
+                l.kbFieldDetectedTopics,
+                style: theme.textTheme.labelMedium?.copyWith(
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              const SizedBox(height: 6),
+              Wrap(
+                spacing: 6,
+                runSpacing: 6,
+                children: [
+                  for (final topic in draft.detectedTopics)
+                    _TopicChip(topic: topic),
                 ],
               ),
             ],
@@ -648,4 +686,54 @@ class _KeywordChip extends StatelessWidget {
       child: Text(term, style: theme.textTheme.labelSmall),
     );
   }
+}
+
+class _TopicChip extends StatelessWidget {
+  const _TopicChip({required this.topic});
+
+  final String topic;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
+      decoration: BoxDecoration(
+        color: theme.colorScheme.secondaryContainer,
+        borderRadius: BorderRadius.circular(20),
+      ),
+      child: Text(
+        topic,
+        style: theme.textTheme.labelSmall?.copyWith(
+          color: theme.colorScheme.onSecondaryContainer,
+        ),
+      ),
+    );
+  }
+}
+
+String _draftCategoryLabel(BuildContext context, KnowledgeImportDraft draft) {
+  if (draft.languageCode == null) {
+    return knowledgeDraftCategoryLabel(context, draft.category);
+  }
+  final de = draft.languageCode == 'de';
+  return switch (draft.category) {
+    KnowledgeDraftCategory.faq => 'FAQ',
+    KnowledgeDraftCategory.installation =>
+      de ? 'Installationsanleitung' : 'Installation guide',
+    KnowledgeDraftCategory.stepByStep =>
+      de ? 'Schritt-für-Schritt' : 'Step-by-step',
+    KnowledgeDraftCategory.technicalRequirement =>
+      de ? 'Technische Voraussetzung' : 'Technical requirement',
+    KnowledgeDraftCategory.warning => de ? 'Warnhinweis' : 'Warning',
+    KnowledgeDraftCategory.troubleshooting =>
+      de ? 'Problemlösung' : 'Troubleshooting',
+    KnowledgeDraftCategory.productFeature =>
+      de ? 'Produktfunktion' : 'Product feature',
+    KnowledgeDraftCategory.tip => de ? 'Tipp' : 'Tip',
+    KnowledgeDraftCategory.definition => 'Definition',
+    KnowledgeDraftCategory.contact =>
+      de ? 'Kontaktinformation' : 'Contact information',
+    KnowledgeDraftCategory.general => de ? 'Allgemein' : 'General',
+  };
 }

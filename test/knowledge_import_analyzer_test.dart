@@ -36,7 +36,11 @@ void main() {
       final a = _analyzer.analyze(_sampleText);
       expect(a.analyzedSentences, 7);
       expect(a.drafts, isNotEmpty);
-      expect(a.detectedTopics, a.drafts.length);
+      expect(
+        a.detectedTopicLabels,
+        containsAll(['Bluetooth', 'App', 'Android']),
+      );
+      expect(a.detectedTopics, a.detectedTopicLabels.length);
     });
 
     test('recognizes multiple categories', () {
@@ -57,6 +61,53 @@ void main() {
       // Content is the user's own text, never rewritten or extended.
       expect(draft.content, 'Bluetooth muss aktiviert sein');
       expect(draft.keywords, contains('bluetooth'));
+      expect(draft.languageCode, 'de');
+    });
+
+    test('English input produces English questions and metadata', () {
+      final draft = _analyzer
+          .analyze('The HB Cure App must support Bluetooth connections.')
+          .drafts
+          .single;
+
+      expect(draft.languageCode, 'en');
+      expect(
+        draft.question,
+        'Must the HB Cure App support Bluetooth connections?',
+      );
+      expect(draft.knowledgeArea, 'hb_cure_app');
+      expect(draft.detectedTopics, containsAll(['Bluetooth', 'Connection']));
+    });
+
+    test('German input keeps German generated wording and detects scope', () {
+      final draft = _analyzer
+          .analyze('Die HB Cure App muss das Gerät über Bluetooth verbinden.')
+          .drafts
+          .single;
+
+      expect(draft.languageCode, 'de');
+      expect(
+        draft.question,
+        'Muss die HB Cure App das Gerät über Bluetooth verbinden?',
+      );
+      expect(draft.knowledgeArea, 'hb_cure_app');
+      expect(draft.detectedTopics, containsAll(['Bluetooth', 'Gerät', 'App']));
+    });
+
+    test('recognizes a direct customer question as FAQ', () {
+      final draft = _analyzer
+          .analyze('Wie verbinde ich das Gerät mit der HB Cure App?')
+          .drafts
+          .single;
+
+      expect(draft.category, KnowledgeDraftCategory.faq);
+      expect(draft.title, 'Wie verbinde ich das Gerät mit der HB Cure App?');
+      expect(draft.knowledgeArea, 'hb_cure_app');
+    });
+
+    test('ambiguous input does not assume a default language', () {
+      final draft = _analyzer.analyze('Bluetooth Firmware 12').drafts.single;
+      expect(draft.languageCode, isNull);
     });
 
     test('detects near-duplicates within the same batch', () {

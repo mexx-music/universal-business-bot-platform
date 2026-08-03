@@ -62,6 +62,9 @@ void main() {
           keywords: const ['persistenz'],
           source: 'Test',
           createdAt: DateTime(2026, 7, 16),
+          languageCode: 'de',
+          knowledgeArea: 'hb_cure_app',
+          detectedTopics: const ['Bluetooth', 'Firmware'],
         ),
       ],
     );
@@ -76,6 +79,10 @@ void main() {
       ),
       isTrue,
     );
+    final persistedEntry = reloaded.selectedWorkspace.knowledgeEntries
+        .firstWhere((entry) => entry.id == 'persist-test');
+    expect(persistedEntry.knowledgeArea, 'hb_cure_app');
+    expect(persistedEntry.detectedTopics, ['Bluetooth', 'Firmware']);
     final other = reloaded.findWorkspace(otherId)!;
     expect(other.knowledgeEntries, hasLength(untouchedEntryCount));
     expect(

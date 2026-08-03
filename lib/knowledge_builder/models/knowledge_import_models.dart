@@ -54,6 +54,9 @@ class KnowledgeImportDraft {
     required this.sourceSentence,
     this.question,
     this.keywords = const [],
+    this.languageCode,
+    this.knowledgeArea,
+    this.detectedTopics = const [],
     this.existingMatch,
     this.isPossibleDuplicate = false,
   });
@@ -77,6 +80,17 @@ class KnowledgeImportDraft {
   /// Generated keywords (allowed to be generated).
   final List<String> keywords;
 
+  /// Detected ISO 639-1 input language. Null means that the text was
+  /// ambiguous; no default language is assumed in that case.
+  final String? languageCode;
+
+  /// Stable content scope used as retrieval metadata. It never restricts
+  /// visibility or introduces roles.
+  final String? knowledgeArea;
+
+  /// Topics recognized in the source text and shown in the preview.
+  final List<String> detectedTopics;
+
   /// Set when a similar entry already exists — the human decides how to merge.
   final KnowledgeImportMatch? existingMatch;
 
@@ -93,12 +107,18 @@ class KnowledgeImportAnalysis {
     required this.analyzedSentences,
     required this.unclearStatements,
     required this.drafts,
+    this.inputLanguageCode,
+    this.knowledgeArea,
+    this.detectedTopicLabels = const [],
   });
 
   const KnowledgeImportAnalysis.empty()
     : analyzedSentences = 0,
       unclearStatements = 0,
-      drafts = const [];
+      drafts = const [],
+      inputLanguageCode = null,
+      knowledgeArea = null,
+      detectedTopicLabels = const [];
 
   /// How many sentences were parsed from the raw text.
   final int analyzedSentences;
@@ -109,8 +129,12 @@ class KnowledgeImportAnalysis {
 
   final List<KnowledgeImportDraft> drafts;
 
-  /// Each classified statement is a detected topic.
-  int get detectedTopics => drafts.length;
+  final String? inputLanguageCode;
+  final String? knowledgeArea;
+  final List<String> detectedTopicLabels;
+
+  int get detectedTopics =>
+      detectedTopicLabels.isEmpty ? drafts.length : detectedTopicLabels.length;
 
   /// Drafts that do not match any existing entry.
   int get newEntries => drafts.where((d) => !d.matchesExisting).length;

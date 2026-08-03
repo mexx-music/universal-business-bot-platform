@@ -4510,6 +4510,15 @@ class AppLocalizationsEn extends AppLocalizations {
   String get kbFieldKeywords => 'Keywords';
 
   @override
+  String get kbFieldArea => 'Area';
+
+  @override
+  String get kbFieldCategory => 'Category';
+
+  @override
+  String get kbFieldDetectedTopics => 'Detected topics';
+
+  @override
   String get kbDuplicateBadge => 'Possible duplicate';
 
   @override

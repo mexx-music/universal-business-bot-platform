@@ -5,6 +5,7 @@ import 'package:universalbusiness/knowledge_builder/knowledge_import_analyzer.da
 import 'package:universalbusiness/knowledge_builder/models/knowledge_import_models.dart';
 import 'package:universalbusiness/l10n/app_localizations.dart';
 import 'package:universalbusiness/models/knowledge_entry.dart';
+import 'package:universalbusiness/models/company_workspace.dart';
 import 'package:universalbusiness/screens/knowledge_builder/knowledge_builder_screen.dart';
 
 /// Returns a scripted analysis regardless of input — for deterministic UI tests.
@@ -16,6 +17,7 @@ class _FakeAnalyzer extends KnowledgeImportAnalyzer {
   KnowledgeImportAnalysis analyze(
     String rawText, {
     List<KnowledgeEntry> existingEntries = const [],
+    CompanyWorkspace? workspace,
   }) => result;
 }
 
@@ -31,6 +33,9 @@ const _scripted = KnowledgeImportAnalysis(
       sourceSentence: 'Bluetooth muss aktiviert sein',
       question: 'Muss Bluetooth aktiviert sein?',
       keywords: ['bluetooth'],
+      languageCode: 'de',
+      knowledgeArea: 'hb_cure_app',
+      detectedTopics: ['Bluetooth', 'App'],
     ),
     KnowledgeImportDraft(
       id: 'd2',
@@ -39,6 +44,9 @@ const _scripted = KnowledgeImportAnalysis(
       content: 'Die App benötigt mindestens Android 9',
       sourceSentence: 'Die App benötigt mindestens Android 9',
       keywords: ['android', 'version'],
+      languageCode: 'de',
+      knowledgeArea: 'hb_cure_app',
+      detectedTopics: ['Android', 'App'],
       existingMatch: KnowledgeImportMatch(
         existingEntryId: 'e1',
         existingTitle: 'Systemvoraussetzungen',
@@ -53,6 +61,9 @@ const _scripted = KnowledgeImportAnalysis(
       content: 'Bluetooth muss aktiviert werden',
       sourceSentence: 'Bluetooth muss aktiviert werden',
       question: 'Muss Bluetooth aktiviert werden?',
+      languageCode: 'de',
+      knowledgeArea: 'hb_cure_app',
+      detectedTopics: ['Bluetooth'],
       isPossibleDuplicate: true,
     ),
   ],
@@ -111,6 +122,9 @@ void main() {
     // At least one FAQ category chip and a decision control are rendered.
     expect(find.text(l.kbCatFaq), findsWidgets);
     expect(find.text(l.kbDecisionAccept), findsWidgets);
+    expect(find.text(l.kbFieldArea), findsWidgets);
+    expect(find.text('HB Cure App'), findsWidgets);
+    expect(find.text(l.kbFieldDetectedTopics), findsWidgets);
   });
 
   testWidgets('renders duplicate badge, existing match and merge choices', (
@@ -133,6 +147,17 @@ void main() {
     expect(find.text(l.kbMergeNew), findsOneWidget);
     // A generated FAQ question is shown.
     expect(find.text('Muss Bluetooth aktiviert sein?'), findsWidgets);
+  });
+
+  testWidgets('generated category follows input language, not UI locale', (
+    tester,
+  ) async {
+    await pumpScreen(tester, locale: const Locale('de'));
+    await analyze(tester, 'The HB Cure App requires Android version 12.');
+
+    expect(find.text('Technical requirement'), findsWidgets);
+    expect(find.text('HB Cure App'), findsWidgets);
+    expect(find.text('Android'), findsWidgets);
   });
 
   testWidgets('edit decision reveals editable fields', (tester) async {

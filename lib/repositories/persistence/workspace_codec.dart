@@ -321,6 +321,8 @@ class WorkspaceCodec {
       'source': entry.source,
       'createdAt': entry.createdAt.toIso8601String(),
       'languageCode': entry.languageCode,
+      'knowledgeArea': entry.knowledgeArea,
+      'detectedTopics': entry.detectedTopics,
     });
   }
 
@@ -339,6 +341,8 @@ class WorkspaceCodec {
       source: _string(json, 'source'),
       createdAt: _dateTime(json, 'createdAt'),
       languageCode: _stringOrNull(json, 'languageCode'),
+      knowledgeArea: _stringOrNull(json, 'knowledgeArea'),
+      detectedTopics: _stringList(json, 'detectedTopics'),
     );
   }
 

@@ -114,7 +114,8 @@ void main() {
 
     expect(find.text('Wir haben täglich geöffnet.'), findsOneWidget);
     expect(find.text('Öffnungszeiten'), findsOneWidget); // source title
-    expect(find.text('k1'), findsOneWidget); // source id
+    // Internal source ids are not public UI content.
+    expect(find.text('k1'), findsNothing);
     expect(find.text(l.botDemoHumanReview), findsOneWidget);
     // Mock provider is labelled as the offline mock, not a vendor.
     expect(find.textContaining(l.botDemoProviderMock), findsOneWidget);

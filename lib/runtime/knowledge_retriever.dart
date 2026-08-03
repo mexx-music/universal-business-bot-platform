@@ -191,7 +191,10 @@ class KnowledgeRetriever {
     for (final entry in workspace.knowledgeEntries) {
       final titleTerms = _matchTerms(entry.title, searchTerms);
       final contentTerms = _matchTerms(entry.content, searchTerms);
-      final keywordTerms = _matchTerms(entry.keywords.join(' '), searchTerms);
+      final keywordTerms = _matchTerms(
+        '${entry.keywords.join(' ')} ${entry.detectedTopics.join(' ')}',
+        searchTerms,
+      );
       final matched = {...titleTerms, ...contentTerms, ...keywordTerms};
       if (matched.isEmpty) continue;
       entrySignals.add(

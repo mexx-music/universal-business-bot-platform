@@ -616,13 +616,6 @@ class _SourceCard extends StatelessWidget {
               source.excerpt,
               style: theme.textTheme.bodyMedium?.copyWith(height: 1.4),
             ),
-            const SizedBox(height: 8),
-            Text(
-              source.id,
-              style: theme.textTheme.labelSmall?.copyWith(
-                color: theme.colorScheme.onSurfaceVariant,
-              ),
-            ),
           ],
         ),
       ),

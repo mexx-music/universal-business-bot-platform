@@ -8270,6 +8270,24 @@ abstract class AppLocalizations {
   /// **'Schlagwörter'**
   String get kbFieldKeywords;
 
+  /// No description provided for @kbFieldArea.
+  ///
+  /// In de, this message translates to:
+  /// **'Bereich'**
+  String get kbFieldArea;
+
+  /// No description provided for @kbFieldCategory.
+  ///
+  /// In de, this message translates to:
+  /// **'Kategorie'**
+  String get kbFieldCategory;
+
+  /// No description provided for @kbFieldDetectedTopics.
+  ///
+  /// In de, this message translates to:
+  /// **'Erkannte Themen'**
+  String get kbFieldDetectedTopics;
+
   /// No description provided for @kbDuplicateBadge.
   ///
   /// In de, this message translates to:

@@ -59,6 +59,13 @@ class KnowledgeEntry {
   // ISO 639-1 code ('de', 'en'). Null = inherits app locale.
   final String? languageCode;
 
+  /// Stable content scope used to prefer the right company/product context.
+  /// This is metadata only and does not imply access restrictions.
+  final String? knowledgeArea;
+
+  /// Topics detected while structuring the source text.
+  final List<String> detectedTopics;
+
   KnowledgeEntry({
     required this.id,
     required this.title,
@@ -69,5 +76,7 @@ class KnowledgeEntry {
     required this.source,
     required this.createdAt,
     this.languageCode,
+    this.knowledgeArea,
+    this.detectedTopics = const [],
   });
 }

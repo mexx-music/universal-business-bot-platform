@@ -31,6 +31,9 @@ class _KnowledgeWorkflowScreenState extends State<KnowledgeWorkflowScreen> {
   bool _busy = false;
   GroundedAnswerResult? _result; // gap or improved answer, by phase
   List<String> _keywords = const [];
+  List<String> _detectedTopics = const [];
+  String? _knowledgeArea;
+  String? _languageCode;
   KnowledgeDraftCategory _category = KnowledgeDraftCategory.faq;
   TextEditingController? _title;
   TextEditingController? _content;
@@ -59,14 +62,24 @@ class _KnowledgeWorkflowScreenState extends State<KnowledgeWorkflowScreen> {
   Future<void> _ask() async {
     if (_busy) return;
     final l = AppLocalizations.of(context)!;
+    final workspace = AppState.of(context).selectedWorkspace;
     setState(() => _busy = true);
     final result = await _run();
     // Derive the suggestion from the existing analyzer (no new heuristic).
-    final draft = _analyzer.analyze(l.kwQuestion).drafts;
+    final draft = _analyzer
+        .analyze(
+          l.kwQuestion,
+          existingEntries: workspace.knowledgeEntries,
+          workspace: workspace,
+        )
+        .drafts;
     if (!mounted) return;
     setState(() {
       _result = result;
       _keywords = draft.isEmpty ? const [] : draft.first.keywords;
+      _detectedTopics = draft.isEmpty ? const [] : draft.first.detectedTopics;
+      _knowledgeArea = draft.isEmpty ? null : draft.first.knowledgeArea;
+      _languageCode = draft.isEmpty ? null : draft.first.languageCode;
       _category = draft.isEmpty
           ? KnowledgeDraftCategory.faq
           : draft.first.category;
@@ -92,7 +105,10 @@ class _KnowledgeWorkflowScreenState extends State<KnowledgeWorkflowScreen> {
       keywords: _keywords,
       source: 'Knowledge Improvement',
       createdAt: now,
-      languageCode: Localizations.localeOf(context).languageCode,
+      languageCode:
+          _languageCode ?? Localizations.localeOf(context).languageCode,
+      knowledgeArea: _knowledgeArea,
+      detectedTopics: _detectedTopics,
     );
     // Real mutation of the existing knowledge base.
     await AppState.of(context).addKnowledgeEntry(entry);
@@ -126,6 +142,9 @@ class _KnowledgeWorkflowScreenState extends State<KnowledgeWorkflowScreen> {
       _title = null;
       _content = null;
       _keywords = const [];
+      _detectedTopics = const [];
+      _knowledgeArea = null;
+      _languageCode = null;
     });
   }
 

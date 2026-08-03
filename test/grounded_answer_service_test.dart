@@ -64,6 +64,9 @@ KnowledgeEntry entry(
   String content, {
   RiskLevel risk = RiskLevel.green,
   List<String> keywords = const [],
+  String? languageCode,
+  String? knowledgeArea,
+  List<String> detectedTopics = const [],
 }) {
   return KnowledgeEntry(
     id: id,
@@ -74,6 +77,9 @@ KnowledgeEntry entry(
     keywords: keywords,
     source: 'Test',
     createdAt: DateTime(2026, 1, 1),
+    languageCode: languageCode,
+    knowledgeArea: knowledgeArea,
+    detectedTopics: detectedTopics,
   );
 }
 
@@ -190,6 +196,70 @@ void main() {
         ),
       );
       expect(result.sources.length, lessThanOrEqualTo(3));
+    });
+
+    test('prefers the matching knowledge area over another product', () async {
+      final fake = FakeAiProvider();
+      final service = GroundedAnswerService(aiController: controllerWith(fake));
+      final result = await service.answer(
+        GroundedAnswerRequest(
+          question: 'Wie funktioniert die HB Cure App?',
+          workspace: workspace(
+            entries: [
+              entry(
+                'a-businessbrain',
+                'Wie funktioniert die HB Cure App?',
+                'Die App zeigt Wissen aus BusinessBrain.',
+                keywords: const ['app', 'funktioniert', 'hb', 'cure'],
+                knowledgeArea: 'businessbrain_platform',
+              ),
+              entry(
+                'z-hb-app',
+                'Wie funktioniert die HB Cure App?',
+                'Die HB Cure App verbindet sich mit dem Gerät.',
+                keywords: const ['app', 'funktioniert', 'hb', 'cure'],
+                knowledgeArea: 'hb_cure_app',
+              ),
+            ],
+          ),
+          language: 'de',
+        ),
+      );
+
+      expect(result.sources.first.id, 'z-hb-app');
+    });
+
+    test('prefers source language when matching entries exist', () async {
+      final fake = FakeAiProvider();
+      final service = GroundedAnswerService(aiController: controllerWith(fake));
+      final result = await service.answer(
+        GroundedAnswerRequest(
+          question: 'Wie funktioniert die App?',
+          workspace: workspace(
+            entries: [
+              entry(
+                'a-en',
+                'Wie funktioniert die App?',
+                'English source content about the app.',
+                keywords: const ['app', 'funktioniert'],
+                languageCode: 'en',
+                knowledgeArea: 'other_product',
+              ),
+              entry(
+                'z-de',
+                'Wie funktioniert die App?',
+                'Deutscher Quelleninhalt zur App.',
+                keywords: const ['app', 'funktioniert'],
+                languageCode: 'de',
+                knowledgeArea: 'other_product',
+              ),
+            ],
+          ),
+          language: 'de',
+        ),
+      );
+
+      expect(result.sources.first.id, 'z-de');
     });
 
     test('limits context size and excerpt length', () async {
@@ -364,6 +434,8 @@ void main() {
       expect(result.grounded, isTrue);
       // Mock echoes the context-bearing user message.
       expect(result.answer.toLowerCase(), contains('kaffee'));
+      expect(result.answer, isNot(contains('[mock:')));
+      expect(result.answer, isNot(contains('Company knowledge:')));
     });
 
     test(
