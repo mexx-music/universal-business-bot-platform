@@ -8549,7 +8549,7 @@ abstract class AppLocalizations {
   /// No description provided for @kbSummaryIntro.
   ///
   /// In de, this message translates to:
-  /// **'Die Ergebnisse sind vollständig aus dem eingegebenen Text und dem Abgleich mit der vorhandenen Wissensbasis abgeleitet.'**
+  /// **'BusinessBrain hat Ihren Text analysiert und daraus strukturiertes Unternehmenswissen vorgeschlagen. Es wurde noch nichts gespeichert. Erst nach Ihrer Bestätigung wird neues Wissen Teil der Wissensbasis.'**
   String get kbSummaryIntro;
 
   /// No description provided for @kbPreviewIntro.
@@ -8611,6 +8611,60 @@ abstract class AppLocalizations {
   /// In de, this message translates to:
   /// **'Unternehmenswissen'**
   String get kbDocTypeCompanyKnowledge;
+
+  /// No description provided for @kbDemoBadge.
+  ///
+  /// In de, this message translates to:
+  /// **'Wissensvorschau'**
+  String get kbDemoBadge;
+
+  /// No description provided for @kbDemoNotSaved.
+  ///
+  /// In de, this message translates to:
+  /// **'Noch nicht gespeichert'**
+  String get kbDemoNotSaved;
+
+  /// No description provided for @kbDemoTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Dieses Wissen sofort ausprobieren'**
+  String get kbDemoTitle;
+
+  /// No description provided for @kbDemoIntro.
+  ///
+  /// In de, this message translates to:
+  /// **'BusinessBrain hat passende Beispielfragen ausschließlich aus dem gerade analysierten Text vorbereitet. Wählen Sie eine Frage und prüfen Sie unmittelbar, wie das vorgeschlagene Wissen verwendet werden kann.'**
+  String get kbDemoIntro;
+
+  /// No description provided for @kbDemoQuestionLabel.
+  ///
+  /// In de, this message translates to:
+  /// **'Vorbereitete Beispielfrage'**
+  String get kbDemoQuestionLabel;
+
+  /// No description provided for @kbDemoCreateAnswer.
+  ///
+  /// In de, this message translates to:
+  /// **'Antwort erstellen'**
+  String get kbDemoCreateAnswer;
+
+  /// No description provided for @kbDemoAnswerTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Antwort aus dem analysierten Text'**
+  String get kbDemoAnswerTitle;
+
+  /// No description provided for @kbDemoSourcesTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Verwendete Quelle'**
+  String get kbDemoSourcesTitle;
+
+  /// No description provided for @kbDemoSourceSentence.
+  ///
+  /// In de, this message translates to:
+  /// **'Originalsatz aus dem Dokument'**
+  String get kbDemoSourceSentence;
 
   /// No description provided for @navRolePortals.
   ///

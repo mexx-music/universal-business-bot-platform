@@ -130,6 +130,11 @@ void main() {
     expect(find.text(l.kbFieldDetectedTopics), findsWidgets);
     expect(find.text(l.kbSummaryTitle), findsOneWidget);
     expect(find.byKey(const Key('kb-analysis-summary')), findsOneWidget);
+    expect(find.byKey(const Key('kb-knowledge-use-demo')), findsOneWidget);
+    expect(find.byKey(const Key('kb-demo-question-0')), findsOneWidget);
+    final answerButton = tester.getRect(find.text(l.kbDemoCreateAnswer));
+    expect(answerButton.top, greaterThanOrEqualTo(0));
+    expect(answerButton.top, lessThan(1400));
   });
 
   testWidgets('reveals analysis phases before the entry preview', (
@@ -185,6 +190,43 @@ void main() {
     expect(find.text('Muss Bluetooth aktiviert sein?'), findsWidgets);
     expect(find.text(l.kbCreatedFrom), findsNWidgets(3));
     expect(find.text('“Bluetooth muss aktiviert sein”'), findsOneWidget);
+  });
+
+  testWidgets('prepared question creates a sourced answer without saving', (
+    tester,
+  ) async {
+    final state = AppState();
+    final before = state.selectedWorkspace.knowledgeEntries.length;
+    await pumpScreen(
+      tester,
+      analyzer: const _FakeAnalyzer(_scripted),
+      state: state,
+    );
+    final l = l10n(tester);
+    await analyze(tester, 'Text');
+
+    final firstQuestion = find.byKey(const Key('kb-demo-question-0'));
+    expect(firstQuestion, findsOneWidget);
+    expect(
+      find.descendant(
+        of: firstQuestion,
+        matching: find.byIcon(Icons.radio_button_checked),
+      ),
+      findsOneWidget,
+    );
+    expect(find.byKey(const Key('kb-demo-answer')), findsNothing);
+
+    final createAnswer = find.text(l.kbDemoCreateAnswer);
+    await tester.ensureVisible(createAnswer);
+    await tester.pumpAndSettle();
+    await tester.tap(createAnswer);
+    await tester.pumpAndSettle();
+
+    expect(find.byKey(const Key('kb-demo-answer')), findsOneWidget);
+    expect(find.text(l.kbDemoSourcesTitle), findsOneWidget);
+    expect(find.text(l.kbDemoSourceSentence), findsOneWidget);
+    expect(find.text('“Bluetooth muss aktiviert sein”'), findsWidgets);
+    expect(state.selectedWorkspace.knowledgeEntries.length, before);
   });
 
   testWidgets('generated category follows input language, not UI locale', (

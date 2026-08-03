@@ -61,5 +61,38 @@ void main() {
     expect(result.productCount, 1);
     expect(result.deviceCount, 2);
     expect(result.functionCount, 1);
+    expect(result.demoQuestions, hasLength(3));
+    expect(result.demoQuestions.first.answer, 'Text');
+    expect(result.demoQuestions.first.sourceSentence, 'Text');
+    expect(
+      result.demoQuestions.first.question,
+      'Was sagt das Dokument zu Bluetooth und App?',
+    );
+  });
+
+  test('demo answer is always verbatim content from its source draft', () {
+    const analysis = KnowledgeImportAnalysis(
+      analyzedSentences: 1,
+      unclearStatements: 0,
+      inputLanguageCode: 'de',
+      drafts: [
+        KnowledgeImportDraft(
+          id: 'feature',
+          category: KnowledgeDraftCategory.productFeature,
+          title: 'Firmware Update',
+          content: 'Die App startet das Firmware-Update.',
+          sourceSentence: 'Die App startet das Firmware-Update',
+          detectedTopics: ['App', 'Firmware'],
+        ),
+      ],
+    );
+
+    final question = KnowledgeAnalysisPresentation.fromAnalysis(
+      analysis,
+    ).demoQuestions.single;
+
+    expect(question.question, 'Wie funktioniert App und Firmware?');
+    expect(question.answer, 'Die App startet das Firmware-Update.');
+    expect(question.sourceSentence, 'Die App startet das Firmware-Update');
   });
 }

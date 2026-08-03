@@ -10,6 +10,18 @@ enum KnowledgeDocumentType {
   companyKnowledge,
 }
 
+/// One demo question tied to exactly one analyzed draft. Its answer and source
+/// are verbatim user input, so the preview cannot introduce new facts.
+class KnowledgeDemoQuestion {
+  const KnowledgeDemoQuestion({required this.question, required this.draft});
+
+  final String question;
+  final KnowledgeImportDraft draft;
+
+  String get answer => draft.content;
+  String get sourceSentence => draft.sourceSentence;
+}
+
 /// Transparent, deterministic metrics for the Knowledge Builder journey.
 /// Every value can be traced back to [KnowledgeImportAnalysis].
 class KnowledgeAnalysisPresentation {
@@ -28,6 +40,7 @@ class KnowledgeAnalysisPresentation {
     required this.productCount,
     required this.deviceCount,
     required this.functionCount,
+    required this.demoQuestions,
   });
 
   factory KnowledgeAnalysisPresentation.fromAnalysis(
@@ -90,6 +103,7 @@ class KnowledgeAnalysisPresentation {
       productCount: productAreas.length,
       deviceCount: deviceTopics.length,
       functionCount: productFeatures,
+      demoQuestions: _demoQuestions(analysis),
     );
   }
 
@@ -107,6 +121,7 @@ class KnowledgeAnalysisPresentation {
   final int productCount;
   final int deviceCount;
   final int functionCount;
+  final List<KnowledgeDemoQuestion> demoQuestions;
 
   static KnowledgeDocumentType _documentType({
     required int faq,
@@ -145,4 +160,72 @@ class KnowledgeAnalysisPresentation {
     'android',
     'ios',
   };
+
+  static List<KnowledgeDemoQuestion> _demoQuestions(
+    KnowledgeImportAnalysis analysis,
+  ) {
+    final languageCode = analysis.inputLanguageCode;
+    final questions = <KnowledgeDemoQuestion>[];
+    final seen = <String>{};
+    for (final draft in analysis.drafts) {
+      final question = draft.question?.trim().isNotEmpty == true
+          ? draft.question!.trim()
+          : _questionForDraft(draft, languageCode);
+      if (question.isEmpty || !seen.add(question.toLowerCase())) continue;
+      questions.add(KnowledgeDemoQuestion(question: question, draft: draft));
+      if (questions.length == 4) break;
+    }
+    return List.unmodifiable(questions);
+  }
+
+  static String _questionForDraft(
+    KnowledgeImportDraft draft,
+    String? languageCode,
+  ) {
+    final english = languageCode == 'en';
+    final subject = _subject(draft, english: english);
+    return switch (draft.category) {
+      KnowledgeDraftCategory.installation ||
+      KnowledgeDraftCategory.stepByStep =>
+        english ? 'How do I use $subject?' : 'Wie verwende ich $subject?',
+      KnowledgeDraftCategory.technicalRequirement =>
+        english
+            ? 'What technical requirements apply to $subject?'
+            : 'Welche technischen Voraussetzungen gelten für $subject?',
+      KnowledgeDraftCategory.warning =>
+        english
+            ? 'What should I keep in mind about $subject?'
+            : 'Was ist bei $subject zu beachten?',
+      KnowledgeDraftCategory.troubleshooting =>
+        english
+            ? 'What does the document say about problems with $subject?'
+            : 'Was sagt das Dokument zu Problemen mit $subject?',
+      KnowledgeDraftCategory.productFeature =>
+        english ? 'How does $subject work?' : 'Wie funktioniert $subject?',
+      KnowledgeDraftCategory.definition =>
+        english ? 'What does $subject mean?' : 'Was bedeutet $subject?',
+      KnowledgeDraftCategory.tip =>
+        english
+            ? 'What guidance does the document provide about $subject?'
+            : 'Welche Hinweise enthält das Dokument zu $subject?',
+      KnowledgeDraftCategory.faq ||
+      KnowledgeDraftCategory.contact ||
+      KnowledgeDraftCategory.general =>
+        english
+            ? 'What does the document say about $subject?'
+            : 'Was sagt das Dokument zu $subject?',
+    };
+  }
+
+  static String _subject(KnowledgeImportDraft draft, {required bool english}) {
+    final topics = draft.detectedTopics.take(2).toList();
+    if (topics.isNotEmpty) {
+      return topics.join(english ? ' and ' : ' und ');
+    }
+    final keywords = draft.keywords.take(2).toList();
+    if (keywords.isNotEmpty) {
+      return keywords.join(english ? ' and ' : ' und ');
+    }
+    return draft.title;
+  }
 }

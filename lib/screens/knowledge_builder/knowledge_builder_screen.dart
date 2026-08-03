@@ -27,10 +27,12 @@ class _KnowledgeBuilderScreenState extends State<KnowledgeBuilderScreen>
   static const _journeyDuration = Duration(milliseconds: 2400);
 
   final _input = TextEditingController();
+  final _demoAnchor = GlobalKey();
   KnowledgeImportAnalysis? _analysis;
   KnowledgeAnalysisPresentation? _presentation;
   late final AnimationController _journey;
   int _stage = 0;
+  bool _hasRevealedDemo = false;
 
   KnowledgeImportAnalyzer get _analyzer =>
       widget.analyzer ?? const KnowledgeImportAnalyzer();
@@ -45,6 +47,22 @@ class _KnowledgeBuilderScreenState extends State<KnowledgeBuilderScreen>
           setState(() => _stage = 4);
         }
       });
+  }
+
+  void _revealDemo() {
+    if (_hasRevealedDemo) return;
+    final target = _demoAnchor.currentContext;
+    if (!mounted || target == null) return;
+    _hasRevealedDemo = true;
+    final reduceMotion = MediaQuery.of(context).disableAnimations;
+    Scrollable.ensureVisible(
+      target,
+      duration: reduceMotion
+          ? Duration.zero
+          : const Duration(milliseconds: 700),
+      curve: Curves.easeInOutCubic,
+      alignment: 0.08,
+    );
   }
 
   void _updateStage() {
@@ -79,6 +97,7 @@ class _KnowledgeBuilderScreenState extends State<KnowledgeBuilderScreen>
       _analysis = analysis;
       _presentation = KnowledgeAnalysisPresentation.fromAnalysis(analysis);
       _stage = 0;
+      _hasRevealedDemo = false;
     });
     if (analysis.isEmpty || MediaQuery.of(context).disableAnimations) {
       _journey.value = 1;
@@ -95,6 +114,7 @@ class _KnowledgeBuilderScreenState extends State<KnowledgeBuilderScreen>
       _analysis = null;
       _presentation = null;
       _stage = 0;
+      _hasRevealedDemo = false;
       _input.clear();
     });
   }
@@ -166,6 +186,8 @@ class _KnowledgeBuilderScreenState extends State<KnowledgeBuilderScreen>
                       stage: _stage,
                       progress: _journey,
                       onReset: _reset,
+                      demoAnchor: _demoAnchor,
+                      onDemoReady: _revealDemo,
                     ),
                   ],
                 ],
@@ -245,12 +267,16 @@ class _AnalysisJourney extends StatelessWidget {
     required this.stage,
     required this.progress,
     required this.onReset,
+    required this.demoAnchor,
+    required this.onDemoReady,
   });
 
   final KnowledgeAnalysisPresentation presentation;
   final int stage;
   final Animation<double> progress;
   final VoidCallback onReset;
+  final Key demoAnchor;
+  final VoidCallback onDemoReady;
 
   @override
   Widget build(BuildContext context) {
@@ -379,10 +405,22 @@ class _AnalysisJourney extends StatelessWidget {
         AnimatedSize(
           duration: const Duration(milliseconds: 450),
           curve: Curves.easeOutCubic,
+          onEnd: stage >= 4 ? onDemoReady : null,
           child: stage >= 4
               ? Padding(
                   padding: const EdgeInsets.only(top: 24),
-                  child: _DraftPreview(analysis: analysis),
+                  child: Column(
+                    children: [
+                      if (presentation.demoQuestions.isNotEmpty) ...[
+                        _KnowledgeUseDemo(
+                          presentation: presentation,
+                          answerButtonKey: demoAnchor,
+                        ),
+                        const SizedBox(height: 24),
+                      ],
+                      _DraftPreview(analysis: analysis),
+                    ],
+                  ),
                 )
               : const SizedBox.shrink(),
         ),
@@ -793,6 +831,315 @@ class _SummaryMetric extends StatelessWidget {
           ),
         ],
       ),
+    );
+  }
+}
+
+class _KnowledgeUseDemo extends StatefulWidget {
+  const _KnowledgeUseDemo({
+    required this.presentation,
+    required this.answerButtonKey,
+  });
+
+  final KnowledgeAnalysisPresentation presentation;
+  final Key answerButtonKey;
+
+  @override
+  State<_KnowledgeUseDemo> createState() => _KnowledgeUseDemoState();
+}
+
+class _KnowledgeUseDemoState extends State<_KnowledgeUseDemo> {
+  int _selected = 0;
+  bool _showAnswer = false;
+
+  @override
+  Widget build(BuildContext context) {
+    final l = AppLocalizations.of(context)!;
+    final theme = Theme.of(context);
+    final questions = widget.presentation.demoQuestions;
+    final selected = questions[_selected];
+
+    return Container(
+      key: const Key('kb-knowledge-use-demo'),
+      width: double.infinity,
+      padding: const EdgeInsets.all(20),
+      decoration: BoxDecoration(
+        color: theme.colorScheme.surfaceContainerHigh,
+        borderRadius: BorderRadius.circular(18),
+        border: Border.all(color: theme.colorScheme.outlineVariant),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Wrap(
+            spacing: 8,
+            runSpacing: 8,
+            crossAxisAlignment: WrapCrossAlignment.center,
+            children: [
+              Container(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 10,
+                  vertical: 4,
+                ),
+                decoration: BoxDecoration(
+                  color: theme.colorScheme.secondaryContainer,
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                child: Text(
+                  l.kbDemoBadge,
+                  style: theme.textTheme.labelSmall?.copyWith(
+                    color: theme.colorScheme.onSecondaryContainer,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+              Text(
+                l.kbDemoNotSaved,
+                style: theme.textTheme.labelMedium?.copyWith(
+                  color: theme.colorScheme.onSurfaceVariant,
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 12),
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Icon(
+                Icons.question_answer_outlined,
+                color: theme.colorScheme.primary,
+              ),
+              const SizedBox(width: 10),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      l.kbDemoTitle,
+                      style: theme.textTheme.titleLarge?.copyWith(
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    const SizedBox(height: 4),
+                    Text(
+                      l.kbDemoIntro,
+                      style: theme.textTheme.bodyMedium?.copyWith(
+                        color: theme.colorScheme.onSurfaceVariant,
+                        height: 1.4,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 18),
+          Text(
+            l.kbDemoQuestionLabel,
+            style: theme.textTheme.labelLarge?.copyWith(
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          const SizedBox(height: 8),
+          for (var index = 0; index < questions.length; index++) ...[
+            _QuestionOption(
+              key: Key('kb-demo-question-$index'),
+              question: questions[index].question,
+              selected: index == _selected,
+              onTap: () => setState(() {
+                _selected = index;
+                _showAnswer = false;
+              }),
+            ),
+            if (index != questions.length - 1) const SizedBox(height: 8),
+          ],
+          const SizedBox(height: 14),
+          FilledButton.icon(
+            key: widget.answerButtonKey,
+            onPressed: () => setState(() => _showAnswer = true),
+            icon: const Icon(Icons.auto_awesome, size: 18),
+            label: Text(l.kbDemoCreateAnswer),
+          ),
+          AnimatedSize(
+            duration: const Duration(milliseconds: 420),
+            curve: Curves.easeOutCubic,
+            child: _showAnswer
+                ? Padding(
+                    padding: const EdgeInsets.only(top: 18),
+                    child: _DemoAnswer(question: selected),
+                  )
+                : const SizedBox.shrink(),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _QuestionOption extends StatelessWidget {
+  const _QuestionOption({
+    super.key,
+    required this.question,
+    required this.selected,
+    required this.onTap,
+  });
+
+  final String question;
+  final bool selected;
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    return Material(
+      color: selected
+          ? theme.colorScheme.primaryContainer
+          : theme.colorScheme.surface,
+      borderRadius: BorderRadius.circular(12),
+      child: InkWell(
+        onTap: onTap,
+        borderRadius: BorderRadius.circular(12),
+        child: Container(
+          width: double.infinity,
+          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 11),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(12),
+            border: Border.all(
+              color: selected
+                  ? theme.colorScheme.primary
+                  : theme.colorScheme.outlineVariant,
+            ),
+          ),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Icon(
+                selected
+                    ? Icons.radio_button_checked
+                    : Icons.radio_button_unchecked,
+                size: 20,
+                color: selected
+                    ? theme.colorScheme.primary
+                    : theme.colorScheme.onSurfaceVariant,
+              ),
+              const SizedBox(width: 10),
+              Expanded(
+                child: Text(
+                  question,
+                  style: theme.textTheme.bodyMedium?.copyWith(
+                    fontWeight: selected ? FontWeight.w600 : null,
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _DemoAnswer extends StatelessWidget {
+  const _DemoAnswer({required this.question});
+
+  final KnowledgeDemoQuestion question;
+
+  @override
+  Widget build(BuildContext context) {
+    final l = AppLocalizations.of(context)!;
+    final theme = Theme.of(context);
+    final draft = question.draft;
+    return Column(
+      key: const Key('kb-demo-answer'),
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Container(
+          width: double.infinity,
+          padding: const EdgeInsets.all(16),
+          decoration: BoxDecoration(
+            color: theme.colorScheme.primaryContainer,
+            borderRadius: BorderRadius.circular(14),
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                children: [
+                  Icon(
+                    Icons.chat_bubble_outline,
+                    size: 19,
+                    color: theme.colorScheme.primary,
+                  ),
+                  const SizedBox(width: 8),
+                  Text(
+                    l.kbDemoAnswerTitle,
+                    style: theme.textTheme.titleSmall?.copyWith(
+                      color: theme.colorScheme.primary,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 10),
+              SelectableText(
+                question.answer,
+                style: theme.textTheme.bodyLarge?.copyWith(height: 1.45),
+              ),
+            ],
+          ),
+        ),
+        const SizedBox(height: 16),
+        Text(
+          l.kbDemoSourcesTitle,
+          style: theme.textTheme.titleSmall?.copyWith(
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        const SizedBox(height: 8),
+        Container(
+          width: double.infinity,
+          padding: const EdgeInsets.all(14),
+          decoration: BoxDecoration(
+            color: theme.colorScheme.surface,
+            borderRadius: BorderRadius.circular(12),
+            border: Border.all(color: theme.colorScheme.outlineVariant),
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Wrap(
+                spacing: 8,
+                runSpacing: 6,
+                crossAxisAlignment: WrapCrossAlignment.center,
+                children: [
+                  Text(
+                    draft.title,
+                    style: theme.textTheme.titleSmall?.copyWith(
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  _CategoryChip(label: _draftCategoryLabel(context, draft)),
+                ],
+              ),
+              const SizedBox(height: 8),
+              Text(
+                l.kbDemoSourceSentence,
+                style: theme.textTheme.labelSmall?.copyWith(
+                  color: theme.colorScheme.onSurfaceVariant,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              const SizedBox(height: 3),
+              SelectableText(
+                '“${question.sourceSentence}”',
+                style: theme.textTheme.bodyMedium?.copyWith(
+                  fontStyle: FontStyle.italic,
+                ),
+              ),
+            ],
+          ),
+        ),
+      ],
     );
   }
 }

@@ -4652,7 +4652,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get kbSummaryIntro =>
-      'The results are derived entirely from your input and the comparison with the existing knowledge base.';
+      'BusinessBrain analyzed your text and proposed structured company knowledge. Nothing has been saved yet. New knowledge becomes part of the knowledge base only after your confirmation.';
 
   @override
   String get kbPreviewIntro =>
@@ -4684,6 +4684,34 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get kbDocTypeCompanyKnowledge => 'Company knowledge';
+
+  @override
+  String get kbDemoBadge => 'Knowledge preview';
+
+  @override
+  String get kbDemoNotSaved => 'Not saved yet';
+
+  @override
+  String get kbDemoTitle => 'Try this knowledge immediately';
+
+  @override
+  String get kbDemoIntro =>
+      'BusinessBrain prepared relevant example questions exclusively from the text you just analyzed. Select a question and immediately see how the proposed knowledge can be used.';
+
+  @override
+  String get kbDemoQuestionLabel => 'Prepared example question';
+
+  @override
+  String get kbDemoCreateAnswer => 'Create answer';
+
+  @override
+  String get kbDemoAnswerTitle => 'Answer from the analyzed text';
+
+  @override
+  String get kbDemoSourcesTitle => 'Source used';
+
+  @override
+  String get kbDemoSourceSentence => 'Original sentence from the document';
 
   @override
   String get navRolePortals => 'Portals';

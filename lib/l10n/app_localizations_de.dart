@@ -4684,7 +4684,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get kbSummaryIntro =>
-      'Die Ergebnisse sind vollständig aus dem eingegebenen Text und dem Abgleich mit der vorhandenen Wissensbasis abgeleitet.';
+      'BusinessBrain hat Ihren Text analysiert und daraus strukturiertes Unternehmenswissen vorgeschlagen. Es wurde noch nichts gespeichert. Erst nach Ihrer Bestätigung wird neues Wissen Teil der Wissensbasis.';
 
   @override
   String get kbPreviewIntro =>
@@ -4716,6 +4716,34 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get kbDocTypeCompanyKnowledge => 'Unternehmenswissen';
+
+  @override
+  String get kbDemoBadge => 'Wissensvorschau';
+
+  @override
+  String get kbDemoNotSaved => 'Noch nicht gespeichert';
+
+  @override
+  String get kbDemoTitle => 'Dieses Wissen sofort ausprobieren';
+
+  @override
+  String get kbDemoIntro =>
+      'BusinessBrain hat passende Beispielfragen ausschließlich aus dem gerade analysierten Text vorbereitet. Wählen Sie eine Frage und prüfen Sie unmittelbar, wie das vorgeschlagene Wissen verwendet werden kann.';
+
+  @override
+  String get kbDemoQuestionLabel => 'Vorbereitete Beispielfrage';
+
+  @override
+  String get kbDemoCreateAnswer => 'Antwort erstellen';
+
+  @override
+  String get kbDemoAnswerTitle => 'Antwort aus dem analysierten Text';
+
+  @override
+  String get kbDemoSourcesTitle => 'Verwendete Quelle';
+
+  @override
+  String get kbDemoSourceSentence => 'Originalsatz aus dem Dokument';
 
   @override
   String get navRolePortals => 'Portale';
