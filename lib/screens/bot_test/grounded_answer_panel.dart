@@ -66,7 +66,7 @@ class _GroundedAnswerPanelState extends State<GroundedAnswerPanel> {
       final result = await _service().answer(
         GroundedAnswerRequest(
           question: question,
-          workspace: AppState.of(context).selectedWorkspace,
+          workspace: AppState.of(context).groundedAnswerWorkspace,
           language: Localizations.localeOf(context).languageCode,
         ),
       );

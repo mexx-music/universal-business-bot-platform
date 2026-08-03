@@ -1589,6 +1589,7 @@
   "kbDocTypeCompanyKnowledge": "Company knowledge",
   "kbDemoBadge": "Knowledge preview",
   "kbDemoNotSaved": "Not saved yet",
+  "kbDemoSaved": "Confirmed in the workspace",
   "kbDemoTitle": "Try this knowledge immediately",
   "kbDemoIntro": "BusinessBrain prepared relevant example questions exclusively from the text you just analyzed. Select a question and immediately see how the proposed knowledge can be used.",
   "kbDemoQuestionLabel": "Prepared example question",
@@ -1596,6 +1597,25 @@
   "kbDemoAnswerTitle": "Answer from the analyzed text",
   "kbDemoSourcesTitle": "Source used",
   "kbDemoSourceSentence": "Original sentence from the document",
+  "kbImportReviewTitle": "Add knowledge to the workspace",
+  "kbImportReviewNote": "This step confirms all proposed entries together. Only then do they become part of the active knowledge base.",
+  "kbImportAll": "Accept all proposed knowledge entries",
+  "kbImporting": "Adding knowledge entries …",
+  "kbImportSuccessTitle": "{count} knowledge entries added",
+  "@kbImportSuccessTitle": {
+    "placeholders": {
+      "count": { "type": "int" }
+    }
+  },
+  "kbImportKnowledgeCount": "Knowledge base: {before} → {after}",
+  "@kbImportKnowledgeCount": {
+    "placeholders": {
+      "before": { "type": "int" },
+      "after": { "type": "int" }
+    }
+  },
+  "kbImportGroundedReady": "Grounded AI now uses this company knowledge.",
+  "kbImportError": "The knowledge entries could not be added completely. Please try again.",
 
   "navRolePortals": "Portals",
   "roleOverviewTitle": "Roles & Portals",

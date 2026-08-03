@@ -4726,6 +4726,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get kbDemoNotSaved => 'Not saved yet';
 
   @override
+  String get kbDemoSaved => 'Confirmed in the workspace';
+
+  @override
   String get kbDemoTitle => 'Try this knowledge immediately';
 
   @override
@@ -4746,6 +4749,37 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get kbDemoSourceSentence => 'Original sentence from the document';
+
+  @override
+  String get kbImportReviewTitle => 'Add knowledge to the workspace';
+
+  @override
+  String get kbImportReviewNote =>
+      'This step confirms all proposed entries together. Only then do they become part of the active knowledge base.';
+
+  @override
+  String get kbImportAll => 'Accept all proposed knowledge entries';
+
+  @override
+  String get kbImporting => 'Adding knowledge entries …';
+
+  @override
+  String kbImportSuccessTitle(int count) {
+    return '$count knowledge entries added';
+  }
+
+  @override
+  String kbImportKnowledgeCount(int before, int after) {
+    return 'Knowledge base: $before → $after';
+  }
+
+  @override
+  String get kbImportGroundedReady =>
+      'Grounded AI now uses this company knowledge.';
+
+  @override
+  String get kbImportError =>
+      'The knowledge entries could not be added completely. Please try again.';
 
   @override
   String get navRolePortals => 'Portals';

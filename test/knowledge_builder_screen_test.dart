@@ -204,6 +204,71 @@ void main() {
     expect(state.selectedWorkspace.knowledgeEntries.length, before);
   });
 
+  testWidgets('accepts every draft into the active workspace', (tester) async {
+    final state = AppState();
+    final before = state.selectedWorkspace.knowledgeEntries.length;
+    final seededIds = state.selectedWorkspace.knowledgeEntries
+        .map((entry) => entry.id)
+        .toSet();
+    await pumpScreen(
+      tester,
+      analyzer: const _FakeAnalyzer(_scripted),
+      state: state,
+    );
+    final l = l10n(tester);
+    await analyze(tester, 'Text');
+
+    final acceptAll = find.byKey(const Key('kb-import-all'));
+    await tester.ensureVisible(acceptAll);
+    await tester.pumpAndSettle();
+    await tester.tap(acceptAll);
+    await tester.pumpAndSettle();
+
+    final workspaceEntries = state.selectedWorkspace.knowledgeEntries;
+    final imported = workspaceEntries
+        .where(
+          (entry) => entry.source == KnowledgeEntrySources.knowledgeBuilder,
+        )
+        .toList();
+    expect(workspaceEntries.length, before + _scripted.drafts.length);
+    expect(imported, hasLength(_scripted.drafts.length));
+    expect(imported.map((entry) => entry.title), [
+      for (final draft in _scripted.drafts) draft.title,
+    ]);
+    expect(imported.map((entry) => entry.content), [
+      for (final draft in _scripted.drafts) draft.content,
+    ]);
+    expect(find.byKey(const Key('kb-import-success')), findsOneWidget);
+    expect(
+      find.text(l.kbImportSuccessTitle(_scripted.drafts.length)),
+      findsOneWidget,
+    );
+    expect(
+      find.text(
+        l.kbImportKnowledgeCount(before, before + _scripted.drafts.length),
+      ),
+      findsOneWidget,
+    );
+    expect(find.text(l.kbImportGroundedReady), findsOneWidget);
+    expect(find.byKey(const Key('kb-import-all')), findsNothing);
+    expect(find.text(l.kbDemoSaved), findsOneWidget);
+    expect(find.text(l.kbDemoNotSaved), findsNothing);
+
+    final groundedEntries = state.groundedAnswerWorkspace.knowledgeEntries;
+    expect(groundedEntries, hasLength(_scripted.drafts.length));
+    expect(
+      groundedEntries.every(
+        (entry) => entry.source == KnowledgeEntrySources.knowledgeBuilder,
+      ),
+      isTrue,
+    );
+    expect(
+      groundedEntries.any((entry) => seededIds.contains(entry.id)),
+      isFalse,
+    );
+    expect(state.groundedAnswerWorkspace.sourceMaterials, isEmpty);
+  });
+
   testWidgets('keeps the analyze action visible with a long mobile document', (
     tester,
   ) async {

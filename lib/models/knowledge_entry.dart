@@ -1,5 +1,11 @@
 import 'package:flutter/material.dart';
 
+abstract final class KnowledgeEntrySources {
+  /// Stable source marker for entries explicitly confirmed in Knowledge
+  /// Builder. It is persisted in the already-existing `source` field.
+  static const knowledgeBuilder = 'Knowledge Builder';
+}
+
 enum RiskLevel { green, yellow, red }
 
 extension RiskLevelX on RiskLevel {

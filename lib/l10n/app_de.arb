@@ -1774,6 +1774,7 @@
   "kbDocTypeCompanyKnowledge": "Unternehmenswissen",
   "kbDemoBadge": "Wissensvorschau",
   "kbDemoNotSaved": "Noch nicht gespeichert",
+  "kbDemoSaved": "Im Workspace bestätigt",
   "kbDemoTitle": "Dieses Wissen sofort ausprobieren",
   "kbDemoIntro": "BusinessBrain hat passende Beispielfragen ausschließlich aus dem gerade analysierten Text vorbereitet. Wählen Sie eine Frage und prüfen Sie unmittelbar, wie das vorgeschlagene Wissen verwendet werden kann.",
   "kbDemoQuestionLabel": "Vorbereitete Beispielfrage",
@@ -1781,6 +1782,25 @@
   "kbDemoAnswerTitle": "Antwort aus dem analysierten Text",
   "kbDemoSourcesTitle": "Verwendete Quelle",
   "kbDemoSourceSentence": "Originalsatz aus dem Dokument",
+  "kbImportReviewTitle": "Wissen in den Workspace übernehmen",
+  "kbImportReviewNote": "Mit diesem Schritt bestätigen Sie alle vorgeschlagenen Einträge gemeinsam. Erst danach werden sie Teil der aktiven Wissensbasis.",
+  "kbImportAll": "Alle vorgeschlagenen Wissenseinträge übernehmen",
+  "kbImporting": "Wissenseinträge werden übernommen …",
+  "kbImportSuccessTitle": "{count} Wissenseinträge übernommen",
+  "@kbImportSuccessTitle": {
+    "placeholders": {
+      "count": { "type": "int" }
+    }
+  },
+  "kbImportKnowledgeCount": "Wissensbasis: {before} → {after}",
+  "@kbImportKnowledgeCount": {
+    "placeholders": {
+      "before": { "type": "int" },
+      "after": { "type": "int" }
+    }
+  },
+  "kbImportGroundedReady": "Grounded AI verwendet jetzt dieses Unternehmenswissen.",
+  "kbImportError": "Die Wissenseinträge konnten nicht vollständig übernommen werden. Bitte versuchen Sie es erneut.",
 
   "navRolePortals": "Portale",
   "roleOverviewTitle": "Rollen & Portale",

@@ -28,6 +28,19 @@ class StubService extends GroundedAnswerService {
   }
 }
 
+class CapturingService extends GroundedAnswerService {
+  CapturingService()
+    : super(aiController: AiController(AiProviderRegistry.mock()));
+
+  GroundedAnswerRequest? lastRequest;
+
+  @override
+  Future<GroundedAnswerResult> answer(GroundedAnswerRequest request) async {
+    lastRequest = request;
+    return noKnowledge(missingTerms: const ['unbekannt']);
+  }
+}
+
 GroundedAnswerResult answered({
   String answer = 'Wir haben täglich geöffnet.',
   bool isMock = true,
@@ -75,6 +88,7 @@ Future<void> pumpPanel(
   GroundedAnswerService service, {
   Locale locale = const Locale('de'),
   Size size = const Size(900, 1400),
+  AppState? state,
 }) async {
   await tester.binding.setSurfaceSize(size);
   addTearDown(() => tester.binding.setSurfaceSize(null));
@@ -86,7 +100,7 @@ Future<void> pumpPanel(
       home: Scaffold(
         body: SingleChildScrollView(
           child: AppStateScope(
-            notifier: AppState(),
+            notifier: state ?? AppState(),
             child: GroundedAnswerPanel(serviceOverride: service),
           ),
         ),
@@ -105,6 +119,42 @@ Future<void> ask(WidgetTester tester, String text) async {
 }
 
 void main() {
+  testWidgets(
+    'passes only confirmed builder knowledge after workspace integration',
+    (tester) async {
+      final state = AppState();
+      final seededIds = state.knowledgeEntries.map((entry) => entry.id).toSet();
+      final confirmed = KnowledgeEntry(
+        id: 'kb-confirmed',
+        title: 'Neue bestätigte Anleitung',
+        content: 'Die Verbindung wird über Bluetooth hergestellt.',
+        category: KnowledgeCategory.faq,
+        riskLevel: RiskLevel.green,
+        keywords: const ['Bluetooth'],
+        source: KnowledgeEntrySources.knowledgeBuilder,
+        createdAt: DateTime.utc(2026, 8, 3),
+        languageCode: 'de',
+        knowledgeArea: 'hb_cure_app',
+      );
+      await state.addKnowledgeEntries([confirmed]);
+      final service = CapturingService();
+      await pumpPanel(tester, service, state: state);
+
+      await ask(tester, 'Wie funktioniert Bluetooth?');
+      await tester.pumpAndSettle();
+
+      final requestEntries = service.lastRequest!.workspace.knowledgeEntries;
+      expect(requestEntries, hasLength(1));
+      expect(requestEntries.single.id, confirmed.id);
+      expect(requestEntries.single.content, confirmed.content);
+      expect(
+        requestEntries.any((entry) => seededIds.contains(entry.id)),
+        isFalse,
+      );
+      expect(service.lastRequest!.workspace.sourceMaterials, isEmpty);
+    },
+  );
+
   testWidgets('shows answer, source and human-review hint', (tester) async {
     await pumpPanel(tester, StubService((_) async => answered()));
     final l = l10n(tester);

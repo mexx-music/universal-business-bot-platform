@@ -53,7 +53,7 @@ class _KnowledgeWorkflowScreenState extends State<KnowledgeWorkflowScreen> {
     return service.answer(
       GroundedAnswerRequest(
         question: l.kwQuestion,
-        workspace: AppState.of(context).selectedWorkspace,
+        workspace: AppState.of(context).groundedAnswerWorkspace,
         language: Localizations.localeOf(context).languageCode,
       ),
     );

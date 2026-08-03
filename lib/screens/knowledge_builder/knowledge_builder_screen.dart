@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../data/app_state.dart';
 import '../../knowledge/knowledge_context.dart';
 import '../../knowledge_builder/knowledge_import_analyzer.dart';
+import '../../knowledge_builder/knowledge_import_mapper.dart';
 import '../../knowledge_builder/models/knowledge_analysis_presentation.dart';
 import '../../knowledge_builder/models/knowledge_demo_document.dart';
 import '../../knowledge_builder/models/knowledge_import_models.dart';
@@ -11,8 +12,8 @@ import '../../l10n/label_helpers.dart';
 
 /// Knowledge Builder: paste unstructured company text, get a *preview* of
 /// structured knowledge drafts. Analysis is deterministic and offline (no
-/// Gemini, edge function or grounded retrieval), never invents facts and never
-/// saves anything — the human decides per draft.
+/// Gemini, edge function or grounded retrieval) and never invents facts. It
+/// saves only after the human explicitly confirms the proposed batch.
 class KnowledgeBuilderScreen extends StatefulWidget {
   const KnowledgeBuilderScreen({super.key, this.analyzer});
 
@@ -33,6 +34,9 @@ class _KnowledgeBuilderScreenState extends State<KnowledgeBuilderScreen>
   KnowledgeImportAnalysis? _analysis;
   KnowledgeAnalysisPresentation? _presentation;
   KnowledgeDemoDocument? _loadedDemo;
+  _WorkspaceImportSuccess? _importSuccess;
+  bool _importing = false;
+  bool _importFailed = false;
   late final AnimationController _journey;
   int _stage = 0;
   bool _hasRevealedDemo = false;
@@ -101,6 +105,9 @@ class _KnowledgeBuilderScreenState extends State<KnowledgeBuilderScreen>
       _presentation = KnowledgeAnalysisPresentation.fromAnalysis(analysis);
       _stage = 0;
       _hasRevealedDemo = false;
+      _importSuccess = null;
+      _importing = false;
+      _importFailed = false;
     });
     if (analysis.isEmpty || MediaQuery.of(context).disableAnimations) {
       _journey.value = 1;
@@ -138,6 +145,42 @@ class _KnowledgeBuilderScreenState extends State<KnowledgeBuilderScreen>
     setState(() => _loadedDemo = null);
   }
 
+  Future<void> _importAllDrafts() async {
+    final analysis = _analysis;
+    if (analysis == null || analysis.drafts.isEmpty || _importing) return;
+
+    final state = AppState.of(context);
+    final before = state.knowledgeEntries.length;
+    final entries = const KnowledgeImportMapper().toWorkspaceEntries(
+      analysis.drafts,
+    );
+    setState(() {
+      _importing = true;
+      _importFailed = false;
+    });
+
+    await state.addKnowledgeEntries(entries);
+    if (!mounted) return;
+
+    final savedIds = state.knowledgeEntries.map((entry) => entry.id).toSet();
+    final imported = entries
+        .where((entry) => savedIds.contains(entry.id))
+        .length;
+    final complete =
+        imported == entries.length && state.workspaceSaveError == null;
+    setState(() {
+      _importing = false;
+      _importFailed = !complete;
+      _importSuccess = complete
+          ? _WorkspaceImportSuccess(
+              imported: imported,
+              before: before,
+              after: state.knowledgeEntries.length,
+            )
+          : null;
+    });
+  }
+
   void _reset() {
     _journey.stop();
     _journey.value = 0;
@@ -147,6 +190,9 @@ class _KnowledgeBuilderScreenState extends State<KnowledgeBuilderScreen>
       _stage = 0;
       _hasRevealedDemo = false;
       _loadedDemo = null;
+      _importSuccess = null;
+      _importing = false;
+      _importFailed = false;
       _input.clear();
     });
   }
@@ -232,6 +278,10 @@ class _KnowledgeBuilderScreenState extends State<KnowledgeBuilderScreen>
                       onReset: _reset,
                       demoAnchor: _demoAnchor,
                       onDemoReady: _revealDemo,
+                      importing: _importing,
+                      importFailed: _importFailed,
+                      importSuccess: _importSuccess,
+                      onImportAll: _importAllDrafts,
                     ),
                   ],
                 ],
@@ -242,6 +292,18 @@ class _KnowledgeBuilderScreenState extends State<KnowledgeBuilderScreen>
       ),
     );
   }
+}
+
+class _WorkspaceImportSuccess {
+  const _WorkspaceImportSuccess({
+    required this.imported,
+    required this.before,
+    required this.after,
+  });
+
+  final int imported;
+  final int before;
+  final int after;
 }
 
 class _DemoDocumentsSection extends StatelessWidget {
@@ -652,6 +714,10 @@ class _AnalysisJourney extends StatelessWidget {
     required this.onReset,
     required this.demoAnchor,
     required this.onDemoReady,
+    required this.importing,
+    required this.importFailed,
+    required this.importSuccess,
+    required this.onImportAll,
   });
 
   final KnowledgeAnalysisPresentation presentation;
@@ -660,6 +726,10 @@ class _AnalysisJourney extends StatelessWidget {
   final VoidCallback onReset;
   final Key demoAnchor;
   final VoidCallback onDemoReady;
+  final bool importing;
+  final bool importFailed;
+  final _WorkspaceImportSuccess? importSuccess;
+  final Future<void> Function() onImportAll;
 
   @override
   Widget build(BuildContext context) {
@@ -798,10 +868,17 @@ class _AnalysisJourney extends StatelessWidget {
                         _KnowledgeUseDemo(
                           presentation: presentation,
                           answerButtonKey: demoAnchor,
+                          confirmed: importSuccess != null,
                         ),
                         const SizedBox(height: 24),
                       ],
-                      _DraftPreview(analysis: analysis),
+                      _DraftPreview(
+                        analysis: analysis,
+                        importing: importing,
+                        importFailed: importFailed,
+                        importSuccess: importSuccess,
+                        onImportAll: onImportAll,
+                      ),
                     ],
                   ),
                 )
@@ -1222,10 +1299,12 @@ class _KnowledgeUseDemo extends StatefulWidget {
   const _KnowledgeUseDemo({
     required this.presentation,
     required this.answerButtonKey,
+    required this.confirmed,
   });
 
   final KnowledgeAnalysisPresentation presentation;
   final Key answerButtonKey;
+  final bool confirmed;
 
   @override
   State<_KnowledgeUseDemo> createState() => _KnowledgeUseDemoState();
@@ -1277,7 +1356,7 @@ class _KnowledgeUseDemoState extends State<_KnowledgeUseDemo> {
                 ),
               ),
               Text(
-                l.kbDemoNotSaved,
+                widget.confirmed ? l.kbDemoSaved : l.kbDemoNotSaved,
                 style: theme.textTheme.labelMedium?.copyWith(
                   color: theme.colorScheme.onSurfaceVariant,
                 ),
@@ -1528,9 +1607,19 @@ class _DemoAnswer extends StatelessWidget {
 }
 
 class _DraftPreview extends StatelessWidget {
-  const _DraftPreview({required this.analysis});
+  const _DraftPreview({
+    required this.analysis,
+    required this.importing,
+    required this.importFailed,
+    required this.importSuccess,
+    required this.onImportAll,
+  });
 
   final KnowledgeImportAnalysis analysis;
+  final bool importing;
+  final bool importFailed;
+  final _WorkspaceImportSuccess? importSuccess;
+  final Future<void> Function() onImportAll;
 
   @override
   Widget build(BuildContext context) {
@@ -1554,8 +1643,155 @@ class _DraftPreview extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 12),
+        _WorkspaceIntegrationCard(
+          importing: importing,
+          failed: importFailed,
+          success: importSuccess,
+          onImportAll: onImportAll,
+        ),
+        const SizedBox(height: 16),
         for (final draft in analysis.drafts) _DraftCard(draft: draft),
       ],
+    );
+  }
+}
+
+class _WorkspaceIntegrationCard extends StatelessWidget {
+  const _WorkspaceIntegrationCard({
+    required this.importing,
+    required this.failed,
+    required this.success,
+    required this.onImportAll,
+  });
+
+  final bool importing;
+  final bool failed;
+  final _WorkspaceImportSuccess? success;
+  final Future<void> Function() onImportAll;
+
+  @override
+  Widget build(BuildContext context) {
+    final l = AppLocalizations.of(context)!;
+    final theme = Theme.of(context);
+    final completed = success != null;
+    final background = completed
+        ? theme.colorScheme.tertiaryContainer
+        : failed
+        ? theme.colorScheme.errorContainer
+        : theme.colorScheme.primaryContainer;
+    final foreground = completed
+        ? theme.colorScheme.onTertiaryContainer
+        : failed
+        ? theme.colorScheme.onErrorContainer
+        : theme.colorScheme.onPrimaryContainer;
+
+    return Container(
+      key: const Key('kb-workspace-integration'),
+      width: double.infinity,
+      padding: const EdgeInsets.all(20),
+      decoration: BoxDecoration(
+        color: background,
+        borderRadius: BorderRadius.circular(18),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Icon(
+                completed
+                    ? Icons.verified_outlined
+                    : failed
+                    ? Icons.error_outline
+                    : Icons.library_add_check_outlined,
+                color: foreground,
+                size: 28,
+              ),
+              const SizedBox(width: 12),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      completed
+                          ? l.kbImportSuccessTitle(success!.imported)
+                          : l.kbImportReviewTitle,
+                      style: theme.textTheme.titleLarge?.copyWith(
+                        color: foreground,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    const SizedBox(height: 5),
+                    Text(
+                      completed
+                          ? l.kbImportKnowledgeCount(
+                              success!.before,
+                              success!.after,
+                            )
+                          : failed
+                          ? l.kbImportError
+                          : l.kbImportReviewNote,
+                      style: theme.textTheme.bodyMedium?.copyWith(
+                        color: foreground,
+                        height: 1.4,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+          if (completed) ...[
+            const SizedBox(height: 14),
+            Container(
+              key: const Key('kb-import-success'),
+              width: double.infinity,
+              padding: const EdgeInsets.all(12),
+              decoration: BoxDecoration(
+                color: theme.colorScheme.surface.withAlpha(205),
+                borderRadius: BorderRadius.circular(12),
+              ),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Icon(
+                    Icons.auto_awesome,
+                    size: 20,
+                    color: theme.colorScheme.tertiary,
+                  ),
+                  const SizedBox(width: 9),
+                  Expanded(
+                    child: Text(
+                      l.kbImportGroundedReady,
+                      style: theme.textTheme.bodyMedium?.copyWith(
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ] else ...[
+            const SizedBox(height: 16),
+            SizedBox(
+              width: double.infinity,
+              child: FilledButton.icon(
+                key: const Key('kb-import-all'),
+                onPressed: importing ? null : onImportAll,
+                icon: importing
+                    ? const SizedBox(
+                        width: 18,
+                        height: 18,
+                        child: CircularProgressIndicator(strokeWidth: 2),
+                      )
+                    : const Icon(Icons.done_all),
+                label: Text(importing ? l.kbImporting : l.kbImportAll),
+              ),
+            ),
+          ],
+        ],
+      ),
     );
   }
 }

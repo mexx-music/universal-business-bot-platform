@@ -4758,6 +4758,9 @@ class AppLocalizationsDe extends AppLocalizations {
   String get kbDemoNotSaved => 'Noch nicht gespeichert';
 
   @override
+  String get kbDemoSaved => 'Im Workspace bestätigt';
+
+  @override
   String get kbDemoTitle => 'Dieses Wissen sofort ausprobieren';
 
   @override
@@ -4778,6 +4781,37 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get kbDemoSourceSentence => 'Originalsatz aus dem Dokument';
+
+  @override
+  String get kbImportReviewTitle => 'Wissen in den Workspace übernehmen';
+
+  @override
+  String get kbImportReviewNote =>
+      'Mit diesem Schritt bestätigen Sie alle vorgeschlagenen Einträge gemeinsam. Erst danach werden sie Teil der aktiven Wissensbasis.';
+
+  @override
+  String get kbImportAll => 'Alle vorgeschlagenen Wissenseinträge übernehmen';
+
+  @override
+  String get kbImporting => 'Wissenseinträge werden übernommen …';
+
+  @override
+  String kbImportSuccessTitle(int count) {
+    return '$count Wissenseinträge übernommen';
+  }
+
+  @override
+  String kbImportKnowledgeCount(int before, int after) {
+    return 'Wissensbasis: $before → $after';
+  }
+
+  @override
+  String get kbImportGroundedReady =>
+      'Grounded AI verwendet jetzt dieses Unternehmenswissen.';
+
+  @override
+  String get kbImportError =>
+      'Die Wissenseinträge konnten nicht vollständig übernommen werden. Bitte versuchen Sie es erneut.';
 
   @override
   String get navRolePortals => 'Portale';

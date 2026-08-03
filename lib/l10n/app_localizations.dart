@@ -8690,6 +8690,12 @@ abstract class AppLocalizations {
   /// **'Noch nicht gespeichert'**
   String get kbDemoNotSaved;
 
+  /// No description provided for @kbDemoSaved.
+  ///
+  /// In de, this message translates to:
+  /// **'Im Workspace bestätigt'**
+  String get kbDemoSaved;
+
   /// No description provided for @kbDemoTitle.
   ///
   /// In de, this message translates to:
@@ -8731,6 +8737,54 @@ abstract class AppLocalizations {
   /// In de, this message translates to:
   /// **'Originalsatz aus dem Dokument'**
   String get kbDemoSourceSentence;
+
+  /// No description provided for @kbImportReviewTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Wissen in den Workspace übernehmen'**
+  String get kbImportReviewTitle;
+
+  /// No description provided for @kbImportReviewNote.
+  ///
+  /// In de, this message translates to:
+  /// **'Mit diesem Schritt bestätigen Sie alle vorgeschlagenen Einträge gemeinsam. Erst danach werden sie Teil der aktiven Wissensbasis.'**
+  String get kbImportReviewNote;
+
+  /// No description provided for @kbImportAll.
+  ///
+  /// In de, this message translates to:
+  /// **'Alle vorgeschlagenen Wissenseinträge übernehmen'**
+  String get kbImportAll;
+
+  /// No description provided for @kbImporting.
+  ///
+  /// In de, this message translates to:
+  /// **'Wissenseinträge werden übernommen …'**
+  String get kbImporting;
+
+  /// No description provided for @kbImportSuccessTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'{count} Wissenseinträge übernommen'**
+  String kbImportSuccessTitle(int count);
+
+  /// No description provided for @kbImportKnowledgeCount.
+  ///
+  /// In de, this message translates to:
+  /// **'Wissensbasis: {before} → {after}'**
+  String kbImportKnowledgeCount(int before, int after);
+
+  /// No description provided for @kbImportGroundedReady.
+  ///
+  /// In de, this message translates to:
+  /// **'Grounded AI verwendet jetzt dieses Unternehmenswissen.'**
+  String get kbImportGroundedReady;
+
+  /// No description provided for @kbImportError.
+  ///
+  /// In de, this message translates to:
+  /// **'Die Wissenseinträge konnten nicht vollständig übernommen werden. Bitte versuchen Sie es erneut.'**
+  String get kbImportError;
 
   /// No description provided for @navRolePortals.
   ///

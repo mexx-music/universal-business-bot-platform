@@ -200,6 +200,24 @@ class AppState extends ChangeNotifier {
   IntakeSession? get intakeSession => selectedIntakeSession;
   IntakeInvitation? get intakeInvitation => selectedIntakeInvitation;
 
+  /// Workspace context used by Grounded Answer.
+  ///
+  /// Before a Knowledge Builder import, the regular workspace remains the
+  /// source. Once the human has explicitly confirmed builder drafts, Grounded
+  /// Answer uses only those confirmed entries and no seeded demo knowledge.
+  CompanyWorkspace get groundedAnswerWorkspace {
+    final confirmed = selectedKnowledgeEntries
+        .where(
+          (entry) => entry.source == KnowledgeEntrySources.knowledgeBuilder,
+        )
+        .toList(growable: false);
+    if (confirmed.isEmpty) return selectedWorkspace;
+    return selectedWorkspace.copyWith(
+      knowledgeEntries: confirmed,
+      sourceMaterials: const [],
+    );
+  }
+
   void selectCompany(String companyId) {
     if (_workspaceRepository.selectCompany(companyId)) notifyListeners();
   }
@@ -741,6 +759,19 @@ class AppState extends ChangeNotifier {
     return _runWorkspaceMutation(
       () => _workspaceRepository.createKnowledgeEntry(entry),
     );
+  }
+
+  /// Adds one explicitly reviewed Knowledge Builder batch through the existing
+  /// repository boundary. No entry is written until the caller invokes this
+  /// method.
+  Future<void> addKnowledgeEntries(List<KnowledgeEntry> entries) {
+    if (entries.isEmpty) return Future.value();
+    return _runWorkspaceMutation(() async {
+      for (final entry in entries) {
+        await _workspaceRepository.createKnowledgeEntry(entry);
+      }
+      return null;
+    });
   }
 
   Future<void> addKnowledgeEntryLinkedToSource({

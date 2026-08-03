@@ -20,8 +20,9 @@ enum KnowledgeDraftCategory {
   general,
 }
 
-/// UI decision a human takes per draft. Purely presentational — no draft is
-/// ever saved by this block.
+/// UI decision a human takes per draft. The decision controls the existing
+/// per-entry review presentation; workspace writes still require the separate,
+/// explicit confirmation action.
 enum DraftDecision { undecided, accept, edit, ignore }
 
 /// How a human wants to reconcile a draft with an existing entry.
