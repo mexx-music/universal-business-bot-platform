@@ -6599,4 +6599,307 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get visionBack => 'Zurück zu BusinessBrain';
+
+  @override
+  String get navBusinessBrainRoadmap => 'BusinessBrain Roadmap';
+
+  @override
+  String get roadmapBack => 'Zurück zu BusinessBrain';
+
+  @override
+  String get roadmapHeroTitle =>
+      'Vom verifizierten Unternehmenswissen zum digitalen Unternehmensgehirn';
+
+  @override
+  String get roadmapHeroBody =>
+      'BusinessBrain beginnt mit einem klar begrenzten, heute verfügbaren Wissenskern. Jede weitere Stufe baut nachvollziehbar darauf auf und ist ausdrücklich als Zukunftsvision gekennzeichnet.';
+
+  @override
+  String get roadmapHeroControl =>
+      'Keine Stufe trifft autonome Unternehmensentscheidungen. Der Mensch prüft, bestätigt und entscheidet.';
+
+  @override
+  String get roadmapAvailableBadge => 'HEUTE VERFÜGBAR';
+
+  @override
+  String get roadmapVisionBadge => 'VISION';
+
+  @override
+  String get roadmapNextStage => 'NÄCHSTE AUSBAUSTUFE';
+
+  @override
+  String get roadmapVisualKnowledge => 'Wissen';
+
+  @override
+  String get roadmapVisualIntelligence => 'Verständnis';
+
+  @override
+  String get roadmapVisualBrain => 'BusinessBrain';
+
+  @override
+  String get roadmapVisualCaption =>
+      'Schrittweise Entwicklung statt unkontrollierter Autonomie.';
+
+  @override
+  String get roadmapJourneyTitle => 'Sieben glaubwürdige Entwicklungsstufen';
+
+  @override
+  String get roadmapJourneyBody =>
+      'Wählen Sie eine Stufe aus. Die Detailkarte erklärt Nutzen, Beispiele und die menschliche Kontrolle. Nur Stufe 1 ist heute verfügbar.';
+
+  @override
+  String get roadmapBenefitTitle => 'Nutzen';
+
+  @override
+  String get roadmapExamplesTitle => 'Beispiele';
+
+  @override
+  String get roadmapControlTitle => 'Menschliche Kontrolle';
+
+  @override
+  String get roadmapVisionDisclaimer =>
+      'Diese Stufe ist eine Produktvision. Die gezeigten Funktionen sind heute nicht verfügbar und enthalten keine Lieferzusage.';
+
+  @override
+  String get roadmapStage1Title => 'Verified Company Knowledge';
+
+  @override
+  String get roadmapStage1Description =>
+      'Bestätigtes Unternehmenswissen wird strukturiert, geprüft und sicher für nachvollziehbare Antworten nutzbar.';
+
+  @override
+  String get roadmapStage1Benefit =>
+      'Unternehmen erhalten konsistente Antworten, sichtbare Quellen und einen kontrollierten Lernkreislauf für ihr Wissen.';
+
+  @override
+  String get roadmapStage1Control =>
+      'Neue Wissenseinträge werden erst nach Human Review übernommen. BusinessBrain erfindet und veröffentlicht nichts selbst.';
+
+  @override
+  String get roadmapStage2Title => 'Customer Intelligence';
+
+  @override
+  String get roadmapStage2Description =>
+      'Wiederkehrende Kundenfragen und Probleme könnten als verständliche Muster sichtbar werden.';
+
+  @override
+  String get roadmapStage2Benefit =>
+      'Unternehmen könnten früher erkennen, welche Informationen Kunden fehlen und welche Produkte besondere Aufmerksamkeit erhalten.';
+
+  @override
+  String get roadmapStage2Control =>
+      'Erkannte Muster wären Hinweise. Menschen entscheiden, ob daraus FAQ, Dokumentation oder Maßnahmen entstehen.';
+
+  @override
+  String get roadmapStage3Title => 'Website Intelligence';
+
+  @override
+  String get roadmapStage3Description =>
+      'Die Unternehmenswebsite könnte als laufende Wissensquelle und Qualitätsfläche verstanden werden.';
+
+  @override
+  String get roadmapStage3Benefit =>
+      'Veraltete Inhalte, fehlende Antworten und relevante Downloads könnten schneller auffindbar werden.';
+
+  @override
+  String get roadmapStage3Control =>
+      'BusinessBrain würde Änderungen ausschließlich vorschlagen. Jede Anpassung der Website bliebe eine menschliche Entscheidung.';
+
+  @override
+  String get roadmapStage4Title => 'Marketing Intelligence';
+
+  @override
+  String get roadmapStage4Description =>
+      'Kundenwissen und digitale Signale könnten zu begründeten Marketing- und Content-Vorschlägen werden.';
+
+  @override
+  String get roadmapStage4Benefit =>
+      'Unternehmen könnten relevante Themen, Kanäle und Inhalte gezielter auswählen, ohne ihre Markenstimme abzugeben.';
+
+  @override
+  String get roadmapStage4Control =>
+      'Keine automatische Veröffentlichung und keine selbstständige Kampagne. Menschen wählen, bearbeiten und veröffentlichen jeden Inhalt.';
+
+  @override
+  String get roadmapStage5Title => 'Competitive Intelligence';
+
+  @override
+  String get roadmapStage5Description =>
+      'Markt- und Wettbewerbsveränderungen könnten sachlich zusammengeführt und eingeordnet werden.';
+
+  @override
+  String get roadmapStage5Benefit =>
+      'Preisänderungen, neue Produkte und Markttrends könnten früher in einer gemeinsamen Sicht erkennbar werden.';
+
+  @override
+  String get roadmapStage5Control =>
+      'Beobachtungen wären Informationsgrundlagen, keine automatischen Bewertungen oder Wettbewerbsentscheidungen.';
+
+  @override
+  String get roadmapStage6Title => 'Business Intelligence';
+
+  @override
+  String get roadmapStage6Description =>
+      'Kundenprobleme, Einwände und Produktinteresse könnten zu überprüfbaren Geschäftshinweisen verbunden werden.';
+
+  @override
+  String get roadmapStage6Benefit =>
+      'Unternehmen könnten Verbesserungsmöglichkeiten, Produktideen und Vertriebschancen nachvollziehbarer priorisieren.';
+
+  @override
+  String get roadmapStage6Control =>
+      'BusinessBrain würde Chancen erklären und Vorschläge vorbereiten. Ziele, Budgets und Maßnahmen bestimmt das Unternehmen.';
+
+  @override
+  String get roadmapStage7Title => 'Digital BusinessBrain';
+
+  @override
+  String get roadmapStage7Description =>
+      'Bestätigtes Wissen und verständliche Signale könnten zu einem gemeinsamen Orientierungssystem zusammenwachsen.';
+
+  @override
+  String get roadmapStage7Benefit =>
+      'Zusammenhänge, Prioritäten, Aufgabenentwürfe und Entscheidungsvorlagen könnten an einem Ort verständlich werden.';
+
+  @override
+  String get roadmapStage7Control =>
+      'Auch als digitales Unternehmensgehirn bleibt BusinessBrain ein Informations- und Vorschlagssystem. Der Mensch entscheidet immer.';
+
+  @override
+  String get roadmapFeatureKnowledgeBuilder => 'Knowledge Builder';
+
+  @override
+  String get roadmapFeatureHumanReview => 'Human Review';
+
+  @override
+  String get roadmapFeatureGroundedAnswers => 'Grounded Answers';
+
+  @override
+  String get roadmapFeatureWebsiteLinks => 'Website-Links';
+
+  @override
+  String get roadmapFeatureOperationsCenter => 'AI Operations Center';
+
+  @override
+  String get roadmapFeatureFrequentQuestions => 'Häufige Fragen erkennen';
+
+  @override
+  String get roadmapFeatureRecurringProblems =>
+      'Wiederkehrende Probleme erkennen';
+
+  @override
+  String get roadmapFeatureProductInterest => 'Produktinteresse verstehen';
+
+  @override
+  String get roadmapFeatureSupportTrends => 'Support-Trends erkennen';
+
+  @override
+  String get roadmapFeatureFaqSuggestions => 'Neue FAQ vorschlagen';
+
+  @override
+  String get roadmapFeatureAnalyseWebsite => 'Website analysieren';
+
+  @override
+  String get roadmapFeatureDetectProductPages => 'Produktseiten erkennen';
+
+  @override
+  String get roadmapFeatureDetectDownloads => 'Downloads erkennen';
+
+  @override
+  String get roadmapFeatureDetectFaq => 'FAQ erkennen';
+
+  @override
+  String get roadmapFeatureDetectKnowledgeGaps => 'Wissenslücken erkennen';
+
+  @override
+  String get roadmapFeatureKeepWebsiteCurrent => 'Website aktuell halten';
+
+  @override
+  String get roadmapFeatureImproveLandingPage => 'Landingpage verbessern';
+
+  @override
+  String get roadmapFeatureNewsletter => 'Newsletter';
+
+  @override
+  String get roadmapFeatureMarketingIdeas => 'Marketing-Ideen';
+
+  @override
+  String get roadmapFeatureContentSuggestions => 'Content-Vorschläge';
+
+  @override
+  String get roadmapFeatureObserveCompetitors => 'Wettbewerber beobachten';
+
+  @override
+  String get roadmapFeatureDetectPriceChanges => 'Preisänderungen erkennen';
+
+  @override
+  String get roadmapFeatureMarketTrends => 'Markttrends erkennen';
+
+  @override
+  String get roadmapFeatureNewProducts => 'Neue Produkte erkennen';
+
+  @override
+  String get roadmapFeatureStrengthsWeaknesses =>
+      'Stärken und Schwächen einordnen';
+
+  @override
+  String get roadmapFeatureCustomerProblems => 'Wiederkehrende Kundenprobleme';
+
+  @override
+  String get roadmapFeatureProductIdeas => 'Produktideen';
+
+  @override
+  String get roadmapFeatureImprovementSuggestions => 'Verbesserungsvorschläge';
+
+  @override
+  String get roadmapFeatureSalesOpportunities => 'Vertriebschancen';
+
+  @override
+  String get roadmapFeatureFrequentObjections => 'Häufige Einwände';
+
+  @override
+  String get roadmapFeatureRecogniseConnections => 'Zusammenhänge erkennen';
+
+  @override
+  String get roadmapFeatureRecommendPriorities => 'Prioritäten empfehlen';
+
+  @override
+  String get roadmapFeaturePrepareTasks => 'Aufgaben vorbereiten';
+
+  @override
+  String get roadmapFeatureCreateReports => 'Berichte erstellen';
+
+  @override
+  String get roadmapFeatureDecisionBriefs =>
+      'Entscheidungsvorlagen vorbereiten';
+
+  @override
+  String get roadmapClosingTitle =>
+      'Eine nachvollziehbare Reise zum digitalen Unternehmensgehirn';
+
+  @override
+  String get roadmapClosingBody =>
+      'BusinessBrain entwickelt sich vom Unternehmenswissen über Kundenverständnis und Marketing zu Unternehmensanalyse und einem gemeinsamen digitalen Orientierungsraum.';
+
+  @override
+  String get roadmapClosingKnowledge => 'Unternehmenswissen';
+
+  @override
+  String get roadmapClosingCustomers => 'Kundenverständnis';
+
+  @override
+  String get roadmapClosingMarketing => 'Marketing';
+
+  @override
+  String get roadmapClosingAnalysis => 'Unternehmensanalyse';
+
+  @override
+  String get roadmapClosingBrain => 'Digitales Unternehmensgehirn';
+
+  @override
+  String get roadmapHumanTitle => 'Der Mensch entscheidet immer.';
+
+  @override
+  String get roadmapHumanBody =>
+      'BusinessBrain ersetzt keine Menschen. BusinessBrain liefert nachvollziehbare Informationen, Vorschläge und Zusammenhänge. Die endgültige Entscheidung trifft immer der Mensch.';
 }

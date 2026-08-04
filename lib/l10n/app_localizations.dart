@@ -12055,6 +12055,546 @@ abstract class AppLocalizations {
   /// In de, this message translates to:
   /// **'Zurück zu BusinessBrain'**
   String get visionBack;
+
+  /// No description provided for @navBusinessBrainRoadmap.
+  ///
+  /// In de, this message translates to:
+  /// **'BusinessBrain Roadmap'**
+  String get navBusinessBrainRoadmap;
+
+  /// No description provided for @roadmapBack.
+  ///
+  /// In de, this message translates to:
+  /// **'Zurück zu BusinessBrain'**
+  String get roadmapBack;
+
+  /// No description provided for @roadmapHeroTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Vom verifizierten Unternehmenswissen zum digitalen Unternehmensgehirn'**
+  String get roadmapHeroTitle;
+
+  /// No description provided for @roadmapHeroBody.
+  ///
+  /// In de, this message translates to:
+  /// **'BusinessBrain beginnt mit einem klar begrenzten, heute verfügbaren Wissenskern. Jede weitere Stufe baut nachvollziehbar darauf auf und ist ausdrücklich als Zukunftsvision gekennzeichnet.'**
+  String get roadmapHeroBody;
+
+  /// No description provided for @roadmapHeroControl.
+  ///
+  /// In de, this message translates to:
+  /// **'Keine Stufe trifft autonome Unternehmensentscheidungen. Der Mensch prüft, bestätigt und entscheidet.'**
+  String get roadmapHeroControl;
+
+  /// No description provided for @roadmapAvailableBadge.
+  ///
+  /// In de, this message translates to:
+  /// **'HEUTE VERFÜGBAR'**
+  String get roadmapAvailableBadge;
+
+  /// No description provided for @roadmapVisionBadge.
+  ///
+  /// In de, this message translates to:
+  /// **'VISION'**
+  String get roadmapVisionBadge;
+
+  /// No description provided for @roadmapNextStage.
+  ///
+  /// In de, this message translates to:
+  /// **'NÄCHSTE AUSBAUSTUFE'**
+  String get roadmapNextStage;
+
+  /// No description provided for @roadmapVisualKnowledge.
+  ///
+  /// In de, this message translates to:
+  /// **'Wissen'**
+  String get roadmapVisualKnowledge;
+
+  /// No description provided for @roadmapVisualIntelligence.
+  ///
+  /// In de, this message translates to:
+  /// **'Verständnis'**
+  String get roadmapVisualIntelligence;
+
+  /// No description provided for @roadmapVisualBrain.
+  ///
+  /// In de, this message translates to:
+  /// **'BusinessBrain'**
+  String get roadmapVisualBrain;
+
+  /// No description provided for @roadmapVisualCaption.
+  ///
+  /// In de, this message translates to:
+  /// **'Schrittweise Entwicklung statt unkontrollierter Autonomie.'**
+  String get roadmapVisualCaption;
+
+  /// No description provided for @roadmapJourneyTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Sieben glaubwürdige Entwicklungsstufen'**
+  String get roadmapJourneyTitle;
+
+  /// No description provided for @roadmapJourneyBody.
+  ///
+  /// In de, this message translates to:
+  /// **'Wählen Sie eine Stufe aus. Die Detailkarte erklärt Nutzen, Beispiele und die menschliche Kontrolle. Nur Stufe 1 ist heute verfügbar.'**
+  String get roadmapJourneyBody;
+
+  /// No description provided for @roadmapBenefitTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Nutzen'**
+  String get roadmapBenefitTitle;
+
+  /// No description provided for @roadmapExamplesTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Beispiele'**
+  String get roadmapExamplesTitle;
+
+  /// No description provided for @roadmapControlTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Menschliche Kontrolle'**
+  String get roadmapControlTitle;
+
+  /// No description provided for @roadmapVisionDisclaimer.
+  ///
+  /// In de, this message translates to:
+  /// **'Diese Stufe ist eine Produktvision. Die gezeigten Funktionen sind heute nicht verfügbar und enthalten keine Lieferzusage.'**
+  String get roadmapVisionDisclaimer;
+
+  /// No description provided for @roadmapStage1Title.
+  ///
+  /// In de, this message translates to:
+  /// **'Verified Company Knowledge'**
+  String get roadmapStage1Title;
+
+  /// No description provided for @roadmapStage1Description.
+  ///
+  /// In de, this message translates to:
+  /// **'Bestätigtes Unternehmenswissen wird strukturiert, geprüft und sicher für nachvollziehbare Antworten nutzbar.'**
+  String get roadmapStage1Description;
+
+  /// No description provided for @roadmapStage1Benefit.
+  ///
+  /// In de, this message translates to:
+  /// **'Unternehmen erhalten konsistente Antworten, sichtbare Quellen und einen kontrollierten Lernkreislauf für ihr Wissen.'**
+  String get roadmapStage1Benefit;
+
+  /// No description provided for @roadmapStage1Control.
+  ///
+  /// In de, this message translates to:
+  /// **'Neue Wissenseinträge werden erst nach Human Review übernommen. BusinessBrain erfindet und veröffentlicht nichts selbst.'**
+  String get roadmapStage1Control;
+
+  /// No description provided for @roadmapStage2Title.
+  ///
+  /// In de, this message translates to:
+  /// **'Customer Intelligence'**
+  String get roadmapStage2Title;
+
+  /// No description provided for @roadmapStage2Description.
+  ///
+  /// In de, this message translates to:
+  /// **'Wiederkehrende Kundenfragen und Probleme könnten als verständliche Muster sichtbar werden.'**
+  String get roadmapStage2Description;
+
+  /// No description provided for @roadmapStage2Benefit.
+  ///
+  /// In de, this message translates to:
+  /// **'Unternehmen könnten früher erkennen, welche Informationen Kunden fehlen und welche Produkte besondere Aufmerksamkeit erhalten.'**
+  String get roadmapStage2Benefit;
+
+  /// No description provided for @roadmapStage2Control.
+  ///
+  /// In de, this message translates to:
+  /// **'Erkannte Muster wären Hinweise. Menschen entscheiden, ob daraus FAQ, Dokumentation oder Maßnahmen entstehen.'**
+  String get roadmapStage2Control;
+
+  /// No description provided for @roadmapStage3Title.
+  ///
+  /// In de, this message translates to:
+  /// **'Website Intelligence'**
+  String get roadmapStage3Title;
+
+  /// No description provided for @roadmapStage3Description.
+  ///
+  /// In de, this message translates to:
+  /// **'Die Unternehmenswebsite könnte als laufende Wissensquelle und Qualitätsfläche verstanden werden.'**
+  String get roadmapStage3Description;
+
+  /// No description provided for @roadmapStage3Benefit.
+  ///
+  /// In de, this message translates to:
+  /// **'Veraltete Inhalte, fehlende Antworten und relevante Downloads könnten schneller auffindbar werden.'**
+  String get roadmapStage3Benefit;
+
+  /// No description provided for @roadmapStage3Control.
+  ///
+  /// In de, this message translates to:
+  /// **'BusinessBrain würde Änderungen ausschließlich vorschlagen. Jede Anpassung der Website bliebe eine menschliche Entscheidung.'**
+  String get roadmapStage3Control;
+
+  /// No description provided for @roadmapStage4Title.
+  ///
+  /// In de, this message translates to:
+  /// **'Marketing Intelligence'**
+  String get roadmapStage4Title;
+
+  /// No description provided for @roadmapStage4Description.
+  ///
+  /// In de, this message translates to:
+  /// **'Kundenwissen und digitale Signale könnten zu begründeten Marketing- und Content-Vorschlägen werden.'**
+  String get roadmapStage4Description;
+
+  /// No description provided for @roadmapStage4Benefit.
+  ///
+  /// In de, this message translates to:
+  /// **'Unternehmen könnten relevante Themen, Kanäle und Inhalte gezielter auswählen, ohne ihre Markenstimme abzugeben.'**
+  String get roadmapStage4Benefit;
+
+  /// No description provided for @roadmapStage4Control.
+  ///
+  /// In de, this message translates to:
+  /// **'Keine automatische Veröffentlichung und keine selbstständige Kampagne. Menschen wählen, bearbeiten und veröffentlichen jeden Inhalt.'**
+  String get roadmapStage4Control;
+
+  /// No description provided for @roadmapStage5Title.
+  ///
+  /// In de, this message translates to:
+  /// **'Competitive Intelligence'**
+  String get roadmapStage5Title;
+
+  /// No description provided for @roadmapStage5Description.
+  ///
+  /// In de, this message translates to:
+  /// **'Markt- und Wettbewerbsveränderungen könnten sachlich zusammengeführt und eingeordnet werden.'**
+  String get roadmapStage5Description;
+
+  /// No description provided for @roadmapStage5Benefit.
+  ///
+  /// In de, this message translates to:
+  /// **'Preisänderungen, neue Produkte und Markttrends könnten früher in einer gemeinsamen Sicht erkennbar werden.'**
+  String get roadmapStage5Benefit;
+
+  /// No description provided for @roadmapStage5Control.
+  ///
+  /// In de, this message translates to:
+  /// **'Beobachtungen wären Informationsgrundlagen, keine automatischen Bewertungen oder Wettbewerbsentscheidungen.'**
+  String get roadmapStage5Control;
+
+  /// No description provided for @roadmapStage6Title.
+  ///
+  /// In de, this message translates to:
+  /// **'Business Intelligence'**
+  String get roadmapStage6Title;
+
+  /// No description provided for @roadmapStage6Description.
+  ///
+  /// In de, this message translates to:
+  /// **'Kundenprobleme, Einwände und Produktinteresse könnten zu überprüfbaren Geschäftshinweisen verbunden werden.'**
+  String get roadmapStage6Description;
+
+  /// No description provided for @roadmapStage6Benefit.
+  ///
+  /// In de, this message translates to:
+  /// **'Unternehmen könnten Verbesserungsmöglichkeiten, Produktideen und Vertriebschancen nachvollziehbarer priorisieren.'**
+  String get roadmapStage6Benefit;
+
+  /// No description provided for @roadmapStage6Control.
+  ///
+  /// In de, this message translates to:
+  /// **'BusinessBrain würde Chancen erklären und Vorschläge vorbereiten. Ziele, Budgets und Maßnahmen bestimmt das Unternehmen.'**
+  String get roadmapStage6Control;
+
+  /// No description provided for @roadmapStage7Title.
+  ///
+  /// In de, this message translates to:
+  /// **'Digital BusinessBrain'**
+  String get roadmapStage7Title;
+
+  /// No description provided for @roadmapStage7Description.
+  ///
+  /// In de, this message translates to:
+  /// **'Bestätigtes Wissen und verständliche Signale könnten zu einem gemeinsamen Orientierungssystem zusammenwachsen.'**
+  String get roadmapStage7Description;
+
+  /// No description provided for @roadmapStage7Benefit.
+  ///
+  /// In de, this message translates to:
+  /// **'Zusammenhänge, Prioritäten, Aufgabenentwürfe und Entscheidungsvorlagen könnten an einem Ort verständlich werden.'**
+  String get roadmapStage7Benefit;
+
+  /// No description provided for @roadmapStage7Control.
+  ///
+  /// In de, this message translates to:
+  /// **'Auch als digitales Unternehmensgehirn bleibt BusinessBrain ein Informations- und Vorschlagssystem. Der Mensch entscheidet immer.'**
+  String get roadmapStage7Control;
+
+  /// No description provided for @roadmapFeatureKnowledgeBuilder.
+  ///
+  /// In de, this message translates to:
+  /// **'Knowledge Builder'**
+  String get roadmapFeatureKnowledgeBuilder;
+
+  /// No description provided for @roadmapFeatureHumanReview.
+  ///
+  /// In de, this message translates to:
+  /// **'Human Review'**
+  String get roadmapFeatureHumanReview;
+
+  /// No description provided for @roadmapFeatureGroundedAnswers.
+  ///
+  /// In de, this message translates to:
+  /// **'Grounded Answers'**
+  String get roadmapFeatureGroundedAnswers;
+
+  /// No description provided for @roadmapFeatureWebsiteLinks.
+  ///
+  /// In de, this message translates to:
+  /// **'Website-Links'**
+  String get roadmapFeatureWebsiteLinks;
+
+  /// No description provided for @roadmapFeatureOperationsCenter.
+  ///
+  /// In de, this message translates to:
+  /// **'AI Operations Center'**
+  String get roadmapFeatureOperationsCenter;
+
+  /// No description provided for @roadmapFeatureFrequentQuestions.
+  ///
+  /// In de, this message translates to:
+  /// **'Häufige Fragen erkennen'**
+  String get roadmapFeatureFrequentQuestions;
+
+  /// No description provided for @roadmapFeatureRecurringProblems.
+  ///
+  /// In de, this message translates to:
+  /// **'Wiederkehrende Probleme erkennen'**
+  String get roadmapFeatureRecurringProblems;
+
+  /// No description provided for @roadmapFeatureProductInterest.
+  ///
+  /// In de, this message translates to:
+  /// **'Produktinteresse verstehen'**
+  String get roadmapFeatureProductInterest;
+
+  /// No description provided for @roadmapFeatureSupportTrends.
+  ///
+  /// In de, this message translates to:
+  /// **'Support-Trends erkennen'**
+  String get roadmapFeatureSupportTrends;
+
+  /// No description provided for @roadmapFeatureFaqSuggestions.
+  ///
+  /// In de, this message translates to:
+  /// **'Neue FAQ vorschlagen'**
+  String get roadmapFeatureFaqSuggestions;
+
+  /// No description provided for @roadmapFeatureAnalyseWebsite.
+  ///
+  /// In de, this message translates to:
+  /// **'Website analysieren'**
+  String get roadmapFeatureAnalyseWebsite;
+
+  /// No description provided for @roadmapFeatureDetectProductPages.
+  ///
+  /// In de, this message translates to:
+  /// **'Produktseiten erkennen'**
+  String get roadmapFeatureDetectProductPages;
+
+  /// No description provided for @roadmapFeatureDetectDownloads.
+  ///
+  /// In de, this message translates to:
+  /// **'Downloads erkennen'**
+  String get roadmapFeatureDetectDownloads;
+
+  /// No description provided for @roadmapFeatureDetectFaq.
+  ///
+  /// In de, this message translates to:
+  /// **'FAQ erkennen'**
+  String get roadmapFeatureDetectFaq;
+
+  /// No description provided for @roadmapFeatureDetectKnowledgeGaps.
+  ///
+  /// In de, this message translates to:
+  /// **'Wissenslücken erkennen'**
+  String get roadmapFeatureDetectKnowledgeGaps;
+
+  /// No description provided for @roadmapFeatureKeepWebsiteCurrent.
+  ///
+  /// In de, this message translates to:
+  /// **'Website aktuell halten'**
+  String get roadmapFeatureKeepWebsiteCurrent;
+
+  /// No description provided for @roadmapFeatureImproveLandingPage.
+  ///
+  /// In de, this message translates to:
+  /// **'Landingpage verbessern'**
+  String get roadmapFeatureImproveLandingPage;
+
+  /// No description provided for @roadmapFeatureNewsletter.
+  ///
+  /// In de, this message translates to:
+  /// **'Newsletter'**
+  String get roadmapFeatureNewsletter;
+
+  /// No description provided for @roadmapFeatureMarketingIdeas.
+  ///
+  /// In de, this message translates to:
+  /// **'Marketing-Ideen'**
+  String get roadmapFeatureMarketingIdeas;
+
+  /// No description provided for @roadmapFeatureContentSuggestions.
+  ///
+  /// In de, this message translates to:
+  /// **'Content-Vorschläge'**
+  String get roadmapFeatureContentSuggestions;
+
+  /// No description provided for @roadmapFeatureObserveCompetitors.
+  ///
+  /// In de, this message translates to:
+  /// **'Wettbewerber beobachten'**
+  String get roadmapFeatureObserveCompetitors;
+
+  /// No description provided for @roadmapFeatureDetectPriceChanges.
+  ///
+  /// In de, this message translates to:
+  /// **'Preisänderungen erkennen'**
+  String get roadmapFeatureDetectPriceChanges;
+
+  /// No description provided for @roadmapFeatureMarketTrends.
+  ///
+  /// In de, this message translates to:
+  /// **'Markttrends erkennen'**
+  String get roadmapFeatureMarketTrends;
+
+  /// No description provided for @roadmapFeatureNewProducts.
+  ///
+  /// In de, this message translates to:
+  /// **'Neue Produkte erkennen'**
+  String get roadmapFeatureNewProducts;
+
+  /// No description provided for @roadmapFeatureStrengthsWeaknesses.
+  ///
+  /// In de, this message translates to:
+  /// **'Stärken und Schwächen einordnen'**
+  String get roadmapFeatureStrengthsWeaknesses;
+
+  /// No description provided for @roadmapFeatureCustomerProblems.
+  ///
+  /// In de, this message translates to:
+  /// **'Wiederkehrende Kundenprobleme'**
+  String get roadmapFeatureCustomerProblems;
+
+  /// No description provided for @roadmapFeatureProductIdeas.
+  ///
+  /// In de, this message translates to:
+  /// **'Produktideen'**
+  String get roadmapFeatureProductIdeas;
+
+  /// No description provided for @roadmapFeatureImprovementSuggestions.
+  ///
+  /// In de, this message translates to:
+  /// **'Verbesserungsvorschläge'**
+  String get roadmapFeatureImprovementSuggestions;
+
+  /// No description provided for @roadmapFeatureSalesOpportunities.
+  ///
+  /// In de, this message translates to:
+  /// **'Vertriebschancen'**
+  String get roadmapFeatureSalesOpportunities;
+
+  /// No description provided for @roadmapFeatureFrequentObjections.
+  ///
+  /// In de, this message translates to:
+  /// **'Häufige Einwände'**
+  String get roadmapFeatureFrequentObjections;
+
+  /// No description provided for @roadmapFeatureRecogniseConnections.
+  ///
+  /// In de, this message translates to:
+  /// **'Zusammenhänge erkennen'**
+  String get roadmapFeatureRecogniseConnections;
+
+  /// No description provided for @roadmapFeatureRecommendPriorities.
+  ///
+  /// In de, this message translates to:
+  /// **'Prioritäten empfehlen'**
+  String get roadmapFeatureRecommendPriorities;
+
+  /// No description provided for @roadmapFeaturePrepareTasks.
+  ///
+  /// In de, this message translates to:
+  /// **'Aufgaben vorbereiten'**
+  String get roadmapFeaturePrepareTasks;
+
+  /// No description provided for @roadmapFeatureCreateReports.
+  ///
+  /// In de, this message translates to:
+  /// **'Berichte erstellen'**
+  String get roadmapFeatureCreateReports;
+
+  /// No description provided for @roadmapFeatureDecisionBriefs.
+  ///
+  /// In de, this message translates to:
+  /// **'Entscheidungsvorlagen vorbereiten'**
+  String get roadmapFeatureDecisionBriefs;
+
+  /// No description provided for @roadmapClosingTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Eine nachvollziehbare Reise zum digitalen Unternehmensgehirn'**
+  String get roadmapClosingTitle;
+
+  /// No description provided for @roadmapClosingBody.
+  ///
+  /// In de, this message translates to:
+  /// **'BusinessBrain entwickelt sich vom Unternehmenswissen über Kundenverständnis und Marketing zu Unternehmensanalyse und einem gemeinsamen digitalen Orientierungsraum.'**
+  String get roadmapClosingBody;
+
+  /// No description provided for @roadmapClosingKnowledge.
+  ///
+  /// In de, this message translates to:
+  /// **'Unternehmenswissen'**
+  String get roadmapClosingKnowledge;
+
+  /// No description provided for @roadmapClosingCustomers.
+  ///
+  /// In de, this message translates to:
+  /// **'Kundenverständnis'**
+  String get roadmapClosingCustomers;
+
+  /// No description provided for @roadmapClosingMarketing.
+  ///
+  /// In de, this message translates to:
+  /// **'Marketing'**
+  String get roadmapClosingMarketing;
+
+  /// No description provided for @roadmapClosingAnalysis.
+  ///
+  /// In de, this message translates to:
+  /// **'Unternehmensanalyse'**
+  String get roadmapClosingAnalysis;
+
+  /// No description provided for @roadmapClosingBrain.
+  ///
+  /// In de, this message translates to:
+  /// **'Digitales Unternehmensgehirn'**
+  String get roadmapClosingBrain;
+
+  /// No description provided for @roadmapHumanTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Der Mensch entscheidet immer.'**
+  String get roadmapHumanTitle;
+
+  /// No description provided for @roadmapHumanBody.
+  ///
+  /// In de, this message translates to:
+  /// **'BusinessBrain ersetzt keine Menschen. BusinessBrain liefert nachvollziehbare Informationen, Vorschläge und Zusammenhänge. Die endgültige Entscheidung trifft immer der Mensch.'**
+  String get roadmapHumanBody;
 }
 
 class _AppLocalizationsDelegate

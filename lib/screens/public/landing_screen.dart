@@ -202,6 +202,11 @@ class _LandingNav extends StatelessWidget {
             crossAxisAlignment: WrapCrossAlignment.center,
             children: [
               const LanguageSwitcher(compact: true),
+              TextButton(
+                key: const Key('landing-roadmap'),
+                onPressed: () => context.go('/roadmap'),
+                child: Text(l.navBusinessBrainRoadmap),
+              ),
               TextButton(onPressed: onDemo, child: Text(l.landingDemoButton)),
               OutlinedButton(
                 onPressed: onContact,

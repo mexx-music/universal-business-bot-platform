@@ -31,12 +31,18 @@ class BusinessBrainVisionScreen extends StatelessWidget {
           },
           icon: const Icon(Icons.arrow_back),
         ),
-        actions: const [
-          Padding(
+        actions: [
+          IconButton(
+            key: const Key('vision-open-roadmap'),
+            tooltip: l.navBusinessBrainRoadmap,
+            onPressed: () => context.go('/roadmap'),
+            icon: const Icon(Icons.route_outlined),
+          ),
+          const Padding(
             padding: EdgeInsets.symmetric(vertical: 8),
             child: LanguageSwitcher(compact: true),
           ),
-          SizedBox(width: 12),
+          const SizedBox(width: 12),
         ],
       ),
       body: DecoratedBox(

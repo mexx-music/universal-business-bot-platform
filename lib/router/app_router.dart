@@ -41,6 +41,7 @@ import '../screens/knowledge_improvement/knowledge_improvement_screen.dart';
 import '../screens/knowledge_workflow/knowledge_workflow_screen.dart';
 import '../screens/roles/role_overview_screen.dart';
 import '../screens/vision/businessbrain_vision_screen.dart';
+import '../screens/roadmap/businessbrain_roadmap_screen.dart';
 import '../screens/bot_test/bot_test_screen.dart';
 import '../screens/bot_settings/bot_settings_screen.dart';
 import '../screens/sources/sources_screen.dart';
@@ -68,7 +69,8 @@ GoRouter createAppRouter(
           location == '/login' ||
           location == '/jury' ||
           location == '/jury-demo' ||
-          location == '/vision';
+          location == '/vision' ||
+          location == '/roadmap';
       final isPublicIntakeRoute = location.startsWith('/onboarding/');
       final isLogin = location == '/login';
       final isOnboarding = location == '/onboarding';
@@ -126,6 +128,10 @@ GoRouter createAppRouter(
       GoRoute(
         path: '/vision',
         builder: (context, state) => const BusinessBrainVisionScreen(),
+      ),
+      GoRoute(
+        path: '/roadmap',
+        builder: (context, state) => const BusinessBrainRoadmapScreen(),
       ),
       GoRoute(path: '/login', builder: (context, state) => const LoginScreen()),
       GoRoute(
