@@ -14,11 +14,15 @@ import 'package:universalbusiness/l10n/app_localizations.dart';
 import 'package:universalbusiness/models/knowledge_entry.dart';
 import 'package:universalbusiness/screens/bot_test/grounded_answer_panel.dart';
 
+import 'support/scripted_gemini_provider.dart';
+
 /// Replaces the real service so the widget test never touches KnowledgeRuntime,
 /// AppState content or any network — it just replays a scripted answer/error.
 class StubService extends GroundedAnswerService {
-  StubService(this.script)
-    : super(aiController: AiController(AiProviderRegistry.mock()));
+  StubService(this.script, {AiController? aiController})
+    : super(
+        aiController: aiController ?? AiController(AiProviderRegistry.mock()),
+      );
 
   final Future<GroundedAnswerResult> Function(int call) script;
   int calls = 0;
@@ -46,6 +50,8 @@ GroundedAnswerResult answered({
   String answer = 'Wir haben täglich geöffnet.',
   bool isMock = true,
   GroundedEvidenceCoverage coverage = GroundedEvidenceCoverage.fullyAnswerable,
+  List<String> missingTerms = const [],
+  bool missingCoreInformation = false,
 }) {
   return GroundedAnswerResult(
     outcome: GroundedOutcome.answered,
@@ -55,6 +61,8 @@ GroundedAnswerResult answered({
     providerDisplayName: isMock ? 'Mock' : 'Google Gemini',
     model: isMock ? null : 'gemini-3.6-flash',
     evidenceCoverage: coverage,
+    missingTerms: missingTerms,
+    missingCoreInformation: missingCoreInformation,
     sources: const [
       GroundedSource(
         id: 'k1',
@@ -142,6 +150,117 @@ Future<void> ask(WidgetTester tester, String text) async {
 }
 
 void main() {
+  testWidgets('live Gemini suggests only validated knowledge improvements', (
+    tester,
+  ) async {
+    final provider = ScriptedGeminiProvider(
+      responseText: '{"improvementIds":["price","productLink","inventedFact"]}',
+    );
+    final service = StubService(
+      (_) async => noKnowledge(missingTerms: const ['preis', 'produktseite']),
+      aiController: controllerWithScriptedGemini(provider),
+    );
+    await pumpPanel(tester, service);
+    final l = l10n(tester);
+
+    await ask(tester, 'Wie viel kostet das Produkt?');
+    await tester.pumpAndSettle();
+
+    expect(
+      find.byKey(const Key('grounded-gemini-gap-improvements')),
+      findsOneWidget,
+    );
+    expect(find.text(l.botGeminiGapPrice), findsOneWidget);
+    expect(find.text(l.botGeminiGapProductLink), findsOneWidget);
+    expect(find.text('inventedFact'), findsNothing);
+    expect(find.text(l.botGeminiReviewBeforeApplying), findsOneWidget);
+    expect(provider.calls, 1);
+    expect(
+      provider.requests.single.metadata['feature'],
+      'knowledge-gap-assistant',
+    );
+  });
+
+  testWidgets('Gemini gap failure leaves deterministic guidance unchanged', (
+    tester,
+  ) async {
+    final provider = ScriptedGeminiProvider(
+      error: const AiTransportException(AiTransportErrorKind.network, 'down'),
+    );
+    final service = StubService(
+      (_) async => noKnowledge(),
+      aiController: controllerWithScriptedGemini(provider),
+    );
+    await pumpPanel(tester, service);
+    final l = l10n(tester);
+
+    await ask(tester, 'Unbekannte Frage');
+    await tester.pumpAndSettle();
+
+    expect(find.text(l.botDemoGapTitle), findsOneWidget);
+    expect(find.text(l.botDemoGapItemFaq), findsOneWidget);
+    expect(
+      find.byKey(const Key('grounded-gemini-gap-improvements')),
+      findsNothing,
+    );
+    expect(provider.calls, 1);
+    expect(tester.takeException(), isNull);
+  });
+
+  testWidgets('partially answerable result also receives Gemini improvements', (
+    tester,
+  ) async {
+    final provider = ScriptedGeminiProvider(
+      responseText: '{"improvementIds":["requirements"]}',
+    );
+    await pumpPanel(
+      tester,
+      StubService(
+        (_) async => answered(
+          coverage: GroundedEvidenceCoverage.partiallyAnswerable,
+          missingTerms: const ['systemvoraussetzungen'],
+          missingCoreInformation: true,
+        ),
+        aiController: controllerWithScriptedGemini(provider),
+      ),
+    );
+    final l = l10n(tester);
+
+    await ask(tester, 'Welche Voraussetzungen gelten?');
+    await tester.pumpAndSettle();
+
+    expect(find.text('Wir haben täglich geöffnet.'), findsOneWidget);
+    expect(find.text(l.botGeminiGapRequirements), findsOneWidget);
+    expect(
+      find.byKey(const Key('grounded-gemini-gap-improvements')),
+      findsOneWidget,
+    );
+  });
+
+  testWidgets('Gemini knowledge improvements are localized in English', (
+    tester,
+  ) async {
+    final provider = ScriptedGeminiProvider(
+      responseText: '{"improvementIds":["validityDate","contact"]}',
+    );
+    await pumpPanel(
+      tester,
+      StubService(
+        (_) async => noKnowledge(missingTerms: const ['date', 'contact']),
+        aiController: controllerWithScriptedGemini(provider),
+      ),
+      locale: const Locale('en'),
+    );
+
+    await ask(tester, 'Who can confirm the current offer?');
+    await tester.pumpAndSettle();
+
+    expect(find.text('Suggested Knowledge Improvements'), findsOneWidget);
+    expect(find.text('Validity date'), findsOneWidget);
+    expect(find.text('Responsible contact'), findsOneWidget);
+    expect(find.text('✨ GEMINI PROPOSAL'), findsOneWidget);
+  });
+
   testWidgets('recent-import hint disappears after the first question', (
     tester,
   ) async {

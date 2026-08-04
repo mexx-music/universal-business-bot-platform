@@ -7191,4 +7191,116 @@ class AppLocalizationsDe extends AppLocalizations {
   @override
   String get gettingStartedTimeDisclaimer =>
       'Demo-Schätzung für einen kompakten Ersteinstieg. Der tatsächliche Aufwand hängt vom Umfang des Unternehmenswissens ab.';
+
+  @override
+  String get kbGeminiProposalBadge => '✨ GEMINI-VORSCHLAG';
+
+  @override
+  String get kbGeminiInsightsTitle => 'Gemini Insights';
+
+  @override
+  String get kbGeminiInsightsBody =>
+      'Gemini ergänzt die deterministische Analyse mit dokumentgebundenen Vorschlägen. Die Analyse selbst bleibt unverändert.';
+
+  @override
+  String get kbGeminiLoading =>
+      'Gemini erstellt dokumentgebundene Vorschläge …';
+
+  @override
+  String get kbGeminiSummary => 'Kurze Zusammenfassung';
+
+  @override
+  String get kbGeminiKeyStatements => 'Wichtigste Aussagen';
+
+  @override
+  String get kbGeminiRecommendedFaq => 'Empfohlene FAQ';
+
+  @override
+  String get kbGeminiCategories => 'Mögliche Kategorien';
+
+  @override
+  String get kbGeminiMissingInformation => 'Fehlende Informationen';
+
+  @override
+  String get kbGeminiPossibleDuplicates => 'Mögliche Dubletten';
+
+  @override
+  String get kbGeminiEmployeeQuestions => 'Offene Fragen an Mitarbeiter';
+
+  @override
+  String get kbGeminiSourceDocumentOnly =>
+      'Ausschließlich aus dem analysierten Dokument und den sichtbaren Analysemetadaten erzeugt.';
+
+  @override
+  String get kbGeminiReviewBeforeApplying =>
+      'Vor der Übernahme prüfen. Gemini-Ergebnisse sind ausschließlich Vorschläge und werden nicht automatisch gespeichert.';
+
+  @override
+  String get kbGeminiReviewSuggestionsTitle => 'Review Suggestions';
+
+  @override
+  String get kbGeminiReviewSuggestionsBody =>
+      'Gemini weist vor der Übernahme auf mögliche Verbesserungen der vorgeschlagenen Wissenseinträge hin.';
+
+  @override
+  String get botGeminiProposalBadge => '✨ GEMINI-VORSCHLAG';
+
+  @override
+  String get botGeminiGapTitle => 'Vorgeschlagene Wissensverbesserungen';
+
+  @override
+  String get botGeminiGapBody =>
+      'Gemini hat ausschließlich die Frage und die erkannten Wissenslücken geprüft. Diese Informationstypen könnten die Wissensbasis vervollständigen:';
+
+  @override
+  String get botGeminiReviewBeforeApplying =>
+      'Vor der Übernahme prüfen. Es wird nichts automatisch gespeichert.';
+
+  @override
+  String get botGeminiGapPrice => 'Aktueller Preis';
+
+  @override
+  String get botGeminiGapProductLink => 'Bestätigter Produktlink';
+
+  @override
+  String get botGeminiGapValidityDate => 'Gültigkeitsdatum';
+
+  @override
+  String get botGeminiGapContact => 'Zuständiger Ansprechpartner';
+
+  @override
+  String get botGeminiGapDownload => 'Passender Download';
+
+  @override
+  String get botGeminiGapRequirements => 'Technische Voraussetzungen';
+
+  @override
+  String get botGeminiGapCompatibility => 'Kompatibilitätsinformationen';
+
+  @override
+  String get botGeminiGapInstructions => 'Schritt-für-Schritt-Anleitung';
+
+  @override
+  String get botGeminiGapTroubleshooting => 'Bestätigter Lösungsweg';
+
+  @override
+  String get botGeminiGapPolicy => 'Gültige Unternehmensrichtlinie';
+
+  @override
+  String get opGeminiWeeklyTitle => 'Gemini Weekly Summary';
+
+  @override
+  String get opGeminiWeeklySubtitle =>
+      'Gemini priorisiert belegte Erkenntnisse aus den vorhandenen Operations-Demodaten.';
+
+  @override
+  String get opGeminiSummaryBadge => '✨ GEMINI-ZUSAMMENFASSUNG';
+
+  @override
+  String get opGeminiConfirmedInformation =>
+      'Aus vorhandenen, bestätigten Operations-Informationen erzeugt.';
+
+  @override
+  String get opGeminiNoForecasts =>
+      'Keine Prognosen und keine erfundenen Kennzahlen. Der deterministische Insight-Block bleibt die überprüfbare Grundlage.';
 }

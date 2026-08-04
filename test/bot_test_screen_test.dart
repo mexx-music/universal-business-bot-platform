@@ -28,6 +28,13 @@ class _LanguageAwareProvider implements AiProvider {
   @override
   Future<AiResponse> generate(AiRequest request) async {
     requests.add(request);
+    if (request.metadata['feature'] == 'knowledge-gap-assistant') {
+      return AiResponse(
+        text: '{"improvementIds":["requirements"]}',
+        providerId: id,
+        model: 'test-gemini',
+      );
+    }
     final language = request.metadata['answer_language'];
     return AiResponse(
       text: language == 'de'
@@ -242,7 +249,16 @@ void main() {
     expect(find.text(l.botDemoGapTitle), findsOneWidget);
     expect(find.text(l.botDemoNoKnowledge), findsOneWidget);
     expect(find.text(l.botDemoSources), findsNothing);
-    expect(provider.requests, isEmpty);
+    expect(provider.requests, hasLength(1));
+    expect(
+      provider.requests.single.metadata['feature'],
+      'knowledge-gap-assistant',
+    );
+    expect(
+      find.byKey(const Key('grounded-gemini-gap-improvements')),
+      findsOneWidget,
+    );
+    expect(find.text(l.botGeminiGapRequirements), findsWidgets);
   });
 
   testWidgets('single grounded page has no overflow on mobile and desktop', (

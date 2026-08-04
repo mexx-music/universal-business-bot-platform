@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:go_router/go_router.dart';
+import 'package:universalbusiness/ai/ai_controller.dart';
+import 'package:universalbusiness/ai/ai_provider_registry.dart';
+import 'package:universalbusiness/ai/ai_transport.dart';
 import 'package:universalbusiness/data/app_state.dart';
 import 'package:universalbusiness/knowledge_builder/knowledge_import_analyzer.dart';
 import 'package:universalbusiness/knowledge_builder/models/knowledge_import_models.dart';
@@ -8,6 +11,8 @@ import 'package:universalbusiness/l10n/app_localizations.dart';
 import 'package:universalbusiness/models/knowledge_entry.dart';
 import 'package:universalbusiness/models/company_workspace.dart';
 import 'package:universalbusiness/screens/knowledge_builder/knowledge_builder_screen.dart';
+
+import 'support/scripted_gemini_provider.dart';
 
 /// Returns a scripted analysis regardless of input — for deterministic UI tests.
 class _FakeAnalyzer extends KnowledgeImportAnalyzer {
@@ -79,18 +84,23 @@ Future<void> pumpScreen(
   AppState? state,
   Locale locale = const Locale('de'),
   Size size = const Size(1000, 1400),
+  AiController? aiController,
 }) async {
   await tester.binding.setSurfaceSize(size);
   addTearDown(() => tester.binding.setSurfaceSize(null));
+  Widget screen = AppStateScope(
+    notifier: state ?? AppState(),
+    child: KnowledgeBuilderScreen(key: UniqueKey(), analyzer: analyzer),
+  );
+  if (aiController != null) {
+    screen = AiScope(notifier: aiController, child: screen);
+  }
   await tester.pumpWidget(
     MaterialApp(
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
       locale: locale,
-      home: AppStateScope(
-        notifier: state ?? AppState(),
-        child: KnowledgeBuilderScreen(key: UniqueKey(), analyzer: analyzer),
-      ),
+      home: screen,
     ),
   );
   await tester.pumpAndSettle();
@@ -107,6 +117,140 @@ Future<void> analyze(WidgetTester tester, String text) async {
 }
 
 void main() {
+  testWidgets('shows document-bound Gemini insights and review suggestions', (
+    tester,
+  ) async {
+    final provider = ScriptedGeminiProvider(
+      responseText: '''
+        {
+          "summary": "Die App benötigt Bluetooth und Android 9.",
+          "keyStatements": ["Bluetooth muss aktiviert sein."],
+          "recommendedFaq": ["Muss Bluetooth aktiviert sein?"],
+          "categories": ["Technische Voraussetzungen"],
+          "missingInformation": ["Die unterstützte iOS-Version fehlt."],
+          "possibleDuplicates": ["Systemvoraussetzungen prüfen."],
+          "employeeQuestions": ["Welche iOS-Version wird unterstützt?"],
+          "reviewSuggestions": ["Die beiden Bluetooth-FAQ überschneiden sich."]
+        }
+      ''',
+    );
+    await pumpScreen(
+      tester,
+      analyzer: const _FakeAnalyzer(_scripted),
+      aiController: controllerWithScriptedGemini(provider),
+      size: const Size(1000, 2600),
+    );
+
+    await analyze(
+      tester,
+      'Bluetooth muss aktiviert sein. Die App benötigt Android 9.',
+    );
+
+    expect(find.byKey(const Key('kb-gemini-insights')), findsOneWidget);
+    expect(
+      find.byKey(const Key('kb-gemini-review-suggestions')),
+      findsOneWidget,
+    );
+    expect(
+      find.text('Die App benötigt Bluetooth und Android 9.'),
+      findsOneWidget,
+    );
+    expect(
+      find.text('Die beiden Bluetooth-FAQ überschneiden sich.'),
+      findsOneWidget,
+    );
+    expect(provider.calls, 1);
+    expect(
+      provider.requests.single.metadata['feature'],
+      'knowledge-builder-insights',
+    );
+    expect(
+      provider.requests.single.messages.last.content,
+      contains('Bluetooth muss aktiviert sein'),
+    );
+  });
+
+  testWidgets('Gemini failure preserves the deterministic Knowledge Builder', (
+    tester,
+  ) async {
+    final provider = ScriptedGeminiProvider(
+      error: const AiTransportException(AiTransportErrorKind.network, 'down'),
+    );
+    await pumpScreen(
+      tester,
+      analyzer: const _FakeAnalyzer(_scripted),
+      aiController: controllerWithScriptedGemini(provider),
+      size: const Size(1000, 2400),
+    );
+
+    await analyze(tester, 'Bluetooth muss aktiviert sein.');
+
+    expect(provider.calls, 1);
+    expect(find.byKey(const Key('kb-analysis-summary')), findsOneWidget);
+    expect(find.byKey(const Key('kb-draft-preview')), findsOneWidget);
+    expect(find.byKey(const Key('kb-gemini-insights')), findsNothing);
+    expect(find.byKey(const Key('kb-gemini-review-suggestions')), findsNothing);
+    expect(tester.takeException(), isNull);
+  });
+
+  testWidgets('Gemini Knowledge Builder cards are English and mobile-safe', (
+    tester,
+  ) async {
+    final provider = ScriptedGeminiProvider(
+      responseText: '''
+        {
+          "summary": "Bluetooth is required.",
+          "keyStatements": ["Enable Bluetooth before connecting."],
+          "recommendedFaq": ["How do I connect the app?"],
+          "categories": ["Requirements"],
+          "missingInformation": [],
+          "possibleDuplicates": [],
+          "employeeQuestions": ["Which iOS version is supported?"],
+          "reviewSuggestions": ["Keep the answer concise."]
+        }
+      ''',
+    );
+    await pumpScreen(
+      tester,
+      analyzer: const _FakeAnalyzer(_scripted),
+      aiController: controllerWithScriptedGemini(provider),
+      locale: const Locale('en'),
+      size: const Size(360, 3600),
+    );
+
+    await analyze(tester, 'Enable Bluetooth before connecting.');
+
+    expect(find.text('Gemini Insights'), findsOneWidget);
+    expect(find.text('✨ GEMINI PROPOSAL'), findsWidgets);
+    expect(find.text('Key statements'), findsOneWidget);
+    expect(find.text('Review Suggestions'), findsOneWidget);
+    expect(
+      find.text(
+        'Review before applying. Gemini results are proposals '
+        'only and are never saved automatically.',
+      ),
+      findsWidgets,
+    );
+    expect(tester.takeException(), isNull);
+  });
+
+  testWidgets('offline mock path does not present mock text as Gemini', (
+    tester,
+  ) async {
+    await pumpScreen(
+      tester,
+      analyzer: const _FakeAnalyzer(_scripted),
+      aiController: AiController(AiProviderRegistry.mock()),
+      size: const Size(1000, 2400),
+    );
+
+    await analyze(tester, 'Bluetooth muss aktiviert sein.');
+
+    expect(find.byKey(const Key('kb-analysis-summary')), findsOneWidget);
+    expect(find.byKey(const Key('kb-gemini-insights')), findsNothing);
+    expect(find.textContaining('[mock:'), findsNothing);
+  });
+
   testWidgets('shows four prepared demo documents', (tester) async {
     await pumpScreen(tester);
     final l = l10n(tester);

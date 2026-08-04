@@ -1,7 +1,12 @@
+import 'dart:async';
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 
 import '../../ai/ai_controller.dart';
+import '../../ai/ai_models.dart';
 import '../../ai/ai_transport.dart';
+import '../../ai/gemini_process_proposals.dart';
 import '../../ai/grounded_answer_service.dart';
 import '../../ai/grounded_question_strategy.dart';
 import '../../ai/transports/edge_function_client.dart';
@@ -42,6 +47,9 @@ class _GroundedAnswerPanelState extends State<GroundedAnswerPanel> {
   bool _loading = false;
   GroundedAnswerResult? _result;
   _DemoError? _error;
+  List<String> _geminiGapImprovementIds = const [];
+  bool _geminiGapLoading = false;
+  int _gapProposalRequest = 0;
 
   @override
   void dispose() {
@@ -60,15 +68,19 @@ class _GroundedAnswerPanelState extends State<GroundedAnswerPanel> {
     if (question.isEmpty) return;
 
     AppState.of(context).consumeRecentKnowledgeImportForGroundedAnswer();
+    _gapProposalRequest++;
 
     setState(() {
       _loading = true;
       _error = null;
       _result = null;
+      _geminiGapImprovementIds = const [];
+      _geminiGapLoading = false;
     });
 
     try {
-      final result = await _service().answer(
+      final service = _service();
+      final result = await service.answer(
         GroundedAnswerRequest(
           question: question,
           workspace: AppState.of(context).groundedAnswerWorkspace,
@@ -77,6 +89,22 @@ class _GroundedAnswerPanelState extends State<GroundedAnswerPanel> {
       );
       if (!mounted) return;
       setState(() => _result = result);
+      final hasGap =
+          result.outcome == GroundedOutcome.noKnowledge ||
+          (result.outcome == GroundedOutcome.answered &&
+              result.coverage == GroundedEvidenceCoverage.partiallyAnswerable);
+      if (hasGap && canRequestGeminiProposals(service.aiController)) {
+        final proposalRequest = ++_gapProposalRequest;
+        setState(() => _geminiGapLoading = true);
+        unawaited(
+          _loadGeminiGapProposals(
+            service: service,
+            question: question,
+            result: result,
+            request: proposalRequest,
+          ),
+        );
+      }
     } on AiConfigurationException {
       if (!mounted) return;
       setState(() => _error = _DemoError.config);
@@ -89,6 +117,54 @@ class _GroundedAnswerPanelState extends State<GroundedAnswerPanel> {
     } finally {
       if (mounted) setState(() => _loading = false);
     }
+  }
+
+  Future<void> _loadGeminiGapProposals({
+    required GroundedAnswerService service,
+    required String question,
+    required GroundedAnswerResult result,
+    required int request,
+  }) async {
+    List<String> improvementIds = const [];
+    try {
+      final language = service.languageResolver.resolveQuestionLanguage(
+        question,
+        fallbackLanguage: Localizations.localeOf(context).languageCode,
+      );
+      final response = await service.aiController.generate(
+        AiRequest(
+          temperature: 0,
+          maxTokens: 250,
+          metadata: const {'feature': 'knowledge-gap-assistant'},
+          messages: [
+            AiMessage.system(
+              'You identify which generic information types are missing from '
+              'confirmed company knowledge. Do not answer the customer '
+              'question. Do not add facts. Return JSON only as '
+              '{"improvementIds": [...]}. Select only from: '
+              '${geminiKnowledgeGapIds.join(', ')}. Use at most six IDs. '
+              'Return an empty array when none is justified.',
+            ),
+            AiMessage.user(
+              jsonEncode({
+                'questionLanguage': language,
+                'customerQuestion': question,
+                'uncoveredTerms': result.missingTerms,
+                'coverage': result.coverage.name,
+              }),
+            ),
+          ],
+        ),
+      );
+      improvementIds = parseGeminiKnowledgeGapIds(response);
+    } catch (_) {
+      // Existing deterministic knowledge-gap guidance remains visible.
+    }
+    if (!mounted || request != _gapProposalRequest) return;
+    setState(() {
+      _geminiGapImprovementIds = improvementIds;
+      _geminiGapLoading = false;
+    });
   }
 
   _DemoError _mapTransport(AiTransportErrorKind kind) {
@@ -192,7 +268,11 @@ class _GroundedAnswerPanelState extends State<GroundedAnswerPanel> {
             ],
             if (_result != null) ...[
               const SizedBox(height: 12),
-              _ResultView(result: _result!),
+              _ResultView(
+                result: _result!,
+                geminiGapImprovementIds: _geminiGapImprovementIds,
+                geminiGapLoading: _geminiGapLoading,
+              ),
             ],
           ],
         ),
@@ -252,9 +332,15 @@ class _RecentKnowledgeImportNotice extends StatelessWidget {
 }
 
 class _ResultView extends StatelessWidget {
-  const _ResultView({required this.result});
+  const _ResultView({
+    required this.result,
+    required this.geminiGapImprovementIds,
+    required this.geminiGapLoading,
+  });
 
   final GroundedAnswerResult result;
+  final List<String> geminiGapImprovementIds;
+  final bool geminiGapLoading;
 
   @override
   Widget build(BuildContext context) {
@@ -278,6 +364,13 @@ class _ResultView extends StatelessWidget {
           ..._answeredBody(context)
         else
           _KnowledgeGapCard(result: result),
+        if (geminiGapLoading || geminiGapImprovementIds.isNotEmpty) ...[
+          const SizedBox(height: 12),
+          _GeminiGapImprovementCard(
+            improvementIds: geminiGapImprovementIds,
+            loading: geminiGapLoading,
+          ),
+        ],
       ],
     );
   }
@@ -466,6 +559,110 @@ class _AnswerCard extends StatelessWidget {
 /// [GroundedOutcome.blockedTopic] cases. Never invents facts: recommendations
 /// are generic content-type suggestions, and the term chips come verbatim from
 /// [GroundedAnswerResult.missingTerms].
+class _GeminiGapImprovementCard extends StatelessWidget {
+  const _GeminiGapImprovementCard({
+    required this.improvementIds,
+    required this.loading,
+  });
+
+  final List<String> improvementIds;
+  final bool loading;
+
+  @override
+  Widget build(BuildContext context) {
+    final l = AppLocalizations.of(context)!;
+    final theme = Theme.of(context);
+    return Container(
+      key: const Key('grounded-gemini-gap-improvements'),
+      width: double.infinity,
+      padding: const EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        color: theme.colorScheme.secondaryContainer.withAlpha(135),
+        borderRadius: BorderRadius.circular(14),
+        border: Border.all(color: theme.colorScheme.outlineVariant),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Wrap(
+            spacing: 9,
+            runSpacing: 7,
+            crossAxisAlignment: WrapCrossAlignment.center,
+            children: [
+              Icon(Icons.auto_awesome, color: theme.colorScheme.secondary),
+              Text(
+                l.botGeminiGapTitle,
+                style: theme.textTheme.titleMedium?.copyWith(
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              Container(
+                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                decoration: BoxDecoration(
+                  color: theme.colorScheme.secondaryContainer,
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                child: Text(
+                  l.botGeminiProposalBadge,
+                  style: theme.textTheme.labelSmall?.copyWith(
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 6),
+          Text(l.botGeminiGapBody),
+          if (loading) ...[
+            const SizedBox(height: 12),
+            const LinearProgressIndicator(minHeight: 5),
+          ] else ...[
+            const SizedBox(height: 12),
+            for (final id in improvementIds)
+              Padding(
+                padding: const EdgeInsets.only(bottom: 6),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Icon(
+                      Icons.add_circle_outline,
+                      size: 18,
+                      color: theme.colorScheme.secondary,
+                    ),
+                    const SizedBox(width: 7),
+                    Expanded(child: Text(_gapImprovementLabel(l, id))),
+                  ],
+                ),
+              ),
+          ],
+          const SizedBox(height: 8),
+          Text(
+            l.botGeminiReviewBeforeApplying,
+            style: theme.textTheme.labelMedium?.copyWith(
+              fontWeight: FontWeight.bold,
+              color: theme.colorScheme.primary,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+String _gapImprovementLabel(AppLocalizations l, String id) => switch (id) {
+  'price' => l.botGeminiGapPrice,
+  'productLink' => l.botGeminiGapProductLink,
+  'validityDate' => l.botGeminiGapValidityDate,
+  'contact' => l.botGeminiGapContact,
+  'download' => l.botGeminiGapDownload,
+  'requirements' => l.botGeminiGapRequirements,
+  'compatibility' => l.botGeminiGapCompatibility,
+  'instructions' => l.botGeminiGapInstructions,
+  'troubleshooting' => l.botGeminiGapTroubleshooting,
+  'policy' => l.botGeminiGapPolicy,
+  _ => id,
+};
+
 class _KnowledgeGapCard extends StatelessWidget {
   const _KnowledgeGapCard({required this.result});
 

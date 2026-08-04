@@ -338,6 +338,7 @@ class GroundedAnswerService {
           : null,
       questionType: questionProfile.type,
       evidenceCoverage: assessment.coverage,
+      missingTerms: assessment.missingCoreInformation ? missingTerms : const [],
       missingCoreInformation: assessment.missingCoreInformation,
       stalePriceDate: assessment.stalePriceDate,
     );

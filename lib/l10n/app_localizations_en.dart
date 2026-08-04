@@ -7144,4 +7144,116 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get gettingStartedTimeDisclaimer =>
       'Demo estimate for a compact initial setup. Actual effort depends on the scope of company knowledge.';
+
+  @override
+  String get kbGeminiProposalBadge => '✨ GEMINI PROPOSAL';
+
+  @override
+  String get kbGeminiInsightsTitle => 'Gemini Insights';
+
+  @override
+  String get kbGeminiInsightsBody =>
+      'Gemini complements the deterministic analysis with document-bound proposals. The analysis itself remains unchanged.';
+
+  @override
+  String get kbGeminiLoading =>
+      'Gemini is preparing document-bound proposals …';
+
+  @override
+  String get kbGeminiSummary => 'Short summary';
+
+  @override
+  String get kbGeminiKeyStatements => 'Key statements';
+
+  @override
+  String get kbGeminiRecommendedFaq => 'Recommended FAQ';
+
+  @override
+  String get kbGeminiCategories => 'Possible categories';
+
+  @override
+  String get kbGeminiMissingInformation => 'Missing information';
+
+  @override
+  String get kbGeminiPossibleDuplicates => 'Possible duplicates';
+
+  @override
+  String get kbGeminiEmployeeQuestions => 'Open questions for employees';
+
+  @override
+  String get kbGeminiSourceDocumentOnly =>
+      'Generated exclusively from the analysed document and visible analysis metadata.';
+
+  @override
+  String get kbGeminiReviewBeforeApplying =>
+      'Review before applying. Gemini results are proposals only and are never saved automatically.';
+
+  @override
+  String get kbGeminiReviewSuggestionsTitle => 'Review Suggestions';
+
+  @override
+  String get kbGeminiReviewSuggestionsBody =>
+      'Before adoption, Gemini highlights potential improvements to the proposed knowledge entries.';
+
+  @override
+  String get botGeminiProposalBadge => '✨ GEMINI PROPOSAL';
+
+  @override
+  String get botGeminiGapTitle => 'Suggested Knowledge Improvements';
+
+  @override
+  String get botGeminiGapBody =>
+      'Gemini reviewed only the question and detected knowledge gaps. These information types could complete the knowledge base:';
+
+  @override
+  String get botGeminiReviewBeforeApplying =>
+      'Review before applying. Nothing is saved automatically.';
+
+  @override
+  String get botGeminiGapPrice => 'Current price';
+
+  @override
+  String get botGeminiGapProductLink => 'Verified product link';
+
+  @override
+  String get botGeminiGapValidityDate => 'Validity date';
+
+  @override
+  String get botGeminiGapContact => 'Responsible contact';
+
+  @override
+  String get botGeminiGapDownload => 'Relevant download';
+
+  @override
+  String get botGeminiGapRequirements => 'Technical requirements';
+
+  @override
+  String get botGeminiGapCompatibility => 'Compatibility information';
+
+  @override
+  String get botGeminiGapInstructions => 'Step-by-step instructions';
+
+  @override
+  String get botGeminiGapTroubleshooting => 'Verified troubleshooting path';
+
+  @override
+  String get botGeminiGapPolicy => 'Applicable company policy';
+
+  @override
+  String get opGeminiWeeklyTitle => 'Gemini Weekly Summary';
+
+  @override
+  String get opGeminiWeeklySubtitle =>
+      'Gemini prioritises proven insights from the existing operations demo data.';
+
+  @override
+  String get opGeminiSummaryBadge => '✨ GEMINI SUMMARY';
+
+  @override
+  String get opGeminiConfirmedInformation =>
+      'Generated from existing, confirmed operations information.';
+
+  @override
+  String get opGeminiNoForecasts =>
+      'No forecasts and no invented metrics. The deterministic insight block remains the verifiable foundation.';
 }

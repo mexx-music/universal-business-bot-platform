@@ -1,14 +1,20 @@
+import 'dart:async';
+import 'dart:convert';
 import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 
+import '../../ai/ai_controller.dart';
+import '../../ai/ai_models.dart';
+import '../../ai/gemini_process_proposals.dart';
 import '../../demo_data/demo_data_controller.dart';
 import '../../l10n/app_localizations.dart';
 import '../../operations/operations_demo.dart';
 import '../../operations/operations_insight_rules.dart';
 
-/// A transparent visualisation of deterministic demo operations data. It does
-/// not track users, call AI, make decisions or mutate company knowledge.
+/// A transparent visualisation of deterministic demo operations data. Gemini
+/// may prioritize already-proven weekly insights, but it never creates metrics,
+/// tracks users, makes decisions or mutates company knowledge.
 class OperationsDashboardScreen extends StatefulWidget {
   const OperationsDashboardScreen({super.key});
 
@@ -19,6 +25,105 @@ class OperationsDashboardScreen extends StatefulWidget {
 
 class _OperationsDashboardScreenState extends State<OperationsDashboardScreen> {
   int _periodDays = 7;
+  List<OperationsInsightKind> _geminiWeeklyInsights = const [];
+  String? _weeklyRequestKey;
+
+  AiController? get _ambientAiController =>
+      context.dependOnInheritedWidgetOfExactType<AiScope>()?.notifier;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    final controller = _ambientAiController;
+    final demoEnabled = DemoDataController.enabledOf(context);
+    final language = Localizations.localeOf(context).languageCode;
+    final requestKey =
+        '${controller?.activeProviderId.name ?? 'none'}-$language-$demoEnabled';
+    if (_weeklyRequestKey == requestKey) return;
+    _weeklyRequestKey = requestKey;
+    _geminiWeeklyInsights = const [];
+    if (demoEnabled && canRequestGeminiProposals(controller)) {
+      unawaited(
+        _loadGeminiWeeklySummary(
+          controller: controller!,
+          language: language,
+          requestKey: requestKey,
+        ),
+      );
+    }
+  }
+
+  Future<void> _loadGeminiWeeklySummary({
+    required AiController controller,
+    required String language,
+    required String requestKey,
+  }) async {
+    List<OperationsInsightKind> selected = const [];
+    try {
+      final available = OperationsInsightRules.evaluate();
+      final allowedIds = available.map((insight) => insight.name).toSet();
+      final recent = OperationsDemo.historyForDays(7);
+      final previous = OperationsDemo.history
+          .skip(OperationsDemo.history.length - 14)
+          .take(7);
+      final response = await controller.generate(
+        AiRequest(
+          temperature: 0,
+          maxTokens: 220,
+          metadata: const {'feature': 'operations-weekly-summary'},
+          messages: [
+            AiMessage.system(
+              'You summarize only the supplied company operations data. Do '
+              'not forecast, invent values or add claims. Select and order '
+              'only the supplied proven insight IDs. Return JSON only as '
+              '{"insightIds": [...]}. Use at most five IDs. The requested '
+              'display language is $language.',
+            ),
+            AiMessage.user(
+              jsonEncode({
+                'allowedInsightIds': allowedIds.toList(),
+                'today': {
+                  'questions': OperationsDemo.today.questions,
+                  'answered': OperationsDemo.today.answered,
+                  'knowledgeGaps': OperationsDemo.today.knowledgeGaps,
+                  'websiteRedirects': OperationsDemo.today.websiteRedirects,
+                  'priceRedirects': OperationsDemo.priceRedirects,
+                },
+                'frequentProducts': [
+                  for (final item in OperationsDemo.frequentProducts)
+                    {'key': item.key, 'count': item.count},
+                ],
+                'searchedTopics': [
+                  for (final item in OperationsDemo.searchedTopics)
+                    {'key': item.key, 'count': item.count},
+                ],
+                'recentSupportQuestions': recent.fold<int>(
+                  0,
+                  (sum, day) => sum + day.supportQuestions,
+                ),
+                'previousSupportQuestions': previous.fold<int>(
+                  0,
+                  (sum, day) => sum + day.supportQuestions,
+                ),
+              }),
+            ),
+          ],
+        ),
+      );
+      final ids = parseGeminiOperationsInsightIds(
+        response,
+        allowedIds: allowedIds,
+      );
+      selected = [
+        for (final id in ids)
+          OperationsInsightKind.values.firstWhere((kind) => kind.name == id),
+      ];
+    } catch (_) {
+      // The existing deterministic insight block is the complete fallback.
+    }
+    if (!mounted || requestKey != _weeklyRequestKey) return;
+    setState(() => _geminiWeeklyInsights = selected);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -62,6 +167,12 @@ class _OperationsDashboardScreenState extends State<OperationsDashboardScreen> {
                     const SizedBox(height: 16),
                     const _KnowledgeQualitySection(),
                     const SizedBox(height: 16),
+                    if (_geminiWeeklyInsights.isNotEmpty) ...[
+                      _GeminiWeeklySummarySection(
+                        insights: _geminiWeeklyInsights,
+                      ),
+                      const SizedBox(height: 16),
+                    ],
                     const _BusinessInsightsSection(),
                     const SizedBox(height: 16),
                     const _HumanControlFooter(),
@@ -1067,6 +1178,56 @@ class _AnswerabilityBar extends StatelessWidget {
             ),
           ],
         ),
+      ),
+    );
+  }
+}
+
+class _GeminiWeeklySummarySection extends StatelessWidget {
+  const _GeminiWeeklySummarySection({required this.insights});
+
+  final List<OperationsInsightKind> insights;
+
+  @override
+  Widget build(BuildContext context) {
+    final l = AppLocalizations.of(context)!;
+    final theme = Theme.of(context);
+    return _SectionCard(
+      keyName: 'operations-gemini-weekly-summary',
+      icon: Icons.auto_awesome,
+      title: l.opGeminiWeeklyTitle,
+      subtitle: l.opGeminiWeeklySubtitle,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Container(
+            key: const Key('operations-gemini-summary-badge'),
+            padding: const EdgeInsets.symmetric(horizontal: 9, vertical: 5),
+            decoration: BoxDecoration(
+              color: theme.colorScheme.secondaryContainer,
+              borderRadius: BorderRadius.circular(9),
+            ),
+            child: Text(
+              l.opGeminiSummaryBadge,
+              style: theme.textTheme.labelSmall?.copyWith(
+                color: theme.colorScheme.onSecondaryContainer,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
+          const SizedBox(height: 12),
+          for (final insight in insights)
+            Padding(
+              padding: const EdgeInsets.only(bottom: 10),
+              child: _InsightTile(content: _insightContent(l, insight)),
+            ),
+          _InfoNote(
+            icon: Icons.verified_outlined,
+            text: l.opGeminiConfirmedInformation,
+          ),
+          const SizedBox(height: 6),
+          _InfoNote(icon: Icons.trending_flat, text: l.opGeminiNoForecasts),
+        ],
       ),
     );
   }

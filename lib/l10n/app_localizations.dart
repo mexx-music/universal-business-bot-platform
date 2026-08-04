@@ -13129,6 +13129,210 @@ abstract class AppLocalizations {
   /// In de, this message translates to:
   /// **'Demo-Schätzung für einen kompakten Ersteinstieg. Der tatsächliche Aufwand hängt vom Umfang des Unternehmenswissens ab.'**
   String get gettingStartedTimeDisclaimer;
+
+  /// No description provided for @kbGeminiProposalBadge.
+  ///
+  /// In de, this message translates to:
+  /// **'✨ GEMINI-VORSCHLAG'**
+  String get kbGeminiProposalBadge;
+
+  /// No description provided for @kbGeminiInsightsTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Gemini Insights'**
+  String get kbGeminiInsightsTitle;
+
+  /// No description provided for @kbGeminiInsightsBody.
+  ///
+  /// In de, this message translates to:
+  /// **'Gemini ergänzt die deterministische Analyse mit dokumentgebundenen Vorschlägen. Die Analyse selbst bleibt unverändert.'**
+  String get kbGeminiInsightsBody;
+
+  /// No description provided for @kbGeminiLoading.
+  ///
+  /// In de, this message translates to:
+  /// **'Gemini erstellt dokumentgebundene Vorschläge …'**
+  String get kbGeminiLoading;
+
+  /// No description provided for @kbGeminiSummary.
+  ///
+  /// In de, this message translates to:
+  /// **'Kurze Zusammenfassung'**
+  String get kbGeminiSummary;
+
+  /// No description provided for @kbGeminiKeyStatements.
+  ///
+  /// In de, this message translates to:
+  /// **'Wichtigste Aussagen'**
+  String get kbGeminiKeyStatements;
+
+  /// No description provided for @kbGeminiRecommendedFaq.
+  ///
+  /// In de, this message translates to:
+  /// **'Empfohlene FAQ'**
+  String get kbGeminiRecommendedFaq;
+
+  /// No description provided for @kbGeminiCategories.
+  ///
+  /// In de, this message translates to:
+  /// **'Mögliche Kategorien'**
+  String get kbGeminiCategories;
+
+  /// No description provided for @kbGeminiMissingInformation.
+  ///
+  /// In de, this message translates to:
+  /// **'Fehlende Informationen'**
+  String get kbGeminiMissingInformation;
+
+  /// No description provided for @kbGeminiPossibleDuplicates.
+  ///
+  /// In de, this message translates to:
+  /// **'Mögliche Dubletten'**
+  String get kbGeminiPossibleDuplicates;
+
+  /// No description provided for @kbGeminiEmployeeQuestions.
+  ///
+  /// In de, this message translates to:
+  /// **'Offene Fragen an Mitarbeiter'**
+  String get kbGeminiEmployeeQuestions;
+
+  /// No description provided for @kbGeminiSourceDocumentOnly.
+  ///
+  /// In de, this message translates to:
+  /// **'Ausschließlich aus dem analysierten Dokument und den sichtbaren Analysemetadaten erzeugt.'**
+  String get kbGeminiSourceDocumentOnly;
+
+  /// No description provided for @kbGeminiReviewBeforeApplying.
+  ///
+  /// In de, this message translates to:
+  /// **'Vor der Übernahme prüfen. Gemini-Ergebnisse sind ausschließlich Vorschläge und werden nicht automatisch gespeichert.'**
+  String get kbGeminiReviewBeforeApplying;
+
+  /// No description provided for @kbGeminiReviewSuggestionsTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Review Suggestions'**
+  String get kbGeminiReviewSuggestionsTitle;
+
+  /// No description provided for @kbGeminiReviewSuggestionsBody.
+  ///
+  /// In de, this message translates to:
+  /// **'Gemini weist vor der Übernahme auf mögliche Verbesserungen der vorgeschlagenen Wissenseinträge hin.'**
+  String get kbGeminiReviewSuggestionsBody;
+
+  /// No description provided for @botGeminiProposalBadge.
+  ///
+  /// In de, this message translates to:
+  /// **'✨ GEMINI-VORSCHLAG'**
+  String get botGeminiProposalBadge;
+
+  /// No description provided for @botGeminiGapTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Vorgeschlagene Wissensverbesserungen'**
+  String get botGeminiGapTitle;
+
+  /// No description provided for @botGeminiGapBody.
+  ///
+  /// In de, this message translates to:
+  /// **'Gemini hat ausschließlich die Frage und die erkannten Wissenslücken geprüft. Diese Informationstypen könnten die Wissensbasis vervollständigen:'**
+  String get botGeminiGapBody;
+
+  /// No description provided for @botGeminiReviewBeforeApplying.
+  ///
+  /// In de, this message translates to:
+  /// **'Vor der Übernahme prüfen. Es wird nichts automatisch gespeichert.'**
+  String get botGeminiReviewBeforeApplying;
+
+  /// No description provided for @botGeminiGapPrice.
+  ///
+  /// In de, this message translates to:
+  /// **'Aktueller Preis'**
+  String get botGeminiGapPrice;
+
+  /// No description provided for @botGeminiGapProductLink.
+  ///
+  /// In de, this message translates to:
+  /// **'Bestätigter Produktlink'**
+  String get botGeminiGapProductLink;
+
+  /// No description provided for @botGeminiGapValidityDate.
+  ///
+  /// In de, this message translates to:
+  /// **'Gültigkeitsdatum'**
+  String get botGeminiGapValidityDate;
+
+  /// No description provided for @botGeminiGapContact.
+  ///
+  /// In de, this message translates to:
+  /// **'Zuständiger Ansprechpartner'**
+  String get botGeminiGapContact;
+
+  /// No description provided for @botGeminiGapDownload.
+  ///
+  /// In de, this message translates to:
+  /// **'Passender Download'**
+  String get botGeminiGapDownload;
+
+  /// No description provided for @botGeminiGapRequirements.
+  ///
+  /// In de, this message translates to:
+  /// **'Technische Voraussetzungen'**
+  String get botGeminiGapRequirements;
+
+  /// No description provided for @botGeminiGapCompatibility.
+  ///
+  /// In de, this message translates to:
+  /// **'Kompatibilitätsinformationen'**
+  String get botGeminiGapCompatibility;
+
+  /// No description provided for @botGeminiGapInstructions.
+  ///
+  /// In de, this message translates to:
+  /// **'Schritt-für-Schritt-Anleitung'**
+  String get botGeminiGapInstructions;
+
+  /// No description provided for @botGeminiGapTroubleshooting.
+  ///
+  /// In de, this message translates to:
+  /// **'Bestätigter Lösungsweg'**
+  String get botGeminiGapTroubleshooting;
+
+  /// No description provided for @botGeminiGapPolicy.
+  ///
+  /// In de, this message translates to:
+  /// **'Gültige Unternehmensrichtlinie'**
+  String get botGeminiGapPolicy;
+
+  /// No description provided for @opGeminiWeeklyTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Gemini Weekly Summary'**
+  String get opGeminiWeeklyTitle;
+
+  /// No description provided for @opGeminiWeeklySubtitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Gemini priorisiert belegte Erkenntnisse aus den vorhandenen Operations-Demodaten.'**
+  String get opGeminiWeeklySubtitle;
+
+  /// No description provided for @opGeminiSummaryBadge.
+  ///
+  /// In de, this message translates to:
+  /// **'✨ GEMINI-ZUSAMMENFASSUNG'**
+  String get opGeminiSummaryBadge;
+
+  /// No description provided for @opGeminiConfirmedInformation.
+  ///
+  /// In de, this message translates to:
+  /// **'Aus vorhandenen, bestätigten Operations-Informationen erzeugt.'**
+  String get opGeminiConfirmedInformation;
+
+  /// No description provided for @opGeminiNoForecasts.
+  ///
+  /// In de, this message translates to:
+  /// **'Keine Prognosen und keine erfundenen Kennzahlen. Der deterministische Insight-Block bleibt die überprüfbare Grundlage.'**
+  String get opGeminiNoForecasts;
 }
 
 class _AppLocalizationsDelegate

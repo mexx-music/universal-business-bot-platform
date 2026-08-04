@@ -1,27 +1,36 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:universalbusiness/ai/ai_controller.dart';
+import 'package:universalbusiness/ai/ai_transport.dart';
 import 'package:universalbusiness/demo_data/demo_data_controller.dart';
 import 'package:universalbusiness/l10n/app_localizations.dart';
 import 'package:universalbusiness/operations/operations_demo.dart';
 import 'package:universalbusiness/screens/operations/operations_dashboard_screen.dart';
+
+import 'support/scripted_gemini_provider.dart';
 
 Future<void> pumpScreen(
   WidgetTester tester, {
   Locale locale = const Locale('de'),
   Size size = const Size(1100, 5200),
   bool demoEnabled = true,
+  AiController? aiController,
 }) async {
   await tester.binding.setSurfaceSize(size);
   addTearDown(() => tester.binding.setSurfaceSize(null));
+  Widget screen = DemoDataScope(
+    notifier: DemoDataController(enabled: demoEnabled),
+    child: const OperationsDashboardScreen(),
+  );
+  if (aiController != null) {
+    screen = AiScope(notifier: aiController, child: screen);
+  }
   await tester.pumpWidget(
     MaterialApp(
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
       locale: locale,
-      home: DemoDataScope(
-        notifier: DemoDataController(enabled: demoEnabled),
-        child: const OperationsDashboardScreen(),
-      ),
+      home: screen,
     ),
   );
   await tester.pumpAndSettle();
@@ -32,6 +41,93 @@ AppLocalizations l10n(WidgetTester tester) => AppLocalizations.of(
 )!;
 
 void main() {
+  testWidgets('Gemini weekly summary selects only proven operations insights', (
+    tester,
+  ) async {
+    final provider = ScriptedGeminiProvider(
+      responseText:
+          '{"insightIds":["firmwareDemand","leadingProduct","forecast"]}',
+    );
+    await pumpScreen(
+      tester,
+      aiController: controllerWithScriptedGemini(provider),
+      size: const Size(1100, 5800),
+    );
+    final l = l10n(tester);
+
+    expect(
+      find.byKey(const Key('operations-gemini-weekly-summary')),
+      findsOneWidget,
+    );
+    expect(
+      find.byKey(const Key('operations-gemini-summary-badge')),
+      findsOneWidget,
+    );
+    expect(find.text(l.opInsightFirmwareTitle), findsWidgets);
+    expect(find.text(l.opInsightLeadingTitle), findsWidgets);
+    expect(find.text('forecast'), findsNothing);
+    expect(
+      find.byKey(const Key('operations-business-insights')),
+      findsOneWidget,
+    );
+    expect(provider.calls, 1);
+    expect(
+      provider.requests.single.metadata['feature'],
+      'operations-weekly-summary',
+    );
+  });
+
+  testWidgets('Gemini weekly failure keeps deterministic insight fallback', (
+    tester,
+  ) async {
+    final provider = ScriptedGeminiProvider(
+      error: const AiTransportException(AiTransportErrorKind.network, 'down'),
+    );
+    await pumpScreen(
+      tester,
+      aiController: controllerWithScriptedGemini(provider),
+    );
+    final l = l10n(tester);
+
+    expect(
+      find.byKey(const Key('operations-gemini-weekly-summary')),
+      findsNothing,
+    );
+    expect(
+      find.byKey(const Key('operations-business-insights')),
+      findsOneWidget,
+    );
+    expect(find.text(l.opInsightLeadingTitle), findsOneWidget);
+    expect(find.text(l.opInsightFirmwareTitle), findsOneWidget);
+    expect(provider.calls, 1);
+    expect(tester.takeException(), isNull);
+  });
+
+  testWidgets('Gemini weekly summary is localized and responsive', (
+    tester,
+  ) async {
+    final provider = ScriptedGeminiProvider(
+      responseText: '{"insightIds":["priceInterest","faqOpportunity"]}',
+    );
+    await pumpScreen(
+      tester,
+      locale: const Locale('en'),
+      size: const Size(360, 5600),
+      aiController: controllerWithScriptedGemini(provider),
+    );
+
+    expect(find.text('Gemini Weekly Summary'), findsOneWidget);
+    expect(find.text('✨ GEMINI SUMMARY'), findsOneWidget);
+    expect(
+      find.text(
+        'No forecasts and no invented metrics. '
+        'The deterministic insight block remains the verifiable foundation.',
+      ),
+      findsOneWidget,
+    );
+    expect(tester.takeException(), isNull);
+  });
+
   testWidgets('shows all five operations areas and the insight layer', (
     tester,
   ) async {
