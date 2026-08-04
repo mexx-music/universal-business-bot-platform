@@ -7,6 +7,7 @@ import 'package:universalbusiness/ai/ai_provider_id.dart';
 import 'package:universalbusiness/ai/ai_provider_registry.dart';
 import 'package:universalbusiness/ai/ai_transport.dart';
 import 'package:universalbusiness/ai/grounded_answer_service.dart';
+import 'package:universalbusiness/ai/grounded_question_strategy.dart';
 import 'package:universalbusiness/ai/transports/edge_function_client.dart';
 import 'package:universalbusiness/data/app_state.dart';
 import 'package:universalbusiness/l10n/app_localizations.dart';
@@ -44,6 +45,7 @@ class CapturingService extends GroundedAnswerService {
 GroundedAnswerResult answered({
   String answer = 'Wir haben täglich geöffnet.',
   bool isMock = true,
+  GroundedEvidenceCoverage coverage = GroundedEvidenceCoverage.fullyAnswerable,
 }) {
   return GroundedAnswerResult(
     outcome: GroundedOutcome.answered,
@@ -52,6 +54,7 @@ GroundedAnswerResult answered({
     providerId: isMock ? AiProviderId.openAi : AiProviderId.googleGemini,
     providerDisplayName: isMock ? 'Mock' : 'Google Gemini',
     model: isMock ? null : 'gemini-3.6-flash',
+    evidenceCoverage: coverage,
     sources: const [
       GroundedSource(
         id: 'k1',
@@ -202,6 +205,51 @@ void main() {
     expect(find.textContaining(l.botDemoProviderMock), findsOneWidget);
     expect(find.text(l.botDemoGrounded), findsOneWidget);
   });
+
+  testWidgets('shows business-friendly coverage without mobile overflow', (
+    tester,
+  ) async {
+    await pumpPanel(
+      tester,
+      StubService(
+        (_) async =>
+            answered(coverage: GroundedEvidenceCoverage.partiallyAnswerable),
+      ),
+      size: const Size(320, 900),
+    );
+    final l = l10n(tester);
+
+    await ask(tester, 'Was kostet die CureBase?');
+    await tester.pumpAndSettle();
+
+    expect(find.byKey(const Key('grounded-coverage-status')), findsOneWidget);
+    expect(find.text(l.botDemoCoveragePartial), findsOneWidget);
+    expect(tester.takeException(), isNull);
+  });
+
+  testWidgets(
+    'coverage status lays out on desktop and is localized in English',
+    (tester) async {
+      await pumpPanel(
+        tester,
+        StubService(
+          (_) async => answered(
+            answer: 'Confirmed pricing is not available.',
+            coverage: GroundedEvidenceCoverage.partiallyAnswerable,
+          ),
+        ),
+        locale: const Locale('en'),
+        size: const Size(1280, 900),
+      );
+      final l = l10n(tester);
+
+      await ask(tester, 'How much does CureBase cost?');
+      await tester.pumpAndSettle();
+
+      expect(find.text(l.botDemoCoveragePartial), findsOneWidget);
+      expect(tester.takeException(), isNull);
+    },
+  );
 
   testWidgets('shows a loading indicator while the answer is pending', (
     tester,

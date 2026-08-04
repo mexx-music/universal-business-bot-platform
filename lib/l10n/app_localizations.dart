@@ -7622,6 +7622,30 @@ abstract class AppLocalizations {
   /// **'Kein Treffer'**
   String get botDemoNotGrounded;
 
+  /// No description provided for @botDemoCoverageFull.
+  ///
+  /// In de, this message translates to:
+  /// **'Vollständig aus bestätigtem Firmenwissen beantwortet'**
+  String get botDemoCoverageFull;
+
+  /// No description provided for @botDemoCoveragePartial.
+  ///
+  /// In de, this message translates to:
+  /// **'Teilweise beantwortet – konkrete Angabe fehlt'**
+  String get botDemoCoveragePartial;
+
+  /// No description provided for @botDemoCoverageNone.
+  ///
+  /// In de, this message translates to:
+  /// **'Keine bestätigte Information vorhanden'**
+  String get botDemoCoverageNone;
+
+  /// No description provided for @botDemoCoverageSensitive.
+  ///
+  /// In de, this message translates to:
+  /// **'Sensible Frage – menschliche Prüfung empfohlen'**
+  String get botDemoCoverageSensitive;
+
   /// No description provided for @botDemoNoKnowledge.
   ///
   /// In de, this message translates to:

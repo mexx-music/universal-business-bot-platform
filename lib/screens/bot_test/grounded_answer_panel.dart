@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../ai/ai_controller.dart';
 import '../../ai/ai_transport.dart';
 import '../../ai/grounded_answer_service.dart';
+import '../../ai/grounded_question_strategy.dart';
 import '../../ai/transports/edge_function_client.dart';
 import '../../data/app_state.dart';
 import '../../l10n/app_localizations.dart';
@@ -267,6 +268,7 @@ class _ResultView extends StatelessWidget {
           children: [
             _ProviderBadge(result: result),
             _GroundedChip(grounded: result.grounded),
+            _CoverageChip(coverage: result.coverage),
           ],
         ),
         const SizedBox(height: 16),
@@ -603,6 +605,63 @@ class _GroundedChip extends StatelessWidget {
           Flexible(
             child: Text(
               grounded ? l.botDemoGrounded : l.botDemoNotGrounded,
+              overflow: TextOverflow.ellipsis,
+              style: theme.textTheme.labelSmall?.copyWith(color: color),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _CoverageChip extends StatelessWidget {
+  const _CoverageChip({required this.coverage});
+
+  final GroundedEvidenceCoverage coverage;
+
+  @override
+  Widget build(BuildContext context) {
+    final l = AppLocalizations.of(context)!;
+    final theme = Theme.of(context);
+    final (label, color, icon) = switch (coverage) {
+      GroundedEvidenceCoverage.fullyAnswerable => (
+        l.botDemoCoverageFull,
+        Colors.green,
+        Icons.verified_outlined,
+      ),
+      GroundedEvidenceCoverage.partiallyAnswerable => (
+        l.botDemoCoveragePartial,
+        theme.colorScheme.tertiary,
+        Icons.info_outline,
+      ),
+      GroundedEvidenceCoverage.notAnswerable => (
+        l.botDemoCoverageNone,
+        theme.colorScheme.error,
+        Icons.help_outline,
+      ),
+      GroundedEvidenceCoverage.sensitiveReview => (
+        l.botDemoCoverageSensitive,
+        theme.colorScheme.error,
+        Icons.health_and_safety_outlined,
+      ),
+    };
+    return Container(
+      key: const Key('grounded-coverage-status'),
+      constraints: const BoxConstraints(maxWidth: 420),
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+      decoration: BoxDecoration(
+        color: color.withAlpha(30),
+        borderRadius: BorderRadius.circular(12),
+      ),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Icon(icon, size: 14, color: color),
+          const SizedBox(width: 4),
+          Flexible(
+            child: Text(
+              label,
               overflow: TextOverflow.ellipsis,
               style: theme.textTheme.labelSmall?.copyWith(color: color),
             ),

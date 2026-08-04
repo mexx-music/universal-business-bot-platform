@@ -4201,6 +4201,21 @@ class AppLocalizationsDe extends AppLocalizations {
   String get botDemoNotGrounded => 'Kein Treffer';
 
   @override
+  String get botDemoCoverageFull =>
+      'Vollständig aus bestätigtem Firmenwissen beantwortet';
+
+  @override
+  String get botDemoCoveragePartial =>
+      'Teilweise beantwortet – konkrete Angabe fehlt';
+
+  @override
+  String get botDemoCoverageNone => 'Keine bestätigte Information vorhanden';
+
+  @override
+  String get botDemoCoverageSensitive =>
+      'Sensible Frage – menschliche Prüfung empfohlen';
+
+  @override
   String get botDemoNoKnowledge =>
       'Ich habe erkannt, dass zu deiner Frage aktuell noch keine ausreichenden Informationen in der Wissensbasis vorhanden sind.';
 
