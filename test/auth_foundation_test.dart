@@ -18,6 +18,7 @@ import 'package:universalbusiness/l10n/app_localizations.dart';
 import 'package:universalbusiness/repositories/tenant_context.dart';
 import 'package:universalbusiness/router/app_router.dart';
 import 'package:universalbusiness/screens/dashboard/dashboard_screen.dart';
+import 'package:universalbusiness/screens/getting_started/getting_started_screen.dart';
 import 'package:universalbusiness/screens/jury/jury_tour_screen.dart';
 import 'package:universalbusiness/screens/roadmap/businessbrain_roadmap_screen.dart';
 import 'package:universalbusiness/screens/vision/businessbrain_vision_screen.dart';
@@ -204,6 +205,36 @@ void main() {
     await tester.pumpAndSettle();
 
     expect(find.byType(BusinessBrainRoadmapScreen), findsOneWidget);
+    expect(find.text('Anmelden'), findsNothing);
+  });
+
+  testWidgets('Getting Started route stays public for unauthenticated users', (
+    tester,
+  ) async {
+    final authController = AuthController(_FakeAuthService());
+    await authController.initialize();
+    final dependencies = AppDependencies.local(authController: authController);
+    final router = createAppRouter(authController);
+
+    await tester.pumpWidget(
+      AuthScope(
+        notifier: authController,
+        child: AppStateScope(
+          notifier: dependencies.appState,
+          child: MaterialApp.router(
+            localizationsDelegates: AppLocalizations.localizationsDelegates,
+            supportedLocales: AppLocalizations.supportedLocales,
+            locale: const Locale('de'),
+            routerConfig: router,
+          ),
+        ),
+      ),
+    );
+
+    router.go('/getting-started');
+    await tester.pumpAndSettle();
+
+    expect(find.byType(GettingStartedScreen), findsOneWidget);
     expect(find.text('Anmelden'), findsNothing);
   });
 

@@ -6855,4 +6855,293 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get roadmapHumanBody =>
       'BusinessBrain does not replace people. BusinessBrain provides traceable information, proposals and connections. The final decision always remains with a human.';
+
+  @override
+  String get navGettingStarted => 'Getting Started';
+
+  @override
+  String get gettingStartedNavTitle => 'Company Onboarding';
+
+  @override
+  String get gettingStartedBackHome => 'Back to home';
+
+  @override
+  String get gettingStartedDemoBadge => 'DEMO';
+
+  @override
+  String get gettingStartedHeroTitle =>
+      'Get a company ready in a few clear steps';
+
+  @override
+  String get gettingStartedHeroBody =>
+      'This interactive journey shows how a company could prepare BusinessBrain in a short time — from its profile to verified knowledge.';
+
+  @override
+  String get gettingStartedDemoBoundary =>
+      'Journey only: no registration, upload, AI analysis or storage takes place.';
+
+  @override
+  String get gettingStartedVisualCompany => 'Company';
+
+  @override
+  String get gettingStartedVisualKnowledge => 'Knowledge';
+
+  @override
+  String get gettingStartedVisualReady => 'Ready';
+
+  @override
+  String get gettingStartedVisualCaption =>
+      'A traceable path to operational company knowledge';
+
+  @override
+  String get gettingStartedProgressComplete => 'Onboarding demo complete';
+
+  @override
+  String gettingStartedProgress(int current, int total) {
+    return 'Step $current of $total';
+  }
+
+  @override
+  String get gettingStartedStatusDone => 'Complete';
+
+  @override
+  String get gettingStartedStatusActive => 'Active';
+
+  @override
+  String get gettingStartedStatusUpcoming => 'Up next';
+
+  @override
+  String get gettingStartedStep1Title => 'Create the company';
+
+  @override
+  String get gettingStartedStep1Description =>
+      'Optional details make the sample setup tangible.';
+
+  @override
+  String get gettingStartedStep2Title => 'Import company knowledge';
+
+  @override
+  String get gettingStartedStep2Description =>
+      'Choose which existing content could be connected.';
+
+  @override
+  String get gettingStartedStep3Title => 'BusinessBrain analyses';
+
+  @override
+  String get gettingStartedStep3Description =>
+      'The demo visualises which knowledge types would be recognised.';
+
+  @override
+  String get gettingStartedStep4Title => 'Human review';
+
+  @override
+  String get gettingStartedStep4Description =>
+      'Employees review proposals before knowledge becomes active.';
+
+  @override
+  String get gettingStartedStep5Title => 'BusinessBrain is ready';
+
+  @override
+  String get gettingStartedStep5Description =>
+      'Verified knowledge can support answers and insights.';
+
+  @override
+  String get gettingStartedPrevious => 'Back';
+
+  @override
+  String get gettingStartedNext => 'Continue';
+
+  @override
+  String get gettingStartedFinish => 'Complete demo';
+
+  @override
+  String get gettingStartedCompanyName => 'Company name';
+
+  @override
+  String get gettingStartedCompanyHint => 'e.g. Example Ltd';
+
+  @override
+  String get gettingStartedIndustry => 'Industry';
+
+  @override
+  String get gettingStartedIndustryHint => 'e.g. medical technology';
+
+  @override
+  String get gettingStartedCountry => 'Country';
+
+  @override
+  String get gettingStartedCountryDe => 'Germany';
+
+  @override
+  String get gettingStartedCountryAt => 'Austria';
+
+  @override
+  String get gettingStartedCountryCh => 'Switzerland';
+
+  @override
+  String get gettingStartedCountryOther => 'Other country';
+
+  @override
+  String get gettingStartedLanguage => 'Language';
+
+  @override
+  String get gettingStartedWebsite => 'Website';
+
+  @override
+  String get gettingStartedLogo => 'Select logo (demo)';
+
+  @override
+  String get gettingStartedLogoSelected => 'Logo marked';
+
+  @override
+  String get gettingStartedOptionalNote =>
+      'Every field is optional and remains exclusively in this local demo.';
+
+  @override
+  String get gettingStartedImportBoundary =>
+      'Selections only illustrate the journey. No files are uploaded or processed.';
+
+  @override
+  String get gettingStartedImportWebsite => 'Website';
+
+  @override
+  String get gettingStartedImportPdf => 'PDF';
+
+  @override
+  String get gettingStartedImportFaq => 'FAQ';
+
+  @override
+  String get gettingStartedImportManuals => 'Manuals';
+
+  @override
+  String get gettingStartedImportProducts => 'Product descriptions';
+
+  @override
+  String get gettingStartedImportSupport => 'Support documents';
+
+  @override
+  String get gettingStartedImportVideos => 'Videos';
+
+  @override
+  String get gettingStartedAnalysisSimulation => 'Demo analysis';
+
+  @override
+  String get gettingStartedAnalysisHumanNote =>
+      'Every proposal is subsequently reviewed by a person.';
+
+  @override
+  String get gettingStartedDetectedProducts => 'Products';
+
+  @override
+  String get gettingStartedDetectedFaq => 'FAQ';
+
+  @override
+  String get gettingStartedDetectedDocuments => 'Documents';
+
+  @override
+  String get gettingStartedDetectedSupport => 'Support';
+
+  @override
+  String get gettingStartedDetectedDownloads => 'Downloads';
+
+  @override
+  String get gettingStartedDetectedContact => 'Contact';
+
+  @override
+  String get gettingStartedDetectedKnowledgeAreas => 'Knowledge areas';
+
+  @override
+  String get gettingStartedReviewFaqTitle => 'FAQ proposal';
+
+  @override
+  String get gettingStartedReviewFaqBody =>
+      'Prepare a frequent customer question as structured knowledge.';
+
+  @override
+  String get gettingStartedReviewSupportTitle => 'Support proposal';
+
+  @override
+  String get gettingStartedReviewSupportBody =>
+      'Prepare a traceable resolution path for employees and customers.';
+
+  @override
+  String get gettingStartedReviewBoundary =>
+      'Only confirmed proposals would become company knowledge. This demo changes no knowledge base.';
+
+  @override
+  String get gettingStartedReviewConfirmed => 'Confirmed';
+
+  @override
+  String get gettingStartedReviewConfirm => 'Confirm';
+
+  @override
+  String get gettingStartedReadyQuestions => 'Customers can ask questions';
+
+  @override
+  String get gettingStartedReadyGrounded =>
+      'Answers come exclusively from verified company knowledge';
+
+  @override
+  String get gettingStartedReadyOperations =>
+      'The Operations Dashboard would now begin collecting traceable activity';
+
+  @override
+  String get gettingStartedReadyBoundary =>
+      'This status is part of the demo too. No company has been activated.';
+
+  @override
+  String get gettingStartedSuccessTitle => 'BusinessBrain is ready';
+
+  @override
+  String get gettingStartedSuccessBody =>
+      'The journey shows the complete path from setup to verified, usable company knowledge.';
+
+  @override
+  String get gettingStartedSuccessCompany => 'Company configured';
+
+  @override
+  String get gettingStartedSuccessDocuments => 'Documents imported';
+
+  @override
+  String get gettingStartedSuccessKnowledge => 'Knowledge confirmed';
+
+  @override
+  String get gettingStartedSuccessAi => 'AI ready';
+
+  @override
+  String get gettingStartedSuccessOperations => 'Operations activated';
+
+  @override
+  String get gettingStartedRestart => 'Restart demo';
+
+  @override
+  String get gettingStartedTimeTitle => 'Estimated time';
+
+  @override
+  String get gettingStartedTimeProfile => 'Company profile';
+
+  @override
+  String get gettingStartedTimeDocuments => 'Documents';
+
+  @override
+  String get gettingStartedTimeReview => 'Human review';
+
+  @override
+  String get gettingStartedTimeReady => 'BusinessBrain ready';
+
+  @override
+  String get gettingStartedTime2 => '2 minutes';
+
+  @override
+  String get gettingStartedTime5 => '5 minutes';
+
+  @override
+  String get gettingStartedTime10 => '10 minutes';
+
+  @override
+  String get gettingStartedTimeUnder20 => 'under 20 minutes';
+
+  @override
+  String get gettingStartedTimeDisclaimer =>
+      'Demo estimate for a compact initial setup. Actual effort depends on the scope of company knowledge.';
 }

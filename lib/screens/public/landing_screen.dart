@@ -207,6 +207,11 @@ class _LandingNav extends StatelessWidget {
                 onPressed: () => context.go('/roadmap'),
                 child: Text(l.navBusinessBrainRoadmap),
               ),
+              TextButton(
+                key: const Key('landing-getting-started'),
+                onPressed: () => context.go('/getting-started'),
+                child: Text(l.navGettingStarted),
+              ),
               TextButton(onPressed: onDemo, child: Text(l.landingDemoButton)),
               OutlinedButton(
                 onPressed: onContact,

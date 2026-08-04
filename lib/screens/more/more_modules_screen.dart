@@ -19,6 +19,7 @@ class MoreModulesScreen extends StatelessWidget {
     final modules = <(IconData, String, String)>[
       (Icons.auto_awesome_outlined, l.navBusinessBrainVision, '/vision'),
       (Icons.route_outlined, l.navBusinessBrainRoadmap, '/roadmap'),
+      (Icons.rocket_launch_outlined, l.navGettingStarted, '/getting-started'),
       (Icons.dashboard_outlined, l.navDashboard, '/dashboard'),
       (Icons.checklist_outlined, l.navNextActions, '/next-actions'),
       (Icons.event_available_outlined, l.navCheckIn, '/check-in'),

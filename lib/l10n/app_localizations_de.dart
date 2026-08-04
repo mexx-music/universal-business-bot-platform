@@ -6902,4 +6902,293 @@ class AppLocalizationsDe extends AppLocalizations {
   @override
   String get roadmapHumanBody =>
       'BusinessBrain ersetzt keine Menschen. BusinessBrain liefert nachvollziehbare Informationen, Vorschläge und Zusammenhänge. Die endgültige Entscheidung trifft immer der Mensch.';
+
+  @override
+  String get navGettingStarted => 'Getting Started';
+
+  @override
+  String get gettingStartedNavTitle => 'Company Onboarding';
+
+  @override
+  String get gettingStartedBackHome => 'Zur Startseite';
+
+  @override
+  String get gettingStartedDemoBadge => 'DEMO';
+
+  @override
+  String get gettingStartedHeroTitle =>
+      'Ein Unternehmen in wenigen Schritten startklar machen';
+
+  @override
+  String get gettingStartedHeroBody =>
+      'Diese interaktive Reise zeigt, wie ein Unternehmen BusinessBrain in kurzer Zeit vorbereiten könnte — vom Firmenprofil bis zu bestätigtem Wissen.';
+
+  @override
+  String get gettingStartedDemoBoundary =>
+      'Reine Benutzerreise: Es findet keine Registrierung, kein Upload, keine KI-Analyse und keine Speicherung statt.';
+
+  @override
+  String get gettingStartedVisualCompany => 'Unternehmen';
+
+  @override
+  String get gettingStartedVisualKnowledge => 'Wissen';
+
+  @override
+  String get gettingStartedVisualReady => 'Bereit';
+
+  @override
+  String get gettingStartedVisualCaption =>
+      'Ein nachvollziehbarer Weg zum einsatzbereiten Unternehmenswissen';
+
+  @override
+  String get gettingStartedProgressComplete => 'Onboarding-Demo abgeschlossen';
+
+  @override
+  String gettingStartedProgress(int current, int total) {
+    return 'Schritt $current von $total';
+  }
+
+  @override
+  String get gettingStartedStatusDone => 'Erledigt';
+
+  @override
+  String get gettingStartedStatusActive => 'Aktiv';
+
+  @override
+  String get gettingStartedStatusUpcoming => 'Als Nächstes';
+
+  @override
+  String get gettingStartedStep1Title => 'Unternehmen anlegen';
+
+  @override
+  String get gettingStartedStep1Description =>
+      'Optionale Angaben machen den beispielhaften Start greifbar.';
+
+  @override
+  String get gettingStartedStep2Title => 'Unternehmenswissen importieren';
+
+  @override
+  String get gettingStartedStep2Description =>
+      'Wählen Sie, welche vorhandenen Inhalte eingebunden werden könnten.';
+
+  @override
+  String get gettingStartedStep3Title => 'BusinessBrain analysiert';
+
+  @override
+  String get gettingStartedStep3Description =>
+      'Die Demo visualisiert, welche Wissensarten erkannt würden.';
+
+  @override
+  String get gettingStartedStep4Title => 'Human Review';
+
+  @override
+  String get gettingStartedStep4Description =>
+      'Mitarbeiter prüfen Vorschläge, bevor Wissen aktiv wird.';
+
+  @override
+  String get gettingStartedStep5Title => 'BusinessBrain ist bereit';
+
+  @override
+  String get gettingStartedStep5Description =>
+      'Bestätigtes Wissen kann Antworten und Einblicke unterstützen.';
+
+  @override
+  String get gettingStartedPrevious => 'Zurück';
+
+  @override
+  String get gettingStartedNext => 'Weiter';
+
+  @override
+  String get gettingStartedFinish => 'Demo abschließen';
+
+  @override
+  String get gettingStartedCompanyName => 'Firmenname';
+
+  @override
+  String get gettingStartedCompanyHint => 'z. B. Muster GmbH';
+
+  @override
+  String get gettingStartedIndustry => 'Branche';
+
+  @override
+  String get gettingStartedIndustryHint => 'z. B. Medizintechnik';
+
+  @override
+  String get gettingStartedCountry => 'Land';
+
+  @override
+  String get gettingStartedCountryDe => 'Deutschland';
+
+  @override
+  String get gettingStartedCountryAt => 'Österreich';
+
+  @override
+  String get gettingStartedCountryCh => 'Schweiz';
+
+  @override
+  String get gettingStartedCountryOther => 'Anderes Land';
+
+  @override
+  String get gettingStartedLanguage => 'Sprache';
+
+  @override
+  String get gettingStartedWebsite => 'Website';
+
+  @override
+  String get gettingStartedLogo => 'Logo auswählen (Demo)';
+
+  @override
+  String get gettingStartedLogoSelected => 'Logo vorgemerkt';
+
+  @override
+  String get gettingStartedOptionalNote =>
+      'Alle Angaben sind optional und bleiben ausschließlich in dieser lokalen Demo.';
+
+  @override
+  String get gettingStartedImportBoundary =>
+      'Auswählen zeigt nur den Ablauf. Es werden keine Dateien hochgeladen oder Inhalte verarbeitet.';
+
+  @override
+  String get gettingStartedImportWebsite => 'Website';
+
+  @override
+  String get gettingStartedImportPdf => 'PDF';
+
+  @override
+  String get gettingStartedImportFaq => 'FAQ';
+
+  @override
+  String get gettingStartedImportManuals => 'Handbücher';
+
+  @override
+  String get gettingStartedImportProducts => 'Produktbeschreibungen';
+
+  @override
+  String get gettingStartedImportSupport => 'Support-Dokumente';
+
+  @override
+  String get gettingStartedImportVideos => 'Videos';
+
+  @override
+  String get gettingStartedAnalysisSimulation => 'Demo-Analyse';
+
+  @override
+  String get gettingStartedAnalysisHumanNote =>
+      'Alle Vorschläge werden anschließend von einem Menschen geprüft.';
+
+  @override
+  String get gettingStartedDetectedProducts => 'Produkte';
+
+  @override
+  String get gettingStartedDetectedFaq => 'FAQ';
+
+  @override
+  String get gettingStartedDetectedDocuments => 'Dokumente';
+
+  @override
+  String get gettingStartedDetectedSupport => 'Support';
+
+  @override
+  String get gettingStartedDetectedDownloads => 'Downloads';
+
+  @override
+  String get gettingStartedDetectedContact => 'Kontakt';
+
+  @override
+  String get gettingStartedDetectedKnowledgeAreas => 'Wissensbereiche';
+
+  @override
+  String get gettingStartedReviewFaqTitle => 'FAQ-Vorschlag';
+
+  @override
+  String get gettingStartedReviewFaqBody =>
+      'Eine häufige Kundenfrage als strukturierten Wissenseintrag vorbereiten.';
+
+  @override
+  String get gettingStartedReviewSupportTitle => 'Support-Vorschlag';
+
+  @override
+  String get gettingStartedReviewSupportBody =>
+      'Einen nachvollziehbaren Lösungsweg für Mitarbeiter und Kunden vorbereiten.';
+
+  @override
+  String get gettingStartedReviewBoundary =>
+      'Nur bestätigte Vorschläge würden Teil des Unternehmenswissens. Diese Demo verändert keine Wissensbasis.';
+
+  @override
+  String get gettingStartedReviewConfirmed => 'Bestätigt';
+
+  @override
+  String get gettingStartedReviewConfirm => 'Bestätigen';
+
+  @override
+  String get gettingStartedReadyQuestions => 'Kunden können Fragen stellen';
+
+  @override
+  String get gettingStartedReadyGrounded =>
+      'Antworten stammen ausschließlich aus bestätigtem Unternehmenswissen';
+
+  @override
+  String get gettingStartedReadyOperations =>
+      'Das Operations Dashboard würde ab jetzt nachvollziehbare Aktivität sammeln';
+
+  @override
+  String get gettingStartedReadyBoundary =>
+      'Auch dieser Status ist Teil der Demo. Es wurde kein Unternehmen aktiviert.';
+
+  @override
+  String get gettingStartedSuccessTitle => 'BusinessBrain ist einsatzbereit';
+
+  @override
+  String get gettingStartedSuccessBody =>
+      'Die Journey zeigt den vollständigen Weg von der Einrichtung bis zu geprüftem, nutzbarem Unternehmenswissen.';
+
+  @override
+  String get gettingStartedSuccessCompany => 'Unternehmen eingerichtet';
+
+  @override
+  String get gettingStartedSuccessDocuments => 'Dokumente importiert';
+
+  @override
+  String get gettingStartedSuccessKnowledge => 'Wissen bestätigt';
+
+  @override
+  String get gettingStartedSuccessAi => 'KI bereit';
+
+  @override
+  String get gettingStartedSuccessOperations => 'Operations aktiviert';
+
+  @override
+  String get gettingStartedRestart => 'Demo neu starten';
+
+  @override
+  String get gettingStartedTimeTitle => 'Geschätzter Zeitbedarf';
+
+  @override
+  String get gettingStartedTimeProfile => 'Firmenprofil';
+
+  @override
+  String get gettingStartedTimeDocuments => 'Dokumente';
+
+  @override
+  String get gettingStartedTimeReview => 'Human Review';
+
+  @override
+  String get gettingStartedTimeReady => 'BusinessBrain einsatzbereit';
+
+  @override
+  String get gettingStartedTime2 => '2 Minuten';
+
+  @override
+  String get gettingStartedTime5 => '5 Minuten';
+
+  @override
+  String get gettingStartedTime10 => '10 Minuten';
+
+  @override
+  String get gettingStartedTimeUnder20 => 'unter 20 Minuten';
+
+  @override
+  String get gettingStartedTimeDisclaimer =>
+      'Demo-Schätzung für einen kompakten Ersteinstieg. Der tatsächliche Aufwand hängt vom Umfang des Unternehmenswissens ab.';
 }

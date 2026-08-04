@@ -12595,6 +12595,540 @@ abstract class AppLocalizations {
   /// In de, this message translates to:
   /// **'BusinessBrain ersetzt keine Menschen. BusinessBrain liefert nachvollziehbare Informationen, Vorschläge und Zusammenhänge. Die endgültige Entscheidung trifft immer der Mensch.'**
   String get roadmapHumanBody;
+
+  /// No description provided for @navGettingStarted.
+  ///
+  /// In de, this message translates to:
+  /// **'Getting Started'**
+  String get navGettingStarted;
+
+  /// No description provided for @gettingStartedNavTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Company Onboarding'**
+  String get gettingStartedNavTitle;
+
+  /// No description provided for @gettingStartedBackHome.
+  ///
+  /// In de, this message translates to:
+  /// **'Zur Startseite'**
+  String get gettingStartedBackHome;
+
+  /// No description provided for @gettingStartedDemoBadge.
+  ///
+  /// In de, this message translates to:
+  /// **'DEMO'**
+  String get gettingStartedDemoBadge;
+
+  /// No description provided for @gettingStartedHeroTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Ein Unternehmen in wenigen Schritten startklar machen'**
+  String get gettingStartedHeroTitle;
+
+  /// No description provided for @gettingStartedHeroBody.
+  ///
+  /// In de, this message translates to:
+  /// **'Diese interaktive Reise zeigt, wie ein Unternehmen BusinessBrain in kurzer Zeit vorbereiten könnte — vom Firmenprofil bis zu bestätigtem Wissen.'**
+  String get gettingStartedHeroBody;
+
+  /// No description provided for @gettingStartedDemoBoundary.
+  ///
+  /// In de, this message translates to:
+  /// **'Reine Benutzerreise: Es findet keine Registrierung, kein Upload, keine KI-Analyse und keine Speicherung statt.'**
+  String get gettingStartedDemoBoundary;
+
+  /// No description provided for @gettingStartedVisualCompany.
+  ///
+  /// In de, this message translates to:
+  /// **'Unternehmen'**
+  String get gettingStartedVisualCompany;
+
+  /// No description provided for @gettingStartedVisualKnowledge.
+  ///
+  /// In de, this message translates to:
+  /// **'Wissen'**
+  String get gettingStartedVisualKnowledge;
+
+  /// No description provided for @gettingStartedVisualReady.
+  ///
+  /// In de, this message translates to:
+  /// **'Bereit'**
+  String get gettingStartedVisualReady;
+
+  /// No description provided for @gettingStartedVisualCaption.
+  ///
+  /// In de, this message translates to:
+  /// **'Ein nachvollziehbarer Weg zum einsatzbereiten Unternehmenswissen'**
+  String get gettingStartedVisualCaption;
+
+  /// No description provided for @gettingStartedProgressComplete.
+  ///
+  /// In de, this message translates to:
+  /// **'Onboarding-Demo abgeschlossen'**
+  String get gettingStartedProgressComplete;
+
+  /// No description provided for @gettingStartedProgress.
+  ///
+  /// In de, this message translates to:
+  /// **'Schritt {current} von {total}'**
+  String gettingStartedProgress(int current, int total);
+
+  /// No description provided for @gettingStartedStatusDone.
+  ///
+  /// In de, this message translates to:
+  /// **'Erledigt'**
+  String get gettingStartedStatusDone;
+
+  /// No description provided for @gettingStartedStatusActive.
+  ///
+  /// In de, this message translates to:
+  /// **'Aktiv'**
+  String get gettingStartedStatusActive;
+
+  /// No description provided for @gettingStartedStatusUpcoming.
+  ///
+  /// In de, this message translates to:
+  /// **'Als Nächstes'**
+  String get gettingStartedStatusUpcoming;
+
+  /// No description provided for @gettingStartedStep1Title.
+  ///
+  /// In de, this message translates to:
+  /// **'Unternehmen anlegen'**
+  String get gettingStartedStep1Title;
+
+  /// No description provided for @gettingStartedStep1Description.
+  ///
+  /// In de, this message translates to:
+  /// **'Optionale Angaben machen den beispielhaften Start greifbar.'**
+  String get gettingStartedStep1Description;
+
+  /// No description provided for @gettingStartedStep2Title.
+  ///
+  /// In de, this message translates to:
+  /// **'Unternehmenswissen importieren'**
+  String get gettingStartedStep2Title;
+
+  /// No description provided for @gettingStartedStep2Description.
+  ///
+  /// In de, this message translates to:
+  /// **'Wählen Sie, welche vorhandenen Inhalte eingebunden werden könnten.'**
+  String get gettingStartedStep2Description;
+
+  /// No description provided for @gettingStartedStep3Title.
+  ///
+  /// In de, this message translates to:
+  /// **'BusinessBrain analysiert'**
+  String get gettingStartedStep3Title;
+
+  /// No description provided for @gettingStartedStep3Description.
+  ///
+  /// In de, this message translates to:
+  /// **'Die Demo visualisiert, welche Wissensarten erkannt würden.'**
+  String get gettingStartedStep3Description;
+
+  /// No description provided for @gettingStartedStep4Title.
+  ///
+  /// In de, this message translates to:
+  /// **'Human Review'**
+  String get gettingStartedStep4Title;
+
+  /// No description provided for @gettingStartedStep4Description.
+  ///
+  /// In de, this message translates to:
+  /// **'Mitarbeiter prüfen Vorschläge, bevor Wissen aktiv wird.'**
+  String get gettingStartedStep4Description;
+
+  /// No description provided for @gettingStartedStep5Title.
+  ///
+  /// In de, this message translates to:
+  /// **'BusinessBrain ist bereit'**
+  String get gettingStartedStep5Title;
+
+  /// No description provided for @gettingStartedStep5Description.
+  ///
+  /// In de, this message translates to:
+  /// **'Bestätigtes Wissen kann Antworten und Einblicke unterstützen.'**
+  String get gettingStartedStep5Description;
+
+  /// No description provided for @gettingStartedPrevious.
+  ///
+  /// In de, this message translates to:
+  /// **'Zurück'**
+  String get gettingStartedPrevious;
+
+  /// No description provided for @gettingStartedNext.
+  ///
+  /// In de, this message translates to:
+  /// **'Weiter'**
+  String get gettingStartedNext;
+
+  /// No description provided for @gettingStartedFinish.
+  ///
+  /// In de, this message translates to:
+  /// **'Demo abschließen'**
+  String get gettingStartedFinish;
+
+  /// No description provided for @gettingStartedCompanyName.
+  ///
+  /// In de, this message translates to:
+  /// **'Firmenname'**
+  String get gettingStartedCompanyName;
+
+  /// No description provided for @gettingStartedCompanyHint.
+  ///
+  /// In de, this message translates to:
+  /// **'z. B. Muster GmbH'**
+  String get gettingStartedCompanyHint;
+
+  /// No description provided for @gettingStartedIndustry.
+  ///
+  /// In de, this message translates to:
+  /// **'Branche'**
+  String get gettingStartedIndustry;
+
+  /// No description provided for @gettingStartedIndustryHint.
+  ///
+  /// In de, this message translates to:
+  /// **'z. B. Medizintechnik'**
+  String get gettingStartedIndustryHint;
+
+  /// No description provided for @gettingStartedCountry.
+  ///
+  /// In de, this message translates to:
+  /// **'Land'**
+  String get gettingStartedCountry;
+
+  /// No description provided for @gettingStartedCountryDe.
+  ///
+  /// In de, this message translates to:
+  /// **'Deutschland'**
+  String get gettingStartedCountryDe;
+
+  /// No description provided for @gettingStartedCountryAt.
+  ///
+  /// In de, this message translates to:
+  /// **'Österreich'**
+  String get gettingStartedCountryAt;
+
+  /// No description provided for @gettingStartedCountryCh.
+  ///
+  /// In de, this message translates to:
+  /// **'Schweiz'**
+  String get gettingStartedCountryCh;
+
+  /// No description provided for @gettingStartedCountryOther.
+  ///
+  /// In de, this message translates to:
+  /// **'Anderes Land'**
+  String get gettingStartedCountryOther;
+
+  /// No description provided for @gettingStartedLanguage.
+  ///
+  /// In de, this message translates to:
+  /// **'Sprache'**
+  String get gettingStartedLanguage;
+
+  /// No description provided for @gettingStartedWebsite.
+  ///
+  /// In de, this message translates to:
+  /// **'Website'**
+  String get gettingStartedWebsite;
+
+  /// No description provided for @gettingStartedLogo.
+  ///
+  /// In de, this message translates to:
+  /// **'Logo auswählen (Demo)'**
+  String get gettingStartedLogo;
+
+  /// No description provided for @gettingStartedLogoSelected.
+  ///
+  /// In de, this message translates to:
+  /// **'Logo vorgemerkt'**
+  String get gettingStartedLogoSelected;
+
+  /// No description provided for @gettingStartedOptionalNote.
+  ///
+  /// In de, this message translates to:
+  /// **'Alle Angaben sind optional und bleiben ausschließlich in dieser lokalen Demo.'**
+  String get gettingStartedOptionalNote;
+
+  /// No description provided for @gettingStartedImportBoundary.
+  ///
+  /// In de, this message translates to:
+  /// **'Auswählen zeigt nur den Ablauf. Es werden keine Dateien hochgeladen oder Inhalte verarbeitet.'**
+  String get gettingStartedImportBoundary;
+
+  /// No description provided for @gettingStartedImportWebsite.
+  ///
+  /// In de, this message translates to:
+  /// **'Website'**
+  String get gettingStartedImportWebsite;
+
+  /// No description provided for @gettingStartedImportPdf.
+  ///
+  /// In de, this message translates to:
+  /// **'PDF'**
+  String get gettingStartedImportPdf;
+
+  /// No description provided for @gettingStartedImportFaq.
+  ///
+  /// In de, this message translates to:
+  /// **'FAQ'**
+  String get gettingStartedImportFaq;
+
+  /// No description provided for @gettingStartedImportManuals.
+  ///
+  /// In de, this message translates to:
+  /// **'Handbücher'**
+  String get gettingStartedImportManuals;
+
+  /// No description provided for @gettingStartedImportProducts.
+  ///
+  /// In de, this message translates to:
+  /// **'Produktbeschreibungen'**
+  String get gettingStartedImportProducts;
+
+  /// No description provided for @gettingStartedImportSupport.
+  ///
+  /// In de, this message translates to:
+  /// **'Support-Dokumente'**
+  String get gettingStartedImportSupport;
+
+  /// No description provided for @gettingStartedImportVideos.
+  ///
+  /// In de, this message translates to:
+  /// **'Videos'**
+  String get gettingStartedImportVideos;
+
+  /// No description provided for @gettingStartedAnalysisSimulation.
+  ///
+  /// In de, this message translates to:
+  /// **'Demo-Analyse'**
+  String get gettingStartedAnalysisSimulation;
+
+  /// No description provided for @gettingStartedAnalysisHumanNote.
+  ///
+  /// In de, this message translates to:
+  /// **'Alle Vorschläge werden anschließend von einem Menschen geprüft.'**
+  String get gettingStartedAnalysisHumanNote;
+
+  /// No description provided for @gettingStartedDetectedProducts.
+  ///
+  /// In de, this message translates to:
+  /// **'Produkte'**
+  String get gettingStartedDetectedProducts;
+
+  /// No description provided for @gettingStartedDetectedFaq.
+  ///
+  /// In de, this message translates to:
+  /// **'FAQ'**
+  String get gettingStartedDetectedFaq;
+
+  /// No description provided for @gettingStartedDetectedDocuments.
+  ///
+  /// In de, this message translates to:
+  /// **'Dokumente'**
+  String get gettingStartedDetectedDocuments;
+
+  /// No description provided for @gettingStartedDetectedSupport.
+  ///
+  /// In de, this message translates to:
+  /// **'Support'**
+  String get gettingStartedDetectedSupport;
+
+  /// No description provided for @gettingStartedDetectedDownloads.
+  ///
+  /// In de, this message translates to:
+  /// **'Downloads'**
+  String get gettingStartedDetectedDownloads;
+
+  /// No description provided for @gettingStartedDetectedContact.
+  ///
+  /// In de, this message translates to:
+  /// **'Kontakt'**
+  String get gettingStartedDetectedContact;
+
+  /// No description provided for @gettingStartedDetectedKnowledgeAreas.
+  ///
+  /// In de, this message translates to:
+  /// **'Wissensbereiche'**
+  String get gettingStartedDetectedKnowledgeAreas;
+
+  /// No description provided for @gettingStartedReviewFaqTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'FAQ-Vorschlag'**
+  String get gettingStartedReviewFaqTitle;
+
+  /// No description provided for @gettingStartedReviewFaqBody.
+  ///
+  /// In de, this message translates to:
+  /// **'Eine häufige Kundenfrage als strukturierten Wissenseintrag vorbereiten.'**
+  String get gettingStartedReviewFaqBody;
+
+  /// No description provided for @gettingStartedReviewSupportTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Support-Vorschlag'**
+  String get gettingStartedReviewSupportTitle;
+
+  /// No description provided for @gettingStartedReviewSupportBody.
+  ///
+  /// In de, this message translates to:
+  /// **'Einen nachvollziehbaren Lösungsweg für Mitarbeiter und Kunden vorbereiten.'**
+  String get gettingStartedReviewSupportBody;
+
+  /// No description provided for @gettingStartedReviewBoundary.
+  ///
+  /// In de, this message translates to:
+  /// **'Nur bestätigte Vorschläge würden Teil des Unternehmenswissens. Diese Demo verändert keine Wissensbasis.'**
+  String get gettingStartedReviewBoundary;
+
+  /// No description provided for @gettingStartedReviewConfirmed.
+  ///
+  /// In de, this message translates to:
+  /// **'Bestätigt'**
+  String get gettingStartedReviewConfirmed;
+
+  /// No description provided for @gettingStartedReviewConfirm.
+  ///
+  /// In de, this message translates to:
+  /// **'Bestätigen'**
+  String get gettingStartedReviewConfirm;
+
+  /// No description provided for @gettingStartedReadyQuestions.
+  ///
+  /// In de, this message translates to:
+  /// **'Kunden können Fragen stellen'**
+  String get gettingStartedReadyQuestions;
+
+  /// No description provided for @gettingStartedReadyGrounded.
+  ///
+  /// In de, this message translates to:
+  /// **'Antworten stammen ausschließlich aus bestätigtem Unternehmenswissen'**
+  String get gettingStartedReadyGrounded;
+
+  /// No description provided for @gettingStartedReadyOperations.
+  ///
+  /// In de, this message translates to:
+  /// **'Das Operations Dashboard würde ab jetzt nachvollziehbare Aktivität sammeln'**
+  String get gettingStartedReadyOperations;
+
+  /// No description provided for @gettingStartedReadyBoundary.
+  ///
+  /// In de, this message translates to:
+  /// **'Auch dieser Status ist Teil der Demo. Es wurde kein Unternehmen aktiviert.'**
+  String get gettingStartedReadyBoundary;
+
+  /// No description provided for @gettingStartedSuccessTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'BusinessBrain ist einsatzbereit'**
+  String get gettingStartedSuccessTitle;
+
+  /// No description provided for @gettingStartedSuccessBody.
+  ///
+  /// In de, this message translates to:
+  /// **'Die Journey zeigt den vollständigen Weg von der Einrichtung bis zu geprüftem, nutzbarem Unternehmenswissen.'**
+  String get gettingStartedSuccessBody;
+
+  /// No description provided for @gettingStartedSuccessCompany.
+  ///
+  /// In de, this message translates to:
+  /// **'Unternehmen eingerichtet'**
+  String get gettingStartedSuccessCompany;
+
+  /// No description provided for @gettingStartedSuccessDocuments.
+  ///
+  /// In de, this message translates to:
+  /// **'Dokumente importiert'**
+  String get gettingStartedSuccessDocuments;
+
+  /// No description provided for @gettingStartedSuccessKnowledge.
+  ///
+  /// In de, this message translates to:
+  /// **'Wissen bestätigt'**
+  String get gettingStartedSuccessKnowledge;
+
+  /// No description provided for @gettingStartedSuccessAi.
+  ///
+  /// In de, this message translates to:
+  /// **'KI bereit'**
+  String get gettingStartedSuccessAi;
+
+  /// No description provided for @gettingStartedSuccessOperations.
+  ///
+  /// In de, this message translates to:
+  /// **'Operations aktiviert'**
+  String get gettingStartedSuccessOperations;
+
+  /// No description provided for @gettingStartedRestart.
+  ///
+  /// In de, this message translates to:
+  /// **'Demo neu starten'**
+  String get gettingStartedRestart;
+
+  /// No description provided for @gettingStartedTimeTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Geschätzter Zeitbedarf'**
+  String get gettingStartedTimeTitle;
+
+  /// No description provided for @gettingStartedTimeProfile.
+  ///
+  /// In de, this message translates to:
+  /// **'Firmenprofil'**
+  String get gettingStartedTimeProfile;
+
+  /// No description provided for @gettingStartedTimeDocuments.
+  ///
+  /// In de, this message translates to:
+  /// **'Dokumente'**
+  String get gettingStartedTimeDocuments;
+
+  /// No description provided for @gettingStartedTimeReview.
+  ///
+  /// In de, this message translates to:
+  /// **'Human Review'**
+  String get gettingStartedTimeReview;
+
+  /// No description provided for @gettingStartedTimeReady.
+  ///
+  /// In de, this message translates to:
+  /// **'BusinessBrain einsatzbereit'**
+  String get gettingStartedTimeReady;
+
+  /// No description provided for @gettingStartedTime2.
+  ///
+  /// In de, this message translates to:
+  /// **'2 Minuten'**
+  String get gettingStartedTime2;
+
+  /// No description provided for @gettingStartedTime5.
+  ///
+  /// In de, this message translates to:
+  /// **'5 Minuten'**
+  String get gettingStartedTime5;
+
+  /// No description provided for @gettingStartedTime10.
+  ///
+  /// In de, this message translates to:
+  /// **'10 Minuten'**
+  String get gettingStartedTime10;
+
+  /// No description provided for @gettingStartedTimeUnder20.
+  ///
+  /// In de, this message translates to:
+  /// **'unter 20 Minuten'**
+  String get gettingStartedTimeUnder20;
+
+  /// No description provided for @gettingStartedTimeDisclaimer.
+  ///
+  /// In de, this message translates to:
+  /// **'Demo-Schätzung für einen kompakten Ersteinstieg. Der tatsächliche Aufwand hängt vom Umfang des Unternehmenswissens ab.'**
+  String get gettingStartedTimeDisclaimer;
 }
 
 class _AppLocalizationsDelegate
