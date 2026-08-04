@@ -33,9 +33,11 @@ sampling params or metadata. Errors are mapped from a stable `error.code`.
 - A Google Gemini API key.
 - Flutter toolchain.
 
-> This dev environment has **no** Supabase CLI and **no** Deno installed, so the
-> deploy and the Deno edge tests below were **not executed here** — they are
-> documented for you to run on a machine that has the tooling.
+The release environment must provide both the Supabase CLI and Deno. The
+2026-08-04 release-candidate audit verified the active Function and secret names
+with the Supabase CLI and executed the complete local Deno suite. See
+`docs/XPRIZE_RELEASE_CANDIDATE.md` for the current deployment status and open
+production actions.
 
 ## 3. Secrets (server-side only)
 
@@ -145,7 +147,7 @@ curl -sS "https://<PROJECT_REF>.supabase.co/functions/v1/ai-generate" \
 
 ## 7. Edge (Deno) tests
 
-23 unit tests exist in `supabase/functions/tests/ai_generate_test.ts` and use an
+26 unit tests exist in `supabase/functions/tests/ai_generate_test.ts` and use an
 injected fake fetch (no network, no permissions needed):
 
 ```bash
@@ -154,12 +156,12 @@ cd supabase/functions && deno task test     # i.e. deno test tests/
 deno test supabase/functions/tests/
 ```
 
-> Not run in this environment (no Deno). They cover: valid mapping, method /
-> content-type / message-limit validation, model allow-list, sampling-param
-> stripping, system-instruction mapping, usage mapping, finish reasons, SAFETY →
-> `content_blocked`, timeout → 504, 429 → `rate_limited`, missing key (no
-> upstream call), malformed upstream, ping (no upstream call), and key-never-
-> leaks assertions.
+The 2026-08-04 release-candidate run passed all 26 tests. They cover: valid
+mapping, method / content-type / message-limit validation, model allow-list,
+sampling-param stripping, system-instruction mapping, usage mapping, finish
+reasons, SAFETY → `content_blocked`, timeout → 504, 429 → `rate_limited`,
+missing key (no upstream call), malformed upstream, ping (no upstream call),
+CORS preflights and key-never-leaks assertions.
 
 ## 8. Error diagnosis
 

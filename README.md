@@ -223,6 +223,18 @@ For the deployed web app to use Supabase instead of local demo storage, set thes
 - `SUPABASE_URL`
 - `SUPABASE_PUBLISHABLE_KEY`
 
+Production builds set the non-secret dart-define `AI_PROVIDER=gemini`
+explicitly. Omitting it selects the offline mock by design, so a release build
+must never rely on the default provider. The Gemini API key is not a client
+build variable; it remains the server-side Edge Function secret
+`GEMINI_API_KEY`.
+
+The `ai-generate` Edge Function also requires the server-side secret
+`ALLOWED_ORIGINS`. It must contain every exact production browser origin as a
+comma-separated list without paths or trailing slashes, including the canonical
+`pages.dev` URL and any custom domain. An empty value permits only local
+development origins.
+
 Only browser-safe Supabase publishable keys may be passed to Flutter Web. Never use
 `SUPABASE_SECRET_KEY`, `service_role`, or any `sb_secret_...` key in GitHub
 Actions, Cloudflare Pages, or a `--dart-define`.
