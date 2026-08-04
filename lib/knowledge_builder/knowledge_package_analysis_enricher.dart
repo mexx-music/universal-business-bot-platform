@@ -60,6 +60,7 @@ class KnowledgePackageAnalysisEnricher {
       knowledgeArea: draft.knowledgeArea,
       detectedTopics: draft.detectedTopics,
       packageMetadata: sourceDocument?.metadata(languageCode),
+      websiteLink: sourceDocument?.websiteLink(languageCode),
       existingMatch: draft.existingMatch,
       isPossibleDuplicate: draft.isPossibleDuplicate,
     );

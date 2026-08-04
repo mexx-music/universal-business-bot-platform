@@ -11,11 +11,19 @@ class KnowledgeImportMapper {
   List<KnowledgeEntry> toWorkspaceEntries(
     List<KnowledgeImportDraft> drafts, {
     DateTime? createdAt,
+    Map<String, KnowledgeEntryLink?> websiteLinks = const {},
   }) {
     final timestamp = createdAt ?? DateTime.now();
     return [
       for (var index = 0; index < drafts.length; index++)
-        _toWorkspaceEntry(drafts[index], timestamp, index),
+        _toWorkspaceEntry(
+          drafts[index],
+          timestamp,
+          index,
+          websiteLinks.containsKey(drafts[index].id)
+              ? websiteLinks[drafts[index].id]
+              : drafts[index].websiteLink,
+        ),
     ];
   }
 
@@ -23,6 +31,7 @@ class KnowledgeImportMapper {
     KnowledgeImportDraft draft,
     DateTime timestamp,
     int index,
+    KnowledgeEntryLink? websiteLink,
   ) {
     return KnowledgeEntry(
       id: 'kb_${timestamp.microsecondsSinceEpoch}_$index',
@@ -44,6 +53,7 @@ class KnowledgeImportMapper {
       languageCode: draft.languageCode,
       knowledgeArea: draft.knowledgeArea,
       detectedTopics: List.unmodifiable(draft.detectedTopics),
+      websiteLink: websiteLink?.canOpen == true ? websiteLink : null,
     );
   }
 

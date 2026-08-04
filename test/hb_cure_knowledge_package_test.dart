@@ -71,6 +71,37 @@ void main() {
     );
   });
 
+  test(
+    'demo package provides localized website destinations without crawling',
+    () {
+      final linked = hbCureKnowledgePackage.documents
+          .where((document) => document.websiteLink('de')?.canOpen == true)
+          .toList();
+      expect(linked.length, greaterThanOrEqualTo(9));
+      expect(
+        linked.map((document) => document.websiteLink('de')!.type),
+        containsAll({
+          KnowledgeLinkType.productPage,
+          KnowledgeLinkType.faq,
+          KnowledgeLinkType.download,
+          KnowledgeLinkType.support,
+          KnowledgeLinkType.contact,
+          KnowledgeLinkType.form,
+          KnowledgeLinkType.website,
+        }),
+      );
+      final app = linked.firstWhere((document) => document.id == 'hb-cure-app');
+      expect(app.websiteLink('de')!.title, 'App und Downloads öffnen');
+      expect(app.websiteLink('en')!.title, 'Open app and downloads');
+      expect(
+        linked.every(
+          (document) => document.websiteLink('de')!.url.contains('.example'),
+        ),
+        isTrue,
+      );
+    },
+  );
+
   test('German and English package content stays language-consistent', () {
     final package = hbCureKnowledgePackage;
     final german = package.editorContent('de');
@@ -162,6 +193,16 @@ void main() {
       );
       expect(
         entries.any((entry) => entry.riskLevel == RiskLevel.yellow),
+        isTrue,
+      );
+      expect(
+        entries.any((entry) => entry.websiteLink?.canOpen == true),
+        isTrue,
+      );
+      expect(
+        entries.any(
+          (entry) => entry.websiteLink?.type == KnowledgeLinkType.download,
+        ),
         isTrue,
       );
     },

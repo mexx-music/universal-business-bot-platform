@@ -33,12 +33,14 @@ class GroundedSource {
     required this.title,
     required this.category,
     required this.excerpt,
+    this.websiteLink,
   });
 
   final String id;
   final String title;
   final KnowledgeCategory category;
   final String excerpt;
+  final KnowledgeEntryLink? websiteLink;
 }
 
 class GroundedAnswerRequest {
@@ -120,6 +122,28 @@ class GroundedAnswerResult {
 
   bool get grounded => outcome == GroundedOutcome.answered;
   bool get usedKnowledge => outcome == GroundedOutcome.answered;
+
+  /// Website destinations attached to the exact entries used for this answer.
+  /// Duplicate URLs are collapsed and the business-facing order is stable.
+  List<KnowledgeEntryLink> get websiteLinks {
+    final unique = <String, KnowledgeEntryLink>{};
+    for (final source in sources) {
+      final link = source.websiteLink;
+      if (link == null || !link.canOpen) continue;
+      final key = link.url.trim().toLowerCase().replaceFirst(RegExp(r'/$'), '');
+      unique.putIfAbsent(key, () => link);
+    }
+    final links = unique.values.toList()
+      ..sort((a, b) {
+        final byType = (a.type?.displayPriority ?? 999).compareTo(
+          b.type?.displayPriority ?? 999,
+        );
+        if (byType != 0) return byType;
+        final byTitle = a.title.toLowerCase().compareTo(b.title.toLowerCase());
+        return byTitle != 0 ? byTitle : a.url.compareTo(b.url);
+      });
+    return List.unmodifiable(links);
+  }
 }
 
 /// Orchestrates a grounded answer: BusinessBrain controls the context, the
@@ -268,6 +292,7 @@ class GroundedAnswerService {
           title: item.match.entry.title,
           category: item.match.entry.category,
           excerpt: item.snippet,
+          websiteLink: item.match.entry.websiteLink,
         ),
     ];
 

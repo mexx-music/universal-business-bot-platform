@@ -66,6 +66,26 @@ GroundedAnswerResult answered({
   );
 }
 
+GroundedAnswerResult answeredWithLinks(List<KnowledgeEntryLink> links) {
+  return GroundedAnswerResult(
+    outcome: GroundedOutcome.answered,
+    answer: 'CureBase ist das stationäre Gerät.',
+    isMock: true,
+    providerId: AiProviderId.openAi,
+    providerDisplayName: 'Mock',
+    sources: [
+      for (var index = 0; index < links.length; index++)
+        GroundedSource(
+          id: 'link-$index',
+          title: 'CureBase Quelle $index',
+          category: KnowledgeCategory.faq,
+          excerpt: 'Bestätigte Information $index.',
+          websiteLink: links[index],
+        ),
+    ],
+  );
+}
+
 GroundedAnswerResult noKnowledge({
   List<String> missingTerms = const ['xylophon', 'preise'],
 }) => GroundedAnswerResult(
@@ -250,6 +270,117 @@ void main() {
       expect(tester.takeException(), isNull);
     },
   );
+
+  testWidgets('shows one linked website action above sources on mobile', (
+    tester,
+  ) async {
+    await pumpPanel(
+      tester,
+      StubService(
+        (_) async => answeredWithLinks(const [
+          KnowledgeEntryLink(
+            url: 'https://company.example/curebase',
+            title: 'Mehr über CureBase',
+            type: KnowledgeLinkType.productPage,
+          ),
+        ]),
+      ),
+      size: const Size(320, 900),
+    );
+    final l = l10n(tester);
+
+    await ask(tester, 'Was ist CureBase?');
+    await tester.pumpAndSettle();
+
+    final section = find.byKey(const Key('grounded-website-links'));
+    expect(section, findsOneWidget);
+    expect(find.text(l.botDemoFurtherInfoTitle), findsOneWidget);
+    expect(find.text('Mehr über CureBase'), findsOneWidget);
+    expect(
+      tester.getTopLeft(section).dy,
+      lessThan(tester.getTopLeft(find.text(l.botDemoSources)).dy),
+    );
+    expect(tester.takeException(), isNull);
+  });
+
+  testWidgets(
+    'caps desktop actions at five and localizes overflow in English',
+    (tester) async {
+      const links = [
+        KnowledgeEntryLink(
+          url: 'https://company.example/product',
+          title: 'Product',
+          type: KnowledgeLinkType.productPage,
+        ),
+        KnowledgeEntryLink(
+          url: 'https://company.example/prices',
+          title: 'Prices',
+          type: KnowledgeLinkType.prices,
+        ),
+        KnowledgeEntryLink(
+          url: 'https://company.example/faq',
+          title: 'FAQ',
+          type: KnowledgeLinkType.faq,
+        ),
+        KnowledgeEntryLink(
+          url: 'https://company.example/guide',
+          title: 'Guide',
+          type: KnowledgeLinkType.guide,
+        ),
+        KnowledgeEntryLink(
+          url: 'https://company.example/download',
+          title: 'Download',
+          type: KnowledgeLinkType.download,
+        ),
+        KnowledgeEntryLink(
+          url: 'https://company.example/support',
+          title: 'Support',
+          type: KnowledgeLinkType.support,
+        ),
+      ];
+      await pumpPanel(
+        tester,
+        StubService((_) async => answeredWithLinks(links)),
+        locale: const Locale('en'),
+        size: const Size(1280, 1000),
+      );
+      final l = l10n(tester);
+
+      await ask(tester, 'What is CureBase?');
+      await tester.pumpAndSettle();
+
+      final section = find.byKey(const Key('grounded-website-links'));
+      expect(find.text(l.botDemoFurtherInfoTitle), findsOneWidget);
+      for (final link in links.take(4)) {
+        expect(
+          find.descendant(
+            of: section,
+            matching: find.byKey(ValueKey('grounded-link-${link.url}')),
+          ),
+          findsOneWidget,
+        );
+      }
+      expect(
+        find.descendant(
+          of: section,
+          matching: find.byKey(const Key('grounded-more-website-links')),
+        ),
+        findsOneWidget,
+      );
+      expect(find.text(l.botDemoMoreLinks), findsOneWidget);
+      expect(tester.takeException(), isNull);
+    },
+  );
+
+  testWidgets('does not show website section when used entries have no link', (
+    tester,
+  ) async {
+    await pumpPanel(tester, StubService((_) async => answered()));
+    await ask(tester, 'Wann habt ihr geöffnet?');
+    await tester.pumpAndSettle();
+
+    expect(find.byKey(const Key('grounded-website-links')), findsNothing);
+  });
 
   testWidgets('shows a loading indicator while the answer is pending', (
     tester,

@@ -43,6 +43,7 @@ class _KnowledgeBuilderScreenState extends State<KnowledgeBuilderScreen>
   KnowledgeDemoDocument? _loadedDemo;
   CompanyKnowledgePackage? _loadedPackage;
   _WorkspaceImportSuccess? _importSuccess;
+  final Map<String, KnowledgeEntryLink?> _draftWebsiteLinks = {};
   bool _importing = false;
   bool _importFailed = false;
   late final AnimationController _journey;
@@ -118,6 +119,11 @@ class _KnowledgeBuilderScreenState extends State<KnowledgeBuilderScreen>
     _journey.value = 0;
     setState(() {
       _analysis = analysis;
+      _draftWebsiteLinks
+        ..clear()
+        ..addEntries(
+          analysis.drafts.map((draft) => MapEntry(draft.id, draft.websiteLink)),
+        );
       _presentation = KnowledgeAnalysisPresentation.fromAnalysis(analysis);
       _stage = 0;
       _hasRevealedDemo = false;
@@ -213,6 +219,7 @@ class _KnowledgeBuilderScreenState extends State<KnowledgeBuilderScreen>
     final before = state.knowledgeEntries.length;
     final entries = const KnowledgeImportMapper().toWorkspaceEntries(
       analysis.drafts,
+      websiteLinks: _draftWebsiteLinks,
     );
     setState(() {
       _importing = true;
@@ -292,6 +299,7 @@ class _KnowledgeBuilderScreenState extends State<KnowledgeBuilderScreen>
       _importSuccess = null;
       _importing = false;
       _importFailed = false;
+      _draftWebsiteLinks.clear();
       _input.clear();
     });
   }
@@ -386,6 +394,10 @@ class _KnowledgeBuilderScreenState extends State<KnowledgeBuilderScreen>
                       importFailed: _importFailed,
                       importSuccess: _importSuccess,
                       onImportAll: _importAllDrafts,
+                      websiteLinks: _draftWebsiteLinks,
+                      onWebsiteLinkChanged: (draftId, link) {
+                        setState(() => _draftWebsiteLinks[draftId] = link);
+                      },
                     ),
                   ],
                 ],
@@ -1285,6 +1297,8 @@ class _AnalysisJourney extends StatelessWidget {
     required this.importFailed,
     required this.importSuccess,
     required this.onImportAll,
+    required this.websiteLinks,
+    required this.onWebsiteLinkChanged,
   });
 
   final KnowledgeAnalysisPresentation presentation;
@@ -1297,6 +1311,9 @@ class _AnalysisJourney extends StatelessWidget {
   final bool importFailed;
   final _WorkspaceImportSuccess? importSuccess;
   final Future<void> Function() onImportAll;
+  final Map<String, KnowledgeEntryLink?> websiteLinks;
+  final void Function(String draftId, KnowledgeEntryLink? link)
+  onWebsiteLinkChanged;
 
   @override
   Widget build(BuildContext context) {
@@ -1445,6 +1462,8 @@ class _AnalysisJourney extends StatelessWidget {
                         importFailed: importFailed,
                         importSuccess: importSuccess,
                         onImportAll: onImportAll,
+                        websiteLinks: websiteLinks,
+                        onWebsiteLinkChanged: onWebsiteLinkChanged,
                       ),
                     ],
                   ),
@@ -2180,6 +2199,8 @@ class _DraftPreview extends StatelessWidget {
     required this.importFailed,
     required this.importSuccess,
     required this.onImportAll,
+    required this.websiteLinks,
+    required this.onWebsiteLinkChanged,
   });
 
   final KnowledgeImportAnalysis analysis;
@@ -2187,6 +2208,9 @@ class _DraftPreview extends StatelessWidget {
   final bool importFailed;
   final _WorkspaceImportSuccess? importSuccess;
   final Future<void> Function() onImportAll;
+  final Map<String, KnowledgeEntryLink?> websiteLinks;
+  final void Function(String draftId, KnowledgeEntryLink? link)
+  onWebsiteLinkChanged;
 
   @override
   Widget build(BuildContext context) {
@@ -2217,7 +2241,13 @@ class _DraftPreview extends StatelessWidget {
           onImportAll: onImportAll,
         ),
         const SizedBox(height: 16),
-        for (final draft in analysis.drafts) _DraftCard(draft: draft),
+        for (final draft in analysis.drafts)
+          _DraftCard(
+            draft: draft,
+            websiteLink: websiteLinks[draft.id],
+            onWebsiteLinkChanged: (link) =>
+                onWebsiteLinkChanged(draft.id, link),
+          ),
       ],
     );
   }
@@ -2366,9 +2396,15 @@ class _WorkspaceIntegrationCard extends StatelessWidget {
 /// Self-contained: holds its own accept/edit/ignore decision, optional merge
 /// choice and edit controllers. Nothing here persists — it is a preview only.
 class _DraftCard extends StatefulWidget {
-  const _DraftCard({required this.draft});
+  const _DraftCard({
+    required this.draft,
+    required this.websiteLink,
+    required this.onWebsiteLinkChanged,
+  });
 
   final KnowledgeImportDraft draft;
+  final KnowledgeEntryLink? websiteLink;
+  final ValueChanged<KnowledgeEntryLink?> onWebsiteLinkChanged;
 
   @override
   State<_DraftCard> createState() => _DraftCardState();
@@ -2379,12 +2415,54 @@ class _DraftCardState extends State<_DraftCard> {
   MergeChoice? _merge;
   TextEditingController? _titleCtrl;
   TextEditingController? _contentCtrl;
+  late TextEditingController _websiteCtrl;
+  late TextEditingController _linkTitleCtrl;
+  KnowledgeLinkType? _linkType;
+
+  @override
+  void initState() {
+    super.initState();
+    _initializeLink(widget.websiteLink);
+  }
+
+  void _initializeLink(KnowledgeEntryLink? link) {
+    _websiteCtrl = TextEditingController(text: link?.url ?? '');
+    _linkTitleCtrl = TextEditingController(text: link?.title ?? '');
+    _linkType = link?.type;
+  }
+
+  @override
+  void didUpdateWidget(covariant _DraftCard oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    final oldLink = oldWidget.websiteLink;
+    final newLink = widget.websiteLink;
+    final sameLink =
+        oldLink?.url == newLink?.url &&
+        oldLink?.title == newLink?.title &&
+        oldLink?.type == newLink?.type;
+    if (oldWidget.draft.id == widget.draft.id && sameLink) return;
+    _websiteCtrl.dispose();
+    _linkTitleCtrl.dispose();
+    _initializeLink(widget.websiteLink);
+  }
 
   @override
   void dispose() {
     _titleCtrl?.dispose();
     _contentCtrl?.dispose();
+    _websiteCtrl.dispose();
+    _linkTitleCtrl.dispose();
     super.dispose();
+  }
+
+  void _notifyWebsiteLink() {
+    widget.onWebsiteLinkChanged(
+      KnowledgeEntryLink(
+        url: _websiteCtrl.text,
+        title: _linkTitleCtrl.text,
+        type: _linkType,
+      ),
+    );
   }
 
   void _setDecision(DraftDecision d) {
@@ -2510,6 +2588,18 @@ class _DraftCardState extends State<_DraftCard> {
                 ],
               ),
             ],
+            const SizedBox(height: 10),
+            _WebsiteLinkEditor(
+              draftId: draft.id,
+              websiteController: _websiteCtrl,
+              titleController: _linkTitleCtrl,
+              linkType: _linkType,
+              onTextChanged: _notifyWebsiteLink,
+              onTypeChanged: (type) {
+                setState(() => _linkType = type);
+                _notifyWebsiteLink();
+              },
+            ),
             if (draft.existingMatch != null) ...[
               const SizedBox(height: 12),
               _ExistingMatchBlock(
@@ -2524,6 +2614,110 @@ class _DraftCardState extends State<_DraftCard> {
           ],
         ),
       ),
+    );
+  }
+}
+
+class _WebsiteLinkEditor extends StatelessWidget {
+  const _WebsiteLinkEditor({
+    required this.draftId,
+    required this.websiteController,
+    required this.titleController,
+    required this.linkType,
+    required this.onTextChanged,
+    required this.onTypeChanged,
+  });
+
+  final String draftId;
+  final TextEditingController websiteController;
+  final TextEditingController titleController;
+  final KnowledgeLinkType? linkType;
+  final VoidCallback onTextChanged;
+  final ValueChanged<KnowledgeLinkType?> onTypeChanged;
+
+  @override
+  Widget build(BuildContext context) {
+    final l = AppLocalizations.of(context)!;
+    final theme = Theme.of(context);
+    return ExpansionTile(
+      key: Key('kb-link-editor-$draftId'),
+      tilePadding: EdgeInsets.zero,
+      childrenPadding: const EdgeInsets.only(bottom: 8),
+      leading: Icon(Icons.add_link, color: theme.colorScheme.primary),
+      title: Text(
+        l.kbLinkSectionTitle,
+        style: theme.textTheme.titleSmall?.copyWith(
+          fontWeight: FontWeight.bold,
+        ),
+      ),
+      subtitle: Text(l.kbLinkSectionHint),
+      children: [
+        LayoutBuilder(
+          builder: (context, constraints) {
+            final compact = constraints.maxWidth < 700;
+            final website = TextField(
+              key: Key('kb-link-url-$draftId'),
+              controller: websiteController,
+              keyboardType: TextInputType.url,
+              textInputAction: TextInputAction.next,
+              decoration: InputDecoration(
+                labelText: l.kbLinkWebsite,
+                border: const OutlineInputBorder(),
+              ),
+              onChanged: (_) => onTextChanged(),
+            );
+            final buttonText = TextField(
+              key: Key('kb-link-title-$draftId'),
+              controller: titleController,
+              textInputAction: TextInputAction.next,
+              decoration: InputDecoration(
+                labelText: l.kbLinkButtonText,
+                border: const OutlineInputBorder(),
+              ),
+              onChanged: (_) => onTextChanged(),
+            );
+            final type = DropdownButtonFormField<KnowledgeLinkType>(
+              key: Key('kb-link-type-$draftId-${linkType?.name ?? 'none'}'),
+              initialValue: linkType,
+              isExpanded: true,
+              decoration: InputDecoration(
+                labelText: l.kbLinkType,
+                border: const OutlineInputBorder(),
+              ),
+              hint: Text(l.kbLinkTypeNone),
+              items: [
+                for (final value in KnowledgeLinkType.values)
+                  DropdownMenuItem(
+                    value: value,
+                    child: Text(knowledgeLinkTypeLabel(context, value)),
+                  ),
+              ],
+              onChanged: onTypeChanged,
+            );
+            if (compact) {
+              return Column(
+                children: [
+                  website,
+                  const SizedBox(height: 10),
+                  buttonText,
+                  const SizedBox(height: 10),
+                  type,
+                ],
+              );
+            }
+            return Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Expanded(flex: 3, child: website),
+                const SizedBox(width: 10),
+                Expanded(flex: 2, child: buttonText),
+                const SizedBox(width: 10),
+                Expanded(flex: 2, child: type),
+              ],
+            );
+          },
+        ),
+      ],
     );
   }
 }

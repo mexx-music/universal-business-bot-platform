@@ -1,4 +1,5 @@
 import '../models/company_knowledge_package.dart';
+import '../../models/knowledge_entry.dart';
 
 const _websiteSource = KnowledgePackageSource(
   id: 'healing-balance-website',
@@ -69,6 +70,16 @@ final hbCureKnowledgePackage = CompanyKnowledgePackage(
       documentTypeDe: 'Unternehmensinformation',
       documentTypeEn: 'Company information',
       source: _websiteSource,
+      websiteLinkDe: const KnowledgeEntryLink(
+        url: 'https://demo.healing-balance.example/',
+        title: 'HB Cure Homepage',
+        type: KnowledgeLinkType.website,
+      ),
+      websiteLinkEn: const KnowledgeEntryLink(
+        url: 'https://demo.healing-balance.example/',
+        title: 'HB Cure homepage',
+        type: KnowledgeLinkType.website,
+      ),
       freshness: KnowledgePackageFreshness.timeSensitive(
         lastChecked: DateTime.utc(2026, 8, 3),
       ),
@@ -88,6 +99,16 @@ Healing & Balance can be reached by email at office@healing-balance.com and by p
       documentTypeDe: 'Systemübersicht',
       documentTypeEn: 'System overview',
       source: _productSource,
+      websiteLinkDe: KnowledgeEntryLink(
+        url: 'https://demo.healing-balance.example/hb-cure',
+        title: 'Mehr über HB Cure',
+        type: KnowledgeLinkType.productPage,
+      ),
+      websiteLinkEn: KnowledgeEntryLink(
+        url: 'https://demo.healing-balance.example/hb-cure',
+        title: 'Learn more about HB Cure',
+        type: KnowledgeLinkType.productPage,
+      ),
       contentDe:
           '''HB Cure ist der Produkt- und Systembereich von Healing & Balance.
 Zum HB-Cure-System gehören CureBase, CureClip und die H&B Cure App.
@@ -106,6 +127,16 @@ The H&B Cure App provides access to the available frequency programs.''',
       documentTypeDe: 'Bestätigte App-Dokumentation',
       documentTypeEn: 'Confirmed app documentation',
       source: _productSource,
+      websiteLinkDe: KnowledgeEntryLink(
+        url: 'https://demo.healing-balance.example/app-downloads',
+        title: 'App und Downloads öffnen',
+        type: KnowledgeLinkType.download,
+      ),
+      websiteLinkEn: KnowledgeEntryLink(
+        url: 'https://demo.healing-balance.example/app-downloads',
+        title: 'Open app and downloads',
+        type: KnowledgeLinkType.download,
+      ),
       contentDe:
           '''Die H&B Cure App verbindet sich über Bluetooth mit kompatiblen Geräten.
 Programme können über Kategorien oder die Suche ausgewählt werden.
@@ -130,6 +161,16 @@ The app shows whether a compatible device is connected.''',
       documentTypeDe: 'Bestätigte Produktbeschreibung',
       documentTypeEn: 'Confirmed product description',
       source: _productSource,
+      websiteLinkDe: KnowledgeEntryLink(
+        url: 'https://demo.healing-balance.example/curebase',
+        title: 'Mehr über CureBase',
+        type: KnowledgeLinkType.productPage,
+      ),
+      websiteLinkEn: KnowledgeEntryLink(
+        url: 'https://demo.healing-balance.example/curebase',
+        title: 'Learn more about CureBase',
+        type: KnowledgeLinkType.productPage,
+      ),
       contentDe:
           '''CureBase ist das stationäre beziehungsweise zentrale Gerät im HB-Cure-System.
 CureBase wird über die H&B Cure App gesteuert.
@@ -146,6 +187,16 @@ Programs are selected in the app and run with CureBase.''',
       documentTypeDe: 'Bestätigte Produktbeschreibung',
       documentTypeEn: 'Confirmed product description',
       source: _productSource,
+      websiteLinkDe: KnowledgeEntryLink(
+        url: 'https://demo.healing-balance.example/cureclip',
+        title: 'Mehr über CureClip',
+        type: KnowledgeLinkType.productPage,
+      ),
+      websiteLinkEn: KnowledgeEntryLink(
+        url: 'https://demo.healing-balance.example/cureclip',
+        title: 'Learn more about CureClip',
+        type: KnowledgeLinkType.productPage,
+      ),
       contentDe:
           '''CureClip ist das mobile und flexible Gerät im HB-Cure-System.
 CureClip kann zu Hause, im Beruf oder unterwegs verwendet werden.
@@ -162,6 +213,16 @@ Programs are selected and controlled through the H&B Cure App.''',
       documentTypeDe: 'Öffentliche Produktinformation',
       documentTypeEn: 'Public product information',
       source: _websiteSource,
+      websiteLinkDe: const KnowledgeEntryLink(
+        url: 'https://demo.healing-balance.example/programme',
+        title: 'Programme entdecken',
+        type: KnowledgeLinkType.productPage,
+      ),
+      websiteLinkEn: const KnowledgeEntryLink(
+        url: 'https://demo.healing-balance.example/programs',
+        title: 'Explore programs',
+        type: KnowledgeLinkType.productPage,
+      ),
       freshness: KnowledgePackageFreshness.timeSensitive(
         lastChecked: DateTime.utc(2026, 8, 3),
       ),
@@ -183,6 +244,16 @@ No medical effect is inferred from the number of programs.''',
       documentTypeDe: 'Zeitabhängige Angebotsinformation',
       documentTypeEn: 'Time-sensitive offer information',
       source: _websiteSource,
+      websiteLinkDe: const KnowledgeEntryLink(
+        url: 'https://demo.healing-balance.example/kennenlernangebot',
+        title: 'Kennenlernangebot ansehen',
+        type: KnowledgeLinkType.form,
+      ),
+      websiteLinkEn: const KnowledgeEntryLink(
+        url: 'https://demo.healing-balance.example/trial-offer',
+        title: 'View trial offer',
+        type: KnowledgeLinkType.form,
+      ),
       freshness: KnowledgePackageFreshness.timeSensitive(
         lastChecked: DateTime.utc(2026, 8, 3),
       ),
@@ -208,6 +279,16 @@ A rental price or purchase credit is not confirmed in this prepared dataset and 
       documentTypeDe: 'Bestätigte häufige Fragen',
       documentTypeEn: 'Confirmed frequently asked questions',
       source: _supportSource,
+      websiteLinkDe: KnowledgeEntryLink(
+        url: 'https://demo.healing-balance.example/faq',
+        title: 'FAQ öffnen',
+        type: KnowledgeLinkType.faq,
+      ),
+      websiteLinkEn: KnowledgeEntryLink(
+        url: 'https://demo.healing-balance.example/faq',
+        title: 'Open FAQ',
+        type: KnowledgeLinkType.faq,
+      ),
       contentDe:
           '''Ist die Anwendung einfach? Die H&B Cure App führt durch Verbindung, Programmauswahl und Start.
 Muss man sich mit Frequenzen auskennen? Die Programme sind in der App strukturiert und können über Kategorien oder die Suche ausgewählt werden.
@@ -228,6 +309,16 @@ What happens if a user subjectively notices nothing? A subjective perception is 
       documentTypeDe: 'Bestätigte Support-Anleitung',
       documentTypeEn: 'Confirmed support guide',
       source: _supportSource,
+      websiteLinkDe: KnowledgeEntryLink(
+        url: 'https://demo.healing-balance.example/support',
+        title: 'Support kontaktieren',
+        type: KnowledgeLinkType.support,
+      ),
+      websiteLinkEn: KnowledgeEntryLink(
+        url: 'https://demo.healing-balance.example/support',
+        title: 'Contact support',
+        type: KnowledgeLinkType.support,
+      ),
       contentDe:
           '''Bei Verbindungsproblemen muss zuerst Bluetooth auf dem Smartphone aktiviert werden.
 Wählen Sie anschließend das kompatible Gerät in der App aus und bestätigen Sie die Verbindung.
@@ -250,6 +341,16 @@ The device must remain sufficiently charged during a firmware update.''',
       documentTypeDe: 'Öffentliche Kontaktinformation',
       documentTypeEn: 'Public contact information',
       source: _websiteSource,
+      websiteLinkDe: const KnowledgeEntryLink(
+        url: 'https://demo.healing-balance.example/kontakt',
+        title: 'Kontakt',
+        type: KnowledgeLinkType.contact,
+      ),
+      websiteLinkEn: const KnowledgeEntryLink(
+        url: 'https://demo.healing-balance.example/contact',
+        title: 'Contact',
+        type: KnowledgeLinkType.contact,
+      ),
       freshness: KnowledgePackageFreshness.timeSensitive(
         lastChecked: DateTime.utc(2026, 8, 3),
       ),

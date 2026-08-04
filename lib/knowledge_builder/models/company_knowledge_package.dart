@@ -1,3 +1,5 @@
+import '../../models/knowledge_entry.dart';
+
 /// Generic, local package model for preparing multi-document company knowledge
 /// before it enters the existing Knowledge Builder analysis and review flow.
 /// It performs no import, analysis, persistence or network access.
@@ -55,6 +57,8 @@ class KnowledgePackageDocument {
     required this.source,
     this.risk = const KnowledgePackageRisk.standard(),
     this.freshness = const KnowledgePackageFreshness.stable(),
+    this.websiteLinkDe,
+    this.websiteLinkEn,
   });
 
   final String id;
@@ -67,6 +71,8 @@ class KnowledgePackageDocument {
   final KnowledgePackageSource source;
   final KnowledgePackageRisk risk;
   final KnowledgePackageFreshness freshness;
+  final KnowledgeEntryLink? websiteLinkDe;
+  final KnowledgeEntryLink? websiteLinkEn;
 
   String area(String languageCode) => languageCode == 'de' ? areaDe : areaEn;
 
@@ -75,6 +81,10 @@ class KnowledgePackageDocument {
 
   String content(String languageCode) =>
       languageCode == 'de' ? contentDe : contentEn;
+
+  KnowledgeEntryLink? websiteLink(String languageCode) => languageCode == 'de'
+      ? websiteLinkDe ?? websiteLinkEn
+      : websiteLinkEn ?? websiteLinkDe;
 
   KnowledgePackageDocumentMetadata metadata(String languageCode) =>
       KnowledgePackageDocumentMetadata(
@@ -86,6 +96,7 @@ class KnowledgePackageDocument {
         dataStatus: source.dataStatus(languageCode),
         risk: risk,
         freshness: freshness,
+        websiteLink: websiteLink(languageCode),
       );
 }
 
@@ -187,6 +198,7 @@ class KnowledgePackageDocumentMetadata {
     required this.dataStatus,
     required this.risk,
     required this.freshness,
+    this.websiteLink,
   });
 
   final String documentId;
@@ -197,4 +209,5 @@ class KnowledgePackageDocumentMetadata {
   final String dataStatus;
   final KnowledgePackageRisk risk;
   final KnowledgePackageFreshness freshness;
+  final KnowledgeEntryLink? websiteLink;
 }

@@ -313,6 +313,48 @@ void main() {
     }
   });
 
+  testWidgets(
+    'edits and imports optional website metadata without validation',
+    (tester) async {
+      final state = AppState();
+      await pumpScreen(
+        tester,
+        analyzer: const _FakeAnalyzer(_scripted),
+        state: state,
+      );
+      await analyze(tester, 'Text');
+
+      final editor = find.byKey(const Key('kb-link-editor-d1'));
+      await tester.ensureVisible(editor);
+      await tester.tap(editor);
+      await tester.pumpAndSettle();
+      await tester.enterText(
+        find.byKey(const Key('kb-link-url-d1')),
+        'https://company.example/support',
+      );
+      await tester.enterText(
+        find.byKey(const Key('kb-link-title-d1')),
+        'Support kontaktieren',
+      );
+      await tester.tap(find.byKey(const Key('kb-link-type-d1-none')));
+      await tester.pumpAndSettle();
+      await tester.tap(find.text(l10n(tester).knowledgeLinkSupport).last);
+      await tester.pumpAndSettle();
+
+      final importAll = find.byKey(const Key('kb-import-all'));
+      await tester.ensureVisible(importAll);
+      await tester.tap(importAll);
+      await tester.pumpAndSettle();
+
+      final imported = state.selectedWorkspace.knowledgeEntries.firstWhere(
+        (entry) => entry.title == 'Muss Bluetooth aktiviert sein?',
+      );
+      expect(imported.websiteLink?.url, 'https://company.example/support');
+      expect(imported.websiteLink?.title, 'Support kontaktieren');
+      expect(imported.websiteLink?.type, KnowledgeLinkType.support);
+    },
+  );
+
   testWidgets('success dialog can reset the builder for another document', (
     tester,
   ) async {

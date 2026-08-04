@@ -7646,6 +7646,132 @@ abstract class AppLocalizations {
   /// **'Sensible Frage – menschliche Prüfung empfohlen'**
   String get botDemoCoverageSensitive;
 
+  /// No description provided for @botDemoFurtherInfoTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Weiterführende Informationen'**
+  String get botDemoFurtherInfoTitle;
+
+  /// No description provided for @botDemoFurtherInfoBody.
+  ///
+  /// In de, this message translates to:
+  /// **'Weitere Informationen finden Sie hier.'**
+  String get botDemoFurtherInfoBody;
+
+  /// No description provided for @botDemoMoreLinks.
+  ///
+  /// In de, this message translates to:
+  /// **'Weitere Informationen'**
+  String get botDemoMoreLinks;
+
+  /// No description provided for @kbLinkSectionTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Website-Verknüpfung (optional)'**
+  String get kbLinkSectionTitle;
+
+  /// No description provided for @kbLinkSectionHint.
+  ///
+  /// In de, this message translates to:
+  /// **'Dieser Link wird nur angezeigt, wenn der Wissenseintrag eine Antwort tatsächlich unterstützt.'**
+  String get kbLinkSectionHint;
+
+  /// No description provided for @kbLinkWebsite.
+  ///
+  /// In de, this message translates to:
+  /// **'Website'**
+  String get kbLinkWebsite;
+
+  /// No description provided for @kbLinkButtonText.
+  ///
+  /// In de, this message translates to:
+  /// **'Button-Text'**
+  String get kbLinkButtonText;
+
+  /// No description provided for @kbLinkType.
+  ///
+  /// In de, this message translates to:
+  /// **'Link-Typ'**
+  String get kbLinkType;
+
+  /// No description provided for @kbLinkTypeNone.
+  ///
+  /// In de, this message translates to:
+  /// **'Nicht festgelegt'**
+  String get kbLinkTypeNone;
+
+  /// No description provided for @knowledgeLinkProduct.
+  ///
+  /// In de, this message translates to:
+  /// **'Produktseite'**
+  String get knowledgeLinkProduct;
+
+  /// No description provided for @knowledgeLinkPrices.
+  ///
+  /// In de, this message translates to:
+  /// **'Preise'**
+  String get knowledgeLinkPrices;
+
+  /// No description provided for @knowledgeLinkFaq.
+  ///
+  /// In de, this message translates to:
+  /// **'FAQ'**
+  String get knowledgeLinkFaq;
+
+  /// No description provided for @knowledgeLinkGuide.
+  ///
+  /// In de, this message translates to:
+  /// **'Bedienungsanleitung'**
+  String get knowledgeLinkGuide;
+
+  /// No description provided for @knowledgeLinkDownload.
+  ///
+  /// In de, this message translates to:
+  /// **'Download'**
+  String get knowledgeLinkDownload;
+
+  /// No description provided for @knowledgeLinkVideo.
+  ///
+  /// In de, this message translates to:
+  /// **'Video'**
+  String get knowledgeLinkVideo;
+
+  /// No description provided for @knowledgeLinkSupport.
+  ///
+  /// In de, this message translates to:
+  /// **'Support'**
+  String get knowledgeLinkSupport;
+
+  /// No description provided for @knowledgeLinkContact.
+  ///
+  /// In de, this message translates to:
+  /// **'Kontakt'**
+  String get knowledgeLinkContact;
+
+  /// No description provided for @knowledgeLinkBlog.
+  ///
+  /// In de, this message translates to:
+  /// **'Blog'**
+  String get knowledgeLinkBlog;
+
+  /// No description provided for @knowledgeLinkShop.
+  ///
+  /// In de, this message translates to:
+  /// **'Shop'**
+  String get knowledgeLinkShop;
+
+  /// No description provided for @knowledgeLinkForm.
+  ///
+  /// In de, this message translates to:
+  /// **'Formular'**
+  String get knowledgeLinkForm;
+
+  /// No description provided for @knowledgeLinkWebsite.
+  ///
+  /// In de, this message translates to:
+  /// **'Website'**
+  String get knowledgeLinkWebsite;
+
   /// No description provided for @botDemoNoKnowledge.
   ///
   /// In de, this message translates to:

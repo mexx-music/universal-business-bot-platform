@@ -323,6 +323,13 @@ class WorkspaceCodec {
       'languageCode': entry.languageCode,
       'knowledgeArea': entry.knowledgeArea,
       'detectedTopics': entry.detectedTopics,
+      'websiteLink': entry.websiteLink == null
+          ? null
+          : _clean({
+              'url': entry.websiteLink!.url,
+              'title': entry.websiteLink!.title,
+              'type': entry.websiteLink!.type?.name,
+            }),
     });
   }
 
@@ -343,6 +350,14 @@ class WorkspaceCodec {
       languageCode: _stringOrNull(json, 'languageCode'),
       knowledgeArea: _stringOrNull(json, 'knowledgeArea'),
       detectedTopics: _stringList(json, 'detectedTopics'),
+      websiteLink: switch (json['websiteLink']) {
+        final Map<Object?, Object?> value => KnowledgeEntryLink(
+          url: value['url'] is String ? value['url']! as String : '',
+          title: value['title'] is String ? value['title']! as String : '',
+          type: _enumOrNull(KnowledgeLinkType.values, value['type']),
+        ),
+        _ => null,
+      },
     );
   }
 

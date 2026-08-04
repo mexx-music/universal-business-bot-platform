@@ -4187,6 +4187,70 @@ class AppLocalizationsEn extends AppLocalizations {
       'Sensitive question – human review recommended';
 
   @override
+  String get botDemoFurtherInfoTitle => 'Further information';
+
+  @override
+  String get botDemoFurtherInfoBody => 'You can find more information here.';
+
+  @override
+  String get botDemoMoreLinks => 'More information';
+
+  @override
+  String get kbLinkSectionTitle => 'Website link (optional)';
+
+  @override
+  String get kbLinkSectionHint =>
+      'This link is shown only when the knowledge entry actually supports an answer.';
+
+  @override
+  String get kbLinkWebsite => 'Website';
+
+  @override
+  String get kbLinkButtonText => 'Button text';
+
+  @override
+  String get kbLinkType => 'Link type';
+
+  @override
+  String get kbLinkTypeNone => 'Not specified';
+
+  @override
+  String get knowledgeLinkProduct => 'Product page';
+
+  @override
+  String get knowledgeLinkPrices => 'Prices';
+
+  @override
+  String get knowledgeLinkFaq => 'FAQ';
+
+  @override
+  String get knowledgeLinkGuide => 'User guide';
+
+  @override
+  String get knowledgeLinkDownload => 'Download';
+
+  @override
+  String get knowledgeLinkVideo => 'Video';
+
+  @override
+  String get knowledgeLinkSupport => 'Support';
+
+  @override
+  String get knowledgeLinkContact => 'Contact';
+
+  @override
+  String get knowledgeLinkBlog => 'Blog';
+
+  @override
+  String get knowledgeLinkShop => 'Shop';
+
+  @override
+  String get knowledgeLinkForm => 'Form';
+
+  @override
+  String get knowledgeLinkWebsite => 'Website';
+
+  @override
   String get botDemoNoKnowledge =>
       'I\'ve noticed that there isn\'t yet enough information in the knowledge base to answer your question.';
 

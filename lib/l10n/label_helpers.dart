@@ -33,6 +33,24 @@ String riskLevelLabel(BuildContext context, RiskLevel riskLevel) {
   };
 }
 
+String knowledgeLinkTypeLabel(BuildContext context, KnowledgeLinkType type) {
+  final l = AppLocalizations.of(context)!;
+  return switch (type) {
+    KnowledgeLinkType.productPage => l.knowledgeLinkProduct,
+    KnowledgeLinkType.prices => l.knowledgeLinkPrices,
+    KnowledgeLinkType.faq => l.knowledgeLinkFaq,
+    KnowledgeLinkType.guide => l.knowledgeLinkGuide,
+    KnowledgeLinkType.download => l.knowledgeLinkDownload,
+    KnowledgeLinkType.video => l.knowledgeLinkVideo,
+    KnowledgeLinkType.support => l.knowledgeLinkSupport,
+    KnowledgeLinkType.contact => l.knowledgeLinkContact,
+    KnowledgeLinkType.blog => l.knowledgeLinkBlog,
+    KnowledgeLinkType.shop => l.knowledgeLinkShop,
+    KnowledgeLinkType.form => l.knowledgeLinkForm,
+    KnowledgeLinkType.website => l.knowledgeLinkWebsite,
+  };
+}
+
 /// Locale-aware label for [ProductType].
 /// Use this in all UI contexts instead of `type.displayName`.
 String productTypeLabel(BuildContext context, ProductType type) {

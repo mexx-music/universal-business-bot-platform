@@ -8,6 +8,8 @@ import '../../ai/transports/edge_function_client.dart';
 import '../../data/app_state.dart';
 import '../../l10n/app_localizations.dart';
 import '../../l10n/label_helpers.dart';
+import '../../models/knowledge_entry.dart';
+import '../../platform/external_link_opener.dart';
 
 /// Localizable demo errors (machine-readable internally, mapped to a message
 /// in [build] — never a raw stack trace).
@@ -285,6 +287,10 @@ class _ResultView extends StatelessWidget {
     final theme = Theme.of(context);
     return [
       _AnswerCard(answer: result.answer),
+      if (result.websiteLinks.isNotEmpty) ...[
+        const SizedBox(height: 16),
+        _WebsiteLinksSection(links: result.websiteLinks),
+      ],
       if (result.sources.isNotEmpty) ...[
         const SizedBox(height: 20),
         Text(
@@ -300,6 +306,110 @@ class _ResultView extends StatelessWidget {
       _HumanReviewHint(),
     ];
   }
+}
+
+class _WebsiteLinksSection extends StatelessWidget {
+  const _WebsiteLinksSection({required this.links});
+
+  final List<KnowledgeEntryLink> links;
+
+  @override
+  Widget build(BuildContext context) {
+    final l = AppLocalizations.of(context)!;
+    final theme = Theme.of(context);
+    final primaryLinks = links.length <= 5 ? links : links.take(4).toList();
+    final overflowLinks = links.length <= 5
+        ? const <KnowledgeEntryLink>[]
+        : links.skip(4).toList();
+    return Container(
+      key: const Key('grounded-website-links'),
+      width: double.infinity,
+      padding: const EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        color: theme.colorScheme.primaryContainer.withAlpha(120),
+        borderRadius: BorderRadius.circular(14),
+        border: Border.all(color: theme.colorScheme.outlineVariant),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              Icon(Icons.language_outlined, color: theme.colorScheme.primary),
+              const SizedBox(width: 8),
+              Expanded(
+                child: Text(
+                  l.botDemoFurtherInfoTitle,
+                  style: theme.textTheme.titleSmall?.copyWith(
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 4),
+          Text(
+            l.botDemoFurtherInfoBody,
+            style: theme.textTheme.bodySmall?.copyWith(
+              color: theme.colorScheme.onSurfaceVariant,
+            ),
+          ),
+          const SizedBox(height: 12),
+          Wrap(
+            spacing: 8,
+            runSpacing: 8,
+            children: [
+              for (final link in primaryLinks) _WebsiteLinkButton(link: link),
+              if (overflowLinks.isNotEmpty)
+                MenuAnchor(
+                  menuChildren: [
+                    for (final link in overflowLinks)
+                      MenuItemButton(
+                        leadingIcon: Icon(link.type?.icon ?? Icons.open_in_new),
+                        onPressed: () => openExternalLink(link.url.trim()),
+                        child: Text(_websiteLinkLabel(context, link)),
+                      ),
+                  ],
+                  builder: (context, controller, child) => OutlinedButton.icon(
+                    key: const Key('grounded-more-website-links'),
+                    onPressed: () => controller.isOpen
+                        ? controller.close()
+                        : controller.open(),
+                    icon: const Icon(Icons.more_horiz),
+                    label: Text(l.botDemoMoreLinks),
+                  ),
+                ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _WebsiteLinkButton extends StatelessWidget {
+  const _WebsiteLinkButton({required this.link});
+
+  final KnowledgeEntryLink link;
+
+  @override
+  Widget build(BuildContext context) {
+    return FilledButton.tonalIcon(
+      key: ValueKey('grounded-link-${link.url}'),
+      onPressed: () => openExternalLink(link.url.trim()),
+      icon: Icon(link.type?.icon ?? Icons.open_in_new, size: 18),
+      label: Text(_websiteLinkLabel(context, link)),
+    );
+  }
+}
+
+String _websiteLinkLabel(BuildContext context, KnowledgeEntryLink link) {
+  final title = link.title.trim();
+  if (title.isNotEmpty) return title;
+  final type = link.type;
+  return type == null
+      ? AppLocalizations.of(context)!.knowledgeLinkWebsite
+      : knowledgeLinkTypeLabel(context, type);
 }
 
 /// Presentational card for a provider-generated answer. The wording is never

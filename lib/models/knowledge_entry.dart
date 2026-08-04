@@ -66,6 +66,76 @@ extension KnowledgeCategoryX on KnowledgeCategory {
   };
 }
 
+/// Optional destination on the company's own website. These values are
+/// editorial metadata only: BusinessBrain never crawls or validates the URL.
+enum KnowledgeLinkType {
+  productPage,
+  prices,
+  faq,
+  guide,
+  download,
+  video,
+  support,
+  contact,
+  blog,
+  shop,
+  form,
+  website,
+}
+
+extension KnowledgeLinkTypeX on KnowledgeLinkType {
+  int get displayPriority => switch (this) {
+    KnowledgeLinkType.productPage => 0,
+    KnowledgeLinkType.prices => 1,
+    KnowledgeLinkType.faq => 2,
+    KnowledgeLinkType.guide => 3,
+    KnowledgeLinkType.download => 4,
+    KnowledgeLinkType.video => 5,
+    KnowledgeLinkType.support => 6,
+    KnowledgeLinkType.contact => 7,
+    KnowledgeLinkType.blog => 8,
+    KnowledgeLinkType.shop => 9,
+    KnowledgeLinkType.form => 10,
+    KnowledgeLinkType.website => 11,
+  };
+
+  IconData get icon => switch (this) {
+    KnowledgeLinkType.productPage => Icons.inventory_2_outlined,
+    KnowledgeLinkType.prices => Icons.sell_outlined,
+    KnowledgeLinkType.faq => Icons.quiz_outlined,
+    KnowledgeLinkType.guide => Icons.menu_book_outlined,
+    KnowledgeLinkType.download => Icons.download_outlined,
+    KnowledgeLinkType.video => Icons.play_circle_outline,
+    KnowledgeLinkType.support => Icons.support_agent_outlined,
+    KnowledgeLinkType.contact => Icons.contact_mail_outlined,
+    KnowledgeLinkType.blog => Icons.article_outlined,
+    KnowledgeLinkType.shop => Icons.shopping_bag_outlined,
+    KnowledgeLinkType.form => Icons.assignment_outlined,
+    KnowledgeLinkType.website => Icons.language_outlined,
+  };
+}
+
+class KnowledgeEntryLink {
+  const KnowledgeEntryLink({this.url = '', this.title = '', this.type});
+
+  final String url;
+  final String title;
+  final KnowledgeLinkType? type;
+
+  bool get canOpen => url.trim().isNotEmpty;
+
+  KnowledgeEntryLink copyWith({
+    String? url,
+    String? title,
+    KnowledgeLinkType? type,
+    bool clearType = false,
+  }) => KnowledgeEntryLink(
+    url: url ?? this.url,
+    title: title ?? this.title,
+    type: clearType ? null : type ?? this.type,
+  );
+}
+
 class KnowledgeEntry {
   final String id;
   final String title;
@@ -85,6 +155,10 @@ class KnowledgeEntry {
   /// Topics detected while structuring the source text.
   final List<String> detectedTopics;
 
+  /// Optional editorial deep-link attached to this exact confirmed entry.
+  /// It is shown only when the entry is actually used for a grounded answer.
+  final KnowledgeEntryLink? websiteLink;
+
   KnowledgeEntry({
     required this.id,
     required this.title,
@@ -97,5 +171,6 @@ class KnowledgeEntry {
     this.languageCode,
     this.knowledgeArea,
     this.detectedTopics = const [],
+    this.websiteLink,
   });
 }
