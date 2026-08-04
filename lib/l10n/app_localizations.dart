@@ -10199,13 +10199,13 @@ abstract class AppLocalizations {
   /// No description provided for @opTitle.
   ///
   /// In de, this message translates to:
-  /// **'Operations Dashboard'**
+  /// **'AI Operations Center'**
   String get opTitle;
 
   /// No description provided for @opSubtitle.
   ///
   /// In de, this message translates to:
-  /// **'Der heutige Arbeitstag – so arbeitet BusinessBrain aktiv für ein Unternehmen.'**
+  /// **'Auf einen Blick: wie BusinessBrain Wissen nutzbar macht, Lücken sichtbar macht und Mitarbeiter im Tagesgeschäft unterstützt.'**
   String get opSubtitle;
 
   /// No description provided for @opDemoBadge.
@@ -10213,6 +10213,462 @@ abstract class AppLocalizations {
   /// In de, this message translates to:
   /// **'DEMO'**
   String get opDemoBadge;
+
+  /// No description provided for @opDemoNoticeTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Transparente Demonstrationsdaten'**
+  String get opDemoNoticeTitle;
+
+  /// No description provided for @opDemoNoticeBody.
+  ///
+  /// In de, this message translates to:
+  /// **'Alle Kennzahlen und Verläufe auf dieser Seite sind ein bewusst kleiner, fest definierter Demo-Datensatz. Sie sind keine Live-Messung und kein Leistungsversprechen.'**
+  String get opDemoNoticeBody;
+
+  /// No description provided for @opDemoDisabledTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Demonstrationsdaten sind deaktiviert'**
+  String get opDemoDisabledTitle;
+
+  /// No description provided for @opDemoDisabledBody.
+  ///
+  /// In de, this message translates to:
+  /// **'Ohne Demo-Modus zeigt das Operations Center keine Beispielkennzahlen. Dadurch werden Demo-Werte niemals mit echten Unternehmensdaten verwechselt.'**
+  String get opDemoDisabledBody;
+
+  /// No description provided for @opActivityTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Aktivität heute'**
+  String get opActivityTitle;
+
+  /// No description provided for @opActivitySubtitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Der aktuelle Arbeitstag im nachvollziehbaren Demo-Betrieb.'**
+  String get opActivitySubtitle;
+
+  /// No description provided for @opMetricReviews.
+  ///
+  /// In de, this message translates to:
+  /// **'Human Reviews'**
+  String get opMetricReviews;
+
+  /// No description provided for @opMetricRedirects.
+  ///
+  /// In de, this message translates to:
+  /// **'Website-Weiterleitungen'**
+  String get opMetricRedirects;
+
+  /// No description provided for @opMetricDocumentsAnalyzed.
+  ///
+  /// In de, this message translates to:
+  /// **'Dokumente analysiert'**
+  String get opMetricDocumentsAnalyzed;
+
+  /// No description provided for @opMetricAvgResponseTime.
+  ///
+  /// In de, this message translates to:
+  /// **'Ø Antwortzeit'**
+  String get opMetricAvgResponseTime;
+
+  /// No description provided for @opSecondsShort.
+  ///
+  /// In de, this message translates to:
+  /// **'Sek.'**
+  String get opSecondsShort;
+
+  /// No description provided for @opHistoryTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Betriebsverlauf'**
+  String get opHistoryTitle;
+
+  /// No description provided for @opHistorySubtitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Zwei ruhige Verläufe aus demselben fest definierten Demo-Datensatz.'**
+  String get opHistorySubtitle;
+
+  /// No description provided for @opPeriod7.
+  ///
+  /// In de, this message translates to:
+  /// **'7 Tage'**
+  String get opPeriod7;
+
+  /// No description provided for @opPeriod30.
+  ///
+  /// In de, this message translates to:
+  /// **'30 Tage'**
+  String get opPeriod30;
+
+  /// No description provided for @opHistoryAnswersTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Antworten und Wissenslücken'**
+  String get opHistoryAnswersTitle;
+
+  /// No description provided for @opHistoryKnowledgeTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Wissenswachstum und Weiterleitungen'**
+  String get opHistoryKnowledgeTitle;
+
+  /// No description provided for @opHistoryAnswered.
+  ///
+  /// In de, this message translates to:
+  /// **'Beantwortet'**
+  String get opHistoryAnswered;
+
+  /// No description provided for @opHistoryGaps.
+  ///
+  /// In de, this message translates to:
+  /// **'Lücken'**
+  String get opHistoryGaps;
+
+  /// No description provided for @opHistoryEntries.
+  ///
+  /// In de, this message translates to:
+  /// **'Neue Einträge'**
+  String get opHistoryEntries;
+
+  /// No description provided for @opHistoryRedirects.
+  ///
+  /// In de, this message translates to:
+  /// **'Weiterleitungen'**
+  String get opHistoryRedirects;
+
+  /// No description provided for @opHistoryToday.
+  ///
+  /// In de, this message translates to:
+  /// **'Heute'**
+  String get opHistoryToday;
+
+  /// No description provided for @opGrowthTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Wissenswachstum'**
+  String get opGrowthTitle;
+
+  /// No description provided for @opGrowthSubtitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Struktur der bestätigten Demo-Wissensbasis und heutige Ergänzungen.'**
+  String get opGrowthSubtitle;
+
+  /// No description provided for @opGrowthConfirmed.
+  ///
+  /// In de, this message translates to:
+  /// **'Bestätigte Wissenseinträge'**
+  String get opGrowthConfirmed;
+
+  /// No description provided for @opGrowthFaq.
+  ///
+  /// In de, this message translates to:
+  /// **'Neue FAQ heute'**
+  String get opGrowthFaq;
+
+  /// No description provided for @opGrowthProduct.
+  ///
+  /// In de, this message translates to:
+  /// **'Produktwissen'**
+  String get opGrowthProduct;
+
+  /// No description provided for @opGrowthSupport.
+  ///
+  /// In de, this message translates to:
+  /// **'Supportwissen'**
+  String get opGrowthSupport;
+
+  /// No description provided for @opGrowthDocuments.
+  ///
+  /// In de, this message translates to:
+  /// **'Dokumente'**
+  String get opGrowthDocuments;
+
+  /// No description provided for @opGrowthTags.
+  ///
+  /// In de, this message translates to:
+  /// **'Schlagwörter'**
+  String get opGrowthTags;
+
+  /// No description provided for @opCustomerTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Kundenerkenntnisse'**
+  String get opCustomerTitle;
+
+  /// No description provided for @opCustomerSubtitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Wiederkehrende Muster aus vorhandenen Demo-Fragen und Supportfällen.'**
+  String get opCustomerSubtitle;
+
+  /// No description provided for @opCustomerQuestions.
+  ///
+  /// In de, this message translates to:
+  /// **'Häufigste Fragen'**
+  String get opCustomerQuestions;
+
+  /// No description provided for @opCustomerProducts.
+  ///
+  /// In de, this message translates to:
+  /// **'Häufigste Produkte'**
+  String get opCustomerProducts;
+
+  /// No description provided for @opCustomerGaps.
+  ///
+  /// In de, this message translates to:
+  /// **'Offene Wissenslücken'**
+  String get opCustomerGaps;
+
+  /// No description provided for @opCustomerTopics.
+  ///
+  /// In de, this message translates to:
+  /// **'Meistgesuchte Themen'**
+  String get opCustomerTopics;
+
+  /// No description provided for @opCustomerSupport.
+  ///
+  /// In de, this message translates to:
+  /// **'Wiederkehrende Supportprobleme'**
+  String get opCustomerSupport;
+
+  /// No description provided for @opItemCurebaseUsage.
+  ///
+  /// In de, this message translates to:
+  /// **'Wie funktioniert CureBase?'**
+  String get opItemCurebaseUsage;
+
+  /// No description provided for @opItemAppConnection.
+  ///
+  /// In de, this message translates to:
+  /// **'Wie verbinde ich die App?'**
+  String get opItemAppConnection;
+
+  /// No description provided for @opItemPricing.
+  ///
+  /// In de, this message translates to:
+  /// **'Was kostet das System?'**
+  String get opItemPricing;
+
+  /// No description provided for @opItemPriceDetails.
+  ///
+  /// In de, this message translates to:
+  /// **'Aktuelle Preisdetails'**
+  String get opItemPriceDetails;
+
+  /// No description provided for @opItemFirmwareHelp.
+  ///
+  /// In de, this message translates to:
+  /// **'Firmware-Fehlerbehebung'**
+  String get opItemFirmwareHelp;
+
+  /// No description provided for @opItemCompatibility.
+  ///
+  /// In de, this message translates to:
+  /// **'Gerätekompatibilität'**
+  String get opItemCompatibility;
+
+  /// No description provided for @opItemPrograms.
+  ///
+  /// In de, this message translates to:
+  /// **'Programme'**
+  String get opItemPrograms;
+
+  /// No description provided for @opItemBluetoothConnection.
+  ///
+  /// In de, this message translates to:
+  /// **'Bluetooth-Verbindung'**
+  String get opItemBluetoothConnection;
+
+  /// No description provided for @opItemFirmwareUpdate.
+  ///
+  /// In de, this message translates to:
+  /// **'Firmware-Update'**
+  String get opItemFirmwareUpdate;
+
+  /// No description provided for @opItemAppPairing.
+  ///
+  /// In de, this message translates to:
+  /// **'App-Kopplung'**
+  String get opItemAppPairing;
+
+  /// No description provided for @opImpactTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Geschäftlicher Nutzen'**
+  String get opImpactTitle;
+
+  /// No description provided for @opImpactSubtitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Vorsichtige, transparent berechnete Demo-Indikatoren – keine Umsatz- oder Erfolgsversprechen.'**
+  String get opImpactSubtitle;
+
+  /// No description provided for @opImpactTimeSaved.
+  ///
+  /// In de, this message translates to:
+  /// **'Geschätzte Zeitersparnis'**
+  String get opImpactTimeSaved;
+
+  /// No description provided for @opImpactAvoidedSupport.
+  ///
+  /// In de, this message translates to:
+  /// **'Potenziell vermiedene Supportanfragen'**
+  String get opImpactAvoidedSupport;
+
+  /// No description provided for @opImpactConsistent.
+  ///
+  /// In de, this message translates to:
+  /// **'Konsistente Antworten'**
+  String get opImpactConsistent;
+
+  /// No description provided for @opImpactSources.
+  ///
+  /// In de, this message translates to:
+  /// **'Genutzte Quellen'**
+  String get opImpactSources;
+
+  /// No description provided for @opImpactReviewRate.
+  ///
+  /// In de, this message translates to:
+  /// **'Abgeschlossene Human-Review-Quote'**
+  String get opImpactReviewRate;
+
+  /// No description provided for @opImpactMethodNote.
+  ///
+  /// In de, this message translates to:
+  /// **'Demo-Berechnung: sieben Minuten potenzielle Bearbeitungszeit je beantworteter Frage; vermiedene Supportanfragen werden konservativ mit zwei Dritteln der beantworteten Fragen geschätzt.'**
+  String get opImpactMethodNote;
+
+  /// No description provided for @opHoursMinutes.
+  ///
+  /// In de, this message translates to:
+  /// **'{hours} Std. {minutes} Min.'**
+  String opHoursMinutes(int hours, int minutes);
+
+  /// No description provided for @opKnowledgeQualityTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Wissensqualität'**
+  String get opKnowledgeQualityTitle;
+
+  /// No description provided for @opKnowledgeQualitySubtitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Wie vollständig die heutigen Demo-Fragen mit bestätigtem Wissen bearbeitbar sind.'**
+  String get opKnowledgeQualitySubtitle;
+
+  /// No description provided for @opQualityFull.
+  ///
+  /// In de, this message translates to:
+  /// **'Vollständig beantwortbar'**
+  String get opQualityFull;
+
+  /// No description provided for @opQualityPartial.
+  ///
+  /// In de, this message translates to:
+  /// **'Teilweise beantwortbar'**
+  String get opQualityPartial;
+
+  /// No description provided for @opQualityMissing.
+  ///
+  /// In de, this message translates to:
+  /// **'Keine Information'**
+  String get opQualityMissing;
+
+  /// No description provided for @opQualitySensitive.
+  ///
+  /// In de, this message translates to:
+  /// **'Medizinisch sensible Fragen'**
+  String get opQualitySensitive;
+
+  /// No description provided for @opQualityRedirects.
+  ///
+  /// In de, this message translates to:
+  /// **'Weiterleitungen'**
+  String get opQualityRedirects;
+
+  /// No description provided for @opInsightsTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Geschäftliche Erkenntnisse'**
+  String get opInsightsTitle;
+
+  /// No description provided for @opInsightsSubtitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Deterministische Hinweise aus den sichtbaren Demo-Zahlen – ohne KI- oder LLM-Auswertung.'**
+  String get opInsightsSubtitle;
+
+  /// No description provided for @opInsightsMethodNote.
+  ///
+  /// In de, this message translates to:
+  /// **'Diese Hinweise entstehen aus festen, prüfbaren Regeln über dem Demo-Datensatz. BusinessBrain entscheidet oder veröffentlicht nichts selbst.'**
+  String get opInsightsMethodNote;
+
+  /// No description provided for @opInsightLeadingTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'CureBase steht im Mittelpunkt'**
+  String get opInsightLeadingTitle;
+
+  /// No description provided for @opInsightLeadingBody.
+  ///
+  /// In de, this message translates to:
+  /// **'CureBase ist mit {count} Nennungen das am häufigsten gefragte Produkt im Demo-Zeitraum.'**
+  String opInsightLeadingBody(int count);
+
+  /// No description provided for @opInsightSupportTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Supportfragen nehmen zu'**
+  String get opInsightSupportTitle;
+
+  /// No description provided for @opInsightSupportBody.
+  ///
+  /// In de, this message translates to:
+  /// **'Die letzten sieben Demo-Tage enthalten mehr Supportfragen als die sieben Tage davor. Die Supportdokumentation sollte beobachtet werden.'**
+  String get opInsightSupportBody;
+
+  /// No description provided for @opInsightFirmwareTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Firmware wird häufiger gesucht'**
+  String get opInsightFirmwareTitle;
+
+  /// No description provided for @opInsightFirmwareBody.
+  ///
+  /// In de, this message translates to:
+  /// **'Firmware erscheint {count}-mal in den meistgesuchten Demo-Themen. Eine leicht auffindbare Anleitung wäre sinnvoll.'**
+  String opInsightFirmwareBody(int count);
+
+  /// No description provided for @opInsightPriceTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Interesse an Preisen ist sichtbar'**
+  String get opInsightPriceTitle;
+
+  /// No description provided for @opInsightPriceBody.
+  ///
+  /// In de, this message translates to:
+  /// **'{count} Demo-Besucher wechselten aus einer Antwort zur Preisübersicht.'**
+  String opInsightPriceBody(int count);
+
+  /// No description provided for @opInsightFaqTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Neue FAQ sind sinnvoll'**
+  String get opInsightFaqTitle;
+
+  /// No description provided for @opInsightFaqBody.
+  ///
+  /// In de, this message translates to:
+  /// **'{count} heutige Wissenslücken zeigen konkrete Themen, die nach menschlicher Prüfung als FAQ ergänzt werden könnten.'**
+  String opInsightFaqBody(int count);
 
   /// No description provided for @opTodayTitle.
   ///
@@ -10427,13 +10883,13 @@ abstract class AppLocalizations {
   /// No description provided for @opClosingTitle.
   ///
   /// In de, this message translates to:
-  /// **'BusinessBrain arbeitet kontinuierlich – der Mensch entscheidet.'**
+  /// **'BusinessBrain macht den Betrieb sichtbar – der Mensch entscheidet.'**
   String get opClosingTitle;
 
   /// No description provided for @opClosingBody.
   ///
   /// In de, this message translates to:
-  /// **'BusinessBrain beantwortet Fragen, erkennt Wissenslücken und erstellt Verbesserungsvorschläge. Mitarbeiter behalten jederzeit die Kontrolle über alle Änderungen.'**
+  /// **'Das Operations Center zeigt Fragen, Wissenslücken, Nutzung und Verbesserungspotenziale. Es trifft keine Unternehmensentscheidungen und verändert kein Wissen automatisch.'**
   String get opClosingBody;
 
   /// No description provided for @navKnowledgeWorkflow.

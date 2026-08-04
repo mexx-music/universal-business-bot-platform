@@ -5580,14 +5580,264 @@ class AppLocalizationsDe extends AppLocalizations {
   String get navOperations => 'Operations';
 
   @override
-  String get opTitle => 'Operations Dashboard';
+  String get opTitle => 'AI Operations Center';
 
   @override
   String get opSubtitle =>
-      'Der heutige Arbeitstag – so arbeitet BusinessBrain aktiv für ein Unternehmen.';
+      'Auf einen Blick: wie BusinessBrain Wissen nutzbar macht, Lücken sichtbar macht und Mitarbeiter im Tagesgeschäft unterstützt.';
 
   @override
   String get opDemoBadge => 'DEMO';
+
+  @override
+  String get opDemoNoticeTitle => 'Transparente Demonstrationsdaten';
+
+  @override
+  String get opDemoNoticeBody =>
+      'Alle Kennzahlen und Verläufe auf dieser Seite sind ein bewusst kleiner, fest definierter Demo-Datensatz. Sie sind keine Live-Messung und kein Leistungsversprechen.';
+
+  @override
+  String get opDemoDisabledTitle => 'Demonstrationsdaten sind deaktiviert';
+
+  @override
+  String get opDemoDisabledBody =>
+      'Ohne Demo-Modus zeigt das Operations Center keine Beispielkennzahlen. Dadurch werden Demo-Werte niemals mit echten Unternehmensdaten verwechselt.';
+
+  @override
+  String get opActivityTitle => 'Aktivität heute';
+
+  @override
+  String get opActivitySubtitle =>
+      'Der aktuelle Arbeitstag im nachvollziehbaren Demo-Betrieb.';
+
+  @override
+  String get opMetricReviews => 'Human Reviews';
+
+  @override
+  String get opMetricRedirects => 'Website-Weiterleitungen';
+
+  @override
+  String get opMetricDocumentsAnalyzed => 'Dokumente analysiert';
+
+  @override
+  String get opMetricAvgResponseTime => 'Ø Antwortzeit';
+
+  @override
+  String get opSecondsShort => 'Sek.';
+
+  @override
+  String get opHistoryTitle => 'Betriebsverlauf';
+
+  @override
+  String get opHistorySubtitle =>
+      'Zwei ruhige Verläufe aus demselben fest definierten Demo-Datensatz.';
+
+  @override
+  String get opPeriod7 => '7 Tage';
+
+  @override
+  String get opPeriod30 => '30 Tage';
+
+  @override
+  String get opHistoryAnswersTitle => 'Antworten und Wissenslücken';
+
+  @override
+  String get opHistoryKnowledgeTitle => 'Wissenswachstum und Weiterleitungen';
+
+  @override
+  String get opHistoryAnswered => 'Beantwortet';
+
+  @override
+  String get opHistoryGaps => 'Lücken';
+
+  @override
+  String get opHistoryEntries => 'Neue Einträge';
+
+  @override
+  String get opHistoryRedirects => 'Weiterleitungen';
+
+  @override
+  String get opHistoryToday => 'Heute';
+
+  @override
+  String get opGrowthTitle => 'Wissenswachstum';
+
+  @override
+  String get opGrowthSubtitle =>
+      'Struktur der bestätigten Demo-Wissensbasis und heutige Ergänzungen.';
+
+  @override
+  String get opGrowthConfirmed => 'Bestätigte Wissenseinträge';
+
+  @override
+  String get opGrowthFaq => 'Neue FAQ heute';
+
+  @override
+  String get opGrowthProduct => 'Produktwissen';
+
+  @override
+  String get opGrowthSupport => 'Supportwissen';
+
+  @override
+  String get opGrowthDocuments => 'Dokumente';
+
+  @override
+  String get opGrowthTags => 'Schlagwörter';
+
+  @override
+  String get opCustomerTitle => 'Kundenerkenntnisse';
+
+  @override
+  String get opCustomerSubtitle =>
+      'Wiederkehrende Muster aus vorhandenen Demo-Fragen und Supportfällen.';
+
+  @override
+  String get opCustomerQuestions => 'Häufigste Fragen';
+
+  @override
+  String get opCustomerProducts => 'Häufigste Produkte';
+
+  @override
+  String get opCustomerGaps => 'Offene Wissenslücken';
+
+  @override
+  String get opCustomerTopics => 'Meistgesuchte Themen';
+
+  @override
+  String get opCustomerSupport => 'Wiederkehrende Supportprobleme';
+
+  @override
+  String get opItemCurebaseUsage => 'Wie funktioniert CureBase?';
+
+  @override
+  String get opItemAppConnection => 'Wie verbinde ich die App?';
+
+  @override
+  String get opItemPricing => 'Was kostet das System?';
+
+  @override
+  String get opItemPriceDetails => 'Aktuelle Preisdetails';
+
+  @override
+  String get opItemFirmwareHelp => 'Firmware-Fehlerbehebung';
+
+  @override
+  String get opItemCompatibility => 'Gerätekompatibilität';
+
+  @override
+  String get opItemPrograms => 'Programme';
+
+  @override
+  String get opItemBluetoothConnection => 'Bluetooth-Verbindung';
+
+  @override
+  String get opItemFirmwareUpdate => 'Firmware-Update';
+
+  @override
+  String get opItemAppPairing => 'App-Kopplung';
+
+  @override
+  String get opImpactTitle => 'Geschäftlicher Nutzen';
+
+  @override
+  String get opImpactSubtitle =>
+      'Vorsichtige, transparent berechnete Demo-Indikatoren – keine Umsatz- oder Erfolgsversprechen.';
+
+  @override
+  String get opImpactTimeSaved => 'Geschätzte Zeitersparnis';
+
+  @override
+  String get opImpactAvoidedSupport => 'Potenziell vermiedene Supportanfragen';
+
+  @override
+  String get opImpactConsistent => 'Konsistente Antworten';
+
+  @override
+  String get opImpactSources => 'Genutzte Quellen';
+
+  @override
+  String get opImpactReviewRate => 'Abgeschlossene Human-Review-Quote';
+
+  @override
+  String get opImpactMethodNote =>
+      'Demo-Berechnung: sieben Minuten potenzielle Bearbeitungszeit je beantworteter Frage; vermiedene Supportanfragen werden konservativ mit zwei Dritteln der beantworteten Fragen geschätzt.';
+
+  @override
+  String opHoursMinutes(int hours, int minutes) {
+    return '$hours Std. $minutes Min.';
+  }
+
+  @override
+  String get opKnowledgeQualityTitle => 'Wissensqualität';
+
+  @override
+  String get opKnowledgeQualitySubtitle =>
+      'Wie vollständig die heutigen Demo-Fragen mit bestätigtem Wissen bearbeitbar sind.';
+
+  @override
+  String get opQualityFull => 'Vollständig beantwortbar';
+
+  @override
+  String get opQualityPartial => 'Teilweise beantwortbar';
+
+  @override
+  String get opQualityMissing => 'Keine Information';
+
+  @override
+  String get opQualitySensitive => 'Medizinisch sensible Fragen';
+
+  @override
+  String get opQualityRedirects => 'Weiterleitungen';
+
+  @override
+  String get opInsightsTitle => 'Geschäftliche Erkenntnisse';
+
+  @override
+  String get opInsightsSubtitle =>
+      'Deterministische Hinweise aus den sichtbaren Demo-Zahlen – ohne KI- oder LLM-Auswertung.';
+
+  @override
+  String get opInsightsMethodNote =>
+      'Diese Hinweise entstehen aus festen, prüfbaren Regeln über dem Demo-Datensatz. BusinessBrain entscheidet oder veröffentlicht nichts selbst.';
+
+  @override
+  String get opInsightLeadingTitle => 'CureBase steht im Mittelpunkt';
+
+  @override
+  String opInsightLeadingBody(int count) {
+    return 'CureBase ist mit $count Nennungen das am häufigsten gefragte Produkt im Demo-Zeitraum.';
+  }
+
+  @override
+  String get opInsightSupportTitle => 'Supportfragen nehmen zu';
+
+  @override
+  String get opInsightSupportBody =>
+      'Die letzten sieben Demo-Tage enthalten mehr Supportfragen als die sieben Tage davor. Die Supportdokumentation sollte beobachtet werden.';
+
+  @override
+  String get opInsightFirmwareTitle => 'Firmware wird häufiger gesucht';
+
+  @override
+  String opInsightFirmwareBody(int count) {
+    return 'Firmware erscheint $count-mal in den meistgesuchten Demo-Themen. Eine leicht auffindbare Anleitung wäre sinnvoll.';
+  }
+
+  @override
+  String get opInsightPriceTitle => 'Interesse an Preisen ist sichtbar';
+
+  @override
+  String opInsightPriceBody(int count) {
+    return '$count Demo-Besucher wechselten aus einer Antwort zur Preisübersicht.';
+  }
+
+  @override
+  String get opInsightFaqTitle => 'Neue FAQ sind sinnvoll';
+
+  @override
+  String opInsightFaqBody(int count) {
+    return '$count heutige Wissenslücken zeigen konkrete Themen, die nach menschlicher Prüfung als FAQ ergänzt werden könnten.';
+  }
 
   @override
   String get opTodayTitle => 'BusinessBrain heute';
@@ -5698,11 +5948,11 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get opClosingTitle =>
-      'BusinessBrain arbeitet kontinuierlich – der Mensch entscheidet.';
+      'BusinessBrain macht den Betrieb sichtbar – der Mensch entscheidet.';
 
   @override
   String get opClosingBody =>
-      'BusinessBrain beantwortet Fragen, erkennt Wissenslücken und erstellt Verbesserungsvorschläge. Mitarbeiter behalten jederzeit die Kontrolle über alle Änderungen.';
+      'Das Operations Center zeigt Fragen, Wissenslücken, Nutzung und Verbesserungspotenziale. Es trifft keine Unternehmensentscheidungen und verändert kein Wissen automatisch.';
 
   @override
   String get navKnowledgeWorkflow => 'Lern-Workflow';

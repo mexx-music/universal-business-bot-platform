@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:universalbusiness/demo_data/demo_data_controller.dart';
 import 'package:universalbusiness/l10n/app_localizations.dart';
 import 'package:universalbusiness/operations/operations_demo.dart';
 import 'package:universalbusiness/screens/operations/operations_dashboard_screen.dart';
@@ -7,7 +8,8 @@ import 'package:universalbusiness/screens/operations/operations_dashboard_screen
 Future<void> pumpScreen(
   WidgetTester tester, {
   Locale locale = const Locale('de'),
-  Size size = const Size(1100, 2600),
+  Size size = const Size(1100, 5200),
+  bool demoEnabled = true,
 }) async {
   await tester.binding.setSurfaceSize(size);
   addTearDown(() => tester.binding.setSurfaceSize(null));
@@ -16,7 +18,10 @@ Future<void> pumpScreen(
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
       locale: locale,
-      home: const OperationsDashboardScreen(),
+      home: DemoDataScope(
+        notifier: DemoDataController(enabled: demoEnabled),
+        child: const OperationsDashboardScreen(),
+      ),
     ),
   );
   await tester.pumpAndSettle();
@@ -27,86 +32,174 @@ AppLocalizations l10n(WidgetTester tester) => AppLocalizations.of(
 )!;
 
 void main() {
-  testWidgets('shows the today card, closing and DEMO badges everywhere', (
+  testWidgets('shows all five operations areas and the insight layer', (
     tester,
   ) async {
     await pumpScreen(tester);
     final l = l10n(tester);
 
-    expect(find.text(l.opTodayTitle), findsOneWidget);
+    expect(find.text(l.opTitle), findsOneWidget);
+    expect(find.byKey(const Key('operations-demo-notice')), findsOneWidget);
+    expect(find.byKey(const Key('operations-today-activity')), findsOneWidget);
+    expect(
+      find.byKey(const Key('operations-knowledge-growth')),
+      findsOneWidget,
+    );
+    expect(
+      find.byKey(const Key('operations-customer-insights')),
+      findsOneWidget,
+    );
+    expect(find.byKey(const Key('operations-business-impact')), findsOneWidget);
+    expect(
+      find.byKey(const Key('operations-knowledge-quality')),
+      findsOneWidget,
+    );
+    expect(
+      find.byKey(const Key('operations-business-insights')),
+      findsOneWidget,
+    );
+    expect(find.text(l.opDemoBadge).evaluate().length, greaterThan(6));
+  });
+
+  testWidgets('today activity renders modest deterministic demo metrics', (
+    tester,
+  ) async {
+    await pumpScreen(tester);
+    final l = l10n(tester);
+    final day = OperationsDemo.today;
+
+    expect(find.text('${day.answered}'), findsWidgets);
+    expect(find.text('${day.knowledgeGaps}'), findsWidgets);
+    expect(find.text('${day.humanReviews}'), findsWidgets);
+    expect(find.text('${day.websiteRedirects}'), findsWidgets);
+    expect(find.text(l.opMetricAnswered), findsOneWidget);
+    expect(find.text(l.opMetricReviews), findsOneWidget);
+    expect(find.text(l.opMetricRedirects), findsOneWidget);
+    expect(find.text(l.opMetricDocumentsAnalyzed), findsOneWidget);
+    expect(find.text(l.opMetricAvgResponseTime), findsOneWidget);
+  });
+
+  testWidgets('history switches both charts between 7 and 30 days', (
+    tester,
+  ) async {
+    await pumpScreen(tester);
+    final l = l10n(tester);
+
+    expect(
+      find.byKey(const Key('operations-answer-history-7')),
+      findsOneWidget,
+    );
+    expect(
+      find.byKey(const Key('operations-knowledge-history-7')),
+      findsOneWidget,
+    );
+    expect(find.byKey(const Key('operations-answer-history-30')), findsNothing);
+
+    await tester.tap(find.text(l.opPeriod30));
+    await tester.pumpAndSettle();
+
+    expect(
+      find.byKey(const Key('operations-answer-history-30')),
+      findsOneWidget,
+    );
+    expect(
+      find.byKey(const Key('operations-knowledge-history-30')),
+      findsOneWidget,
+    );
+    expect(find.byKey(const Key('operations-answer-history-7')), findsNothing);
+    expect(tester.takeException(), isNull);
+  });
+
+  testWidgets('knowledge growth and quality use the fixed dataset', (
+    tester,
+  ) async {
+    await pumpScreen(tester);
+    final l = l10n(tester);
+
+    expect(
+      find.text('${OperationsDemo.knowledgeGrowth.confirmedEntries}'),
+      findsWidgets,
+    );
+    expect(find.text(l.opGrowthConfirmed), findsOneWidget);
+    expect(find.text(l.opGrowthProduct), findsOneWidget);
+    expect(find.text(l.opGrowthSupport), findsOneWidget);
+    expect(
+      find.byKey(const Key('operations-answerability-chart')),
+      findsOneWidget,
+    );
+    expect(find.text(l.opQualityFull), findsOneWidget);
+    expect(find.text(l.opQualitySensitive), findsOneWidget);
+  });
+
+  testWidgets('customer patterns and business insights are understandable', (
+    tester,
+  ) async {
+    await pumpScreen(tester);
+    final l = l10n(tester);
+
+    expect(find.text(l.opCustomerQuestions), findsOneWidget);
+    expect(find.text(l.opCustomerProducts), findsOneWidget);
+    expect(find.text(l.opCustomerGaps), findsOneWidget);
+    expect(find.text(l.opCustomerTopics), findsOneWidget);
+    expect(find.text(l.opCustomerSupport), findsOneWidget);
+    expect(find.text(l.opItemCurebaseUsage), findsOneWidget);
+    expect(find.text(l.opItemBluetoothConnection), findsOneWidget);
+    expect(find.text(l.opInsightLeadingTitle), findsOneWidget);
+    expect(find.text(l.opInsightSupportTitle), findsOneWidget);
+    expect(find.text(l.opInsightFirmwareTitle), findsOneWidget);
+    expect(find.text(l.opInsightPriceTitle), findsOneWidget);
+    expect(find.text(l.opInsightFaqTitle), findsOneWidget);
+    expect(find.text(l.opInsightsMethodNote), findsOneWidget);
+  });
+
+  testWidgets('business impact states its conservative calculation', (
+    tester,
+  ) async {
+    await pumpScreen(tester);
+    final l = l10n(tester);
+
+    expect(find.text(l.opImpactTimeSaved), findsOneWidget);
+    expect(find.text(l.opImpactAvoidedSupport), findsOneWidget);
+    expect(find.text(l.opImpactReviewRate), findsOneWidget);
+    expect(find.text(l.opImpactMethodNote), findsOneWidget);
     expect(find.text(l.opClosingTitle), findsOneWidget);
     expect(find.text(l.opClosingBody), findsOneWidget);
-    // A DEMO badge on many cards makes clear it is a demonstration.
-    expect(find.text(l.opDemoBadge).evaluate().length, greaterThan(5));
   });
 
-  testWidgets('metrics show demo values with labels', (tester) async {
-    await pumpScreen(tester);
-    final l = l10n(tester);
-
-    expect(find.text('${OperationsDemo.customerQuestions}'), findsWidgets);
-    expect(find.text('${OperationsDemo.sourcesUsed}'), findsWidgets);
-    expect(find.text(l.opMetricQuestions), findsOneWidget);
-    expect(find.text(l.opMetricSources), findsOneWidget);
-  });
-
-  testWidgets('activity timeline shows times and events', (tester) async {
-    await pumpScreen(tester);
-    final l = l10n(tester);
-
-    expect(find.text(l.opTimelineTitle), findsOneWidget);
-    expect(find.text('09:12'), findsOneWidget);
-    expect(find.text('10:03'), findsOneWidget);
-    expect(find.text(l.opTl1), findsOneWidget);
-  });
-
-  testWidgets('detected section lists demo findings', (tester) async {
-    await pumpScreen(tester);
-    final l = l10n(tester);
-    expect(find.text(l.opDetectedTitle), findsOneWidget);
-    expect(find.text(l.opDetected1), findsOneWidget);
-    expect(find.text(l.opDetected5), findsOneWidget);
-  });
-
-  testWidgets('human-decisions card makes the human-in-control point', (
-    tester,
-  ) async {
-    await pumpScreen(tester);
-    final l = l10n(tester);
-    expect(find.text(l.opDecisionsTitle), findsOneWidget);
-    expect(find.text(l.opDecAdopted), findsOneWidget);
-    expect(find.text(l.opDecRejected), findsOneWidget);
-    expect(find.text(l.opDecisionsNote), findsOneWidget);
-  });
-
-  testWidgets('quality section renders labelled bars', (tester) async {
-    await pumpScreen(tester);
-    final l = l10n(tester);
-    expect(find.text(l.opQualityTitle), findsOneWidget);
-    expect(find.text(l.opQualFaq), findsOneWidget);
-    expect(find.text(l.opQualDefinitions), findsOneWidget);
-    // One bar per quality category.
-    expect(
-      find.byType(LinearProgressIndicator),
-      findsNWidgets(OperationsDemo.qualityCounts.length),
-    );
-  });
-
-  testWidgets('is localized in English', (tester) async {
+  testWidgets('is fully localized in English', (tester) async {
     await pumpScreen(tester, locale: const Locale('en'));
     final l = l10n(tester);
-    expect(l.opTodayTitle, 'BusinessBrain today');
-    expect(find.text('BusinessBrain today'), findsOneWidget);
-    expect(find.text(l.opDemoBadge), findsWidgets);
+
+    expect(l.opTitle, 'AI Operations Center');
+    expect(find.text('Today\'s Activity'), findsOneWidget);
+    expect(find.text('Knowledge Growth'), findsOneWidget);
+    expect(find.text('Customer Insights'), findsOneWidget);
+    expect(find.text('Business Impact'), findsOneWidget);
+    expect(find.text('Knowledge Quality'), findsOneWidget);
+    expect(find.text('Business Insights'), findsOneWidget);
+    expect(find.text(l.opDemoNoticeTitle), findsOneWidget);
   });
 
-  testWidgets('lays out without overflow on mobile and desktop', (
+  testWidgets('never shows sample figures without demo identification', (
     tester,
   ) async {
-    await pumpScreen(tester, size: const Size(360, 3200));
-    expect(tester.takeException(), isNull);
+    await pumpScreen(tester, demoEnabled: false, size: const Size(900, 900));
+    final l = l10n(tester);
 
-    await pumpScreen(tester, size: const Size(1400, 2400));
-    expect(tester.takeException(), isNull);
+    expect(find.byKey(const Key('operations-demo-disabled')), findsOneWidget);
+    expect(find.text(l.opDemoDisabledTitle), findsOneWidget);
+    expect(find.text(l.opDemoBadge), findsNothing);
+    expect(find.byKey(const Key('operations-today-activity')), findsNothing);
+  });
+
+  testWidgets('has no overflow on mobile, tablet and desktop', (tester) async {
+    for (final size in const [
+      Size(360, 900),
+      Size(820, 1100),
+      Size(1440, 1400),
+    ]) {
+      await pumpScreen(tester, size: size);
+      expect(tester.takeException(), isNull, reason: 'overflow at $size');
+    }
   });
 }

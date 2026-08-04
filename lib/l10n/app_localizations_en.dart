@@ -5542,14 +5542,264 @@ class AppLocalizationsEn extends AppLocalizations {
   String get navOperations => 'Operations';
 
   @override
-  String get opTitle => 'Operations Dashboard';
+  String get opTitle => 'AI Operations Center';
 
   @override
   String get opSubtitle =>
-      'Today\'s working day – how BusinessBrain actively works for a company.';
+      'At a glance: how BusinessBrain makes knowledge usable, reveals gaps and supports employees in daily operations.';
 
   @override
   String get opDemoBadge => 'DEMO';
+
+  @override
+  String get opDemoNoticeTitle => 'Transparent demonstration data';
+
+  @override
+  String get opDemoNoticeBody =>
+      'Every metric and trend on this page uses a deliberately small, fixed demo dataset. The figures are not live measurements or performance claims.';
+
+  @override
+  String get opDemoDisabledTitle => 'Demonstration data is disabled';
+
+  @override
+  String get opDemoDisabledBody =>
+      'Without demo mode, the Operations Center shows no sample metrics. Demo figures can therefore never be confused with real company data.';
+
+  @override
+  String get opActivityTitle => 'Today\'s Activity';
+
+  @override
+  String get opActivitySubtitle =>
+      'The current working day in a transparent demo operation.';
+
+  @override
+  String get opMetricReviews => 'Human Reviews';
+
+  @override
+  String get opMetricRedirects => 'Website referrals';
+
+  @override
+  String get opMetricDocumentsAnalyzed => 'Documents analysed';
+
+  @override
+  String get opMetricAvgResponseTime => 'Average response time';
+
+  @override
+  String get opSecondsShort => 'sec';
+
+  @override
+  String get opHistoryTitle => 'Operations history';
+
+  @override
+  String get opHistorySubtitle =>
+      'Two calm trends from the same fixed demo dataset.';
+
+  @override
+  String get opPeriod7 => '7 days';
+
+  @override
+  String get opPeriod30 => '30 days';
+
+  @override
+  String get opHistoryAnswersTitle => 'Answers and knowledge gaps';
+
+  @override
+  String get opHistoryKnowledgeTitle => 'Knowledge growth and referrals';
+
+  @override
+  String get opHistoryAnswered => 'Answered';
+
+  @override
+  String get opHistoryGaps => 'Gaps';
+
+  @override
+  String get opHistoryEntries => 'New entries';
+
+  @override
+  String get opHistoryRedirects => 'Referrals';
+
+  @override
+  String get opHistoryToday => 'Today';
+
+  @override
+  String get opGrowthTitle => 'Knowledge Growth';
+
+  @override
+  String get opGrowthSubtitle =>
+      'Structure of the confirmed demo knowledge base and today\'s additions.';
+
+  @override
+  String get opGrowthConfirmed => 'Confirmed knowledge entries';
+
+  @override
+  String get opGrowthFaq => 'New FAQ today';
+
+  @override
+  String get opGrowthProduct => 'Product knowledge';
+
+  @override
+  String get opGrowthSupport => 'Support knowledge';
+
+  @override
+  String get opGrowthDocuments => 'Documents';
+
+  @override
+  String get opGrowthTags => 'Tags';
+
+  @override
+  String get opCustomerTitle => 'Customer Insights';
+
+  @override
+  String get opCustomerSubtitle =>
+      'Recurring patterns from existing demo questions and support cases.';
+
+  @override
+  String get opCustomerQuestions => 'Most frequent questions';
+
+  @override
+  String get opCustomerProducts => 'Most frequent products';
+
+  @override
+  String get opCustomerGaps => 'Open knowledge gaps';
+
+  @override
+  String get opCustomerTopics => 'Most searched topics';
+
+  @override
+  String get opCustomerSupport => 'Recurring support problems';
+
+  @override
+  String get opItemCurebaseUsage => 'How does CureBase work?';
+
+  @override
+  String get opItemAppConnection => 'How do I connect the app?';
+
+  @override
+  String get opItemPricing => 'How much does the system cost?';
+
+  @override
+  String get opItemPriceDetails => 'Current price details';
+
+  @override
+  String get opItemFirmwareHelp => 'Firmware troubleshooting';
+
+  @override
+  String get opItemCompatibility => 'Device compatibility';
+
+  @override
+  String get opItemPrograms => 'Programs';
+
+  @override
+  String get opItemBluetoothConnection => 'Bluetooth connection';
+
+  @override
+  String get opItemFirmwareUpdate => 'Firmware update';
+
+  @override
+  String get opItemAppPairing => 'App pairing';
+
+  @override
+  String get opImpactTitle => 'Business Impact';
+
+  @override
+  String get opImpactSubtitle =>
+      'Cautious, transparently calculated demo indicators – not revenue or success claims.';
+
+  @override
+  String get opImpactTimeSaved => 'Estimated time saved';
+
+  @override
+  String get opImpactAvoidedSupport => 'Potentially avoided support requests';
+
+  @override
+  String get opImpactConsistent => 'Consistent answers';
+
+  @override
+  String get opImpactSources => 'Sources used';
+
+  @override
+  String get opImpactReviewRate => 'Completed Human Review rate';
+
+  @override
+  String get opImpactMethodNote =>
+      'Demo calculation: seven minutes of potential handling time per answered question; avoided support requests are conservatively estimated at two thirds of answered questions.';
+
+  @override
+  String opHoursMinutes(int hours, int minutes) {
+    return '$hours h $minutes min';
+  }
+
+  @override
+  String get opKnowledgeQualityTitle => 'Knowledge Quality';
+
+  @override
+  String get opKnowledgeQualitySubtitle =>
+      'How completely today\'s demo questions can be handled using confirmed knowledge.';
+
+  @override
+  String get opQualityFull => 'Fully answerable';
+
+  @override
+  String get opQualityPartial => 'Partly answerable';
+
+  @override
+  String get opQualityMissing => 'No information';
+
+  @override
+  String get opQualitySensitive => 'Medically sensitive questions';
+
+  @override
+  String get opQualityRedirects => 'Referrals';
+
+  @override
+  String get opInsightsTitle => 'Business Insights';
+
+  @override
+  String get opInsightsSubtitle =>
+      'Deterministic signals from the visible demo figures – without AI or LLM analysis.';
+
+  @override
+  String get opInsightsMethodNote =>
+      'These signals come from fixed, auditable rules over the demo dataset. BusinessBrain never decides or publishes anything itself.';
+
+  @override
+  String get opInsightLeadingTitle => 'CureBase is the main focus';
+
+  @override
+  String opInsightLeadingBody(int count) {
+    return 'With $count mentions, CureBase is the most frequently asked-about product in the demo period.';
+  }
+
+  @override
+  String get opInsightSupportTitle => 'Support questions are increasing';
+
+  @override
+  String get opInsightSupportBody =>
+      'The latest seven demo days contain more support questions than the preceding seven days. Support documentation should be monitored.';
+
+  @override
+  String get opInsightFirmwareTitle => 'Firmware is searched more often';
+
+  @override
+  String opInsightFirmwareBody(int count) {
+    return 'Firmware appears $count times among the most searched demo topics. An easy-to-find guide would be useful.';
+  }
+
+  @override
+  String get opInsightPriceTitle => 'Interest in pricing is visible';
+
+  @override
+  String opInsightPriceBody(int count) {
+    return '$count demo visitors moved from an answer to the pricing overview.';
+  }
+
+  @override
+  String get opInsightFaqTitle => 'New FAQ would be useful';
+
+  @override
+  String opInsightFaqBody(int count) {
+    return '$count knowledge gaps today reveal specific topics that could become FAQ after human review.';
+  }
 
   @override
   String get opTodayTitle => 'BusinessBrain today';
@@ -5660,11 +5910,11 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get opClosingTitle =>
-      'BusinessBrain works continuously – the human decides.';
+      'BusinessBrain makes operations visible – the human decides.';
 
   @override
   String get opClosingBody =>
-      'BusinessBrain answers questions, detects knowledge gaps and creates improvement suggestions. Employees stay in control of every change at all times.';
+      'The Operations Center shows questions, knowledge gaps, usage and improvement opportunities. It makes no company decisions and never changes knowledge automatically.';
 
   @override
   String get navKnowledgeWorkflow => 'Learning workflow';

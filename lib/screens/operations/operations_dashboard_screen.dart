@@ -1,20 +1,30 @@
+import 'dart:math' as math;
+
 import 'package:flutter/material.dart';
 
 import '../../demo_data/demo_data_controller.dart';
 import '../../l10n/app_localizations.dart';
 import '../../operations/operations_demo.dart';
+import '../../operations/operations_insight_rules.dart';
 
-/// Operations Dashboard (BLOCK 7): a first-impression view that shows, at a
-/// glance, that BusinessBrain is actively working for a company. It is pure
-/// presentation of existing demo data — no new AI, no business logic, no
-/// background processes, no backend. Every card carries a DEMO badge.
-class OperationsDashboardScreen extends StatelessWidget {
+/// A transparent visualisation of deterministic demo operations data. It does
+/// not track users, call AI, make decisions or mutate company knowledge.
+class OperationsDashboardScreen extends StatefulWidget {
   const OperationsDashboardScreen({super.key});
+
+  @override
+  State<OperationsDashboardScreen> createState() =>
+      _OperationsDashboardScreenState();
+}
+
+class _OperationsDashboardScreenState extends State<OperationsDashboardScreen> {
+  int _periodDays = 7;
 
   @override
   Widget build(BuildContext context) {
     final l = AppLocalizations.of(context)!;
     final theme = Theme.of(context);
+    final demoEnabled = DemoDataController.enabledOf(context);
 
     return Scaffold(
       body: SafeArea(
@@ -22,43 +32,94 @@ class OperationsDashboardScreen extends StatelessWidget {
           padding: const EdgeInsets.all(16),
           child: Center(
             child: ConstrainedBox(
-              constraints: const BoxConstraints(maxWidth: 1100),
+              constraints: const BoxConstraints(maxWidth: 1240),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    l.opTitle,
-                    style: theme.textTheme.headlineMedium?.copyWith(
-                      fontWeight: FontWeight.bold,
+                  _Header(l: l, theme: theme),
+                  const SizedBox(height: 16),
+                  if (!demoEnabled)
+                    _DemoDisabledCard(l: l)
+                  else ...[
+                    const _DemoNotice(),
+                    const SizedBox(height: 16),
+                    const _TodayActivitySection(),
+                    const SizedBox(height: 16),
+                    _HistorySection(
+                      periodDays: _periodDays,
+                      onPeriodChanged: (value) {
+                        if (value != null) {
+                          setState(() => _periodDays = value);
+                        }
+                      },
                     ),
-                  ),
-                  const SizedBox(height: 6),
-                  Text(
-                    l.opSubtitle,
-                    style: theme.textTheme.bodyLarge?.copyWith(
-                      color: theme.colorScheme.onSurfaceVariant,
-                    ),
-                  ),
-                  const SizedBox(height: 20),
-                  _TodayCard(),
-                  const SizedBox(height: 16),
-                  _MetricsGrid(),
-                  const SizedBox(height: 16),
-                  _TimelineCard(),
-                  const SizedBox(height: 16),
-                  _DetectedCard(),
-                  const SizedBox(height: 16),
-                  _DecisionsCard(),
-                  const SizedBox(height: 16),
-                  _QualityCard(),
-                  const SizedBox(height: 16),
-                  _ClosingCard(),
+                    const SizedBox(height: 16),
+                    const _KnowledgeGrowthSection(),
+                    const SizedBox(height: 16),
+                    const _CustomerInsightsSection(),
+                    const SizedBox(height: 16),
+                    const _BusinessImpactSection(),
+                    const SizedBox(height: 16),
+                    const _KnowledgeQualitySection(),
+                    const SizedBox(height: 16),
+                    const _BusinessInsightsSection(),
+                    const SizedBox(height: 16),
+                    const _HumanControlFooter(),
+                  ],
                 ],
               ),
             ),
           ),
         ),
       ),
+    );
+  }
+}
+
+class _Header extends StatelessWidget {
+  const _Header({required this.l, required this.theme});
+
+  final AppLocalizations l;
+  final ThemeData theme;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Row(
+          children: [
+            Container(
+              padding: const EdgeInsets.all(10),
+              decoration: BoxDecoration(
+                color: theme.colorScheme.primaryContainer,
+                borderRadius: BorderRadius.circular(14),
+              ),
+              child: Icon(
+                Icons.monitor_heart_outlined,
+                color: theme.colorScheme.onPrimaryContainer,
+              ),
+            ),
+            const SizedBox(width: 12),
+            Expanded(
+              child: Text(
+                l.opTitle,
+                style: theme.textTheme.headlineMedium?.copyWith(
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+          ],
+        ),
+        const SizedBox(height: 8),
+        Text(
+          l.opSubtitle,
+          style: theme.textTheme.bodyLarge?.copyWith(
+            color: theme.colorScheme.onSurfaceVariant,
+            height: 1.4,
+          ),
+        ),
+      ],
     );
   }
 }
@@ -70,26 +131,24 @@ class _DemoBadge extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Central demo switch: when demo is turned off, badges disappear.
     if (!DemoDataController.enabledOf(context)) return const SizedBox.shrink();
     final l = AppLocalizations.of(context)!;
     final theme = Theme.of(context);
-    final bg = onPrimary
-        ? theme.colorScheme.onPrimaryContainer.withAlpha(40)
-        : theme.colorScheme.tertiaryContainer;
-    final fg = onPrimary
-        ? theme.colorScheme.onPrimaryContainer
-        : theme.colorScheme.onTertiaryContainer;
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+      key: const Key('operations-demo-badge'),
+      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
       decoration: BoxDecoration(
-        color: bg,
-        borderRadius: BorderRadius.circular(6),
+        color: onPrimary
+            ? theme.colorScheme.onPrimaryContainer.withAlpha(36)
+            : theme.colorScheme.tertiaryContainer,
+        borderRadius: BorderRadius.circular(7),
       ),
       child: Text(
         l.opDemoBadge,
         style: theme.textTheme.labelSmall?.copyWith(
-          color: fg,
+          color: onPrimary
+              ? theme.colorScheme.onPrimaryContainer
+              : theme.colorScheme.onTertiaryContainer,
           fontWeight: FontWeight.bold,
           letterSpacing: 0.6,
         ),
@@ -98,92 +157,47 @@ class _DemoBadge extends StatelessWidget {
   }
 }
 
-/// Standard section card with a header (icon + title) and a DEMO badge.
-class _DashCard extends StatelessWidget {
-  const _DashCard({
-    required this.icon,
-    required this.title,
-    required this.child,
-  });
+class _DemoNotice extends StatelessWidget {
+  const _DemoNotice();
 
-  final IconData icon;
-  final String title;
-  final Widget child;
-
-  @override
-  Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    return Container(
-      width: double.infinity,
-      padding: const EdgeInsets.all(18),
-      decoration: BoxDecoration(
-        color: theme.colorScheme.surfaceContainerHigh,
-        borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: theme.colorScheme.outlineVariant),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            children: [
-              Icon(icon, color: theme.colorScheme.primary),
-              const SizedBox(width: 8),
-              Expanded(
-                child: Text(
-                  title,
-                  style: theme.textTheme.titleMedium?.copyWith(
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
-              const _DemoBadge(),
-            ],
-          ),
-          const SizedBox(height: 14),
-          child,
-        ],
-      ),
-    );
-  }
-}
-
-class _TodayCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l = AppLocalizations.of(context)!;
     final theme = Theme.of(context);
     return Container(
+      key: const Key('operations-demo-notice'),
       width: double.infinity,
-      padding: const EdgeInsets.all(24),
+      padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: theme.colorScheme.primaryContainer,
-        borderRadius: BorderRadius.circular(20),
+        color: theme.colorScheme.tertiaryContainer.withAlpha(130),
+        borderRadius: BorderRadius.circular(16),
+        border: Border.all(color: theme.colorScheme.outlineVariant),
       ),
-      child: Column(
+      child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Row(
-            children: [
-              Icon(Icons.insights, color: theme.colorScheme.onPrimaryContainer),
-              const SizedBox(width: 10),
-              Expanded(
-                child: Text(
-                  l.opTodayTitle,
-                  style: theme.textTheme.headlineSmall?.copyWith(
-                    fontWeight: FontWeight.bold,
-                    color: theme.colorScheme.onPrimaryContainer,
-                  ),
+          Icon(Icons.science_outlined, color: theme.colorScheme.tertiary),
+          const SizedBox(width: 10),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  children: [
+                    Expanded(
+                      child: Text(
+                        l.opDemoNoticeTitle,
+                        style: theme.textTheme.titleSmall?.copyWith(
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                    const _DemoBadge(),
+                  ],
                 ),
-              ),
-              const _DemoBadge(onPrimary: true),
-            ],
-          ),
-          const SizedBox(height: 8),
-          Text(
-            l.opTodayBody,
-            style: theme.textTheme.bodyMedium?.copyWith(
-              height: 1.4,
-              color: theme.colorScheme.onPrimaryContainer,
+                const SizedBox(height: 4),
+                Text(l.opDemoNoticeBody, style: theme.textTheme.bodySmall),
+              ],
             ),
           ),
         ],
@@ -192,64 +206,646 @@ class _TodayCard extends StatelessWidget {
   }
 }
 
-class _MetricsGrid extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    final l = AppLocalizations.of(context)!;
-    final metrics = <(IconData, int, String)>[
-      (
-        Icons.question_answer_outlined,
-        OperationsDemo.customerQuestions,
-        l.opMetricQuestions,
-      ),
-      (Icons.task_alt, OperationsDemo.answered, l.opMetricAnswered),
-      (Icons.lightbulb_outline, OperationsDemo.gapsDetected, l.opMetricGaps),
-      (
-        Icons.auto_fix_high_outlined,
-        OperationsDemo.suggestionsCreated,
-        l.opMetricSuggestions,
-      ),
-      (
-        Icons.description_outlined,
-        OperationsDemo.sourcesUsed,
-        l.opMetricSources,
-      ),
-      (
-        Icons.library_add_outlined,
-        OperationsDemo.entriesAdopted,
-        l.opMetricEntriesAdopted,
-      ),
-    ];
-    return Wrap(
-      spacing: 12,
-      runSpacing: 12,
-      children: [
-        for (final m in metrics)
-          _MetricCard(icon: m.$1, value: m.$2, label: m.$3),
-      ],
-    );
-  }
-}
+class _DemoDisabledCard extends StatelessWidget {
+  const _DemoDisabledCard({required this.l});
 
-class _MetricCard extends StatelessWidget {
-  const _MetricCard({
-    required this.icon,
-    required this.value,
-    required this.label,
-  });
-
-  final IconData icon;
-  final int value;
-  final String label;
+  final AppLocalizations l;
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     return Container(
-      width: 200,
-      padding: const EdgeInsets.all(14),
+      key: const Key('operations-demo-disabled'),
+      width: double.infinity,
+      padding: const EdgeInsets.all(24),
       decoration: BoxDecoration(
         color: theme.colorScheme.surfaceContainerHigh,
+        borderRadius: BorderRadius.circular(18),
+        border: Border.all(color: theme.colorScheme.outlineVariant),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Icon(Icons.visibility_off_outlined, color: theme.colorScheme.primary),
+          const SizedBox(height: 12),
+          Text(
+            l.opDemoDisabledTitle,
+            style: theme.textTheme.titleLarge?.copyWith(
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          const SizedBox(height: 6),
+          Text(l.opDemoDisabledBody),
+        ],
+      ),
+    );
+  }
+}
+
+class _SectionCard extends StatelessWidget {
+  const _SectionCard({
+    required this.keyName,
+    required this.icon,
+    required this.title,
+    required this.subtitle,
+    required this.child,
+    this.trailing,
+  });
+
+  final String keyName;
+  final IconData icon;
+  final String title;
+  final String subtitle;
+  final Widget child;
+  final Widget? trailing;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    return Container(
+      key: Key(keyName),
+      width: double.infinity,
+      padding: const EdgeInsets.all(18),
+      decoration: BoxDecoration(
+        color: theme.colorScheme.surfaceContainerHigh,
+        borderRadius: BorderRadius.circular(18),
+        border: Border.all(color: theme.colorScheme.outlineVariant),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(
+                padding: const EdgeInsets.all(8),
+                decoration: BoxDecoration(
+                  color: theme.colorScheme.primaryContainer,
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: Icon(
+                  icon,
+                  size: 20,
+                  color: theme.colorScheme.onPrimaryContainer,
+                ),
+              ),
+              const SizedBox(width: 10),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      title,
+                      style: theme.textTheme.titleMedium?.copyWith(
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    const SizedBox(height: 2),
+                    Text(
+                      subtitle,
+                      style: theme.textTheme.bodySmall?.copyWith(
+                        color: theme.colorScheme.onSurfaceVariant,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(width: 8),
+              const _DemoBadge(),
+            ],
+          ),
+          if (trailing case final widget?) ...[
+            const SizedBox(height: 12),
+            Align(alignment: Alignment.centerRight, child: widget),
+          ],
+          const SizedBox(height: 16),
+          child,
+        ],
+      ),
+    );
+  }
+}
+
+class _TodayActivitySection extends StatelessWidget {
+  const _TodayActivitySection();
+
+  @override
+  Widget build(BuildContext context) {
+    final l = AppLocalizations.of(context)!;
+    final day = OperationsDemo.today;
+    final decimal = Localizations.localeOf(context).languageCode == 'de'
+        ? day.averageResponseSeconds.toStringAsFixed(1).replaceFirst('.', ',')
+        : day.averageResponseSeconds.toStringAsFixed(1);
+    final metrics = <_MetricData>[
+      _MetricData(
+        Icons.mark_chat_read_outlined,
+        '${day.answered}',
+        l.opMetricAnswered,
+      ),
+      _MetricData(
+        Icons.lightbulb_outline,
+        '${day.knowledgeGaps}',
+        l.opMetricGaps,
+      ),
+      _MetricData(
+        Icons.how_to_reg_outlined,
+        '${day.humanReviews}',
+        l.opMetricReviews,
+      ),
+      _MetricData(
+        Icons.library_add_outlined,
+        '${day.newEntries}',
+        l.opMetricEntriesAdopted,
+      ),
+      _MetricData(
+        Icons.open_in_new,
+        '${day.websiteRedirects}',
+        l.opMetricRedirects,
+      ),
+      _MetricData(
+        Icons.document_scanner_outlined,
+        '${day.documentsAnalyzed}',
+        l.opMetricDocumentsAnalyzed,
+      ),
+      _MetricData(
+        Icons.speed_outlined,
+        '$decimal ${l.opSecondsShort}',
+        l.opMetricAvgResponseTime,
+      ),
+    ];
+    return _SectionCard(
+      keyName: 'operations-today-activity',
+      icon: Icons.today_outlined,
+      title: l.opActivityTitle,
+      subtitle: l.opActivitySubtitle,
+      child: _MetricGrid(metrics: metrics, large: true),
+    );
+  }
+}
+
+class _MetricData {
+  const _MetricData(this.icon, this.value, this.label);
+
+  final IconData icon;
+  final String value;
+  final String label;
+}
+
+class _MetricGrid extends StatelessWidget {
+  const _MetricGrid({required this.metrics, this.large = false});
+
+  final List<_MetricData> metrics;
+  final bool large;
+
+  @override
+  Widget build(BuildContext context) {
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        final columns = constraints.maxWidth >= 900
+            ? 4
+            : constraints.maxWidth >= 560
+            ? 3
+            : 2;
+        return GridView.builder(
+          shrinkWrap: true,
+          physics: const NeverScrollableScrollPhysics(),
+          itemCount: metrics.length,
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: columns,
+            crossAxisSpacing: 10,
+            mainAxisSpacing: 10,
+            mainAxisExtent: large ? 132 : 116,
+          ),
+          itemBuilder: (context, index) =>
+              _MetricTile(data: metrics[index], large: large),
+        );
+      },
+    );
+  }
+}
+
+class _MetricTile extends StatelessWidget {
+  const _MetricTile({required this.data, required this.large});
+
+  final _MetricData data;
+  final bool large;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    return Container(
+      padding: const EdgeInsets.all(12),
+      decoration: BoxDecoration(
+        color: theme.colorScheme.surfaceContainerLowest,
+        borderRadius: BorderRadius.circular(14),
+        border: Border.all(color: theme.colorScheme.outlineVariant),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Icon(data.icon, size: 19, color: theme.colorScheme.primary),
+          const Spacer(),
+          Text(
+            data.value,
+            maxLines: 1,
+            style:
+                (large
+                        ? theme.textTheme.headlineSmall
+                        : theme.textTheme.titleLarge)
+                    ?.copyWith(
+                      fontWeight: FontWeight.bold,
+                      color: theme.colorScheme.primary,
+                    ),
+          ),
+          const SizedBox(height: 2),
+          Text(
+            data.label,
+            maxLines: 2,
+            overflow: TextOverflow.ellipsis,
+            style: theme.textTheme.bodySmall?.copyWith(height: 1.2),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _HistorySection extends StatelessWidget {
+  const _HistorySection({
+    required this.periodDays,
+    required this.onPeriodChanged,
+  });
+
+  final int periodDays;
+  final ValueChanged<int?> onPeriodChanged;
+
+  @override
+  Widget build(BuildContext context) {
+    final l = AppLocalizations.of(context)!;
+    final days = OperationsDemo.historyForDays(periodDays);
+    final selector = SegmentedButton<int>(
+      key: const Key('operations-period-selector'),
+      segments: [
+        ButtonSegment(value: 7, label: Text(l.opPeriod7)),
+        ButtonSegment(value: 30, label: Text(l.opPeriod30)),
+      ],
+      selected: {periodDays},
+      showSelectedIcon: false,
+      onSelectionChanged: (selection) => onPeriodChanged(selection.first),
+    );
+    return _SectionCard(
+      keyName: 'operations-history',
+      icon: Icons.stacked_line_chart,
+      title: l.opHistoryTitle,
+      subtitle: l.opHistorySubtitle,
+      trailing: selector,
+      child: LayoutBuilder(
+        builder: (context, constraints) {
+          final charts = [
+            _HistoryChart(
+              keyName: 'operations-answer-history-$periodDays',
+              title: l.opHistoryAnswersTitle,
+              firstLabel: l.opHistoryAnswered,
+              secondLabel: l.opHistoryGaps,
+              firstValues: days.map((day) => day.answered).toList(),
+              secondValues: days.map((day) => day.knowledgeGaps).toList(),
+              periodDays: periodDays,
+            ),
+            _HistoryChart(
+              keyName: 'operations-knowledge-history-$periodDays',
+              title: l.opHistoryKnowledgeTitle,
+              firstLabel: l.opHistoryEntries,
+              secondLabel: l.opHistoryRedirects,
+              firstValues: days.map((day) => day.newEntries).toList(),
+              secondValues: days.map((day) => day.websiteRedirects).toList(),
+              periodDays: periodDays,
+            ),
+          ];
+          if (constraints.maxWidth < 760) {
+            return Column(
+              children: [charts.first, const SizedBox(height: 12), charts.last],
+            );
+          }
+          return Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Expanded(child: charts.first),
+              const SizedBox(width: 12),
+              Expanded(child: charts.last),
+            ],
+          );
+        },
+      ),
+    );
+  }
+}
+
+class _HistoryChart extends StatelessWidget {
+  const _HistoryChart({
+    required this.keyName,
+    required this.title,
+    required this.firstLabel,
+    required this.secondLabel,
+    required this.firstValues,
+    required this.secondValues,
+    required this.periodDays,
+  });
+
+  final String keyName;
+  final String title;
+  final String firstLabel;
+  final String secondLabel;
+  final List<int> firstValues;
+  final List<int> secondValues;
+  final int periodDays;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final l = AppLocalizations.of(context)!;
+    return Semantics(
+      label: '$title, $periodDays',
+      child: Container(
+        padding: const EdgeInsets.all(12),
+        decoration: BoxDecoration(
+          color: theme.colorScheme.surfaceContainerLowest,
+          borderRadius: BorderRadius.circular(14),
+          border: Border.all(color: theme.colorScheme.outlineVariant),
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              title,
+              style: theme.textTheme.titleSmall?.copyWith(
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            const SizedBox(height: 10),
+            SizedBox(
+              height: 126,
+              width: double.infinity,
+              child: CustomPaint(
+                key: Key(keyName),
+                painter: _BarsPainter(
+                  firstValues: firstValues,
+                  secondValues: secondValues,
+                  firstColor: theme.colorScheme.primary,
+                  secondColor: theme.colorScheme.tertiary,
+                  gridColor: theme.colorScheme.outlineVariant,
+                ),
+              ),
+            ),
+            const SizedBox(height: 8),
+            Row(
+              children: [
+                _LegendDot(color: theme.colorScheme.primary, label: firstLabel),
+                const SizedBox(width: 12),
+                _LegendDot(
+                  color: theme.colorScheme.tertiary,
+                  label: secondLabel,
+                ),
+                const Spacer(),
+                Text(l.opHistoryToday, style: theme.textTheme.labelSmall),
+              ],
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class _LegendDot extends StatelessWidget {
+  const _LegendDot({required this.color, required this.label});
+
+  final Color color;
+  final String label;
+
+  @override
+  Widget build(BuildContext context) {
+    return Flexible(
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Container(
+            width: 8,
+            height: 8,
+            decoration: BoxDecoration(color: color, shape: BoxShape.circle),
+          ),
+          const SizedBox(width: 4),
+          Flexible(
+            child: Text(
+              label,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+              style: Theme.of(context).textTheme.labelSmall,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _BarsPainter extends CustomPainter {
+  const _BarsPainter({
+    required this.firstValues,
+    required this.secondValues,
+    required this.firstColor,
+    required this.secondColor,
+    required this.gridColor,
+  });
+
+  final List<int> firstValues;
+  final List<int> secondValues;
+  final Color firstColor;
+  final Color secondColor;
+  final Color gridColor;
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    final maxValue = math.max(
+      1,
+      [...firstValues, ...secondValues].reduce(math.max),
+    );
+    final gridPaint = Paint()
+      ..color = gridColor.withAlpha(130)
+      ..strokeWidth = 1;
+    for (var line = 0; line <= 3; line++) {
+      final y = size.height * line / 3;
+      canvas.drawLine(Offset(0, y), Offset(size.width, y), gridPaint);
+    }
+
+    final groupWidth = size.width / firstValues.length;
+    final barWidth = math.max(1.5, math.min(7.0, groupWidth * 0.28));
+    final baseline = size.height;
+    final firstPaint = Paint()..color = firstColor;
+    final secondPaint = Paint()..color = secondColor;
+    for (var index = 0; index < firstValues.length; index++) {
+      final center = groupWidth * (index + 0.5);
+      final firstHeight = size.height * firstValues[index] / maxValue;
+      final secondHeight = size.height * secondValues[index] / maxValue;
+      canvas.drawRRect(
+        RRect.fromRectAndRadius(
+          Rect.fromLTWH(
+            center - barWidth - 1,
+            baseline - firstHeight,
+            barWidth,
+            firstHeight,
+          ),
+          const Radius.circular(2),
+        ),
+        firstPaint,
+      );
+      canvas.drawRRect(
+        RRect.fromRectAndRadius(
+          Rect.fromLTWH(
+            center + 1,
+            baseline - secondHeight,
+            barWidth,
+            secondHeight,
+          ),
+          const Radius.circular(2),
+        ),
+        secondPaint,
+      );
+    }
+  }
+
+  @override
+  bool shouldRepaint(covariant _BarsPainter oldDelegate) =>
+      oldDelegate.firstValues != firstValues ||
+      oldDelegate.secondValues != secondValues ||
+      oldDelegate.firstColor != firstColor ||
+      oldDelegate.secondColor != secondColor;
+}
+
+class _KnowledgeGrowthSection extends StatelessWidget {
+  const _KnowledgeGrowthSection();
+
+  @override
+  Widget build(BuildContext context) {
+    final l = AppLocalizations.of(context)!;
+    final data = OperationsDemo.knowledgeGrowth;
+    return _SectionCard(
+      keyName: 'operations-knowledge-growth',
+      icon: Icons.psychology_alt_outlined,
+      title: l.opGrowthTitle,
+      subtitle: l.opGrowthSubtitle,
+      child: _MetricGrid(
+        metrics: [
+          _MetricData(
+            Icons.verified_outlined,
+            '${data.confirmedEntries}',
+            l.opGrowthConfirmed,
+          ),
+          _MetricData(Icons.quiz_outlined, '+${data.newFaq}', l.opGrowthFaq),
+          _MetricData(
+            Icons.inventory_2_outlined,
+            '${data.productKnowledge}',
+            l.opGrowthProduct,
+          ),
+          _MetricData(
+            Icons.support_agent_outlined,
+            '${data.supportKnowledge}',
+            l.opGrowthSupport,
+          ),
+          _MetricData(
+            Icons.description_outlined,
+            '${data.documents}',
+            l.opGrowthDocuments,
+          ),
+          _MetricData(Icons.sell_outlined, '${data.tags}', l.opGrowthTags),
+        ],
+      ),
+    );
+  }
+}
+
+class _CustomerInsightsSection extends StatelessWidget {
+  const _CustomerInsightsSection();
+
+  @override
+  Widget build(BuildContext context) {
+    final l = AppLocalizations.of(context)!;
+    final groups = [
+      (
+        l.opCustomerQuestions,
+        OperationsDemo.frequentQuestions,
+        Icons.question_answer_outlined,
+      ),
+      (
+        l.opCustomerProducts,
+        OperationsDemo.frequentProducts,
+        Icons.inventory_2_outlined,
+      ),
+      (
+        l.opCustomerGaps,
+        OperationsDemo.openKnowledgeGaps,
+        Icons.lightbulb_outline,
+      ),
+      (
+        l.opCustomerTopics,
+        OperationsDemo.searchedTopics,
+        Icons.search_outlined,
+      ),
+      (
+        l.opCustomerSupport,
+        OperationsDemo.supportProblems,
+        Icons.support_agent_outlined,
+      ),
+    ];
+    return _SectionCard(
+      keyName: 'operations-customer-insights',
+      icon: Icons.manage_search_outlined,
+      title: l.opCustomerTitle,
+      subtitle: l.opCustomerSubtitle,
+      child: LayoutBuilder(
+        builder: (context, constraints) {
+          final itemWidth = constraints.maxWidth >= 700
+              ? (constraints.maxWidth - 12) / 2
+              : constraints.maxWidth;
+          return Wrap(
+            spacing: 12,
+            runSpacing: 12,
+            children: [
+              for (final group in groups)
+                SizedBox(
+                  width: itemWidth,
+                  child: _RankingBlock(
+                    title: group.$1,
+                    items: group.$2,
+                    icon: group.$3,
+                  ),
+                ),
+            ],
+          );
+        },
+      ),
+    );
+  }
+}
+
+class _RankingBlock extends StatelessWidget {
+  const _RankingBlock({
+    required this.title,
+    required this.items,
+    required this.icon,
+  });
+
+  final String title;
+  final List<OperationsRankedItem> items;
+  final IconData icon;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final maxValue = items.first.count;
+    return Container(
+      padding: const EdgeInsets.all(14),
+      decoration: BoxDecoration(
+        color: theme.colorScheme.surfaceContainerLowest,
         borderRadius: BorderRadius.circular(14),
         border: Border.all(color: theme.colorScheme.outlineVariant),
       ),
@@ -259,246 +855,55 @@ class _MetricCard extends StatelessWidget {
           Row(
             children: [
               Icon(icon, size: 18, color: theme.colorScheme.primary),
-              const Spacer(),
-              const _DemoBadge(),
-            ],
-          ),
-          const SizedBox(height: 8),
-          Text(
-            '$value',
-            style: theme.textTheme.headlineMedium?.copyWith(
-              fontWeight: FontWeight.bold,
-              color: theme.colorScheme.primary,
-            ),
-          ),
-          const SizedBox(height: 2),
-          Text(label, style: theme.textTheme.bodySmall?.copyWith(height: 1.3)),
-        ],
-      ),
-    );
-  }
-}
-
-class _TimelineCard extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    final l = AppLocalizations.of(context)!;
-    final theme = Theme.of(context);
-    final labels = [l.opTl1, l.opTl2, l.opTl3, l.opTl4, l.opTl5, l.opTl6];
-    return _DashCard(
-      icon: Icons.timeline,
-      title: l.opTimelineTitle,
-      child: Column(
-        children: [
-          for (var i = 0; i < labels.length; i++)
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 5),
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Container(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 8,
-                      vertical: 3,
-                    ),
-                    decoration: BoxDecoration(
-                      color: theme.colorScheme.secondaryContainer,
-                      borderRadius: BorderRadius.circular(6),
-                    ),
-                    child: Text(
-                      OperationsDemo.timelineTimes[i],
-                      style: theme.textTheme.labelMedium?.copyWith(
-                        color: theme.colorScheme.onSecondaryContainer,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                  const SizedBox(width: 12),
-                  Expanded(
-                    child: Text(
-                      labels[i],
-                      style: theme.textTheme.bodyMedium?.copyWith(height: 1.3),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-        ],
-      ),
-    );
-  }
-}
-
-class _DetectedCard extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    final l = AppLocalizations.of(context)!;
-    final theme = Theme.of(context);
-    final items = [
-      l.opDetected1,
-      l.opDetected2,
-      l.opDetected3,
-      l.opDetected4,
-      l.opDetected5,
-      l.opDetected6,
-    ];
-    return _DashCard(
-      icon: Icons.search,
-      title: l.opDetectedTitle,
-      child: Column(
-        children: [
-          for (final item in items)
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 4),
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Icon(
-                    Icons.check_circle_outline,
-                    size: 18,
-                    color: theme.colorScheme.primary,
-                  ),
-                  const SizedBox(width: 8),
-                  Expanded(
-                    child: Text(
-                      item,
-                      style: theme.textTheme.bodyMedium?.copyWith(height: 1.3),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-        ],
-      ),
-    );
-  }
-}
-
-class _DecisionsCard extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    final l = AppLocalizations.of(context)!;
-    final theme = Theme.of(context);
-    final tiles = <(String, int, Color)>[
-      (l.opDecTotal, OperationsDemo.decisionsTotal, theme.colorScheme.primary),
-      (l.opDecAdopted, OperationsDemo.decisionsAdopted, Colors.green),
-      (l.opDecInProgress, OperationsDemo.decisionsInProgress, Colors.orange),
-      (
-        l.opDecRejected,
-        OperationsDemo.decisionsRejected,
-        theme.colorScheme.error,
-      ),
-    ];
-    return _DashCard(
-      icon: Icons.how_to_reg_outlined,
-      title: l.opDecisionsTitle,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Wrap(
-            spacing: 12,
-            runSpacing: 12,
-            children: [
-              for (final t in tiles)
-                _StatTile(label: t.$1, value: t.$2, color: t.$3),
-            ],
-          ),
-          const SizedBox(height: 12),
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Icon(
-                Icons.info_outline,
-                size: 16,
-                color: theme.colorScheme.onSurfaceVariant,
-              ),
-              const SizedBox(width: 6),
+              const SizedBox(width: 7),
               Expanded(
                 child: Text(
-                  l.opDecisionsNote,
-                  style: theme.textTheme.bodySmall?.copyWith(
-                    color: theme.colorScheme.onSurfaceVariant,
-                    height: 1.3,
+                  title,
+                  style: theme.textTheme.titleSmall?.copyWith(
+                    fontWeight: FontWeight.bold,
                   ),
                 ),
               ),
             ],
           ),
-        ],
-      ),
-    );
-  }
-}
-
-class _StatTile extends StatelessWidget {
-  const _StatTile({
-    required this.label,
-    required this.value,
-    required this.color,
-  });
-
-  final String label;
-  final int value;
-  final Color color;
-
-  @override
-  Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    return Container(
-      width: 150,
-      padding: const EdgeInsets.all(12),
-      decoration: BoxDecoration(
-        color: color.withAlpha(24),
-        borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: color.withAlpha(110)),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            '$value',
-            style: theme.textTheme.headlineSmall?.copyWith(
-              fontWeight: FontWeight.bold,
-              color: color,
-            ),
-          ),
-          Text(label, style: theme.textTheme.labelSmall?.copyWith(height: 1.2)),
-        ],
-      ),
-    );
-  }
-}
-
-class _QualityCard extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    final l = AppLocalizations.of(context)!;
-    final theme = Theme.of(context);
-    final labels = [
-      l.opQualFaq,
-      l.opQualGuides,
-      l.opQualTechnical,
-      l.opQualProblems,
-      l.opQualDefinitions,
-    ];
-    return _DashCard(
-      icon: Icons.donut_small_outlined,
-      title: l.opQualityTitle,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            '${l.opQualEntries}: ${OperationsDemo.qualityTotal}',
-            style: theme.textTheme.titleSmall?.copyWith(
-              fontWeight: FontWeight.bold,
-            ),
-          ),
           const SizedBox(height: 12),
-          for (var i = 0; i < labels.length; i++)
-            _BarRow(
-              label: labels[i],
-              value: OperationsDemo.qualityCounts[i],
-              max: OperationsDemo.qualityMax,
+          for (final item in items.take(2))
+            Padding(
+              padding: const EdgeInsets.only(bottom: 9),
+              child: Column(
+                children: [
+                  Row(
+                    children: [
+                      Expanded(
+                        child: Text(
+                          _rankedItemLabel(context, item.key),
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: theme.textTheme.bodySmall,
+                        ),
+                      ),
+                      const SizedBox(width: 8),
+                      Text(
+                        '${item.count}',
+                        style: theme.textTheme.labelMedium?.copyWith(
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 4),
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(4),
+                    child: LinearProgressIndicator(
+                      key: ValueKey('operations-ranking-${item.key}'),
+                      value: item.count / maxValue,
+                      minHeight: 6,
+                      backgroundColor:
+                          theme.colorScheme.surfaceContainerHighest,
+                    ),
+                  ),
+                ],
+              ),
             ),
         ],
       ),
@@ -506,96 +911,346 @@ class _QualityCard extends StatelessWidget {
   }
 }
 
-class _BarRow extends StatelessWidget {
-  const _BarRow({required this.label, required this.value, required this.max});
-
-  final String label;
-  final int value;
-  final int max;
-
-  @override
-  Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 5),
-      child: Row(
-        children: [
-          SizedBox(
-            width: 130,
-            child: Text(
-              label,
-              maxLines: 1,
-              overflow: TextOverflow.ellipsis,
-              style: theme.textTheme.bodySmall,
-            ),
-          ),
-          const SizedBox(width: 8),
-          Expanded(
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(6),
-              child: LinearProgressIndicator(
-                value: max == 0 ? 0 : value / max,
-                minHeight: 10,
-                backgroundColor: theme.colorScheme.surfaceContainerHighest,
-              ),
-            ),
-          ),
-          const SizedBox(width: 8),
-          SizedBox(
-            width: 24,
-            child: Text(
-              '$value',
-              textAlign: TextAlign.end,
-              style: theme.textTheme.labelMedium?.copyWith(
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
+String _rankedItemLabel(BuildContext context, String key) {
+  final l = AppLocalizations.of(context)!;
+  return switch (key) {
+    'curebaseUsage' => l.opItemCurebaseUsage,
+    'appConnection' => l.opItemAppConnection,
+    'pricing' => l.opItemPricing,
+    'curebase' => 'CureBase',
+    'hbCureApp' => 'HB Cure App',
+    'cureclip' => 'CureClip',
+    'priceDetails' => l.opItemPriceDetails,
+    'firmwareHelp' => l.opItemFirmwareHelp,
+    'compatibility' => l.opItemCompatibility,
+    'bluetooth' => 'Bluetooth',
+    'firmware' => 'Firmware',
+    'programs' => l.opItemPrograms,
+    'bluetoothConnection' => l.opItemBluetoothConnection,
+    'firmwareUpdate' => l.opItemFirmwareUpdate,
+    'appPairing' => l.opItemAppPairing,
+    _ => key,
+  };
 }
 
-class _ClosingCard extends StatelessWidget {
+class _BusinessImpactSection extends StatelessWidget {
+  const _BusinessImpactSection();
+
   @override
   Widget build(BuildContext context) {
     final l = AppLocalizations.of(context)!;
-    final theme = Theme.of(context);
-    return Container(
-      width: double.infinity,
-      padding: const EdgeInsets.all(24),
-      decoration: BoxDecoration(
-        color: theme.colorScheme.primaryContainer,
-        borderRadius: BorderRadius.circular(20),
-      ),
+    final minutes = OperationsDemo.estimatedMinutesSaved;
+    final savedTime = l.opHoursMinutes(minutes ~/ 60, minutes % 60);
+    return _SectionCard(
+      keyName: 'operations-business-impact',
+      icon: Icons.trending_up_outlined,
+      title: l.opImpactTitle,
+      subtitle: l.opImpactSubtitle,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Row(
-            children: [
-              Icon(
-                Icons.verified_user_outlined,
-                color: theme.colorScheme.onPrimaryContainer,
+          _MetricGrid(
+            metrics: [
+              _MetricData(
+                Icons.schedule_outlined,
+                savedTime,
+                l.opImpactTimeSaved,
               ),
-              const Spacer(),
-              const _DemoBadge(onPrimary: true),
+              _MetricData(
+                Icons.support_agent_outlined,
+                '${OperationsDemo.avoidedSupportRequests}',
+                l.opImpactAvoidedSupport,
+              ),
+              _MetricData(
+                Icons.fact_check_outlined,
+                '${OperationsDemo.consistentAnswers}',
+                l.opImpactConsistent,
+              ),
+              _MetricData(
+                Icons.source_outlined,
+                '${OperationsDemo.today.sourcesUsed}',
+                l.opImpactSources,
+              ),
+              _MetricData(
+                Icons.how_to_reg_outlined,
+                '${OperationsDemo.humanReviewRate} %',
+                l.opImpactReviewRate,
+              ),
             ],
           ),
           const SizedBox(height: 12),
-          Text(
-            l.opClosingTitle,
-            style: theme.textTheme.headlineSmall?.copyWith(
-              fontWeight: FontWeight.bold,
-              color: theme.colorScheme.onPrimaryContainer,
+          _InfoNote(icon: Icons.calculate_outlined, text: l.opImpactMethodNote),
+        ],
+      ),
+    );
+  }
+}
+
+class _KnowledgeQualitySection extends StatelessWidget {
+  const _KnowledgeQualitySection();
+
+  @override
+  Widget build(BuildContext context) {
+    final l = AppLocalizations.of(context)!;
+    final data = OperationsDemo.knowledgeQuality;
+    return _SectionCard(
+      keyName: 'operations-knowledge-quality',
+      icon: Icons.health_and_safety_outlined,
+      title: l.opKnowledgeQualityTitle,
+      subtitle: l.opKnowledgeQualitySubtitle,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          _AnswerabilityBar(data: data),
+          const SizedBox(height: 14),
+          _MetricGrid(
+            metrics: [
+              _MetricData(
+                Icons.check_circle_outline,
+                '${data.fullyAnswerable}',
+                l.opQualityFull,
+              ),
+              _MetricData(
+                Icons.adjust_outlined,
+                '${data.partlyAnswerable}',
+                l.opQualityPartial,
+              ),
+              _MetricData(
+                Icons.help_outline,
+                '${data.noInformation}',
+                l.opQualityMissing,
+              ),
+              _MetricData(
+                Icons.medical_information_outlined,
+                '${data.medicallySensitive}',
+                l.opQualitySensitive,
+              ),
+              _MetricData(
+                Icons.open_in_new,
+                '${data.redirects}',
+                l.opQualityRedirects,
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _AnswerabilityBar extends StatelessWidget {
+  const _AnswerabilityBar({required this.data});
+
+  final KnowledgeQualityDemo data;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    return ClipRRect(
+      key: const Key('operations-answerability-chart'),
+      borderRadius: BorderRadius.circular(7),
+      child: SizedBox(
+        height: 14,
+        child: Row(
+          children: [
+            Expanded(
+              flex: data.fullyAnswerable,
+              child: ColoredBox(color: theme.colorScheme.primary),
+            ),
+            Expanded(
+              flex: data.partlyAnswerable,
+              child: ColoredBox(color: theme.colorScheme.tertiary),
+            ),
+            Expanded(
+              flex: data.noInformation,
+              child: ColoredBox(color: theme.colorScheme.error),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class _BusinessInsightsSection extends StatelessWidget {
+  const _BusinessInsightsSection();
+
+  @override
+  Widget build(BuildContext context) {
+    final l = AppLocalizations.of(context)!;
+    final insights = OperationsInsightRules.evaluate();
+    return _SectionCard(
+      keyName: 'operations-business-insights',
+      icon: Icons.lightbulb_circle_outlined,
+      title: l.opInsightsTitle,
+      subtitle: l.opInsightsSubtitle,
+      child: Column(
+        children: [
+          for (final insight in insights)
+            Padding(
+              padding: const EdgeInsets.only(bottom: 10),
+              child: _InsightTile(content: _insightContent(l, insight)),
+            ),
+          _InfoNote(icon: Icons.rule_outlined, text: l.opInsightsMethodNote),
+        ],
+      ),
+    );
+  }
+}
+
+({IconData icon, String title, String body}) _insightContent(
+  AppLocalizations l,
+  OperationsInsightKind kind,
+) => switch (kind) {
+  OperationsInsightKind.leadingProduct => (
+    icon: Icons.inventory_2_outlined,
+    title: l.opInsightLeadingTitle,
+    body: l.opInsightLeadingBody(OperationsDemo.frequentProducts.first.count),
+  ),
+  OperationsInsightKind.risingSupport => (
+    icon: Icons.trending_up,
+    title: l.opInsightSupportTitle,
+    body: l.opInsightSupportBody,
+  ),
+  OperationsInsightKind.firmwareDemand => (
+    icon: Icons.system_update_alt,
+    title: l.opInsightFirmwareTitle,
+    body: l.opInsightFirmwareBody(
+      OperationsDemo.searchedTopics
+          .firstWhere((item) => item.key == 'firmware')
+          .count,
+    ),
+  ),
+  OperationsInsightKind.priceInterest => (
+    icon: Icons.sell_outlined,
+    title: l.opInsightPriceTitle,
+    body: l.opInsightPriceBody(OperationsDemo.priceRedirects),
+  ),
+  OperationsInsightKind.faqOpportunity => (
+    icon: Icons.quiz_outlined,
+    title: l.opInsightFaqTitle,
+    body: l.opInsightFaqBody(OperationsDemo.today.knowledgeGaps),
+  ),
+};
+
+class _InsightTile extends StatelessWidget {
+  const _InsightTile({required this.content});
+
+  final ({IconData icon, String title, String body}) content;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.all(14),
+      decoration: BoxDecoration(
+        color: theme.colorScheme.primaryContainer.withAlpha(90),
+        borderRadius: BorderRadius.circular(14),
+      ),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Icon(content.icon, size: 20, color: theme.colorScheme.primary),
+          const SizedBox(width: 10),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  content.title,
+                  style: theme.textTheme.titleSmall?.copyWith(
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                const SizedBox(height: 3),
+                Text(content.body, style: theme.textTheme.bodySmall),
+              ],
             ),
           ),
-          const SizedBox(height: 12),
-          Text(
-            l.opClosingBody,
-            style: theme.textTheme.bodyLarge?.copyWith(
-              height: 1.45,
-              color: theme.colorScheme.onPrimaryContainer,
+        ],
+      ),
+    );
+  }
+}
+
+class _InfoNote extends StatelessWidget {
+  const _InfoNote({required this.icon, required this.text});
+
+  final IconData icon;
+  final String text;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Icon(icon, size: 16, color: theme.colorScheme.onSurfaceVariant),
+        const SizedBox(width: 6),
+        Expanded(
+          child: Text(
+            text,
+            style: theme.textTheme.bodySmall?.copyWith(
+              color: theme.colorScheme.onSurfaceVariant,
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class _HumanControlFooter extends StatelessWidget {
+  const _HumanControlFooter();
+
+  @override
+  Widget build(BuildContext context) {
+    final l = AppLocalizations.of(context)!;
+    final theme = Theme.of(context);
+    return Container(
+      key: const Key('operations-human-control'),
+      width: double.infinity,
+      padding: const EdgeInsets.all(22),
+      decoration: BoxDecoration(
+        color: theme.colorScheme.primaryContainer,
+        borderRadius: BorderRadius.circular(18),
+      ),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Icon(
+            Icons.verified_user_outlined,
+            color: theme.colorScheme.onPrimaryContainer,
+          ),
+          const SizedBox(width: 12),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  children: [
+                    Expanded(
+                      child: Text(
+                        l.opClosingTitle,
+                        style: theme.textTheme.titleLarge?.copyWith(
+                          fontWeight: FontWeight.bold,
+                          color: theme.colorScheme.onPrimaryContainer,
+                        ),
+                      ),
+                    ),
+                    const _DemoBadge(onPrimary: true),
+                  ],
+                ),
+                const SizedBox(height: 6),
+                Text(
+                  l.opClosingBody,
+                  style: theme.textTheme.bodyMedium?.copyWith(
+                    color: theme.colorScheme.onPrimaryContainer,
+                    height: 1.4,
+                  ),
+                ),
+              ],
             ),
           ),
         ],
