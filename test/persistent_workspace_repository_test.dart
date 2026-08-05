@@ -62,6 +62,14 @@ void main() {
           keywords: const ['persistenz'],
           source: 'Test',
           createdAt: DateTime(2026, 7, 16),
+          languageCode: 'de',
+          knowledgeArea: 'hb_cure_app',
+          detectedTopics: const ['Bluetooth', 'Firmware'],
+          websiteLink: const KnowledgeEntryLink(
+            url: 'https://company.example/support',
+            title: 'Support kontaktieren',
+            type: KnowledgeLinkType.support,
+          ),
         ),
       ],
     );
@@ -76,6 +84,13 @@ void main() {
       ),
       isTrue,
     );
+    final persistedEntry = reloaded.selectedWorkspace.knowledgeEntries
+        .firstWhere((entry) => entry.id == 'persist-test');
+    expect(persistedEntry.knowledgeArea, 'hb_cure_app');
+    expect(persistedEntry.detectedTopics, ['Bluetooth', 'Firmware']);
+    expect(persistedEntry.websiteLink?.url, 'https://company.example/support');
+    expect(persistedEntry.websiteLink?.title, 'Support kontaktieren');
+    expect(persistedEntry.websiteLink?.type, KnowledgeLinkType.support);
     final other = reloaded.findWorkspace(otherId)!;
     expect(other.knowledgeEntries, hasLength(untouchedEntryCount));
     expect(

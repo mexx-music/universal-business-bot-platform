@@ -608,8 +608,10 @@ class _NextActionsTeaserCard extends StatelessWidget {
               ],
             ),
             const SizedBox(height: 6),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.end,
+            Wrap(
+              alignment: WrapAlignment.end,
+              spacing: 4,
+              runSpacing: 4,
               children: [
                 TextButton.icon(
                   onPressed: () => context.go('/check-in'),

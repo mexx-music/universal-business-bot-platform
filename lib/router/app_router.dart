@@ -12,6 +12,11 @@ import '../screens/public/landing_screen.dart';
 import '../screens/public/companies_screen.dart';
 import '../screens/public/public_intake_screen.dart';
 import '../screens/check_in/check_in_screen.dart';
+import '../screens/community/community_radar_screen.dart';
+import '../screens/community/content_detail_screen.dart';
+import '../screens/community/matching_screen.dart';
+import '../screens/community/member_detail_screen.dart';
+import '../screens/community/members_screen.dart';
 import '../screens/dashboard/dashboard_screen.dart';
 import '../screens/next_actions/next_actions_screen.dart';
 import '../screens/project_status/project_status_screen.dart';
@@ -21,8 +26,23 @@ import '../screens/marketing_strategy/marketing_strategy_screen.dart';
 import '../screens/intake/intake_chat_screen.dart';
 import '../screens/intake/intake_screen.dart';
 import '../screens/company/company_screen.dart';
+import '../screens/company_evolution/company_evolution_screen.dart';
 import '../screens/audit/audit_screen.dart';
 import '../screens/knowledge/knowledge_screen.dart';
+import '../screens/knowledge_builder/knowledge_builder_screen.dart';
+import '../screens/business_story/business_story_screen.dart';
+import '../screens/guided_demo/guided_demo_screen.dart';
+import '../screens/jury/jury_start_screen.dart';
+import '../screens/jury/jury_tour_screen.dart';
+import '../screens/more/more_modules_screen.dart';
+import '../screens/release/release_checklist_screen.dart';
+import '../screens/operations/operations_dashboard_screen.dart';
+import '../screens/knowledge_improvement/knowledge_improvement_screen.dart';
+import '../screens/knowledge_workflow/knowledge_workflow_screen.dart';
+import '../screens/roles/role_overview_screen.dart';
+import '../screens/vision/businessbrain_vision_screen.dart';
+import '../screens/roadmap/businessbrain_roadmap_screen.dart';
+import '../screens/getting_started/getting_started_screen.dart';
 import '../screens/bot_test/bot_test_screen.dart';
 import '../screens/bot_settings/bot_settings_screen.dart';
 import '../screens/sources/sources_screen.dart';
@@ -45,7 +65,14 @@ GoRouter createAppRouter(
       if (demoModeController?.isActive ?? false) return null;
 
       final location = state.uri.path;
-      final isPublicRoute = location == '/' || location == '/login';
+      final isPublicRoute =
+          location == '/' ||
+          location == '/login' ||
+          location == '/jury' ||
+          location == '/jury-demo' ||
+          location == '/vision' ||
+          location == '/roadmap' ||
+          location == '/getting-started';
       final isPublicIntakeRoute = location.startsWith('/onboarding/');
       final isLogin = location == '/login';
       final isOnboarding = location == '/onboarding';
@@ -92,6 +119,26 @@ GoRouter createAppRouter(
     },
     routes: [
       GoRoute(path: '/', builder: (context, state) => const LandingScreen()),
+      GoRoute(
+        path: '/jury',
+        builder: (context, state) => const JuryStartScreen(),
+      ),
+      GoRoute(
+        path: '/jury-demo',
+        builder: (context, state) => const JuryTourScreen(),
+      ),
+      GoRoute(
+        path: '/vision',
+        builder: (context, state) => const BusinessBrainVisionScreen(),
+      ),
+      GoRoute(
+        path: '/roadmap',
+        builder: (context, state) => const BusinessBrainRoadmapScreen(),
+      ),
+      GoRoute(
+        path: '/getting-started',
+        builder: (context, state) => const GettingStartedScreen(),
+      ),
       GoRoute(path: '/login', builder: (context, state) => const LoginScreen()),
       GoRoute(
         path: '/onboarding',
@@ -179,6 +226,72 @@ GoRouter createAppRouter(
           GoRoute(
             path: '/review',
             builder: (context, state) => const ReviewScreen(),
+          ),
+          GoRoute(
+            path: '/community',
+            builder: (context, state) => const CommunityRadarScreen(),
+          ),
+          GoRoute(
+            path: '/community-members',
+            builder: (context, state) => const MembersScreen(),
+          ),
+          GoRoute(
+            path: '/community-members/:id',
+            builder: (context, state) =>
+                MemberDetailScreen(memberId: state.pathParameters['id'] ?? ''),
+          ),
+          GoRoute(
+            path: '/community/matching',
+            builder: (context, state) => MatchingScreen(
+              contentId: state.uri.queryParameters['content'],
+              memberId: state.uri.queryParameters['member'],
+            ),
+          ),
+          GoRoute(
+            path: '/community/:id',
+            builder: (context, state) => ContentDetailScreen(
+              contentId: state.pathParameters['id'] ?? '',
+            ),
+          ),
+          GoRoute(
+            path: '/company-evolution',
+            builder: (context, state) => const CompanyEvolutionScreen(),
+          ),
+          GoRoute(
+            path: '/knowledge-builder',
+            builder: (context, state) => const KnowledgeBuilderScreen(),
+          ),
+          GoRoute(
+            path: '/portals',
+            builder: (context, state) => const RoleOverviewScreen(),
+          ),
+          GoRoute(
+            path: '/knowledge-improvement',
+            builder: (context, state) => const KnowledgeImprovementScreen(),
+          ),
+          GoRoute(
+            path: '/guided-demo',
+            builder: (context, state) => const GuidedDemoScreen(),
+          ),
+          GoRoute(
+            path: '/business-story',
+            builder: (context, state) => const BusinessStoryScreen(),
+          ),
+          GoRoute(
+            path: '/operations-dashboard',
+            builder: (context, state) => const OperationsDashboardScreen(),
+          ),
+          GoRoute(
+            path: '/knowledge-workflow',
+            builder: (context, state) => const KnowledgeWorkflowScreen(),
+          ),
+          GoRoute(
+            path: '/more',
+            builder: (context, state) => const MoreModulesScreen(),
+          ),
+          GoRoute(
+            path: '/release-check',
+            builder: (context, state) => const ReleaseChecklistScreen(),
           ),
         ],
       ),

@@ -2309,11 +2309,11 @@ class AppLocalizationsDe extends AppLocalizations {
   String get knowledgeMarkSourceConverted => 'Quelle als übernommen markieren';
 
   @override
-  String get botTestTitle => 'Bot-Test';
+  String get botTestTitle => 'BusinessBrain Grounded Answers';
 
   @override
   String get botTestSubtitle =>
-      'Simulierter Bot ohne echte KI – Antworten basieren auf der Wissensbasis.';
+      'BusinessBrain beantwortet Fragen ausschließlich mit bestätigtem Wissen aus dem aktiven Unternehmens-Workspace.';
 
   @override
   String get botTestGreeting =>
@@ -3690,7 +3690,7 @@ class AppLocalizationsDe extends AppLocalizations {
   String get dashboardStartCheckIn => 'Check-in starten';
 
   @override
-  String get demoStartButton => 'Demo starten';
+  String get demoStartButton => 'BusinessBrain in 2 Minuten erleben';
 
   @override
   String get demoRegisterButton => 'Unternehmen anmelden';
@@ -3728,4 +3728,3579 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get demoTourDismiss => 'Hinweis ausblenden';
+
+  @override
+  String get navCommunityRadar => 'Community Radar';
+
+  @override
+  String get communityRadarTitle => 'Community Radar';
+
+  @override
+  String get communityRadarSubtitle =>
+      'Öffentliche Diskussionen, die zu Ihren Unternehmen passen. Die KI findet und bewertet – veröffentlicht wird nichts automatisch.';
+
+  @override
+  String get communityDemoNote => 'Demo-Daten. Es wird nichts veröffentlicht.';
+
+  @override
+  String get communityReadOnlyNote =>
+      'Nur-Lese-Vorschau (CR-1): Aufgaben-Aktionen folgen in einem späteren Schritt.';
+
+  @override
+  String get communityFilterCompany => 'Unternehmen';
+
+  @override
+  String get communityFilterPlatform => 'Plattform';
+
+  @override
+  String get communityFilterLanguage => 'Sprache';
+
+  @override
+  String get communityFilterCountry => 'Land';
+
+  @override
+  String get communityFilterRisk => 'Risiko';
+
+  @override
+  String get communityFilterStatus => 'Status';
+
+  @override
+  String get communityFilterAll => 'Alle';
+
+  @override
+  String get communityRelevance => 'Relevanz';
+
+  @override
+  String get communityEmpty => 'Keine Beiträge für diese Filter.';
+
+  @override
+  String get communityRecommendedAction => 'Empfohlene Aktion';
+
+  @override
+  String get communityDetailOriginalText => 'Originalinhalt';
+
+  @override
+  String get communityDetailSource => 'Quelle';
+
+  @override
+  String get communityDetailSummary => 'KI-Zusammenfassung';
+
+  @override
+  String get communityDetailIntent => 'Erkannte Absicht';
+
+  @override
+  String get communityDetailSentiment => 'Stimmung';
+
+  @override
+  String get communityDetailRelevanceReason => 'Relevanzbegründung';
+
+  @override
+  String get communityDetailRisks => 'Risiken';
+
+  @override
+  String get communityDetailNoRisks => 'Keine besonderen Risiken erkannt.';
+
+  @override
+  String get communityDetailKnowledge => 'Passende Wissenseinträge';
+
+  @override
+  String get communityDetailNoKnowledge =>
+      'Keine passenden Wissenseinträge hinterlegt.';
+
+  @override
+  String get communityDetailAllowedActions => 'Zulässige Reaktionsarten';
+
+  @override
+  String get communityDetailProhibited => 'Ungeeignete Aussagen';
+
+  @override
+  String get communityDetailNoProhibited =>
+      'Keine gesperrten Aussagen für diesen Beitrag.';
+
+  @override
+  String get communityDetailMatches => 'Passende Community-Mitglieder';
+
+  @override
+  String get communityDetailNoMatches =>
+      'Noch keine passenden Mitglieder ermittelt.';
+
+  @override
+  String get communityMatchScore => 'Übereinstimmung';
+
+  @override
+  String get communityMatchReasons => 'Warum es passt';
+
+  @override
+  String get communityMatchWarnings => 'Hinweise';
+
+  @override
+  String get communityOpenOriginal => 'Original öffnen';
+
+  @override
+  String get communityDisclosureRequired => 'Offenlegung erforderlich';
+
+  @override
+  String get communityBackToRadar => 'Zurück zum Radar';
+
+  @override
+  String get communityPlatformReddit => 'Reddit';
+
+  @override
+  String get communityPlatformFacebookGroup => 'Facebook-Gruppe';
+
+  @override
+  String get communityPlatformForum => 'Forum';
+
+  @override
+  String get communityPlatformInstagram => 'Instagram';
+
+  @override
+  String get communityPlatformX => 'X';
+
+  @override
+  String get communityPlatformYoutube => 'YouTube';
+
+  @override
+  String get communityPlatformOther => 'Andere';
+
+  @override
+  String get communityIntentQuestion => 'Frage';
+
+  @override
+  String get communityIntentComplaint => 'Beschwerde';
+
+  @override
+  String get communityIntentRecommendationRequest => 'Empfehlung gesucht';
+
+  @override
+  String get communityIntentDiscussion => 'Diskussion';
+
+  @override
+  String get communityIntentComparison => 'Vergleich';
+
+  @override
+  String get communityIntentExperienceShare => 'Erfahrungsbericht';
+
+  @override
+  String get communityIntentOther => 'Sonstiges';
+
+  @override
+  String get communitySentimentPositive => 'Positiv';
+
+  @override
+  String get communitySentimentNeutral => 'Neutral';
+
+  @override
+  String get communitySentimentNegative => 'Negativ';
+
+  @override
+  String get communitySentimentMixed => 'Gemischt';
+
+  @override
+  String get communityStatusNew => 'Neu';
+
+  @override
+  String get communityStatusReviewing => 'In Prüfung';
+
+  @override
+  String get communityStatusMatched => 'Zugeordnet';
+
+  @override
+  String get communityStatusTaskCreated => 'Aufgabe erstellt';
+
+  @override
+  String get communityStatusActioned => 'Bearbeitet';
+
+  @override
+  String get communityStatusDismissed => 'Verworfen';
+
+  @override
+  String get communityActionViewOnly => 'Nur ansehen';
+
+  @override
+  String get communityActionLike => 'Liken';
+
+  @override
+  String get communityActionShare => 'Teilen';
+
+  @override
+  String get communityActionRepost => 'Reposten';
+
+  @override
+  String get communityActionShortPersonalComment => 'Kurzer eigener Kommentar';
+
+  @override
+  String get communityActionPersonalExperience => 'Eigene Erfahrung';
+
+  @override
+  String get communityActionFactualAnswer => 'Sachliche Antwort';
+
+  @override
+  String get communityActionAskFollowUpQuestion => 'Nachfrage stellen';
+
+  @override
+  String get communityActionOpenOriginal => 'Original öffnen';
+
+  @override
+  String get communityActionSkip => 'Überspringen';
+
+  @override
+  String get navCommunityMembers => 'Community-Mitglieder';
+
+  @override
+  String get communityNavGroupPlatform => 'Plattform';
+
+  @override
+  String get communityNavGroupCommunity => 'Community';
+
+  @override
+  String get communityMembersTitle => 'Community-Mitglieder';
+
+  @override
+  String get communityMembersSubtitle =>
+      'Ein globaler, firmenunabhängiger Pool echter Menschen. Freiwillige Teilnahme, eigene Entscheidung.';
+
+  @override
+  String get communityMembersSearchHint => 'Mitglied suchen …';
+
+  @override
+  String get communityMembersEmpty => 'Keine Mitglieder für diese Filter.';
+
+  @override
+  String get communityFilterTopic => 'Thema';
+
+  @override
+  String get communityFilterDomain => 'Bereich';
+
+  @override
+  String get communityMemberQuality => 'Qualität';
+
+  @override
+  String get communityMemberAuthenticity => 'Authentizitätssignal';
+
+  @override
+  String get communityMemberCompletedTasks => 'Erledigte Aufgaben';
+
+  @override
+  String get communityMemberVerified => 'Verifiziert';
+
+  @override
+  String get communityMemberNotVerified => 'Nicht verifiziert';
+
+  @override
+  String get communityMemberAvailable => 'Verfügbar';
+
+  @override
+  String get communityMemberUnavailable => 'Zurzeit nicht verfügbar';
+
+  @override
+  String get communityMemberConsentGranted => 'Profilanalyse erlaubt';
+
+  @override
+  String get communityMemberConsentMissing => 'Profilanalyse nicht erlaubt';
+
+  @override
+  String get communityMemberLanguages => 'Sprachen';
+
+  @override
+  String get communityMemberCountry => 'Land';
+
+  @override
+  String get communityMemberInterests => 'Interessen';
+
+  @override
+  String get communityMemberExperience => 'Erfahrungskategorien';
+
+  @override
+  String get communityMemberPlatforms => 'Plattformprofile';
+
+  @override
+  String get communityMemberPublicTopics => 'Öffentlich besprochene Themen';
+
+  @override
+  String get communityMemberPreferredActions => 'Bevorzugte Aufgabenarten';
+
+  @override
+  String get communityMemberExcludedTopics => 'Ausgeschlossene Themen';
+
+  @override
+  String get communityMemberExcludedCompanies => 'Ausgeschlossene Firmen';
+
+  @override
+  String get communityMemberConsentStatus => 'Einwilligungsstatus';
+
+  @override
+  String get communityMemberAvailability => 'Verfügbarkeit';
+
+  @override
+  String get communityMemberDomains => 'Mögliche Bereiche';
+
+  @override
+  String get communityMemberMatchesTitle => 'Passende Beiträge';
+
+  @override
+  String get communityMemberNone => '—';
+
+  @override
+  String get communityMemberStatusActive => 'Aktiv';
+
+  @override
+  String get communityMemberStatusPending => 'Ausstehend';
+
+  @override
+  String get communityMemberStatusPaused => 'Pausiert';
+
+  @override
+  String get communityMemberStatusBlocked => 'Gesperrt';
+
+  @override
+  String get communityDomainCommunityEngagement => 'Community-Beteiligung';
+
+  @override
+  String get communityDomainProductTest => 'Produkttest';
+
+  @override
+  String get communityDomainIdeaResearch => 'Ideenforschung';
+
+  @override
+  String get communityDomainTranslation => 'Übersetzung';
+
+  @override
+  String get communityDomainOther => 'Sonstiges';
+
+  @override
+  String get communityFactorLanguage => 'Sprache';
+
+  @override
+  String get communityFactorCountry => 'Land';
+
+  @override
+  String get communityFactorTopic => 'Thema';
+
+  @override
+  String get communityFactorExperience => 'Erfahrung';
+
+  @override
+  String get communityFactorPlatform => 'Plattform';
+
+  @override
+  String get communityFactorPublicActivity => 'Öffentliche Aktivität';
+
+  @override
+  String get communityFactorPreferredAction => 'Bevorzugte Aktion';
+
+  @override
+  String get communityWarningNoExperience =>
+      'Keine eigene Erfahrung zu diesem Thema angegeben';
+
+  @override
+  String get communityWarningNotOnPlatform =>
+      'Nicht auf dieser Plattform aktiv';
+
+  @override
+  String get communityWarningLowAuthenticity =>
+      'Niedrigeres Authentizitätssignal';
+
+  @override
+  String get communityWarningProfileAnalysisNoConsent =>
+      'Profilanalyse ohne Einwilligung nicht möglich – öffentliche Aktivität wird nicht verwendet';
+
+  @override
+  String get communityBlockCompanyExcluded => 'Firma ausgeschlossen';
+
+  @override
+  String get communityBlockTopicExcluded => 'Thema ausgeschlossen';
+
+  @override
+  String get communityBlockUnavailable => 'Aktuell nicht verfügbar';
+
+  @override
+  String get communityBlockAccountBlocked => 'Konto gesperrt';
+
+  @override
+  String get communityBlockDomainUnsupported =>
+      'Bereich wird nicht unterstützt';
+
+  @override
+  String get communityMatchingTitle => 'Matching-Ansicht';
+
+  @override
+  String get communityMatchingFromContent => 'Ausgangspunkt: Beitrag';
+
+  @override
+  String get communityMatchingFromMember => 'Ausgangspunkt: Mitglied';
+
+  @override
+  String get communityMatchComponents => 'Score-Komponenten';
+
+  @override
+  String get communityMatchWarningsTitle => 'Hinweise';
+
+  @override
+  String get communityMatchBlockedTitle => 'Ausgeschlossen';
+
+  @override
+  String get communityMatchPossibleActions => 'Mögliche Reaktionsarten';
+
+  @override
+  String get communityMatchNoAssignNote =>
+      'Kein automatisches Zuweisen – ein Mensch entscheidet.';
+
+  @override
+  String get communityMatchEligible => 'Für Zuweisung geeignet';
+
+  @override
+  String get communityMatchIneligible => 'Nicht für Zuweisung geeignet';
+
+  @override
+  String get communityViewMatching => 'Matching-Ansicht öffnen';
+
+  @override
+  String get communityViewProfile => 'Profil ansehen';
+
+  @override
+  String get communityViewContent => 'Beitrag ansehen';
+
+  @override
+  String get communityMatchingEmpty => 'Keine Bewertung verfügbar.';
+
+  @override
+  String get botDemoTitle => 'Wissensbasierte KI-Antwort';
+
+  @override
+  String get botDemoIntro =>
+      'Die KI antwortet ausschließlich auf Basis der freigegebenen Unternehmens-Wissensbasis. Quellen bleiben sichtbar; nichts wird veröffentlicht.';
+
+  @override
+  String get botDemoRecentImportTitle =>
+      'Dieses Dokument wurde gerade in die Wissensbasis übernommen.';
+
+  @override
+  String get botDemoRecentImportBody =>
+      'Sie können BusinessBrain jetzt Fragen zu diesem Dokument stellen.';
+
+  @override
+  String get botDemoQuestionHint => 'Ihre Unternehmensfrage';
+
+  @override
+  String get botDemoSubmit => 'Antwort erstellen';
+
+  @override
+  String get botDemoLoading => 'Antwort wird erstellt …';
+
+  @override
+  String get botDemoAnswerTitle => 'Antwort';
+
+  @override
+  String get botDemoSources => 'Quellen';
+
+  @override
+  String get botDemoGrounded => 'Wissensbasiert';
+
+  @override
+  String get botDemoNotGrounded => 'Kein Treffer';
+
+  @override
+  String get botDemoCoverageFull =>
+      'Vollständig aus bestätigtem Firmenwissen beantwortet';
+
+  @override
+  String get botDemoCoveragePartial =>
+      'Teilweise beantwortet – konkrete Angabe fehlt';
+
+  @override
+  String get botDemoCoverageNone => 'Keine bestätigte Information vorhanden';
+
+  @override
+  String get botDemoCoverageSensitive =>
+      'Sensible Frage – menschliche Prüfung empfohlen';
+
+  @override
+  String get botDemoFurtherInfoTitle => 'Weiterführende Informationen';
+
+  @override
+  String get botDemoFurtherInfoBody => 'Weitere Informationen finden Sie hier.';
+
+  @override
+  String get botDemoMoreLinks => 'Weitere Informationen';
+
+  @override
+  String get kbLinkSectionTitle => 'Website-Verknüpfung (optional)';
+
+  @override
+  String get kbLinkSectionHint =>
+      'Dieser Link wird nur angezeigt, wenn der Wissenseintrag eine Antwort tatsächlich unterstützt.';
+
+  @override
+  String get kbLinkWebsite => 'Website';
+
+  @override
+  String get kbLinkButtonText => 'Button-Text';
+
+  @override
+  String get kbLinkType => 'Link-Typ';
+
+  @override
+  String get kbLinkTypeNone => 'Nicht festgelegt';
+
+  @override
+  String get knowledgeLinkProduct => 'Produktseite';
+
+  @override
+  String get knowledgeLinkPrices => 'Preise';
+
+  @override
+  String get knowledgeLinkFaq => 'FAQ';
+
+  @override
+  String get knowledgeLinkGuide => 'Bedienungsanleitung';
+
+  @override
+  String get knowledgeLinkDownload => 'Download';
+
+  @override
+  String get knowledgeLinkVideo => 'Video';
+
+  @override
+  String get knowledgeLinkSupport => 'Support';
+
+  @override
+  String get knowledgeLinkContact => 'Kontakt';
+
+  @override
+  String get knowledgeLinkBlog => 'Blog';
+
+  @override
+  String get knowledgeLinkShop => 'Shop';
+
+  @override
+  String get knowledgeLinkForm => 'Formular';
+
+  @override
+  String get knowledgeLinkWebsite => 'Website';
+
+  @override
+  String get botDemoNoKnowledge =>
+      'Ich habe erkannt, dass zu deiner Frage aktuell noch keine ausreichenden Informationen in der Wissensbasis vorhanden sind.';
+
+  @override
+  String get botDemoBlocked =>
+      'Diese Frage berührt ein sensibles Thema. Sie wird bewusst nicht automatisch beantwortet, sondern an einen Menschen übergeben – es wurde keine KI-Antwort erzeugt.';
+
+  @override
+  String get botDemoGapTitle => 'Wissenslücke erkannt';
+
+  @override
+  String get botDemoGapRecommendTitle =>
+      'Empfohlene Inhalte zur Ergänzung der Wissensbasis:';
+
+  @override
+  String get botDemoGapItemFaq => 'Häufig gestellte Fragen (FAQ)';
+
+  @override
+  String get botDemoGapItemFeatures => 'Funktionsbeschreibung';
+
+  @override
+  String get botDemoGapItemGuide => 'Bedienungsanleitung';
+
+  @override
+  String get botDemoGapItemSteps => 'Schritt-für-Schritt-Anleitung';
+
+  @override
+  String get botDemoGapItemScreenshots => 'Screenshots';
+
+  @override
+  String get botDemoGapItemRequirements => 'Technische Voraussetzungen';
+
+  @override
+  String get botDemoGapClosing =>
+      'Sobald diese Inhalte ergänzt sind, können zukünftige Kundenfragen deutlich präziser beantwortet werden.';
+
+  @override
+  String get botDemoGapTermsLabel => 'Betroffene Begriffe aus deiner Frage:';
+
+  @override
+  String get botDemoHumanReview =>
+      'KI-Vorschlag – vor Veröffentlichung prüfen.';
+
+  @override
+  String get botDemoProviderLabel => 'Provider';
+
+  @override
+  String get botDemoProviderMock => 'Offline-Mock';
+
+  @override
+  String get botDemoModelLabel => 'Modell';
+
+  @override
+  String get botDemoError => 'Antwort konnte nicht erstellt werden.';
+
+  @override
+  String get botDemoRetry => 'Erneut versuchen';
+
+  @override
+  String get botDemoErrorConfig =>
+      'KI ist nicht konfiguriert. Bitte Server-Konfiguration prüfen.';
+
+  @override
+  String get botDemoErrorNetwork =>
+      'KI-Dienst nicht erreichbar. Bitte später erneut versuchen.';
+
+  @override
+  String get botDemoErrorTimeout =>
+      'Zeitüberschreitung beim KI-Dienst. Bitte erneut versuchen.';
+
+  @override
+  String get botDemoErrorRateLimit =>
+      'Zu viele Anfragen. Bitte kurz warten und erneut versuchen.';
+
+  @override
+  String get botDemoErrorBlocked =>
+      'Die Antwort wurde durch Sicherheitsfilter blockiert.';
+
+  @override
+  String get botDemoErrorServer => 'Der KI-Dienst ist derzeit nicht verfügbar.';
+
+  @override
+  String get navCompanyEvolution => 'Unternehmens-Evolution';
+
+  @override
+  String get navGroupResearch => 'Recherche';
+
+  @override
+  String get companyEvolutionTitle => 'Unternehmens-Evolution';
+
+  @override
+  String get companyEvolutionSubtitle =>
+      'Strukturierte externe Informationen zu einem Unternehmen – aus Demo-Daten, ohne Live-Recherche.';
+
+  @override
+  String get companyEvolutionSelectCompany => 'Unternehmen';
+
+  @override
+  String get companyEvolutionSnapshotTitle => 'Unternehmensprofil';
+
+  @override
+  String get companyEvolutionTimelineTitle => 'Zeitleiste';
+
+  @override
+  String get companyEvolutionSourcesTitle => 'Recherche-Quellen';
+
+  @override
+  String get companyEvolutionEvidenceForDocument =>
+      'Belege aus diesem Dokument';
+
+  @override
+  String get companyEvolutionFieldIndustry => 'Branche';
+
+  @override
+  String get companyEvolutionFieldFounded => 'Gründungsjahr';
+
+  @override
+  String get companyEvolutionFieldCountries => 'Länder';
+
+  @override
+  String get companyEvolutionFieldProducts => 'Bekannte Produkte';
+
+  @override
+  String get companyEvolutionFieldWebsite => 'Website';
+
+  @override
+  String get companyEvolutionFieldSocial => 'Social-Media-Kanäle';
+
+  @override
+  String get companyEvolutionFieldSegment => 'Marktsegment';
+
+  @override
+  String get companyEvolutionFieldRating => 'Bewertung';
+
+  @override
+  String get companyEvolutionFieldUpdated => 'Letzter Datenstand';
+
+  @override
+  String get companyEvolutionDocSource => 'Quelle';
+
+  @override
+  String get companyEvolutionDocType => 'Typ';
+
+  @override
+  String get companyEvolutionDocPublished => 'Veröffentlicht';
+
+  @override
+  String get companyEvolutionDocLanguage => 'Sprache';
+
+  @override
+  String get companyEvolutionDocCountry => 'Land';
+
+  @override
+  String get companyEvolutionDocUrl => 'URL';
+
+  @override
+  String get companyEvolutionEvidenceConfidence => 'Konfidenz';
+
+  @override
+  String get companyEvolutionEvidenceExtracted => 'Extrahiert';
+
+  @override
+  String get companyEvolutionTrustTitle => 'Transparenzhinweis';
+
+  @override
+  String get companyEvolutionTrustBody =>
+      'Demo-Daten – keine Live-Recherche, keine KI-generierten Schlussfolgerungen. Quellen und Aussagen sind getrennt modelliert.';
+
+  @override
+  String get companyEvolutionEmptyCompanies => 'Keine Unternehmen verfügbar.';
+
+  @override
+  String get companyEvolutionEmptyTimeline =>
+      'Keine Zeitleisten-Einträge vorhanden.';
+
+  @override
+  String get companyEvolutionEmptyDocuments =>
+      'Keine Recherche-Dokumente vorhanden.';
+
+  @override
+  String get companyEvolutionEmptyEvidence =>
+      'Keine Belege zu diesem Dokument.';
+
+  @override
+  String get timelineCategoryFounding => 'Gründung';
+
+  @override
+  String get timelineCategoryProduct => 'Produkt';
+
+  @override
+  String get timelineCategoryMarketing => 'Marketing';
+
+  @override
+  String get timelineCategoryPartnership => 'Partnerschaft';
+
+  @override
+  String get timelineCategoryExpansion => 'Expansion';
+
+  @override
+  String get timelineCategoryLegal => 'Recht';
+
+  @override
+  String get timelineCategoryFinance => 'Finanzen';
+
+  @override
+  String get timelineCategoryHiring => 'Personal';
+
+  @override
+  String get timelineCategoryStrategy => 'Strategie';
+
+  @override
+  String get timelineCategoryCrisis => 'Krise';
+
+  @override
+  String get timelineCategoryMilestone => 'Meilenstein';
+
+  @override
+  String get researchDocTypeWebsite => 'Website';
+
+  @override
+  String get researchDocTypeNews => 'News';
+
+  @override
+  String get researchDocTypeBlog => 'Blog';
+
+  @override
+  String get researchDocTypeSocialPost => 'Social Post';
+
+  @override
+  String get researchDocTypeReview => 'Bewertung';
+
+  @override
+  String get researchDocTypePressRelease => 'Pressemitteilung';
+
+  @override
+  String get researchDocTypeForum => 'Forum';
+
+  @override
+  String get researchDocTypeVideo => 'Video';
+
+  @override
+  String get researchDocTypeFinancial => 'Finanzbericht';
+
+  @override
+  String get researchDocTypeUnknown => 'Unbekannt';
+
+  @override
+  String get researchEvidenceCategoryProduct => 'Produkt';
+
+  @override
+  String get researchEvidenceCategoryMarketing => 'Marketing';
+
+  @override
+  String get researchEvidenceCategoryExpansion => 'Expansion';
+
+  @override
+  String get researchEvidenceCategoryHiring => 'Personal';
+
+  @override
+  String get researchEvidenceCategoryFinance => 'Finanzen';
+
+  @override
+  String get researchEvidenceCategoryPartnership => 'Partnerschaft';
+
+  @override
+  String get researchEvidenceCategoryReputation => 'Reputation';
+
+  @override
+  String get researchEvidenceCategoryStrategy => 'Strategie';
+
+  @override
+  String get researchEvidenceCategoryOther => 'Sonstiges';
+
+  @override
+  String get navKnowledgeBuilder => 'Wissens-Builder';
+
+  @override
+  String get kbTitle => 'Knowledge Builder';
+
+  @override
+  String get kbIntro =>
+      'Füge einen langen Text ein (z. B. Anleitung, Doku, Notizen). Die Analyse schlägt strukturierte Wissenseinträge vor – ohne etwas zu erfinden oder zu speichern.';
+
+  @override
+  String get kbInputHint => 'Unternehmenswissen hier einfügen …';
+
+  @override
+  String get kbAnalyze => 'Wissen analysieren';
+
+  @override
+  String get kbDemoDocumentsTitle => 'Demo-Dokumente';
+
+  @override
+  String get kbDemoDocumentsIntro =>
+      'Sie können ein eigenes Dokument einfügen oder eines der vorbereiteten Beispieldokumente laden.';
+
+  @override
+  String get kbLoadExample => 'Beispiel laden';
+
+  @override
+  String get kbExampleLoaded => 'Beispieldokument geladen';
+
+  @override
+  String get kbExampleLanguage => 'Sprache';
+
+  @override
+  String get kbExampleArea => 'Wissensbereich';
+
+  @override
+  String get kbExampleDocumentType => 'Dokumenttyp';
+
+  @override
+  String get kbExampleReady => 'Bereit zur Analyse.';
+
+  @override
+  String get kbPackageBadge => 'Umfangreiches Hauptbeispiel';
+
+  @override
+  String get kbPackageLoad => 'Gesamtes HB-Cure-Wissen laden';
+
+  @override
+  String get kbPackageLoaded => 'HB-Cure-Wissenspaket geladen';
+
+  @override
+  String get kbPackageNotAnalyzed =>
+      'Die Quelldokumente wurden nur in den Editor geladen. Es wurde noch nichts analysiert oder gespeichert.';
+
+  @override
+  String get kbPackageIncludedAreas => 'Enthaltene Bereiche';
+
+  @override
+  String get kbPackageDocuments => 'Quelldokumente';
+
+  @override
+  String get kbPackageLanguage => 'Sprache';
+
+  @override
+  String get kbPackageAreas => 'Wissensbereiche';
+
+  @override
+  String get kbPackageTimeSensitive => 'Zeitabhängige Inhalte';
+
+  @override
+  String get kbPackageReviewRequired => 'Prüfpflichtige Aussagen';
+
+  @override
+  String get kbPackageSourcesTitle => 'Inhalte und Quellenherkunft ansehen';
+
+  @override
+  String get kbPackageSourcesHint =>
+      'Website-Daten und interne Projektdokumentation bleiben klar getrennt.';
+
+  @override
+  String get kbPackageSourceLabel => 'Quelle';
+
+  @override
+  String get kbPackageSourceTypeLabel => 'Quellentyp';
+
+  @override
+  String get kbPackageDataStatusLabel => 'Datenstand';
+
+  @override
+  String get kbPackageLastCheckedLabel => 'Zuletzt geprüft';
+
+  @override
+  String get kbPackageRiskReview =>
+      'Rechtliche beziehungsweise fachliche Prüfung erforderlich';
+
+  @override
+  String get kbPackageRiskImpact =>
+      'Wirkungsbezogene Aussage – vor Veröffentlichung prüfen';
+
+  @override
+  String get kbPackageRiskTestimonial =>
+      'Erfahrungsbericht – nicht als Tatsachenbehauptung verwenden';
+
+  @override
+  String get kbPackageTimeSensitiveBadge => 'Zeitabhängig';
+
+  @override
+  String get kbPackageReviewRecommendedLabel => 'Erneute Prüfung';
+
+  @override
+  String get kbPackageReviewRecommended => 'Vor Veröffentlichung empfohlen';
+
+  @override
+  String get kbAnalyzeReady => 'Dokument bereit';
+
+  @override
+  String get kbAnalyzeEmptyHint => 'Dokument einfügen oder Beispiel laden';
+
+  @override
+  String get kbCharacters => 'Zeichen';
+
+  @override
+  String get kbAnalyzing => 'Analysiere …';
+
+  @override
+  String get kbReset => 'Zurücksetzen';
+
+  @override
+  String get kbTrustNotice =>
+      'Nichts wird automatisch gespeichert. Die KI erfindet keine Fakten – Inhalte bleiben unverändert, nur Titel, Fragen und Schlagwörter werden erzeugt.';
+
+  @override
+  String get kbNoResults =>
+      'Keine auswertbaren Aussagen gefunden. Bitte mehr Text einfügen.';
+
+  @override
+  String get kbStatsTitle => 'Analyse-Übersicht';
+
+  @override
+  String get kbStatSentences => 'Analysierte Sätze';
+
+  @override
+  String get kbStatTopics => 'Erkannte Themen';
+
+  @override
+  String get kbStatNew => 'Neue Wissenseinträge';
+
+  @override
+  String get kbStatExisting => 'Vorhandene Einträge';
+
+  @override
+  String get kbStatDuplicates => 'Mögliche Dubletten';
+
+  @override
+  String get kbStatUnclear => 'Unklare Aussagen';
+
+  @override
+  String get kbDraftsTitle => 'Vorgeschlagene Einträge';
+
+  @override
+  String get kbDecisionAccept => 'Übernehmen';
+
+  @override
+  String get kbDecisionEdit => 'Bearbeiten';
+
+  @override
+  String get kbDecisionIgnore => 'Ignorieren';
+
+  @override
+  String get kbFieldTitle => 'Titel';
+
+  @override
+  String get kbFieldQuestion => 'Frage';
+
+  @override
+  String get kbFieldContent => 'Inhalt';
+
+  @override
+  String get kbFieldKeywords => 'Schlagwörter';
+
+  @override
+  String get kbFieldArea => 'Bereich';
+
+  @override
+  String get kbFieldCategory => 'Kategorie';
+
+  @override
+  String get kbFieldDetectedTopics => 'Erkannte Themen';
+
+  @override
+  String get kbDuplicateBadge => 'Mögliche Dublette';
+
+  @override
+  String get kbExistingTitle => 'Bestehender Eintrag';
+
+  @override
+  String get kbNewInfoTitle => 'Neue Information';
+
+  @override
+  String get kbSuggestionTitle => 'Vorschlag';
+
+  @override
+  String get kbMergeAugment => 'Ergänzen';
+
+  @override
+  String get kbMergeReplace => 'Ersetzen';
+
+  @override
+  String get kbMergeNew => 'Neuen Eintrag anlegen';
+
+  @override
+  String get kbCatFaq => 'FAQ';
+
+  @override
+  String get kbCatInstallation => 'Installationsanleitung';
+
+  @override
+  String get kbCatStepByStep => 'Schritt-für-Schritt';
+
+  @override
+  String get kbCatTechnicalRequirement => 'Technische Voraussetzung';
+
+  @override
+  String get kbCatWarning => 'Warnhinweis';
+
+  @override
+  String get kbCatTroubleshooting => 'Problemlösung';
+
+  @override
+  String get kbCatProductFeature => 'Produktfunktion';
+
+  @override
+  String get kbCatTip => 'Tipp';
+
+  @override
+  String get kbCatDefinition => 'Definition';
+
+  @override
+  String get kbCatContact => 'Kontaktinformation';
+
+  @override
+  String get kbCatGeneral => 'Allgemein';
+
+  @override
+  String get kbAnalysisTitle => 'BusinessBrain analysiert Ihr Wissen';
+
+  @override
+  String get kbAnalysisComplete => 'Analyse abgeschlossen';
+
+  @override
+  String get kbAnalysisIntro =>
+      'Jeder Schritt bleibt sichtbar: erkennen, strukturieren und mit der Wissensbasis abgleichen.';
+
+  @override
+  String get kbPhaseRecognizeTitle => 'BusinessBrain erkennt den Kontext';
+
+  @override
+  String get kbPhaseStructureTitle => 'BusinessBrain strukturiert das Wissen';
+
+  @override
+  String get kbPhaseCompareTitle =>
+      'BusinessBrain prüft die vorhandene Wissensbasis';
+
+  @override
+  String get kbPhasePending => 'Ausstehend';
+
+  @override
+  String get kbPhaseActive => 'In Arbeit';
+
+  @override
+  String get kbPhaseComplete => 'Abgeschlossen';
+
+  @override
+  String get kbDetectedLanguage => 'Sprache';
+
+  @override
+  String get kbDetectedDocumentType => 'Dokumenttyp';
+
+  @override
+  String get kbDetectedStatements => 'Erkannte Aussagen';
+
+  @override
+  String get kbMetricFaq => 'FAQ';
+
+  @override
+  String get kbMetricProductFeatures => 'Produktfunktionen';
+
+  @override
+  String get kbMetricSteps => 'Schritt-für-Schritt-Anleitungen';
+
+  @override
+  String get kbMetricWarnings => 'Warnhinweise';
+
+  @override
+  String get kbMetricRequirements => 'Technische Voraussetzungen';
+
+  @override
+  String get kbMetricDefinitions => 'Definitionen';
+
+  @override
+  String get kbMetricTips => 'Tipps';
+
+  @override
+  String get kbMetricKeywords => 'Schlagwörter';
+
+  @override
+  String get kbMetricSimilarTopics => 'Ähnliche Themen';
+
+  @override
+  String get kbMetricProducts => 'Erkannte Produkte';
+
+  @override
+  String get kbMetricDevices => 'Erkannte Geräte';
+
+  @override
+  String get kbMetricFunctions => 'Erkannte Funktionen';
+
+  @override
+  String get kbSummaryTitle =>
+      'BusinessBrain hat Ihren Text erfolgreich analysiert.';
+
+  @override
+  String get kbSummaryIntro =>
+      'BusinessBrain hat Ihren Text analysiert und daraus strukturiertes Unternehmenswissen vorgeschlagen. Es wurde noch nichts gespeichert. Erst nach Ihrer Bestätigung wird neues Wissen Teil der Wissensbasis.';
+
+  @override
+  String get kbPreviewIntro =>
+      'Prüfen Sie jetzt jeden vorgeschlagenen Eintrag und seine Herkunft im Originaltext.';
+
+  @override
+  String get kbCreatedFrom => 'Erstellt aus:';
+
+  @override
+  String get kbLanguageGerman => 'Deutsch';
+
+  @override
+  String get kbLanguageEnglish => 'Englisch';
+
+  @override
+  String get kbLanguageUnknown => 'Nicht eindeutig';
+
+  @override
+  String get kbDocTypeFaqCollection => 'FAQ-Sammlung';
+
+  @override
+  String get kbDocTypeProductDescription => 'Produktbeschreibung';
+
+  @override
+  String get kbDocTypeInstructions => 'Anleitung';
+
+  @override
+  String get kbDocTypeTechnicalDocumentation => 'Technische Dokumentation';
+
+  @override
+  String get kbDocTypeCompanyKnowledge => 'Unternehmenswissen';
+
+  @override
+  String get kbDemoBadge => 'Wissensvorschau';
+
+  @override
+  String get kbDemoNotSaved => 'Noch nicht gespeichert';
+
+  @override
+  String get kbDemoSaved => 'Im Workspace bestätigt';
+
+  @override
+  String get kbDemoTitle => 'Dieses Wissen sofort ausprobieren';
+
+  @override
+  String get kbDemoIntro =>
+      'BusinessBrain hat passende Beispielfragen ausschließlich aus dem gerade analysierten Text vorbereitet. Wählen Sie eine Frage und prüfen Sie unmittelbar, wie das vorgeschlagene Wissen verwendet werden kann.';
+
+  @override
+  String get kbDemoQuestionLabel => 'Vorbereitete Beispielfrage';
+
+  @override
+  String get kbDemoCreateAnswer => 'Antwort erstellen';
+
+  @override
+  String get kbDemoAnswerTitle => 'Antwort aus dem analysierten Text';
+
+  @override
+  String get kbDemoSourcesTitle => 'Verwendete Quelle';
+
+  @override
+  String get kbDemoSourceSentence => 'Originalsatz aus dem Dokument';
+
+  @override
+  String get kbImportReviewTitle => 'Wissen in den Workspace übernehmen';
+
+  @override
+  String get kbImportReviewNote =>
+      'Mit diesem Schritt bestätigen Sie alle vorgeschlagenen Einträge gemeinsam. Erst danach werden sie Teil der aktiven Wissensbasis.';
+
+  @override
+  String get kbImportAll => 'Alle vorgeschlagenen Wissenseinträge übernehmen';
+
+  @override
+  String get kbImporting => 'Wissenseinträge werden übernommen …';
+
+  @override
+  String kbImportSuccessTitle(int count) {
+    return '$count Wissenseinträge übernommen';
+  }
+
+  @override
+  String kbImportKnowledgeCount(int before, int after) {
+    return 'Wissensbasis: $before → $after';
+  }
+
+  @override
+  String get kbImportGroundedReady =>
+      'Grounded AI verwendet jetzt dieses Unternehmenswissen.';
+
+  @override
+  String get kbImportError =>
+      'Die Wissenseinträge konnten nicht vollständig übernommen werden. Bitte versuchen Sie es erneut.';
+
+  @override
+  String get kbSuccessDialogTitle => 'Unternehmenswissen erfolgreich erweitert';
+
+  @override
+  String get kbSuccessDialogBody =>
+      'BusinessBrain hat die vorgeschlagenen Wissenseinträge übernommen.';
+
+  @override
+  String get kbSuccessBefore => 'Vorher';
+
+  @override
+  String get kbSuccessNow => 'Jetzt';
+
+  @override
+  String get kbSuccessImported => 'Übernommene Einträge';
+
+  @override
+  String kbSuccessEntryValue(int count) {
+    return '$count Wissenseinträge';
+  }
+
+  @override
+  String get kbSuccessNewFaq => 'Neue FAQ';
+
+  @override
+  String get kbSuccessNewProductFeatures => 'Neue Produktfunktionen';
+
+  @override
+  String get kbSuccessNewRequirements => 'Neue technische Voraussetzungen';
+
+  @override
+  String get kbSuccessWorkspaceTitle => 'Unternehmenswissen';
+
+  @override
+  String get kbSuccessDocuments => 'Dokumente';
+
+  @override
+  String get kbSuccessKnowledgeEntries => 'Wissenseinträge';
+
+  @override
+  String get kbSuccessFaq => 'FAQ';
+
+  @override
+  String get kbSuccessKeywords => 'Schlagwörter';
+
+  @override
+  String get kbSuccessGroundedReady =>
+      'Das neue Wissen steht jetzt für Grounded Answers zur Verfügung.';
+
+  @override
+  String get kbSuccessAddDocument => 'Weiteres Dokument hinzufügen';
+
+  @override
+  String get kbSuccessAskNow => 'BusinessBrain jetzt befragen';
+
+  @override
+  String get kbCycleDocument => 'Dokument';
+
+  @override
+  String get kbCycleStructured => 'Strukturiert';
+
+  @override
+  String get kbCycleAccepted => 'Übernommen';
+
+  @override
+  String get kbCycleAnswerable => 'Ab jetzt beantwortbar';
+
+  @override
+  String get navRolePortals => 'Portale';
+
+  @override
+  String get roleOverviewTitle => 'Rollen & Portale';
+
+  @override
+  String get roleOverviewIntro =>
+      'Drei Ebenen, eine Wissensbasis. Vorschau der reduzierten Navigation je Rolle – ohne Login und ohne echte Rechtevergabe.';
+
+  @override
+  String get roleTrustNotice =>
+      'Demo-Struktur: keine Anmeldung, keine Berechtigungsprüfung, keine Backend-Änderung. Nur zur Veranschaulichung.';
+
+  @override
+  String get roleSharedKnowledgeNote =>
+      'Alle drei Ebenen greifen auf dieselbe Wissensbasis zu – neue Informationen werden ausschließlich im Firmenportal gepflegt.';
+
+  @override
+  String get roleSectionsTitle => 'Sichtbare Bereiche';
+
+  @override
+  String get roleDayTitle => 'Beispiel-Tagesablauf';
+
+  @override
+  String get roleSelectTier => 'Ebene';
+
+  @override
+  String get roleSelectDepartment => 'Abteilung';
+
+  @override
+  String get rolePortalCompanyTitle => 'Firmenportal';
+
+  @override
+  String get rolePortalEmployeeTitle => 'Mitarbeiterportal';
+
+  @override
+  String get rolePortalCustomerTitle => 'Kundenportal';
+
+  @override
+  String get roleTierCompany => 'Firmenadministrator';
+
+  @override
+  String get roleTierEmployee => 'Mitarbeiter';
+
+  @override
+  String get roleTierCustomer => 'Kunde';
+
+  @override
+  String get roleDeptSupport => 'Support';
+
+  @override
+  String get roleDeptMarketing => 'Marketing';
+
+  @override
+  String get roleDeptTechnical => 'Technik';
+
+  @override
+  String get roleDeptSales => 'Vertrieb';
+
+  @override
+  String get roleSecProducts => 'Produkte';
+
+  @override
+  String get roleSecResearch => 'Research';
+
+  @override
+  String get roleSecCompetitors => 'Wettbewerber';
+
+  @override
+  String get roleSecEmployees => 'Mitarbeiter';
+
+  @override
+  String get roleSecRoles => 'Rollen';
+
+  @override
+  String get roleSecCustomerAssistant => 'Kunden-Assistent';
+
+  @override
+  String get roleSecContact => 'Kontakt';
+
+  @override
+  String get roleDayCompany1 =>
+      'Dokumente importieren und mit dem Knowledge Builder strukturieren.';
+
+  @override
+  String get roleDayCompany2 =>
+      'Rollen vergeben und Analysen im Dashboard prüfen.';
+
+  @override
+  String get roleDayCompany3 =>
+      'Company Evolution und Wettbewerber im Blick behalten.';
+
+  @override
+  String get roleDayEmployee1 =>
+      'Nur die zugewiesenen Bereiche öffnen (z. B. Support: FAQ & Prüfung).';
+
+  @override
+  String get roleDayEmployee2 =>
+      'Antworten für Kunden vorbereiten und Wissen ergänzen.';
+
+  @override
+  String get roleDayEmployee3 =>
+      'Keine Systemeinstellungen – Fokus auf die tägliche Arbeit.';
+
+  @override
+  String get roleDayCustomer1 => 'Eine Frage im öffentlichen Bereich stellen.';
+
+  @override
+  String get roleDayCustomer2 =>
+      'Antwort mit Quellen lesen und freigegebene Dokumente öffnen.';
+
+  @override
+  String get roleDayCustomer3 =>
+      'Bei Bedarf Kontakt aufnehmen – keine internen Daten sichtbar.';
+
+  @override
+  String get navKnowledgeImprovement => 'Lernkreislauf';
+
+  @override
+  String get kiTitle => 'Knowledge Improvement';
+
+  @override
+  String get kiIntro =>
+      'So wird BusinessBrain mit jeder Frage besser: der Wissens-Lernkreislauf in sieben Schritten.';
+
+  @override
+  String get kiTrustNotice =>
+      'Illustrative Demo – kein Live-KI-Aufruf, keine Speicherung. Das Prinzip in 30 Sekunden.';
+
+  @override
+  String get kiStart => 'Start';
+
+  @override
+  String get kiNext => 'Weiter';
+
+  @override
+  String get kiRestart => 'Neu starten';
+
+  @override
+  String get kiStep => 'Schritt';
+
+  @override
+  String get kiStage1Title => 'Kundenfrage';
+
+  @override
+  String get kiStage1Body => 'Ein Kunde stellt eine konkrete Frage.';
+
+  @override
+  String get kiStage2Title => 'KI-Antwort';
+
+  @override
+  String get kiStage2Body =>
+      'Die KI antwortet ausschließlich aus der freigegebenen Wissensbasis.';
+
+  @override
+  String get kiStage3Title => 'Wissenslücke erkannt';
+
+  @override
+  String get kiStage3Body =>
+      'Fehlt Wissen, bleibt die KI ehrlich und markiert die Lücke.';
+
+  @override
+  String get kiStage4Title => 'Verbesserungsvorschlag';
+
+  @override
+  String get kiStage4Body =>
+      'BusinessBrain schlägt automatisch einen passenden Wissenseintrag vor.';
+
+  @override
+  String get kiStage5Title => 'Mitarbeiter übernimmt';
+
+  @override
+  String get kiStage5Body =>
+      'Ein Mensch prüft und übernimmt die Ergänzung – nichts wird automatisch gespeichert.';
+
+  @override
+  String get kiStage6Title => 'Wissensbasis wächst';
+
+  @override
+  String get kiStage6Body =>
+      'Der neue Eintrag wird Teil der einen Wissensbasis.';
+
+  @override
+  String get kiStage7Title => 'Alle Antworten profitieren';
+
+  @override
+  String get kiStage7Body =>
+      'Dieselbe Frage wird künftig präzise und belegt beantwortet.';
+
+  @override
+  String get kiQuestion => 'Wie verbinde ich mein Gerät über Bluetooth?';
+
+  @override
+  String get kiGapAnswer =>
+      'Dazu liegen aktuell noch nicht genügend Informationen in der Wissensbasis vor.';
+
+  @override
+  String get kiSuggestionTitle => 'Gerät über Bluetooth verbinden';
+
+  @override
+  String get kiSuggestionContent =>
+      'Bluetooth aktivieren und das Gerät in der App auswählen, um die Verbindung herzustellen.';
+
+  @override
+  String get kiImprovedAnswer =>
+      'Aktiviere Bluetooth und wähle dein Gerät in der App aus – anschließend ist die Verbindung hergestellt.';
+
+  @override
+  String get kiKbCountLabel => 'Wissenseinträge';
+
+  @override
+  String get kiBeforeLabel => 'Vorher';
+
+  @override
+  String get kiAfterLabel => 'Nachher';
+
+  @override
+  String get kiAhaTitle => 'Der Aha-Moment';
+
+  @override
+  String get kiAhaBody =>
+      'Aus einer Wissenslücke wird dauerhaftes Wissen – jede zukünftige Antwort profitiert.';
+
+  @override
+  String get kiSourceLabel => 'Quelle';
+
+  @override
+  String get navGuidedDemo => 'Geführte Demo';
+
+  @override
+  String get gdStart => 'Demo starten';
+
+  @override
+  String get gdBack => 'Zurück';
+
+  @override
+  String get gdNext => 'Weiter';
+
+  @override
+  String get gdWelcomeStatement =>
+      'BusinessBrain ist das digitale Wissenszentrum eines Unternehmens.';
+
+  @override
+  String get gdWelcomeSubtitle =>
+      'In zwei Minuten durch den gesamten Workflow – vom Firmenwissen bis zur lernenden Antwort.';
+
+  @override
+  String get gdStep1Title => 'Willkommen';
+
+  @override
+  String get gdStep2Title => 'Wissen aufbauen';
+
+  @override
+  String get gdStep3Title => 'Grounded Antwort';
+
+  @override
+  String get gdStep4Title => 'Wissenslücke';
+
+  @override
+  String get gdStep5Title => 'Verbesserung & Kontrolle';
+
+  @override
+  String get gdStep6Title => 'Lernkreislauf';
+
+  @override
+  String get gdStep7Title => 'Fazit';
+
+  @override
+  String get gdNarr2 =>
+      'Aus unstrukturiertem Text entsteht automatisch strukturiertes Firmenwissen – nichts wird ohne Prüfung gespeichert.';
+
+  @override
+  String get gdNarr3 =>
+      'BusinessBrain beantwortet Fragen ausschließlich aus dem freigegebenen Firmenwissen und zeigt die Quellen – es erfindet nichts.';
+
+  @override
+  String get gdNarr4 =>
+      'Fehlt Wissen, bleibt BusinessBrain ehrlich und markiert die Lücke, statt zu halluzinieren.';
+
+  @override
+  String get gdNarr5 =>
+      'BusinessBrain schlägt eine Ergänzung vor. Ein Mitarbeiter entscheidet – nichts wird automatisch übernommen.';
+
+  @override
+  String get gdNarr6 =>
+      'Der komplette Kreislauf auf einen Blick: bestätigtes Wissen verbessert alle zukünftigen Antworten.';
+
+  @override
+  String get gdLoopTitle => 'Der Lernkreislauf';
+
+  @override
+  String get gdLoop1 => 'Firmenwissen';
+
+  @override
+  String get gdLoop2 => 'Kundenfragen beantworten';
+
+  @override
+  String get gdLoop3 => 'Neue Fragen entstehen';
+
+  @override
+  String get gdLoop4 => 'Wissenslücken erkannt';
+
+  @override
+  String get gdLoop5 => 'Verbesserungsvorschläge';
+
+  @override
+  String get gdLoop6 => 'Mitarbeiter entscheidet';
+
+  @override
+  String get gdLoop7 => 'Wissensbasis wächst';
+
+  @override
+  String get gdLoop8 => 'Bessere Antworten';
+
+  @override
+  String get gdClosingTitle =>
+      'BusinessBrain lernt nicht durch Halluzinationen.';
+
+  @override
+  String get gdClosingLine1 =>
+      'Das Unternehmen behält jederzeit die Kontrolle.';
+
+  @override
+  String get gdClosingLine2 =>
+      'Jede bestätigte Ergänzung verbessert alle zukünftigen Antworten.';
+
+  @override
+  String get navBusinessStory => 'Business Story';
+
+  @override
+  String get bsTitle => 'BusinessBrain für Unternehmen';
+
+  @override
+  String get bsSubtitle =>
+      'In zwei Minuten: welches Problem wir lösen, warum das kein gewöhnlicher KI-Chat ist und welcher Nutzen für Unternehmen entsteht.';
+
+  @override
+  String get bsProblemTitle => 'Das Problem';
+
+  @override
+  String get bsProblemBody =>
+      'Viele Unternehmen besitzen enormes Wissen – verteilt auf PDFs, E-Mails, Webseiten, Mitarbeiter, Handbücher und Support-Anfragen. Dadurch gehen Zeit, Wissen und Qualität verloren.';
+
+  @override
+  String get bsSolutionTitle => 'Die Lösung';
+
+  @override
+  String get bsSolutionBody =>
+      'BusinessBrain bündelt dieses Wissen in einer zentralen Wissensbasis. Die KI beantwortet Fragen ausschließlich auf Basis dieses Wissens und zeigt ihre Quellen. Fehlendes Wissen wird erkannt und als Verbesserungsvorschlag vorbereitet – Mitarbeiter entscheiden jederzeit selbst, was übernommen wird.';
+
+  @override
+  String get bsCycleTitle => 'Der Kreislauf';
+
+  @override
+  String get bsBenefitsTitle => 'Der Nutzen für Unternehmen';
+
+  @override
+  String get bsBenefit1Title => 'Schnellerer Kundensupport';
+
+  @override
+  String get bsBenefit1Body =>
+      'Antworten kommen direkt aus dem freigegebenen Firmenwissen.';
+
+  @override
+  String get bsBenefit2Title => 'Einheitliche Antworten';
+
+  @override
+  String get bsBenefit2Body => 'Alle greifen auf dieselbe Wissensbasis zu.';
+
+  @override
+  String get bsBenefit3Title => 'Zentrale Wissensbasis';
+
+  @override
+  String get bsBenefit3Body =>
+      'Eine Quelle der Wahrheit statt verstreuter Dokumente.';
+
+  @override
+  String get bsBenefit4Title => 'Entlastung der Mitarbeiter';
+
+  @override
+  String get bsBenefit4Body =>
+      'Wiederkehrende Fragen werden zuverlässig beantwortet.';
+
+  @override
+  String get bsBenefit5Title => 'Kontinuierliche Verbesserung';
+
+  @override
+  String get bsBenefit5Body =>
+      'Bestätigtes Wissen verbessert alle zukünftigen Antworten.';
+
+  @override
+  String get bsBenefit6Title => 'Transparente Quellen';
+
+  @override
+  String get bsBenefit6Body =>
+      'Jede Antwort zeigt die verwendeten Wissenseinträge.';
+
+  @override
+  String get bsBenefit7Title => 'Keine Halluzinationen';
+
+  @override
+  String get bsBenefit7Body => 'Es wird nur belegtes Firmenwissen verwendet.';
+
+  @override
+  String get bsBenefit8Title => 'Mensch behält die Kontrolle';
+
+  @override
+  String get bsBenefit8Body =>
+      'Nichts wird automatisch veröffentlicht oder gespeichert.';
+
+  @override
+  String get bsContrastTitle => 'Bewusst mit Grenzen';
+
+  @override
+  String get bsNotTitle => 'Was BusinessBrain bewusst nicht macht';
+
+  @override
+  String get bsDoesTitle => 'Was BusinessBrain tut';
+
+  @override
+  String get bsNot1 => 'Erfindet keine Fakten';
+
+  @override
+  String get bsNot2 => 'Veröffentlicht nichts automatisch';
+
+  @override
+  String get bsNot3 => 'Ersetzt keine Mitarbeiter';
+
+  @override
+  String get bsNot4 => 'Entscheidet nichts selbstständig';
+
+  @override
+  String get bsDoes1 => 'Unterstützt Mitarbeiter';
+
+  @override
+  String get bsDoes2 => 'Erkennt Wissenslücken';
+
+  @override
+  String get bsDoes3 => 'Erstellt Verbesserungsvorschläge';
+
+  @override
+  String get bsDoes4 => 'Lernt durch bestätigtes Firmenwissen';
+
+  @override
+  String get bsVisionTitle => 'Vision';
+
+  @override
+  String get bsVisionBadge => 'Zukünftige Entwicklung';
+
+  @override
+  String get bsVision1 => 'Autonome Research-Agenten';
+
+  @override
+  String get bsVision2 => 'Wettbewerbsanalyse';
+
+  @override
+  String get bsVision3 => 'Sichtbarkeitsüberwachung';
+
+  @override
+  String get bsVision4 => 'Morning Briefings';
+
+  @override
+  String get bsVision5 => 'Trendanalysen';
+
+  @override
+  String get bsVision6 => 'Strategische Handlungsempfehlungen';
+
+  @override
+  String get bsVision7 => 'Intelligente Aufgabenverteilung';
+
+  @override
+  String get bsVision8 => 'Kontinuierliche Unternehmensbeobachtung';
+
+  @override
+  String get bsClosingTitle =>
+      'BusinessBrain entwickelt sich vom Wissenssystem zum digitalen Unternehmensgehirn.';
+
+  @override
+  String get bsClosingBody =>
+      'Heute unterstützt BusinessBrain Unternehmen dabei, ihr Wissen effizient zu organisieren, Kundenfragen zuverlässig zu beantworten und Wissenslücken sichtbar zu machen. Zukünftig soll die Plattform Unternehmen zusätzlich aktiv unterstützen, Entwicklungen beobachten, Chancen erkennen und strategische Empfehlungen liefern.';
+
+  @override
+  String get bsStatusTitle => 'Status-Übersicht';
+
+  @override
+  String get bsStatusIntro =>
+      'Transparente Zuordnung: Was ist heute real, was ist in Arbeit, was ist Vision?';
+
+  @override
+  String get bsStatusAvailable => 'Bereits verfügbar';
+
+  @override
+  String get bsStatusInDev => 'In Entwicklung';
+
+  @override
+  String get bsStatusVision => 'Langfristige Vision';
+
+  @override
+  String get bsFeatKnowledgeBase => 'Zentrale Wissensbasis';
+
+  @override
+  String get bsFeatGrounded => 'Grounded KI-Assistent mit Quellen';
+
+  @override
+  String get bsFeatGapDetection => 'Wissenslücken-Erkennung';
+
+  @override
+  String get bsFeatBuilder => 'AI Knowledge Builder (Import)';
+
+  @override
+  String get bsFeatSuggestions =>
+      'Verbesserungsvorschläge (Mensch entscheidet)';
+
+  @override
+  String get bsFeatLoop => 'Lernkreislauf-Visualisierung';
+
+  @override
+  String get bsFeatEvolution => 'Company Evolution (Demo-Daten)';
+
+  @override
+  String get bsFeatPortals => 'Rollen & Portale (Vorschau)';
+
+  @override
+  String get bsFeatI18n => 'Zweisprachig (DE/EN)';
+
+  @override
+  String get bsFeatLiveGemini => 'Live-Gemini in Produktion (in Härtung)';
+
+  @override
+  String get bsFeatRoleEnforcement => 'Rollen-Durchsetzung & Login-Guards';
+
+  @override
+  String get bsFeatResearchLive => 'Live-Recherche-Pipeline mit echten Quellen';
+
+  @override
+  String get bsFeatCommunity => 'Community-Radar (read-only Demo)';
+
+  @override
+  String get navOperations => 'Operations';
+
+  @override
+  String get opTitle => 'AI Operations Center';
+
+  @override
+  String get opSubtitle =>
+      'Auf einen Blick: wie BusinessBrain Wissen nutzbar macht, Lücken sichtbar macht und Mitarbeiter im Tagesgeschäft unterstützt.';
+
+  @override
+  String get opDemoBadge => 'DEMO';
+
+  @override
+  String get opDemoNoticeTitle => 'Transparente Demonstrationsdaten';
+
+  @override
+  String get opDemoNoticeBody =>
+      'Alle Kennzahlen und Verläufe auf dieser Seite sind ein bewusst kleiner, fest definierter Demo-Datensatz. Sie sind keine Live-Messung und kein Leistungsversprechen.';
+
+  @override
+  String get opDemoDisabledTitle => 'Demonstrationsdaten sind deaktiviert';
+
+  @override
+  String get opDemoDisabledBody =>
+      'Ohne Demo-Modus zeigt das Operations Center keine Beispielkennzahlen. Dadurch werden Demo-Werte niemals mit echten Unternehmensdaten verwechselt.';
+
+  @override
+  String get opActivityTitle => 'Aktivität heute';
+
+  @override
+  String get opActivitySubtitle =>
+      'Der aktuelle Arbeitstag im nachvollziehbaren Demo-Betrieb.';
+
+  @override
+  String get opMetricReviews => 'Human Reviews';
+
+  @override
+  String get opMetricRedirects => 'Website-Weiterleitungen';
+
+  @override
+  String get opMetricDocumentsAnalyzed => 'Dokumente analysiert';
+
+  @override
+  String get opMetricAvgResponseTime => 'Ø Antwortzeit';
+
+  @override
+  String get opSecondsShort => 'Sek.';
+
+  @override
+  String get opHistoryTitle => 'Betriebsverlauf';
+
+  @override
+  String get opHistorySubtitle =>
+      'Zwei ruhige Verläufe aus demselben fest definierten Demo-Datensatz.';
+
+  @override
+  String get opPeriod7 => '7 Tage';
+
+  @override
+  String get opPeriod30 => '30 Tage';
+
+  @override
+  String get opHistoryAnswersTitle => 'Antworten und Wissenslücken';
+
+  @override
+  String get opHistoryKnowledgeTitle => 'Wissenswachstum und Weiterleitungen';
+
+  @override
+  String get opHistoryAnswered => 'Beantwortet';
+
+  @override
+  String get opHistoryGaps => 'Lücken';
+
+  @override
+  String get opHistoryEntries => 'Neue Einträge';
+
+  @override
+  String get opHistoryRedirects => 'Weiterleitungen';
+
+  @override
+  String get opHistoryToday => 'Heute';
+
+  @override
+  String get opGrowthTitle => 'Wissenswachstum';
+
+  @override
+  String get opGrowthSubtitle =>
+      'Struktur der bestätigten Demo-Wissensbasis und heutige Ergänzungen.';
+
+  @override
+  String get opGrowthConfirmed => 'Bestätigte Wissenseinträge';
+
+  @override
+  String get opGrowthFaq => 'Neue FAQ heute';
+
+  @override
+  String get opGrowthProduct => 'Produktwissen';
+
+  @override
+  String get opGrowthSupport => 'Supportwissen';
+
+  @override
+  String get opGrowthDocuments => 'Dokumente';
+
+  @override
+  String get opGrowthTags => 'Schlagwörter';
+
+  @override
+  String get opCustomerTitle => 'Kundenerkenntnisse';
+
+  @override
+  String get opCustomerSubtitle =>
+      'Wiederkehrende Muster aus vorhandenen Demo-Fragen und Supportfällen.';
+
+  @override
+  String get opCustomerQuestions => 'Häufigste Fragen';
+
+  @override
+  String get opCustomerProducts => 'Häufigste Produkte';
+
+  @override
+  String get opCustomerGaps => 'Offene Wissenslücken';
+
+  @override
+  String get opCustomerTopics => 'Meistgesuchte Themen';
+
+  @override
+  String get opCustomerSupport => 'Wiederkehrende Supportprobleme';
+
+  @override
+  String get opItemCurebaseUsage => 'Wie funktioniert CureBase?';
+
+  @override
+  String get opItemAppConnection => 'Wie verbinde ich die App?';
+
+  @override
+  String get opItemPricing => 'Was kostet das System?';
+
+  @override
+  String get opItemPriceDetails => 'Aktuelle Preisdetails';
+
+  @override
+  String get opItemFirmwareHelp => 'Firmware-Fehlerbehebung';
+
+  @override
+  String get opItemCompatibility => 'Gerätekompatibilität';
+
+  @override
+  String get opItemPrograms => 'Programme';
+
+  @override
+  String get opItemBluetoothConnection => 'Bluetooth-Verbindung';
+
+  @override
+  String get opItemFirmwareUpdate => 'Firmware-Update';
+
+  @override
+  String get opItemAppPairing => 'App-Kopplung';
+
+  @override
+  String get opImpactTitle => 'Geschäftlicher Nutzen';
+
+  @override
+  String get opImpactSubtitle =>
+      'Vorsichtige, transparent berechnete Demo-Indikatoren – keine Umsatz- oder Erfolgsversprechen.';
+
+  @override
+  String get opImpactTimeSaved => 'Geschätzte Zeitersparnis';
+
+  @override
+  String get opImpactAvoidedSupport => 'Potenziell vermiedene Supportanfragen';
+
+  @override
+  String get opImpactConsistent => 'Konsistente Antworten';
+
+  @override
+  String get opImpactSources => 'Genutzte Quellen';
+
+  @override
+  String get opImpactReviewRate => 'Abgeschlossene Human-Review-Quote';
+
+  @override
+  String get opImpactMethodNote =>
+      'Demo-Berechnung: sieben Minuten potenzielle Bearbeitungszeit je beantworteter Frage; vermiedene Supportanfragen werden konservativ mit zwei Dritteln der beantworteten Fragen geschätzt.';
+
+  @override
+  String opHoursMinutes(int hours, int minutes) {
+    return '$hours Std. $minutes Min.';
+  }
+
+  @override
+  String get opKnowledgeQualityTitle => 'Wissensqualität';
+
+  @override
+  String get opKnowledgeQualitySubtitle =>
+      'Wie vollständig die heutigen Demo-Fragen mit bestätigtem Wissen bearbeitbar sind.';
+
+  @override
+  String get opQualityFull => 'Vollständig beantwortbar';
+
+  @override
+  String get opQualityPartial => 'Teilweise beantwortbar';
+
+  @override
+  String get opQualityMissing => 'Keine Information';
+
+  @override
+  String get opQualitySensitive => 'Medizinisch sensible Fragen';
+
+  @override
+  String get opQualityRedirects => 'Weiterleitungen';
+
+  @override
+  String get opInsightsTitle => 'Geschäftliche Erkenntnisse';
+
+  @override
+  String get opInsightsSubtitle =>
+      'Deterministische Hinweise aus den sichtbaren Demo-Zahlen – ohne KI- oder LLM-Auswertung.';
+
+  @override
+  String get opInsightsMethodNote =>
+      'Diese Hinweise entstehen aus festen, prüfbaren Regeln über dem Demo-Datensatz. BusinessBrain entscheidet oder veröffentlicht nichts selbst.';
+
+  @override
+  String get opInsightLeadingTitle => 'CureBase steht im Mittelpunkt';
+
+  @override
+  String opInsightLeadingBody(int count) {
+    return 'CureBase ist mit $count Nennungen das am häufigsten gefragte Produkt im Demo-Zeitraum.';
+  }
+
+  @override
+  String get opInsightSupportTitle => 'Supportfragen nehmen zu';
+
+  @override
+  String get opInsightSupportBody =>
+      'Die letzten sieben Demo-Tage enthalten mehr Supportfragen als die sieben Tage davor. Die Supportdokumentation sollte beobachtet werden.';
+
+  @override
+  String get opInsightFirmwareTitle => 'Firmware wird häufiger gesucht';
+
+  @override
+  String opInsightFirmwareBody(int count) {
+    return 'Firmware erscheint $count-mal in den meistgesuchten Demo-Themen. Eine leicht auffindbare Anleitung wäre sinnvoll.';
+  }
+
+  @override
+  String get opInsightPriceTitle => 'Interesse an Preisen ist sichtbar';
+
+  @override
+  String opInsightPriceBody(int count) {
+    return '$count Demo-Besucher wechselten aus einer Antwort zur Preisübersicht.';
+  }
+
+  @override
+  String get opInsightFaqTitle => 'Neue FAQ sind sinnvoll';
+
+  @override
+  String opInsightFaqBody(int count) {
+    return '$count heutige Wissenslücken zeigen konkrete Themen, die nach menschlicher Prüfung als FAQ ergänzt werden könnten.';
+  }
+
+  @override
+  String get opTodayTitle => 'BusinessBrain heute';
+
+  @override
+  String get opTodayBody =>
+      'Ein Überblick über den heutigen Tag – alle Werte sind Demo-Daten zur Veranschaulichung.';
+
+  @override
+  String get opMetricQuestions => 'Kundenfragen heute';
+
+  @override
+  String get opMetricAnswered => 'Erfolgreich beantwortet';
+
+  @override
+  String get opMetricGaps => 'Neue Wissenslücken erkannt';
+
+  @override
+  String get opMetricSuggestions => 'Verbesserungsvorschläge erstellt';
+
+  @override
+  String get opMetricSources => 'Quellen genutzt';
+
+  @override
+  String get opMetricEntriesAdopted => 'Neue Wissenseinträge übernommen';
+
+  @override
+  String get opTimelineTitle => 'Aktivitäts-Timeline';
+
+  @override
+  String get opTl1 => 'Kundenfrage beantwortet';
+
+  @override
+  String get opTl2 => 'Wissenslücke erkannt';
+
+  @override
+  String get opTl3 => 'Verbesserungsvorschlag erstellt';
+
+  @override
+  String get opTl4 => 'Mitarbeiter bestätigt neuen Wissenseintrag';
+
+  @override
+  String get opTl5 => 'Wissensbasis erweitert';
+
+  @override
+  String get opTl6 => 'Zukünftige Antworten verbessert';
+
+  @override
+  String get opDetectedTitle => 'Heute erkannt';
+
+  @override
+  String get opDetected1 => 'Häufig gestellte Frage erkannt';
+
+  @override
+  String get opDetected2 => 'Mehrere Kunden fragen nach demselben Thema';
+
+  @override
+  String get opDetected3 => 'Neue FAQ empfohlen';
+
+  @override
+  String get opDetected4 => 'Bedienungsanleitung empfohlen';
+
+  @override
+  String get opDetected5 => 'Technische Voraussetzung fehlt';
+
+  @override
+  String get opDetected6 => 'Schritt-für-Schritt-Anleitung empfohlen';
+
+  @override
+  String get opDecisionsTitle => 'Menschliche Entscheidungen';
+
+  @override
+  String get opDecTotal => 'Vorschläge insgesamt';
+
+  @override
+  String get opDecAdopted => 'Übernommen';
+
+  @override
+  String get opDecInProgress => 'In Bearbeitung';
+
+  @override
+  String get opDecRejected => 'Abgelehnt';
+
+  @override
+  String get opDecisionsNote =>
+      'BusinessBrain trifft keine Entscheidungen selbst – jede Änderung wird von einem Menschen bestätigt.';
+
+  @override
+  String get opQualityTitle => 'Qualität der Wissensbasis';
+
+  @override
+  String get opQualEntries => 'Wissenseinträge';
+
+  @override
+  String get opQualFaq => 'FAQ';
+
+  @override
+  String get opQualGuides => 'Anleitungen';
+
+  @override
+  String get opQualTechnical => 'Technische Informationen';
+
+  @override
+  String get opQualProblems => 'Problemlösungen';
+
+  @override
+  String get opQualDefinitions => 'Definitionen';
+
+  @override
+  String get opClosingTitle =>
+      'BusinessBrain macht den Betrieb sichtbar – der Mensch entscheidet.';
+
+  @override
+  String get opClosingBody =>
+      'Das Operations Center zeigt Fragen, Wissenslücken, Nutzung und Verbesserungspotenziale. Es trifft keine Unternehmensentscheidungen und verändert kein Wissen automatisch.';
+
+  @override
+  String get navKnowledgeWorkflow => 'Lern-Workflow';
+
+  @override
+  String get kwTitle => 'Wissens-Verbesserung – End-to-End';
+
+  @override
+  String get kwIntro =>
+      'Ein echter, reproduzierbarer Lernkreislauf: aus einer Wissenslücke entsteht dauerhaftes Firmenwissen. Verwendet dieselbe Wissensbasis wie der Assistent.';
+
+  @override
+  String get kwQuestion =>
+      'Wie kann ich meine Berichte als CSV-Datei exportieren?';
+
+  @override
+  String get kwAsk => 'Frage stellen';
+
+  @override
+  String get kwSuggestionTitle => 'Verbesserungsvorschlag (Human Review)';
+
+  @override
+  String get kwSuggestedEntryTitle => 'Berichte als CSV exportieren';
+
+  @override
+  String get kwSuggestedEntryContent =>
+      'Berichte lassen sich im Menü unter „Export“ als CSV-Datei herunterladen.';
+
+  @override
+  String get kwAccept => 'Übernehmen';
+
+  @override
+  String get kwReject => 'Ablehnen';
+
+  @override
+  String get kwReset => 'Zurücksetzen';
+
+  @override
+  String get kwFirstAnswerTitle => 'Erste Antwort';
+
+  @override
+  String get kwImprovedAnswerTitle => 'Verbesserte Antwort';
+
+  @override
+  String get kwImprovedInfo =>
+      'Diese Antwort wurde durch einen neu bestätigten Wissenseintrag verbessert.';
+
+  @override
+  String get kwRejectedInfo =>
+      'Vorschlag abgelehnt – die Wissensbasis bleibt unverändert, dieselbe Frage liefert weiterhin die ehrliche Wissenslücke.';
+
+  @override
+  String get kwProcessTitle => 'Prozess';
+
+  @override
+  String get kwStep1 => 'Frage gestellt';
+
+  @override
+  String get kwStep2 => 'Wissenslücke erkannt';
+
+  @override
+  String get kwStep3 => 'Verbesserungsvorschlag erstellt';
+
+  @override
+  String get kwStep4 => 'Mitarbeiter bestätigt';
+
+  @override
+  String get kwStep5 => 'Wissenseintrag gespeichert';
+
+  @override
+  String get kwStep6 => 'Antwort verbessert';
+
+  @override
+  String get kwClosingTitle =>
+      'Der Lernkreislauf wurde erfolgreich abgeschlossen.';
+
+  @override
+  String get kwClosingBody =>
+      'BusinessBrain verbessert seine Antworten ausschließlich durch bestätigtes Unternehmenswissen.';
+
+  @override
+  String get navJuryStart => 'Jury-Modus';
+
+  @override
+  String get navMore => 'Weitere Module';
+
+  @override
+  String get navReleaseCheck => 'Release-Check';
+
+  @override
+  String get juryNavGroundedAi => 'Grounded AI';
+
+  @override
+  String get juryStartTitle => 'Willkommen bei BusinessBrain';
+
+  @override
+  String get juryStartIntro =>
+      'Das digitale Wissenszentrum eines Unternehmens. Wählen Sie, wie Sie starten möchten.';
+
+  @override
+  String get juryStartGuided => 'Geführte Jury-Demo starten';
+
+  @override
+  String get juryStartExplore => 'Plattform frei erkunden';
+
+  @override
+  String get juryStartNote =>
+      'Im Jury-Modus zeigt die Navigation nur die wichtigsten Bereiche. Alle weiteren Module bleiben unter „Weitere Module“ erreichbar.';
+
+  @override
+  String get juryTourTitle => 'Geführte Jury-Demo';
+
+  @override
+  String get juryBack => 'Zurück';
+
+  @override
+  String get juryNext => 'Weiter';
+
+  @override
+  String get juryFinish => 'Jetzt selbst die Plattform erkunden';
+
+  @override
+  String get juryExit => 'Jury-Modus beenden';
+
+  @override
+  String get juryStep1Title => 'Business Story';
+
+  @override
+  String get juryStep1Intro =>
+      'Zuerst das große Bild: welches Problem BusinessBrain löst und warum es kein gewöhnlicher KI-Chat ist.';
+
+  @override
+  String get juryStep2Title => 'Operations Dashboard';
+
+  @override
+  String get juryStep2Intro =>
+      'So arbeitet BusinessBrain heute für ein Unternehmen – auf einen Blick (Demo-Daten).';
+
+  @override
+  String get juryStep3Title => 'Guided Demo';
+
+  @override
+  String get juryStep3Intro =>
+      'Der gesamte Workflow in sieben Schritten, verständlich zusammengeführt.';
+
+  @override
+  String get juryStep4Title => 'Grounded Assistant';
+
+  @override
+  String get juryStep4Intro =>
+      'Fragen werden ausschließlich aus dem Firmenwissen beantwortet – mit Quellen, ohne Halluzination.';
+
+  @override
+  String get juryStep5Title => 'Knowledge Workflow';
+
+  @override
+  String get juryStep5Intro =>
+      'Der reproduzierbare Beweis: aus einer Wissenslücke entsteht dauerhaftes, bestätigtes Firmenwissen.';
+
+  @override
+  String get juryStep6Title => 'Abschluss';
+
+  @override
+  String get juryClosingTitle => 'Vielen Dank.';
+
+  @override
+  String get juryClosingBody =>
+      'BusinessBrain organisiert Firmenwissen, beantwortet Kundenfragen zuverlässig und verbessert sich ausschließlich durch bestätigtes Unternehmenswissen – der Mensch behält jederzeit die Kontrolle.';
+
+  @override
+  String get moreTitle => 'Weitere Module';
+
+  @override
+  String get moreIntro =>
+      'Alle übrigen Bereiche der Plattform – nichts wurde entfernt.';
+
+  @override
+  String get demoSwitchTitle => 'Demo-Daten';
+
+  @override
+  String get demoSwitchSubtitle =>
+      'Zentraler Schalter für Demo-Inhalte (z. B. Operations Dashboard).';
+
+  @override
+  String get demoSwitchOn => 'Demo aktiv';
+
+  @override
+  String get demoSwitchOff => 'Live';
+
+  @override
+  String get releaseTitle => 'Release-Checkliste';
+
+  @override
+  String get releaseIntro =>
+      'Interne Team-Checkliste für die Hackathon-Einreichung – nicht öffentlich.';
+
+  @override
+  String get rcNotStarted => 'Nicht begonnen';
+
+  @override
+  String get rcInProgress => 'In Arbeit';
+
+  @override
+  String get rcDone => 'Erledigt';
+
+  @override
+  String get rcItem1 => 'Aktueller Branch veröffentlicht';
+
+  @override
+  String get rcItem2 => 'Cloudflare Deployment erfolgreich';
+
+  @override
+  String get rcItem3 => 'Live Gemini aktiv';
+
+  @override
+  String get rcItem4 => 'AI_PROVIDER korrekt gesetzt';
+
+  @override
+  String get rcItem5 => 'Demo-Daten vorhanden';
+
+  @override
+  String get rcItem6 => 'Guided Demo vollständig';
+
+  @override
+  String get rcItem7 => 'Business Story vollständig';
+
+  @override
+  String get rcItem8 => 'Operations Dashboard vollständig';
+
+  @override
+  String get rcItem9 => 'Knowledge Workflow vollständig';
+
+  @override
+  String get rcItem10 => 'README aktuell';
+
+  @override
+  String get rcItem11 => 'Screenshots vorhanden';
+
+  @override
+  String get rcItem12 => 'Pitch-Video vorhanden';
+
+  @override
+  String get rcItem13 => 'Submission-Dokument aktuell';
+
+  @override
+  String get heroSubtitle => 'Die lernende Unternehmens-KI.';
+
+  @override
+  String get heroBody =>
+      'BusinessBrain organisiert Unternehmenswissen, beantwortet Kundenfragen ausschließlich auf Basis bestätigter Informationen und verbessert sich kontinuierlich durch menschlich freigegebene Wissensbausteine.';
+
+  @override
+  String get heroStartDemo => 'BusinessBrain in 2 Minuten erleben';
+
+  @override
+  String get heroExplore => 'Plattform erkunden';
+
+  @override
+  String get heroFlow1 => 'Unternehmenswissen';
+
+  @override
+  String get heroFlow2 => 'Kundenfragen';
+
+  @override
+  String get heroFlow3 => 'Wissenslücken';
+
+  @override
+  String get heroFlow4 => 'Verbesserungen';
+
+  @override
+  String get heroFlow5 => 'Lernkreislauf';
+
+  @override
+  String get heroFlow6 => 'BusinessBrain';
+
+  @override
+  String get juryOf => 'von';
+
+  @override
+  String get juryTrans1 =>
+      'BusinessBrain beginnt mit dem Wissen Ihres Unternehmens.';
+
+  @override
+  String get juryTrans2 => 'Jetzt beantwortet die KI eine echte Kundenfrage.';
+
+  @override
+  String get juryTrans3 => 'Fehlendes Wissen wird erkannt.';
+
+  @override
+  String get juryTrans4 => 'Der Mitarbeiter entscheidet.';
+
+  @override
+  String get juryTrans5 => 'Die Wissensbasis wächst.';
+
+  @override
+  String get juryTrans6 => 'Alle zukünftigen Antworten profitieren.';
+
+  @override
+  String get oxClosingTitle => 'BusinessBrain lernt niemals durch Vermutungen.';
+
+  @override
+  String get oxClosingSubtitle =>
+      'Jede Verbesserung basiert auf bestätigtem Unternehmenswissen.';
+
+  @override
+  String get oxSeenTitle => 'Heute gesehen:';
+
+  @override
+  String get oxSeen1 => 'Grounded AI';
+
+  @override
+  String get oxSeen2 => 'Wissensbasis';
+
+  @override
+  String get oxSeen3 => 'Human Review';
+
+  @override
+  String get oxSeen4 => 'Knowledge Builder';
+
+  @override
+  String get oxSeen5 => 'Lernkreislauf';
+
+  @override
+  String get oxSeen6 => 'Operations Dashboard';
+
+  @override
+  String get oxSeen7 => 'Business Story';
+
+  @override
+  String get oxThanks => 'Vielen Dank für Ihr Interesse an BusinessBrain.';
+
+  @override
+  String get oxLinkProject => 'Projektseite';
+
+  @override
+  String get oxLinkGithub => 'GitHub';
+
+  @override
+  String get oxLinkVideo => 'Projektvideo';
+
+  @override
+  String get oxLinkDocs => 'Dokumentation';
+
+  @override
+  String get navBusinessBrainVision => 'BusinessBrain Vision';
+
+  @override
+  String get visionBadge => 'VISION';
+
+  @override
+  String get visionFutureLabel => 'Zukünftige Entwicklung';
+
+  @override
+  String get visionHeroTitle =>
+      'Vom Wissenssystem zum digitalen Unternehmensgehirn';
+
+  @override
+  String get visionHeroBody =>
+      'BusinessBrain soll Unternehmen eines Tages dabei unterstützen, relevante Signale früh zu erkennen, Zusammenhänge verständlich zu machen und die sinnvollsten nächsten Schritte vorzuschlagen – ohne jemals selbst zu entscheiden oder zu veröffentlichen.';
+
+  @override
+  String get visionTodayLabel => 'HEUTE';
+
+  @override
+  String get visionTodayTitle => 'Der Ausgangspunkt ist bestätigt';
+
+  @override
+  String get visionTodayBody =>
+      'BusinessBrain beantwortet Kundenfragen aus bestätigtem Unternehmenswissen, erkennt Lücken und verbessert die Wissensbasis ausschließlich nach menschlicher Freigabe.';
+
+  @override
+  String get visionJourneyTitle => 'Eine Entwicklung in drei klaren Phasen';
+
+  @override
+  String get visionJourneyBody =>
+      'Jede Phase baut auf der vorherigen auf. Die Vision erweitert den bestehenden Wissenskern, ersetzt ihn aber nicht.';
+
+  @override
+  String get visionPhase1Eyebrow => 'Phase 1';
+
+  @override
+  String get visionPhase1Title => 'Wissenssystem';
+
+  @override
+  String get visionPhase1Body =>
+      'Bestätigtes Unternehmenswissen wird strukturiert, auffindbar und sicher für Kundenfragen nutzbar.';
+
+  @override
+  String get visionPhase2Eyebrow => 'Phase 2';
+
+  @override
+  String get visionPhase2Title => 'Unternehmensassistent';
+
+  @override
+  String get visionPhase2Body =>
+      'BusinessBrain ordnet neue Signale ein, fasst Entwicklungen zusammen und schlägt prüfbare Maßnahmen vor.';
+
+  @override
+  String get visionPhase3Eyebrow => 'Phase 3';
+
+  @override
+  String get visionPhase3Title => 'Digitales Unternehmensgehirn';
+
+  @override
+  String get visionPhase3Body =>
+      'Wissen, Marktbeobachtung und bestätigte Erfahrungen verbinden sich zu einem kontinuierlichen Orientierungssystem für das Unternehmen.';
+
+  @override
+  String get visionFlowTitle => 'Von Signalen zu verantwortbaren Vorschlägen';
+
+  @override
+  String get visionFlowBody =>
+      'BusinessBrain beobachtet nicht, um selbst zu handeln. Es verdichtet Informationen, erklärt ihre Bedeutung und legt Entscheidungen in die Hände des Unternehmens.';
+
+  @override
+  String get visionFlow1 => 'Signale beobachten';
+
+  @override
+  String get visionFlow2 => 'Zusammenhänge erkennen';
+
+  @override
+  String get visionFlow3 => 'Maßnahmen vorschlagen';
+
+  @override
+  String get visionFlow4 => 'Der Mensch entscheidet';
+
+  @override
+  String get visionPresenceTitle => 'Digitale Präsenz verstehen';
+
+  @override
+  String get visionPresenceBody =>
+      'Öffentliche Signale könnten in einer gemeinsamen, verständlichen Sicht zusammenlaufen.';
+
+  @override
+  String get visionWebsiteTitle => 'Unternehmenswebsite beobachten';
+
+  @override
+  String get visionWebsiteBody =>
+      'Veränderungen, veraltete Inhalte und neue Informationslücken kontinuierlich sichtbar machen.';
+
+  @override
+  String get visionSeoTitle => 'SEO-Entwicklung analysieren';
+
+  @override
+  String get visionSeoBody =>
+      'Suchthemen, Auffindbarkeit und Optimierungspotenziale verständlich zusammenfassen.';
+
+  @override
+  String get visionGoogleTitle => 'Verbesserungen für Google vorschlagen';
+
+  @override
+  String get visionGoogleBody =>
+      'Konkrete, prüfbare Vorschläge für Inhalte, Suchintentionen und lokale Sichtbarkeit vorbereiten.';
+
+  @override
+  String get visionSocialTitle => 'Relevante Plattformsignale bündeln';
+
+  @override
+  String get visionSocialBody =>
+      'Facebook, Instagram, Reddit, LinkedIn, YouTube und TikTok in einer gemeinsamen Unternehmenssicht einordnen.';
+
+  @override
+  String get visionReputationTitle =>
+      'Google Business und Bewertungen verstehen';
+
+  @override
+  String get visionReputationBody =>
+      'Wiederkehrende Rückmeldungen, Chancen und mögliche Reputationsrisiken früh sichtbar machen.';
+
+  @override
+  String get visionCustomerTitle => 'Die Stimme der Kunden erkennen';
+
+  @override
+  String get visionCustomerBody =>
+      'Wiederkehrende Fragen und Probleme sollen zu strukturierten, überprüfbaren Erkenntnissen werden.';
+
+  @override
+  String get visionEmailTitle => 'Support-E-Mails zusammenfassen';
+
+  @override
+  String get visionEmailBody =>
+      'Häufige Anliegen und neue Themen erkennen, ohne Nachrichten selbst zu beantworten oder zu verändern.';
+
+  @override
+  String get visionQuestionsTitle => 'Häufige Kundenfragen erkennen';
+
+  @override
+  String get visionQuestionsBody =>
+      'Ähnliche Fragen über verschiedene Kontaktpunkte hinweg als gemeinsames Muster sichtbar machen.';
+
+  @override
+  String get visionProblemsTitle => 'Wiederkehrende Kundenprobleme erkennen';
+
+  @override
+  String get visionProblemsBody =>
+      'Häufungen, Ursachen und betroffene Produkte verständlich für das Unternehmen aufbereiten.';
+
+  @override
+  String get visionExternalGapsTitle =>
+      'Wissenslücken außerhalb der Wissensbasis erkennen';
+
+  @override
+  String get visionExternalGapsBody =>
+      'Fehlende Informationen aus Kundenkontakten und öffentlichen Signalen als Vorschläge zurückführen.';
+
+  @override
+  String get visionMarketTitle => 'Marktbewegungen einordnen';
+
+  @override
+  String get visionMarketBody =>
+      'Die Vision verbindet externe Entwicklungen mit dem bestätigten Wissen und den Zielen des Unternehmens.';
+
+  @override
+  String get visionCompetitorsTitle => 'Wettbewerber beobachten';
+
+  @override
+  String get visionCompetitorsBody =>
+      'Relevante Veränderungen sachlich zusammenfassen, ohne automatische Bewertungen oder Entscheidungen.';
+
+  @override
+  String get visionTrendsTitle => 'Trends und Marktchancen erkennen';
+
+  @override
+  String get visionTrendsBody =>
+      'Neue Themen nach Relevanz, möglichem Nutzen und offenen Fragen für das Unternehmen einordnen.';
+
+  @override
+  String get visionProductsTitle => 'Neue Produkte analysieren';
+
+  @override
+  String get visionProductsBody =>
+      'Produktideen und Marktangebote mit vorhandenem Wissen, Kundenproblemen und Chancen vergleichen.';
+
+  @override
+  String get visionProposalsTitle => 'Aus Erkenntnissen werden Vorschläge';
+
+  @override
+  String get visionProposalsBody =>
+      'Jeder Vorschlag bleibt Entwurf. Erst ein Mensch entscheidet, ob daraus eine Maßnahme wird.';
+
+  @override
+  String get visionFaqTitle => 'Neue FAQ vorschlagen';
+
+  @override
+  String get visionFaqBody =>
+      'Wiederkehrende Fragen in konkrete Vorschläge für bestätigtes Kundenwissen überführen.';
+
+  @override
+  String get visionDocsTitle => 'Neue Dokumentationen vorschlagen';
+
+  @override
+  String get visionDocsBody =>
+      'Erkannte Erklärungsbedarfe als nachvollziehbare Dokumentationsentwürfe strukturieren.';
+
+  @override
+  String get visionLandingTitle => 'Neue Landingpages vorschlagen';
+
+  @override
+  String get visionLandingBody =>
+      'Relevante Kundenbedürfnisse und Suchthemen in begründete Seitenthemen übersetzen.';
+
+  @override
+  String get visionCampaignTitle => 'Marketingkampagnen vorschlagen';
+
+  @override
+  String get visionCampaignBody =>
+      'Chancen in überprüfbare Kampagnenideen mit Begründung und erwartetem Nutzen überführen.';
+
+  @override
+  String get visionTasksTitle => 'Aufgaben für Mitarbeiter vorschlagen';
+
+  @override
+  String get visionTasksBody =>
+      'Aus offenen Themen klare Arbeitsvorschläge ableiten, ohne Aufgaben automatisch zuzuweisen.';
+
+  @override
+  String get visionPriorityTitle => 'Offene Themen priorisieren';
+
+  @override
+  String get visionPriorityBody =>
+      'Dringlichkeit, Nutzen und Wissenslage transparent gegenüberstellen; die Reihenfolge bestätigt der Mensch.';
+
+  @override
+  String get visionBriefingTitle => 'Orientierung für jeden neuen Arbeitstag';
+
+  @override
+  String get visionBriefingBody =>
+      'Statt weiterer Dashboards könnte BusinessBrain die wichtigsten Veränderungen in einer ruhigen, entscheidungsfähigen Übersicht zusammenführen.';
+
+  @override
+  String get visionMorningTitle => 'Morning Briefing';
+
+  @override
+  String get visionMorningBody =>
+      'Die wichtigsten neuen Signale, offenen Entscheidungen und empfohlenen nächsten Schritte am Morgen.';
+
+  @override
+  String get visionDailyTitle => 'Tägliche Zusammenfassung';
+
+  @override
+  String get visionDailyBody =>
+      'Was sich verändert hat, welche Themen zunehmen und wo Aufmerksamkeit erforderlich sein könnte.';
+
+  @override
+  String get visionLearningTitle => 'Aus bestätigten Informationen lernen';
+
+  @override
+  String get visionLearningBody =>
+      'Nur bestätigte Erkenntnisse erweitern das Unternehmenswissen und verbessern spätere Vorschläge.';
+
+  @override
+  String get visionControlTitle =>
+      'Die Entscheidungsgewalt bleibt beim Unternehmen';
+
+  @override
+  String get visionControlBody =>
+      'Auch als digitales Unternehmensgehirn bleibt BusinessBrain ein Vorschlagssystem mit klaren Grenzen.';
+
+  @override
+  String get visionNeverDecides =>
+      'trifft niemals selbst Unternehmensentscheidungen';
+
+  @override
+  String get visionNeverPublishes => 'veröffentlicht niemals selbst Inhalte';
+
+  @override
+  String get visionNeverChanges =>
+      'verändert niemals selbst Unternehmenswissen';
+
+  @override
+  String get visionOnlySuggests =>
+      'schlägt ausschließlich nachvollziehbare Maßnahmen vor';
+
+  @override
+  String get visionHumanAlways => 'Der Mensch entscheidet immer.';
+
+  @override
+  String get visionClosingTitle =>
+      'Schritt für Schritt zu besserer Orientierung';
+
+  @override
+  String get visionClosingBody =>
+      'BusinessBrain wächst nicht durch unkontrollierte Autonomie, sondern durch nachvollziehbare Vorschläge, bestätigtes Wissen und menschliche Entscheidungen. So kann aus einem Wissenssystem langfristig ein glaubwürdiges digitales Unternehmensgehirn entstehen.';
+
+  @override
+  String get visionBack => 'Zurück zu BusinessBrain';
+
+  @override
+  String get navBusinessBrainRoadmap => 'BusinessBrain Roadmap';
+
+  @override
+  String get roadmapBack => 'Zurück zu BusinessBrain';
+
+  @override
+  String get roadmapHeroTitle =>
+      'Vom verifizierten Unternehmenswissen zum digitalen Unternehmensgehirn';
+
+  @override
+  String get roadmapHeroBody =>
+      'BusinessBrain beginnt mit einem klar begrenzten, heute verfügbaren Wissenskern. Jede weitere Stufe baut nachvollziehbar darauf auf und ist ausdrücklich als Zukunftsvision gekennzeichnet.';
+
+  @override
+  String get roadmapHeroControl =>
+      'Keine Stufe trifft autonome Unternehmensentscheidungen. Der Mensch prüft, bestätigt und entscheidet.';
+
+  @override
+  String get roadmapAvailableBadge => 'HEUTE VERFÜGBAR';
+
+  @override
+  String get roadmapVisionBadge => 'VISION';
+
+  @override
+  String get roadmapNextStage => 'NÄCHSTE AUSBAUSTUFE';
+
+  @override
+  String get roadmapVisualKnowledge => 'Wissen';
+
+  @override
+  String get roadmapVisualIntelligence => 'Verständnis';
+
+  @override
+  String get roadmapVisualBrain => 'BusinessBrain';
+
+  @override
+  String get roadmapVisualCaption =>
+      'Schrittweise Entwicklung statt unkontrollierter Autonomie.';
+
+  @override
+  String get roadmapJourneyTitle => 'Sieben glaubwürdige Entwicklungsstufen';
+
+  @override
+  String get roadmapJourneyBody =>
+      'Wählen Sie eine Stufe aus. Die Detailkarte erklärt Nutzen, Beispiele und die menschliche Kontrolle. Nur Stufe 1 ist heute verfügbar.';
+
+  @override
+  String get roadmapBenefitTitle => 'Nutzen';
+
+  @override
+  String get roadmapExamplesTitle => 'Beispiele';
+
+  @override
+  String get roadmapControlTitle => 'Menschliche Kontrolle';
+
+  @override
+  String get roadmapVisionDisclaimer =>
+      'Diese Stufe ist eine Produktvision. Die gezeigten Funktionen sind heute nicht verfügbar und enthalten keine Lieferzusage.';
+
+  @override
+  String get roadmapStage1Title => 'Verified Company Knowledge';
+
+  @override
+  String get roadmapStage1Description =>
+      'Bestätigtes Unternehmenswissen wird strukturiert, geprüft und sicher für nachvollziehbare Antworten nutzbar.';
+
+  @override
+  String get roadmapStage1Benefit =>
+      'Unternehmen erhalten konsistente Antworten, sichtbare Quellen und einen kontrollierten Lernkreislauf für ihr Wissen.';
+
+  @override
+  String get roadmapStage1Control =>
+      'Neue Wissenseinträge werden erst nach Human Review übernommen. BusinessBrain erfindet und veröffentlicht nichts selbst.';
+
+  @override
+  String get roadmapStage2Title => 'Customer Intelligence';
+
+  @override
+  String get roadmapStage2Description =>
+      'Wiederkehrende Kundenfragen und Probleme könnten als verständliche Muster sichtbar werden.';
+
+  @override
+  String get roadmapStage2Benefit =>
+      'Unternehmen könnten früher erkennen, welche Informationen Kunden fehlen und welche Produkte besondere Aufmerksamkeit erhalten.';
+
+  @override
+  String get roadmapStage2Control =>
+      'Erkannte Muster wären Hinweise. Menschen entscheiden, ob daraus FAQ, Dokumentation oder Maßnahmen entstehen.';
+
+  @override
+  String get roadmapStage3Title => 'Website Intelligence';
+
+  @override
+  String get roadmapStage3Description =>
+      'Die Unternehmenswebsite könnte als laufende Wissensquelle und Qualitätsfläche verstanden werden.';
+
+  @override
+  String get roadmapStage3Benefit =>
+      'Veraltete Inhalte, fehlende Antworten und relevante Downloads könnten schneller auffindbar werden.';
+
+  @override
+  String get roadmapStage3Control =>
+      'BusinessBrain würde Änderungen ausschließlich vorschlagen. Jede Anpassung der Website bliebe eine menschliche Entscheidung.';
+
+  @override
+  String get roadmapStage4Title => 'Marketing Intelligence';
+
+  @override
+  String get roadmapStage4Description =>
+      'Kundenwissen und digitale Signale könnten zu begründeten Marketing- und Content-Vorschlägen werden.';
+
+  @override
+  String get roadmapStage4Benefit =>
+      'Unternehmen könnten relevante Themen, Kanäle und Inhalte gezielter auswählen, ohne ihre Markenstimme abzugeben.';
+
+  @override
+  String get roadmapStage4Control =>
+      'Keine automatische Veröffentlichung und keine selbstständige Kampagne. Menschen wählen, bearbeiten und veröffentlichen jeden Inhalt.';
+
+  @override
+  String get roadmapStage5Title => 'Competitive Intelligence';
+
+  @override
+  String get roadmapStage5Description =>
+      'Markt- und Wettbewerbsveränderungen könnten sachlich zusammengeführt und eingeordnet werden.';
+
+  @override
+  String get roadmapStage5Benefit =>
+      'Preisänderungen, neue Produkte und Markttrends könnten früher in einer gemeinsamen Sicht erkennbar werden.';
+
+  @override
+  String get roadmapStage5Control =>
+      'Beobachtungen wären Informationsgrundlagen, keine automatischen Bewertungen oder Wettbewerbsentscheidungen.';
+
+  @override
+  String get roadmapStage6Title => 'Business Intelligence';
+
+  @override
+  String get roadmapStage6Description =>
+      'Kundenprobleme, Einwände und Produktinteresse könnten zu überprüfbaren Geschäftshinweisen verbunden werden.';
+
+  @override
+  String get roadmapStage6Benefit =>
+      'Unternehmen könnten Verbesserungsmöglichkeiten, Produktideen und Vertriebschancen nachvollziehbarer priorisieren.';
+
+  @override
+  String get roadmapStage6Control =>
+      'BusinessBrain würde Chancen erklären und Vorschläge vorbereiten. Ziele, Budgets und Maßnahmen bestimmt das Unternehmen.';
+
+  @override
+  String get roadmapStage7Title => 'Digital BusinessBrain';
+
+  @override
+  String get roadmapStage7Description =>
+      'Bestätigtes Wissen und verständliche Signale könnten zu einem gemeinsamen Orientierungssystem zusammenwachsen.';
+
+  @override
+  String get roadmapStage7Benefit =>
+      'Zusammenhänge, Prioritäten, Aufgabenentwürfe und Entscheidungsvorlagen könnten an einem Ort verständlich werden.';
+
+  @override
+  String get roadmapStage7Control =>
+      'Auch als digitales Unternehmensgehirn bleibt BusinessBrain ein Informations- und Vorschlagssystem. Der Mensch entscheidet immer.';
+
+  @override
+  String get roadmapFeatureKnowledgeBuilder => 'Knowledge Builder';
+
+  @override
+  String get roadmapFeatureHumanReview => 'Human Review';
+
+  @override
+  String get roadmapFeatureGroundedAnswers => 'Grounded Answers';
+
+  @override
+  String get roadmapFeatureWebsiteLinks => 'Website-Links';
+
+  @override
+  String get roadmapFeatureOperationsCenter => 'AI Operations Center';
+
+  @override
+  String get roadmapFeatureFrequentQuestions => 'Häufige Fragen erkennen';
+
+  @override
+  String get roadmapFeatureRecurringProblems =>
+      'Wiederkehrende Probleme erkennen';
+
+  @override
+  String get roadmapFeatureProductInterest => 'Produktinteresse verstehen';
+
+  @override
+  String get roadmapFeatureSupportTrends => 'Support-Trends erkennen';
+
+  @override
+  String get roadmapFeatureFaqSuggestions => 'Neue FAQ vorschlagen';
+
+  @override
+  String get roadmapFeatureAnalyseWebsite => 'Website analysieren';
+
+  @override
+  String get roadmapFeatureDetectProductPages => 'Produktseiten erkennen';
+
+  @override
+  String get roadmapFeatureDetectDownloads => 'Downloads erkennen';
+
+  @override
+  String get roadmapFeatureDetectFaq => 'FAQ erkennen';
+
+  @override
+  String get roadmapFeatureDetectKnowledgeGaps => 'Wissenslücken erkennen';
+
+  @override
+  String get roadmapFeatureKeepWebsiteCurrent => 'Website aktuell halten';
+
+  @override
+  String get roadmapFeatureImproveLandingPage => 'Landingpage verbessern';
+
+  @override
+  String get roadmapFeatureNewsletter => 'Newsletter';
+
+  @override
+  String get roadmapFeatureMarketingIdeas => 'Marketing-Ideen';
+
+  @override
+  String get roadmapFeatureContentSuggestions => 'Content-Vorschläge';
+
+  @override
+  String get roadmapFeatureObserveCompetitors => 'Wettbewerber beobachten';
+
+  @override
+  String get roadmapFeatureDetectPriceChanges => 'Preisänderungen erkennen';
+
+  @override
+  String get roadmapFeatureMarketTrends => 'Markttrends erkennen';
+
+  @override
+  String get roadmapFeatureNewProducts => 'Neue Produkte erkennen';
+
+  @override
+  String get roadmapFeatureStrengthsWeaknesses =>
+      'Stärken und Schwächen einordnen';
+
+  @override
+  String get roadmapFeatureCustomerProblems => 'Wiederkehrende Kundenprobleme';
+
+  @override
+  String get roadmapFeatureProductIdeas => 'Produktideen';
+
+  @override
+  String get roadmapFeatureImprovementSuggestions => 'Verbesserungsvorschläge';
+
+  @override
+  String get roadmapFeatureSalesOpportunities => 'Vertriebschancen';
+
+  @override
+  String get roadmapFeatureFrequentObjections => 'Häufige Einwände';
+
+  @override
+  String get roadmapFeatureRecogniseConnections => 'Zusammenhänge erkennen';
+
+  @override
+  String get roadmapFeatureRecommendPriorities => 'Prioritäten empfehlen';
+
+  @override
+  String get roadmapFeaturePrepareTasks => 'Aufgaben vorbereiten';
+
+  @override
+  String get roadmapFeatureCreateReports => 'Berichte erstellen';
+
+  @override
+  String get roadmapFeatureDecisionBriefs =>
+      'Entscheidungsvorlagen vorbereiten';
+
+  @override
+  String get roadmapClosingTitle =>
+      'Eine nachvollziehbare Reise zum digitalen Unternehmensgehirn';
+
+  @override
+  String get roadmapClosingBody =>
+      'BusinessBrain entwickelt sich vom Unternehmenswissen über Kundenverständnis und Marketing zu Unternehmensanalyse und einem gemeinsamen digitalen Orientierungsraum.';
+
+  @override
+  String get roadmapClosingKnowledge => 'Unternehmenswissen';
+
+  @override
+  String get roadmapClosingCustomers => 'Kundenverständnis';
+
+  @override
+  String get roadmapClosingMarketing => 'Marketing';
+
+  @override
+  String get roadmapClosingAnalysis => 'Unternehmensanalyse';
+
+  @override
+  String get roadmapClosingBrain => 'Digitales Unternehmensgehirn';
+
+  @override
+  String get roadmapHumanTitle => 'Der Mensch entscheidet immer.';
+
+  @override
+  String get roadmapHumanBody =>
+      'BusinessBrain ersetzt keine Menschen. BusinessBrain liefert nachvollziehbare Informationen, Vorschläge und Zusammenhänge. Die endgültige Entscheidung trifft immer der Mensch.';
+
+  @override
+  String get navGettingStarted => 'Getting Started';
+
+  @override
+  String get gettingStartedNavTitle => 'Company Onboarding';
+
+  @override
+  String get gettingStartedBackHome => 'Zur Startseite';
+
+  @override
+  String get gettingStartedDemoBadge => 'DEMO';
+
+  @override
+  String get gettingStartedHeroTitle =>
+      'Ein Unternehmen in wenigen Schritten startklar machen';
+
+  @override
+  String get gettingStartedHeroBody =>
+      'Diese interaktive Reise zeigt, wie ein Unternehmen BusinessBrain in kurzer Zeit vorbereiten könnte — vom Firmenprofil bis zu bestätigtem Wissen.';
+
+  @override
+  String get gettingStartedDemoBoundary =>
+      'Reine Benutzerreise: Es findet keine Registrierung, kein Upload, keine KI-Analyse und keine Speicherung statt.';
+
+  @override
+  String get gettingStartedVisualCompany => 'Unternehmen';
+
+  @override
+  String get gettingStartedVisualKnowledge => 'Wissen';
+
+  @override
+  String get gettingStartedVisualReady => 'Bereit';
+
+  @override
+  String get gettingStartedVisualCaption =>
+      'Ein nachvollziehbarer Weg zum einsatzbereiten Unternehmenswissen';
+
+  @override
+  String get gettingStartedProgressComplete => 'Onboarding-Demo abgeschlossen';
+
+  @override
+  String gettingStartedProgress(int current, int total) {
+    return 'Schritt $current von $total';
+  }
+
+  @override
+  String get gettingStartedStatusDone => 'Erledigt';
+
+  @override
+  String get gettingStartedStatusActive => 'Aktiv';
+
+  @override
+  String get gettingStartedStatusUpcoming => 'Als Nächstes';
+
+  @override
+  String get gettingStartedStep1Title => 'Unternehmen anlegen';
+
+  @override
+  String get gettingStartedStep1Description =>
+      'Optionale Angaben machen den beispielhaften Start greifbar.';
+
+  @override
+  String get gettingStartedStep2Title => 'Unternehmenswissen importieren';
+
+  @override
+  String get gettingStartedStep2Description =>
+      'Wählen Sie, welche vorhandenen Inhalte eingebunden werden könnten.';
+
+  @override
+  String get gettingStartedStep3Title => 'BusinessBrain analysiert';
+
+  @override
+  String get gettingStartedStep3Description =>
+      'Die Demo visualisiert, welche Wissensarten erkannt würden.';
+
+  @override
+  String get gettingStartedStep4Title => 'Human Review';
+
+  @override
+  String get gettingStartedStep4Description =>
+      'Mitarbeiter prüfen Vorschläge, bevor Wissen aktiv wird.';
+
+  @override
+  String get gettingStartedStep5Title => 'BusinessBrain ist bereit';
+
+  @override
+  String get gettingStartedStep5Description =>
+      'Bestätigtes Wissen kann Antworten und Einblicke unterstützen.';
+
+  @override
+  String get gettingStartedPrevious => 'Zurück';
+
+  @override
+  String get gettingStartedNext => 'Weiter';
+
+  @override
+  String get gettingStartedFinish => 'Demo abschließen';
+
+  @override
+  String get gettingStartedCompanyName => 'Firmenname';
+
+  @override
+  String get gettingStartedCompanyHint => 'z. B. Muster GmbH';
+
+  @override
+  String get gettingStartedIndustry => 'Branche';
+
+  @override
+  String get gettingStartedIndustryHint => 'z. B. Medizintechnik';
+
+  @override
+  String get gettingStartedCountry => 'Land';
+
+  @override
+  String get gettingStartedCountryDe => 'Deutschland';
+
+  @override
+  String get gettingStartedCountryAt => 'Österreich';
+
+  @override
+  String get gettingStartedCountryCh => 'Schweiz';
+
+  @override
+  String get gettingStartedCountryOther => 'Anderes Land';
+
+  @override
+  String get gettingStartedLanguage => 'Sprache';
+
+  @override
+  String get gettingStartedWebsite => 'Website';
+
+  @override
+  String get gettingStartedLogo => 'Logo auswählen (Demo)';
+
+  @override
+  String get gettingStartedLogoSelected => 'Logo vorgemerkt';
+
+  @override
+  String get gettingStartedOptionalNote =>
+      'Alle Angaben sind optional und bleiben ausschließlich in dieser lokalen Demo.';
+
+  @override
+  String get gettingStartedImportBoundary =>
+      'Auswählen zeigt nur den Ablauf. Es werden keine Dateien hochgeladen oder Inhalte verarbeitet.';
+
+  @override
+  String get gettingStartedImportWebsite => 'Website';
+
+  @override
+  String get gettingStartedImportPdf => 'PDF';
+
+  @override
+  String get gettingStartedImportFaq => 'FAQ';
+
+  @override
+  String get gettingStartedImportManuals => 'Handbücher';
+
+  @override
+  String get gettingStartedImportProducts => 'Produktbeschreibungen';
+
+  @override
+  String get gettingStartedImportSupport => 'Support-Dokumente';
+
+  @override
+  String get gettingStartedImportVideos => 'Videos';
+
+  @override
+  String get gettingStartedAnalysisSimulation => 'Demo-Analyse';
+
+  @override
+  String get gettingStartedAnalysisHumanNote =>
+      'Alle Vorschläge werden anschließend von einem Menschen geprüft.';
+
+  @override
+  String get gettingStartedDetectedProducts => 'Produkte';
+
+  @override
+  String get gettingStartedDetectedFaq => 'FAQ';
+
+  @override
+  String get gettingStartedDetectedDocuments => 'Dokumente';
+
+  @override
+  String get gettingStartedDetectedSupport => 'Support';
+
+  @override
+  String get gettingStartedDetectedDownloads => 'Downloads';
+
+  @override
+  String get gettingStartedDetectedContact => 'Kontakt';
+
+  @override
+  String get gettingStartedDetectedKnowledgeAreas => 'Wissensbereiche';
+
+  @override
+  String get gettingStartedReviewFaqTitle => 'FAQ-Vorschlag';
+
+  @override
+  String get gettingStartedReviewFaqBody =>
+      'Eine häufige Kundenfrage als strukturierten Wissenseintrag vorbereiten.';
+
+  @override
+  String get gettingStartedReviewSupportTitle => 'Support-Vorschlag';
+
+  @override
+  String get gettingStartedReviewSupportBody =>
+      'Einen nachvollziehbaren Lösungsweg für Mitarbeiter und Kunden vorbereiten.';
+
+  @override
+  String get gettingStartedReviewBoundary =>
+      'Nur bestätigte Vorschläge würden Teil des Unternehmenswissens. Diese Demo verändert keine Wissensbasis.';
+
+  @override
+  String get gettingStartedReviewConfirmed => 'Bestätigt';
+
+  @override
+  String get gettingStartedReviewConfirm => 'Bestätigen';
+
+  @override
+  String get gettingStartedReadyQuestions => 'Kunden können Fragen stellen';
+
+  @override
+  String get gettingStartedReadyGrounded =>
+      'Antworten stammen ausschließlich aus bestätigtem Unternehmenswissen';
+
+  @override
+  String get gettingStartedReadyOperations =>
+      'Das Operations Dashboard würde ab jetzt nachvollziehbare Aktivität sammeln';
+
+  @override
+  String get gettingStartedReadyBoundary =>
+      'Auch dieser Status ist Teil der Demo. Es wurde kein Unternehmen aktiviert.';
+
+  @override
+  String get gettingStartedSuccessTitle => 'BusinessBrain ist einsatzbereit';
+
+  @override
+  String get gettingStartedSuccessBody =>
+      'Die Journey zeigt den vollständigen Weg von der Einrichtung bis zu geprüftem, nutzbarem Unternehmenswissen.';
+
+  @override
+  String get gettingStartedSuccessCompany => 'Unternehmen eingerichtet';
+
+  @override
+  String get gettingStartedSuccessDocuments => 'Dokumente importiert';
+
+  @override
+  String get gettingStartedSuccessKnowledge => 'Wissen bestätigt';
+
+  @override
+  String get gettingStartedSuccessAi => 'KI bereit';
+
+  @override
+  String get gettingStartedSuccessOperations => 'Operations aktiviert';
+
+  @override
+  String get gettingStartedRestart => 'Demo neu starten';
+
+  @override
+  String get gettingStartedTimeTitle => 'Geschätzter Zeitbedarf';
+
+  @override
+  String get gettingStartedTimeProfile => 'Firmenprofil';
+
+  @override
+  String get gettingStartedTimeDocuments => 'Dokumente';
+
+  @override
+  String get gettingStartedTimeReview => 'Human Review';
+
+  @override
+  String get gettingStartedTimeReady => 'BusinessBrain einsatzbereit';
+
+  @override
+  String get gettingStartedTime2 => '2 Minuten';
+
+  @override
+  String get gettingStartedTime5 => '5 Minuten';
+
+  @override
+  String get gettingStartedTime10 => '10 Minuten';
+
+  @override
+  String get gettingStartedTimeUnder20 => 'unter 20 Minuten';
+
+  @override
+  String get gettingStartedTimeDisclaimer =>
+      'Demo-Schätzung für einen kompakten Ersteinstieg. Der tatsächliche Aufwand hängt vom Umfang des Unternehmenswissens ab.';
+
+  @override
+  String get kbGeminiProposalBadge => '✨ GEMINI-VORSCHLAG';
+
+  @override
+  String get kbGeminiInsightsTitle => 'Gemini Insights';
+
+  @override
+  String get kbGeminiInsightsBody =>
+      'Gemini ergänzt die deterministische Analyse mit dokumentgebundenen Vorschlägen. Die Analyse selbst bleibt unverändert.';
+
+  @override
+  String get kbGeminiLoading =>
+      'Gemini erstellt dokumentgebundene Vorschläge …';
+
+  @override
+  String get kbGeminiSummary => 'Kurze Zusammenfassung';
+
+  @override
+  String get kbGeminiKeyStatements => 'Wichtigste Aussagen';
+
+  @override
+  String get kbGeminiRecommendedFaq => 'Empfohlene FAQ';
+
+  @override
+  String get kbGeminiCategories => 'Mögliche Kategorien';
+
+  @override
+  String get kbGeminiMissingInformation => 'Fehlende Informationen';
+
+  @override
+  String get kbGeminiPossibleDuplicates => 'Mögliche Dubletten';
+
+  @override
+  String get kbGeminiEmployeeQuestions => 'Offene Fragen an Mitarbeiter';
+
+  @override
+  String get kbGeminiSourceDocumentOnly =>
+      'Ausschließlich aus dem analysierten Dokument und den sichtbaren Analysemetadaten erzeugt.';
+
+  @override
+  String get kbGeminiReviewBeforeApplying =>
+      'Vor der Übernahme prüfen. Gemini-Ergebnisse sind ausschließlich Vorschläge und werden nicht automatisch gespeichert.';
+
+  @override
+  String get kbGeminiReviewSuggestionsTitle => 'Review Suggestions';
+
+  @override
+  String get kbGeminiReviewSuggestionsBody =>
+      'Gemini weist vor der Übernahme auf mögliche Verbesserungen der vorgeschlagenen Wissenseinträge hin.';
+
+  @override
+  String get botGeminiProposalBadge => '✨ GEMINI-VORSCHLAG';
+
+  @override
+  String get botGeminiGapTitle => 'Vorgeschlagene Wissensverbesserungen';
+
+  @override
+  String get botGeminiGapBody =>
+      'Gemini hat ausschließlich die Frage und die erkannten Wissenslücken geprüft. Diese Informationstypen könnten die Wissensbasis vervollständigen:';
+
+  @override
+  String get botGeminiReviewBeforeApplying =>
+      'Vor der Übernahme prüfen. Es wird nichts automatisch gespeichert.';
+
+  @override
+  String get botGeminiGapPrice => 'Aktueller Preis';
+
+  @override
+  String get botGeminiGapProductLink => 'Bestätigter Produktlink';
+
+  @override
+  String get botGeminiGapValidityDate => 'Gültigkeitsdatum';
+
+  @override
+  String get botGeminiGapContact => 'Zuständiger Ansprechpartner';
+
+  @override
+  String get botGeminiGapDownload => 'Passender Download';
+
+  @override
+  String get botGeminiGapRequirements => 'Technische Voraussetzungen';
+
+  @override
+  String get botGeminiGapCompatibility => 'Kompatibilitätsinformationen';
+
+  @override
+  String get botGeminiGapInstructions => 'Schritt-für-Schritt-Anleitung';
+
+  @override
+  String get botGeminiGapTroubleshooting => 'Bestätigter Lösungsweg';
+
+  @override
+  String get botGeminiGapPolicy => 'Gültige Unternehmensrichtlinie';
+
+  @override
+  String get opGeminiWeeklyTitle => 'Gemini Weekly Summary';
+
+  @override
+  String get opGeminiWeeklySubtitle =>
+      'Gemini priorisiert belegte Erkenntnisse aus den vorhandenen Operations-Demodaten.';
+
+  @override
+  String get opGeminiSummaryBadge => '✨ GEMINI-ZUSAMMENFASSUNG';
+
+  @override
+  String get opGeminiConfirmedInformation =>
+      'Aus vorhandenen, bestätigten Operations-Informationen erzeugt.';
+
+  @override
+  String get opGeminiNoForecasts =>
+      'Keine Prognosen und keine erfundenen Kennzahlen. Der deterministische Insight-Block bleibt die überprüfbare Grundlage.';
 }

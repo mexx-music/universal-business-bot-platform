@@ -59,6 +59,14 @@ enabled = true
 policy = "oneshot"
 inspector_port = 8083
 
+# Server-side Gemini gateway. verify_jwt = true keeps the endpoint behind a
+# valid token: the Flutter client sends the Supabase anon (publishable) key as
+# Authorization automatically, so the demo works without a user login while the
+# GEMINI_API_KEY stays a server-only secret (set via `supabase secrets set`).
+[functions.ai-generate]
+enabled = true
+verify_jwt = true
+
 [analytics]
 enabled = false
 port = 54327

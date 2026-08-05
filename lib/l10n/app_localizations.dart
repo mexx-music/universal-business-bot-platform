@@ -4115,13 +4115,13 @@ abstract class AppLocalizations {
   /// No description provided for @botTestTitle.
   ///
   /// In de, this message translates to:
-  /// **'Bot-Test'**
+  /// **'BusinessBrain Grounded Answers'**
   String get botTestTitle;
 
   /// No description provided for @botTestSubtitle.
   ///
   /// In de, this message translates to:
-  /// **'Simulierter Bot ohne echte KI – Antworten basieren auf der Wissensbasis.'**
+  /// **'BusinessBrain beantwortet Fragen ausschließlich mit bestätigtem Wissen aus dem aktiven Unternehmens-Workspace.'**
   String get botTestSubtitle;
 
   /// No description provided for @botTestGreeting.
@@ -6635,7 +6635,7 @@ abstract class AppLocalizations {
   /// No description provided for @demoStartButton.
   ///
   /// In de, this message translates to:
-  /// **'Demo starten'**
+  /// **'BusinessBrain in 2 Minuten erleben'**
   String get demoStartButton;
 
   /// No description provided for @demoRegisterButton.
@@ -6709,6 +6709,6630 @@ abstract class AppLocalizations {
   /// In de, this message translates to:
   /// **'Hinweis ausblenden'**
   String get demoTourDismiss;
+
+  /// No description provided for @navCommunityRadar.
+  ///
+  /// In de, this message translates to:
+  /// **'Community Radar'**
+  String get navCommunityRadar;
+
+  /// No description provided for @communityRadarTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Community Radar'**
+  String get communityRadarTitle;
+
+  /// No description provided for @communityRadarSubtitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Öffentliche Diskussionen, die zu Ihren Unternehmen passen. Die KI findet und bewertet – veröffentlicht wird nichts automatisch.'**
+  String get communityRadarSubtitle;
+
+  /// No description provided for @communityDemoNote.
+  ///
+  /// In de, this message translates to:
+  /// **'Demo-Daten. Es wird nichts veröffentlicht.'**
+  String get communityDemoNote;
+
+  /// No description provided for @communityReadOnlyNote.
+  ///
+  /// In de, this message translates to:
+  /// **'Nur-Lese-Vorschau (CR-1): Aufgaben-Aktionen folgen in einem späteren Schritt.'**
+  String get communityReadOnlyNote;
+
+  /// No description provided for @communityFilterCompany.
+  ///
+  /// In de, this message translates to:
+  /// **'Unternehmen'**
+  String get communityFilterCompany;
+
+  /// No description provided for @communityFilterPlatform.
+  ///
+  /// In de, this message translates to:
+  /// **'Plattform'**
+  String get communityFilterPlatform;
+
+  /// No description provided for @communityFilterLanguage.
+  ///
+  /// In de, this message translates to:
+  /// **'Sprache'**
+  String get communityFilterLanguage;
+
+  /// No description provided for @communityFilterCountry.
+  ///
+  /// In de, this message translates to:
+  /// **'Land'**
+  String get communityFilterCountry;
+
+  /// No description provided for @communityFilterRisk.
+  ///
+  /// In de, this message translates to:
+  /// **'Risiko'**
+  String get communityFilterRisk;
+
+  /// No description provided for @communityFilterStatus.
+  ///
+  /// In de, this message translates to:
+  /// **'Status'**
+  String get communityFilterStatus;
+
+  /// No description provided for @communityFilterAll.
+  ///
+  /// In de, this message translates to:
+  /// **'Alle'**
+  String get communityFilterAll;
+
+  /// No description provided for @communityRelevance.
+  ///
+  /// In de, this message translates to:
+  /// **'Relevanz'**
+  String get communityRelevance;
+
+  /// No description provided for @communityEmpty.
+  ///
+  /// In de, this message translates to:
+  /// **'Keine Beiträge für diese Filter.'**
+  String get communityEmpty;
+
+  /// No description provided for @communityRecommendedAction.
+  ///
+  /// In de, this message translates to:
+  /// **'Empfohlene Aktion'**
+  String get communityRecommendedAction;
+
+  /// No description provided for @communityDetailOriginalText.
+  ///
+  /// In de, this message translates to:
+  /// **'Originalinhalt'**
+  String get communityDetailOriginalText;
+
+  /// No description provided for @communityDetailSource.
+  ///
+  /// In de, this message translates to:
+  /// **'Quelle'**
+  String get communityDetailSource;
+
+  /// No description provided for @communityDetailSummary.
+  ///
+  /// In de, this message translates to:
+  /// **'KI-Zusammenfassung'**
+  String get communityDetailSummary;
+
+  /// No description provided for @communityDetailIntent.
+  ///
+  /// In de, this message translates to:
+  /// **'Erkannte Absicht'**
+  String get communityDetailIntent;
+
+  /// No description provided for @communityDetailSentiment.
+  ///
+  /// In de, this message translates to:
+  /// **'Stimmung'**
+  String get communityDetailSentiment;
+
+  /// No description provided for @communityDetailRelevanceReason.
+  ///
+  /// In de, this message translates to:
+  /// **'Relevanzbegründung'**
+  String get communityDetailRelevanceReason;
+
+  /// No description provided for @communityDetailRisks.
+  ///
+  /// In de, this message translates to:
+  /// **'Risiken'**
+  String get communityDetailRisks;
+
+  /// No description provided for @communityDetailNoRisks.
+  ///
+  /// In de, this message translates to:
+  /// **'Keine besonderen Risiken erkannt.'**
+  String get communityDetailNoRisks;
+
+  /// No description provided for @communityDetailKnowledge.
+  ///
+  /// In de, this message translates to:
+  /// **'Passende Wissenseinträge'**
+  String get communityDetailKnowledge;
+
+  /// No description provided for @communityDetailNoKnowledge.
+  ///
+  /// In de, this message translates to:
+  /// **'Keine passenden Wissenseinträge hinterlegt.'**
+  String get communityDetailNoKnowledge;
+
+  /// No description provided for @communityDetailAllowedActions.
+  ///
+  /// In de, this message translates to:
+  /// **'Zulässige Reaktionsarten'**
+  String get communityDetailAllowedActions;
+
+  /// No description provided for @communityDetailProhibited.
+  ///
+  /// In de, this message translates to:
+  /// **'Ungeeignete Aussagen'**
+  String get communityDetailProhibited;
+
+  /// No description provided for @communityDetailNoProhibited.
+  ///
+  /// In de, this message translates to:
+  /// **'Keine gesperrten Aussagen für diesen Beitrag.'**
+  String get communityDetailNoProhibited;
+
+  /// No description provided for @communityDetailMatches.
+  ///
+  /// In de, this message translates to:
+  /// **'Passende Community-Mitglieder'**
+  String get communityDetailMatches;
+
+  /// No description provided for @communityDetailNoMatches.
+  ///
+  /// In de, this message translates to:
+  /// **'Noch keine passenden Mitglieder ermittelt.'**
+  String get communityDetailNoMatches;
+
+  /// No description provided for @communityMatchScore.
+  ///
+  /// In de, this message translates to:
+  /// **'Übereinstimmung'**
+  String get communityMatchScore;
+
+  /// No description provided for @communityMatchReasons.
+  ///
+  /// In de, this message translates to:
+  /// **'Warum es passt'**
+  String get communityMatchReasons;
+
+  /// No description provided for @communityMatchWarnings.
+  ///
+  /// In de, this message translates to:
+  /// **'Hinweise'**
+  String get communityMatchWarnings;
+
+  /// No description provided for @communityOpenOriginal.
+  ///
+  /// In de, this message translates to:
+  /// **'Original öffnen'**
+  String get communityOpenOriginal;
+
+  /// No description provided for @communityDisclosureRequired.
+  ///
+  /// In de, this message translates to:
+  /// **'Offenlegung erforderlich'**
+  String get communityDisclosureRequired;
+
+  /// No description provided for @communityBackToRadar.
+  ///
+  /// In de, this message translates to:
+  /// **'Zurück zum Radar'**
+  String get communityBackToRadar;
+
+  /// No description provided for @communityPlatformReddit.
+  ///
+  /// In de, this message translates to:
+  /// **'Reddit'**
+  String get communityPlatformReddit;
+
+  /// No description provided for @communityPlatformFacebookGroup.
+  ///
+  /// In de, this message translates to:
+  /// **'Facebook-Gruppe'**
+  String get communityPlatformFacebookGroup;
+
+  /// No description provided for @communityPlatformForum.
+  ///
+  /// In de, this message translates to:
+  /// **'Forum'**
+  String get communityPlatformForum;
+
+  /// No description provided for @communityPlatformInstagram.
+  ///
+  /// In de, this message translates to:
+  /// **'Instagram'**
+  String get communityPlatformInstagram;
+
+  /// No description provided for @communityPlatformX.
+  ///
+  /// In de, this message translates to:
+  /// **'X'**
+  String get communityPlatformX;
+
+  /// No description provided for @communityPlatformYoutube.
+  ///
+  /// In de, this message translates to:
+  /// **'YouTube'**
+  String get communityPlatformYoutube;
+
+  /// No description provided for @communityPlatformOther.
+  ///
+  /// In de, this message translates to:
+  /// **'Andere'**
+  String get communityPlatformOther;
+
+  /// No description provided for @communityIntentQuestion.
+  ///
+  /// In de, this message translates to:
+  /// **'Frage'**
+  String get communityIntentQuestion;
+
+  /// No description provided for @communityIntentComplaint.
+  ///
+  /// In de, this message translates to:
+  /// **'Beschwerde'**
+  String get communityIntentComplaint;
+
+  /// No description provided for @communityIntentRecommendationRequest.
+  ///
+  /// In de, this message translates to:
+  /// **'Empfehlung gesucht'**
+  String get communityIntentRecommendationRequest;
+
+  /// No description provided for @communityIntentDiscussion.
+  ///
+  /// In de, this message translates to:
+  /// **'Diskussion'**
+  String get communityIntentDiscussion;
+
+  /// No description provided for @communityIntentComparison.
+  ///
+  /// In de, this message translates to:
+  /// **'Vergleich'**
+  String get communityIntentComparison;
+
+  /// No description provided for @communityIntentExperienceShare.
+  ///
+  /// In de, this message translates to:
+  /// **'Erfahrungsbericht'**
+  String get communityIntentExperienceShare;
+
+  /// No description provided for @communityIntentOther.
+  ///
+  /// In de, this message translates to:
+  /// **'Sonstiges'**
+  String get communityIntentOther;
+
+  /// No description provided for @communitySentimentPositive.
+  ///
+  /// In de, this message translates to:
+  /// **'Positiv'**
+  String get communitySentimentPositive;
+
+  /// No description provided for @communitySentimentNeutral.
+  ///
+  /// In de, this message translates to:
+  /// **'Neutral'**
+  String get communitySentimentNeutral;
+
+  /// No description provided for @communitySentimentNegative.
+  ///
+  /// In de, this message translates to:
+  /// **'Negativ'**
+  String get communitySentimentNegative;
+
+  /// No description provided for @communitySentimentMixed.
+  ///
+  /// In de, this message translates to:
+  /// **'Gemischt'**
+  String get communitySentimentMixed;
+
+  /// No description provided for @communityStatusNew.
+  ///
+  /// In de, this message translates to:
+  /// **'Neu'**
+  String get communityStatusNew;
+
+  /// No description provided for @communityStatusReviewing.
+  ///
+  /// In de, this message translates to:
+  /// **'In Prüfung'**
+  String get communityStatusReviewing;
+
+  /// No description provided for @communityStatusMatched.
+  ///
+  /// In de, this message translates to:
+  /// **'Zugeordnet'**
+  String get communityStatusMatched;
+
+  /// No description provided for @communityStatusTaskCreated.
+  ///
+  /// In de, this message translates to:
+  /// **'Aufgabe erstellt'**
+  String get communityStatusTaskCreated;
+
+  /// No description provided for @communityStatusActioned.
+  ///
+  /// In de, this message translates to:
+  /// **'Bearbeitet'**
+  String get communityStatusActioned;
+
+  /// No description provided for @communityStatusDismissed.
+  ///
+  /// In de, this message translates to:
+  /// **'Verworfen'**
+  String get communityStatusDismissed;
+
+  /// No description provided for @communityActionViewOnly.
+  ///
+  /// In de, this message translates to:
+  /// **'Nur ansehen'**
+  String get communityActionViewOnly;
+
+  /// No description provided for @communityActionLike.
+  ///
+  /// In de, this message translates to:
+  /// **'Liken'**
+  String get communityActionLike;
+
+  /// No description provided for @communityActionShare.
+  ///
+  /// In de, this message translates to:
+  /// **'Teilen'**
+  String get communityActionShare;
+
+  /// No description provided for @communityActionRepost.
+  ///
+  /// In de, this message translates to:
+  /// **'Reposten'**
+  String get communityActionRepost;
+
+  /// No description provided for @communityActionShortPersonalComment.
+  ///
+  /// In de, this message translates to:
+  /// **'Kurzer eigener Kommentar'**
+  String get communityActionShortPersonalComment;
+
+  /// No description provided for @communityActionPersonalExperience.
+  ///
+  /// In de, this message translates to:
+  /// **'Eigene Erfahrung'**
+  String get communityActionPersonalExperience;
+
+  /// No description provided for @communityActionFactualAnswer.
+  ///
+  /// In de, this message translates to:
+  /// **'Sachliche Antwort'**
+  String get communityActionFactualAnswer;
+
+  /// No description provided for @communityActionAskFollowUpQuestion.
+  ///
+  /// In de, this message translates to:
+  /// **'Nachfrage stellen'**
+  String get communityActionAskFollowUpQuestion;
+
+  /// No description provided for @communityActionOpenOriginal.
+  ///
+  /// In de, this message translates to:
+  /// **'Original öffnen'**
+  String get communityActionOpenOriginal;
+
+  /// No description provided for @communityActionSkip.
+  ///
+  /// In de, this message translates to:
+  /// **'Überspringen'**
+  String get communityActionSkip;
+
+  /// No description provided for @navCommunityMembers.
+  ///
+  /// In de, this message translates to:
+  /// **'Community-Mitglieder'**
+  String get navCommunityMembers;
+
+  /// No description provided for @communityNavGroupPlatform.
+  ///
+  /// In de, this message translates to:
+  /// **'Plattform'**
+  String get communityNavGroupPlatform;
+
+  /// No description provided for @communityNavGroupCommunity.
+  ///
+  /// In de, this message translates to:
+  /// **'Community'**
+  String get communityNavGroupCommunity;
+
+  /// No description provided for @communityMembersTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Community-Mitglieder'**
+  String get communityMembersTitle;
+
+  /// No description provided for @communityMembersSubtitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Ein globaler, firmenunabhängiger Pool echter Menschen. Freiwillige Teilnahme, eigene Entscheidung.'**
+  String get communityMembersSubtitle;
+
+  /// No description provided for @communityMembersSearchHint.
+  ///
+  /// In de, this message translates to:
+  /// **'Mitglied suchen …'**
+  String get communityMembersSearchHint;
+
+  /// No description provided for @communityMembersEmpty.
+  ///
+  /// In de, this message translates to:
+  /// **'Keine Mitglieder für diese Filter.'**
+  String get communityMembersEmpty;
+
+  /// No description provided for @communityFilterTopic.
+  ///
+  /// In de, this message translates to:
+  /// **'Thema'**
+  String get communityFilterTopic;
+
+  /// No description provided for @communityFilterDomain.
+  ///
+  /// In de, this message translates to:
+  /// **'Bereich'**
+  String get communityFilterDomain;
+
+  /// No description provided for @communityMemberQuality.
+  ///
+  /// In de, this message translates to:
+  /// **'Qualität'**
+  String get communityMemberQuality;
+
+  /// No description provided for @communityMemberAuthenticity.
+  ///
+  /// In de, this message translates to:
+  /// **'Authentizitätssignal'**
+  String get communityMemberAuthenticity;
+
+  /// No description provided for @communityMemberCompletedTasks.
+  ///
+  /// In de, this message translates to:
+  /// **'Erledigte Aufgaben'**
+  String get communityMemberCompletedTasks;
+
+  /// No description provided for @communityMemberVerified.
+  ///
+  /// In de, this message translates to:
+  /// **'Verifiziert'**
+  String get communityMemberVerified;
+
+  /// No description provided for @communityMemberNotVerified.
+  ///
+  /// In de, this message translates to:
+  /// **'Nicht verifiziert'**
+  String get communityMemberNotVerified;
+
+  /// No description provided for @communityMemberAvailable.
+  ///
+  /// In de, this message translates to:
+  /// **'Verfügbar'**
+  String get communityMemberAvailable;
+
+  /// No description provided for @communityMemberUnavailable.
+  ///
+  /// In de, this message translates to:
+  /// **'Zurzeit nicht verfügbar'**
+  String get communityMemberUnavailable;
+
+  /// No description provided for @communityMemberConsentGranted.
+  ///
+  /// In de, this message translates to:
+  /// **'Profilanalyse erlaubt'**
+  String get communityMemberConsentGranted;
+
+  /// No description provided for @communityMemberConsentMissing.
+  ///
+  /// In de, this message translates to:
+  /// **'Profilanalyse nicht erlaubt'**
+  String get communityMemberConsentMissing;
+
+  /// No description provided for @communityMemberLanguages.
+  ///
+  /// In de, this message translates to:
+  /// **'Sprachen'**
+  String get communityMemberLanguages;
+
+  /// No description provided for @communityMemberCountry.
+  ///
+  /// In de, this message translates to:
+  /// **'Land'**
+  String get communityMemberCountry;
+
+  /// No description provided for @communityMemberInterests.
+  ///
+  /// In de, this message translates to:
+  /// **'Interessen'**
+  String get communityMemberInterests;
+
+  /// No description provided for @communityMemberExperience.
+  ///
+  /// In de, this message translates to:
+  /// **'Erfahrungskategorien'**
+  String get communityMemberExperience;
+
+  /// No description provided for @communityMemberPlatforms.
+  ///
+  /// In de, this message translates to:
+  /// **'Plattformprofile'**
+  String get communityMemberPlatforms;
+
+  /// No description provided for @communityMemberPublicTopics.
+  ///
+  /// In de, this message translates to:
+  /// **'Öffentlich besprochene Themen'**
+  String get communityMemberPublicTopics;
+
+  /// No description provided for @communityMemberPreferredActions.
+  ///
+  /// In de, this message translates to:
+  /// **'Bevorzugte Aufgabenarten'**
+  String get communityMemberPreferredActions;
+
+  /// No description provided for @communityMemberExcludedTopics.
+  ///
+  /// In de, this message translates to:
+  /// **'Ausgeschlossene Themen'**
+  String get communityMemberExcludedTopics;
+
+  /// No description provided for @communityMemberExcludedCompanies.
+  ///
+  /// In de, this message translates to:
+  /// **'Ausgeschlossene Firmen'**
+  String get communityMemberExcludedCompanies;
+
+  /// No description provided for @communityMemberConsentStatus.
+  ///
+  /// In de, this message translates to:
+  /// **'Einwilligungsstatus'**
+  String get communityMemberConsentStatus;
+
+  /// No description provided for @communityMemberAvailability.
+  ///
+  /// In de, this message translates to:
+  /// **'Verfügbarkeit'**
+  String get communityMemberAvailability;
+
+  /// No description provided for @communityMemberDomains.
+  ///
+  /// In de, this message translates to:
+  /// **'Mögliche Bereiche'**
+  String get communityMemberDomains;
+
+  /// No description provided for @communityMemberMatchesTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Passende Beiträge'**
+  String get communityMemberMatchesTitle;
+
+  /// No description provided for @communityMemberNone.
+  ///
+  /// In de, this message translates to:
+  /// **'—'**
+  String get communityMemberNone;
+
+  /// No description provided for @communityMemberStatusActive.
+  ///
+  /// In de, this message translates to:
+  /// **'Aktiv'**
+  String get communityMemberStatusActive;
+
+  /// No description provided for @communityMemberStatusPending.
+  ///
+  /// In de, this message translates to:
+  /// **'Ausstehend'**
+  String get communityMemberStatusPending;
+
+  /// No description provided for @communityMemberStatusPaused.
+  ///
+  /// In de, this message translates to:
+  /// **'Pausiert'**
+  String get communityMemberStatusPaused;
+
+  /// No description provided for @communityMemberStatusBlocked.
+  ///
+  /// In de, this message translates to:
+  /// **'Gesperrt'**
+  String get communityMemberStatusBlocked;
+
+  /// No description provided for @communityDomainCommunityEngagement.
+  ///
+  /// In de, this message translates to:
+  /// **'Community-Beteiligung'**
+  String get communityDomainCommunityEngagement;
+
+  /// No description provided for @communityDomainProductTest.
+  ///
+  /// In de, this message translates to:
+  /// **'Produkttest'**
+  String get communityDomainProductTest;
+
+  /// No description provided for @communityDomainIdeaResearch.
+  ///
+  /// In de, this message translates to:
+  /// **'Ideenforschung'**
+  String get communityDomainIdeaResearch;
+
+  /// No description provided for @communityDomainTranslation.
+  ///
+  /// In de, this message translates to:
+  /// **'Übersetzung'**
+  String get communityDomainTranslation;
+
+  /// No description provided for @communityDomainOther.
+  ///
+  /// In de, this message translates to:
+  /// **'Sonstiges'**
+  String get communityDomainOther;
+
+  /// No description provided for @communityFactorLanguage.
+  ///
+  /// In de, this message translates to:
+  /// **'Sprache'**
+  String get communityFactorLanguage;
+
+  /// No description provided for @communityFactorCountry.
+  ///
+  /// In de, this message translates to:
+  /// **'Land'**
+  String get communityFactorCountry;
+
+  /// No description provided for @communityFactorTopic.
+  ///
+  /// In de, this message translates to:
+  /// **'Thema'**
+  String get communityFactorTopic;
+
+  /// No description provided for @communityFactorExperience.
+  ///
+  /// In de, this message translates to:
+  /// **'Erfahrung'**
+  String get communityFactorExperience;
+
+  /// No description provided for @communityFactorPlatform.
+  ///
+  /// In de, this message translates to:
+  /// **'Plattform'**
+  String get communityFactorPlatform;
+
+  /// No description provided for @communityFactorPublicActivity.
+  ///
+  /// In de, this message translates to:
+  /// **'Öffentliche Aktivität'**
+  String get communityFactorPublicActivity;
+
+  /// No description provided for @communityFactorPreferredAction.
+  ///
+  /// In de, this message translates to:
+  /// **'Bevorzugte Aktion'**
+  String get communityFactorPreferredAction;
+
+  /// No description provided for @communityWarningNoExperience.
+  ///
+  /// In de, this message translates to:
+  /// **'Keine eigene Erfahrung zu diesem Thema angegeben'**
+  String get communityWarningNoExperience;
+
+  /// No description provided for @communityWarningNotOnPlatform.
+  ///
+  /// In de, this message translates to:
+  /// **'Nicht auf dieser Plattform aktiv'**
+  String get communityWarningNotOnPlatform;
+
+  /// No description provided for @communityWarningLowAuthenticity.
+  ///
+  /// In de, this message translates to:
+  /// **'Niedrigeres Authentizitätssignal'**
+  String get communityWarningLowAuthenticity;
+
+  /// No description provided for @communityWarningProfileAnalysisNoConsent.
+  ///
+  /// In de, this message translates to:
+  /// **'Profilanalyse ohne Einwilligung nicht möglich – öffentliche Aktivität wird nicht verwendet'**
+  String get communityWarningProfileAnalysisNoConsent;
+
+  /// No description provided for @communityBlockCompanyExcluded.
+  ///
+  /// In de, this message translates to:
+  /// **'Firma ausgeschlossen'**
+  String get communityBlockCompanyExcluded;
+
+  /// No description provided for @communityBlockTopicExcluded.
+  ///
+  /// In de, this message translates to:
+  /// **'Thema ausgeschlossen'**
+  String get communityBlockTopicExcluded;
+
+  /// No description provided for @communityBlockUnavailable.
+  ///
+  /// In de, this message translates to:
+  /// **'Aktuell nicht verfügbar'**
+  String get communityBlockUnavailable;
+
+  /// No description provided for @communityBlockAccountBlocked.
+  ///
+  /// In de, this message translates to:
+  /// **'Konto gesperrt'**
+  String get communityBlockAccountBlocked;
+
+  /// No description provided for @communityBlockDomainUnsupported.
+  ///
+  /// In de, this message translates to:
+  /// **'Bereich wird nicht unterstützt'**
+  String get communityBlockDomainUnsupported;
+
+  /// No description provided for @communityMatchingTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Matching-Ansicht'**
+  String get communityMatchingTitle;
+
+  /// No description provided for @communityMatchingFromContent.
+  ///
+  /// In de, this message translates to:
+  /// **'Ausgangspunkt: Beitrag'**
+  String get communityMatchingFromContent;
+
+  /// No description provided for @communityMatchingFromMember.
+  ///
+  /// In de, this message translates to:
+  /// **'Ausgangspunkt: Mitglied'**
+  String get communityMatchingFromMember;
+
+  /// No description provided for @communityMatchComponents.
+  ///
+  /// In de, this message translates to:
+  /// **'Score-Komponenten'**
+  String get communityMatchComponents;
+
+  /// No description provided for @communityMatchWarningsTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Hinweise'**
+  String get communityMatchWarningsTitle;
+
+  /// No description provided for @communityMatchBlockedTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Ausgeschlossen'**
+  String get communityMatchBlockedTitle;
+
+  /// No description provided for @communityMatchPossibleActions.
+  ///
+  /// In de, this message translates to:
+  /// **'Mögliche Reaktionsarten'**
+  String get communityMatchPossibleActions;
+
+  /// No description provided for @communityMatchNoAssignNote.
+  ///
+  /// In de, this message translates to:
+  /// **'Kein automatisches Zuweisen – ein Mensch entscheidet.'**
+  String get communityMatchNoAssignNote;
+
+  /// No description provided for @communityMatchEligible.
+  ///
+  /// In de, this message translates to:
+  /// **'Für Zuweisung geeignet'**
+  String get communityMatchEligible;
+
+  /// No description provided for @communityMatchIneligible.
+  ///
+  /// In de, this message translates to:
+  /// **'Nicht für Zuweisung geeignet'**
+  String get communityMatchIneligible;
+
+  /// No description provided for @communityViewMatching.
+  ///
+  /// In de, this message translates to:
+  /// **'Matching-Ansicht öffnen'**
+  String get communityViewMatching;
+
+  /// No description provided for @communityViewProfile.
+  ///
+  /// In de, this message translates to:
+  /// **'Profil ansehen'**
+  String get communityViewProfile;
+
+  /// No description provided for @communityViewContent.
+  ///
+  /// In de, this message translates to:
+  /// **'Beitrag ansehen'**
+  String get communityViewContent;
+
+  /// No description provided for @communityMatchingEmpty.
+  ///
+  /// In de, this message translates to:
+  /// **'Keine Bewertung verfügbar.'**
+  String get communityMatchingEmpty;
+
+  /// No description provided for @botDemoTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Wissensbasierte KI-Antwort'**
+  String get botDemoTitle;
+
+  /// No description provided for @botDemoIntro.
+  ///
+  /// In de, this message translates to:
+  /// **'Die KI antwortet ausschließlich auf Basis der freigegebenen Unternehmens-Wissensbasis. Quellen bleiben sichtbar; nichts wird veröffentlicht.'**
+  String get botDemoIntro;
+
+  /// No description provided for @botDemoRecentImportTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Dieses Dokument wurde gerade in die Wissensbasis übernommen.'**
+  String get botDemoRecentImportTitle;
+
+  /// No description provided for @botDemoRecentImportBody.
+  ///
+  /// In de, this message translates to:
+  /// **'Sie können BusinessBrain jetzt Fragen zu diesem Dokument stellen.'**
+  String get botDemoRecentImportBody;
+
+  /// No description provided for @botDemoQuestionHint.
+  ///
+  /// In de, this message translates to:
+  /// **'Ihre Unternehmensfrage'**
+  String get botDemoQuestionHint;
+
+  /// No description provided for @botDemoSubmit.
+  ///
+  /// In de, this message translates to:
+  /// **'Antwort erstellen'**
+  String get botDemoSubmit;
+
+  /// No description provided for @botDemoLoading.
+  ///
+  /// In de, this message translates to:
+  /// **'Antwort wird erstellt …'**
+  String get botDemoLoading;
+
+  /// No description provided for @botDemoAnswerTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Antwort'**
+  String get botDemoAnswerTitle;
+
+  /// No description provided for @botDemoSources.
+  ///
+  /// In de, this message translates to:
+  /// **'Quellen'**
+  String get botDemoSources;
+
+  /// No description provided for @botDemoGrounded.
+  ///
+  /// In de, this message translates to:
+  /// **'Wissensbasiert'**
+  String get botDemoGrounded;
+
+  /// No description provided for @botDemoNotGrounded.
+  ///
+  /// In de, this message translates to:
+  /// **'Kein Treffer'**
+  String get botDemoNotGrounded;
+
+  /// No description provided for @botDemoCoverageFull.
+  ///
+  /// In de, this message translates to:
+  /// **'Vollständig aus bestätigtem Firmenwissen beantwortet'**
+  String get botDemoCoverageFull;
+
+  /// No description provided for @botDemoCoveragePartial.
+  ///
+  /// In de, this message translates to:
+  /// **'Teilweise beantwortet – konkrete Angabe fehlt'**
+  String get botDemoCoveragePartial;
+
+  /// No description provided for @botDemoCoverageNone.
+  ///
+  /// In de, this message translates to:
+  /// **'Keine bestätigte Information vorhanden'**
+  String get botDemoCoverageNone;
+
+  /// No description provided for @botDemoCoverageSensitive.
+  ///
+  /// In de, this message translates to:
+  /// **'Sensible Frage – menschliche Prüfung empfohlen'**
+  String get botDemoCoverageSensitive;
+
+  /// No description provided for @botDemoFurtherInfoTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Weiterführende Informationen'**
+  String get botDemoFurtherInfoTitle;
+
+  /// No description provided for @botDemoFurtherInfoBody.
+  ///
+  /// In de, this message translates to:
+  /// **'Weitere Informationen finden Sie hier.'**
+  String get botDemoFurtherInfoBody;
+
+  /// No description provided for @botDemoMoreLinks.
+  ///
+  /// In de, this message translates to:
+  /// **'Weitere Informationen'**
+  String get botDemoMoreLinks;
+
+  /// No description provided for @kbLinkSectionTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Website-Verknüpfung (optional)'**
+  String get kbLinkSectionTitle;
+
+  /// No description provided for @kbLinkSectionHint.
+  ///
+  /// In de, this message translates to:
+  /// **'Dieser Link wird nur angezeigt, wenn der Wissenseintrag eine Antwort tatsächlich unterstützt.'**
+  String get kbLinkSectionHint;
+
+  /// No description provided for @kbLinkWebsite.
+  ///
+  /// In de, this message translates to:
+  /// **'Website'**
+  String get kbLinkWebsite;
+
+  /// No description provided for @kbLinkButtonText.
+  ///
+  /// In de, this message translates to:
+  /// **'Button-Text'**
+  String get kbLinkButtonText;
+
+  /// No description provided for @kbLinkType.
+  ///
+  /// In de, this message translates to:
+  /// **'Link-Typ'**
+  String get kbLinkType;
+
+  /// No description provided for @kbLinkTypeNone.
+  ///
+  /// In de, this message translates to:
+  /// **'Nicht festgelegt'**
+  String get kbLinkTypeNone;
+
+  /// No description provided for @knowledgeLinkProduct.
+  ///
+  /// In de, this message translates to:
+  /// **'Produktseite'**
+  String get knowledgeLinkProduct;
+
+  /// No description provided for @knowledgeLinkPrices.
+  ///
+  /// In de, this message translates to:
+  /// **'Preise'**
+  String get knowledgeLinkPrices;
+
+  /// No description provided for @knowledgeLinkFaq.
+  ///
+  /// In de, this message translates to:
+  /// **'FAQ'**
+  String get knowledgeLinkFaq;
+
+  /// No description provided for @knowledgeLinkGuide.
+  ///
+  /// In de, this message translates to:
+  /// **'Bedienungsanleitung'**
+  String get knowledgeLinkGuide;
+
+  /// No description provided for @knowledgeLinkDownload.
+  ///
+  /// In de, this message translates to:
+  /// **'Download'**
+  String get knowledgeLinkDownload;
+
+  /// No description provided for @knowledgeLinkVideo.
+  ///
+  /// In de, this message translates to:
+  /// **'Video'**
+  String get knowledgeLinkVideo;
+
+  /// No description provided for @knowledgeLinkSupport.
+  ///
+  /// In de, this message translates to:
+  /// **'Support'**
+  String get knowledgeLinkSupport;
+
+  /// No description provided for @knowledgeLinkContact.
+  ///
+  /// In de, this message translates to:
+  /// **'Kontakt'**
+  String get knowledgeLinkContact;
+
+  /// No description provided for @knowledgeLinkBlog.
+  ///
+  /// In de, this message translates to:
+  /// **'Blog'**
+  String get knowledgeLinkBlog;
+
+  /// No description provided for @knowledgeLinkShop.
+  ///
+  /// In de, this message translates to:
+  /// **'Shop'**
+  String get knowledgeLinkShop;
+
+  /// No description provided for @knowledgeLinkForm.
+  ///
+  /// In de, this message translates to:
+  /// **'Formular'**
+  String get knowledgeLinkForm;
+
+  /// No description provided for @knowledgeLinkWebsite.
+  ///
+  /// In de, this message translates to:
+  /// **'Website'**
+  String get knowledgeLinkWebsite;
+
+  /// No description provided for @botDemoNoKnowledge.
+  ///
+  /// In de, this message translates to:
+  /// **'Ich habe erkannt, dass zu deiner Frage aktuell noch keine ausreichenden Informationen in der Wissensbasis vorhanden sind.'**
+  String get botDemoNoKnowledge;
+
+  /// No description provided for @botDemoBlocked.
+  ///
+  /// In de, this message translates to:
+  /// **'Diese Frage berührt ein sensibles Thema. Sie wird bewusst nicht automatisch beantwortet, sondern an einen Menschen übergeben – es wurde keine KI-Antwort erzeugt.'**
+  String get botDemoBlocked;
+
+  /// No description provided for @botDemoGapTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Wissenslücke erkannt'**
+  String get botDemoGapTitle;
+
+  /// No description provided for @botDemoGapRecommendTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Empfohlene Inhalte zur Ergänzung der Wissensbasis:'**
+  String get botDemoGapRecommendTitle;
+
+  /// No description provided for @botDemoGapItemFaq.
+  ///
+  /// In de, this message translates to:
+  /// **'Häufig gestellte Fragen (FAQ)'**
+  String get botDemoGapItemFaq;
+
+  /// No description provided for @botDemoGapItemFeatures.
+  ///
+  /// In de, this message translates to:
+  /// **'Funktionsbeschreibung'**
+  String get botDemoGapItemFeatures;
+
+  /// No description provided for @botDemoGapItemGuide.
+  ///
+  /// In de, this message translates to:
+  /// **'Bedienungsanleitung'**
+  String get botDemoGapItemGuide;
+
+  /// No description provided for @botDemoGapItemSteps.
+  ///
+  /// In de, this message translates to:
+  /// **'Schritt-für-Schritt-Anleitung'**
+  String get botDemoGapItemSteps;
+
+  /// No description provided for @botDemoGapItemScreenshots.
+  ///
+  /// In de, this message translates to:
+  /// **'Screenshots'**
+  String get botDemoGapItemScreenshots;
+
+  /// No description provided for @botDemoGapItemRequirements.
+  ///
+  /// In de, this message translates to:
+  /// **'Technische Voraussetzungen'**
+  String get botDemoGapItemRequirements;
+
+  /// No description provided for @botDemoGapClosing.
+  ///
+  /// In de, this message translates to:
+  /// **'Sobald diese Inhalte ergänzt sind, können zukünftige Kundenfragen deutlich präziser beantwortet werden.'**
+  String get botDemoGapClosing;
+
+  /// No description provided for @botDemoGapTermsLabel.
+  ///
+  /// In de, this message translates to:
+  /// **'Betroffene Begriffe aus deiner Frage:'**
+  String get botDemoGapTermsLabel;
+
+  /// No description provided for @botDemoHumanReview.
+  ///
+  /// In de, this message translates to:
+  /// **'KI-Vorschlag – vor Veröffentlichung prüfen.'**
+  String get botDemoHumanReview;
+
+  /// No description provided for @botDemoProviderLabel.
+  ///
+  /// In de, this message translates to:
+  /// **'Provider'**
+  String get botDemoProviderLabel;
+
+  /// No description provided for @botDemoProviderMock.
+  ///
+  /// In de, this message translates to:
+  /// **'Offline-Mock'**
+  String get botDemoProviderMock;
+
+  /// No description provided for @botDemoModelLabel.
+  ///
+  /// In de, this message translates to:
+  /// **'Modell'**
+  String get botDemoModelLabel;
+
+  /// No description provided for @botDemoError.
+  ///
+  /// In de, this message translates to:
+  /// **'Antwort konnte nicht erstellt werden.'**
+  String get botDemoError;
+
+  /// No description provided for @botDemoRetry.
+  ///
+  /// In de, this message translates to:
+  /// **'Erneut versuchen'**
+  String get botDemoRetry;
+
+  /// No description provided for @botDemoErrorConfig.
+  ///
+  /// In de, this message translates to:
+  /// **'KI ist nicht konfiguriert. Bitte Server-Konfiguration prüfen.'**
+  String get botDemoErrorConfig;
+
+  /// No description provided for @botDemoErrorNetwork.
+  ///
+  /// In de, this message translates to:
+  /// **'KI-Dienst nicht erreichbar. Bitte später erneut versuchen.'**
+  String get botDemoErrorNetwork;
+
+  /// No description provided for @botDemoErrorTimeout.
+  ///
+  /// In de, this message translates to:
+  /// **'Zeitüberschreitung beim KI-Dienst. Bitte erneut versuchen.'**
+  String get botDemoErrorTimeout;
+
+  /// No description provided for @botDemoErrorRateLimit.
+  ///
+  /// In de, this message translates to:
+  /// **'Zu viele Anfragen. Bitte kurz warten und erneut versuchen.'**
+  String get botDemoErrorRateLimit;
+
+  /// No description provided for @botDemoErrorBlocked.
+  ///
+  /// In de, this message translates to:
+  /// **'Die Antwort wurde durch Sicherheitsfilter blockiert.'**
+  String get botDemoErrorBlocked;
+
+  /// No description provided for @botDemoErrorServer.
+  ///
+  /// In de, this message translates to:
+  /// **'Der KI-Dienst ist derzeit nicht verfügbar.'**
+  String get botDemoErrorServer;
+
+  /// No description provided for @navCompanyEvolution.
+  ///
+  /// In de, this message translates to:
+  /// **'Unternehmens-Evolution'**
+  String get navCompanyEvolution;
+
+  /// No description provided for @navGroupResearch.
+  ///
+  /// In de, this message translates to:
+  /// **'Recherche'**
+  String get navGroupResearch;
+
+  /// No description provided for @companyEvolutionTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Unternehmens-Evolution'**
+  String get companyEvolutionTitle;
+
+  /// No description provided for @companyEvolutionSubtitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Strukturierte externe Informationen zu einem Unternehmen – aus Demo-Daten, ohne Live-Recherche.'**
+  String get companyEvolutionSubtitle;
+
+  /// No description provided for @companyEvolutionSelectCompany.
+  ///
+  /// In de, this message translates to:
+  /// **'Unternehmen'**
+  String get companyEvolutionSelectCompany;
+
+  /// No description provided for @companyEvolutionSnapshotTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Unternehmensprofil'**
+  String get companyEvolutionSnapshotTitle;
+
+  /// No description provided for @companyEvolutionTimelineTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Zeitleiste'**
+  String get companyEvolutionTimelineTitle;
+
+  /// No description provided for @companyEvolutionSourcesTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Recherche-Quellen'**
+  String get companyEvolutionSourcesTitle;
+
+  /// No description provided for @companyEvolutionEvidenceForDocument.
+  ///
+  /// In de, this message translates to:
+  /// **'Belege aus diesem Dokument'**
+  String get companyEvolutionEvidenceForDocument;
+
+  /// No description provided for @companyEvolutionFieldIndustry.
+  ///
+  /// In de, this message translates to:
+  /// **'Branche'**
+  String get companyEvolutionFieldIndustry;
+
+  /// No description provided for @companyEvolutionFieldFounded.
+  ///
+  /// In de, this message translates to:
+  /// **'Gründungsjahr'**
+  String get companyEvolutionFieldFounded;
+
+  /// No description provided for @companyEvolutionFieldCountries.
+  ///
+  /// In de, this message translates to:
+  /// **'Länder'**
+  String get companyEvolutionFieldCountries;
+
+  /// No description provided for @companyEvolutionFieldProducts.
+  ///
+  /// In de, this message translates to:
+  /// **'Bekannte Produkte'**
+  String get companyEvolutionFieldProducts;
+
+  /// No description provided for @companyEvolutionFieldWebsite.
+  ///
+  /// In de, this message translates to:
+  /// **'Website'**
+  String get companyEvolutionFieldWebsite;
+
+  /// No description provided for @companyEvolutionFieldSocial.
+  ///
+  /// In de, this message translates to:
+  /// **'Social-Media-Kanäle'**
+  String get companyEvolutionFieldSocial;
+
+  /// No description provided for @companyEvolutionFieldSegment.
+  ///
+  /// In de, this message translates to:
+  /// **'Marktsegment'**
+  String get companyEvolutionFieldSegment;
+
+  /// No description provided for @companyEvolutionFieldRating.
+  ///
+  /// In de, this message translates to:
+  /// **'Bewertung'**
+  String get companyEvolutionFieldRating;
+
+  /// No description provided for @companyEvolutionFieldUpdated.
+  ///
+  /// In de, this message translates to:
+  /// **'Letzter Datenstand'**
+  String get companyEvolutionFieldUpdated;
+
+  /// No description provided for @companyEvolutionDocSource.
+  ///
+  /// In de, this message translates to:
+  /// **'Quelle'**
+  String get companyEvolutionDocSource;
+
+  /// No description provided for @companyEvolutionDocType.
+  ///
+  /// In de, this message translates to:
+  /// **'Typ'**
+  String get companyEvolutionDocType;
+
+  /// No description provided for @companyEvolutionDocPublished.
+  ///
+  /// In de, this message translates to:
+  /// **'Veröffentlicht'**
+  String get companyEvolutionDocPublished;
+
+  /// No description provided for @companyEvolutionDocLanguage.
+  ///
+  /// In de, this message translates to:
+  /// **'Sprache'**
+  String get companyEvolutionDocLanguage;
+
+  /// No description provided for @companyEvolutionDocCountry.
+  ///
+  /// In de, this message translates to:
+  /// **'Land'**
+  String get companyEvolutionDocCountry;
+
+  /// No description provided for @companyEvolutionDocUrl.
+  ///
+  /// In de, this message translates to:
+  /// **'URL'**
+  String get companyEvolutionDocUrl;
+
+  /// No description provided for @companyEvolutionEvidenceConfidence.
+  ///
+  /// In de, this message translates to:
+  /// **'Konfidenz'**
+  String get companyEvolutionEvidenceConfidence;
+
+  /// No description provided for @companyEvolutionEvidenceExtracted.
+  ///
+  /// In de, this message translates to:
+  /// **'Extrahiert'**
+  String get companyEvolutionEvidenceExtracted;
+
+  /// No description provided for @companyEvolutionTrustTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Transparenzhinweis'**
+  String get companyEvolutionTrustTitle;
+
+  /// No description provided for @companyEvolutionTrustBody.
+  ///
+  /// In de, this message translates to:
+  /// **'Demo-Daten – keine Live-Recherche, keine KI-generierten Schlussfolgerungen. Quellen und Aussagen sind getrennt modelliert.'**
+  String get companyEvolutionTrustBody;
+
+  /// No description provided for @companyEvolutionEmptyCompanies.
+  ///
+  /// In de, this message translates to:
+  /// **'Keine Unternehmen verfügbar.'**
+  String get companyEvolutionEmptyCompanies;
+
+  /// No description provided for @companyEvolutionEmptyTimeline.
+  ///
+  /// In de, this message translates to:
+  /// **'Keine Zeitleisten-Einträge vorhanden.'**
+  String get companyEvolutionEmptyTimeline;
+
+  /// No description provided for @companyEvolutionEmptyDocuments.
+  ///
+  /// In de, this message translates to:
+  /// **'Keine Recherche-Dokumente vorhanden.'**
+  String get companyEvolutionEmptyDocuments;
+
+  /// No description provided for @companyEvolutionEmptyEvidence.
+  ///
+  /// In de, this message translates to:
+  /// **'Keine Belege zu diesem Dokument.'**
+  String get companyEvolutionEmptyEvidence;
+
+  /// No description provided for @timelineCategoryFounding.
+  ///
+  /// In de, this message translates to:
+  /// **'Gründung'**
+  String get timelineCategoryFounding;
+
+  /// No description provided for @timelineCategoryProduct.
+  ///
+  /// In de, this message translates to:
+  /// **'Produkt'**
+  String get timelineCategoryProduct;
+
+  /// No description provided for @timelineCategoryMarketing.
+  ///
+  /// In de, this message translates to:
+  /// **'Marketing'**
+  String get timelineCategoryMarketing;
+
+  /// No description provided for @timelineCategoryPartnership.
+  ///
+  /// In de, this message translates to:
+  /// **'Partnerschaft'**
+  String get timelineCategoryPartnership;
+
+  /// No description provided for @timelineCategoryExpansion.
+  ///
+  /// In de, this message translates to:
+  /// **'Expansion'**
+  String get timelineCategoryExpansion;
+
+  /// No description provided for @timelineCategoryLegal.
+  ///
+  /// In de, this message translates to:
+  /// **'Recht'**
+  String get timelineCategoryLegal;
+
+  /// No description provided for @timelineCategoryFinance.
+  ///
+  /// In de, this message translates to:
+  /// **'Finanzen'**
+  String get timelineCategoryFinance;
+
+  /// No description provided for @timelineCategoryHiring.
+  ///
+  /// In de, this message translates to:
+  /// **'Personal'**
+  String get timelineCategoryHiring;
+
+  /// No description provided for @timelineCategoryStrategy.
+  ///
+  /// In de, this message translates to:
+  /// **'Strategie'**
+  String get timelineCategoryStrategy;
+
+  /// No description provided for @timelineCategoryCrisis.
+  ///
+  /// In de, this message translates to:
+  /// **'Krise'**
+  String get timelineCategoryCrisis;
+
+  /// No description provided for @timelineCategoryMilestone.
+  ///
+  /// In de, this message translates to:
+  /// **'Meilenstein'**
+  String get timelineCategoryMilestone;
+
+  /// No description provided for @researchDocTypeWebsite.
+  ///
+  /// In de, this message translates to:
+  /// **'Website'**
+  String get researchDocTypeWebsite;
+
+  /// No description provided for @researchDocTypeNews.
+  ///
+  /// In de, this message translates to:
+  /// **'News'**
+  String get researchDocTypeNews;
+
+  /// No description provided for @researchDocTypeBlog.
+  ///
+  /// In de, this message translates to:
+  /// **'Blog'**
+  String get researchDocTypeBlog;
+
+  /// No description provided for @researchDocTypeSocialPost.
+  ///
+  /// In de, this message translates to:
+  /// **'Social Post'**
+  String get researchDocTypeSocialPost;
+
+  /// No description provided for @researchDocTypeReview.
+  ///
+  /// In de, this message translates to:
+  /// **'Bewertung'**
+  String get researchDocTypeReview;
+
+  /// No description provided for @researchDocTypePressRelease.
+  ///
+  /// In de, this message translates to:
+  /// **'Pressemitteilung'**
+  String get researchDocTypePressRelease;
+
+  /// No description provided for @researchDocTypeForum.
+  ///
+  /// In de, this message translates to:
+  /// **'Forum'**
+  String get researchDocTypeForum;
+
+  /// No description provided for @researchDocTypeVideo.
+  ///
+  /// In de, this message translates to:
+  /// **'Video'**
+  String get researchDocTypeVideo;
+
+  /// No description provided for @researchDocTypeFinancial.
+  ///
+  /// In de, this message translates to:
+  /// **'Finanzbericht'**
+  String get researchDocTypeFinancial;
+
+  /// No description provided for @researchDocTypeUnknown.
+  ///
+  /// In de, this message translates to:
+  /// **'Unbekannt'**
+  String get researchDocTypeUnknown;
+
+  /// No description provided for @researchEvidenceCategoryProduct.
+  ///
+  /// In de, this message translates to:
+  /// **'Produkt'**
+  String get researchEvidenceCategoryProduct;
+
+  /// No description provided for @researchEvidenceCategoryMarketing.
+  ///
+  /// In de, this message translates to:
+  /// **'Marketing'**
+  String get researchEvidenceCategoryMarketing;
+
+  /// No description provided for @researchEvidenceCategoryExpansion.
+  ///
+  /// In de, this message translates to:
+  /// **'Expansion'**
+  String get researchEvidenceCategoryExpansion;
+
+  /// No description provided for @researchEvidenceCategoryHiring.
+  ///
+  /// In de, this message translates to:
+  /// **'Personal'**
+  String get researchEvidenceCategoryHiring;
+
+  /// No description provided for @researchEvidenceCategoryFinance.
+  ///
+  /// In de, this message translates to:
+  /// **'Finanzen'**
+  String get researchEvidenceCategoryFinance;
+
+  /// No description provided for @researchEvidenceCategoryPartnership.
+  ///
+  /// In de, this message translates to:
+  /// **'Partnerschaft'**
+  String get researchEvidenceCategoryPartnership;
+
+  /// No description provided for @researchEvidenceCategoryReputation.
+  ///
+  /// In de, this message translates to:
+  /// **'Reputation'**
+  String get researchEvidenceCategoryReputation;
+
+  /// No description provided for @researchEvidenceCategoryStrategy.
+  ///
+  /// In de, this message translates to:
+  /// **'Strategie'**
+  String get researchEvidenceCategoryStrategy;
+
+  /// No description provided for @researchEvidenceCategoryOther.
+  ///
+  /// In de, this message translates to:
+  /// **'Sonstiges'**
+  String get researchEvidenceCategoryOther;
+
+  /// No description provided for @navKnowledgeBuilder.
+  ///
+  /// In de, this message translates to:
+  /// **'Wissens-Builder'**
+  String get navKnowledgeBuilder;
+
+  /// No description provided for @kbTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Knowledge Builder'**
+  String get kbTitle;
+
+  /// No description provided for @kbIntro.
+  ///
+  /// In de, this message translates to:
+  /// **'Füge einen langen Text ein (z. B. Anleitung, Doku, Notizen). Die Analyse schlägt strukturierte Wissenseinträge vor – ohne etwas zu erfinden oder zu speichern.'**
+  String get kbIntro;
+
+  /// No description provided for @kbInputHint.
+  ///
+  /// In de, this message translates to:
+  /// **'Unternehmenswissen hier einfügen …'**
+  String get kbInputHint;
+
+  /// No description provided for @kbAnalyze.
+  ///
+  /// In de, this message translates to:
+  /// **'Wissen analysieren'**
+  String get kbAnalyze;
+
+  /// No description provided for @kbDemoDocumentsTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Demo-Dokumente'**
+  String get kbDemoDocumentsTitle;
+
+  /// No description provided for @kbDemoDocumentsIntro.
+  ///
+  /// In de, this message translates to:
+  /// **'Sie können ein eigenes Dokument einfügen oder eines der vorbereiteten Beispieldokumente laden.'**
+  String get kbDemoDocumentsIntro;
+
+  /// No description provided for @kbLoadExample.
+  ///
+  /// In de, this message translates to:
+  /// **'Beispiel laden'**
+  String get kbLoadExample;
+
+  /// No description provided for @kbExampleLoaded.
+  ///
+  /// In de, this message translates to:
+  /// **'Beispieldokument geladen'**
+  String get kbExampleLoaded;
+
+  /// No description provided for @kbExampleLanguage.
+  ///
+  /// In de, this message translates to:
+  /// **'Sprache'**
+  String get kbExampleLanguage;
+
+  /// No description provided for @kbExampleArea.
+  ///
+  /// In de, this message translates to:
+  /// **'Wissensbereich'**
+  String get kbExampleArea;
+
+  /// No description provided for @kbExampleDocumentType.
+  ///
+  /// In de, this message translates to:
+  /// **'Dokumenttyp'**
+  String get kbExampleDocumentType;
+
+  /// No description provided for @kbExampleReady.
+  ///
+  /// In de, this message translates to:
+  /// **'Bereit zur Analyse.'**
+  String get kbExampleReady;
+
+  /// No description provided for @kbPackageBadge.
+  ///
+  /// In de, this message translates to:
+  /// **'Umfangreiches Hauptbeispiel'**
+  String get kbPackageBadge;
+
+  /// No description provided for @kbPackageLoad.
+  ///
+  /// In de, this message translates to:
+  /// **'Gesamtes HB-Cure-Wissen laden'**
+  String get kbPackageLoad;
+
+  /// No description provided for @kbPackageLoaded.
+  ///
+  /// In de, this message translates to:
+  /// **'HB-Cure-Wissenspaket geladen'**
+  String get kbPackageLoaded;
+
+  /// No description provided for @kbPackageNotAnalyzed.
+  ///
+  /// In de, this message translates to:
+  /// **'Die Quelldokumente wurden nur in den Editor geladen. Es wurde noch nichts analysiert oder gespeichert.'**
+  String get kbPackageNotAnalyzed;
+
+  /// No description provided for @kbPackageIncludedAreas.
+  ///
+  /// In de, this message translates to:
+  /// **'Enthaltene Bereiche'**
+  String get kbPackageIncludedAreas;
+
+  /// No description provided for @kbPackageDocuments.
+  ///
+  /// In de, this message translates to:
+  /// **'Quelldokumente'**
+  String get kbPackageDocuments;
+
+  /// No description provided for @kbPackageLanguage.
+  ///
+  /// In de, this message translates to:
+  /// **'Sprache'**
+  String get kbPackageLanguage;
+
+  /// No description provided for @kbPackageAreas.
+  ///
+  /// In de, this message translates to:
+  /// **'Wissensbereiche'**
+  String get kbPackageAreas;
+
+  /// No description provided for @kbPackageTimeSensitive.
+  ///
+  /// In de, this message translates to:
+  /// **'Zeitabhängige Inhalte'**
+  String get kbPackageTimeSensitive;
+
+  /// No description provided for @kbPackageReviewRequired.
+  ///
+  /// In de, this message translates to:
+  /// **'Prüfpflichtige Aussagen'**
+  String get kbPackageReviewRequired;
+
+  /// No description provided for @kbPackageSourcesTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Inhalte und Quellenherkunft ansehen'**
+  String get kbPackageSourcesTitle;
+
+  /// No description provided for @kbPackageSourcesHint.
+  ///
+  /// In de, this message translates to:
+  /// **'Website-Daten und interne Projektdokumentation bleiben klar getrennt.'**
+  String get kbPackageSourcesHint;
+
+  /// No description provided for @kbPackageSourceLabel.
+  ///
+  /// In de, this message translates to:
+  /// **'Quelle'**
+  String get kbPackageSourceLabel;
+
+  /// No description provided for @kbPackageSourceTypeLabel.
+  ///
+  /// In de, this message translates to:
+  /// **'Quellentyp'**
+  String get kbPackageSourceTypeLabel;
+
+  /// No description provided for @kbPackageDataStatusLabel.
+  ///
+  /// In de, this message translates to:
+  /// **'Datenstand'**
+  String get kbPackageDataStatusLabel;
+
+  /// No description provided for @kbPackageLastCheckedLabel.
+  ///
+  /// In de, this message translates to:
+  /// **'Zuletzt geprüft'**
+  String get kbPackageLastCheckedLabel;
+
+  /// No description provided for @kbPackageRiskReview.
+  ///
+  /// In de, this message translates to:
+  /// **'Rechtliche beziehungsweise fachliche Prüfung erforderlich'**
+  String get kbPackageRiskReview;
+
+  /// No description provided for @kbPackageRiskImpact.
+  ///
+  /// In de, this message translates to:
+  /// **'Wirkungsbezogene Aussage – vor Veröffentlichung prüfen'**
+  String get kbPackageRiskImpact;
+
+  /// No description provided for @kbPackageRiskTestimonial.
+  ///
+  /// In de, this message translates to:
+  /// **'Erfahrungsbericht – nicht als Tatsachenbehauptung verwenden'**
+  String get kbPackageRiskTestimonial;
+
+  /// No description provided for @kbPackageTimeSensitiveBadge.
+  ///
+  /// In de, this message translates to:
+  /// **'Zeitabhängig'**
+  String get kbPackageTimeSensitiveBadge;
+
+  /// No description provided for @kbPackageReviewRecommendedLabel.
+  ///
+  /// In de, this message translates to:
+  /// **'Erneute Prüfung'**
+  String get kbPackageReviewRecommendedLabel;
+
+  /// No description provided for @kbPackageReviewRecommended.
+  ///
+  /// In de, this message translates to:
+  /// **'Vor Veröffentlichung empfohlen'**
+  String get kbPackageReviewRecommended;
+
+  /// No description provided for @kbAnalyzeReady.
+  ///
+  /// In de, this message translates to:
+  /// **'Dokument bereit'**
+  String get kbAnalyzeReady;
+
+  /// No description provided for @kbAnalyzeEmptyHint.
+  ///
+  /// In de, this message translates to:
+  /// **'Dokument einfügen oder Beispiel laden'**
+  String get kbAnalyzeEmptyHint;
+
+  /// No description provided for @kbCharacters.
+  ///
+  /// In de, this message translates to:
+  /// **'Zeichen'**
+  String get kbCharacters;
+
+  /// No description provided for @kbAnalyzing.
+  ///
+  /// In de, this message translates to:
+  /// **'Analysiere …'**
+  String get kbAnalyzing;
+
+  /// No description provided for @kbReset.
+  ///
+  /// In de, this message translates to:
+  /// **'Zurücksetzen'**
+  String get kbReset;
+
+  /// No description provided for @kbTrustNotice.
+  ///
+  /// In de, this message translates to:
+  /// **'Nichts wird automatisch gespeichert. Die KI erfindet keine Fakten – Inhalte bleiben unverändert, nur Titel, Fragen und Schlagwörter werden erzeugt.'**
+  String get kbTrustNotice;
+
+  /// No description provided for @kbNoResults.
+  ///
+  /// In de, this message translates to:
+  /// **'Keine auswertbaren Aussagen gefunden. Bitte mehr Text einfügen.'**
+  String get kbNoResults;
+
+  /// No description provided for @kbStatsTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Analyse-Übersicht'**
+  String get kbStatsTitle;
+
+  /// No description provided for @kbStatSentences.
+  ///
+  /// In de, this message translates to:
+  /// **'Analysierte Sätze'**
+  String get kbStatSentences;
+
+  /// No description provided for @kbStatTopics.
+  ///
+  /// In de, this message translates to:
+  /// **'Erkannte Themen'**
+  String get kbStatTopics;
+
+  /// No description provided for @kbStatNew.
+  ///
+  /// In de, this message translates to:
+  /// **'Neue Wissenseinträge'**
+  String get kbStatNew;
+
+  /// No description provided for @kbStatExisting.
+  ///
+  /// In de, this message translates to:
+  /// **'Vorhandene Einträge'**
+  String get kbStatExisting;
+
+  /// No description provided for @kbStatDuplicates.
+  ///
+  /// In de, this message translates to:
+  /// **'Mögliche Dubletten'**
+  String get kbStatDuplicates;
+
+  /// No description provided for @kbStatUnclear.
+  ///
+  /// In de, this message translates to:
+  /// **'Unklare Aussagen'**
+  String get kbStatUnclear;
+
+  /// No description provided for @kbDraftsTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Vorgeschlagene Einträge'**
+  String get kbDraftsTitle;
+
+  /// No description provided for @kbDecisionAccept.
+  ///
+  /// In de, this message translates to:
+  /// **'Übernehmen'**
+  String get kbDecisionAccept;
+
+  /// No description provided for @kbDecisionEdit.
+  ///
+  /// In de, this message translates to:
+  /// **'Bearbeiten'**
+  String get kbDecisionEdit;
+
+  /// No description provided for @kbDecisionIgnore.
+  ///
+  /// In de, this message translates to:
+  /// **'Ignorieren'**
+  String get kbDecisionIgnore;
+
+  /// No description provided for @kbFieldTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Titel'**
+  String get kbFieldTitle;
+
+  /// No description provided for @kbFieldQuestion.
+  ///
+  /// In de, this message translates to:
+  /// **'Frage'**
+  String get kbFieldQuestion;
+
+  /// No description provided for @kbFieldContent.
+  ///
+  /// In de, this message translates to:
+  /// **'Inhalt'**
+  String get kbFieldContent;
+
+  /// No description provided for @kbFieldKeywords.
+  ///
+  /// In de, this message translates to:
+  /// **'Schlagwörter'**
+  String get kbFieldKeywords;
+
+  /// No description provided for @kbFieldArea.
+  ///
+  /// In de, this message translates to:
+  /// **'Bereich'**
+  String get kbFieldArea;
+
+  /// No description provided for @kbFieldCategory.
+  ///
+  /// In de, this message translates to:
+  /// **'Kategorie'**
+  String get kbFieldCategory;
+
+  /// No description provided for @kbFieldDetectedTopics.
+  ///
+  /// In de, this message translates to:
+  /// **'Erkannte Themen'**
+  String get kbFieldDetectedTopics;
+
+  /// No description provided for @kbDuplicateBadge.
+  ///
+  /// In de, this message translates to:
+  /// **'Mögliche Dublette'**
+  String get kbDuplicateBadge;
+
+  /// No description provided for @kbExistingTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Bestehender Eintrag'**
+  String get kbExistingTitle;
+
+  /// No description provided for @kbNewInfoTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Neue Information'**
+  String get kbNewInfoTitle;
+
+  /// No description provided for @kbSuggestionTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Vorschlag'**
+  String get kbSuggestionTitle;
+
+  /// No description provided for @kbMergeAugment.
+  ///
+  /// In de, this message translates to:
+  /// **'Ergänzen'**
+  String get kbMergeAugment;
+
+  /// No description provided for @kbMergeReplace.
+  ///
+  /// In de, this message translates to:
+  /// **'Ersetzen'**
+  String get kbMergeReplace;
+
+  /// No description provided for @kbMergeNew.
+  ///
+  /// In de, this message translates to:
+  /// **'Neuen Eintrag anlegen'**
+  String get kbMergeNew;
+
+  /// No description provided for @kbCatFaq.
+  ///
+  /// In de, this message translates to:
+  /// **'FAQ'**
+  String get kbCatFaq;
+
+  /// No description provided for @kbCatInstallation.
+  ///
+  /// In de, this message translates to:
+  /// **'Installationsanleitung'**
+  String get kbCatInstallation;
+
+  /// No description provided for @kbCatStepByStep.
+  ///
+  /// In de, this message translates to:
+  /// **'Schritt-für-Schritt'**
+  String get kbCatStepByStep;
+
+  /// No description provided for @kbCatTechnicalRequirement.
+  ///
+  /// In de, this message translates to:
+  /// **'Technische Voraussetzung'**
+  String get kbCatTechnicalRequirement;
+
+  /// No description provided for @kbCatWarning.
+  ///
+  /// In de, this message translates to:
+  /// **'Warnhinweis'**
+  String get kbCatWarning;
+
+  /// No description provided for @kbCatTroubleshooting.
+  ///
+  /// In de, this message translates to:
+  /// **'Problemlösung'**
+  String get kbCatTroubleshooting;
+
+  /// No description provided for @kbCatProductFeature.
+  ///
+  /// In de, this message translates to:
+  /// **'Produktfunktion'**
+  String get kbCatProductFeature;
+
+  /// No description provided for @kbCatTip.
+  ///
+  /// In de, this message translates to:
+  /// **'Tipp'**
+  String get kbCatTip;
+
+  /// No description provided for @kbCatDefinition.
+  ///
+  /// In de, this message translates to:
+  /// **'Definition'**
+  String get kbCatDefinition;
+
+  /// No description provided for @kbCatContact.
+  ///
+  /// In de, this message translates to:
+  /// **'Kontaktinformation'**
+  String get kbCatContact;
+
+  /// No description provided for @kbCatGeneral.
+  ///
+  /// In de, this message translates to:
+  /// **'Allgemein'**
+  String get kbCatGeneral;
+
+  /// No description provided for @kbAnalysisTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'BusinessBrain analysiert Ihr Wissen'**
+  String get kbAnalysisTitle;
+
+  /// No description provided for @kbAnalysisComplete.
+  ///
+  /// In de, this message translates to:
+  /// **'Analyse abgeschlossen'**
+  String get kbAnalysisComplete;
+
+  /// No description provided for @kbAnalysisIntro.
+  ///
+  /// In de, this message translates to:
+  /// **'Jeder Schritt bleibt sichtbar: erkennen, strukturieren und mit der Wissensbasis abgleichen.'**
+  String get kbAnalysisIntro;
+
+  /// No description provided for @kbPhaseRecognizeTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'BusinessBrain erkennt den Kontext'**
+  String get kbPhaseRecognizeTitle;
+
+  /// No description provided for @kbPhaseStructureTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'BusinessBrain strukturiert das Wissen'**
+  String get kbPhaseStructureTitle;
+
+  /// No description provided for @kbPhaseCompareTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'BusinessBrain prüft die vorhandene Wissensbasis'**
+  String get kbPhaseCompareTitle;
+
+  /// No description provided for @kbPhasePending.
+  ///
+  /// In de, this message translates to:
+  /// **'Ausstehend'**
+  String get kbPhasePending;
+
+  /// No description provided for @kbPhaseActive.
+  ///
+  /// In de, this message translates to:
+  /// **'In Arbeit'**
+  String get kbPhaseActive;
+
+  /// No description provided for @kbPhaseComplete.
+  ///
+  /// In de, this message translates to:
+  /// **'Abgeschlossen'**
+  String get kbPhaseComplete;
+
+  /// No description provided for @kbDetectedLanguage.
+  ///
+  /// In de, this message translates to:
+  /// **'Sprache'**
+  String get kbDetectedLanguage;
+
+  /// No description provided for @kbDetectedDocumentType.
+  ///
+  /// In de, this message translates to:
+  /// **'Dokumenttyp'**
+  String get kbDetectedDocumentType;
+
+  /// No description provided for @kbDetectedStatements.
+  ///
+  /// In de, this message translates to:
+  /// **'Erkannte Aussagen'**
+  String get kbDetectedStatements;
+
+  /// No description provided for @kbMetricFaq.
+  ///
+  /// In de, this message translates to:
+  /// **'FAQ'**
+  String get kbMetricFaq;
+
+  /// No description provided for @kbMetricProductFeatures.
+  ///
+  /// In de, this message translates to:
+  /// **'Produktfunktionen'**
+  String get kbMetricProductFeatures;
+
+  /// No description provided for @kbMetricSteps.
+  ///
+  /// In de, this message translates to:
+  /// **'Schritt-für-Schritt-Anleitungen'**
+  String get kbMetricSteps;
+
+  /// No description provided for @kbMetricWarnings.
+  ///
+  /// In de, this message translates to:
+  /// **'Warnhinweise'**
+  String get kbMetricWarnings;
+
+  /// No description provided for @kbMetricRequirements.
+  ///
+  /// In de, this message translates to:
+  /// **'Technische Voraussetzungen'**
+  String get kbMetricRequirements;
+
+  /// No description provided for @kbMetricDefinitions.
+  ///
+  /// In de, this message translates to:
+  /// **'Definitionen'**
+  String get kbMetricDefinitions;
+
+  /// No description provided for @kbMetricTips.
+  ///
+  /// In de, this message translates to:
+  /// **'Tipps'**
+  String get kbMetricTips;
+
+  /// No description provided for @kbMetricKeywords.
+  ///
+  /// In de, this message translates to:
+  /// **'Schlagwörter'**
+  String get kbMetricKeywords;
+
+  /// No description provided for @kbMetricSimilarTopics.
+  ///
+  /// In de, this message translates to:
+  /// **'Ähnliche Themen'**
+  String get kbMetricSimilarTopics;
+
+  /// No description provided for @kbMetricProducts.
+  ///
+  /// In de, this message translates to:
+  /// **'Erkannte Produkte'**
+  String get kbMetricProducts;
+
+  /// No description provided for @kbMetricDevices.
+  ///
+  /// In de, this message translates to:
+  /// **'Erkannte Geräte'**
+  String get kbMetricDevices;
+
+  /// No description provided for @kbMetricFunctions.
+  ///
+  /// In de, this message translates to:
+  /// **'Erkannte Funktionen'**
+  String get kbMetricFunctions;
+
+  /// No description provided for @kbSummaryTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'BusinessBrain hat Ihren Text erfolgreich analysiert.'**
+  String get kbSummaryTitle;
+
+  /// No description provided for @kbSummaryIntro.
+  ///
+  /// In de, this message translates to:
+  /// **'BusinessBrain hat Ihren Text analysiert und daraus strukturiertes Unternehmenswissen vorgeschlagen. Es wurde noch nichts gespeichert. Erst nach Ihrer Bestätigung wird neues Wissen Teil der Wissensbasis.'**
+  String get kbSummaryIntro;
+
+  /// No description provided for @kbPreviewIntro.
+  ///
+  /// In de, this message translates to:
+  /// **'Prüfen Sie jetzt jeden vorgeschlagenen Eintrag und seine Herkunft im Originaltext.'**
+  String get kbPreviewIntro;
+
+  /// No description provided for @kbCreatedFrom.
+  ///
+  /// In de, this message translates to:
+  /// **'Erstellt aus:'**
+  String get kbCreatedFrom;
+
+  /// No description provided for @kbLanguageGerman.
+  ///
+  /// In de, this message translates to:
+  /// **'Deutsch'**
+  String get kbLanguageGerman;
+
+  /// No description provided for @kbLanguageEnglish.
+  ///
+  /// In de, this message translates to:
+  /// **'Englisch'**
+  String get kbLanguageEnglish;
+
+  /// No description provided for @kbLanguageUnknown.
+  ///
+  /// In de, this message translates to:
+  /// **'Nicht eindeutig'**
+  String get kbLanguageUnknown;
+
+  /// No description provided for @kbDocTypeFaqCollection.
+  ///
+  /// In de, this message translates to:
+  /// **'FAQ-Sammlung'**
+  String get kbDocTypeFaqCollection;
+
+  /// No description provided for @kbDocTypeProductDescription.
+  ///
+  /// In de, this message translates to:
+  /// **'Produktbeschreibung'**
+  String get kbDocTypeProductDescription;
+
+  /// No description provided for @kbDocTypeInstructions.
+  ///
+  /// In de, this message translates to:
+  /// **'Anleitung'**
+  String get kbDocTypeInstructions;
+
+  /// No description provided for @kbDocTypeTechnicalDocumentation.
+  ///
+  /// In de, this message translates to:
+  /// **'Technische Dokumentation'**
+  String get kbDocTypeTechnicalDocumentation;
+
+  /// No description provided for @kbDocTypeCompanyKnowledge.
+  ///
+  /// In de, this message translates to:
+  /// **'Unternehmenswissen'**
+  String get kbDocTypeCompanyKnowledge;
+
+  /// No description provided for @kbDemoBadge.
+  ///
+  /// In de, this message translates to:
+  /// **'Wissensvorschau'**
+  String get kbDemoBadge;
+
+  /// No description provided for @kbDemoNotSaved.
+  ///
+  /// In de, this message translates to:
+  /// **'Noch nicht gespeichert'**
+  String get kbDemoNotSaved;
+
+  /// No description provided for @kbDemoSaved.
+  ///
+  /// In de, this message translates to:
+  /// **'Im Workspace bestätigt'**
+  String get kbDemoSaved;
+
+  /// No description provided for @kbDemoTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Dieses Wissen sofort ausprobieren'**
+  String get kbDemoTitle;
+
+  /// No description provided for @kbDemoIntro.
+  ///
+  /// In de, this message translates to:
+  /// **'BusinessBrain hat passende Beispielfragen ausschließlich aus dem gerade analysierten Text vorbereitet. Wählen Sie eine Frage und prüfen Sie unmittelbar, wie das vorgeschlagene Wissen verwendet werden kann.'**
+  String get kbDemoIntro;
+
+  /// No description provided for @kbDemoQuestionLabel.
+  ///
+  /// In de, this message translates to:
+  /// **'Vorbereitete Beispielfrage'**
+  String get kbDemoQuestionLabel;
+
+  /// No description provided for @kbDemoCreateAnswer.
+  ///
+  /// In de, this message translates to:
+  /// **'Antwort erstellen'**
+  String get kbDemoCreateAnswer;
+
+  /// No description provided for @kbDemoAnswerTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Antwort aus dem analysierten Text'**
+  String get kbDemoAnswerTitle;
+
+  /// No description provided for @kbDemoSourcesTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Verwendete Quelle'**
+  String get kbDemoSourcesTitle;
+
+  /// No description provided for @kbDemoSourceSentence.
+  ///
+  /// In de, this message translates to:
+  /// **'Originalsatz aus dem Dokument'**
+  String get kbDemoSourceSentence;
+
+  /// No description provided for @kbImportReviewTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Wissen in den Workspace übernehmen'**
+  String get kbImportReviewTitle;
+
+  /// No description provided for @kbImportReviewNote.
+  ///
+  /// In de, this message translates to:
+  /// **'Mit diesem Schritt bestätigen Sie alle vorgeschlagenen Einträge gemeinsam. Erst danach werden sie Teil der aktiven Wissensbasis.'**
+  String get kbImportReviewNote;
+
+  /// No description provided for @kbImportAll.
+  ///
+  /// In de, this message translates to:
+  /// **'Alle vorgeschlagenen Wissenseinträge übernehmen'**
+  String get kbImportAll;
+
+  /// No description provided for @kbImporting.
+  ///
+  /// In de, this message translates to:
+  /// **'Wissenseinträge werden übernommen …'**
+  String get kbImporting;
+
+  /// No description provided for @kbImportSuccessTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'{count} Wissenseinträge übernommen'**
+  String kbImportSuccessTitle(int count);
+
+  /// No description provided for @kbImportKnowledgeCount.
+  ///
+  /// In de, this message translates to:
+  /// **'Wissensbasis: {before} → {after}'**
+  String kbImportKnowledgeCount(int before, int after);
+
+  /// No description provided for @kbImportGroundedReady.
+  ///
+  /// In de, this message translates to:
+  /// **'Grounded AI verwendet jetzt dieses Unternehmenswissen.'**
+  String get kbImportGroundedReady;
+
+  /// No description provided for @kbImportError.
+  ///
+  /// In de, this message translates to:
+  /// **'Die Wissenseinträge konnten nicht vollständig übernommen werden. Bitte versuchen Sie es erneut.'**
+  String get kbImportError;
+
+  /// No description provided for @kbSuccessDialogTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Unternehmenswissen erfolgreich erweitert'**
+  String get kbSuccessDialogTitle;
+
+  /// No description provided for @kbSuccessDialogBody.
+  ///
+  /// In de, this message translates to:
+  /// **'BusinessBrain hat die vorgeschlagenen Wissenseinträge übernommen.'**
+  String get kbSuccessDialogBody;
+
+  /// No description provided for @kbSuccessBefore.
+  ///
+  /// In de, this message translates to:
+  /// **'Vorher'**
+  String get kbSuccessBefore;
+
+  /// No description provided for @kbSuccessNow.
+  ///
+  /// In de, this message translates to:
+  /// **'Jetzt'**
+  String get kbSuccessNow;
+
+  /// No description provided for @kbSuccessImported.
+  ///
+  /// In de, this message translates to:
+  /// **'Übernommene Einträge'**
+  String get kbSuccessImported;
+
+  /// No description provided for @kbSuccessEntryValue.
+  ///
+  /// In de, this message translates to:
+  /// **'{count} Wissenseinträge'**
+  String kbSuccessEntryValue(int count);
+
+  /// No description provided for @kbSuccessNewFaq.
+  ///
+  /// In de, this message translates to:
+  /// **'Neue FAQ'**
+  String get kbSuccessNewFaq;
+
+  /// No description provided for @kbSuccessNewProductFeatures.
+  ///
+  /// In de, this message translates to:
+  /// **'Neue Produktfunktionen'**
+  String get kbSuccessNewProductFeatures;
+
+  /// No description provided for @kbSuccessNewRequirements.
+  ///
+  /// In de, this message translates to:
+  /// **'Neue technische Voraussetzungen'**
+  String get kbSuccessNewRequirements;
+
+  /// No description provided for @kbSuccessWorkspaceTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Unternehmenswissen'**
+  String get kbSuccessWorkspaceTitle;
+
+  /// No description provided for @kbSuccessDocuments.
+  ///
+  /// In de, this message translates to:
+  /// **'Dokumente'**
+  String get kbSuccessDocuments;
+
+  /// No description provided for @kbSuccessKnowledgeEntries.
+  ///
+  /// In de, this message translates to:
+  /// **'Wissenseinträge'**
+  String get kbSuccessKnowledgeEntries;
+
+  /// No description provided for @kbSuccessFaq.
+  ///
+  /// In de, this message translates to:
+  /// **'FAQ'**
+  String get kbSuccessFaq;
+
+  /// No description provided for @kbSuccessKeywords.
+  ///
+  /// In de, this message translates to:
+  /// **'Schlagwörter'**
+  String get kbSuccessKeywords;
+
+  /// No description provided for @kbSuccessGroundedReady.
+  ///
+  /// In de, this message translates to:
+  /// **'Das neue Wissen steht jetzt für Grounded Answers zur Verfügung.'**
+  String get kbSuccessGroundedReady;
+
+  /// No description provided for @kbSuccessAddDocument.
+  ///
+  /// In de, this message translates to:
+  /// **'Weiteres Dokument hinzufügen'**
+  String get kbSuccessAddDocument;
+
+  /// No description provided for @kbSuccessAskNow.
+  ///
+  /// In de, this message translates to:
+  /// **'BusinessBrain jetzt befragen'**
+  String get kbSuccessAskNow;
+
+  /// No description provided for @kbCycleDocument.
+  ///
+  /// In de, this message translates to:
+  /// **'Dokument'**
+  String get kbCycleDocument;
+
+  /// No description provided for @kbCycleStructured.
+  ///
+  /// In de, this message translates to:
+  /// **'Strukturiert'**
+  String get kbCycleStructured;
+
+  /// No description provided for @kbCycleAccepted.
+  ///
+  /// In de, this message translates to:
+  /// **'Übernommen'**
+  String get kbCycleAccepted;
+
+  /// No description provided for @kbCycleAnswerable.
+  ///
+  /// In de, this message translates to:
+  /// **'Ab jetzt beantwortbar'**
+  String get kbCycleAnswerable;
+
+  /// No description provided for @navRolePortals.
+  ///
+  /// In de, this message translates to:
+  /// **'Portale'**
+  String get navRolePortals;
+
+  /// No description provided for @roleOverviewTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Rollen & Portale'**
+  String get roleOverviewTitle;
+
+  /// No description provided for @roleOverviewIntro.
+  ///
+  /// In de, this message translates to:
+  /// **'Drei Ebenen, eine Wissensbasis. Vorschau der reduzierten Navigation je Rolle – ohne Login und ohne echte Rechtevergabe.'**
+  String get roleOverviewIntro;
+
+  /// No description provided for @roleTrustNotice.
+  ///
+  /// In de, this message translates to:
+  /// **'Demo-Struktur: keine Anmeldung, keine Berechtigungsprüfung, keine Backend-Änderung. Nur zur Veranschaulichung.'**
+  String get roleTrustNotice;
+
+  /// No description provided for @roleSharedKnowledgeNote.
+  ///
+  /// In de, this message translates to:
+  /// **'Alle drei Ebenen greifen auf dieselbe Wissensbasis zu – neue Informationen werden ausschließlich im Firmenportal gepflegt.'**
+  String get roleSharedKnowledgeNote;
+
+  /// No description provided for @roleSectionsTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Sichtbare Bereiche'**
+  String get roleSectionsTitle;
+
+  /// No description provided for @roleDayTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Beispiel-Tagesablauf'**
+  String get roleDayTitle;
+
+  /// No description provided for @roleSelectTier.
+  ///
+  /// In de, this message translates to:
+  /// **'Ebene'**
+  String get roleSelectTier;
+
+  /// No description provided for @roleSelectDepartment.
+  ///
+  /// In de, this message translates to:
+  /// **'Abteilung'**
+  String get roleSelectDepartment;
+
+  /// No description provided for @rolePortalCompanyTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Firmenportal'**
+  String get rolePortalCompanyTitle;
+
+  /// No description provided for @rolePortalEmployeeTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Mitarbeiterportal'**
+  String get rolePortalEmployeeTitle;
+
+  /// No description provided for @rolePortalCustomerTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Kundenportal'**
+  String get rolePortalCustomerTitle;
+
+  /// No description provided for @roleTierCompany.
+  ///
+  /// In de, this message translates to:
+  /// **'Firmenadministrator'**
+  String get roleTierCompany;
+
+  /// No description provided for @roleTierEmployee.
+  ///
+  /// In de, this message translates to:
+  /// **'Mitarbeiter'**
+  String get roleTierEmployee;
+
+  /// No description provided for @roleTierCustomer.
+  ///
+  /// In de, this message translates to:
+  /// **'Kunde'**
+  String get roleTierCustomer;
+
+  /// No description provided for @roleDeptSupport.
+  ///
+  /// In de, this message translates to:
+  /// **'Support'**
+  String get roleDeptSupport;
+
+  /// No description provided for @roleDeptMarketing.
+  ///
+  /// In de, this message translates to:
+  /// **'Marketing'**
+  String get roleDeptMarketing;
+
+  /// No description provided for @roleDeptTechnical.
+  ///
+  /// In de, this message translates to:
+  /// **'Technik'**
+  String get roleDeptTechnical;
+
+  /// No description provided for @roleDeptSales.
+  ///
+  /// In de, this message translates to:
+  /// **'Vertrieb'**
+  String get roleDeptSales;
+
+  /// No description provided for @roleSecProducts.
+  ///
+  /// In de, this message translates to:
+  /// **'Produkte'**
+  String get roleSecProducts;
+
+  /// No description provided for @roleSecResearch.
+  ///
+  /// In de, this message translates to:
+  /// **'Research'**
+  String get roleSecResearch;
+
+  /// No description provided for @roleSecCompetitors.
+  ///
+  /// In de, this message translates to:
+  /// **'Wettbewerber'**
+  String get roleSecCompetitors;
+
+  /// No description provided for @roleSecEmployees.
+  ///
+  /// In de, this message translates to:
+  /// **'Mitarbeiter'**
+  String get roleSecEmployees;
+
+  /// No description provided for @roleSecRoles.
+  ///
+  /// In de, this message translates to:
+  /// **'Rollen'**
+  String get roleSecRoles;
+
+  /// No description provided for @roleSecCustomerAssistant.
+  ///
+  /// In de, this message translates to:
+  /// **'Kunden-Assistent'**
+  String get roleSecCustomerAssistant;
+
+  /// No description provided for @roleSecContact.
+  ///
+  /// In de, this message translates to:
+  /// **'Kontakt'**
+  String get roleSecContact;
+
+  /// No description provided for @roleDayCompany1.
+  ///
+  /// In de, this message translates to:
+  /// **'Dokumente importieren und mit dem Knowledge Builder strukturieren.'**
+  String get roleDayCompany1;
+
+  /// No description provided for @roleDayCompany2.
+  ///
+  /// In de, this message translates to:
+  /// **'Rollen vergeben und Analysen im Dashboard prüfen.'**
+  String get roleDayCompany2;
+
+  /// No description provided for @roleDayCompany3.
+  ///
+  /// In de, this message translates to:
+  /// **'Company Evolution und Wettbewerber im Blick behalten.'**
+  String get roleDayCompany3;
+
+  /// No description provided for @roleDayEmployee1.
+  ///
+  /// In de, this message translates to:
+  /// **'Nur die zugewiesenen Bereiche öffnen (z. B. Support: FAQ & Prüfung).'**
+  String get roleDayEmployee1;
+
+  /// No description provided for @roleDayEmployee2.
+  ///
+  /// In de, this message translates to:
+  /// **'Antworten für Kunden vorbereiten und Wissen ergänzen.'**
+  String get roleDayEmployee2;
+
+  /// No description provided for @roleDayEmployee3.
+  ///
+  /// In de, this message translates to:
+  /// **'Keine Systemeinstellungen – Fokus auf die tägliche Arbeit.'**
+  String get roleDayEmployee3;
+
+  /// No description provided for @roleDayCustomer1.
+  ///
+  /// In de, this message translates to:
+  /// **'Eine Frage im öffentlichen Bereich stellen.'**
+  String get roleDayCustomer1;
+
+  /// No description provided for @roleDayCustomer2.
+  ///
+  /// In de, this message translates to:
+  /// **'Antwort mit Quellen lesen und freigegebene Dokumente öffnen.'**
+  String get roleDayCustomer2;
+
+  /// No description provided for @roleDayCustomer3.
+  ///
+  /// In de, this message translates to:
+  /// **'Bei Bedarf Kontakt aufnehmen – keine internen Daten sichtbar.'**
+  String get roleDayCustomer3;
+
+  /// No description provided for @navKnowledgeImprovement.
+  ///
+  /// In de, this message translates to:
+  /// **'Lernkreislauf'**
+  String get navKnowledgeImprovement;
+
+  /// No description provided for @kiTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Knowledge Improvement'**
+  String get kiTitle;
+
+  /// No description provided for @kiIntro.
+  ///
+  /// In de, this message translates to:
+  /// **'So wird BusinessBrain mit jeder Frage besser: der Wissens-Lernkreislauf in sieben Schritten.'**
+  String get kiIntro;
+
+  /// No description provided for @kiTrustNotice.
+  ///
+  /// In de, this message translates to:
+  /// **'Illustrative Demo – kein Live-KI-Aufruf, keine Speicherung. Das Prinzip in 30 Sekunden.'**
+  String get kiTrustNotice;
+
+  /// No description provided for @kiStart.
+  ///
+  /// In de, this message translates to:
+  /// **'Start'**
+  String get kiStart;
+
+  /// No description provided for @kiNext.
+  ///
+  /// In de, this message translates to:
+  /// **'Weiter'**
+  String get kiNext;
+
+  /// No description provided for @kiRestart.
+  ///
+  /// In de, this message translates to:
+  /// **'Neu starten'**
+  String get kiRestart;
+
+  /// No description provided for @kiStep.
+  ///
+  /// In de, this message translates to:
+  /// **'Schritt'**
+  String get kiStep;
+
+  /// No description provided for @kiStage1Title.
+  ///
+  /// In de, this message translates to:
+  /// **'Kundenfrage'**
+  String get kiStage1Title;
+
+  /// No description provided for @kiStage1Body.
+  ///
+  /// In de, this message translates to:
+  /// **'Ein Kunde stellt eine konkrete Frage.'**
+  String get kiStage1Body;
+
+  /// No description provided for @kiStage2Title.
+  ///
+  /// In de, this message translates to:
+  /// **'KI-Antwort'**
+  String get kiStage2Title;
+
+  /// No description provided for @kiStage2Body.
+  ///
+  /// In de, this message translates to:
+  /// **'Die KI antwortet ausschließlich aus der freigegebenen Wissensbasis.'**
+  String get kiStage2Body;
+
+  /// No description provided for @kiStage3Title.
+  ///
+  /// In de, this message translates to:
+  /// **'Wissenslücke erkannt'**
+  String get kiStage3Title;
+
+  /// No description provided for @kiStage3Body.
+  ///
+  /// In de, this message translates to:
+  /// **'Fehlt Wissen, bleibt die KI ehrlich und markiert die Lücke.'**
+  String get kiStage3Body;
+
+  /// No description provided for @kiStage4Title.
+  ///
+  /// In de, this message translates to:
+  /// **'Verbesserungsvorschlag'**
+  String get kiStage4Title;
+
+  /// No description provided for @kiStage4Body.
+  ///
+  /// In de, this message translates to:
+  /// **'BusinessBrain schlägt automatisch einen passenden Wissenseintrag vor.'**
+  String get kiStage4Body;
+
+  /// No description provided for @kiStage5Title.
+  ///
+  /// In de, this message translates to:
+  /// **'Mitarbeiter übernimmt'**
+  String get kiStage5Title;
+
+  /// No description provided for @kiStage5Body.
+  ///
+  /// In de, this message translates to:
+  /// **'Ein Mensch prüft und übernimmt die Ergänzung – nichts wird automatisch gespeichert.'**
+  String get kiStage5Body;
+
+  /// No description provided for @kiStage6Title.
+  ///
+  /// In de, this message translates to:
+  /// **'Wissensbasis wächst'**
+  String get kiStage6Title;
+
+  /// No description provided for @kiStage6Body.
+  ///
+  /// In de, this message translates to:
+  /// **'Der neue Eintrag wird Teil der einen Wissensbasis.'**
+  String get kiStage6Body;
+
+  /// No description provided for @kiStage7Title.
+  ///
+  /// In de, this message translates to:
+  /// **'Alle Antworten profitieren'**
+  String get kiStage7Title;
+
+  /// No description provided for @kiStage7Body.
+  ///
+  /// In de, this message translates to:
+  /// **'Dieselbe Frage wird künftig präzise und belegt beantwortet.'**
+  String get kiStage7Body;
+
+  /// No description provided for @kiQuestion.
+  ///
+  /// In de, this message translates to:
+  /// **'Wie verbinde ich mein Gerät über Bluetooth?'**
+  String get kiQuestion;
+
+  /// No description provided for @kiGapAnswer.
+  ///
+  /// In de, this message translates to:
+  /// **'Dazu liegen aktuell noch nicht genügend Informationen in der Wissensbasis vor.'**
+  String get kiGapAnswer;
+
+  /// No description provided for @kiSuggestionTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Gerät über Bluetooth verbinden'**
+  String get kiSuggestionTitle;
+
+  /// No description provided for @kiSuggestionContent.
+  ///
+  /// In de, this message translates to:
+  /// **'Bluetooth aktivieren und das Gerät in der App auswählen, um die Verbindung herzustellen.'**
+  String get kiSuggestionContent;
+
+  /// No description provided for @kiImprovedAnswer.
+  ///
+  /// In de, this message translates to:
+  /// **'Aktiviere Bluetooth und wähle dein Gerät in der App aus – anschließend ist die Verbindung hergestellt.'**
+  String get kiImprovedAnswer;
+
+  /// No description provided for @kiKbCountLabel.
+  ///
+  /// In de, this message translates to:
+  /// **'Wissenseinträge'**
+  String get kiKbCountLabel;
+
+  /// No description provided for @kiBeforeLabel.
+  ///
+  /// In de, this message translates to:
+  /// **'Vorher'**
+  String get kiBeforeLabel;
+
+  /// No description provided for @kiAfterLabel.
+  ///
+  /// In de, this message translates to:
+  /// **'Nachher'**
+  String get kiAfterLabel;
+
+  /// No description provided for @kiAhaTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Der Aha-Moment'**
+  String get kiAhaTitle;
+
+  /// No description provided for @kiAhaBody.
+  ///
+  /// In de, this message translates to:
+  /// **'Aus einer Wissenslücke wird dauerhaftes Wissen – jede zukünftige Antwort profitiert.'**
+  String get kiAhaBody;
+
+  /// No description provided for @kiSourceLabel.
+  ///
+  /// In de, this message translates to:
+  /// **'Quelle'**
+  String get kiSourceLabel;
+
+  /// No description provided for @navGuidedDemo.
+  ///
+  /// In de, this message translates to:
+  /// **'Geführte Demo'**
+  String get navGuidedDemo;
+
+  /// No description provided for @gdStart.
+  ///
+  /// In de, this message translates to:
+  /// **'Demo starten'**
+  String get gdStart;
+
+  /// No description provided for @gdBack.
+  ///
+  /// In de, this message translates to:
+  /// **'Zurück'**
+  String get gdBack;
+
+  /// No description provided for @gdNext.
+  ///
+  /// In de, this message translates to:
+  /// **'Weiter'**
+  String get gdNext;
+
+  /// No description provided for @gdWelcomeStatement.
+  ///
+  /// In de, this message translates to:
+  /// **'BusinessBrain ist das digitale Wissenszentrum eines Unternehmens.'**
+  String get gdWelcomeStatement;
+
+  /// No description provided for @gdWelcomeSubtitle.
+  ///
+  /// In de, this message translates to:
+  /// **'In zwei Minuten durch den gesamten Workflow – vom Firmenwissen bis zur lernenden Antwort.'**
+  String get gdWelcomeSubtitle;
+
+  /// No description provided for @gdStep1Title.
+  ///
+  /// In de, this message translates to:
+  /// **'Willkommen'**
+  String get gdStep1Title;
+
+  /// No description provided for @gdStep2Title.
+  ///
+  /// In de, this message translates to:
+  /// **'Wissen aufbauen'**
+  String get gdStep2Title;
+
+  /// No description provided for @gdStep3Title.
+  ///
+  /// In de, this message translates to:
+  /// **'Grounded Antwort'**
+  String get gdStep3Title;
+
+  /// No description provided for @gdStep4Title.
+  ///
+  /// In de, this message translates to:
+  /// **'Wissenslücke'**
+  String get gdStep4Title;
+
+  /// No description provided for @gdStep5Title.
+  ///
+  /// In de, this message translates to:
+  /// **'Verbesserung & Kontrolle'**
+  String get gdStep5Title;
+
+  /// No description provided for @gdStep6Title.
+  ///
+  /// In de, this message translates to:
+  /// **'Lernkreislauf'**
+  String get gdStep6Title;
+
+  /// No description provided for @gdStep7Title.
+  ///
+  /// In de, this message translates to:
+  /// **'Fazit'**
+  String get gdStep7Title;
+
+  /// No description provided for @gdNarr2.
+  ///
+  /// In de, this message translates to:
+  /// **'Aus unstrukturiertem Text entsteht automatisch strukturiertes Firmenwissen – nichts wird ohne Prüfung gespeichert.'**
+  String get gdNarr2;
+
+  /// No description provided for @gdNarr3.
+  ///
+  /// In de, this message translates to:
+  /// **'BusinessBrain beantwortet Fragen ausschließlich aus dem freigegebenen Firmenwissen und zeigt die Quellen – es erfindet nichts.'**
+  String get gdNarr3;
+
+  /// No description provided for @gdNarr4.
+  ///
+  /// In de, this message translates to:
+  /// **'Fehlt Wissen, bleibt BusinessBrain ehrlich und markiert die Lücke, statt zu halluzinieren.'**
+  String get gdNarr4;
+
+  /// No description provided for @gdNarr5.
+  ///
+  /// In de, this message translates to:
+  /// **'BusinessBrain schlägt eine Ergänzung vor. Ein Mitarbeiter entscheidet – nichts wird automatisch übernommen.'**
+  String get gdNarr5;
+
+  /// No description provided for @gdNarr6.
+  ///
+  /// In de, this message translates to:
+  /// **'Der komplette Kreislauf auf einen Blick: bestätigtes Wissen verbessert alle zukünftigen Antworten.'**
+  String get gdNarr6;
+
+  /// No description provided for @gdLoopTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Der Lernkreislauf'**
+  String get gdLoopTitle;
+
+  /// No description provided for @gdLoop1.
+  ///
+  /// In de, this message translates to:
+  /// **'Firmenwissen'**
+  String get gdLoop1;
+
+  /// No description provided for @gdLoop2.
+  ///
+  /// In de, this message translates to:
+  /// **'Kundenfragen beantworten'**
+  String get gdLoop2;
+
+  /// No description provided for @gdLoop3.
+  ///
+  /// In de, this message translates to:
+  /// **'Neue Fragen entstehen'**
+  String get gdLoop3;
+
+  /// No description provided for @gdLoop4.
+  ///
+  /// In de, this message translates to:
+  /// **'Wissenslücken erkannt'**
+  String get gdLoop4;
+
+  /// No description provided for @gdLoop5.
+  ///
+  /// In de, this message translates to:
+  /// **'Verbesserungsvorschläge'**
+  String get gdLoop5;
+
+  /// No description provided for @gdLoop6.
+  ///
+  /// In de, this message translates to:
+  /// **'Mitarbeiter entscheidet'**
+  String get gdLoop6;
+
+  /// No description provided for @gdLoop7.
+  ///
+  /// In de, this message translates to:
+  /// **'Wissensbasis wächst'**
+  String get gdLoop7;
+
+  /// No description provided for @gdLoop8.
+  ///
+  /// In de, this message translates to:
+  /// **'Bessere Antworten'**
+  String get gdLoop8;
+
+  /// No description provided for @gdClosingTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'BusinessBrain lernt nicht durch Halluzinationen.'**
+  String get gdClosingTitle;
+
+  /// No description provided for @gdClosingLine1.
+  ///
+  /// In de, this message translates to:
+  /// **'Das Unternehmen behält jederzeit die Kontrolle.'**
+  String get gdClosingLine1;
+
+  /// No description provided for @gdClosingLine2.
+  ///
+  /// In de, this message translates to:
+  /// **'Jede bestätigte Ergänzung verbessert alle zukünftigen Antworten.'**
+  String get gdClosingLine2;
+
+  /// No description provided for @navBusinessStory.
+  ///
+  /// In de, this message translates to:
+  /// **'Business Story'**
+  String get navBusinessStory;
+
+  /// No description provided for @bsTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'BusinessBrain für Unternehmen'**
+  String get bsTitle;
+
+  /// No description provided for @bsSubtitle.
+  ///
+  /// In de, this message translates to:
+  /// **'In zwei Minuten: welches Problem wir lösen, warum das kein gewöhnlicher KI-Chat ist und welcher Nutzen für Unternehmen entsteht.'**
+  String get bsSubtitle;
+
+  /// No description provided for @bsProblemTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Das Problem'**
+  String get bsProblemTitle;
+
+  /// No description provided for @bsProblemBody.
+  ///
+  /// In de, this message translates to:
+  /// **'Viele Unternehmen besitzen enormes Wissen – verteilt auf PDFs, E-Mails, Webseiten, Mitarbeiter, Handbücher und Support-Anfragen. Dadurch gehen Zeit, Wissen und Qualität verloren.'**
+  String get bsProblemBody;
+
+  /// No description provided for @bsSolutionTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Die Lösung'**
+  String get bsSolutionTitle;
+
+  /// No description provided for @bsSolutionBody.
+  ///
+  /// In de, this message translates to:
+  /// **'BusinessBrain bündelt dieses Wissen in einer zentralen Wissensbasis. Die KI beantwortet Fragen ausschließlich auf Basis dieses Wissens und zeigt ihre Quellen. Fehlendes Wissen wird erkannt und als Verbesserungsvorschlag vorbereitet – Mitarbeiter entscheiden jederzeit selbst, was übernommen wird.'**
+  String get bsSolutionBody;
+
+  /// No description provided for @bsCycleTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Der Kreislauf'**
+  String get bsCycleTitle;
+
+  /// No description provided for @bsBenefitsTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Der Nutzen für Unternehmen'**
+  String get bsBenefitsTitle;
+
+  /// No description provided for @bsBenefit1Title.
+  ///
+  /// In de, this message translates to:
+  /// **'Schnellerer Kundensupport'**
+  String get bsBenefit1Title;
+
+  /// No description provided for @bsBenefit1Body.
+  ///
+  /// In de, this message translates to:
+  /// **'Antworten kommen direkt aus dem freigegebenen Firmenwissen.'**
+  String get bsBenefit1Body;
+
+  /// No description provided for @bsBenefit2Title.
+  ///
+  /// In de, this message translates to:
+  /// **'Einheitliche Antworten'**
+  String get bsBenefit2Title;
+
+  /// No description provided for @bsBenefit2Body.
+  ///
+  /// In de, this message translates to:
+  /// **'Alle greifen auf dieselbe Wissensbasis zu.'**
+  String get bsBenefit2Body;
+
+  /// No description provided for @bsBenefit3Title.
+  ///
+  /// In de, this message translates to:
+  /// **'Zentrale Wissensbasis'**
+  String get bsBenefit3Title;
+
+  /// No description provided for @bsBenefit3Body.
+  ///
+  /// In de, this message translates to:
+  /// **'Eine Quelle der Wahrheit statt verstreuter Dokumente.'**
+  String get bsBenefit3Body;
+
+  /// No description provided for @bsBenefit4Title.
+  ///
+  /// In de, this message translates to:
+  /// **'Entlastung der Mitarbeiter'**
+  String get bsBenefit4Title;
+
+  /// No description provided for @bsBenefit4Body.
+  ///
+  /// In de, this message translates to:
+  /// **'Wiederkehrende Fragen werden zuverlässig beantwortet.'**
+  String get bsBenefit4Body;
+
+  /// No description provided for @bsBenefit5Title.
+  ///
+  /// In de, this message translates to:
+  /// **'Kontinuierliche Verbesserung'**
+  String get bsBenefit5Title;
+
+  /// No description provided for @bsBenefit5Body.
+  ///
+  /// In de, this message translates to:
+  /// **'Bestätigtes Wissen verbessert alle zukünftigen Antworten.'**
+  String get bsBenefit5Body;
+
+  /// No description provided for @bsBenefit6Title.
+  ///
+  /// In de, this message translates to:
+  /// **'Transparente Quellen'**
+  String get bsBenefit6Title;
+
+  /// No description provided for @bsBenefit6Body.
+  ///
+  /// In de, this message translates to:
+  /// **'Jede Antwort zeigt die verwendeten Wissenseinträge.'**
+  String get bsBenefit6Body;
+
+  /// No description provided for @bsBenefit7Title.
+  ///
+  /// In de, this message translates to:
+  /// **'Keine Halluzinationen'**
+  String get bsBenefit7Title;
+
+  /// No description provided for @bsBenefit7Body.
+  ///
+  /// In de, this message translates to:
+  /// **'Es wird nur belegtes Firmenwissen verwendet.'**
+  String get bsBenefit7Body;
+
+  /// No description provided for @bsBenefit8Title.
+  ///
+  /// In de, this message translates to:
+  /// **'Mensch behält die Kontrolle'**
+  String get bsBenefit8Title;
+
+  /// No description provided for @bsBenefit8Body.
+  ///
+  /// In de, this message translates to:
+  /// **'Nichts wird automatisch veröffentlicht oder gespeichert.'**
+  String get bsBenefit8Body;
+
+  /// No description provided for @bsContrastTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Bewusst mit Grenzen'**
+  String get bsContrastTitle;
+
+  /// No description provided for @bsNotTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Was BusinessBrain bewusst nicht macht'**
+  String get bsNotTitle;
+
+  /// No description provided for @bsDoesTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Was BusinessBrain tut'**
+  String get bsDoesTitle;
+
+  /// No description provided for @bsNot1.
+  ///
+  /// In de, this message translates to:
+  /// **'Erfindet keine Fakten'**
+  String get bsNot1;
+
+  /// No description provided for @bsNot2.
+  ///
+  /// In de, this message translates to:
+  /// **'Veröffentlicht nichts automatisch'**
+  String get bsNot2;
+
+  /// No description provided for @bsNot3.
+  ///
+  /// In de, this message translates to:
+  /// **'Ersetzt keine Mitarbeiter'**
+  String get bsNot3;
+
+  /// No description provided for @bsNot4.
+  ///
+  /// In de, this message translates to:
+  /// **'Entscheidet nichts selbstständig'**
+  String get bsNot4;
+
+  /// No description provided for @bsDoes1.
+  ///
+  /// In de, this message translates to:
+  /// **'Unterstützt Mitarbeiter'**
+  String get bsDoes1;
+
+  /// No description provided for @bsDoes2.
+  ///
+  /// In de, this message translates to:
+  /// **'Erkennt Wissenslücken'**
+  String get bsDoes2;
+
+  /// No description provided for @bsDoes3.
+  ///
+  /// In de, this message translates to:
+  /// **'Erstellt Verbesserungsvorschläge'**
+  String get bsDoes3;
+
+  /// No description provided for @bsDoes4.
+  ///
+  /// In de, this message translates to:
+  /// **'Lernt durch bestätigtes Firmenwissen'**
+  String get bsDoes4;
+
+  /// No description provided for @bsVisionTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Vision'**
+  String get bsVisionTitle;
+
+  /// No description provided for @bsVisionBadge.
+  ///
+  /// In de, this message translates to:
+  /// **'Zukünftige Entwicklung'**
+  String get bsVisionBadge;
+
+  /// No description provided for @bsVision1.
+  ///
+  /// In de, this message translates to:
+  /// **'Autonome Research-Agenten'**
+  String get bsVision1;
+
+  /// No description provided for @bsVision2.
+  ///
+  /// In de, this message translates to:
+  /// **'Wettbewerbsanalyse'**
+  String get bsVision2;
+
+  /// No description provided for @bsVision3.
+  ///
+  /// In de, this message translates to:
+  /// **'Sichtbarkeitsüberwachung'**
+  String get bsVision3;
+
+  /// No description provided for @bsVision4.
+  ///
+  /// In de, this message translates to:
+  /// **'Morning Briefings'**
+  String get bsVision4;
+
+  /// No description provided for @bsVision5.
+  ///
+  /// In de, this message translates to:
+  /// **'Trendanalysen'**
+  String get bsVision5;
+
+  /// No description provided for @bsVision6.
+  ///
+  /// In de, this message translates to:
+  /// **'Strategische Handlungsempfehlungen'**
+  String get bsVision6;
+
+  /// No description provided for @bsVision7.
+  ///
+  /// In de, this message translates to:
+  /// **'Intelligente Aufgabenverteilung'**
+  String get bsVision7;
+
+  /// No description provided for @bsVision8.
+  ///
+  /// In de, this message translates to:
+  /// **'Kontinuierliche Unternehmensbeobachtung'**
+  String get bsVision8;
+
+  /// No description provided for @bsClosingTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'BusinessBrain entwickelt sich vom Wissenssystem zum digitalen Unternehmensgehirn.'**
+  String get bsClosingTitle;
+
+  /// No description provided for @bsClosingBody.
+  ///
+  /// In de, this message translates to:
+  /// **'Heute unterstützt BusinessBrain Unternehmen dabei, ihr Wissen effizient zu organisieren, Kundenfragen zuverlässig zu beantworten und Wissenslücken sichtbar zu machen. Zukünftig soll die Plattform Unternehmen zusätzlich aktiv unterstützen, Entwicklungen beobachten, Chancen erkennen und strategische Empfehlungen liefern.'**
+  String get bsClosingBody;
+
+  /// No description provided for @bsStatusTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Status-Übersicht'**
+  String get bsStatusTitle;
+
+  /// No description provided for @bsStatusIntro.
+  ///
+  /// In de, this message translates to:
+  /// **'Transparente Zuordnung: Was ist heute real, was ist in Arbeit, was ist Vision?'**
+  String get bsStatusIntro;
+
+  /// No description provided for @bsStatusAvailable.
+  ///
+  /// In de, this message translates to:
+  /// **'Bereits verfügbar'**
+  String get bsStatusAvailable;
+
+  /// No description provided for @bsStatusInDev.
+  ///
+  /// In de, this message translates to:
+  /// **'In Entwicklung'**
+  String get bsStatusInDev;
+
+  /// No description provided for @bsStatusVision.
+  ///
+  /// In de, this message translates to:
+  /// **'Langfristige Vision'**
+  String get bsStatusVision;
+
+  /// No description provided for @bsFeatKnowledgeBase.
+  ///
+  /// In de, this message translates to:
+  /// **'Zentrale Wissensbasis'**
+  String get bsFeatKnowledgeBase;
+
+  /// No description provided for @bsFeatGrounded.
+  ///
+  /// In de, this message translates to:
+  /// **'Grounded KI-Assistent mit Quellen'**
+  String get bsFeatGrounded;
+
+  /// No description provided for @bsFeatGapDetection.
+  ///
+  /// In de, this message translates to:
+  /// **'Wissenslücken-Erkennung'**
+  String get bsFeatGapDetection;
+
+  /// No description provided for @bsFeatBuilder.
+  ///
+  /// In de, this message translates to:
+  /// **'AI Knowledge Builder (Import)'**
+  String get bsFeatBuilder;
+
+  /// No description provided for @bsFeatSuggestions.
+  ///
+  /// In de, this message translates to:
+  /// **'Verbesserungsvorschläge (Mensch entscheidet)'**
+  String get bsFeatSuggestions;
+
+  /// No description provided for @bsFeatLoop.
+  ///
+  /// In de, this message translates to:
+  /// **'Lernkreislauf-Visualisierung'**
+  String get bsFeatLoop;
+
+  /// No description provided for @bsFeatEvolution.
+  ///
+  /// In de, this message translates to:
+  /// **'Company Evolution (Demo-Daten)'**
+  String get bsFeatEvolution;
+
+  /// No description provided for @bsFeatPortals.
+  ///
+  /// In de, this message translates to:
+  /// **'Rollen & Portale (Vorschau)'**
+  String get bsFeatPortals;
+
+  /// No description provided for @bsFeatI18n.
+  ///
+  /// In de, this message translates to:
+  /// **'Zweisprachig (DE/EN)'**
+  String get bsFeatI18n;
+
+  /// No description provided for @bsFeatLiveGemini.
+  ///
+  /// In de, this message translates to:
+  /// **'Live-Gemini in Produktion (in Härtung)'**
+  String get bsFeatLiveGemini;
+
+  /// No description provided for @bsFeatRoleEnforcement.
+  ///
+  /// In de, this message translates to:
+  /// **'Rollen-Durchsetzung & Login-Guards'**
+  String get bsFeatRoleEnforcement;
+
+  /// No description provided for @bsFeatResearchLive.
+  ///
+  /// In de, this message translates to:
+  /// **'Live-Recherche-Pipeline mit echten Quellen'**
+  String get bsFeatResearchLive;
+
+  /// No description provided for @bsFeatCommunity.
+  ///
+  /// In de, this message translates to:
+  /// **'Community-Radar (read-only Demo)'**
+  String get bsFeatCommunity;
+
+  /// No description provided for @navOperations.
+  ///
+  /// In de, this message translates to:
+  /// **'Operations'**
+  String get navOperations;
+
+  /// No description provided for @opTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'AI Operations Center'**
+  String get opTitle;
+
+  /// No description provided for @opSubtitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Auf einen Blick: wie BusinessBrain Wissen nutzbar macht, Lücken sichtbar macht und Mitarbeiter im Tagesgeschäft unterstützt.'**
+  String get opSubtitle;
+
+  /// No description provided for @opDemoBadge.
+  ///
+  /// In de, this message translates to:
+  /// **'DEMO'**
+  String get opDemoBadge;
+
+  /// No description provided for @opDemoNoticeTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Transparente Demonstrationsdaten'**
+  String get opDemoNoticeTitle;
+
+  /// No description provided for @opDemoNoticeBody.
+  ///
+  /// In de, this message translates to:
+  /// **'Alle Kennzahlen und Verläufe auf dieser Seite sind ein bewusst kleiner, fest definierter Demo-Datensatz. Sie sind keine Live-Messung und kein Leistungsversprechen.'**
+  String get opDemoNoticeBody;
+
+  /// No description provided for @opDemoDisabledTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Demonstrationsdaten sind deaktiviert'**
+  String get opDemoDisabledTitle;
+
+  /// No description provided for @opDemoDisabledBody.
+  ///
+  /// In de, this message translates to:
+  /// **'Ohne Demo-Modus zeigt das Operations Center keine Beispielkennzahlen. Dadurch werden Demo-Werte niemals mit echten Unternehmensdaten verwechselt.'**
+  String get opDemoDisabledBody;
+
+  /// No description provided for @opActivityTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Aktivität heute'**
+  String get opActivityTitle;
+
+  /// No description provided for @opActivitySubtitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Der aktuelle Arbeitstag im nachvollziehbaren Demo-Betrieb.'**
+  String get opActivitySubtitle;
+
+  /// No description provided for @opMetricReviews.
+  ///
+  /// In de, this message translates to:
+  /// **'Human Reviews'**
+  String get opMetricReviews;
+
+  /// No description provided for @opMetricRedirects.
+  ///
+  /// In de, this message translates to:
+  /// **'Website-Weiterleitungen'**
+  String get opMetricRedirects;
+
+  /// No description provided for @opMetricDocumentsAnalyzed.
+  ///
+  /// In de, this message translates to:
+  /// **'Dokumente analysiert'**
+  String get opMetricDocumentsAnalyzed;
+
+  /// No description provided for @opMetricAvgResponseTime.
+  ///
+  /// In de, this message translates to:
+  /// **'Ø Antwortzeit'**
+  String get opMetricAvgResponseTime;
+
+  /// No description provided for @opSecondsShort.
+  ///
+  /// In de, this message translates to:
+  /// **'Sek.'**
+  String get opSecondsShort;
+
+  /// No description provided for @opHistoryTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Betriebsverlauf'**
+  String get opHistoryTitle;
+
+  /// No description provided for @opHistorySubtitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Zwei ruhige Verläufe aus demselben fest definierten Demo-Datensatz.'**
+  String get opHistorySubtitle;
+
+  /// No description provided for @opPeriod7.
+  ///
+  /// In de, this message translates to:
+  /// **'7 Tage'**
+  String get opPeriod7;
+
+  /// No description provided for @opPeriod30.
+  ///
+  /// In de, this message translates to:
+  /// **'30 Tage'**
+  String get opPeriod30;
+
+  /// No description provided for @opHistoryAnswersTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Antworten und Wissenslücken'**
+  String get opHistoryAnswersTitle;
+
+  /// No description provided for @opHistoryKnowledgeTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Wissenswachstum und Weiterleitungen'**
+  String get opHistoryKnowledgeTitle;
+
+  /// No description provided for @opHistoryAnswered.
+  ///
+  /// In de, this message translates to:
+  /// **'Beantwortet'**
+  String get opHistoryAnswered;
+
+  /// No description provided for @opHistoryGaps.
+  ///
+  /// In de, this message translates to:
+  /// **'Lücken'**
+  String get opHistoryGaps;
+
+  /// No description provided for @opHistoryEntries.
+  ///
+  /// In de, this message translates to:
+  /// **'Neue Einträge'**
+  String get opHistoryEntries;
+
+  /// No description provided for @opHistoryRedirects.
+  ///
+  /// In de, this message translates to:
+  /// **'Weiterleitungen'**
+  String get opHistoryRedirects;
+
+  /// No description provided for @opHistoryToday.
+  ///
+  /// In de, this message translates to:
+  /// **'Heute'**
+  String get opHistoryToday;
+
+  /// No description provided for @opGrowthTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Wissenswachstum'**
+  String get opGrowthTitle;
+
+  /// No description provided for @opGrowthSubtitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Struktur der bestätigten Demo-Wissensbasis und heutige Ergänzungen.'**
+  String get opGrowthSubtitle;
+
+  /// No description provided for @opGrowthConfirmed.
+  ///
+  /// In de, this message translates to:
+  /// **'Bestätigte Wissenseinträge'**
+  String get opGrowthConfirmed;
+
+  /// No description provided for @opGrowthFaq.
+  ///
+  /// In de, this message translates to:
+  /// **'Neue FAQ heute'**
+  String get opGrowthFaq;
+
+  /// No description provided for @opGrowthProduct.
+  ///
+  /// In de, this message translates to:
+  /// **'Produktwissen'**
+  String get opGrowthProduct;
+
+  /// No description provided for @opGrowthSupport.
+  ///
+  /// In de, this message translates to:
+  /// **'Supportwissen'**
+  String get opGrowthSupport;
+
+  /// No description provided for @opGrowthDocuments.
+  ///
+  /// In de, this message translates to:
+  /// **'Dokumente'**
+  String get opGrowthDocuments;
+
+  /// No description provided for @opGrowthTags.
+  ///
+  /// In de, this message translates to:
+  /// **'Schlagwörter'**
+  String get opGrowthTags;
+
+  /// No description provided for @opCustomerTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Kundenerkenntnisse'**
+  String get opCustomerTitle;
+
+  /// No description provided for @opCustomerSubtitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Wiederkehrende Muster aus vorhandenen Demo-Fragen und Supportfällen.'**
+  String get opCustomerSubtitle;
+
+  /// No description provided for @opCustomerQuestions.
+  ///
+  /// In de, this message translates to:
+  /// **'Häufigste Fragen'**
+  String get opCustomerQuestions;
+
+  /// No description provided for @opCustomerProducts.
+  ///
+  /// In de, this message translates to:
+  /// **'Häufigste Produkte'**
+  String get opCustomerProducts;
+
+  /// No description provided for @opCustomerGaps.
+  ///
+  /// In de, this message translates to:
+  /// **'Offene Wissenslücken'**
+  String get opCustomerGaps;
+
+  /// No description provided for @opCustomerTopics.
+  ///
+  /// In de, this message translates to:
+  /// **'Meistgesuchte Themen'**
+  String get opCustomerTopics;
+
+  /// No description provided for @opCustomerSupport.
+  ///
+  /// In de, this message translates to:
+  /// **'Wiederkehrende Supportprobleme'**
+  String get opCustomerSupport;
+
+  /// No description provided for @opItemCurebaseUsage.
+  ///
+  /// In de, this message translates to:
+  /// **'Wie funktioniert CureBase?'**
+  String get opItemCurebaseUsage;
+
+  /// No description provided for @opItemAppConnection.
+  ///
+  /// In de, this message translates to:
+  /// **'Wie verbinde ich die App?'**
+  String get opItemAppConnection;
+
+  /// No description provided for @opItemPricing.
+  ///
+  /// In de, this message translates to:
+  /// **'Was kostet das System?'**
+  String get opItemPricing;
+
+  /// No description provided for @opItemPriceDetails.
+  ///
+  /// In de, this message translates to:
+  /// **'Aktuelle Preisdetails'**
+  String get opItemPriceDetails;
+
+  /// No description provided for @opItemFirmwareHelp.
+  ///
+  /// In de, this message translates to:
+  /// **'Firmware-Fehlerbehebung'**
+  String get opItemFirmwareHelp;
+
+  /// No description provided for @opItemCompatibility.
+  ///
+  /// In de, this message translates to:
+  /// **'Gerätekompatibilität'**
+  String get opItemCompatibility;
+
+  /// No description provided for @opItemPrograms.
+  ///
+  /// In de, this message translates to:
+  /// **'Programme'**
+  String get opItemPrograms;
+
+  /// No description provided for @opItemBluetoothConnection.
+  ///
+  /// In de, this message translates to:
+  /// **'Bluetooth-Verbindung'**
+  String get opItemBluetoothConnection;
+
+  /// No description provided for @opItemFirmwareUpdate.
+  ///
+  /// In de, this message translates to:
+  /// **'Firmware-Update'**
+  String get opItemFirmwareUpdate;
+
+  /// No description provided for @opItemAppPairing.
+  ///
+  /// In de, this message translates to:
+  /// **'App-Kopplung'**
+  String get opItemAppPairing;
+
+  /// No description provided for @opImpactTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Geschäftlicher Nutzen'**
+  String get opImpactTitle;
+
+  /// No description provided for @opImpactSubtitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Vorsichtige, transparent berechnete Demo-Indikatoren – keine Umsatz- oder Erfolgsversprechen.'**
+  String get opImpactSubtitle;
+
+  /// No description provided for @opImpactTimeSaved.
+  ///
+  /// In de, this message translates to:
+  /// **'Geschätzte Zeitersparnis'**
+  String get opImpactTimeSaved;
+
+  /// No description provided for @opImpactAvoidedSupport.
+  ///
+  /// In de, this message translates to:
+  /// **'Potenziell vermiedene Supportanfragen'**
+  String get opImpactAvoidedSupport;
+
+  /// No description provided for @opImpactConsistent.
+  ///
+  /// In de, this message translates to:
+  /// **'Konsistente Antworten'**
+  String get opImpactConsistent;
+
+  /// No description provided for @opImpactSources.
+  ///
+  /// In de, this message translates to:
+  /// **'Genutzte Quellen'**
+  String get opImpactSources;
+
+  /// No description provided for @opImpactReviewRate.
+  ///
+  /// In de, this message translates to:
+  /// **'Abgeschlossene Human-Review-Quote'**
+  String get opImpactReviewRate;
+
+  /// No description provided for @opImpactMethodNote.
+  ///
+  /// In de, this message translates to:
+  /// **'Demo-Berechnung: sieben Minuten potenzielle Bearbeitungszeit je beantworteter Frage; vermiedene Supportanfragen werden konservativ mit zwei Dritteln der beantworteten Fragen geschätzt.'**
+  String get opImpactMethodNote;
+
+  /// No description provided for @opHoursMinutes.
+  ///
+  /// In de, this message translates to:
+  /// **'{hours} Std. {minutes} Min.'**
+  String opHoursMinutes(int hours, int minutes);
+
+  /// No description provided for @opKnowledgeQualityTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Wissensqualität'**
+  String get opKnowledgeQualityTitle;
+
+  /// No description provided for @opKnowledgeQualitySubtitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Wie vollständig die heutigen Demo-Fragen mit bestätigtem Wissen bearbeitbar sind.'**
+  String get opKnowledgeQualitySubtitle;
+
+  /// No description provided for @opQualityFull.
+  ///
+  /// In de, this message translates to:
+  /// **'Vollständig beantwortbar'**
+  String get opQualityFull;
+
+  /// No description provided for @opQualityPartial.
+  ///
+  /// In de, this message translates to:
+  /// **'Teilweise beantwortbar'**
+  String get opQualityPartial;
+
+  /// No description provided for @opQualityMissing.
+  ///
+  /// In de, this message translates to:
+  /// **'Keine Information'**
+  String get opQualityMissing;
+
+  /// No description provided for @opQualitySensitive.
+  ///
+  /// In de, this message translates to:
+  /// **'Medizinisch sensible Fragen'**
+  String get opQualitySensitive;
+
+  /// No description provided for @opQualityRedirects.
+  ///
+  /// In de, this message translates to:
+  /// **'Weiterleitungen'**
+  String get opQualityRedirects;
+
+  /// No description provided for @opInsightsTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Geschäftliche Erkenntnisse'**
+  String get opInsightsTitle;
+
+  /// No description provided for @opInsightsSubtitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Deterministische Hinweise aus den sichtbaren Demo-Zahlen – ohne KI- oder LLM-Auswertung.'**
+  String get opInsightsSubtitle;
+
+  /// No description provided for @opInsightsMethodNote.
+  ///
+  /// In de, this message translates to:
+  /// **'Diese Hinweise entstehen aus festen, prüfbaren Regeln über dem Demo-Datensatz. BusinessBrain entscheidet oder veröffentlicht nichts selbst.'**
+  String get opInsightsMethodNote;
+
+  /// No description provided for @opInsightLeadingTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'CureBase steht im Mittelpunkt'**
+  String get opInsightLeadingTitle;
+
+  /// No description provided for @opInsightLeadingBody.
+  ///
+  /// In de, this message translates to:
+  /// **'CureBase ist mit {count} Nennungen das am häufigsten gefragte Produkt im Demo-Zeitraum.'**
+  String opInsightLeadingBody(int count);
+
+  /// No description provided for @opInsightSupportTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Supportfragen nehmen zu'**
+  String get opInsightSupportTitle;
+
+  /// No description provided for @opInsightSupportBody.
+  ///
+  /// In de, this message translates to:
+  /// **'Die letzten sieben Demo-Tage enthalten mehr Supportfragen als die sieben Tage davor. Die Supportdokumentation sollte beobachtet werden.'**
+  String get opInsightSupportBody;
+
+  /// No description provided for @opInsightFirmwareTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Firmware wird häufiger gesucht'**
+  String get opInsightFirmwareTitle;
+
+  /// No description provided for @opInsightFirmwareBody.
+  ///
+  /// In de, this message translates to:
+  /// **'Firmware erscheint {count}-mal in den meistgesuchten Demo-Themen. Eine leicht auffindbare Anleitung wäre sinnvoll.'**
+  String opInsightFirmwareBody(int count);
+
+  /// No description provided for @opInsightPriceTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Interesse an Preisen ist sichtbar'**
+  String get opInsightPriceTitle;
+
+  /// No description provided for @opInsightPriceBody.
+  ///
+  /// In de, this message translates to:
+  /// **'{count} Demo-Besucher wechselten aus einer Antwort zur Preisübersicht.'**
+  String opInsightPriceBody(int count);
+
+  /// No description provided for @opInsightFaqTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Neue FAQ sind sinnvoll'**
+  String get opInsightFaqTitle;
+
+  /// No description provided for @opInsightFaqBody.
+  ///
+  /// In de, this message translates to:
+  /// **'{count} heutige Wissenslücken zeigen konkrete Themen, die nach menschlicher Prüfung als FAQ ergänzt werden könnten.'**
+  String opInsightFaqBody(int count);
+
+  /// No description provided for @opTodayTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'BusinessBrain heute'**
+  String get opTodayTitle;
+
+  /// No description provided for @opTodayBody.
+  ///
+  /// In de, this message translates to:
+  /// **'Ein Überblick über den heutigen Tag – alle Werte sind Demo-Daten zur Veranschaulichung.'**
+  String get opTodayBody;
+
+  /// No description provided for @opMetricQuestions.
+  ///
+  /// In de, this message translates to:
+  /// **'Kundenfragen heute'**
+  String get opMetricQuestions;
+
+  /// No description provided for @opMetricAnswered.
+  ///
+  /// In de, this message translates to:
+  /// **'Erfolgreich beantwortet'**
+  String get opMetricAnswered;
+
+  /// No description provided for @opMetricGaps.
+  ///
+  /// In de, this message translates to:
+  /// **'Neue Wissenslücken erkannt'**
+  String get opMetricGaps;
+
+  /// No description provided for @opMetricSuggestions.
+  ///
+  /// In de, this message translates to:
+  /// **'Verbesserungsvorschläge erstellt'**
+  String get opMetricSuggestions;
+
+  /// No description provided for @opMetricSources.
+  ///
+  /// In de, this message translates to:
+  /// **'Quellen genutzt'**
+  String get opMetricSources;
+
+  /// No description provided for @opMetricEntriesAdopted.
+  ///
+  /// In de, this message translates to:
+  /// **'Neue Wissenseinträge übernommen'**
+  String get opMetricEntriesAdopted;
+
+  /// No description provided for @opTimelineTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Aktivitäts-Timeline'**
+  String get opTimelineTitle;
+
+  /// No description provided for @opTl1.
+  ///
+  /// In de, this message translates to:
+  /// **'Kundenfrage beantwortet'**
+  String get opTl1;
+
+  /// No description provided for @opTl2.
+  ///
+  /// In de, this message translates to:
+  /// **'Wissenslücke erkannt'**
+  String get opTl2;
+
+  /// No description provided for @opTl3.
+  ///
+  /// In de, this message translates to:
+  /// **'Verbesserungsvorschlag erstellt'**
+  String get opTl3;
+
+  /// No description provided for @opTl4.
+  ///
+  /// In de, this message translates to:
+  /// **'Mitarbeiter bestätigt neuen Wissenseintrag'**
+  String get opTl4;
+
+  /// No description provided for @opTl5.
+  ///
+  /// In de, this message translates to:
+  /// **'Wissensbasis erweitert'**
+  String get opTl5;
+
+  /// No description provided for @opTl6.
+  ///
+  /// In de, this message translates to:
+  /// **'Zukünftige Antworten verbessert'**
+  String get opTl6;
+
+  /// No description provided for @opDetectedTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Heute erkannt'**
+  String get opDetectedTitle;
+
+  /// No description provided for @opDetected1.
+  ///
+  /// In de, this message translates to:
+  /// **'Häufig gestellte Frage erkannt'**
+  String get opDetected1;
+
+  /// No description provided for @opDetected2.
+  ///
+  /// In de, this message translates to:
+  /// **'Mehrere Kunden fragen nach demselben Thema'**
+  String get opDetected2;
+
+  /// No description provided for @opDetected3.
+  ///
+  /// In de, this message translates to:
+  /// **'Neue FAQ empfohlen'**
+  String get opDetected3;
+
+  /// No description provided for @opDetected4.
+  ///
+  /// In de, this message translates to:
+  /// **'Bedienungsanleitung empfohlen'**
+  String get opDetected4;
+
+  /// No description provided for @opDetected5.
+  ///
+  /// In de, this message translates to:
+  /// **'Technische Voraussetzung fehlt'**
+  String get opDetected5;
+
+  /// No description provided for @opDetected6.
+  ///
+  /// In de, this message translates to:
+  /// **'Schritt-für-Schritt-Anleitung empfohlen'**
+  String get opDetected6;
+
+  /// No description provided for @opDecisionsTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Menschliche Entscheidungen'**
+  String get opDecisionsTitle;
+
+  /// No description provided for @opDecTotal.
+  ///
+  /// In de, this message translates to:
+  /// **'Vorschläge insgesamt'**
+  String get opDecTotal;
+
+  /// No description provided for @opDecAdopted.
+  ///
+  /// In de, this message translates to:
+  /// **'Übernommen'**
+  String get opDecAdopted;
+
+  /// No description provided for @opDecInProgress.
+  ///
+  /// In de, this message translates to:
+  /// **'In Bearbeitung'**
+  String get opDecInProgress;
+
+  /// No description provided for @opDecRejected.
+  ///
+  /// In de, this message translates to:
+  /// **'Abgelehnt'**
+  String get opDecRejected;
+
+  /// No description provided for @opDecisionsNote.
+  ///
+  /// In de, this message translates to:
+  /// **'BusinessBrain trifft keine Entscheidungen selbst – jede Änderung wird von einem Menschen bestätigt.'**
+  String get opDecisionsNote;
+
+  /// No description provided for @opQualityTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Qualität der Wissensbasis'**
+  String get opQualityTitle;
+
+  /// No description provided for @opQualEntries.
+  ///
+  /// In de, this message translates to:
+  /// **'Wissenseinträge'**
+  String get opQualEntries;
+
+  /// No description provided for @opQualFaq.
+  ///
+  /// In de, this message translates to:
+  /// **'FAQ'**
+  String get opQualFaq;
+
+  /// No description provided for @opQualGuides.
+  ///
+  /// In de, this message translates to:
+  /// **'Anleitungen'**
+  String get opQualGuides;
+
+  /// No description provided for @opQualTechnical.
+  ///
+  /// In de, this message translates to:
+  /// **'Technische Informationen'**
+  String get opQualTechnical;
+
+  /// No description provided for @opQualProblems.
+  ///
+  /// In de, this message translates to:
+  /// **'Problemlösungen'**
+  String get opQualProblems;
+
+  /// No description provided for @opQualDefinitions.
+  ///
+  /// In de, this message translates to:
+  /// **'Definitionen'**
+  String get opQualDefinitions;
+
+  /// No description provided for @opClosingTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'BusinessBrain macht den Betrieb sichtbar – der Mensch entscheidet.'**
+  String get opClosingTitle;
+
+  /// No description provided for @opClosingBody.
+  ///
+  /// In de, this message translates to:
+  /// **'Das Operations Center zeigt Fragen, Wissenslücken, Nutzung und Verbesserungspotenziale. Es trifft keine Unternehmensentscheidungen und verändert kein Wissen automatisch.'**
+  String get opClosingBody;
+
+  /// No description provided for @navKnowledgeWorkflow.
+  ///
+  /// In de, this message translates to:
+  /// **'Lern-Workflow'**
+  String get navKnowledgeWorkflow;
+
+  /// No description provided for @kwTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Wissens-Verbesserung – End-to-End'**
+  String get kwTitle;
+
+  /// No description provided for @kwIntro.
+  ///
+  /// In de, this message translates to:
+  /// **'Ein echter, reproduzierbarer Lernkreislauf: aus einer Wissenslücke entsteht dauerhaftes Firmenwissen. Verwendet dieselbe Wissensbasis wie der Assistent.'**
+  String get kwIntro;
+
+  /// No description provided for @kwQuestion.
+  ///
+  /// In de, this message translates to:
+  /// **'Wie kann ich meine Berichte als CSV-Datei exportieren?'**
+  String get kwQuestion;
+
+  /// No description provided for @kwAsk.
+  ///
+  /// In de, this message translates to:
+  /// **'Frage stellen'**
+  String get kwAsk;
+
+  /// No description provided for @kwSuggestionTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Verbesserungsvorschlag (Human Review)'**
+  String get kwSuggestionTitle;
+
+  /// No description provided for @kwSuggestedEntryTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Berichte als CSV exportieren'**
+  String get kwSuggestedEntryTitle;
+
+  /// No description provided for @kwSuggestedEntryContent.
+  ///
+  /// In de, this message translates to:
+  /// **'Berichte lassen sich im Menü unter „Export“ als CSV-Datei herunterladen.'**
+  String get kwSuggestedEntryContent;
+
+  /// No description provided for @kwAccept.
+  ///
+  /// In de, this message translates to:
+  /// **'Übernehmen'**
+  String get kwAccept;
+
+  /// No description provided for @kwReject.
+  ///
+  /// In de, this message translates to:
+  /// **'Ablehnen'**
+  String get kwReject;
+
+  /// No description provided for @kwReset.
+  ///
+  /// In de, this message translates to:
+  /// **'Zurücksetzen'**
+  String get kwReset;
+
+  /// No description provided for @kwFirstAnswerTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Erste Antwort'**
+  String get kwFirstAnswerTitle;
+
+  /// No description provided for @kwImprovedAnswerTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Verbesserte Antwort'**
+  String get kwImprovedAnswerTitle;
+
+  /// No description provided for @kwImprovedInfo.
+  ///
+  /// In de, this message translates to:
+  /// **'Diese Antwort wurde durch einen neu bestätigten Wissenseintrag verbessert.'**
+  String get kwImprovedInfo;
+
+  /// No description provided for @kwRejectedInfo.
+  ///
+  /// In de, this message translates to:
+  /// **'Vorschlag abgelehnt – die Wissensbasis bleibt unverändert, dieselbe Frage liefert weiterhin die ehrliche Wissenslücke.'**
+  String get kwRejectedInfo;
+
+  /// No description provided for @kwProcessTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Prozess'**
+  String get kwProcessTitle;
+
+  /// No description provided for @kwStep1.
+  ///
+  /// In de, this message translates to:
+  /// **'Frage gestellt'**
+  String get kwStep1;
+
+  /// No description provided for @kwStep2.
+  ///
+  /// In de, this message translates to:
+  /// **'Wissenslücke erkannt'**
+  String get kwStep2;
+
+  /// No description provided for @kwStep3.
+  ///
+  /// In de, this message translates to:
+  /// **'Verbesserungsvorschlag erstellt'**
+  String get kwStep3;
+
+  /// No description provided for @kwStep4.
+  ///
+  /// In de, this message translates to:
+  /// **'Mitarbeiter bestätigt'**
+  String get kwStep4;
+
+  /// No description provided for @kwStep5.
+  ///
+  /// In de, this message translates to:
+  /// **'Wissenseintrag gespeichert'**
+  String get kwStep5;
+
+  /// No description provided for @kwStep6.
+  ///
+  /// In de, this message translates to:
+  /// **'Antwort verbessert'**
+  String get kwStep6;
+
+  /// No description provided for @kwClosingTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Der Lernkreislauf wurde erfolgreich abgeschlossen.'**
+  String get kwClosingTitle;
+
+  /// No description provided for @kwClosingBody.
+  ///
+  /// In de, this message translates to:
+  /// **'BusinessBrain verbessert seine Antworten ausschließlich durch bestätigtes Unternehmenswissen.'**
+  String get kwClosingBody;
+
+  /// No description provided for @navJuryStart.
+  ///
+  /// In de, this message translates to:
+  /// **'Jury-Modus'**
+  String get navJuryStart;
+
+  /// No description provided for @navMore.
+  ///
+  /// In de, this message translates to:
+  /// **'Weitere Module'**
+  String get navMore;
+
+  /// No description provided for @navReleaseCheck.
+  ///
+  /// In de, this message translates to:
+  /// **'Release-Check'**
+  String get navReleaseCheck;
+
+  /// No description provided for @juryNavGroundedAi.
+  ///
+  /// In de, this message translates to:
+  /// **'Grounded AI'**
+  String get juryNavGroundedAi;
+
+  /// No description provided for @juryStartTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Willkommen bei BusinessBrain'**
+  String get juryStartTitle;
+
+  /// No description provided for @juryStartIntro.
+  ///
+  /// In de, this message translates to:
+  /// **'Das digitale Wissenszentrum eines Unternehmens. Wählen Sie, wie Sie starten möchten.'**
+  String get juryStartIntro;
+
+  /// No description provided for @juryStartGuided.
+  ///
+  /// In de, this message translates to:
+  /// **'Geführte Jury-Demo starten'**
+  String get juryStartGuided;
+
+  /// No description provided for @juryStartExplore.
+  ///
+  /// In de, this message translates to:
+  /// **'Plattform frei erkunden'**
+  String get juryStartExplore;
+
+  /// No description provided for @juryStartNote.
+  ///
+  /// In de, this message translates to:
+  /// **'Im Jury-Modus zeigt die Navigation nur die wichtigsten Bereiche. Alle weiteren Module bleiben unter „Weitere Module“ erreichbar.'**
+  String get juryStartNote;
+
+  /// No description provided for @juryTourTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Geführte Jury-Demo'**
+  String get juryTourTitle;
+
+  /// No description provided for @juryBack.
+  ///
+  /// In de, this message translates to:
+  /// **'Zurück'**
+  String get juryBack;
+
+  /// No description provided for @juryNext.
+  ///
+  /// In de, this message translates to:
+  /// **'Weiter'**
+  String get juryNext;
+
+  /// No description provided for @juryFinish.
+  ///
+  /// In de, this message translates to:
+  /// **'Jetzt selbst die Plattform erkunden'**
+  String get juryFinish;
+
+  /// No description provided for @juryExit.
+  ///
+  /// In de, this message translates to:
+  /// **'Jury-Modus beenden'**
+  String get juryExit;
+
+  /// No description provided for @juryStep1Title.
+  ///
+  /// In de, this message translates to:
+  /// **'Business Story'**
+  String get juryStep1Title;
+
+  /// No description provided for @juryStep1Intro.
+  ///
+  /// In de, this message translates to:
+  /// **'Zuerst das große Bild: welches Problem BusinessBrain löst und warum es kein gewöhnlicher KI-Chat ist.'**
+  String get juryStep1Intro;
+
+  /// No description provided for @juryStep2Title.
+  ///
+  /// In de, this message translates to:
+  /// **'Operations Dashboard'**
+  String get juryStep2Title;
+
+  /// No description provided for @juryStep2Intro.
+  ///
+  /// In de, this message translates to:
+  /// **'So arbeitet BusinessBrain heute für ein Unternehmen – auf einen Blick (Demo-Daten).'**
+  String get juryStep2Intro;
+
+  /// No description provided for @juryStep3Title.
+  ///
+  /// In de, this message translates to:
+  /// **'Guided Demo'**
+  String get juryStep3Title;
+
+  /// No description provided for @juryStep3Intro.
+  ///
+  /// In de, this message translates to:
+  /// **'Der gesamte Workflow in sieben Schritten, verständlich zusammengeführt.'**
+  String get juryStep3Intro;
+
+  /// No description provided for @juryStep4Title.
+  ///
+  /// In de, this message translates to:
+  /// **'Grounded Assistant'**
+  String get juryStep4Title;
+
+  /// No description provided for @juryStep4Intro.
+  ///
+  /// In de, this message translates to:
+  /// **'Fragen werden ausschließlich aus dem Firmenwissen beantwortet – mit Quellen, ohne Halluzination.'**
+  String get juryStep4Intro;
+
+  /// No description provided for @juryStep5Title.
+  ///
+  /// In de, this message translates to:
+  /// **'Knowledge Workflow'**
+  String get juryStep5Title;
+
+  /// No description provided for @juryStep5Intro.
+  ///
+  /// In de, this message translates to:
+  /// **'Der reproduzierbare Beweis: aus einer Wissenslücke entsteht dauerhaftes, bestätigtes Firmenwissen.'**
+  String get juryStep5Intro;
+
+  /// No description provided for @juryStep6Title.
+  ///
+  /// In de, this message translates to:
+  /// **'Abschluss'**
+  String get juryStep6Title;
+
+  /// No description provided for @juryClosingTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Vielen Dank.'**
+  String get juryClosingTitle;
+
+  /// No description provided for @juryClosingBody.
+  ///
+  /// In de, this message translates to:
+  /// **'BusinessBrain organisiert Firmenwissen, beantwortet Kundenfragen zuverlässig und verbessert sich ausschließlich durch bestätigtes Unternehmenswissen – der Mensch behält jederzeit die Kontrolle.'**
+  String get juryClosingBody;
+
+  /// No description provided for @moreTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Weitere Module'**
+  String get moreTitle;
+
+  /// No description provided for @moreIntro.
+  ///
+  /// In de, this message translates to:
+  /// **'Alle übrigen Bereiche der Plattform – nichts wurde entfernt.'**
+  String get moreIntro;
+
+  /// No description provided for @demoSwitchTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Demo-Daten'**
+  String get demoSwitchTitle;
+
+  /// No description provided for @demoSwitchSubtitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Zentraler Schalter für Demo-Inhalte (z. B. Operations Dashboard).'**
+  String get demoSwitchSubtitle;
+
+  /// No description provided for @demoSwitchOn.
+  ///
+  /// In de, this message translates to:
+  /// **'Demo aktiv'**
+  String get demoSwitchOn;
+
+  /// No description provided for @demoSwitchOff.
+  ///
+  /// In de, this message translates to:
+  /// **'Live'**
+  String get demoSwitchOff;
+
+  /// No description provided for @releaseTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Release-Checkliste'**
+  String get releaseTitle;
+
+  /// No description provided for @releaseIntro.
+  ///
+  /// In de, this message translates to:
+  /// **'Interne Team-Checkliste für die Hackathon-Einreichung – nicht öffentlich.'**
+  String get releaseIntro;
+
+  /// No description provided for @rcNotStarted.
+  ///
+  /// In de, this message translates to:
+  /// **'Nicht begonnen'**
+  String get rcNotStarted;
+
+  /// No description provided for @rcInProgress.
+  ///
+  /// In de, this message translates to:
+  /// **'In Arbeit'**
+  String get rcInProgress;
+
+  /// No description provided for @rcDone.
+  ///
+  /// In de, this message translates to:
+  /// **'Erledigt'**
+  String get rcDone;
+
+  /// No description provided for @rcItem1.
+  ///
+  /// In de, this message translates to:
+  /// **'Aktueller Branch veröffentlicht'**
+  String get rcItem1;
+
+  /// No description provided for @rcItem2.
+  ///
+  /// In de, this message translates to:
+  /// **'Cloudflare Deployment erfolgreich'**
+  String get rcItem2;
+
+  /// No description provided for @rcItem3.
+  ///
+  /// In de, this message translates to:
+  /// **'Live Gemini aktiv'**
+  String get rcItem3;
+
+  /// No description provided for @rcItem4.
+  ///
+  /// In de, this message translates to:
+  /// **'AI_PROVIDER korrekt gesetzt'**
+  String get rcItem4;
+
+  /// No description provided for @rcItem5.
+  ///
+  /// In de, this message translates to:
+  /// **'Demo-Daten vorhanden'**
+  String get rcItem5;
+
+  /// No description provided for @rcItem6.
+  ///
+  /// In de, this message translates to:
+  /// **'Guided Demo vollständig'**
+  String get rcItem6;
+
+  /// No description provided for @rcItem7.
+  ///
+  /// In de, this message translates to:
+  /// **'Business Story vollständig'**
+  String get rcItem7;
+
+  /// No description provided for @rcItem8.
+  ///
+  /// In de, this message translates to:
+  /// **'Operations Dashboard vollständig'**
+  String get rcItem8;
+
+  /// No description provided for @rcItem9.
+  ///
+  /// In de, this message translates to:
+  /// **'Knowledge Workflow vollständig'**
+  String get rcItem9;
+
+  /// No description provided for @rcItem10.
+  ///
+  /// In de, this message translates to:
+  /// **'README aktuell'**
+  String get rcItem10;
+
+  /// No description provided for @rcItem11.
+  ///
+  /// In de, this message translates to:
+  /// **'Screenshots vorhanden'**
+  String get rcItem11;
+
+  /// No description provided for @rcItem12.
+  ///
+  /// In de, this message translates to:
+  /// **'Pitch-Video vorhanden'**
+  String get rcItem12;
+
+  /// No description provided for @rcItem13.
+  ///
+  /// In de, this message translates to:
+  /// **'Submission-Dokument aktuell'**
+  String get rcItem13;
+
+  /// No description provided for @heroSubtitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Die lernende Unternehmens-KI.'**
+  String get heroSubtitle;
+
+  /// No description provided for @heroBody.
+  ///
+  /// In de, this message translates to:
+  /// **'BusinessBrain organisiert Unternehmenswissen, beantwortet Kundenfragen ausschließlich auf Basis bestätigter Informationen und verbessert sich kontinuierlich durch menschlich freigegebene Wissensbausteine.'**
+  String get heroBody;
+
+  /// No description provided for @heroStartDemo.
+  ///
+  /// In de, this message translates to:
+  /// **'BusinessBrain in 2 Minuten erleben'**
+  String get heroStartDemo;
+
+  /// No description provided for @heroExplore.
+  ///
+  /// In de, this message translates to:
+  /// **'Plattform erkunden'**
+  String get heroExplore;
+
+  /// No description provided for @heroFlow1.
+  ///
+  /// In de, this message translates to:
+  /// **'Unternehmenswissen'**
+  String get heroFlow1;
+
+  /// No description provided for @heroFlow2.
+  ///
+  /// In de, this message translates to:
+  /// **'Kundenfragen'**
+  String get heroFlow2;
+
+  /// No description provided for @heroFlow3.
+  ///
+  /// In de, this message translates to:
+  /// **'Wissenslücken'**
+  String get heroFlow3;
+
+  /// No description provided for @heroFlow4.
+  ///
+  /// In de, this message translates to:
+  /// **'Verbesserungen'**
+  String get heroFlow4;
+
+  /// No description provided for @heroFlow5.
+  ///
+  /// In de, this message translates to:
+  /// **'Lernkreislauf'**
+  String get heroFlow5;
+
+  /// No description provided for @heroFlow6.
+  ///
+  /// In de, this message translates to:
+  /// **'BusinessBrain'**
+  String get heroFlow6;
+
+  /// No description provided for @juryOf.
+  ///
+  /// In de, this message translates to:
+  /// **'von'**
+  String get juryOf;
+
+  /// No description provided for @juryTrans1.
+  ///
+  /// In de, this message translates to:
+  /// **'BusinessBrain beginnt mit dem Wissen Ihres Unternehmens.'**
+  String get juryTrans1;
+
+  /// No description provided for @juryTrans2.
+  ///
+  /// In de, this message translates to:
+  /// **'Jetzt beantwortet die KI eine echte Kundenfrage.'**
+  String get juryTrans2;
+
+  /// No description provided for @juryTrans3.
+  ///
+  /// In de, this message translates to:
+  /// **'Fehlendes Wissen wird erkannt.'**
+  String get juryTrans3;
+
+  /// No description provided for @juryTrans4.
+  ///
+  /// In de, this message translates to:
+  /// **'Der Mitarbeiter entscheidet.'**
+  String get juryTrans4;
+
+  /// No description provided for @juryTrans5.
+  ///
+  /// In de, this message translates to:
+  /// **'Die Wissensbasis wächst.'**
+  String get juryTrans5;
+
+  /// No description provided for @juryTrans6.
+  ///
+  /// In de, this message translates to:
+  /// **'Alle zukünftigen Antworten profitieren.'**
+  String get juryTrans6;
+
+  /// No description provided for @oxClosingTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'BusinessBrain lernt niemals durch Vermutungen.'**
+  String get oxClosingTitle;
+
+  /// No description provided for @oxClosingSubtitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Jede Verbesserung basiert auf bestätigtem Unternehmenswissen.'**
+  String get oxClosingSubtitle;
+
+  /// No description provided for @oxSeenTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Heute gesehen:'**
+  String get oxSeenTitle;
+
+  /// No description provided for @oxSeen1.
+  ///
+  /// In de, this message translates to:
+  /// **'Grounded AI'**
+  String get oxSeen1;
+
+  /// No description provided for @oxSeen2.
+  ///
+  /// In de, this message translates to:
+  /// **'Wissensbasis'**
+  String get oxSeen2;
+
+  /// No description provided for @oxSeen3.
+  ///
+  /// In de, this message translates to:
+  /// **'Human Review'**
+  String get oxSeen3;
+
+  /// No description provided for @oxSeen4.
+  ///
+  /// In de, this message translates to:
+  /// **'Knowledge Builder'**
+  String get oxSeen4;
+
+  /// No description provided for @oxSeen5.
+  ///
+  /// In de, this message translates to:
+  /// **'Lernkreislauf'**
+  String get oxSeen5;
+
+  /// No description provided for @oxSeen6.
+  ///
+  /// In de, this message translates to:
+  /// **'Operations Dashboard'**
+  String get oxSeen6;
+
+  /// No description provided for @oxSeen7.
+  ///
+  /// In de, this message translates to:
+  /// **'Business Story'**
+  String get oxSeen7;
+
+  /// No description provided for @oxThanks.
+  ///
+  /// In de, this message translates to:
+  /// **'Vielen Dank für Ihr Interesse an BusinessBrain.'**
+  String get oxThanks;
+
+  /// No description provided for @oxLinkProject.
+  ///
+  /// In de, this message translates to:
+  /// **'Projektseite'**
+  String get oxLinkProject;
+
+  /// No description provided for @oxLinkGithub.
+  ///
+  /// In de, this message translates to:
+  /// **'GitHub'**
+  String get oxLinkGithub;
+
+  /// No description provided for @oxLinkVideo.
+  ///
+  /// In de, this message translates to:
+  /// **'Projektvideo'**
+  String get oxLinkVideo;
+
+  /// No description provided for @oxLinkDocs.
+  ///
+  /// In de, this message translates to:
+  /// **'Dokumentation'**
+  String get oxLinkDocs;
+
+  /// No description provided for @navBusinessBrainVision.
+  ///
+  /// In de, this message translates to:
+  /// **'BusinessBrain Vision'**
+  String get navBusinessBrainVision;
+
+  /// No description provided for @visionBadge.
+  ///
+  /// In de, this message translates to:
+  /// **'VISION'**
+  String get visionBadge;
+
+  /// No description provided for @visionFutureLabel.
+  ///
+  /// In de, this message translates to:
+  /// **'Zukünftige Entwicklung'**
+  String get visionFutureLabel;
+
+  /// No description provided for @visionHeroTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Vom Wissenssystem zum digitalen Unternehmensgehirn'**
+  String get visionHeroTitle;
+
+  /// No description provided for @visionHeroBody.
+  ///
+  /// In de, this message translates to:
+  /// **'BusinessBrain soll Unternehmen eines Tages dabei unterstützen, relevante Signale früh zu erkennen, Zusammenhänge verständlich zu machen und die sinnvollsten nächsten Schritte vorzuschlagen – ohne jemals selbst zu entscheiden oder zu veröffentlichen.'**
+  String get visionHeroBody;
+
+  /// No description provided for @visionTodayLabel.
+  ///
+  /// In de, this message translates to:
+  /// **'HEUTE'**
+  String get visionTodayLabel;
+
+  /// No description provided for @visionTodayTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Der Ausgangspunkt ist bestätigt'**
+  String get visionTodayTitle;
+
+  /// No description provided for @visionTodayBody.
+  ///
+  /// In de, this message translates to:
+  /// **'BusinessBrain beantwortet Kundenfragen aus bestätigtem Unternehmenswissen, erkennt Lücken und verbessert die Wissensbasis ausschließlich nach menschlicher Freigabe.'**
+  String get visionTodayBody;
+
+  /// No description provided for @visionJourneyTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Eine Entwicklung in drei klaren Phasen'**
+  String get visionJourneyTitle;
+
+  /// No description provided for @visionJourneyBody.
+  ///
+  /// In de, this message translates to:
+  /// **'Jede Phase baut auf der vorherigen auf. Die Vision erweitert den bestehenden Wissenskern, ersetzt ihn aber nicht.'**
+  String get visionJourneyBody;
+
+  /// No description provided for @visionPhase1Eyebrow.
+  ///
+  /// In de, this message translates to:
+  /// **'Phase 1'**
+  String get visionPhase1Eyebrow;
+
+  /// No description provided for @visionPhase1Title.
+  ///
+  /// In de, this message translates to:
+  /// **'Wissenssystem'**
+  String get visionPhase1Title;
+
+  /// No description provided for @visionPhase1Body.
+  ///
+  /// In de, this message translates to:
+  /// **'Bestätigtes Unternehmenswissen wird strukturiert, auffindbar und sicher für Kundenfragen nutzbar.'**
+  String get visionPhase1Body;
+
+  /// No description provided for @visionPhase2Eyebrow.
+  ///
+  /// In de, this message translates to:
+  /// **'Phase 2'**
+  String get visionPhase2Eyebrow;
+
+  /// No description provided for @visionPhase2Title.
+  ///
+  /// In de, this message translates to:
+  /// **'Unternehmensassistent'**
+  String get visionPhase2Title;
+
+  /// No description provided for @visionPhase2Body.
+  ///
+  /// In de, this message translates to:
+  /// **'BusinessBrain ordnet neue Signale ein, fasst Entwicklungen zusammen und schlägt prüfbare Maßnahmen vor.'**
+  String get visionPhase2Body;
+
+  /// No description provided for @visionPhase3Eyebrow.
+  ///
+  /// In de, this message translates to:
+  /// **'Phase 3'**
+  String get visionPhase3Eyebrow;
+
+  /// No description provided for @visionPhase3Title.
+  ///
+  /// In de, this message translates to:
+  /// **'Digitales Unternehmensgehirn'**
+  String get visionPhase3Title;
+
+  /// No description provided for @visionPhase3Body.
+  ///
+  /// In de, this message translates to:
+  /// **'Wissen, Marktbeobachtung und bestätigte Erfahrungen verbinden sich zu einem kontinuierlichen Orientierungssystem für das Unternehmen.'**
+  String get visionPhase3Body;
+
+  /// No description provided for @visionFlowTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Von Signalen zu verantwortbaren Vorschlägen'**
+  String get visionFlowTitle;
+
+  /// No description provided for @visionFlowBody.
+  ///
+  /// In de, this message translates to:
+  /// **'BusinessBrain beobachtet nicht, um selbst zu handeln. Es verdichtet Informationen, erklärt ihre Bedeutung und legt Entscheidungen in die Hände des Unternehmens.'**
+  String get visionFlowBody;
+
+  /// No description provided for @visionFlow1.
+  ///
+  /// In de, this message translates to:
+  /// **'Signale beobachten'**
+  String get visionFlow1;
+
+  /// No description provided for @visionFlow2.
+  ///
+  /// In de, this message translates to:
+  /// **'Zusammenhänge erkennen'**
+  String get visionFlow2;
+
+  /// No description provided for @visionFlow3.
+  ///
+  /// In de, this message translates to:
+  /// **'Maßnahmen vorschlagen'**
+  String get visionFlow3;
+
+  /// No description provided for @visionFlow4.
+  ///
+  /// In de, this message translates to:
+  /// **'Der Mensch entscheidet'**
+  String get visionFlow4;
+
+  /// No description provided for @visionPresenceTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Digitale Präsenz verstehen'**
+  String get visionPresenceTitle;
+
+  /// No description provided for @visionPresenceBody.
+  ///
+  /// In de, this message translates to:
+  /// **'Öffentliche Signale könnten in einer gemeinsamen, verständlichen Sicht zusammenlaufen.'**
+  String get visionPresenceBody;
+
+  /// No description provided for @visionWebsiteTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Unternehmenswebsite beobachten'**
+  String get visionWebsiteTitle;
+
+  /// No description provided for @visionWebsiteBody.
+  ///
+  /// In de, this message translates to:
+  /// **'Veränderungen, veraltete Inhalte und neue Informationslücken kontinuierlich sichtbar machen.'**
+  String get visionWebsiteBody;
+
+  /// No description provided for @visionSeoTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'SEO-Entwicklung analysieren'**
+  String get visionSeoTitle;
+
+  /// No description provided for @visionSeoBody.
+  ///
+  /// In de, this message translates to:
+  /// **'Suchthemen, Auffindbarkeit und Optimierungspotenziale verständlich zusammenfassen.'**
+  String get visionSeoBody;
+
+  /// No description provided for @visionGoogleTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Verbesserungen für Google vorschlagen'**
+  String get visionGoogleTitle;
+
+  /// No description provided for @visionGoogleBody.
+  ///
+  /// In de, this message translates to:
+  /// **'Konkrete, prüfbare Vorschläge für Inhalte, Suchintentionen und lokale Sichtbarkeit vorbereiten.'**
+  String get visionGoogleBody;
+
+  /// No description provided for @visionSocialTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Relevante Plattformsignale bündeln'**
+  String get visionSocialTitle;
+
+  /// No description provided for @visionSocialBody.
+  ///
+  /// In de, this message translates to:
+  /// **'Facebook, Instagram, Reddit, LinkedIn, YouTube und TikTok in einer gemeinsamen Unternehmenssicht einordnen.'**
+  String get visionSocialBody;
+
+  /// No description provided for @visionReputationTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Google Business und Bewertungen verstehen'**
+  String get visionReputationTitle;
+
+  /// No description provided for @visionReputationBody.
+  ///
+  /// In de, this message translates to:
+  /// **'Wiederkehrende Rückmeldungen, Chancen und mögliche Reputationsrisiken früh sichtbar machen.'**
+  String get visionReputationBody;
+
+  /// No description provided for @visionCustomerTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Die Stimme der Kunden erkennen'**
+  String get visionCustomerTitle;
+
+  /// No description provided for @visionCustomerBody.
+  ///
+  /// In de, this message translates to:
+  /// **'Wiederkehrende Fragen und Probleme sollen zu strukturierten, überprüfbaren Erkenntnissen werden.'**
+  String get visionCustomerBody;
+
+  /// No description provided for @visionEmailTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Support-E-Mails zusammenfassen'**
+  String get visionEmailTitle;
+
+  /// No description provided for @visionEmailBody.
+  ///
+  /// In de, this message translates to:
+  /// **'Häufige Anliegen und neue Themen erkennen, ohne Nachrichten selbst zu beantworten oder zu verändern.'**
+  String get visionEmailBody;
+
+  /// No description provided for @visionQuestionsTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Häufige Kundenfragen erkennen'**
+  String get visionQuestionsTitle;
+
+  /// No description provided for @visionQuestionsBody.
+  ///
+  /// In de, this message translates to:
+  /// **'Ähnliche Fragen über verschiedene Kontaktpunkte hinweg als gemeinsames Muster sichtbar machen.'**
+  String get visionQuestionsBody;
+
+  /// No description provided for @visionProblemsTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Wiederkehrende Kundenprobleme erkennen'**
+  String get visionProblemsTitle;
+
+  /// No description provided for @visionProblemsBody.
+  ///
+  /// In de, this message translates to:
+  /// **'Häufungen, Ursachen und betroffene Produkte verständlich für das Unternehmen aufbereiten.'**
+  String get visionProblemsBody;
+
+  /// No description provided for @visionExternalGapsTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Wissenslücken außerhalb der Wissensbasis erkennen'**
+  String get visionExternalGapsTitle;
+
+  /// No description provided for @visionExternalGapsBody.
+  ///
+  /// In de, this message translates to:
+  /// **'Fehlende Informationen aus Kundenkontakten und öffentlichen Signalen als Vorschläge zurückführen.'**
+  String get visionExternalGapsBody;
+
+  /// No description provided for @visionMarketTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Marktbewegungen einordnen'**
+  String get visionMarketTitle;
+
+  /// No description provided for @visionMarketBody.
+  ///
+  /// In de, this message translates to:
+  /// **'Die Vision verbindet externe Entwicklungen mit dem bestätigten Wissen und den Zielen des Unternehmens.'**
+  String get visionMarketBody;
+
+  /// No description provided for @visionCompetitorsTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Wettbewerber beobachten'**
+  String get visionCompetitorsTitle;
+
+  /// No description provided for @visionCompetitorsBody.
+  ///
+  /// In de, this message translates to:
+  /// **'Relevante Veränderungen sachlich zusammenfassen, ohne automatische Bewertungen oder Entscheidungen.'**
+  String get visionCompetitorsBody;
+
+  /// No description provided for @visionTrendsTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Trends und Marktchancen erkennen'**
+  String get visionTrendsTitle;
+
+  /// No description provided for @visionTrendsBody.
+  ///
+  /// In de, this message translates to:
+  /// **'Neue Themen nach Relevanz, möglichem Nutzen und offenen Fragen für das Unternehmen einordnen.'**
+  String get visionTrendsBody;
+
+  /// No description provided for @visionProductsTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Neue Produkte analysieren'**
+  String get visionProductsTitle;
+
+  /// No description provided for @visionProductsBody.
+  ///
+  /// In de, this message translates to:
+  /// **'Produktideen und Marktangebote mit vorhandenem Wissen, Kundenproblemen und Chancen vergleichen.'**
+  String get visionProductsBody;
+
+  /// No description provided for @visionProposalsTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Aus Erkenntnissen werden Vorschläge'**
+  String get visionProposalsTitle;
+
+  /// No description provided for @visionProposalsBody.
+  ///
+  /// In de, this message translates to:
+  /// **'Jeder Vorschlag bleibt Entwurf. Erst ein Mensch entscheidet, ob daraus eine Maßnahme wird.'**
+  String get visionProposalsBody;
+
+  /// No description provided for @visionFaqTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Neue FAQ vorschlagen'**
+  String get visionFaqTitle;
+
+  /// No description provided for @visionFaqBody.
+  ///
+  /// In de, this message translates to:
+  /// **'Wiederkehrende Fragen in konkrete Vorschläge für bestätigtes Kundenwissen überführen.'**
+  String get visionFaqBody;
+
+  /// No description provided for @visionDocsTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Neue Dokumentationen vorschlagen'**
+  String get visionDocsTitle;
+
+  /// No description provided for @visionDocsBody.
+  ///
+  /// In de, this message translates to:
+  /// **'Erkannte Erklärungsbedarfe als nachvollziehbare Dokumentationsentwürfe strukturieren.'**
+  String get visionDocsBody;
+
+  /// No description provided for @visionLandingTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Neue Landingpages vorschlagen'**
+  String get visionLandingTitle;
+
+  /// No description provided for @visionLandingBody.
+  ///
+  /// In de, this message translates to:
+  /// **'Relevante Kundenbedürfnisse und Suchthemen in begründete Seitenthemen übersetzen.'**
+  String get visionLandingBody;
+
+  /// No description provided for @visionCampaignTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Marketingkampagnen vorschlagen'**
+  String get visionCampaignTitle;
+
+  /// No description provided for @visionCampaignBody.
+  ///
+  /// In de, this message translates to:
+  /// **'Chancen in überprüfbare Kampagnenideen mit Begründung und erwartetem Nutzen überführen.'**
+  String get visionCampaignBody;
+
+  /// No description provided for @visionTasksTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Aufgaben für Mitarbeiter vorschlagen'**
+  String get visionTasksTitle;
+
+  /// No description provided for @visionTasksBody.
+  ///
+  /// In de, this message translates to:
+  /// **'Aus offenen Themen klare Arbeitsvorschläge ableiten, ohne Aufgaben automatisch zuzuweisen.'**
+  String get visionTasksBody;
+
+  /// No description provided for @visionPriorityTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Offene Themen priorisieren'**
+  String get visionPriorityTitle;
+
+  /// No description provided for @visionPriorityBody.
+  ///
+  /// In de, this message translates to:
+  /// **'Dringlichkeit, Nutzen und Wissenslage transparent gegenüberstellen; die Reihenfolge bestätigt der Mensch.'**
+  String get visionPriorityBody;
+
+  /// No description provided for @visionBriefingTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Orientierung für jeden neuen Arbeitstag'**
+  String get visionBriefingTitle;
+
+  /// No description provided for @visionBriefingBody.
+  ///
+  /// In de, this message translates to:
+  /// **'Statt weiterer Dashboards könnte BusinessBrain die wichtigsten Veränderungen in einer ruhigen, entscheidungsfähigen Übersicht zusammenführen.'**
+  String get visionBriefingBody;
+
+  /// No description provided for @visionMorningTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Morning Briefing'**
+  String get visionMorningTitle;
+
+  /// No description provided for @visionMorningBody.
+  ///
+  /// In de, this message translates to:
+  /// **'Die wichtigsten neuen Signale, offenen Entscheidungen und empfohlenen nächsten Schritte am Morgen.'**
+  String get visionMorningBody;
+
+  /// No description provided for @visionDailyTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Tägliche Zusammenfassung'**
+  String get visionDailyTitle;
+
+  /// No description provided for @visionDailyBody.
+  ///
+  /// In de, this message translates to:
+  /// **'Was sich verändert hat, welche Themen zunehmen und wo Aufmerksamkeit erforderlich sein könnte.'**
+  String get visionDailyBody;
+
+  /// No description provided for @visionLearningTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Aus bestätigten Informationen lernen'**
+  String get visionLearningTitle;
+
+  /// No description provided for @visionLearningBody.
+  ///
+  /// In de, this message translates to:
+  /// **'Nur bestätigte Erkenntnisse erweitern das Unternehmenswissen und verbessern spätere Vorschläge.'**
+  String get visionLearningBody;
+
+  /// No description provided for @visionControlTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Die Entscheidungsgewalt bleibt beim Unternehmen'**
+  String get visionControlTitle;
+
+  /// No description provided for @visionControlBody.
+  ///
+  /// In de, this message translates to:
+  /// **'Auch als digitales Unternehmensgehirn bleibt BusinessBrain ein Vorschlagssystem mit klaren Grenzen.'**
+  String get visionControlBody;
+
+  /// No description provided for @visionNeverDecides.
+  ///
+  /// In de, this message translates to:
+  /// **'trifft niemals selbst Unternehmensentscheidungen'**
+  String get visionNeverDecides;
+
+  /// No description provided for @visionNeverPublishes.
+  ///
+  /// In de, this message translates to:
+  /// **'veröffentlicht niemals selbst Inhalte'**
+  String get visionNeverPublishes;
+
+  /// No description provided for @visionNeverChanges.
+  ///
+  /// In de, this message translates to:
+  /// **'verändert niemals selbst Unternehmenswissen'**
+  String get visionNeverChanges;
+
+  /// No description provided for @visionOnlySuggests.
+  ///
+  /// In de, this message translates to:
+  /// **'schlägt ausschließlich nachvollziehbare Maßnahmen vor'**
+  String get visionOnlySuggests;
+
+  /// No description provided for @visionHumanAlways.
+  ///
+  /// In de, this message translates to:
+  /// **'Der Mensch entscheidet immer.'**
+  String get visionHumanAlways;
+
+  /// No description provided for @visionClosingTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Schritt für Schritt zu besserer Orientierung'**
+  String get visionClosingTitle;
+
+  /// No description provided for @visionClosingBody.
+  ///
+  /// In de, this message translates to:
+  /// **'BusinessBrain wächst nicht durch unkontrollierte Autonomie, sondern durch nachvollziehbare Vorschläge, bestätigtes Wissen und menschliche Entscheidungen. So kann aus einem Wissenssystem langfristig ein glaubwürdiges digitales Unternehmensgehirn entstehen.'**
+  String get visionClosingBody;
+
+  /// No description provided for @visionBack.
+  ///
+  /// In de, this message translates to:
+  /// **'Zurück zu BusinessBrain'**
+  String get visionBack;
+
+  /// No description provided for @navBusinessBrainRoadmap.
+  ///
+  /// In de, this message translates to:
+  /// **'BusinessBrain Roadmap'**
+  String get navBusinessBrainRoadmap;
+
+  /// No description provided for @roadmapBack.
+  ///
+  /// In de, this message translates to:
+  /// **'Zurück zu BusinessBrain'**
+  String get roadmapBack;
+
+  /// No description provided for @roadmapHeroTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Vom verifizierten Unternehmenswissen zum digitalen Unternehmensgehirn'**
+  String get roadmapHeroTitle;
+
+  /// No description provided for @roadmapHeroBody.
+  ///
+  /// In de, this message translates to:
+  /// **'BusinessBrain beginnt mit einem klar begrenzten, heute verfügbaren Wissenskern. Jede weitere Stufe baut nachvollziehbar darauf auf und ist ausdrücklich als Zukunftsvision gekennzeichnet.'**
+  String get roadmapHeroBody;
+
+  /// No description provided for @roadmapHeroControl.
+  ///
+  /// In de, this message translates to:
+  /// **'Keine Stufe trifft autonome Unternehmensentscheidungen. Der Mensch prüft, bestätigt und entscheidet.'**
+  String get roadmapHeroControl;
+
+  /// No description provided for @roadmapAvailableBadge.
+  ///
+  /// In de, this message translates to:
+  /// **'HEUTE VERFÜGBAR'**
+  String get roadmapAvailableBadge;
+
+  /// No description provided for @roadmapVisionBadge.
+  ///
+  /// In de, this message translates to:
+  /// **'VISION'**
+  String get roadmapVisionBadge;
+
+  /// No description provided for @roadmapNextStage.
+  ///
+  /// In de, this message translates to:
+  /// **'NÄCHSTE AUSBAUSTUFE'**
+  String get roadmapNextStage;
+
+  /// No description provided for @roadmapVisualKnowledge.
+  ///
+  /// In de, this message translates to:
+  /// **'Wissen'**
+  String get roadmapVisualKnowledge;
+
+  /// No description provided for @roadmapVisualIntelligence.
+  ///
+  /// In de, this message translates to:
+  /// **'Verständnis'**
+  String get roadmapVisualIntelligence;
+
+  /// No description provided for @roadmapVisualBrain.
+  ///
+  /// In de, this message translates to:
+  /// **'BusinessBrain'**
+  String get roadmapVisualBrain;
+
+  /// No description provided for @roadmapVisualCaption.
+  ///
+  /// In de, this message translates to:
+  /// **'Schrittweise Entwicklung statt unkontrollierter Autonomie.'**
+  String get roadmapVisualCaption;
+
+  /// No description provided for @roadmapJourneyTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Sieben glaubwürdige Entwicklungsstufen'**
+  String get roadmapJourneyTitle;
+
+  /// No description provided for @roadmapJourneyBody.
+  ///
+  /// In de, this message translates to:
+  /// **'Wählen Sie eine Stufe aus. Die Detailkarte erklärt Nutzen, Beispiele und die menschliche Kontrolle. Nur Stufe 1 ist heute verfügbar.'**
+  String get roadmapJourneyBody;
+
+  /// No description provided for @roadmapBenefitTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Nutzen'**
+  String get roadmapBenefitTitle;
+
+  /// No description provided for @roadmapExamplesTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Beispiele'**
+  String get roadmapExamplesTitle;
+
+  /// No description provided for @roadmapControlTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Menschliche Kontrolle'**
+  String get roadmapControlTitle;
+
+  /// No description provided for @roadmapVisionDisclaimer.
+  ///
+  /// In de, this message translates to:
+  /// **'Diese Stufe ist eine Produktvision. Die gezeigten Funktionen sind heute nicht verfügbar und enthalten keine Lieferzusage.'**
+  String get roadmapVisionDisclaimer;
+
+  /// No description provided for @roadmapStage1Title.
+  ///
+  /// In de, this message translates to:
+  /// **'Verified Company Knowledge'**
+  String get roadmapStage1Title;
+
+  /// No description provided for @roadmapStage1Description.
+  ///
+  /// In de, this message translates to:
+  /// **'Bestätigtes Unternehmenswissen wird strukturiert, geprüft und sicher für nachvollziehbare Antworten nutzbar.'**
+  String get roadmapStage1Description;
+
+  /// No description provided for @roadmapStage1Benefit.
+  ///
+  /// In de, this message translates to:
+  /// **'Unternehmen erhalten konsistente Antworten, sichtbare Quellen und einen kontrollierten Lernkreislauf für ihr Wissen.'**
+  String get roadmapStage1Benefit;
+
+  /// No description provided for @roadmapStage1Control.
+  ///
+  /// In de, this message translates to:
+  /// **'Neue Wissenseinträge werden erst nach Human Review übernommen. BusinessBrain erfindet und veröffentlicht nichts selbst.'**
+  String get roadmapStage1Control;
+
+  /// No description provided for @roadmapStage2Title.
+  ///
+  /// In de, this message translates to:
+  /// **'Customer Intelligence'**
+  String get roadmapStage2Title;
+
+  /// No description provided for @roadmapStage2Description.
+  ///
+  /// In de, this message translates to:
+  /// **'Wiederkehrende Kundenfragen und Probleme könnten als verständliche Muster sichtbar werden.'**
+  String get roadmapStage2Description;
+
+  /// No description provided for @roadmapStage2Benefit.
+  ///
+  /// In de, this message translates to:
+  /// **'Unternehmen könnten früher erkennen, welche Informationen Kunden fehlen und welche Produkte besondere Aufmerksamkeit erhalten.'**
+  String get roadmapStage2Benefit;
+
+  /// No description provided for @roadmapStage2Control.
+  ///
+  /// In de, this message translates to:
+  /// **'Erkannte Muster wären Hinweise. Menschen entscheiden, ob daraus FAQ, Dokumentation oder Maßnahmen entstehen.'**
+  String get roadmapStage2Control;
+
+  /// No description provided for @roadmapStage3Title.
+  ///
+  /// In de, this message translates to:
+  /// **'Website Intelligence'**
+  String get roadmapStage3Title;
+
+  /// No description provided for @roadmapStage3Description.
+  ///
+  /// In de, this message translates to:
+  /// **'Die Unternehmenswebsite könnte als laufende Wissensquelle und Qualitätsfläche verstanden werden.'**
+  String get roadmapStage3Description;
+
+  /// No description provided for @roadmapStage3Benefit.
+  ///
+  /// In de, this message translates to:
+  /// **'Veraltete Inhalte, fehlende Antworten und relevante Downloads könnten schneller auffindbar werden.'**
+  String get roadmapStage3Benefit;
+
+  /// No description provided for @roadmapStage3Control.
+  ///
+  /// In de, this message translates to:
+  /// **'BusinessBrain würde Änderungen ausschließlich vorschlagen. Jede Anpassung der Website bliebe eine menschliche Entscheidung.'**
+  String get roadmapStage3Control;
+
+  /// No description provided for @roadmapStage4Title.
+  ///
+  /// In de, this message translates to:
+  /// **'Marketing Intelligence'**
+  String get roadmapStage4Title;
+
+  /// No description provided for @roadmapStage4Description.
+  ///
+  /// In de, this message translates to:
+  /// **'Kundenwissen und digitale Signale könnten zu begründeten Marketing- und Content-Vorschlägen werden.'**
+  String get roadmapStage4Description;
+
+  /// No description provided for @roadmapStage4Benefit.
+  ///
+  /// In de, this message translates to:
+  /// **'Unternehmen könnten relevante Themen, Kanäle und Inhalte gezielter auswählen, ohne ihre Markenstimme abzugeben.'**
+  String get roadmapStage4Benefit;
+
+  /// No description provided for @roadmapStage4Control.
+  ///
+  /// In de, this message translates to:
+  /// **'Keine automatische Veröffentlichung und keine selbstständige Kampagne. Menschen wählen, bearbeiten und veröffentlichen jeden Inhalt.'**
+  String get roadmapStage4Control;
+
+  /// No description provided for @roadmapStage5Title.
+  ///
+  /// In de, this message translates to:
+  /// **'Competitive Intelligence'**
+  String get roadmapStage5Title;
+
+  /// No description provided for @roadmapStage5Description.
+  ///
+  /// In de, this message translates to:
+  /// **'Markt- und Wettbewerbsveränderungen könnten sachlich zusammengeführt und eingeordnet werden.'**
+  String get roadmapStage5Description;
+
+  /// No description provided for @roadmapStage5Benefit.
+  ///
+  /// In de, this message translates to:
+  /// **'Preisänderungen, neue Produkte und Markttrends könnten früher in einer gemeinsamen Sicht erkennbar werden.'**
+  String get roadmapStage5Benefit;
+
+  /// No description provided for @roadmapStage5Control.
+  ///
+  /// In de, this message translates to:
+  /// **'Beobachtungen wären Informationsgrundlagen, keine automatischen Bewertungen oder Wettbewerbsentscheidungen.'**
+  String get roadmapStage5Control;
+
+  /// No description provided for @roadmapStage6Title.
+  ///
+  /// In de, this message translates to:
+  /// **'Business Intelligence'**
+  String get roadmapStage6Title;
+
+  /// No description provided for @roadmapStage6Description.
+  ///
+  /// In de, this message translates to:
+  /// **'Kundenprobleme, Einwände und Produktinteresse könnten zu überprüfbaren Geschäftshinweisen verbunden werden.'**
+  String get roadmapStage6Description;
+
+  /// No description provided for @roadmapStage6Benefit.
+  ///
+  /// In de, this message translates to:
+  /// **'Unternehmen könnten Verbesserungsmöglichkeiten, Produktideen und Vertriebschancen nachvollziehbarer priorisieren.'**
+  String get roadmapStage6Benefit;
+
+  /// No description provided for @roadmapStage6Control.
+  ///
+  /// In de, this message translates to:
+  /// **'BusinessBrain würde Chancen erklären und Vorschläge vorbereiten. Ziele, Budgets und Maßnahmen bestimmt das Unternehmen.'**
+  String get roadmapStage6Control;
+
+  /// No description provided for @roadmapStage7Title.
+  ///
+  /// In de, this message translates to:
+  /// **'Digital BusinessBrain'**
+  String get roadmapStage7Title;
+
+  /// No description provided for @roadmapStage7Description.
+  ///
+  /// In de, this message translates to:
+  /// **'Bestätigtes Wissen und verständliche Signale könnten zu einem gemeinsamen Orientierungssystem zusammenwachsen.'**
+  String get roadmapStage7Description;
+
+  /// No description provided for @roadmapStage7Benefit.
+  ///
+  /// In de, this message translates to:
+  /// **'Zusammenhänge, Prioritäten, Aufgabenentwürfe und Entscheidungsvorlagen könnten an einem Ort verständlich werden.'**
+  String get roadmapStage7Benefit;
+
+  /// No description provided for @roadmapStage7Control.
+  ///
+  /// In de, this message translates to:
+  /// **'Auch als digitales Unternehmensgehirn bleibt BusinessBrain ein Informations- und Vorschlagssystem. Der Mensch entscheidet immer.'**
+  String get roadmapStage7Control;
+
+  /// No description provided for @roadmapFeatureKnowledgeBuilder.
+  ///
+  /// In de, this message translates to:
+  /// **'Knowledge Builder'**
+  String get roadmapFeatureKnowledgeBuilder;
+
+  /// No description provided for @roadmapFeatureHumanReview.
+  ///
+  /// In de, this message translates to:
+  /// **'Human Review'**
+  String get roadmapFeatureHumanReview;
+
+  /// No description provided for @roadmapFeatureGroundedAnswers.
+  ///
+  /// In de, this message translates to:
+  /// **'Grounded Answers'**
+  String get roadmapFeatureGroundedAnswers;
+
+  /// No description provided for @roadmapFeatureWebsiteLinks.
+  ///
+  /// In de, this message translates to:
+  /// **'Website-Links'**
+  String get roadmapFeatureWebsiteLinks;
+
+  /// No description provided for @roadmapFeatureOperationsCenter.
+  ///
+  /// In de, this message translates to:
+  /// **'AI Operations Center'**
+  String get roadmapFeatureOperationsCenter;
+
+  /// No description provided for @roadmapFeatureFrequentQuestions.
+  ///
+  /// In de, this message translates to:
+  /// **'Häufige Fragen erkennen'**
+  String get roadmapFeatureFrequentQuestions;
+
+  /// No description provided for @roadmapFeatureRecurringProblems.
+  ///
+  /// In de, this message translates to:
+  /// **'Wiederkehrende Probleme erkennen'**
+  String get roadmapFeatureRecurringProblems;
+
+  /// No description provided for @roadmapFeatureProductInterest.
+  ///
+  /// In de, this message translates to:
+  /// **'Produktinteresse verstehen'**
+  String get roadmapFeatureProductInterest;
+
+  /// No description provided for @roadmapFeatureSupportTrends.
+  ///
+  /// In de, this message translates to:
+  /// **'Support-Trends erkennen'**
+  String get roadmapFeatureSupportTrends;
+
+  /// No description provided for @roadmapFeatureFaqSuggestions.
+  ///
+  /// In de, this message translates to:
+  /// **'Neue FAQ vorschlagen'**
+  String get roadmapFeatureFaqSuggestions;
+
+  /// No description provided for @roadmapFeatureAnalyseWebsite.
+  ///
+  /// In de, this message translates to:
+  /// **'Website analysieren'**
+  String get roadmapFeatureAnalyseWebsite;
+
+  /// No description provided for @roadmapFeatureDetectProductPages.
+  ///
+  /// In de, this message translates to:
+  /// **'Produktseiten erkennen'**
+  String get roadmapFeatureDetectProductPages;
+
+  /// No description provided for @roadmapFeatureDetectDownloads.
+  ///
+  /// In de, this message translates to:
+  /// **'Downloads erkennen'**
+  String get roadmapFeatureDetectDownloads;
+
+  /// No description provided for @roadmapFeatureDetectFaq.
+  ///
+  /// In de, this message translates to:
+  /// **'FAQ erkennen'**
+  String get roadmapFeatureDetectFaq;
+
+  /// No description provided for @roadmapFeatureDetectKnowledgeGaps.
+  ///
+  /// In de, this message translates to:
+  /// **'Wissenslücken erkennen'**
+  String get roadmapFeatureDetectKnowledgeGaps;
+
+  /// No description provided for @roadmapFeatureKeepWebsiteCurrent.
+  ///
+  /// In de, this message translates to:
+  /// **'Website aktuell halten'**
+  String get roadmapFeatureKeepWebsiteCurrent;
+
+  /// No description provided for @roadmapFeatureImproveLandingPage.
+  ///
+  /// In de, this message translates to:
+  /// **'Landingpage verbessern'**
+  String get roadmapFeatureImproveLandingPage;
+
+  /// No description provided for @roadmapFeatureNewsletter.
+  ///
+  /// In de, this message translates to:
+  /// **'Newsletter'**
+  String get roadmapFeatureNewsletter;
+
+  /// No description provided for @roadmapFeatureMarketingIdeas.
+  ///
+  /// In de, this message translates to:
+  /// **'Marketing-Ideen'**
+  String get roadmapFeatureMarketingIdeas;
+
+  /// No description provided for @roadmapFeatureContentSuggestions.
+  ///
+  /// In de, this message translates to:
+  /// **'Content-Vorschläge'**
+  String get roadmapFeatureContentSuggestions;
+
+  /// No description provided for @roadmapFeatureObserveCompetitors.
+  ///
+  /// In de, this message translates to:
+  /// **'Wettbewerber beobachten'**
+  String get roadmapFeatureObserveCompetitors;
+
+  /// No description provided for @roadmapFeatureDetectPriceChanges.
+  ///
+  /// In de, this message translates to:
+  /// **'Preisänderungen erkennen'**
+  String get roadmapFeatureDetectPriceChanges;
+
+  /// No description provided for @roadmapFeatureMarketTrends.
+  ///
+  /// In de, this message translates to:
+  /// **'Markttrends erkennen'**
+  String get roadmapFeatureMarketTrends;
+
+  /// No description provided for @roadmapFeatureNewProducts.
+  ///
+  /// In de, this message translates to:
+  /// **'Neue Produkte erkennen'**
+  String get roadmapFeatureNewProducts;
+
+  /// No description provided for @roadmapFeatureStrengthsWeaknesses.
+  ///
+  /// In de, this message translates to:
+  /// **'Stärken und Schwächen einordnen'**
+  String get roadmapFeatureStrengthsWeaknesses;
+
+  /// No description provided for @roadmapFeatureCustomerProblems.
+  ///
+  /// In de, this message translates to:
+  /// **'Wiederkehrende Kundenprobleme'**
+  String get roadmapFeatureCustomerProblems;
+
+  /// No description provided for @roadmapFeatureProductIdeas.
+  ///
+  /// In de, this message translates to:
+  /// **'Produktideen'**
+  String get roadmapFeatureProductIdeas;
+
+  /// No description provided for @roadmapFeatureImprovementSuggestions.
+  ///
+  /// In de, this message translates to:
+  /// **'Verbesserungsvorschläge'**
+  String get roadmapFeatureImprovementSuggestions;
+
+  /// No description provided for @roadmapFeatureSalesOpportunities.
+  ///
+  /// In de, this message translates to:
+  /// **'Vertriebschancen'**
+  String get roadmapFeatureSalesOpportunities;
+
+  /// No description provided for @roadmapFeatureFrequentObjections.
+  ///
+  /// In de, this message translates to:
+  /// **'Häufige Einwände'**
+  String get roadmapFeatureFrequentObjections;
+
+  /// No description provided for @roadmapFeatureRecogniseConnections.
+  ///
+  /// In de, this message translates to:
+  /// **'Zusammenhänge erkennen'**
+  String get roadmapFeatureRecogniseConnections;
+
+  /// No description provided for @roadmapFeatureRecommendPriorities.
+  ///
+  /// In de, this message translates to:
+  /// **'Prioritäten empfehlen'**
+  String get roadmapFeatureRecommendPriorities;
+
+  /// No description provided for @roadmapFeaturePrepareTasks.
+  ///
+  /// In de, this message translates to:
+  /// **'Aufgaben vorbereiten'**
+  String get roadmapFeaturePrepareTasks;
+
+  /// No description provided for @roadmapFeatureCreateReports.
+  ///
+  /// In de, this message translates to:
+  /// **'Berichte erstellen'**
+  String get roadmapFeatureCreateReports;
+
+  /// No description provided for @roadmapFeatureDecisionBriefs.
+  ///
+  /// In de, this message translates to:
+  /// **'Entscheidungsvorlagen vorbereiten'**
+  String get roadmapFeatureDecisionBriefs;
+
+  /// No description provided for @roadmapClosingTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Eine nachvollziehbare Reise zum digitalen Unternehmensgehirn'**
+  String get roadmapClosingTitle;
+
+  /// No description provided for @roadmapClosingBody.
+  ///
+  /// In de, this message translates to:
+  /// **'BusinessBrain entwickelt sich vom Unternehmenswissen über Kundenverständnis und Marketing zu Unternehmensanalyse und einem gemeinsamen digitalen Orientierungsraum.'**
+  String get roadmapClosingBody;
+
+  /// No description provided for @roadmapClosingKnowledge.
+  ///
+  /// In de, this message translates to:
+  /// **'Unternehmenswissen'**
+  String get roadmapClosingKnowledge;
+
+  /// No description provided for @roadmapClosingCustomers.
+  ///
+  /// In de, this message translates to:
+  /// **'Kundenverständnis'**
+  String get roadmapClosingCustomers;
+
+  /// No description provided for @roadmapClosingMarketing.
+  ///
+  /// In de, this message translates to:
+  /// **'Marketing'**
+  String get roadmapClosingMarketing;
+
+  /// No description provided for @roadmapClosingAnalysis.
+  ///
+  /// In de, this message translates to:
+  /// **'Unternehmensanalyse'**
+  String get roadmapClosingAnalysis;
+
+  /// No description provided for @roadmapClosingBrain.
+  ///
+  /// In de, this message translates to:
+  /// **'Digitales Unternehmensgehirn'**
+  String get roadmapClosingBrain;
+
+  /// No description provided for @roadmapHumanTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Der Mensch entscheidet immer.'**
+  String get roadmapHumanTitle;
+
+  /// No description provided for @roadmapHumanBody.
+  ///
+  /// In de, this message translates to:
+  /// **'BusinessBrain ersetzt keine Menschen. BusinessBrain liefert nachvollziehbare Informationen, Vorschläge und Zusammenhänge. Die endgültige Entscheidung trifft immer der Mensch.'**
+  String get roadmapHumanBody;
+
+  /// No description provided for @navGettingStarted.
+  ///
+  /// In de, this message translates to:
+  /// **'Getting Started'**
+  String get navGettingStarted;
+
+  /// No description provided for @gettingStartedNavTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Company Onboarding'**
+  String get gettingStartedNavTitle;
+
+  /// No description provided for @gettingStartedBackHome.
+  ///
+  /// In de, this message translates to:
+  /// **'Zur Startseite'**
+  String get gettingStartedBackHome;
+
+  /// No description provided for @gettingStartedDemoBadge.
+  ///
+  /// In de, this message translates to:
+  /// **'DEMO'**
+  String get gettingStartedDemoBadge;
+
+  /// No description provided for @gettingStartedHeroTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Ein Unternehmen in wenigen Schritten startklar machen'**
+  String get gettingStartedHeroTitle;
+
+  /// No description provided for @gettingStartedHeroBody.
+  ///
+  /// In de, this message translates to:
+  /// **'Diese interaktive Reise zeigt, wie ein Unternehmen BusinessBrain in kurzer Zeit vorbereiten könnte — vom Firmenprofil bis zu bestätigtem Wissen.'**
+  String get gettingStartedHeroBody;
+
+  /// No description provided for @gettingStartedDemoBoundary.
+  ///
+  /// In de, this message translates to:
+  /// **'Reine Benutzerreise: Es findet keine Registrierung, kein Upload, keine KI-Analyse und keine Speicherung statt.'**
+  String get gettingStartedDemoBoundary;
+
+  /// No description provided for @gettingStartedVisualCompany.
+  ///
+  /// In de, this message translates to:
+  /// **'Unternehmen'**
+  String get gettingStartedVisualCompany;
+
+  /// No description provided for @gettingStartedVisualKnowledge.
+  ///
+  /// In de, this message translates to:
+  /// **'Wissen'**
+  String get gettingStartedVisualKnowledge;
+
+  /// No description provided for @gettingStartedVisualReady.
+  ///
+  /// In de, this message translates to:
+  /// **'Bereit'**
+  String get gettingStartedVisualReady;
+
+  /// No description provided for @gettingStartedVisualCaption.
+  ///
+  /// In de, this message translates to:
+  /// **'Ein nachvollziehbarer Weg zum einsatzbereiten Unternehmenswissen'**
+  String get gettingStartedVisualCaption;
+
+  /// No description provided for @gettingStartedProgressComplete.
+  ///
+  /// In de, this message translates to:
+  /// **'Onboarding-Demo abgeschlossen'**
+  String get gettingStartedProgressComplete;
+
+  /// No description provided for @gettingStartedProgress.
+  ///
+  /// In de, this message translates to:
+  /// **'Schritt {current} von {total}'**
+  String gettingStartedProgress(int current, int total);
+
+  /// No description provided for @gettingStartedStatusDone.
+  ///
+  /// In de, this message translates to:
+  /// **'Erledigt'**
+  String get gettingStartedStatusDone;
+
+  /// No description provided for @gettingStartedStatusActive.
+  ///
+  /// In de, this message translates to:
+  /// **'Aktiv'**
+  String get gettingStartedStatusActive;
+
+  /// No description provided for @gettingStartedStatusUpcoming.
+  ///
+  /// In de, this message translates to:
+  /// **'Als Nächstes'**
+  String get gettingStartedStatusUpcoming;
+
+  /// No description provided for @gettingStartedStep1Title.
+  ///
+  /// In de, this message translates to:
+  /// **'Unternehmen anlegen'**
+  String get gettingStartedStep1Title;
+
+  /// No description provided for @gettingStartedStep1Description.
+  ///
+  /// In de, this message translates to:
+  /// **'Optionale Angaben machen den beispielhaften Start greifbar.'**
+  String get gettingStartedStep1Description;
+
+  /// No description provided for @gettingStartedStep2Title.
+  ///
+  /// In de, this message translates to:
+  /// **'Unternehmenswissen importieren'**
+  String get gettingStartedStep2Title;
+
+  /// No description provided for @gettingStartedStep2Description.
+  ///
+  /// In de, this message translates to:
+  /// **'Wählen Sie, welche vorhandenen Inhalte eingebunden werden könnten.'**
+  String get gettingStartedStep2Description;
+
+  /// No description provided for @gettingStartedStep3Title.
+  ///
+  /// In de, this message translates to:
+  /// **'BusinessBrain analysiert'**
+  String get gettingStartedStep3Title;
+
+  /// No description provided for @gettingStartedStep3Description.
+  ///
+  /// In de, this message translates to:
+  /// **'Die Demo visualisiert, welche Wissensarten erkannt würden.'**
+  String get gettingStartedStep3Description;
+
+  /// No description provided for @gettingStartedStep4Title.
+  ///
+  /// In de, this message translates to:
+  /// **'Human Review'**
+  String get gettingStartedStep4Title;
+
+  /// No description provided for @gettingStartedStep4Description.
+  ///
+  /// In de, this message translates to:
+  /// **'Mitarbeiter prüfen Vorschläge, bevor Wissen aktiv wird.'**
+  String get gettingStartedStep4Description;
+
+  /// No description provided for @gettingStartedStep5Title.
+  ///
+  /// In de, this message translates to:
+  /// **'BusinessBrain ist bereit'**
+  String get gettingStartedStep5Title;
+
+  /// No description provided for @gettingStartedStep5Description.
+  ///
+  /// In de, this message translates to:
+  /// **'Bestätigtes Wissen kann Antworten und Einblicke unterstützen.'**
+  String get gettingStartedStep5Description;
+
+  /// No description provided for @gettingStartedPrevious.
+  ///
+  /// In de, this message translates to:
+  /// **'Zurück'**
+  String get gettingStartedPrevious;
+
+  /// No description provided for @gettingStartedNext.
+  ///
+  /// In de, this message translates to:
+  /// **'Weiter'**
+  String get gettingStartedNext;
+
+  /// No description provided for @gettingStartedFinish.
+  ///
+  /// In de, this message translates to:
+  /// **'Demo abschließen'**
+  String get gettingStartedFinish;
+
+  /// No description provided for @gettingStartedCompanyName.
+  ///
+  /// In de, this message translates to:
+  /// **'Firmenname'**
+  String get gettingStartedCompanyName;
+
+  /// No description provided for @gettingStartedCompanyHint.
+  ///
+  /// In de, this message translates to:
+  /// **'z. B. Muster GmbH'**
+  String get gettingStartedCompanyHint;
+
+  /// No description provided for @gettingStartedIndustry.
+  ///
+  /// In de, this message translates to:
+  /// **'Branche'**
+  String get gettingStartedIndustry;
+
+  /// No description provided for @gettingStartedIndustryHint.
+  ///
+  /// In de, this message translates to:
+  /// **'z. B. Medizintechnik'**
+  String get gettingStartedIndustryHint;
+
+  /// No description provided for @gettingStartedCountry.
+  ///
+  /// In de, this message translates to:
+  /// **'Land'**
+  String get gettingStartedCountry;
+
+  /// No description provided for @gettingStartedCountryDe.
+  ///
+  /// In de, this message translates to:
+  /// **'Deutschland'**
+  String get gettingStartedCountryDe;
+
+  /// No description provided for @gettingStartedCountryAt.
+  ///
+  /// In de, this message translates to:
+  /// **'Österreich'**
+  String get gettingStartedCountryAt;
+
+  /// No description provided for @gettingStartedCountryCh.
+  ///
+  /// In de, this message translates to:
+  /// **'Schweiz'**
+  String get gettingStartedCountryCh;
+
+  /// No description provided for @gettingStartedCountryOther.
+  ///
+  /// In de, this message translates to:
+  /// **'Anderes Land'**
+  String get gettingStartedCountryOther;
+
+  /// No description provided for @gettingStartedLanguage.
+  ///
+  /// In de, this message translates to:
+  /// **'Sprache'**
+  String get gettingStartedLanguage;
+
+  /// No description provided for @gettingStartedWebsite.
+  ///
+  /// In de, this message translates to:
+  /// **'Website'**
+  String get gettingStartedWebsite;
+
+  /// No description provided for @gettingStartedLogo.
+  ///
+  /// In de, this message translates to:
+  /// **'Logo auswählen (Demo)'**
+  String get gettingStartedLogo;
+
+  /// No description provided for @gettingStartedLogoSelected.
+  ///
+  /// In de, this message translates to:
+  /// **'Logo vorgemerkt'**
+  String get gettingStartedLogoSelected;
+
+  /// No description provided for @gettingStartedOptionalNote.
+  ///
+  /// In de, this message translates to:
+  /// **'Alle Angaben sind optional und bleiben ausschließlich in dieser lokalen Demo.'**
+  String get gettingStartedOptionalNote;
+
+  /// No description provided for @gettingStartedImportBoundary.
+  ///
+  /// In de, this message translates to:
+  /// **'Auswählen zeigt nur den Ablauf. Es werden keine Dateien hochgeladen oder Inhalte verarbeitet.'**
+  String get gettingStartedImportBoundary;
+
+  /// No description provided for @gettingStartedImportWebsite.
+  ///
+  /// In de, this message translates to:
+  /// **'Website'**
+  String get gettingStartedImportWebsite;
+
+  /// No description provided for @gettingStartedImportPdf.
+  ///
+  /// In de, this message translates to:
+  /// **'PDF'**
+  String get gettingStartedImportPdf;
+
+  /// No description provided for @gettingStartedImportFaq.
+  ///
+  /// In de, this message translates to:
+  /// **'FAQ'**
+  String get gettingStartedImportFaq;
+
+  /// No description provided for @gettingStartedImportManuals.
+  ///
+  /// In de, this message translates to:
+  /// **'Handbücher'**
+  String get gettingStartedImportManuals;
+
+  /// No description provided for @gettingStartedImportProducts.
+  ///
+  /// In de, this message translates to:
+  /// **'Produktbeschreibungen'**
+  String get gettingStartedImportProducts;
+
+  /// No description provided for @gettingStartedImportSupport.
+  ///
+  /// In de, this message translates to:
+  /// **'Support-Dokumente'**
+  String get gettingStartedImportSupport;
+
+  /// No description provided for @gettingStartedImportVideos.
+  ///
+  /// In de, this message translates to:
+  /// **'Videos'**
+  String get gettingStartedImportVideos;
+
+  /// No description provided for @gettingStartedAnalysisSimulation.
+  ///
+  /// In de, this message translates to:
+  /// **'Demo-Analyse'**
+  String get gettingStartedAnalysisSimulation;
+
+  /// No description provided for @gettingStartedAnalysisHumanNote.
+  ///
+  /// In de, this message translates to:
+  /// **'Alle Vorschläge werden anschließend von einem Menschen geprüft.'**
+  String get gettingStartedAnalysisHumanNote;
+
+  /// No description provided for @gettingStartedDetectedProducts.
+  ///
+  /// In de, this message translates to:
+  /// **'Produkte'**
+  String get gettingStartedDetectedProducts;
+
+  /// No description provided for @gettingStartedDetectedFaq.
+  ///
+  /// In de, this message translates to:
+  /// **'FAQ'**
+  String get gettingStartedDetectedFaq;
+
+  /// No description provided for @gettingStartedDetectedDocuments.
+  ///
+  /// In de, this message translates to:
+  /// **'Dokumente'**
+  String get gettingStartedDetectedDocuments;
+
+  /// No description provided for @gettingStartedDetectedSupport.
+  ///
+  /// In de, this message translates to:
+  /// **'Support'**
+  String get gettingStartedDetectedSupport;
+
+  /// No description provided for @gettingStartedDetectedDownloads.
+  ///
+  /// In de, this message translates to:
+  /// **'Downloads'**
+  String get gettingStartedDetectedDownloads;
+
+  /// No description provided for @gettingStartedDetectedContact.
+  ///
+  /// In de, this message translates to:
+  /// **'Kontakt'**
+  String get gettingStartedDetectedContact;
+
+  /// No description provided for @gettingStartedDetectedKnowledgeAreas.
+  ///
+  /// In de, this message translates to:
+  /// **'Wissensbereiche'**
+  String get gettingStartedDetectedKnowledgeAreas;
+
+  /// No description provided for @gettingStartedReviewFaqTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'FAQ-Vorschlag'**
+  String get gettingStartedReviewFaqTitle;
+
+  /// No description provided for @gettingStartedReviewFaqBody.
+  ///
+  /// In de, this message translates to:
+  /// **'Eine häufige Kundenfrage als strukturierten Wissenseintrag vorbereiten.'**
+  String get gettingStartedReviewFaqBody;
+
+  /// No description provided for @gettingStartedReviewSupportTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Support-Vorschlag'**
+  String get gettingStartedReviewSupportTitle;
+
+  /// No description provided for @gettingStartedReviewSupportBody.
+  ///
+  /// In de, this message translates to:
+  /// **'Einen nachvollziehbaren Lösungsweg für Mitarbeiter und Kunden vorbereiten.'**
+  String get gettingStartedReviewSupportBody;
+
+  /// No description provided for @gettingStartedReviewBoundary.
+  ///
+  /// In de, this message translates to:
+  /// **'Nur bestätigte Vorschläge würden Teil des Unternehmenswissens. Diese Demo verändert keine Wissensbasis.'**
+  String get gettingStartedReviewBoundary;
+
+  /// No description provided for @gettingStartedReviewConfirmed.
+  ///
+  /// In de, this message translates to:
+  /// **'Bestätigt'**
+  String get gettingStartedReviewConfirmed;
+
+  /// No description provided for @gettingStartedReviewConfirm.
+  ///
+  /// In de, this message translates to:
+  /// **'Bestätigen'**
+  String get gettingStartedReviewConfirm;
+
+  /// No description provided for @gettingStartedReadyQuestions.
+  ///
+  /// In de, this message translates to:
+  /// **'Kunden können Fragen stellen'**
+  String get gettingStartedReadyQuestions;
+
+  /// No description provided for @gettingStartedReadyGrounded.
+  ///
+  /// In de, this message translates to:
+  /// **'Antworten stammen ausschließlich aus bestätigtem Unternehmenswissen'**
+  String get gettingStartedReadyGrounded;
+
+  /// No description provided for @gettingStartedReadyOperations.
+  ///
+  /// In de, this message translates to:
+  /// **'Das Operations Dashboard würde ab jetzt nachvollziehbare Aktivität sammeln'**
+  String get gettingStartedReadyOperations;
+
+  /// No description provided for @gettingStartedReadyBoundary.
+  ///
+  /// In de, this message translates to:
+  /// **'Auch dieser Status ist Teil der Demo. Es wurde kein Unternehmen aktiviert.'**
+  String get gettingStartedReadyBoundary;
+
+  /// No description provided for @gettingStartedSuccessTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'BusinessBrain ist einsatzbereit'**
+  String get gettingStartedSuccessTitle;
+
+  /// No description provided for @gettingStartedSuccessBody.
+  ///
+  /// In de, this message translates to:
+  /// **'Die Journey zeigt den vollständigen Weg von der Einrichtung bis zu geprüftem, nutzbarem Unternehmenswissen.'**
+  String get gettingStartedSuccessBody;
+
+  /// No description provided for @gettingStartedSuccessCompany.
+  ///
+  /// In de, this message translates to:
+  /// **'Unternehmen eingerichtet'**
+  String get gettingStartedSuccessCompany;
+
+  /// No description provided for @gettingStartedSuccessDocuments.
+  ///
+  /// In de, this message translates to:
+  /// **'Dokumente importiert'**
+  String get gettingStartedSuccessDocuments;
+
+  /// No description provided for @gettingStartedSuccessKnowledge.
+  ///
+  /// In de, this message translates to:
+  /// **'Wissen bestätigt'**
+  String get gettingStartedSuccessKnowledge;
+
+  /// No description provided for @gettingStartedSuccessAi.
+  ///
+  /// In de, this message translates to:
+  /// **'KI bereit'**
+  String get gettingStartedSuccessAi;
+
+  /// No description provided for @gettingStartedSuccessOperations.
+  ///
+  /// In de, this message translates to:
+  /// **'Operations aktiviert'**
+  String get gettingStartedSuccessOperations;
+
+  /// No description provided for @gettingStartedRestart.
+  ///
+  /// In de, this message translates to:
+  /// **'Demo neu starten'**
+  String get gettingStartedRestart;
+
+  /// No description provided for @gettingStartedTimeTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Geschätzter Zeitbedarf'**
+  String get gettingStartedTimeTitle;
+
+  /// No description provided for @gettingStartedTimeProfile.
+  ///
+  /// In de, this message translates to:
+  /// **'Firmenprofil'**
+  String get gettingStartedTimeProfile;
+
+  /// No description provided for @gettingStartedTimeDocuments.
+  ///
+  /// In de, this message translates to:
+  /// **'Dokumente'**
+  String get gettingStartedTimeDocuments;
+
+  /// No description provided for @gettingStartedTimeReview.
+  ///
+  /// In de, this message translates to:
+  /// **'Human Review'**
+  String get gettingStartedTimeReview;
+
+  /// No description provided for @gettingStartedTimeReady.
+  ///
+  /// In de, this message translates to:
+  /// **'BusinessBrain einsatzbereit'**
+  String get gettingStartedTimeReady;
+
+  /// No description provided for @gettingStartedTime2.
+  ///
+  /// In de, this message translates to:
+  /// **'2 Minuten'**
+  String get gettingStartedTime2;
+
+  /// No description provided for @gettingStartedTime5.
+  ///
+  /// In de, this message translates to:
+  /// **'5 Minuten'**
+  String get gettingStartedTime5;
+
+  /// No description provided for @gettingStartedTime10.
+  ///
+  /// In de, this message translates to:
+  /// **'10 Minuten'**
+  String get gettingStartedTime10;
+
+  /// No description provided for @gettingStartedTimeUnder20.
+  ///
+  /// In de, this message translates to:
+  /// **'unter 20 Minuten'**
+  String get gettingStartedTimeUnder20;
+
+  /// No description provided for @gettingStartedTimeDisclaimer.
+  ///
+  /// In de, this message translates to:
+  /// **'Demo-Schätzung für einen kompakten Ersteinstieg. Der tatsächliche Aufwand hängt vom Umfang des Unternehmenswissens ab.'**
+  String get gettingStartedTimeDisclaimer;
+
+  /// No description provided for @kbGeminiProposalBadge.
+  ///
+  /// In de, this message translates to:
+  /// **'✨ GEMINI-VORSCHLAG'**
+  String get kbGeminiProposalBadge;
+
+  /// No description provided for @kbGeminiInsightsTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Gemini Insights'**
+  String get kbGeminiInsightsTitle;
+
+  /// No description provided for @kbGeminiInsightsBody.
+  ///
+  /// In de, this message translates to:
+  /// **'Gemini ergänzt die deterministische Analyse mit dokumentgebundenen Vorschlägen. Die Analyse selbst bleibt unverändert.'**
+  String get kbGeminiInsightsBody;
+
+  /// No description provided for @kbGeminiLoading.
+  ///
+  /// In de, this message translates to:
+  /// **'Gemini erstellt dokumentgebundene Vorschläge …'**
+  String get kbGeminiLoading;
+
+  /// No description provided for @kbGeminiSummary.
+  ///
+  /// In de, this message translates to:
+  /// **'Kurze Zusammenfassung'**
+  String get kbGeminiSummary;
+
+  /// No description provided for @kbGeminiKeyStatements.
+  ///
+  /// In de, this message translates to:
+  /// **'Wichtigste Aussagen'**
+  String get kbGeminiKeyStatements;
+
+  /// No description provided for @kbGeminiRecommendedFaq.
+  ///
+  /// In de, this message translates to:
+  /// **'Empfohlene FAQ'**
+  String get kbGeminiRecommendedFaq;
+
+  /// No description provided for @kbGeminiCategories.
+  ///
+  /// In de, this message translates to:
+  /// **'Mögliche Kategorien'**
+  String get kbGeminiCategories;
+
+  /// No description provided for @kbGeminiMissingInformation.
+  ///
+  /// In de, this message translates to:
+  /// **'Fehlende Informationen'**
+  String get kbGeminiMissingInformation;
+
+  /// No description provided for @kbGeminiPossibleDuplicates.
+  ///
+  /// In de, this message translates to:
+  /// **'Mögliche Dubletten'**
+  String get kbGeminiPossibleDuplicates;
+
+  /// No description provided for @kbGeminiEmployeeQuestions.
+  ///
+  /// In de, this message translates to:
+  /// **'Offene Fragen an Mitarbeiter'**
+  String get kbGeminiEmployeeQuestions;
+
+  /// No description provided for @kbGeminiSourceDocumentOnly.
+  ///
+  /// In de, this message translates to:
+  /// **'Ausschließlich aus dem analysierten Dokument und den sichtbaren Analysemetadaten erzeugt.'**
+  String get kbGeminiSourceDocumentOnly;
+
+  /// No description provided for @kbGeminiReviewBeforeApplying.
+  ///
+  /// In de, this message translates to:
+  /// **'Vor der Übernahme prüfen. Gemini-Ergebnisse sind ausschließlich Vorschläge und werden nicht automatisch gespeichert.'**
+  String get kbGeminiReviewBeforeApplying;
+
+  /// No description provided for @kbGeminiReviewSuggestionsTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Review Suggestions'**
+  String get kbGeminiReviewSuggestionsTitle;
+
+  /// No description provided for @kbGeminiReviewSuggestionsBody.
+  ///
+  /// In de, this message translates to:
+  /// **'Gemini weist vor der Übernahme auf mögliche Verbesserungen der vorgeschlagenen Wissenseinträge hin.'**
+  String get kbGeminiReviewSuggestionsBody;
+
+  /// No description provided for @botGeminiProposalBadge.
+  ///
+  /// In de, this message translates to:
+  /// **'✨ GEMINI-VORSCHLAG'**
+  String get botGeminiProposalBadge;
+
+  /// No description provided for @botGeminiGapTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Vorgeschlagene Wissensverbesserungen'**
+  String get botGeminiGapTitle;
+
+  /// No description provided for @botGeminiGapBody.
+  ///
+  /// In de, this message translates to:
+  /// **'Gemini hat ausschließlich die Frage und die erkannten Wissenslücken geprüft. Diese Informationstypen könnten die Wissensbasis vervollständigen:'**
+  String get botGeminiGapBody;
+
+  /// No description provided for @botGeminiReviewBeforeApplying.
+  ///
+  /// In de, this message translates to:
+  /// **'Vor der Übernahme prüfen. Es wird nichts automatisch gespeichert.'**
+  String get botGeminiReviewBeforeApplying;
+
+  /// No description provided for @botGeminiGapPrice.
+  ///
+  /// In de, this message translates to:
+  /// **'Aktueller Preis'**
+  String get botGeminiGapPrice;
+
+  /// No description provided for @botGeminiGapProductLink.
+  ///
+  /// In de, this message translates to:
+  /// **'Bestätigter Produktlink'**
+  String get botGeminiGapProductLink;
+
+  /// No description provided for @botGeminiGapValidityDate.
+  ///
+  /// In de, this message translates to:
+  /// **'Gültigkeitsdatum'**
+  String get botGeminiGapValidityDate;
+
+  /// No description provided for @botGeminiGapContact.
+  ///
+  /// In de, this message translates to:
+  /// **'Zuständiger Ansprechpartner'**
+  String get botGeminiGapContact;
+
+  /// No description provided for @botGeminiGapDownload.
+  ///
+  /// In de, this message translates to:
+  /// **'Passender Download'**
+  String get botGeminiGapDownload;
+
+  /// No description provided for @botGeminiGapRequirements.
+  ///
+  /// In de, this message translates to:
+  /// **'Technische Voraussetzungen'**
+  String get botGeminiGapRequirements;
+
+  /// No description provided for @botGeminiGapCompatibility.
+  ///
+  /// In de, this message translates to:
+  /// **'Kompatibilitätsinformationen'**
+  String get botGeminiGapCompatibility;
+
+  /// No description provided for @botGeminiGapInstructions.
+  ///
+  /// In de, this message translates to:
+  /// **'Schritt-für-Schritt-Anleitung'**
+  String get botGeminiGapInstructions;
+
+  /// No description provided for @botGeminiGapTroubleshooting.
+  ///
+  /// In de, this message translates to:
+  /// **'Bestätigter Lösungsweg'**
+  String get botGeminiGapTroubleshooting;
+
+  /// No description provided for @botGeminiGapPolicy.
+  ///
+  /// In de, this message translates to:
+  /// **'Gültige Unternehmensrichtlinie'**
+  String get botGeminiGapPolicy;
+
+  /// No description provided for @opGeminiWeeklyTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Gemini Weekly Summary'**
+  String get opGeminiWeeklyTitle;
+
+  /// No description provided for @opGeminiWeeklySubtitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Gemini priorisiert belegte Erkenntnisse aus den vorhandenen Operations-Demodaten.'**
+  String get opGeminiWeeklySubtitle;
+
+  /// No description provided for @opGeminiSummaryBadge.
+  ///
+  /// In de, this message translates to:
+  /// **'✨ GEMINI-ZUSAMMENFASSUNG'**
+  String get opGeminiSummaryBadge;
+
+  /// No description provided for @opGeminiConfirmedInformation.
+  ///
+  /// In de, this message translates to:
+  /// **'Aus vorhandenen, bestätigten Operations-Informationen erzeugt.'**
+  String get opGeminiConfirmedInformation;
+
+  /// No description provided for @opGeminiNoForecasts.
+  ///
+  /// In de, this message translates to:
+  /// **'Keine Prognosen und keine erfundenen Kennzahlen. Der deterministische Insight-Block bleibt die überprüfbare Grundlage.'**
+  String get opGeminiNoForecasts;
 }
 
 class _AppLocalizationsDelegate

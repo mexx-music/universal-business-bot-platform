@@ -1,0 +1,17 @@
+{
+  "fmt": {
+    "useTabs": false,
+    "lineWidth": 90,
+    "indentWidth": 2,
+    "semiColons": true,
+    "singleQuote": false
+  },
+  "lint": {
+    "rules": { "tags": ["recommended"] }
+  },
+  "tasks": {
+    "test": "deno test tests/",
+    "check": "deno check ai-generate/index.ts",
+    "fmt": "deno fmt"
+  }
+}

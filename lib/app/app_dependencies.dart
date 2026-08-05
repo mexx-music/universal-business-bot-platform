@@ -5,12 +5,22 @@ import '../auth/auth_controller.dart';
 import '../auth/local_auth_service.dart';
 import '../auth/auth_status.dart';
 import '../auth/supabase_auth_service.dart';
+import '../ai/ai_controller.dart';
+import '../ai/ai_provider_selection.dart';
+import '../ai/ai_transport.dart';
+import '../ai/transports/edge_function_client.dart';
+import '../ai/transports/supabase_ai_transport.dart';
+import '../ai/transports/supabase_edge_function_client.dart';
 import '../auth/tenant_preference_store_factory.dart';
+import '../community/community_controller.dart';
+import '../community/local_community_repository.dart';
 import '../data/app_state.dart';
 import '../demo/demo_mode_controller.dart';
 import '../demo/demo_preference_store.dart';
 import '../demo/demo_preference_store_factory.dart';
 import '../onboarding/onboarding_controller.dart';
+import '../research/company_evolution_controller.dart';
+import '../research/research_runtime.dart';
 import '../onboarding/tenant_onboarding_data_source.dart';
 import '../onboarding/tenant_onboarding_service.dart';
 import '../public_intake/public_intake_service.dart';
@@ -41,8 +51,46 @@ class AppDependencies {
     required this.tenantSelectionController,
     required this.publicIntakeService,
     required this.demoModeController,
+    required this.communityController,
+    required this.companyEvolutionController,
+    required this.aiController,
     RemoteWorkspaceDataSource? remoteDataSource,
   });
+
+  /// Company Evolution view-model over the local Research Engine (G-5). Fully
+  /// local demo data in every mode — no web research, no APIs, no persistence.
+  static CompanyEvolutionController _buildCompanyEvolutionController() =>
+      CompanyEvolutionController(ResearchRuntime());
+
+  /// Community Radar / Human Intelligence Network controller. CR-1 wires a
+  /// local, read-only demo repository in every mode — no APIs, no persistence,
+  /// nothing published.
+  static CommunityController _buildCommunityController() =>
+      CommunityController(LocalCommunityRepository());
+
+  /// Vendor-neutral AI layer. Provider choice comes from the non-secret
+  /// `AI_PROVIDER` dart-define (unset/`mock` -> offline mock adapters;
+  /// `gemini` -> real [GeminiProvider] via the Supabase Edge Function). The
+  /// Gemini API key never reaches the client. Passing no [edgeClient] means no
+  /// real transport is available, so selecting `gemini` raises a clear
+  /// configuration error instead of silently downgrading to mock.
+  static AiController _buildAiController(
+    EdgeFunctionClient? Function()? edgeClientFactory,
+  ) {
+    const providerFlag = String.fromEnvironment('AI_PROVIDER');
+    // Construct the (Supabase-touching) transport only when Gemini is actually
+    // selected. In mock mode and in tests the factory is never invoked, so
+    // Supabase.instance is not accessed.
+    AiTransport? transport;
+    if (providerFlag.trim().toLowerCase() == 'gemini') {
+      final edgeClient = edgeClientFactory?.call();
+      transport = edgeClient == null ? null : SupabaseAiTransport(edgeClient);
+    }
+    return buildAiController(
+      providerFlag: providerFlag,
+      geminiTransport: transport,
+    );
+  }
 
   /// Separate IndexedDB database for the competition demo — demo writes can
   /// never touch regular local data or Supabase.
@@ -160,6 +208,11 @@ class AppDependencies {
         publicIntakeService:
             publicIntakeService ?? const UnsupportedPublicIntakeService(),
         demoModeController: demoModeController,
+        communityController: _buildCommunityController(),
+        companyEvolutionController: _buildCompanyEvolutionController(),
+        aiController: _buildAiController(
+          () => SupabaseEdgeFunctionClient(Supabase.instance.client),
+        ),
         remoteDataSource: remoteDataSource,
       );
       dependencies._attachAuthRepositoryBridge(remoteDataSource);
@@ -208,6 +261,9 @@ class AppDependencies {
           initiallyActive: restoredDemoRepository != null,
           initialDemoRepository: restoredDemoRepository,
         ),
+        communityController: _buildCommunityController(),
+        companyEvolutionController: _buildCompanyEvolutionController(),
+        aiController: _buildAiController(null),
       );
     } catch (error) {
       debugPrint(
@@ -250,6 +306,9 @@ class AppDependencies {
             LocalWorkspaceRepository(tenantContext: tenantContext),
         exitRepositoryFactory: () async => workspaceRepository,
       ),
+      communityController: _buildCommunityController(),
+      companyEvolutionController: _buildCompanyEvolutionController(),
+      aiController: _buildAiController(null),
     );
   }
 
@@ -467,6 +526,9 @@ class AppDependencies {
   final TenantSelectionController tenantSelectionController;
   final PublicIntakeService publicIntakeService;
   final DemoModeController demoModeController;
+  final CommunityController communityController;
+  final CompanyEvolutionController companyEvolutionController;
+  final AiController aiController;
 }
 
 class _RepositoryResult {

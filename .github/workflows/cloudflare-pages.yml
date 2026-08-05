@@ -16,6 +16,9 @@ concurrency:
 
 env:
   FLUTTER_VERSION: "3.35.7"
+  # Production releases must opt into the real provider explicitly. The app
+  # deliberately defaults to the offline mock when this define is absent.
+  AI_PROVIDER: "gemini"
 
 jobs:
   build:
@@ -90,6 +93,10 @@ jobs:
             echo "::error title=Secret Supabase key blocked::SUPABASE_PUBLISHABLE_KEY must be a browser-safe publishable key, not a secret key."
             exit 1
           fi
+          if [ "$AI_PROVIDER" != "gemini" ]; then
+            echo "::error title=Invalid AI provider::Production releases require AI_PROVIDER=gemini."
+            exit 1
+          fi
           echo "Production remote configuration is present."
 
       - name: Build web release
@@ -110,6 +117,7 @@ jobs:
 
           flutter build web \
             --release \
+            --dart-define=AI_PROVIDER="$AI_PROVIDER" \
             --dart-define=SUPABASE_URL=${{ secrets.SUPABASE_URL }} \
             --dart-define=SUPABASE_PUBLISHABLE_KEY=${{ secrets.SUPABASE_PUBLISHABLE_KEY }} \
             --dart-define=AUTH_REDIRECT_URL="$AUTH_REDIRECT_URL" \

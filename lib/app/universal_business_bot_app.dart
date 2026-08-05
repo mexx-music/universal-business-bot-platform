@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import '../ai/ai_controller.dart';
 import '../auth/auth_controller.dart';
+import '../community/community_controller.dart';
 import '../data/app_state.dart';
 import '../demo/demo_mode_controller.dart';
 import '../l10n/app_localizations.dart';
+import '../demo_data/demo_data_controller.dart';
+import '../jury/jury_mode_controller.dart';
 import '../onboarding/onboarding_controller.dart';
+import '../research/company_evolution_controller.dart';
 import '../router/app_router.dart';
 import '../tenant_selection/tenant_selection_controller.dart';
 import 'app_dependencies.dart';
@@ -22,12 +27,16 @@ class UniversalBusinessApp extends StatefulWidget {
 
 class _UniversalBusinessAppState extends State<UniversalBusinessApp> {
   late final AppLocaleController _localeController;
+  late final JuryModeController _juryModeController;
+  late final DemoDataController _demoDataController;
   late final GoRouter _router;
 
   @override
   void initState() {
     super.initState();
     _localeController = AppLocaleController()..restore();
+    _juryModeController = JuryModeController();
+    _demoDataController = DemoDataController();
     final dependencies = widget._dependencies;
     _router = createAppRouter(
       dependencies.authController,
@@ -39,6 +48,8 @@ class _UniversalBusinessAppState extends State<UniversalBusinessApp> {
   @override
   void dispose() {
     _localeController.dispose();
+    _juryModeController.dispose();
+    _demoDataController.dispose();
     super.dispose();
   }
 
@@ -50,40 +61,58 @@ class _UniversalBusinessAppState extends State<UniversalBusinessApp> {
       child: AnimatedBuilder(
         animation: _localeController,
         builder: (context, _) {
-          return AuthScope(
-            notifier: dependencies.authController,
-            child: DemoScope(
-              notifier: dependencies.demoModeController,
-              child: OnboardingScope(
-                notifier: dependencies.onboardingController,
-                child: TenantSelectionScope(
-                  notifier: dependencies.tenantSelectionController,
-                  child: AppStateScope(
-                    notifier: dependencies.appState,
-                    child: MaterialApp.router(
-                      title: 'Universal Business Bot Platform',
-                      debugShowCheckedModeBanner: false,
-                      localizationsDelegates:
-                          AppLocalizations.localizationsDelegates,
-                      supportedLocales: AppLocalizations.supportedLocales,
-                      locale: _localeController.locale,
-                      theme: ThemeData(
-                        useMaterial3: true,
-                        colorScheme: ColorScheme.fromSeed(
-                          seedColor: const Color(0xFF3F51B5),
-                          brightness: Brightness.light,
-                        ),
-                        cardTheme: CardThemeData(
-                          elevation: 0,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(12),
-                            side: BorderSide(
-                              color: const Color(0xFF3F51B5).withAlpha(30),
+          return JuryModeScope(
+            notifier: _juryModeController,
+            child: DemoDataScope(
+              notifier: _demoDataController,
+              child: AuthScope(
+                notifier: dependencies.authController,
+                child: DemoScope(
+                  notifier: dependencies.demoModeController,
+                  child: OnboardingScope(
+                    notifier: dependencies.onboardingController,
+                    child: TenantSelectionScope(
+                      notifier: dependencies.tenantSelectionController,
+                      child: CommunityScope(
+                        notifier: dependencies.communityController,
+                        child: AiScope(
+                          notifier: dependencies.aiController,
+                          child: CompanyEvolutionScope(
+                            notifier: dependencies.companyEvolutionController,
+                            child: AppStateScope(
+                              notifier: dependencies.appState,
+                              child: MaterialApp.router(
+                                title: 'Universal Business Bot Platform',
+                                debugShowCheckedModeBanner: false,
+                                localizationsDelegates:
+                                    AppLocalizations.localizationsDelegates,
+                                supportedLocales:
+                                    AppLocalizations.supportedLocales,
+                                locale: _localeController.locale,
+                                theme: ThemeData(
+                                  useMaterial3: true,
+                                  colorScheme: ColorScheme.fromSeed(
+                                    seedColor: const Color(0xFF3F51B5),
+                                    brightness: Brightness.light,
+                                  ),
+                                  cardTheme: CardThemeData(
+                                    elevation: 0,
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(12),
+                                      side: BorderSide(
+                                        color: const Color(
+                                          0xFF3F51B5,
+                                        ).withAlpha(30),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                routerConfig: _router,
+                              ),
                             ),
                           ),
                         ),
                       ),
-                      routerConfig: _router,
                     ),
                   ),
                 ),

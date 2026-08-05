@@ -993,7 +993,7 @@ class MockData {
     ],
     blockedTopics: [
       'Diagnoses',
-      'Healing promises',
+      'Claims of curing disease',
       'Diseases',
       'Medication',
       'Therapy recommendations',

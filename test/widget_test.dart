@@ -1,5 +1,4 @@
-import 'dart:ui';
-
+import 'package:flutter/widgets.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:universalbusiness/app/universal_business_bot_app.dart';
 
@@ -14,6 +13,7 @@ void main() {
       findsOneWidget,
     );
     expect(find.text('Plattform kennenlernen'), findsOneWidget);
+    expect(find.text('BusinessBrain in 2 Minuten erleben'), findsOneWidget);
     expect(find.text('Demo ansehen'), findsWidgets);
   });
 
@@ -63,15 +63,14 @@ void main() {
     await tester.pumpWidget(UniversalBusinessApp());
     await tester.pumpAndSettle();
 
-    await tester.tap(find.text('Demo starten'));
-    await tester.pumpAndSettle();
-    await tester.tap(find.text('Healing und Balance GmbH').first);
+    await tester.tap(find.text('Plattform kennenlernen'));
     await tester.pumpAndSettle();
 
     tester.view.physicalSize = const Size(1300, 420);
     await tester.pumpAndSettle();
 
-    expect(find.text('Demo-Modus'), findsWidgets);
+    expect(find.byKey(const Key('full-platform-shell')), findsOneWidget);
+    expect(find.text('Jury-Modus beenden'), findsNothing);
     expect(tester.takeException(), isNull);
   });
 }

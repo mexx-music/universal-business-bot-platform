@@ -4,7 +4,10 @@ import 'package:universalbusiness/app/universal_business_bot_app.dart';
 import 'package:universalbusiness/data/app_state.dart';
 import 'package:universalbusiness/demo/demo_mode_controller.dart';
 import 'package:universalbusiness/demo/demo_preference_store.dart';
+import 'package:universalbusiness/l10n/app_localizations.dart';
 import 'package:universalbusiness/repositories/local_workspace_repository.dart';
+import 'package:universalbusiness/screens/dashboard/dashboard_screen.dart';
+import 'package:universalbusiness/screens/jury/jury_tour_screen.dart';
 
 void main() {
   group('DemoModeController', () {
@@ -100,8 +103,7 @@ void main() {
 
   group('Demo flow', () {
     testWidgets(
-      'juror path: landing → start demo → pick company → dashboard with '
-      'badge → leave demo',
+      'public two-minute path ends in the unrestricted full platform',
       (tester) async {
         tester.view.physicalSize = const Size(1400, 2000);
         tester.view.devicePixelRatio = 1;
@@ -110,27 +112,26 @@ void main() {
         await tester.pumpWidget(UniversalBusinessApp());
         await tester.pumpAndSettle();
 
-        // Landing shows the primary demo entry.
-        expect(find.text('Demo starten'), findsOneWidget);
-        await tester.tap(find.text('Demo starten'));
+        expect(find.text('BusinessBrain in 2 Minuten erleben'), findsOneWidget);
+        await tester.tap(find.text('BusinessBrain in 2 Minuten erleben'));
         await tester.pumpAndSettle();
 
-        // Demo company selection.
-        expect(find.text('Welche Demo möchten Sie ansehen?'), findsOneWidget);
-        expect(find.text('Healing und Balance GmbH'), findsWidgets);
-        expect(find.text('SchnurrPurr'), findsWidgets);
-        await tester.tap(find.text('Healing und Balance GmbH').first);
+        expect(find.byType(JuryTourScreen), findsOneWidget);
+        final l = AppLocalizations.of(
+          tester.element(find.byType(JuryTourScreen)),
+        )!;
+        for (var i = 0; i < JuryTourScreen.stepCount - 1; i++) {
+          await tester.tap(find.byKey(const Key('jury-next')));
+          await tester.pumpAndSettle();
+        }
+
+        expect(find.text(l.juryFinish), findsOneWidget);
+        await tester.tap(find.byKey(const Key('jury-finish')));
         await tester.pumpAndSettle();
 
-        // Dashboard with visible demo badge and guided tour.
-        expect(find.text('Demo-Modus'), findsWidgets);
-        expect(find.text('So erkunden Sie die Demo'), findsOneWidget);
-        expect(find.text('Demo verlassen'), findsOneWidget);
-
-        // Leaving the demo returns to the landing page.
-        await tester.tap(find.text('Demo verlassen'));
-        await tester.pumpAndSettle();
-        expect(find.text('Demo starten'), findsOneWidget);
+        expect(find.byType(DashboardScreen), findsOneWidget);
+        expect(find.text(l.navBotSettings), findsWidgets);
+        expect(find.text(l.juryExit), findsNothing);
       },
     );
   });

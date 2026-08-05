@@ -7,6 +7,15 @@
 .env
 .env.*
 !.env.example
+
+# Live client dart-define config (project-specific values; keep out of git —
+# only config/gemini-live.example.json is committed). The GEMINI_API_KEY is
+# NEVER a client dart-define; it lives only as a server-side Supabase secret.
+config/gemini-live.json
+config/*.local.json
+
+# Supabase CLI local link metadata (per-machine; never commit)
+supabase/.temp/
 .atom/
 .build/
 .buildlog/

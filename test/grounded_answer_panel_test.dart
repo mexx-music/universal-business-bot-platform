@@ -1,0 +1,668 @@
+import 'dart:async';
+
+import 'package:flutter/material.dart';
+import 'package:flutter_test/flutter_test.dart';
+import 'package:universalbusiness/ai/ai_controller.dart';
+import 'package:universalbusiness/ai/ai_provider_id.dart';
+import 'package:universalbusiness/ai/ai_provider_registry.dart';
+import 'package:universalbusiness/ai/ai_transport.dart';
+import 'package:universalbusiness/ai/grounded_answer_service.dart';
+import 'package:universalbusiness/ai/grounded_question_strategy.dart';
+import 'package:universalbusiness/ai/transports/edge_function_client.dart';
+import 'package:universalbusiness/data/app_state.dart';
+import 'package:universalbusiness/l10n/app_localizations.dart';
+import 'package:universalbusiness/models/knowledge_entry.dart';
+import 'package:universalbusiness/screens/bot_test/grounded_answer_panel.dart';
+
+import 'support/scripted_gemini_provider.dart';
+
+/// Replaces the real service so the widget test never touches KnowledgeRuntime,
+/// AppState content or any network — it just replays a scripted answer/error.
+class StubService extends GroundedAnswerService {
+  StubService(this.script, {AiController? aiController})
+    : super(
+        aiController: aiController ?? AiController(AiProviderRegistry.mock()),
+      );
+
+  final Future<GroundedAnswerResult> Function(int call) script;
+  int calls = 0;
+
+  @override
+  Future<GroundedAnswerResult> answer(GroundedAnswerRequest request) {
+    return script(calls++);
+  }
+}
+
+class CapturingService extends GroundedAnswerService {
+  CapturingService()
+    : super(aiController: AiController(AiProviderRegistry.mock()));
+
+  GroundedAnswerRequest? lastRequest;
+
+  @override
+  Future<GroundedAnswerResult> answer(GroundedAnswerRequest request) async {
+    lastRequest = request;
+    return noKnowledge(missingTerms: const ['unbekannt']);
+  }
+}
+
+GroundedAnswerResult answered({
+  String answer = 'Wir haben täglich geöffnet.',
+  bool isMock = true,
+  GroundedEvidenceCoverage coverage = GroundedEvidenceCoverage.fullyAnswerable,
+  List<String> missingTerms = const [],
+  bool missingCoreInformation = false,
+}) {
+  return GroundedAnswerResult(
+    outcome: GroundedOutcome.answered,
+    answer: answer,
+    isMock: isMock,
+    providerId: isMock ? AiProviderId.openAi : AiProviderId.googleGemini,
+    providerDisplayName: isMock ? 'Mock' : 'Google Gemini',
+    model: isMock ? null : 'gemini-3.6-flash',
+    evidenceCoverage: coverage,
+    missingTerms: missingTerms,
+    missingCoreInformation: missingCoreInformation,
+    sources: const [
+      GroundedSource(
+        id: 'k1',
+        title: 'Öffnungszeiten',
+        category: KnowledgeCategory.faq,
+        excerpt: 'Täglich von 8 bis 18 Uhr.',
+      ),
+    ],
+  );
+}
+
+GroundedAnswerResult answeredWithLinks(List<KnowledgeEntryLink> links) {
+  return GroundedAnswerResult(
+    outcome: GroundedOutcome.answered,
+    answer: 'CureBase ist das stationäre Gerät.',
+    isMock: true,
+    providerId: AiProviderId.openAi,
+    providerDisplayName: 'Mock',
+    sources: [
+      for (var index = 0; index < links.length; index++)
+        GroundedSource(
+          id: 'link-$index',
+          title: 'CureBase Quelle $index',
+          category: KnowledgeCategory.faq,
+          excerpt: 'Bestätigte Information $index.',
+          websiteLink: links[index],
+        ),
+    ],
+  );
+}
+
+GroundedAnswerResult noKnowledge({
+  List<String> missingTerms = const ['xylophon', 'preise'],
+}) => GroundedAnswerResult(
+  outcome: GroundedOutcome.noKnowledge,
+  providerId: AiProviderId.openAi,
+  providerDisplayName: 'Mock',
+  isMock: true,
+  missingTerms: missingTerms,
+);
+
+GroundedAnswerResult blocked({
+  List<String> missingTerms = const ['diagnose'],
+}) => GroundedAnswerResult(
+  outcome: GroundedOutcome.blockedTopic,
+  providerId: AiProviderId.openAi,
+  providerDisplayName: 'Mock',
+  isMock: true,
+  missingTerms: missingTerms,
+);
+
+Future<void> pumpPanel(
+  WidgetTester tester,
+  GroundedAnswerService service, {
+  Locale locale = const Locale('de'),
+  Size size = const Size(900, 1400),
+  AppState? state,
+}) async {
+  await tester.binding.setSurfaceSize(size);
+  addTearDown(() => tester.binding.setSurfaceSize(null));
+  await tester.pumpWidget(
+    MaterialApp(
+      localizationsDelegates: AppLocalizations.localizationsDelegates,
+      supportedLocales: AppLocalizations.supportedLocales,
+      locale: locale,
+      home: Scaffold(
+        body: SingleChildScrollView(
+          child: AppStateScope(
+            notifier: state ?? AppState(),
+            child: GroundedAnswerPanel(serviceOverride: service),
+          ),
+        ),
+      ),
+    ),
+  );
+}
+
+AppLocalizations l10n(WidgetTester tester) =>
+    AppLocalizations.of(tester.element(find.byType(GroundedAnswerPanel)))!;
+
+Future<void> ask(WidgetTester tester, String text) async {
+  await tester.enterText(find.byType(TextField), text);
+  await tester.pump();
+  await tester.tap(find.byIcon(Icons.send));
+}
+
+void main() {
+  testWidgets('live Gemini suggests only validated knowledge improvements', (
+    tester,
+  ) async {
+    final provider = ScriptedGeminiProvider(
+      responseText: '{"improvementIds":["price","productLink","inventedFact"]}',
+    );
+    final service = StubService(
+      (_) async => noKnowledge(missingTerms: const ['preis', 'produktseite']),
+      aiController: controllerWithScriptedGemini(provider),
+    );
+    await pumpPanel(tester, service);
+    final l = l10n(tester);
+
+    await ask(tester, 'Wie viel kostet das Produkt?');
+    await tester.pumpAndSettle();
+
+    expect(
+      find.byKey(const Key('grounded-gemini-gap-improvements')),
+      findsOneWidget,
+    );
+    expect(find.text(l.botGeminiGapPrice), findsOneWidget);
+    expect(find.text(l.botGeminiGapProductLink), findsOneWidget);
+    expect(find.text('inventedFact'), findsNothing);
+    expect(find.text(l.botGeminiReviewBeforeApplying), findsOneWidget);
+    expect(provider.calls, 1);
+    expect(
+      provider.requests.single.metadata['feature'],
+      'knowledge-gap-assistant',
+    );
+  });
+
+  testWidgets('Gemini gap failure leaves deterministic guidance unchanged', (
+    tester,
+  ) async {
+    final provider = ScriptedGeminiProvider(
+      error: const AiTransportException(AiTransportErrorKind.network, 'down'),
+    );
+    final service = StubService(
+      (_) async => noKnowledge(),
+      aiController: controllerWithScriptedGemini(provider),
+    );
+    await pumpPanel(tester, service);
+    final l = l10n(tester);
+
+    await ask(tester, 'Unbekannte Frage');
+    await tester.pumpAndSettle();
+
+    expect(find.text(l.botDemoGapTitle), findsOneWidget);
+    expect(find.text(l.botDemoGapItemFaq), findsOneWidget);
+    expect(
+      find.byKey(const Key('grounded-gemini-gap-improvements')),
+      findsNothing,
+    );
+    expect(provider.calls, 1);
+    expect(tester.takeException(), isNull);
+  });
+
+  testWidgets('partially answerable result also receives Gemini improvements', (
+    tester,
+  ) async {
+    final provider = ScriptedGeminiProvider(
+      responseText: '{"improvementIds":["requirements"]}',
+    );
+    await pumpPanel(
+      tester,
+      StubService(
+        (_) async => answered(
+          coverage: GroundedEvidenceCoverage.partiallyAnswerable,
+          missingTerms: const ['systemvoraussetzungen'],
+          missingCoreInformation: true,
+        ),
+        aiController: controllerWithScriptedGemini(provider),
+      ),
+    );
+    final l = l10n(tester);
+
+    await ask(tester, 'Welche Voraussetzungen gelten?');
+    await tester.pumpAndSettle();
+
+    expect(find.text('Wir haben täglich geöffnet.'), findsOneWidget);
+    expect(find.text(l.botGeminiGapRequirements), findsOneWidget);
+    expect(
+      find.byKey(const Key('grounded-gemini-gap-improvements')),
+      findsOneWidget,
+    );
+  });
+
+  testWidgets('Gemini knowledge improvements are localized in English', (
+    tester,
+  ) async {
+    final provider = ScriptedGeminiProvider(
+      responseText: '{"improvementIds":["validityDate","contact"]}',
+    );
+    await pumpPanel(
+      tester,
+      StubService(
+        (_) async => noKnowledge(missingTerms: const ['date', 'contact']),
+        aiController: controllerWithScriptedGemini(provider),
+      ),
+      locale: const Locale('en'),
+    );
+
+    await ask(tester, 'Who can confirm the current offer?');
+    await tester.pumpAndSettle();
+
+    expect(find.text('Suggested Knowledge Improvements'), findsOneWidget);
+    expect(find.text('Validity date'), findsOneWidget);
+    expect(find.text('Responsible contact'), findsOneWidget);
+    expect(find.text('✨ GEMINI PROPOSAL'), findsOneWidget);
+  });
+
+  testWidgets('recent-import hint disappears after the first question', (
+    tester,
+  ) async {
+    final state = AppState()..markRecentKnowledgeImportForGroundedAnswer();
+    final service = StubService((_) async => noKnowledge());
+    await pumpPanel(tester, service, state: state);
+    await tester.pumpAndSettle();
+
+    expect(
+      find.byKey(const Key('grounded-recent-import-notice')),
+      findsOneWidget,
+    );
+    expect(
+      tester
+          .widget<TextField>(find.byKey(const Key('grounded-question-field')))
+          .autofocus,
+      isTrue,
+    );
+    expect(state.hasRecentKnowledgeImportForGroundedAnswer, isTrue);
+
+    await ask(tester, 'Wie funktioniert das neue Dokument?');
+    await tester.pumpAndSettle();
+
+    expect(
+      find.byKey(const Key('grounded-recent-import-notice')),
+      findsNothing,
+    );
+    expect(state.hasRecentKnowledgeImportForGroundedAnswer, isFalse);
+    expect(service.calls, 1);
+  });
+
+  testWidgets(
+    'passes only confirmed builder knowledge after workspace integration',
+    (tester) async {
+      final state = AppState();
+      final seededIds = state.knowledgeEntries.map((entry) => entry.id).toSet();
+      final confirmed = KnowledgeEntry(
+        id: 'kb-confirmed',
+        title: 'Neue bestätigte Anleitung',
+        content: 'Die Verbindung wird über Bluetooth hergestellt.',
+        category: KnowledgeCategory.faq,
+        riskLevel: RiskLevel.green,
+        keywords: const ['Bluetooth'],
+        source: KnowledgeEntrySources.knowledgeBuilder,
+        createdAt: DateTime.utc(2026, 8, 3),
+        languageCode: 'de',
+        knowledgeArea: 'hb_cure_app',
+      );
+      await state.addKnowledgeEntries([confirmed]);
+      final service = CapturingService();
+      await pumpPanel(tester, service, state: state);
+
+      await ask(tester, 'Wie funktioniert Bluetooth?');
+      await tester.pumpAndSettle();
+
+      final requestEntries = service.lastRequest!.workspace.knowledgeEntries;
+      expect(requestEntries, hasLength(1));
+      expect(requestEntries.single.id, confirmed.id);
+      expect(requestEntries.single.content, confirmed.content);
+      expect(
+        requestEntries.any((entry) => seededIds.contains(entry.id)),
+        isFalse,
+      );
+      expect(service.lastRequest!.workspace.sourceMaterials, isEmpty);
+    },
+  );
+
+  testWidgets('shows answer, source and human-review hint', (tester) async {
+    await pumpPanel(tester, StubService((_) async => answered()));
+    final l = l10n(tester);
+
+    await ask(tester, 'Wann habt ihr offen?');
+    await tester.pumpAndSettle();
+
+    expect(find.text('Wir haben täglich geöffnet.'), findsOneWidget);
+    expect(find.text('Öffnungszeiten'), findsOneWidget); // source title
+    // Internal source ids are not public UI content.
+    expect(find.text('k1'), findsNothing);
+    expect(find.text(l.botDemoHumanReview), findsOneWidget);
+    // Mock provider is labelled as the offline mock, not a vendor.
+    expect(find.textContaining(l.botDemoProviderMock), findsOneWidget);
+    expect(find.text(l.botDemoGrounded), findsOneWidget);
+  });
+
+  testWidgets('shows business-friendly coverage without mobile overflow', (
+    tester,
+  ) async {
+    await pumpPanel(
+      tester,
+      StubService(
+        (_) async =>
+            answered(coverage: GroundedEvidenceCoverage.partiallyAnswerable),
+      ),
+      size: const Size(320, 900),
+    );
+    final l = l10n(tester);
+
+    await ask(tester, 'Was kostet die CureBase?');
+    await tester.pumpAndSettle();
+
+    expect(find.byKey(const Key('grounded-coverage-status')), findsOneWidget);
+    expect(find.text(l.botDemoCoveragePartial), findsOneWidget);
+    expect(tester.takeException(), isNull);
+  });
+
+  testWidgets(
+    'coverage status lays out on desktop and is localized in English',
+    (tester) async {
+      await pumpPanel(
+        tester,
+        StubService(
+          (_) async => answered(
+            answer: 'Confirmed pricing is not available.',
+            coverage: GroundedEvidenceCoverage.partiallyAnswerable,
+          ),
+        ),
+        locale: const Locale('en'),
+        size: const Size(1280, 900),
+      );
+      final l = l10n(tester);
+
+      await ask(tester, 'How much does CureBase cost?');
+      await tester.pumpAndSettle();
+
+      expect(find.text(l.botDemoCoveragePartial), findsOneWidget);
+      expect(tester.takeException(), isNull);
+    },
+  );
+
+  testWidgets('shows one linked website action above sources on mobile', (
+    tester,
+  ) async {
+    await pumpPanel(
+      tester,
+      StubService(
+        (_) async => answeredWithLinks(const [
+          KnowledgeEntryLink(
+            url: 'https://company.example/curebase',
+            title: 'Mehr über CureBase',
+            type: KnowledgeLinkType.productPage,
+          ),
+        ]),
+      ),
+      size: const Size(320, 900),
+    );
+    final l = l10n(tester);
+
+    await ask(tester, 'Was ist CureBase?');
+    await tester.pumpAndSettle();
+
+    final section = find.byKey(const Key('grounded-website-links'));
+    expect(section, findsOneWidget);
+    expect(find.text(l.botDemoFurtherInfoTitle), findsOneWidget);
+    expect(find.text('Mehr über CureBase'), findsOneWidget);
+    expect(
+      tester.getTopLeft(section).dy,
+      lessThan(tester.getTopLeft(find.text(l.botDemoSources)).dy),
+    );
+    expect(tester.takeException(), isNull);
+  });
+
+  testWidgets(
+    'caps desktop actions at five and localizes overflow in English',
+    (tester) async {
+      const links = [
+        KnowledgeEntryLink(
+          url: 'https://company.example/product',
+          title: 'Product',
+          type: KnowledgeLinkType.productPage,
+        ),
+        KnowledgeEntryLink(
+          url: 'https://company.example/prices',
+          title: 'Prices',
+          type: KnowledgeLinkType.prices,
+        ),
+        KnowledgeEntryLink(
+          url: 'https://company.example/faq',
+          title: 'FAQ',
+          type: KnowledgeLinkType.faq,
+        ),
+        KnowledgeEntryLink(
+          url: 'https://company.example/guide',
+          title: 'Guide',
+          type: KnowledgeLinkType.guide,
+        ),
+        KnowledgeEntryLink(
+          url: 'https://company.example/download',
+          title: 'Download',
+          type: KnowledgeLinkType.download,
+        ),
+        KnowledgeEntryLink(
+          url: 'https://company.example/support',
+          title: 'Support',
+          type: KnowledgeLinkType.support,
+        ),
+      ];
+      await pumpPanel(
+        tester,
+        StubService((_) async => answeredWithLinks(links)),
+        locale: const Locale('en'),
+        size: const Size(1280, 1000),
+      );
+      final l = l10n(tester);
+
+      await ask(tester, 'What is CureBase?');
+      await tester.pumpAndSettle();
+
+      final section = find.byKey(const Key('grounded-website-links'));
+      expect(find.text(l.botDemoFurtherInfoTitle), findsOneWidget);
+      for (final link in links.take(4)) {
+        expect(
+          find.descendant(
+            of: section,
+            matching: find.byKey(ValueKey('grounded-link-${link.url}')),
+          ),
+          findsOneWidget,
+        );
+      }
+      expect(
+        find.descendant(
+          of: section,
+          matching: find.byKey(const Key('grounded-more-website-links')),
+        ),
+        findsOneWidget,
+      );
+      expect(find.text(l.botDemoMoreLinks), findsOneWidget);
+      expect(tester.takeException(), isNull);
+    },
+  );
+
+  testWidgets('does not show website section when used entries have no link', (
+    tester,
+  ) async {
+    await pumpPanel(tester, StubService((_) async => answered()));
+    await ask(tester, 'Wann habt ihr geöffnet?');
+    await tester.pumpAndSettle();
+
+    expect(find.byKey(const Key('grounded-website-links')), findsNothing);
+  });
+
+  testWidgets('shows a loading indicator while the answer is pending', (
+    tester,
+  ) async {
+    final completer = Completer<GroundedAnswerResult>();
+    await pumpPanel(tester, StubService((_) => completer.future));
+    final l = l10n(tester);
+
+    await ask(tester, 'Frage');
+    await tester.pump(); // enter loading state
+
+    expect(find.byType(CircularProgressIndicator), findsOneWidget);
+    expect(find.text(l.botDemoLoading), findsOneWidget);
+
+    completer.complete(answered());
+    await tester.pumpAndSettle();
+    expect(find.byType(CircularProgressIndicator), findsNothing);
+  });
+
+  testWidgets('knowledge-gap card: intro, recommendations, closing, chips', (
+    tester,
+  ) async {
+    await pumpPanel(tester, StubService((_) async => noKnowledge()));
+    final l = l10n(tester);
+
+    await ask(tester, 'Etwas Unbekanntes');
+    await tester.pumpAndSettle();
+
+    // Professional gap assistant instead of a bare technical sentence.
+    expect(find.text(l.botDemoGapTitle), findsOneWidget);
+    expect(find.text(l.botDemoNoKnowledge), findsOneWidget); // friendly intro
+    expect(find.text(l.botDemoGapRecommendTitle), findsOneWidget);
+    expect(find.text(l.botDemoGapItemFaq), findsOneWidget); // a recommendation
+    expect(find.text(l.botDemoGapClosing), findsOneWidget);
+    // Term chips come verbatim from missingTerms.
+    expect(find.text(l.botDemoGapTermsLabel), findsOneWidget);
+    expect(find.text('xylophon'), findsOneWidget);
+    expect(find.text('preise'), findsOneWidget);
+    // No sources, and no "review before publish" hint (nothing was generated).
+    expect(find.text(l.botDemoSources), findsNothing);
+    expect(find.text(l.botDemoHumanReview), findsNothing);
+  });
+
+  testWidgets('blocked topic: safe handover, no recommendations', (
+    tester,
+  ) async {
+    await pumpPanel(tester, StubService((_) async => blocked()));
+    final l = l10n(tester);
+
+    await ask(tester, 'Diagnose bitte');
+    await tester.pumpAndSettle();
+
+    expect(find.text(l.botDemoBlocked), findsOneWidget);
+    // Blocked path must NOT surface knowledge recommendations or term chips.
+    expect(find.text(l.botDemoGapRecommendTitle), findsNothing);
+    expect(find.text(l.botDemoGapItemFaq), findsNothing);
+    expect(find.text(l.botDemoGapTermsLabel), findsNothing);
+  });
+
+  testWidgets('knowledge-gap card is localized in English', (tester) async {
+    await pumpPanel(
+      tester,
+      StubService((_) async => noKnowledge()),
+      locale: const Locale('en'),
+    );
+    final l = l10n(tester);
+    expect(
+      l.botDemoGapRecommendTitle,
+      'Recommended content to add to the knowledge base:',
+    );
+
+    await ask(tester, 'Something unknown');
+    await tester.pumpAndSettle();
+
+    expect(find.text(l.botDemoGapTitle), findsOneWidget);
+    expect(find.text(l.botDemoGapRecommendTitle), findsOneWidget);
+    expect(find.text(l.botDemoGapItemFaq), findsOneWidget);
+  });
+
+  testWidgets('gap card lays out without overflow (mobile and desktop)', (
+    tester,
+  ) async {
+    await pumpPanel(
+      tester,
+      StubService((_) async => noKnowledge()),
+      size: const Size(360, 900),
+    );
+    await ask(tester, 'Frage');
+    await tester.pumpAndSettle();
+    expect(tester.takeException(), isNull);
+
+    await pumpPanel(
+      tester,
+      StubService((_) async => noKnowledge()),
+      size: const Size(1400, 1000),
+    );
+    await ask(tester, 'Frage');
+    await tester.pumpAndSettle();
+    expect(tester.takeException(), isNull);
+  });
+
+  testWidgets('maps a transport error to a localized message with retry', (
+    tester,
+  ) async {
+    await pumpPanel(
+      tester,
+      StubService(
+        (_) async => throw const AiTransportException(
+          AiTransportErrorKind.network,
+          'down',
+        ),
+      ),
+    );
+    final l = l10n(tester);
+
+    await ask(tester, 'Frage');
+    await tester.pumpAndSettle();
+
+    expect(find.text(l.botDemoErrorNetwork), findsOneWidget);
+    expect(find.text(l.botDemoRetry), findsOneWidget);
+  });
+
+  testWidgets('maps a configuration error to the config message', (
+    tester,
+  ) async {
+    await pumpPanel(
+      tester,
+      StubService((_) async => throw const AiConfigurationException('no key')),
+    );
+    final l = l10n(tester);
+
+    await ask(tester, 'Frage');
+    await tester.pumpAndSettle();
+
+    expect(find.text(l.botDemoErrorConfig), findsOneWidget);
+  });
+
+  testWidgets('can re-run with a new question', (tester) async {
+    await pumpPanel(
+      tester,
+      StubService(
+        (call) async =>
+            answered(answer: call == 0 ? 'Erste Antwort' : 'Zweite Antwort'),
+      ),
+    );
+
+    await ask(tester, 'Frage 1');
+    await tester.pumpAndSettle();
+    expect(find.text('Erste Antwort'), findsOneWidget);
+
+    await ask(tester, 'Frage 2');
+    await tester.pumpAndSettle();
+    expect(find.text('Zweite Antwort'), findsOneWidget);
+    expect(find.text('Erste Antwort'), findsNothing);
+  });
+
+  testWidgets('does not submit an empty question', (tester) async {
+    final stub = StubService((_) async => answered());
+    await pumpPanel(tester, stub);
+
+    // Tapping with empty input triggers no service call.
+    await tester.tap(find.byIcon(Icons.send));
+    await tester.pump();
+    expect(stub.calls, 0);
+  });
+}

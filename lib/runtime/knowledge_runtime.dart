@@ -1,4 +1,5 @@
 import '../models/company_workspace.dart';
+import '../knowledge/knowledge_context.dart';
 import 'knowledge_answer_context.dart';
 import 'knowledge_ranking.dart';
 import 'knowledge_retriever.dart';
@@ -17,6 +18,7 @@ class KnowledgeRuntime {
     this.maxEntries = 5,
     this.maxSources = 3,
     this.gapThreshold = 40,
+    this.contextDetector = const KnowledgeContextDetector(),
   });
 
   final KnowledgeRetriever retriever;
@@ -28,21 +30,32 @@ class KnowledgeRuntime {
 
   /// Below this confidence a [KnowledgeGap] is created.
   final int gapThreshold;
+  final KnowledgeContextDetector contextDetector;
 
   KnowledgeAnswerContext buildContext({
     required String userQuestion,
     required CompanyWorkspace workspace,
     DateTime? now,
+    String? preferredLanguageCode,
   }) {
     final timestamp = now ?? DateTime.now();
     final retrieval = retriever.retrieve(userQuestion, workspace);
     final query = retrieval.query;
 
-    final topEntries = ranking
+    final rankedEntries = ranking
         .rankEntries(retrieval, now: timestamp)
         .where((match) => match.score > 0)
-        .take(maxEntries)
         .toList();
+    final preferredArea = contextDetector.detectArea(
+      userQuestion,
+      workspace: workspace,
+    );
+    final topEntries = _prioritizeEntries(
+      rankedEntries,
+      workspace: workspace,
+      preferredArea: preferredArea,
+      preferredLanguageCode: preferredLanguageCode,
+    ).take(maxEntries).toList();
     final topSources = ranking
         .rankSources(retrieval, now: timestamp)
         .where((match) => match.score > 0)
@@ -129,6 +142,50 @@ class KnowledgeRuntime {
       blockedTopicHits: retrieval.blockedTopicHits,
       gap: gap,
     );
+  }
+
+  List<ScoredKnowledgeMatch> _prioritizeEntries(
+    List<ScoredKnowledgeMatch> entries, {
+    required CompanyWorkspace workspace,
+    required String? preferredArea,
+    required String? preferredLanguageCode,
+  }) {
+    String? areaOf(ScoredKnowledgeMatch match) =>
+        match.entry.knowledgeArea ??
+        contextDetector.detectArea(
+          '${match.entry.title} ${match.entry.content} '
+          '${match.entry.keywords.join(' ')}',
+          workspace: workspace,
+        );
+
+    final hasAreaMatch =
+        preferredArea != null &&
+        entries.any((match) => areaOf(match) == preferredArea);
+    final normalizedLanguage = preferredLanguageCode?.toLowerCase();
+    final hasLanguageMatch =
+        normalizedLanguage != null &&
+        entries.any(
+          (match) =>
+              match.entry.languageCode?.toLowerCase() == normalizedLanguage,
+        );
+    if (!hasAreaMatch && !hasLanguageMatch) return entries;
+
+    final indexed = entries.indexed.toList();
+    indexed.sort((a, b) {
+      int priority(ScoredKnowledgeMatch match) {
+        var value = 0;
+        if (hasAreaMatch && areaOf(match) == preferredArea) value += 2;
+        if (hasLanguageMatch &&
+            match.entry.languageCode?.toLowerCase() == normalizedLanguage) {
+          value += 1;
+        }
+        return value;
+      }
+
+      final byPreference = priority(b.$2).compareTo(priority(a.$2));
+      return byPreference != 0 ? byPreference : a.$1.compareTo(b.$1);
+    });
+    return [for (final item in indexed) item.$2];
   }
 
   /// Confidence 0–100:

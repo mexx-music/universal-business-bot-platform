@@ -199,7 +199,7 @@ class _HeroActions extends StatelessWidget {
       ),
       TextButton.icon(
         onPressed: onLearnMore,
-        icon: const Icon(Icons.arrow_downward_rounded),
+        icon: const Icon(Icons.explore_outlined),
         label: Text(l.landingLearnMoreButton),
         style: TextButton.styleFrom(
           minimumSize: Size(compact ? double.infinity : 0, 54),

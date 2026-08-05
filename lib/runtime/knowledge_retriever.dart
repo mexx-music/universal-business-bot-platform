@@ -123,14 +123,24 @@ class KnowledgeRetriever {
     'dem', 'den', 'der', 'des', 'die', 'doch', 'ein', 'eine', 'einem',
     'einen', 'einer', 'für', 'gibt', 'hab', 'habe', 'haben', 'hat', 'ich',
     'ihr', 'ist', 'kann', 'können', 'mein', 'meine', 'meinem', 'meinen',
-    'meiner', 'mich', 'mir', 'mit', 'muss', 'nach', 'nicht', 'noch', 'oder',
+    'meiner', 'mache', 'machen', 'mich', 'mir', 'mit', 'muss', 'nach', 'nicht',
+    'noch', 'oder',
     'schon', 'sein', 'sich', 'sie', 'sind', 'soll', 'sollte', 'und', 'uns',
     'vom', 'von', 'vor', 'wann', 'war', 'warum', 'was', 'welche', 'welcher',
     'wenn', 'wer', 'werden', 'wie', 'wieso', 'wird', 'wir', 'wo', 'zum',
     'zur',
     // English
-    'and', 'are', 'can', 'could', 'does', 'for', 'have', 'how', 'need',
-    'not', 'our', 'should', 'that', 'the', 'this', 'want', 'what', 'when',
+    'and', 'are', 'can', 'could', 'do', 'does', 'for', 'have', 'how', 'much',
+    'need',
+    'not',
+    'our',
+    'should',
+    'that',
+    'the',
+    'this',
+    'want',
+    'what',
+    'when',
     'where', 'which', 'who', 'why', 'with', 'you', 'your',
   };
 
@@ -147,6 +157,20 @@ class KnowledgeRetriever {
     ['konto', 'account', 'anmeldung', 'login', 'registrierung'],
     ['app', 'anwendung', 'applikation'],
     ['gerät', 'geräte', 'device', 'hardware'],
+    [
+      'verfügbar',
+      'lieferbar',
+      'vorrätig',
+      'available',
+      'availability',
+      'stock',
+    ],
+    ['kaufen', 'kauf', 'bestellen', 'bestellung', 'buy', 'purchase', 'order'],
+    ['angebot', 'kennenlernangebot', 'testzeitraum', 'trial', 'offer'],
+    ['verbinden', 'verbindung', 'koppeln', 'connect', 'connection', 'pair'],
+    ['problem', 'fehler', 'störung', 'error', 'failure', 'troubleshoot'],
+    ['bedienen', 'benutzen', 'verwenden', 'operate', 'use'],
+    ['voraussetzung', 'anforderung', 'requirement', 'compatible', 'kompatibel'],
   ];
 
   /// Normalizes a question into searchable terms with synonym expansion.
@@ -191,7 +215,10 @@ class KnowledgeRetriever {
     for (final entry in workspace.knowledgeEntries) {
       final titleTerms = _matchTerms(entry.title, searchTerms);
       final contentTerms = _matchTerms(entry.content, searchTerms);
-      final keywordTerms = _matchTerms(entry.keywords.join(' '), searchTerms);
+      final keywordTerms = _matchTerms(
+        '${entry.keywords.join(' ')} ${entry.detectedTopics.join(' ')}',
+        searchTerms,
+      );
       final matched = {...titleTerms, ...contentTerms, ...keywordTerms};
       if (matched.isEmpty) continue;
       entrySignals.add(
