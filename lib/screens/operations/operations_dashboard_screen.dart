@@ -69,7 +69,11 @@ class _OperationsDashboardScreenState extends State<OperationsDashboardScreen> {
       final response = await controller.generate(
         AiRequest(
           temperature: 0,
-          maxTokens: 220,
+          // gemini-3.6-flash is a thinking model: reasoning tokens count toward
+          // the output budget. 220 was exhausted by reasoning, truncating the
+          // tiny {"insightIds":[...]} JSON (MAX_TOKENS). Give room for both; the
+          // parser still accepts only allow-listed deterministic IDs.
+          maxTokens: 1024,
           metadata: const {'feature': 'operations-weekly-summary'},
           messages: [
             AiMessage.system(
