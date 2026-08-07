@@ -82,7 +82,7 @@ class _UniversalBusinessAppState extends State<UniversalBusinessApp> {
                             child: AppStateScope(
                               notifier: dependencies.appState,
                               child: MaterialApp.router(
-                                title: 'Universal Business Bot Platform',
+                                title: 'BusinessBrain',
                                 debugShowCheckedModeBanner: false,
                                 localizationsDelegates:
                                     AppLocalizations.localizationsDelegates,

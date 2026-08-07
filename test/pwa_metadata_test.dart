@@ -13,8 +13,8 @@ void main() {
             as Map<String, Object?>;
     final icons = manifest['icons'] as List<Object?>;
 
-    expect(manifest['name'], 'Universal Business Bot Platform');
-    expect(manifest['short_name'], 'Business Platform');
+    expect(manifest['name'], 'BusinessBrain');
+    expect(manifest['short_name'], 'BusinessBrain');
     expect(manifest['start_url'], '/');
     expect(manifest['scope'], '/');
     expect(manifest['display'], 'standalone');
@@ -66,7 +66,7 @@ void main() {
   test('index.html contains mobile and PWA metadata', () {
     final index = File('web/index.html').readAsStringSync();
 
-    expect(index, contains('<title>Universal Business Bot Platform</title>'));
+    expect(index, contains('<title>BusinessBrain</title>'));
     expect(index, contains('<link rel="manifest" href="manifest.json">'));
     expect(index, contains('<meta name="theme-color" content="#3F51B5">'));
     expect(index, contains('viewport-fit=cover'));

@@ -3,86 +3,164 @@ import 'package:flutter/material.dart';
 import '../../l10n/app_localizations.dart';
 
 class LandingCtaSection extends StatelessWidget {
-  final VoidCallback onRequest;
+  final VoidCallback onDemo;
+  final VoidCallback onExplore;
+  final VoidCallback onVision;
 
-  const LandingCtaSection({super.key, required this.onRequest});
+  const LandingCtaSection({
+    super.key,
+    required this.onDemo,
+    required this.onExplore,
+    required this.onVision,
+  });
 
   @override
   Widget build(BuildContext context) {
     final l = AppLocalizations.of(context)!;
     final theme = Theme.of(context);
+    const cyan = Color(0xFF75D7FF);
 
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 52),
       child: Container(
         padding: const EdgeInsets.all(30),
         decoration: BoxDecoration(
-          gradient: LinearGradient(
-            colors: [
-              theme.colorScheme.primary,
-              Color.lerp(theme.colorScheme.primary, Colors.teal, 0.28)!,
-            ],
+          gradient: const LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [Color(0xFF0A2136), Color(0xFF103C58)],
           ),
           borderRadius: BorderRadius.circular(28),
-          boxShadow: [
+          border: Border.all(color: cyan.withAlpha(70)),
+          boxShadow: const [
             BoxShadow(
-              color: theme.colorScheme.primary.withAlpha(35),
+              color: Color(0x2400AEEF),
               blurRadius: 32,
-              offset: const Offset(0, 18),
+              offset: Offset(0, 18),
             ),
           ],
         ),
         child: LayoutBuilder(
           builder: (context, constraints) {
-            final compact = constraints.maxWidth < 700;
+            final compact = constraints.maxWidth < 760;
             final copy = Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
                   l.landingCtaTitle,
                   style: theme.textTheme.headlineMedium?.copyWith(
-                    color: theme.colorScheme.onPrimary,
+                    color: Colors.white,
                     fontWeight: FontWeight.w900,
-                    letterSpacing: 0,
+                    letterSpacing: -.2,
                   ),
                 ),
                 const SizedBox(height: 10),
                 Text(
                   l.landingCtaText,
                   style: theme.textTheme.titleSmall?.copyWith(
-                    color: theme.colorScheme.onPrimary.withAlpha(220),
-                    height: 1.38,
+                    color: const Color(0xFFD2E4EF),
+                    height: 1.42,
                   ),
                 ),
               ],
             );
-            final button = FilledButton.tonalIcon(
-              onPressed: onRequest,
-              icon: const Icon(Icons.arrow_forward_rounded),
-              label: Text(l.landingCtaButton),
-              style: FilledButton.styleFrom(
-                minimumSize: const Size(0, 52),
-                padding: const EdgeInsets.symmetric(horizontal: 20),
-              ),
+            final actions = _CtaActions(
+              compact: compact,
+              onDemo: onDemo,
+              onExplore: onExplore,
+              onVision: onVision,
             );
 
             if (compact) {
               return Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [copy, const SizedBox(height: 22), button],
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [copy, const SizedBox(height: 24), actions],
               );
             }
-
             return Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Expanded(child: copy),
-                const SizedBox(width: 24),
-                button,
+                const SizedBox(width: 28),
+                Flexible(child: actions),
               ],
             );
           },
         ),
       ),
+    );
+  }
+}
+
+class _CtaActions extends StatelessWidget {
+  final bool compact;
+  final VoidCallback onDemo;
+  final VoidCallback onExplore;
+  final VoidCallback onVision;
+
+  const _CtaActions({
+    required this.compact,
+    required this.onDemo,
+    required this.onExplore,
+    required this.onVision,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final l = AppLocalizations.of(context)!;
+    const cyan = Color(0xFF75D7FF);
+    final minimum = Size(compact ? double.infinity : 0, 50);
+    final actions = <Widget>[
+      FilledButton.icon(
+        key: const Key('landing-cta-demo'),
+        onPressed: onDemo,
+        icon: const Icon(Icons.play_arrow_rounded),
+        label: Text(l.landingCtaButton),
+        style: FilledButton.styleFrom(
+          backgroundColor: cyan,
+          foregroundColor: const Color(0xFF061624),
+          minimumSize: minimum,
+        ),
+      ),
+      OutlinedButton.icon(
+        key: const Key('landing-cta-platform'),
+        onPressed: onExplore,
+        icon: const Icon(Icons.explore_outlined),
+        label: Text(l.landingLearnMoreButton),
+        style: OutlinedButton.styleFrom(
+          foregroundColor: Colors.white,
+          side: const BorderSide(color: Color(0xFF7794A8)),
+          minimumSize: minimum,
+        ),
+      ),
+      TextButton.icon(
+        key: const Key('landing-cta-vision'),
+        onPressed: onVision,
+        icon: const Icon(Icons.hub_outlined),
+        label: Text(l.landingVisionButton),
+        style: TextButton.styleFrom(
+          foregroundColor: cyan,
+          minimumSize: minimum,
+        ),
+      ),
+    ];
+
+    if (compact) {
+      return Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          for (var index = 0; index < actions.length; index++) ...[
+            actions[index],
+            if (index < actions.length - 1) const SizedBox(height: 10),
+          ],
+        ],
+      );
+    }
+    return Wrap(
+      alignment: WrapAlignment.end,
+      spacing: 8,
+      runSpacing: 8,
+      children: actions,
     );
   }
 }

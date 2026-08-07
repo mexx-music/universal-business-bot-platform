@@ -113,13 +113,13 @@ abstract class AppLocalizations {
   /// No description provided for @landingHeadline.
   ///
   /// In de, this message translates to:
-  /// **'Universal Business Bot Plattform'**
+  /// **'BusinessBrain'**
   String get landingHeadline;
 
   /// No description provided for @landingSubtitle.
   ///
   /// In de, this message translates to:
-  /// **'Verwalte Business-Wissen, sichere Bot-Antworten, Audit-Checks und Human Review für mehrere Firmen in einem lokalen Demo-Workspace.'**
+  /// **'Bestätigtes Unternehmenswissen für Menschen und KI nutzbar machen – unter menschlicher Kontrolle.'**
   String get landingSubtitle;
 
   /// No description provided for @landingFeatureKnowledge.
@@ -239,7 +239,7 @@ abstract class AppLocalizations {
   /// No description provided for @landingBrandName.
   ///
   /// In de, this message translates to:
-  /// **'Universal Business Bot Platform'**
+  /// **'BusinessBrain'**
   String get landingBrandName;
 
   /// No description provided for @landingPlaceholderAction.
@@ -251,20 +251,68 @@ abstract class AppLocalizations {
   /// No description provided for @landingHeroEyebrow.
   ///
   /// In de, this message translates to:
-  /// **'Öffentliche Plattformvorschau'**
+  /// **'BUSINESSBRAIN'**
   String get landingHeroEyebrow;
 
   /// No description provided for @landingHeroTitle.
   ///
   /// In de, this message translates to:
-  /// **'Die intelligente Plattform\nfür Unternehmenswissen\nund digitales Wachstum'**
+  /// **'Das digitale Gehirn\nIhres Unternehmens.'**
   String get landingHeroTitle;
+
+  /// No description provided for @landingHeroPromise.
+  ///
+  /// In de, this message translates to:
+  /// **'Wissen. Verstehen. Handeln. Lernen.'**
+  String get landingHeroPromise;
 
   /// No description provided for @landingHeroSubtitle.
   ///
   /// In de, this message translates to:
-  /// **'Erfassen Sie Ihr Unternehmen, organisieren Sie Wissen, automatisieren Sie Prozesse und unterstützen Sie Ihre Mitarbeiter mit intelligenter KI.'**
+  /// **'BusinessBrain verbindet das Wissen Ihres Unternehmens – von Produkten und Kundenfragen bis zu Dokumenten und Prozessen – und macht es für Menschen und KI nutzbar.'**
   String get landingHeroSubtitle;
+
+  /// No description provided for @landingVisionButton.
+  ///
+  /// In de, this message translates to:
+  /// **'Vision entdecken'**
+  String get landingVisionButton;
+
+  /// No description provided for @landingHeroInputTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Unternehmenswissen'**
+  String get landingHeroInputTitle;
+
+  /// No description provided for @landingHeroInputItems.
+  ///
+  /// In de, this message translates to:
+  /// **'Dokumente · Produkte · Prozesse · Erfahrungswissen'**
+  String get landingHeroInputItems;
+
+  /// No description provided for @landingHeroCoreText.
+  ///
+  /// In de, this message translates to:
+  /// **'Verbindet und strukturiert bestätigtes Wissen'**
+  String get landingHeroCoreText;
+
+  /// No description provided for @landingHeroOutputTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Nutzbar für Menschen und KI'**
+  String get landingHeroOutputTitle;
+
+  /// No description provided for @landingHeroOutputItems.
+  ///
+  /// In de, this message translates to:
+  /// **'Antworten · Orientierung · Entscheidungsgrundlagen'**
+  String get landingHeroOutputItems;
+
+  /// No description provided for @landingHeroHumanControl.
+  ///
+  /// In de, this message translates to:
+  /// **'Der Mensch bestätigt. BusinessBrain lernt.'**
+  String get landingHeroHumanControl;
 
   /// No description provided for @landingLearnMoreButton.
   ///
@@ -317,13 +365,13 @@ abstract class AppLocalizations {
   /// No description provided for @landingWorkflowTitle.
   ///
   /// In de, this message translates to:
-  /// **'So funktioniert es'**
+  /// **'Ein Wissenskreislauf, der mit jeder Bestätigung besser wird'**
   String get landingWorkflowTitle;
 
   /// No description provided for @landingWorkflowSubtitle.
   ///
   /// In de, this message translates to:
-  /// **'Vom Unternehmensprofil bis zur nutzbaren KI-Unterstützung bleibt der Ablauf klar, kontrolliert und nachvollziehbar.'**
+  /// **'BusinessBrain macht Wissenslücken sichtbar und verbessert Antworten kontrolliert – niemals ohne menschliche Entscheidung.'**
   String get landingWorkflowSubtitle;
 
   /// No description provided for @landingWorkflowStep1Title.
@@ -365,62 +413,74 @@ abstract class AppLocalizations {
   /// No description provided for @landingTimelineStep1.
   ///
   /// In de, this message translates to:
-  /// **'Unternehmen anlegen'**
+  /// **'Kundenfrage'**
   String get landingTimelineStep1;
 
   /// No description provided for @landingTimelineStep1Text.
   ///
   /// In de, this message translates to:
-  /// **'Profil, Kontaktwege und Regeln werden strukturiert erfasst.'**
+  /// **'Eine konkrete Frage trifft auf bestätigtes Unternehmenswissen.'**
   String get landingTimelineStep1Text;
 
   /// No description provided for @landingTimelineStep2.
   ///
   /// In de, this message translates to:
-  /// **'Wissen importieren'**
+  /// **'Wissenslücke'**
   String get landingTimelineStep2;
 
   /// No description provided for @landingTimelineStep2Text.
   ///
   /// In de, this message translates to:
-  /// **'FAQ, Quellen und Prozesse werden in verwaltbares Wissen überführt.'**
+  /// **'Fehlende oder unklare Informationen werden ehrlich sichtbar.'**
   String get landingTimelineStep2Text;
 
   /// No description provided for @landingTimelineStep3.
   ///
   /// In de, this message translates to:
-  /// **'KI konfigurieren'**
+  /// **'Vorschlag'**
   String get landingTimelineStep3;
 
   /// No description provided for @landingTimelineStep3Text.
   ///
   /// In de, this message translates to:
-  /// **'Antwortstil, Themen und menschliche Übergabe werden festgelegt.'**
+  /// **'BusinessBrain schlägt eine nachvollziehbare Verbesserung vor.'**
   String get landingTimelineStep3Text;
 
   /// No description provided for @landingTimelineStep4.
   ///
   /// In de, this message translates to:
-  /// **'Bot beantwortet Fragen'**
+  /// **'Human Review'**
   String get landingTimelineStep4;
 
   /// No description provided for @landingTimelineStep4Text.
   ///
   /// In de, this message translates to:
-  /// **'Supportfragen werden sicher getestet und bei Bedarf geprüft.'**
+  /// **'Ein Mitarbeiter prüft, bearbeitet und entscheidet.'**
   String get landingTimelineStep4Text;
 
   /// No description provided for @landingTimelineStep5.
   ///
   /// In de, this message translates to:
-  /// **'Unternehmen wächst'**
+  /// **'Bestätigtes Wissen'**
   String get landingTimelineStep5;
 
   /// No description provided for @landingTimelineStep5Text.
   ///
   /// In de, this message translates to:
-  /// **'Empfehlungen zeigen Chancen für Support, Marketing und Entwicklung.'**
+  /// **'Erst nach der Freigabe wird neues Wissen aktiv.'**
   String get landingTimelineStep5Text;
+
+  /// No description provided for @landingTimelineStep6.
+  ///
+  /// In de, this message translates to:
+  /// **'Bessere nächste Antwort'**
+  String get landingTimelineStep6;
+
+  /// No description provided for @landingTimelineStep6Text.
+  ///
+  /// In de, this message translates to:
+  /// **'Die Wissensbasis bleibt dauerhaft konsistenter und nützlicher.'**
+  String get landingTimelineStep6Text;
 
   /// No description provided for @landingPreviewTitle.
   ///
@@ -455,14 +515,116 @@ abstract class AppLocalizations {
   /// No description provided for @landingFeaturesTitle.
   ///
   /// In de, this message translates to:
-  /// **'Funktionen'**
+  /// **'Heute verfügbar. Morgen erweiterbar.'**
   String get landingFeaturesTitle;
 
   /// No description provided for @landingFeaturesSubtitle.
   ///
   /// In de, this message translates to:
-  /// **'Ein öffentlicher Überblick über die Bausteine der Plattform. Einige Bereiche sind im MVP vorbereitet und werden schrittweise ausgebaut.'**
+  /// **'Der aktuelle Produktkern und die nächste Ausbaustufe bleiben bewusst und jederzeit klar getrennt.'**
   String get landingFeaturesSubtitle;
+
+  /// No description provided for @landingAvailableNow.
+  ///
+  /// In de, this message translates to:
+  /// **'HEUTE VERFÜGBAR'**
+  String get landingAvailableNow;
+
+  /// No description provided for @landingVisionStage.
+  ///
+  /// In de, this message translates to:
+  /// **'VISION · NÄCHSTE AUSBAUSTUFE'**
+  String get landingVisionStage;
+
+  /// No description provided for @landingTodayTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Bestätigtes Unternehmenswissen'**
+  String get landingTodayTitle;
+
+  /// No description provided for @landingTodayText.
+  ///
+  /// In de, this message translates to:
+  /// **'Wissen strukturieren, menschlich freigeben, fundiert antworten und den täglichen Nutzen sichtbar machen.'**
+  String get landingTodayText;
+
+  /// No description provided for @landingVisionTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Die zentrale Wissensschicht des Unternehmens'**
+  String get landingVisionTitle;
+
+  /// No description provided for @landingVisionText.
+  ///
+  /// In de, this message translates to:
+  /// **'Später können weitere interne Bereiche und externe Signale verbunden werden. Sie liefern Vorschläge – keine autonomen Entscheidungen.'**
+  String get landingVisionText;
+
+  /// No description provided for @landingFeatureKnowledgeBuilder.
+  ///
+  /// In de, this message translates to:
+  /// **'Knowledge Builder'**
+  String get landingFeatureKnowledgeBuilder;
+
+  /// No description provided for @landingFeatureGroundedAnswers.
+  ///
+  /// In de, this message translates to:
+  /// **'Grounded Answers'**
+  String get landingFeatureGroundedAnswers;
+
+  /// No description provided for @landingFeatureWebsiteLinks.
+  ///
+  /// In de, this message translates to:
+  /// **'Website Links'**
+  String get landingFeatureWebsiteLinks;
+
+  /// No description provided for @landingFeatureOperationsCenter.
+  ///
+  /// In de, this message translates to:
+  /// **'AI Operations Center'**
+  String get landingFeatureOperationsCenter;
+
+  /// No description provided for @landingFeatureGeminiInsights.
+  ///
+  /// In de, this message translates to:
+  /// **'Gemini Insights'**
+  String get landingFeatureGeminiInsights;
+
+  /// No description provided for @landingVisionExternalSignals.
+  ///
+  /// In de, this message translates to:
+  /// **'Web, Communities und Markt'**
+  String get landingVisionExternalSignals;
+
+  /// No description provided for @landingVisionCompanyKnowledge.
+  ///
+  /// In de, this message translates to:
+  /// **'Weitere Unternehmensbereiche'**
+  String get landingVisionCompanyKnowledge;
+
+  /// No description provided for @landingVisionResearch.
+  ///
+  /// In de, this message translates to:
+  /// **'Beobachtung und Research'**
+  String get landingVisionResearch;
+
+  /// No description provided for @landingVisionRecommendations.
+  ///
+  /// In de, this message translates to:
+  /// **'Nachvollziehbare Vorschläge'**
+  String get landingVisionRecommendations;
+
+  /// No description provided for @landingGeminiTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Gemini – sichtbar und klar begrenzt'**
+  String get landingGeminiTitle;
+
+  /// No description provided for @landingGeminiText.
+  ///
+  /// In de, this message translates to:
+  /// **'Gemini formuliert Grounded Answers und unterstützt ausgewählte Vorschläge. Bestätigtes Wissen, feste Regeln und Human Review bleiben die Grundlage.'**
+  String get landingGeminiText;
 
   /// No description provided for @landingFeatureIntake.
   ///
@@ -521,73 +683,73 @@ abstract class AppLocalizations {
   /// No description provided for @landingBenefitsTitle.
   ///
   /// In de, this message translates to:
-  /// **'Vorteile auf einen Blick'**
+  /// **'Aus verteiltem Wissen wird eine gemeinsame Grundlage'**
   String get landingBenefitsTitle;
 
   /// No description provided for @landingBenefitsSubtitle.
   ///
   /// In de, this message translates to:
-  /// **'Die Plattform verbindet Unternehmensdaten, Wissen und Assistenzfunktionen in einem gemeinsamen Arbeitsbereich.'**
+  /// **'Dokumente, Produktwissen, Prozesse und Erfahrungen liegen oft getrennt. BusinessBrain verbindet sie kontrolliert und macht ihren Nutzen sichtbar.'**
   String get landingBenefitsSubtitle;
 
   /// No description provided for @landingBenefitCompanyTitle.
   ///
   /// In de, this message translates to:
-  /// **'Unternehmen'**
+  /// **'Wissen verbinden'**
   String get landingBenefitCompanyTitle;
 
   /// No description provided for @landingBenefitCompanyText.
   ///
   /// In de, this message translates to:
-  /// **'Profile, Angebote und Regeln werden sauber an einem Ort gepflegt.'**
+  /// **'Verteilte Informationen werden in einem nachvollziehbaren Unternehmenskontext zusammengeführt.'**
   String get landingBenefitCompanyText;
 
   /// No description provided for @landingBenefitAssistantTitle.
   ///
   /// In de, this message translates to:
-  /// **'KI-Assistent'**
+  /// **'Fundiert antworten'**
   String get landingBenefitAssistantTitle;
 
   /// No description provided for @landingBenefitAssistantText.
   ///
   /// In de, this message translates to:
-  /// **'Antworten werden kontrolliert vorbereitet und bei Risiko an Menschen übergeben.'**
+  /// **'Antworten verwenden ausschließlich bestätigtes, passendes Unternehmenswissen.'**
   String get landingBenefitAssistantText;
 
   /// No description provided for @landingBenefitDatabaseTitle.
   ///
   /// In de, this message translates to:
-  /// **'Wissensdatenbank'**
+  /// **'Lücken erkennen'**
   String get landingBenefitDatabaseTitle;
 
   /// No description provided for @landingBenefitDatabaseText.
   ///
   /// In de, this message translates to:
-  /// **'FAQ, Dokumente und Quellen werden auffindbar und wiederverwendbar.'**
+  /// **'Fehlende Informationen und wiederkehrende Fragen werden sichtbar.'**
   String get landingBenefitDatabaseText;
 
   /// No description provided for @landingBenefitMarketingTitle.
   ///
   /// In de, this message translates to:
-  /// **'Marketing'**
+  /// **'Menschlich kontrollieren'**
   String get landingBenefitMarketingTitle;
 
   /// No description provided for @landingBenefitMarketingText.
   ///
   /// In de, this message translates to:
-  /// **'Potenziale, Lücken und nächste Schritte werden verständlich sichtbar.'**
+  /// **'Vorschläge werden erst nach einer bewussten menschlichen Prüfung aktiv.'**
   String get landingBenefitMarketingText;
 
   /// No description provided for @landingBenefitControllingTitle.
   ///
   /// In de, this message translates to:
-  /// **'Controlling'**
+  /// **'Wirkung verstehen'**
   String get landingBenefitControllingTitle;
 
   /// No description provided for @landingBenefitControllingText.
   ///
   /// In de, this message translates to:
-  /// **'Status, offene Prüfungen und Fortschritt bleiben nachvollziehbar.'**
+  /// **'Das Operations Center zeigt Nutzung, Wachstum und Wissensqualität transparent.'**
   String get landingBenefitControllingText;
 
   /// No description provided for @landingBenefitOnePlace.
@@ -629,19 +791,19 @@ abstract class AppLocalizations {
   /// No description provided for @landingDemoSectionTitle.
   ///
   /// In de, this message translates to:
-  /// **'Demo'**
+  /// **'Den vollständigen Lernkreislauf erleben'**
   String get landingDemoSectionTitle;
 
   /// No description provided for @landingDemoSectionSubtitle.
   ///
   /// In de, this message translates to:
-  /// **'Die Videofläche ist vorbereitet und kann später durch ein echtes Produktvideo ersetzt werden.'**
+  /// **'Die geführte Demo zeigt in zwei Minuten, wie aus einer Kundenfrage bestätigtes, dauerhaft nutzbares Unternehmenswissen wird.'**
   String get landingDemoSectionSubtitle;
 
   /// No description provided for @landingDemoVideoComing.
   ///
   /// In de, this message translates to:
-  /// **'Demovideo folgt'**
+  /// **'Geführte 2-Minuten-Demo'**
   String get landingDemoVideoComing;
 
   /// No description provided for @landingAudienceTitle.
@@ -731,13 +893,13 @@ abstract class AppLocalizations {
   /// No description provided for @landingFaqQuestion1.
   ///
   /// In de, this message translates to:
-  /// **'Ist die Plattform bereits ein fertiges Produkt?'**
+  /// **'Was ist BusinessBrain?'**
   String get landingFaqQuestion1;
 
   /// No description provided for @landingFaqAnswer1.
   ///
   /// In de, this message translates to:
-  /// **'Aktuell ist sie ein MVP mit lokalem Demo-Workspace. Die öffentliche Landingpage zeigt die Richtung und die geplante Produktlogik.'**
+  /// **'BusinessBrain ist die gemeinsame Wissens- und Entscheidungsebene eines Unternehmens. Die Plattform verbindet bestätigtes Wissen und macht es für Menschen und KI nutzbar.'**
   String get landingFaqAnswer1;
 
   /// No description provided for @landingFaqQuestion2.
@@ -755,73 +917,73 @@ abstract class AppLocalizations {
   /// No description provided for @landingFaqQuestion3.
   ///
   /// In de, this message translates to:
-  /// **'Sind echte KI-Funktionen schon angebunden?'**
+  /// **'Wo wird Gemini eingesetzt?'**
   String get landingFaqQuestion3;
 
   /// No description provided for @landingFaqAnswer3.
   ///
   /// In de, this message translates to:
-  /// **'Noch nicht. Bot-Test und Review-Flows arbeiten im MVP lokal und regelbasiert, ohne echte KI-API.'**
+  /// **'Gemini formuliert Antworten aus ausgewähltem Unternehmenswissen und unterstützt klar gekennzeichnete Vorschläge. Die Plattform zeigt den Provider sichtbar und fällt bei fehlendem Wissen nicht auf allgemeines Modellwissen zurück.'**
   String get landingFaqAnswer3;
 
   /// No description provided for @landingFaqQuestion4.
   ///
   /// In de, this message translates to:
-  /// **'Können mehrere Firmen verwaltet werden?'**
+  /// **'Wer entscheidet, welches Wissen gültig ist?'**
   String get landingFaqQuestion4;
 
   /// No description provided for @landingFaqAnswer4.
   ///
   /// In de, this message translates to:
-  /// **'Ja. Demo-Workspaces sind getrennt aufgebaut, damit Daten pro Firma betrachtet und getestet werden können.'**
+  /// **'Immer ein Mensch. BusinessBrain analysiert und schlägt vor, verändert aber kein Unternehmenswissen ohne ausdrückliche Bestätigung.'**
   String get landingFaqAnswer4;
 
   /// No description provided for @landingFaqQuestion5.
   ///
   /// In de, this message translates to:
-  /// **'Was passiert bei riskanten Antworten?'**
+  /// **'Was ist heute verfügbar und was ist Vision?'**
   String get landingFaqQuestion5;
 
   /// No description provided for @landingFaqAnswer5.
   ///
   /// In de, this message translates to:
-  /// **'Riskante oder unklare Fragen werden im Human-Review-Bereich gesammelt und können kontrolliert in Wissen überführt werden.'**
+  /// **'Knowledge Builder, Human Review, Grounded Answers, Website Links und Operations Center bilden den heutigen Kern. Breitere externe Beobachtung und weitergehende Unternehmensintelligenz sind eindeutig als Vision gekennzeichnet.'**
   String get landingFaqAnswer5;
 
   /// No description provided for @landingFaqQuestion6.
   ///
   /// In de, this message translates to:
-  /// **'Ist das schon für produktive Kundendaten gedacht?'**
+  /// **'Kann ein Unternehmen damit einen Piloten starten?'**
   String get landingFaqQuestion6;
 
   /// No description provided for @landingFaqAnswer6.
   ///
   /// In de, this message translates to:
-  /// **'Nein. Für produktive Kundendaten fehlen noch Authentifizierung, Backend, Datenbank und dauerhafte sichere Speicherung.'**
+  /// **'Die öffentliche Version demonstriert den vollständigen Kern in einem geschützten Demo-Workspace. Datenumfang, Zugänge und Sicherheitsanforderungen eines realen Piloten werden vorab gemeinsam festgelegt.'**
   String get landingFaqAnswer6;
 
   /// No description provided for @landingCtaTitle.
   ///
   /// In de, this message translates to:
-  /// **'Bereit für den nächsten Schritt?'**
+  /// **'BusinessBrain selbst verstehen'**
   String get landingCtaTitle;
 
   /// No description provided for @landingCtaText.
   ///
   /// In de, this message translates to:
-  /// **'Starten Sie mit einer strukturierten Firmenaufnahme.'**
+  /// **'Erleben Sie den aktuellen Produktkern, folgen Sie der geführten Geschichte oder entdecken Sie die klar gekennzeichnete Zukunftsvision.'**
   String get landingCtaText;
 
   /// No description provided for @landingCtaButton.
   ///
   /// In de, this message translates to:
-  /// **'Firmenaufnahme anfragen'**
+  /// **'Demo in 2 Minuten'**
   String get landingCtaButton;
 
   /// No description provided for @landingFooterVersion.
   ///
   /// In de, this message translates to:
-  /// **'Internal MVP / Work in progress'**
+  /// **'XPRIZE Release Candidate · Human-controlled intelligence'**
   String get landingFooterVersion;
 
   /// No description provided for @landingFooterGithub.

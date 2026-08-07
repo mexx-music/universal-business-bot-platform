@@ -12,27 +12,27 @@ class LandingBenefitsSection extends StatelessWidget {
     final l = AppLocalizations.of(context)!;
     final benefits = [
       _Benefit(
-        Icons.apartment_rounded,
+        Icons.hub_outlined,
         l.landingBenefitCompanyTitle,
         l.landingBenefitCompanyText,
       ),
       _Benefit(
-        Icons.auto_awesome_rounded,
+        Icons.fact_check_outlined,
         l.landingBenefitAssistantTitle,
         l.landingBenefitAssistantText,
       ),
       _Benefit(
-        Icons.local_library_rounded,
+        Icons.manage_search_rounded,
         l.landingBenefitDatabaseTitle,
         l.landingBenefitDatabaseText,
       ),
       _Benefit(
-        Icons.trending_up_rounded,
+        Icons.verified_user_outlined,
         l.landingBenefitMarketingTitle,
         l.landingBenefitMarketingText,
       ),
       _Benefit(
-        Icons.query_stats_rounded,
+        Icons.insights_outlined,
         l.landingBenefitControllingTitle,
         l.landingBenefitControllingText,
       ),

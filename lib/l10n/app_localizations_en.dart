@@ -15,11 +15,11 @@ class AppLocalizationsEn extends AppLocalizations {
   String get appStage => 'Stage 1';
 
   @override
-  String get landingHeadline => 'Universal Business Bot Platform';
+  String get landingHeadline => 'BusinessBrain';
 
   @override
   String get landingSubtitle =>
-      'Manage business knowledge, safe bot answers, audit checks, and human review for multiple companies in one local demo workspace.';
+      'Make verified company knowledge useful for people and AI — with human control.';
 
   @override
   String get landingFeatureKnowledge => 'Business Knowledge';
@@ -85,22 +85,47 @@ class AppLocalizationsEn extends AppLocalizations {
       'On iPhone or iPad, use the Share menu and Add to Home Screen.';
 
   @override
-  String get landingBrandName => 'Universal Business Bot Platform';
+  String get landingBrandName => 'BusinessBrain';
 
   @override
   String get landingPlaceholderAction =>
       'This action is still a placeholder in the MVP.';
 
   @override
-  String get landingHeroEyebrow => 'Public platform preview';
+  String get landingHeroEyebrow => 'BUSINESSBRAIN';
 
   @override
-  String get landingHeroTitle =>
-      'The intelligent platform\nfor company knowledge\nand digital growth';
+  String get landingHeroTitle => 'The digital brain\nfor your business.';
+
+  @override
+  String get landingHeroPromise => 'Know. Understand. Act. Learn.';
 
   @override
   String get landingHeroSubtitle =>
-      'Capture your company, organize knowledge, automate processes, and support your team with intelligent AI.';
+      'BusinessBrain connects your company knowledge – from products and customer questions to documents and processes – and makes it useful for people and AI.';
+
+  @override
+  String get landingVisionButton => 'Explore the vision';
+
+  @override
+  String get landingHeroInputTitle => 'Company knowledge';
+
+  @override
+  String get landingHeroInputItems =>
+      'Documents · Products · Processes · Team experience';
+
+  @override
+  String get landingHeroCoreText =>
+      'Connects and structures verified knowledge';
+
+  @override
+  String get landingHeroOutputTitle => 'Useful for people and AI';
+
+  @override
+  String get landingHeroOutputItems => 'Answers · Guidance · Decision support';
+
+  @override
+  String get landingHeroHumanControl => 'People confirm. BusinessBrain learns.';
 
   @override
   String get landingLearnMoreButton => 'Explore platform';
@@ -127,11 +152,12 @@ class AppLocalizationsEn extends AppLocalizations {
   String get landingHeroFlowControlling => 'Controlling';
 
   @override
-  String get landingWorkflowTitle => 'How it works';
+  String get landingWorkflowTitle =>
+      'A knowledge loop that improves with every approval';
 
   @override
   String get landingWorkflowSubtitle =>
-      'From company profile to useful AI support, the workflow stays clear, controlled, and traceable.';
+      'BusinessBrain makes knowledge gaps visible and improves answers under human control – never without a human decision.';
 
   @override
   String get landingWorkflowStep1Title => 'Capture company';
@@ -155,39 +181,46 @@ class AppLocalizationsEn extends AppLocalizations {
       'The platform supports marketing, support, and company development.';
 
   @override
-  String get landingTimelineStep1 => 'Create company';
+  String get landingTimelineStep1 => 'Customer question';
 
   @override
   String get landingTimelineStep1Text =>
-      'Profile, contact channels, and rules are captured in a structured way.';
+      'A concrete question meets verified company knowledge.';
 
   @override
-  String get landingTimelineStep2 => 'Import knowledge';
+  String get landingTimelineStep2 => 'Knowledge gap';
 
   @override
   String get landingTimelineStep2Text =>
-      'FAQs, sources, and processes are turned into manageable knowledge.';
+      'Missing or unclear information becomes honestly visible.';
 
   @override
-  String get landingTimelineStep3 => 'Configure AI';
+  String get landingTimelineStep3 => 'Proposal';
 
   @override
   String get landingTimelineStep3Text =>
-      'Answer style, topics, and human handover are defined.';
+      'BusinessBrain suggests a traceable improvement.';
 
   @override
-  String get landingTimelineStep4 => 'Bot answers questions';
+  String get landingTimelineStep4 => 'Human review';
 
   @override
   String get landingTimelineStep4Text =>
-      'Support questions are tested safely and reviewed when needed.';
+      'A team member reviews, edits, and decides.';
 
   @override
-  String get landingTimelineStep5 => 'Company grows';
+  String get landingTimelineStep5 => 'Verified knowledge';
 
   @override
   String get landingTimelineStep5Text =>
-      'Recommendations reveal opportunities for support, marketing, and development.';
+      'New knowledge becomes active only after approval.';
+
+  @override
+  String get landingTimelineStep6 => 'A better next answer';
+
+  @override
+  String get landingTimelineStep6Text =>
+      'The knowledge base becomes permanently more consistent and useful.';
 
   @override
   String get landingPreviewTitle => 'Interactive preview';
@@ -206,11 +239,66 @@ class AppLocalizationsEn extends AppLocalizations {
   String get landingPreviewPhone => 'Smartphone';
 
   @override
-  String get landingFeaturesTitle => 'Features';
+  String get landingFeaturesTitle => 'Available today. Expandable tomorrow.';
 
   @override
   String get landingFeaturesSubtitle =>
-      'A public overview of the platform building blocks. Some areas are prepared in the MVP and will be expanded step by step.';
+      'The current product core and the next stage remain deliberately and visibly separate at all times.';
+
+  @override
+  String get landingAvailableNow => 'AVAILABLE TODAY';
+
+  @override
+  String get landingVisionStage => 'VISION · NEXT STAGE';
+
+  @override
+  String get landingTodayTitle => 'Verified company knowledge';
+
+  @override
+  String get landingTodayText =>
+      'Structure knowledge, approve it with people, answer with evidence, and make daily value visible.';
+
+  @override
+  String get landingVisionTitle =>
+      'The central knowledge layer of the business';
+
+  @override
+  String get landingVisionText =>
+      'Over time, more internal areas and external signals can be connected. They provide proposals – never autonomous decisions.';
+
+  @override
+  String get landingFeatureKnowledgeBuilder => 'Knowledge Builder';
+
+  @override
+  String get landingFeatureGroundedAnswers => 'Grounded Answers';
+
+  @override
+  String get landingFeatureWebsiteLinks => 'Website Links';
+
+  @override
+  String get landingFeatureOperationsCenter => 'AI Operations Center';
+
+  @override
+  String get landingFeatureGeminiInsights => 'Gemini Insights';
+
+  @override
+  String get landingVisionExternalSignals => 'Web, communities, and market';
+
+  @override
+  String get landingVisionCompanyKnowledge => 'More company knowledge areas';
+
+  @override
+  String get landingVisionResearch => 'Monitoring and research';
+
+  @override
+  String get landingVisionRecommendations => 'Traceable proposals';
+
+  @override
+  String get landingGeminiTitle => 'Gemini – visible and clearly bounded';
+
+  @override
+  String get landingGeminiText =>
+      'Gemini formulates Grounded Answers and supports selected proposals. Verified knowledge, fixed rules, and Human Review remain the foundation.';
 
   @override
   String get landingFeatureIntake => 'Company intake';
@@ -240,46 +328,47 @@ class AppLocalizationsEn extends AppLocalizations {
   String get landingComingSoon => 'Coming Soon';
 
   @override
-  String get landingBenefitsTitle => 'Benefits at a glance';
+  String get landingBenefitsTitle =>
+      'Turn scattered knowledge into one shared foundation';
 
   @override
   String get landingBenefitsSubtitle =>
-      'The platform connects company data, knowledge, and assistant workflows in one shared workspace.';
+      'Documents, product knowledge, processes, and experience often live apart. BusinessBrain connects them under human control and makes their value visible.';
 
   @override
-  String get landingBenefitCompanyTitle => 'Company';
+  String get landingBenefitCompanyTitle => 'Connect knowledge';
 
   @override
   String get landingBenefitCompanyText =>
-      'Profiles, offers, and rules are maintained cleanly in one place.';
+      'Scattered information is brought together in a traceable company context.';
 
   @override
-  String get landingBenefitAssistantTitle => 'AI assistant';
+  String get landingBenefitAssistantTitle => 'Answer with evidence';
 
   @override
   String get landingBenefitAssistantText =>
-      'Answers are prepared with control and handed to humans when risk appears.';
+      'Answers use only verified, relevant company knowledge.';
 
   @override
-  String get landingBenefitDatabaseTitle => 'Knowledge database';
+  String get landingBenefitDatabaseTitle => 'Reveal gaps';
 
   @override
   String get landingBenefitDatabaseText =>
-      'FAQs, documents, and sources become findable and reusable.';
+      'Missing information and recurring questions become visible.';
 
   @override
-  String get landingBenefitMarketingTitle => 'Marketing';
+  String get landingBenefitMarketingTitle => 'Keep people in control';
 
   @override
   String get landingBenefitMarketingText =>
-      'Potential, gaps, and next steps become clear and understandable.';
+      'Proposals become active only after deliberate human review.';
 
   @override
-  String get landingBenefitControllingTitle => 'Controlling';
+  String get landingBenefitControllingTitle => 'Understand impact';
 
   @override
   String get landingBenefitControllingText =>
-      'Status, open reviews, and progress stay visible and traceable.';
+      'The Operations Center shows usage, growth, and knowledge quality transparently.';
 
   @override
   String get landingBenefitOnePlace => 'Everything in one place';
@@ -300,14 +389,14 @@ class AppLocalizationsEn extends AppLocalizations {
   String get landingBenefitScalable => 'Scalable platform';
 
   @override
-  String get landingDemoSectionTitle => 'Demo';
+  String get landingDemoSectionTitle => 'Experience the complete learning loop';
 
   @override
   String get landingDemoSectionSubtitle =>
-      'The video area is prepared and can later be replaced by a real product video.';
+      'The guided demo shows in two minutes how a customer question becomes verified, permanently useful company knowledge.';
 
   @override
-  String get landingDemoVideoComing => 'Demo video coming soon';
+  String get landingDemoVideoComing => 'Guided 2-minute demo';
 
   @override
   String get landingAudienceTitle => 'Target groups';
@@ -352,12 +441,11 @@ class AppLocalizationsEn extends AppLocalizations {
   String get landingFaqSubtitle => 'Short answers for first orientation.';
 
   @override
-  String get landingFaqQuestion1 =>
-      'Is the platform already a finished product?';
+  String get landingFaqQuestion1 => 'What is BusinessBrain?';
 
   @override
   String get landingFaqAnswer1 =>
-      'It is currently an MVP with a local demo workspace. The public landing page shows the direction and planned product logic.';
+      'BusinessBrain is the shared knowledge and decision layer of a company. It connects verified knowledge and makes it useful for people and AI.';
 
   @override
   String get landingFaqQuestion2 => 'Do I need to install the app?';
@@ -367,45 +455,47 @@ class AppLocalizationsEn extends AppLocalizations {
       'No. The platform runs directly in the browser. Supported browsers can optionally add it to the home screen.';
 
   @override
-  String get landingFaqQuestion3 => 'Are real AI features already connected?';
+  String get landingFaqQuestion3 => 'Where is Gemini used?';
 
   @override
   String get landingFaqAnswer3 =>
-      'Not yet. In the MVP, bot test and review flows work locally and rule-based, without a real AI API.';
+      'Gemini formulates answers from selected company knowledge and supports clearly labelled proposals. The platform shows the provider visibly and never falls back to general model knowledge when evidence is missing.';
 
   @override
-  String get landingFaqQuestion4 => 'Can multiple companies be managed?';
+  String get landingFaqQuestion4 => 'Who decides which knowledge is valid?';
 
   @override
   String get landingFaqAnswer4 =>
-      'Yes. Demo workspaces are separated so each company\'s data can be reviewed and tested independently.';
+      'Always a person. BusinessBrain analyzes and proposes, but never changes company knowledge without explicit approval.';
 
   @override
-  String get landingFaqQuestion5 => 'What happens with risky answers?';
+  String get landingFaqQuestion5 =>
+      'What is available today and what is vision?';
 
   @override
   String get landingFaqAnswer5 =>
-      'Risky or unclear questions are collected in human review and can be converted into knowledge in a controlled way.';
+      'Knowledge Builder, Human Review, Grounded Answers, Website Links, and Operations Center form today\'s core. Broader external monitoring and advanced business intelligence are clearly labelled as vision.';
 
   @override
-  String get landingFaqQuestion6 =>
-      'Is this ready for production customer data?';
+  String get landingFaqQuestion6 => 'Can a company start a pilot?';
 
   @override
   String get landingFaqAnswer6 =>
-      'No. Production customer data still requires authentication, backend, database, and durable secure storage.';
+      'The public version demonstrates the complete core in a protected demo workspace. Data scope, access, and security requirements for a real pilot are agreed before it starts.';
 
   @override
-  String get landingCtaTitle => 'Ready for the next step?';
+  String get landingCtaTitle => 'Understand BusinessBrain for yourself';
 
   @override
-  String get landingCtaText => 'Start with a structured company intake.';
+  String get landingCtaText =>
+      'Experience the current product core, follow the guided story, or explore the clearly labelled future vision.';
 
   @override
-  String get landingCtaButton => 'Request company intake';
+  String get landingCtaButton => '2-minute demo';
 
   @override
-  String get landingFooterVersion => 'Internal MVP / Work in progress';
+  String get landingFooterVersion =>
+      'XPRIZE Release Candidate · Human-controlled intelligence';
 
   @override
   String get landingFooterGithub => 'GitHub';

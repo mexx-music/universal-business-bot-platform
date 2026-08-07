@@ -7,9 +7,7 @@ void main() {
     await tester.pumpWidget(UniversalBusinessApp());
     await tester.pumpAndSettle();
     expect(
-      find.text(
-        'Die intelligente Plattform\nfür Unternehmenswissen\nund digitales Wachstum',
-      ),
+      find.text('Das digitale Gehirn\nIhres Unternehmens.'),
       findsOneWidget,
     );
     expect(find.text('Plattform kennenlernen'), findsOneWidget);
@@ -24,30 +22,21 @@ void main() {
     await tester.pumpAndSettle();
 
     expect(
-      find.text(
-        'Die intelligente Plattform\nfür Unternehmenswissen\nund digitales Wachstum',
-      ),
+      find.text('Das digitale Gehirn\nIhres Unternehmens.'),
       findsOneWidget,
     );
 
     await tester.tap(find.text('EN').first);
     await tester.pumpAndSettle();
 
-    expect(
-      find.text(
-        'The intelligent platform\nfor company knowledge\nand digital growth',
-      ),
-      findsOneWidget,
-    );
+    expect(find.text('The digital brain\nfor your business.'), findsOneWidget);
     expect(find.text('View demo'), findsWidgets);
 
     await tester.tap(find.text('DE').first);
     await tester.pumpAndSettle();
 
     expect(
-      find.text(
-        'Die intelligente Plattform\nfür Unternehmenswissen\nund digitales Wachstum',
-      ),
+      find.text('Das digitale Gehirn\nIhres Unternehmens.'),
       findsOneWidget,
     );
     expect(find.text('Demo ansehen'), findsWidgets);

@@ -1,68 +1,67 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 
 import '../../l10n/app_localizations.dart';
 
 class LandingHeroSection extends StatelessWidget {
   final VoidCallback onStartDemo;
-  final VoidCallback onRegister;
-  final VoidCallback onLearnMore;
-  final VoidCallback onDemo;
-  final VoidCallback onContact;
+  final VoidCallback onExplore;
+  final VoidCallback onVision;
 
   const LandingHeroSection({
     super.key,
     required this.onStartDemo,
-    required this.onRegister,
-    required this.onLearnMore,
-    required this.onDemo,
-    required this.onContact,
+    required this.onExplore,
+    required this.onVision,
   });
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(top: 14, bottom: 48),
-      child: TweenAnimationBuilder<double>(
-        tween: Tween(begin: 0, end: 1),
-        duration: const Duration(milliseconds: 620),
-        curve: Curves.easeOutCubic,
-        builder: (context, value, child) => Opacity(
-          opacity: value,
-          child: Transform.translate(
-            offset: Offset(0, (1 - value) * 18),
-            child: child,
+      padding: const EdgeInsets.only(top: 10, bottom: 38),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(34),
+        child: DecoratedBox(
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+              colors: [Color(0xFF071526), Color(0xFF0A2239), Color(0xFF07131F)],
+            ),
           ),
-        ),
-        child: LayoutBuilder(
-          builder: (context, constraints) {
-            final width = constraints.maxWidth;
-            final twoColumn = width >= 860;
-            final copy = _HeroCopy(
-              onStartDemo: onStartDemo,
-              onRegister: onRegister,
-              onLearnMore: onLearnMore,
-              onContact: onContact,
-            );
-            const visual = _HeroIllustration();
+          child: CustomPaint(
+            painter: const _NetworkBackdropPainter(),
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 28, vertical: 36),
+              child: LayoutBuilder(
+                builder: (context, constraints) {
+                  final twoColumn = constraints.maxWidth >= 940;
+                  final copy = _HeroCopy(
+                    compact: constraints.maxWidth < 560,
+                    onStartDemo: onStartDemo,
+                    onExplore: onExplore,
+                    onVision: onVision,
+                  );
+                  const story = _KnowledgeStory();
 
-            if (!twoColumn) {
-              return Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [copy, const SizedBox(height: 30), visual],
-              );
-            }
+                  if (!twoColumn) {
+                    return Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [copy, const SizedBox(height: 34), story],
+                    );
+                  }
 
-            return Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Expanded(flex: 10, child: copy),
-                const SizedBox(width: 48),
-                const Expanded(flex: 9, child: visual),
-              ],
-            );
-          },
+                  return Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Expanded(flex: 10, child: copy),
+                      const SizedBox(width: 44),
+                      const Expanded(flex: 11, child: story),
+                    ],
+                  );
+                },
+              ),
+            ),
+          ),
         ),
       ),
     );
@@ -70,91 +69,88 @@ class LandingHeroSection extends StatelessWidget {
 }
 
 class _HeroCopy extends StatelessWidget {
+  final bool compact;
   final VoidCallback onStartDemo;
-  final VoidCallback onRegister;
-  final VoidCallback onLearnMore;
-  final VoidCallback onContact;
+  final VoidCallback onExplore;
+  final VoidCallback onVision;
 
   const _HeroCopy({
+    required this.compact,
     required this.onStartDemo,
-    required this.onRegister,
-    required this.onLearnMore,
-    required this.onContact,
+    required this.onExplore,
+    required this.onVision,
   });
 
   @override
   Widget build(BuildContext context) {
     final l = AppLocalizations.of(context)!;
     final theme = Theme.of(context);
+    const cyan = Color(0xFF75D7FF);
 
-    return LayoutBuilder(
-      builder: (context, constraints) {
-        final compact = constraints.maxWidth < 520;
-        return ConstrainedBox(
-          constraints: const BoxConstraints(maxWidth: 720),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Container(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 14,
-                  vertical: 8,
-                ),
-                decoration: BoxDecoration(
-                  color: theme.colorScheme.primary.withAlpha(20),
-                  borderRadius: BorderRadius.circular(999),
-                  border: Border.all(
-                    color: theme.colorScheme.primary.withAlpha(42),
-                  ),
-                ),
-                child: Text(
-                  l.landingHeroEyebrow,
-                  style: theme.textTheme.labelLarge?.copyWith(
-                    color: theme.colorScheme.primary,
-                    fontWeight: FontWeight.w800,
-                  ),
-                ),
-              ),
-              const SizedBox(height: 24),
-              Text(
-                l.landingHeroTitle,
-                style:
-                    (compact
-                            ? theme.textTheme.displaySmall
-                            : theme.textTheme.displayMedium)
-                        ?.copyWith(
-                          fontWeight: FontWeight.w900,
-                          letterSpacing: 0,
-                          height: 1.03,
-                        ),
-              ),
-              const SizedBox(height: 20),
-              ConstrainedBox(
-                constraints: const BoxConstraints(maxWidth: 620),
-                child: Text(
-                  l.landingHeroSubtitle,
-                  style:
-                      (compact
-                              ? theme.textTheme.titleSmall
-                              : theme.textTheme.titleMedium)
-                          ?.copyWith(
-                            color: theme.colorScheme.onSurfaceVariant,
-                            height: 1.48,
-                          ),
-                ),
-              ),
-              const SizedBox(height: 30),
-              _HeroActions(
-                compact: compact,
-                onStartDemo: onStartDemo,
-                onRegister: onRegister,
-                onLearnMore: onLearnMore,
-                onContact: onContact,
-              ),
-            ],
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Container(
+          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 7),
+          decoration: BoxDecoration(
+            color: cyan.withAlpha(20),
+            borderRadius: BorderRadius.circular(999),
+            border: Border.all(color: cyan.withAlpha(70)),
           ),
-        );
-      },
+          child: Text(
+            l.landingHeroEyebrow,
+            style: theme.textTheme.labelLarge?.copyWith(
+              color: cyan,
+              fontWeight: FontWeight.w900,
+              letterSpacing: 1.2,
+            ),
+          ),
+        ),
+        const SizedBox(height: 22),
+        Semantics(
+          header: true,
+          child: Text(
+            l.landingHeroTitle,
+            style:
+                (compact
+                        ? theme.textTheme.displaySmall
+                        : theme.textTheme.displayMedium)
+                    ?.copyWith(
+                      color: Colors.white,
+                      fontWeight: FontWeight.w900,
+                      letterSpacing: -0.7,
+                      height: 1.03,
+                    ),
+          ),
+        ),
+        const SizedBox(height: 18),
+        Text(
+          l.landingHeroPromise,
+          style: theme.textTheme.titleLarge?.copyWith(
+            color: cyan,
+            fontWeight: FontWeight.w800,
+            height: 1.2,
+          ),
+        ),
+        const SizedBox(height: 18),
+        ConstrainedBox(
+          constraints: const BoxConstraints(maxWidth: 610),
+          child: Text(
+            l.landingHeroSubtitle,
+            style: theme.textTheme.titleSmall?.copyWith(
+              color: const Color(0xFFD5E5F1),
+              height: 1.5,
+            ),
+          ),
+        ),
+        const SizedBox(height: 28),
+        _HeroActions(
+          compact: compact,
+          onStartDemo: onStartDemo,
+          onExplore: onExplore,
+          onVision: onVision,
+        ),
+      ],
     );
   }
 }
@@ -162,57 +158,56 @@ class _HeroCopy extends StatelessWidget {
 class _HeroActions extends StatelessWidget {
   final bool compact;
   final VoidCallback onStartDemo;
-  final VoidCallback onRegister;
-  final VoidCallback onLearnMore;
-  final VoidCallback onContact;
+  final VoidCallback onExplore;
+  final VoidCallback onVision;
 
   const _HeroActions({
     required this.compact,
     required this.onStartDemo,
-    required this.onRegister,
-    required this.onLearnMore,
-    required this.onContact,
+    required this.onExplore,
+    required this.onVision,
   });
 
   @override
   Widget build(BuildContext context) {
     final l = AppLocalizations.of(context)!;
-    final buttons = [
-      // Primary entry for jurors: straight into the demo, no login needed.
+    const cyan = Color(0xFF75D7FF);
+    final minimum = Size(compact ? double.infinity : 0, 52);
+    final buttons = <Widget>[
       FilledButton.icon(
+        key: const Key('landing-start-demo'),
         onPressed: onStartDemo,
         icon: const Icon(Icons.play_arrow_rounded),
         label: Text(l.demoStartButton),
         style: FilledButton.styleFrom(
-          minimumSize: Size(compact ? double.infinity : 0, 54),
-          padding: const EdgeInsets.symmetric(horizontal: 22),
-        ),
-      ),
-      OutlinedButton.icon(
-        onPressed: onRegister,
-        icon: const Icon(Icons.business_outlined),
-        label: Text(l.demoRegisterButton),
-        style: OutlinedButton.styleFrom(
-          minimumSize: Size(compact ? double.infinity : 0, 54),
+          backgroundColor: cyan,
+          foregroundColor: const Color(0xFF061624),
+          minimumSize: minimum,
           padding: const EdgeInsets.symmetric(horizontal: 20),
         ),
       ),
-      TextButton.icon(
-        onPressed: onLearnMore,
+      OutlinedButton.icon(
+        key: const Key('landing-explore-platform'),
+        onPressed: onExplore,
         icon: const Icon(Icons.explore_outlined),
         label: Text(l.landingLearnMoreButton),
-        style: TextButton.styleFrom(
-          minimumSize: Size(compact ? double.infinity : 0, 54),
-          padding: const EdgeInsets.symmetric(horizontal: 16),
+        style: OutlinedButton.styleFrom(
+          foregroundColor: Colors.white,
+          side: const BorderSide(color: Color(0xFF7A95AA)),
+          minimumSize: minimum,
+          padding: const EdgeInsets.symmetric(horizontal: 18),
         ),
       ),
-      TextButton(
-        onPressed: onContact,
+      TextButton.icon(
+        key: const Key('landing-explore-vision'),
+        onPressed: onVision,
+        icon: const Icon(Icons.hub_outlined),
+        label: Text(l.landingVisionButton),
         style: TextButton.styleFrom(
-          minimumSize: Size(compact ? double.infinity : 0, 54),
-          padding: const EdgeInsets.symmetric(horizontal: 16),
+          foregroundColor: cyan,
+          minimumSize: minimum,
+          padding: const EdgeInsets.symmetric(horizontal: 14),
         ),
-        child: Text(l.landingContactButton),
       ),
     ];
 
@@ -227,253 +222,270 @@ class _HeroActions extends StatelessWidget {
         ],
       );
     }
-
-    return Wrap(spacing: 12, runSpacing: 12, children: buttons);
+    return Wrap(spacing: 10, runSpacing: 10, children: buttons);
   }
 }
 
-class _HeroIllustration extends StatefulWidget {
-  const _HeroIllustration();
-
-  @override
-  State<_HeroIllustration> createState() => _HeroIllustrationState();
-}
-
-class _HeroIllustrationState extends State<_HeroIllustration> {
-  int _activeIndex = 2;
-  Timer? _timer;
-
-  @override
-  void initState() {
-    super.initState();
-    _timer = Timer.periodic(const Duration(seconds: 3), (_) {
-      if (!mounted) return;
-      setState(() => _activeIndex = (_activeIndex + 1) % 5);
-    });
-  }
-
-  @override
-  void dispose() {
-    _timer?.cancel();
-    super.dispose();
-  }
+class _KnowledgeStory extends StatelessWidget {
+  const _KnowledgeStory();
 
   @override
   Widget build(BuildContext context) {
     final l = AppLocalizations.of(context)!;
-    final theme = Theme.of(context);
-    final items = [
-      _FlowItem(Icons.apartment_rounded, l.landingHeroFlowCompany),
-      _FlowItem(Icons.menu_book_rounded, l.landingHeroFlowKnowledge),
-      _FlowItem(Icons.auto_awesome_rounded, l.landingHeroFlowBot),
-      _FlowItem(Icons.campaign_rounded, l.landingHeroFlowMarketing),
-      _FlowItem(Icons.query_stats_rounded, l.landingHeroFlowControlling),
-    ];
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        final horizontal = constraints.maxWidth >= 570;
+        final input = _StoryNode(
+          icon: Icons.domain_outlined,
+          title: l.landingHeroInputTitle,
+          text: l.landingHeroInputItems,
+        );
+        final brain = _BrainNode(text: l.landingHeroCoreText);
+        final output = _StoryNode(
+          icon: Icons.route_outlined,
+          title: l.landingHeroOutputTitle,
+          text: l.landingHeroOutputItems,
+        );
 
-    return MouseRegion(
-      onExit: (_) => setState(() => _activeIndex = 2),
-      child: AnimatedContainer(
-        duration: const Duration(milliseconds: 220),
-        curve: Curves.easeOut,
-        padding: const EdgeInsets.all(22),
-        decoration: BoxDecoration(
-          color: theme.colorScheme.surface.withAlpha(242),
-          borderRadius: BorderRadius.circular(32),
-          border: Border.all(color: theme.colorScheme.outlineVariant),
-          boxShadow: [
-            BoxShadow(
-              color: theme.colorScheme.primary.withAlpha(26),
-              blurRadius: 40,
-              offset: const Offset(0, 24),
-            ),
-            BoxShadow(
-              color: theme.colorScheme.shadow.withAlpha(10),
-              blurRadius: 12,
-              offset: const Offset(0, 5),
-            ),
-          ],
-        ),
-        child: LayoutBuilder(
-          builder: (context, constraints) {
-            final compact = constraints.maxWidth < 420;
-            return Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                _IllustrationTopBar(compact: compact),
-                const SizedBox(height: 18),
-                for (var index = 0; index < items.length; index++) ...[
-                  _FlowNode(
-                    item: items[index],
-                    active: index == _activeIndex,
-                    compact: compact,
-                    onHover: () => setState(() => _activeIndex = index),
-                  ),
-                  if (index < items.length - 1)
-                    _Connector(active: index == _activeIndex - 1),
-                ],
+        return Semantics(
+          container: true,
+          label:
+              '${l.landingHeroInputTitle}, BusinessBrain, '
+              '${l.landingHeroOutputTitle}',
+          child: Container(
+            padding: const EdgeInsets.all(20),
+            decoration: BoxDecoration(
+              color: const Color(0xFF0D263B).withAlpha(225),
+              borderRadius: BorderRadius.circular(26),
+              border: Border.all(color: const Color(0xFF75D7FF).withAlpha(58)),
+              boxShadow: const [
+                BoxShadow(
+                  color: Color(0x2600B8FF),
+                  blurRadius: 32,
+                  offset: Offset(0, 18),
+                ),
               ],
-            );
-          },
-        ),
-      ),
+            ),
+            child: Column(
+              children: [
+                if (horizontal)
+                  Row(
+                    children: [
+                      Expanded(child: input),
+                      const _StoryArrow(horizontal: true),
+                      Expanded(child: brain),
+                      const _StoryArrow(horizontal: true),
+                      Expanded(child: output),
+                    ],
+                  )
+                else
+                  Column(
+                    children: [
+                      input,
+                      const _StoryArrow(horizontal: false),
+                      brain,
+                      const _StoryArrow(horizontal: false),
+                      output,
+                    ],
+                  ),
+                const SizedBox(height: 18),
+                Container(
+                  width: double.infinity,
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 14,
+                    vertical: 11,
+                  ),
+                  decoration: BoxDecoration(
+                    color: const Color(0xFF75D7FF).withAlpha(18),
+                    borderRadius: BorderRadius.circular(14),
+                    border: Border.all(
+                      color: const Color(0xFF75D7FF).withAlpha(45),
+                    ),
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Icon(
+                        Icons.verified_user_outlined,
+                        size: 19,
+                        color: Color(0xFF75D7FF),
+                      ),
+                      const SizedBox(width: 9),
+                      Flexible(
+                        child: Text(
+                          l.landingHeroHumanControl,
+                          textAlign: TextAlign.center,
+                          style: Theme.of(context).textTheme.labelLarge
+                              ?.copyWith(
+                                color: const Color(0xFFDCECF6),
+                                fontWeight: FontWeight.w800,
+                              ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+        );
+      },
     );
   }
 }
 
-class _IllustrationTopBar extends StatelessWidget {
-  final bool compact;
+class _StoryNode extends StatelessWidget {
+  final IconData icon;
+  final String title;
+  final String text;
 
-  const _IllustrationTopBar({required this.compact});
-
-  @override
-  Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    return Row(
-      children: [
-        for (final color in [
-          theme.colorScheme.primary,
-          theme.colorScheme.tertiary,
-          theme.colorScheme.secondary,
-        ]) ...[
-          Container(
-            width: compact ? 8 : 10,
-            height: compact ? 8 : 10,
-            decoration: BoxDecoration(color: color, shape: BoxShape.circle),
-          ),
-          const SizedBox(width: 6),
-        ],
-        const Spacer(),
-        Container(
-          width: compact ? 84 : 118,
-          height: 8,
-          decoration: BoxDecoration(
-            color: theme.colorScheme.outlineVariant.withAlpha(140),
-            borderRadius: BorderRadius.circular(999),
-          ),
-        ),
-      ],
-    );
-  }
-}
-
-class _FlowNode extends StatelessWidget {
-  final _FlowItem item;
-  final bool active;
-  final bool compact;
-  final VoidCallback onHover;
-
-  const _FlowNode({
-    required this.item,
-    required this.active,
-    required this.compact,
-    required this.onHover,
+  const _StoryNode({
+    required this.icon,
+    required this.title,
+    required this.text,
   });
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-
-    return MouseRegion(
-      onEnter: (_) => onHover(),
-      child: AnimatedScale(
-        scale: active ? 1.025 : 1,
-        duration: const Duration(milliseconds: 180),
-        curve: Curves.easeOut,
-        child: AnimatedContainer(
-          duration: const Duration(milliseconds: 220),
-          curve: Curves.easeOut,
-          width: double.infinity,
-          padding: EdgeInsets.symmetric(
-            horizontal: compact ? 14 : 18,
-            vertical: compact ? 13 : 16,
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 8),
+      child: Column(
+        children: [
+          Icon(icon, color: const Color(0xFFA8C3D5), size: 30),
+          const SizedBox(height: 10),
+          Text(
+            title,
+            textAlign: TextAlign.center,
+            style: theme.textTheme.titleSmall?.copyWith(
+              color: Colors.white,
+              fontWeight: FontWeight.w900,
+            ),
           ),
-          decoration: BoxDecoration(
-            color: active
-                ? theme.colorScheme.primary
-                : theme.colorScheme.surfaceContainerHighest,
-            borderRadius: BorderRadius.circular(18),
-            boxShadow: [
-              if (active)
-                BoxShadow(
-                  color: theme.colorScheme.primary.withAlpha(38),
-                  blurRadius: 22,
-                  offset: const Offset(0, 12),
-                ),
-            ],
+          const SizedBox(height: 7),
+          Text(
+            text,
+            textAlign: TextAlign.center,
+            style: theme.textTheme.bodySmall?.copyWith(
+              color: const Color(0xFFADC3D2),
+              height: 1.38,
+            ),
           ),
-          child: Row(
-            children: [
-              Container(
-                width: compact ? 38 : 44,
-                height: compact ? 38 : 44,
-                decoration: BoxDecoration(
-                  color: active
-                      ? theme.colorScheme.onPrimary.withAlpha(28)
-                      : theme.colorScheme.primary.withAlpha(16),
-                  borderRadius: BorderRadius.circular(14),
-                ),
-                child: Icon(
-                  item.icon,
-                  color: active
-                      ? theme.colorScheme.onPrimary
-                      : theme.colorScheme.primary,
-                  size: compact ? 21 : 24,
-                ),
-              ),
-              const SizedBox(width: 14),
-              Expanded(
-                child: Text(
-                  item.label,
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                  style: theme.textTheme.titleSmall?.copyWith(
-                    color: active
-                        ? theme.colorScheme.onPrimary
-                        : theme.colorScheme.onSurface,
-                    fontWeight: FontWeight.w900,
-                  ),
-                ),
-              ),
-              Icon(
-                Icons.arrow_forward_rounded,
-                color: active
-                    ? theme.colorScheme.onPrimary
-                    : theme.colorScheme.onSurfaceVariant,
-                size: 20,
-              ),
-            ],
-          ),
-        ),
+        ],
       ),
     );
   }
 }
 
-class _Connector extends StatelessWidget {
-  final bool active;
+class _BrainNode extends StatelessWidget {
+  final String text;
 
-  const _Connector({required this.active});
+  const _BrainNode({required this.text});
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    return AnimatedContainer(
-      duration: const Duration(milliseconds: 220),
-      width: 3,
-      height: 18,
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 16),
       decoration: BoxDecoration(
-        color: active
-            ? theme.colorScheme.primary
-            : theme.colorScheme.outlineVariant,
-        borderRadius: BorderRadius.circular(999),
+        gradient: const LinearGradient(
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+          colors: [Color(0xFF154C6C), Color(0xFF0D3450)],
+        ),
+        borderRadius: BorderRadius.circular(20),
+        border: Border.all(color: const Color(0xFF75D7FF).withAlpha(125)),
+        boxShadow: const [BoxShadow(color: Color(0x3300B8FF), blurRadius: 22)],
+      ),
+      child: Column(
+        children: [
+          const Icon(Icons.hub_rounded, color: Color(0xFF75D7FF), size: 38),
+          const SizedBox(height: 9),
+          Text(
+            'BusinessBrain',
+            textAlign: TextAlign.center,
+            style: theme.textTheme.titleMedium?.copyWith(
+              color: Colors.white,
+              fontWeight: FontWeight.w900,
+            ),
+          ),
+          const SizedBox(height: 7),
+          Text(
+            text,
+            textAlign: TextAlign.center,
+            style: theme.textTheme.bodySmall?.copyWith(
+              color: const Color(0xFFD8EAF5),
+              height: 1.35,
+            ),
+          ),
+        ],
       ),
     );
   }
 }
 
-class _FlowItem {
-  final IconData icon;
-  final String label;
+class _StoryArrow extends StatelessWidget {
+  final bool horizontal;
 
-  const _FlowItem(this.icon, this.label);
+  const _StoryArrow({required this.horizontal});
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.symmetric(
+        horizontal: horizontal ? 8 : 0,
+        vertical: horizontal ? 0 : 8,
+      ),
+      child: Icon(
+        horizontal ? Icons.arrow_forward_rounded : Icons.arrow_downward_rounded,
+        color: const Color(0xFF75D7FF),
+        size: 25,
+      ),
+    );
+  }
+}
+
+class _NetworkBackdropPainter extends CustomPainter {
+  const _NetworkBackdropPainter();
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    final line = Paint()
+      ..color = const Color(0xFF58C9F5).withAlpha(20)
+      ..strokeWidth = 1;
+    final glow = Paint()..color = const Color(0xFF82DDFF).withAlpha(55);
+    final points = <Offset>[
+      Offset(size.width * .05, size.height * .2),
+      Offset(size.width * .24, size.height * .08),
+      Offset(size.width * .43, size.height * .26),
+      Offset(size.width * .66, size.height * .1),
+      Offset(size.width * .92, size.height * .24),
+      Offset(size.width * .12, size.height * .82),
+      Offset(size.width * .36, size.height * .68),
+      Offset(size.width * .64, size.height * .86),
+      Offset(size.width * .9, size.height * .72),
+    ];
+    const connections = <(int, int)>[
+      (0, 1),
+      (1, 2),
+      (2, 3),
+      (3, 4),
+      (0, 5),
+      (5, 6),
+      (2, 6),
+      (6, 7),
+      (3, 7),
+      (7, 8),
+      (4, 8),
+    ];
+    for (final connection in connections) {
+      canvas.drawLine(points[connection.$1], points[connection.$2], line);
+    }
+    for (final point in points) {
+      canvas.drawCircle(point, 2.2, glow);
+    }
+  }
+
+  @override
+  bool shouldRepaint(covariant CustomPainter oldDelegate) => false;
 }

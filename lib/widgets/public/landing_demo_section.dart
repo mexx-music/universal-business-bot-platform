@@ -40,9 +40,9 @@ class LandingDemoSection extends StatelessWidget {
                     spacing: 10,
                     runSpacing: 10,
                     children: [
-                      _PreviewChip(label: l.landingFeatureIntake),
-                      _PreviewChip(label: l.landingFeatureKnowledgeFull),
+                      _PreviewChip(label: l.landingFeatureKnowledgeBuilder),
                       _PreviewChip(label: l.landingFeatureHumanReview),
+                      _PreviewChip(label: l.landingFeatureGroundedAnswers),
                     ],
                   ),
                 ),

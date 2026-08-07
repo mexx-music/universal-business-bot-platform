@@ -4,7 +4,6 @@ import 'package:go_router/go_router.dart';
 import '../../l10n/app_localizations.dart';
 import '../../navigation/platform_entry.dart';
 import '../../platform/pwa_install.dart';
-import '../../widgets/public/landing_audience_section.dart';
 import '../../widgets/public/landing_benefits_section.dart';
 import '../../widgets/public/landing_cta_section.dart';
 import '../../widgets/public/landing_demo_section.dart';
@@ -12,7 +11,6 @@ import '../../widgets/public/landing_faq_section.dart';
 import '../../widgets/public/landing_features_section.dart';
 import '../../widgets/public/landing_footer_section.dart';
 import '../../widgets/public/landing_hero_section.dart';
-import '../../widgets/public/landing_preview_section.dart';
 import '../../widgets/public/landing_workflow_section.dart';
 import '../../widgets/public/pwa_install_notice.dart';
 import '../../widgets/language_switcher.dart';
@@ -79,10 +77,8 @@ class _LandingScreenState extends State<LandingScreen> {
                     ),
                     LandingHeroSection(
                       onStartDemo: () => _startJuryDemo(context),
-                      onRegister: () => context.go('/login'),
-                      onLearnMore: () => openFullPlatform(context),
-                      onDemo: () => _scrollTo(_demoKey),
-                      onContact: () => _scrollTo(_contactKey),
+                      onExplore: () => openFullPlatform(context),
+                      onVision: () => context.go('/vision'),
                     ),
                     PwaInstallNotice(
                       controller: _pwaInstallController,
@@ -99,7 +95,6 @@ class _LandingScreenState extends State<LandingScreen> {
               ),
               const _PageBand(child: LandingBenefitsSection()),
               const _PageBand(child: LandingWorkflowSection()),
-              const _PageBand(child: LandingPreviewSection()),
               const _PageBand(child: LandingFeaturesSection()),
               _PageBand(
                 key: _demoKey,
@@ -107,11 +102,14 @@ class _LandingScreenState extends State<LandingScreen> {
                   onDemo: () => _startJuryDemo(context),
                 ),
               ),
-              const _PageBand(child: LandingAudienceSection()),
               const _PageBand(child: LandingFaqSection()),
               _PageBand(
                 key: _contactKey,
-                child: LandingCtaSection(onRequest: _showPlaceholderMessage),
+                child: LandingCtaSection(
+                  onDemo: () => _startJuryDemo(context),
+                  onExplore: () => openFullPlatform(context),
+                  onVision: () => context.go('/vision'),
+                ),
               ),
               _PageBand(
                 child: LandingFooterSection(

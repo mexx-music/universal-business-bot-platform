@@ -1,7 +1,7 @@
 {
-  "name": "Universal Business Bot Platform",
-  "short_name": "Business Platform",
-  "description": "Business workspace for company data, audits, knowledge, intake, bot workflows and human review.",
+  "name": "BusinessBrain",
+  "short_name": "BusinessBrain",
+  "description": "Verified company knowledge made useful for people and AI — with human control.",
   "lang": "de",
   "start_url": "/",
   "scope": "/",

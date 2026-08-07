@@ -13,33 +13,39 @@ class LandingWorkflowSection extends StatelessWidget {
     final steps = [
       _TimelineStep(
         '1',
-        Icons.add_business_rounded,
+        Icons.help_outline_rounded,
         l.landingTimelineStep1,
         l.landingTimelineStep1Text,
       ),
       _TimelineStep(
         '2',
-        Icons.upload_file_rounded,
+        Icons.search_off_rounded,
         l.landingTimelineStep2,
         l.landingTimelineStep2Text,
       ),
       _TimelineStep(
         '3',
-        Icons.tune_rounded,
+        Icons.auto_awesome_outlined,
         l.landingTimelineStep3,
         l.landingTimelineStep3Text,
       ),
       _TimelineStep(
         '4',
-        Icons.question_answer_rounded,
+        Icons.fact_check_outlined,
         l.landingTimelineStep4,
         l.landingTimelineStep4Text,
       ),
       _TimelineStep(
         '5',
-        Icons.trending_up_rounded,
+        Icons.verified_outlined,
         l.landingTimelineStep5,
         l.landingTimelineStep5Text,
+      ),
+      _TimelineStep(
+        '6',
+        Icons.refresh_rounded,
+        l.landingTimelineStep6,
+        l.landingTimelineStep6Text,
       ),
     ];
 
@@ -55,7 +61,7 @@ class LandingWorkflowSection extends StatelessWidget {
           const SizedBox(height: 26),
           LayoutBuilder(
             builder: (context, constraints) {
-              final horizontal = constraints.maxWidth >= 900;
+              final horizontal = constraints.maxWidth >= 1120;
               if (horizontal) {
                 return Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
