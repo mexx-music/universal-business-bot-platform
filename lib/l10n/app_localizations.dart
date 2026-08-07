@@ -13316,6 +13316,12 @@ abstract class AppLocalizations {
   /// **'Gemini erstellt dokumentgebundene Vorschläge …'**
   String get kbGeminiLoading;
 
+  /// No description provided for @kbGeminiUnavailable.
+  ///
+  /// In de, this message translates to:
+  /// **'Die dokumentgebundenen Gemini-Vorschläge sind derzeit nicht verfügbar. Die deterministische Analyse ist vollständig und kann weiterhin geprüft und übernommen werden.'**
+  String get kbGeminiUnavailable;
+
   /// No description provided for @kbGeminiSummary.
   ///
   /// In de, this message translates to:

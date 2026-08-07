@@ -22,6 +22,61 @@ import '../../l10n/label_helpers.dart';
 import '../../models/knowledge_entry.dart';
 import 'knowledge_package_widgets.dart';
 
+// The Edge Function accepts at most 8,000 characters per message. Keep a
+// small margin so document-bound Gemini proposals cannot be rejected after
+// JSON encoding adds quotes and escapes.
+const _geminiProposalMessageTargetChars = 7800;
+
+String _clipProposalText(String value, int maxChars) {
+  if (value.length <= maxChars) return value;
+  var end = maxChars;
+  final lastCodeUnit = value.codeUnitAt(end - 1);
+  if (lastCodeUnit >= 0xD800 && lastCodeUnit <= 0xDBFF) end--;
+  return value.substring(0, end);
+}
+
+String _buildGeminiProposalMessage({
+  required String document,
+  required KnowledgeImportAnalysis analysis,
+}) {
+  var documentExcerpt = _clipProposalText(document, 6000);
+  final drafts = <Map<String, Object?>>[
+    for (final draft in analysis.drafts.take(12))
+      {
+        'title': _clipProposalText(draft.title, 180),
+        'category': draft.category.name,
+        'sourceSentence': _clipProposalText(draft.sourceSentence, 420),
+        'possibleDuplicate': draft.isPossibleDuplicate,
+        if (draft.existingMatch case final match?)
+          'existingTitle': _clipProposalText(match.existingTitle, 180),
+      },
+  ];
+
+  String encode() => jsonEncode(<String, Object?>{
+    'languageCode': analysis.inputLanguageCode,
+    'knowledgeArea': analysis.knowledgeArea,
+    'document': documentExcerpt,
+    'deterministicDrafts': drafts,
+  });
+
+  var encoded = encode();
+  while (encoded.length > _geminiProposalMessageTargetChars &&
+      drafts.isNotEmpty) {
+    drafts.removeLast();
+    encoded = encode();
+  }
+  while (encoded.length > _geminiProposalMessageTargetChars &&
+      documentExcerpt.isNotEmpty) {
+    final excess = encoded.length - _geminiProposalMessageTargetChars;
+    final nextLength = documentExcerpt.length - excess - 32;
+    documentExcerpt = nextLength <= 0
+        ? ''
+        : _clipProposalText(documentExcerpt, nextLength);
+    encoded = encode();
+  }
+  return encoded;
+}
+
 /// Knowledge Builder: paste unstructured company text, get a *preview* of
 /// structured knowledge drafts. The core analysis stays deterministic; when
 /// the existing live Gemini provider is available, clearly labelled proposals
@@ -54,6 +109,7 @@ class _KnowledgeBuilderScreenState extends State<KnowledgeBuilderScreen>
   bool _importFailed = false;
   GeminiKnowledgeProposal? _geminiProposal;
   bool _geminiProposalLoading = false;
+  bool _geminiProposalFailed = false;
   int _geminiProposalRequest = 0;
   late final AnimationController _journey;
   int _stage = 0;
@@ -147,6 +203,7 @@ class _KnowledgeBuilderScreenState extends State<KnowledgeBuilderScreen>
       _importFailed = false;
       _geminiProposal = null;
       _geminiProposalLoading = requestGemini;
+      _geminiProposalFailed = false;
     });
     if (analysis.isEmpty || MediaQuery.of(context).disableAnimations) {
       _journey.value = 1;
@@ -173,29 +230,14 @@ class _KnowledgeBuilderScreenState extends State<KnowledgeBuilderScreen>
     required int request,
   }) async {
     GeminiKnowledgeProposal? proposal;
+    var failed = false;
     try {
-      final documentData = <String, Object?>{
-        'languageCode': analysis.inputLanguageCode,
-        'knowledgeArea': analysis.knowledgeArea,
-        'document': document.length <= 12000
-            ? document
-            : document.substring(0, 12000),
-        'deterministicDrafts': [
-          for (final draft in analysis.drafts.take(24))
-            {
-              'title': draft.title,
-              'category': draft.category.name,
-              'sourceSentence': draft.sourceSentence,
-              'possibleDuplicate': draft.isPossibleDuplicate,
-              if (draft.existingMatch case final match?)
-                'existingTitle': match.existingTitle,
-            },
-        ],
-      };
       final response = await aiController.generate(
         AiRequest(
           temperature: 0.1,
-          maxTokens: 1500,
+          // gemini-3.6-flash uses part of this budget for reasoning. The
+          // previous 1,500-token budget produced truncated JSON in production.
+          maxTokens: 2048,
           metadata: const {'feature': 'knowledge-builder-insights'},
           messages: [
             AiMessage.system(
@@ -210,19 +252,27 @@ class _KnowledgeBuilderScreenState extends State<KnowledgeBuilderScreen>
               'Use an empty string or empty array when unsupported. Every '
               'item is a proposal for a person to review, never a decision.',
             ),
-            AiMessage.user(jsonEncode(documentData)),
+            AiMessage.user(
+              _buildGeminiProposalMessage(
+                document: document,
+                analysis: analysis,
+              ),
+            ),
           ],
         ),
       );
       proposal = GeminiKnowledgeProposal.fromResponse(response);
+      failed = proposal == null;
     } catch (_) {
       // The deterministic analysis remains the complete fallback. Provider
-      // failures never block review or import and are not shown as raw errors.
+      // failures never block review or import and never expose raw errors.
+      failed = true;
     }
     if (!mounted || request != _geminiProposalRequest) return;
     setState(() {
       _geminiProposal = proposal;
       _geminiProposalLoading = false;
+      _geminiProposalFailed = failed;
     });
   }
 
@@ -390,6 +440,7 @@ class _KnowledgeBuilderScreenState extends State<KnowledgeBuilderScreen>
       _input.clear();
       _geminiProposal = null;
       _geminiProposalLoading = false;
+      _geminiProposalFailed = false;
       _geminiProposalRequest++;
     });
   }
@@ -490,6 +541,7 @@ class _KnowledgeBuilderScreenState extends State<KnowledgeBuilderScreen>
                       },
                       geminiProposal: _geminiProposal,
                       geminiProposalLoading: _geminiProposalLoading,
+                      geminiProposalFailed: _geminiProposalFailed,
                     ),
                   ],
                 ],
@@ -1435,6 +1487,41 @@ class _GeminiProposalLoadingCard extends StatelessWidget {
   }
 }
 
+class _GeminiProposalErrorCard extends StatelessWidget {
+  const _GeminiProposalErrorCard();
+
+  @override
+  Widget build(BuildContext context) {
+    final l = AppLocalizations.of(context)!;
+    final theme = Theme.of(context);
+    return Container(
+      key: const Key('kb-gemini-insights-error'),
+      width: double.infinity,
+      padding: const EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        color: theme.colorScheme.errorContainer,
+        borderRadius: BorderRadius.circular(16),
+        border: Border.all(color: theme.colorScheme.outlineVariant),
+      ),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Icon(Icons.info_outline, color: theme.colorScheme.onErrorContainer),
+          const SizedBox(width: 12),
+          Expanded(
+            child: Text(
+              l.kbGeminiUnavailable,
+              style: theme.textTheme.bodyMedium?.copyWith(
+                color: theme.colorScheme.onErrorContainer,
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
 class _GeminiKnowledgeInsightsCard extends StatelessWidget {
   const _GeminiKnowledgeInsightsCard({required this.proposal});
 
@@ -1660,6 +1747,7 @@ class _AnalysisJourney extends StatelessWidget {
     required this.onWebsiteLinkChanged,
     required this.geminiProposal,
     required this.geminiProposalLoading,
+    required this.geminiProposalFailed,
   });
 
   final KnowledgeAnalysisPresentation presentation;
@@ -1677,6 +1765,7 @@ class _AnalysisJourney extends StatelessWidget {
   onWebsiteLinkChanged;
   final GeminiKnowledgeProposal? geminiProposal;
   final bool geminiProposalLoading;
+  final bool geminiProposalFailed;
 
   @override
   Widget build(BuildContext context) {
@@ -1808,6 +1897,9 @@ class _AnalysisJourney extends StatelessWidget {
         ] else if (stage >= 3 && geminiProposal != null) ...[
           const SizedBox(height: 16),
           _GeminiKnowledgeInsightsCard(proposal: geminiProposal!),
+        ] else if (stage >= 3 && geminiProposalFailed) ...[
+          const SizedBox(height: 16),
+          const _GeminiProposalErrorCard(),
         ],
         AnimatedSize(
           duration: const Duration(milliseconds: 450),

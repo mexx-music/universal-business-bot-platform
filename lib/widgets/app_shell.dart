@@ -252,6 +252,10 @@ class AppShell extends StatelessWidget {
       key: const Key('full-platform-shell'),
       builder: (context, constraints) {
         if (constraints.maxWidth < 640) {
+          final keyboardInset = MediaQuery.viewInsetsOf(context).bottom;
+          final compactKnowledgeBuilder =
+              currentLocation.startsWith('/knowledge-builder') &&
+              (keyboardInset > 0 || constraints.maxHeight < 600);
           return Scaffold(
             appBar: AppBar(
               title: Text(company.name),
@@ -260,104 +264,132 @@ class AppShell extends StatelessWidget {
                   padding: EdgeInsets.symmetric(vertical: 8),
                   child: LanguageSwitcher(compact: true),
                 ),
-                const SizedBox(width: 8),
-                Padding(
-                  padding: const EdgeInsets.only(right: 8),
-                  child: Center(child: Text(_authLabel(auth, l))),
-                ),
-              ],
-              bottom: PreferredSize(
-                preferredSize: Size.fromHeight(auth.isSupabaseMode ? 140 : 52),
-                child: Padding(
-                  padding: const EdgeInsets.fromLTRB(12, 2, 12, 10),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Row(
-                        children: [
-                          Expanded(
-                            child: SizedBox(
-                              height: 40,
-                              child: _ShellTextButton(
-                                onPressed: () => context.go('/'),
-                                icon: const Icon(Icons.home_outlined, size: 18),
-                                label: Text(l.navHome),
-                              ),
-                            ),
-                          ),
-                          const SizedBox(width: 8),
-                          Expanded(
-                            child: SizedBox(
-                              height: 40,
-                              child: _ShellTextButton(
-                                onPressed: () => context.go('/companies'),
-                                icon: const Icon(Icons.swap_horiz, size: 18),
-                                label: Text(l.companySwitch),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                      if (auth.isSupabaseMode) ...[
-                        const SizedBox(height: 6),
-                        SizedBox(
-                          width: double.infinity,
-                          height: 38,
-                          child: _ShellTextButton(
-                            onPressed: state.isSavingWorkspace
-                                ? null
-                                : () => context.go('/select-tenant?switch=1'),
-                            icon: const Icon(
-                              Icons.business_center_outlined,
-                              size: 18,
-                            ),
-                            label: Text(l.tenantSwitch),
-                          ),
-                        ),
-                        const SizedBox(height: 6),
-                        SizedBox(
-                          width: double.infinity,
-                          height: 38,
-                          child: _ShellTextButton(
-                            onPressed: () async {
-                              await auth.signOut();
-                              if (context.mounted) context.go('/login');
-                            },
-                            icon: const Icon(Icons.logout, size: 18),
-                            label: Text(l.authLogout),
-                          ),
-                        ),
-                      ],
-                    ],
+                if (constraints.maxWidth < 430)
+                  Padding(
+                    padding: const EdgeInsets.only(right: 4),
+                    child: Tooltip(
+                      message: _authLabel(auth, l),
+                      child: const Icon(Icons.account_circle_outlined),
+                    ),
+                  )
+                else ...[
+                  const SizedBox(width: 8),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 8),
+                    child: Center(child: Text(_authLabel(auth, l))),
                   ),
-                ),
-              ),
+                ],
+              ],
+              bottom: compactKnowledgeBuilder
+                  ? null
+                  : PreferredSize(
+                      preferredSize: Size.fromHeight(
+                        auth.isSupabaseMode ? 140 : 52,
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.fromLTRB(12, 2, 12, 10),
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Row(
+                              children: [
+                                Expanded(
+                                  child: SizedBox(
+                                    height: 40,
+                                    child: _ShellTextButton(
+                                      onPressed: () => context.go('/'),
+                                      icon: const Icon(
+                                        Icons.home_outlined,
+                                        size: 18,
+                                      ),
+                                      label: Text(l.navHome),
+                                    ),
+                                  ),
+                                ),
+                                const SizedBox(width: 8),
+                                Expanded(
+                                  child: SizedBox(
+                                    height: 40,
+                                    child: _ShellTextButton(
+                                      onPressed: () => context.go('/companies'),
+                                      icon: const Icon(
+                                        Icons.swap_horiz,
+                                        size: 18,
+                                      ),
+                                      label: Text(l.companySwitch),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                            if (auth.isSupabaseMode) ...[
+                              const SizedBox(height: 6),
+                              SizedBox(
+                                width: double.infinity,
+                                height: 38,
+                                child: _ShellTextButton(
+                                  onPressed: state.isSavingWorkspace
+                                      ? null
+                                      : () => context.go(
+                                          '/select-tenant?switch=1',
+                                        ),
+                                  icon: const Icon(
+                                    Icons.business_center_outlined,
+                                    size: 18,
+                                  ),
+                                  label: Text(l.tenantSwitch),
+                                ),
+                              ),
+                              const SizedBox(height: 6),
+                              SizedBox(
+                                width: double.infinity,
+                                height: 38,
+                                child: _ShellTextButton(
+                                  onPressed: () async {
+                                    await auth.signOut();
+                                    if (context.mounted) context.go('/login');
+                                  },
+                                  icon: const Icon(Icons.logout, size: 18),
+                                  label: Text(l.authLogout),
+                                ),
+                              ),
+                            ],
+                          ],
+                        ),
+                      ),
+                    ),
             ),
-            body: _DemoAwareContent(child: child),
-            bottomNavigationBar: SizedBox(
-              key: const Key('full-platform-mobile-navigation'),
-              height: 80,
-              child: SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: SizedBox(
-                  width: _navItems.length * 80,
-                  child: NavigationBar(
-                    selectedIndex: selectedIndex,
-                    labelBehavior:
-                        NavigationDestinationLabelBehavior.onlyShowSelected,
-                    onDestinationSelected: (i) => context.go(_navItems[i].path),
-                    destinations: List.generate(
-                      _navItems.length,
-                      (i) => NavigationDestination(
-                        icon: Icon(_navItems[i].icon),
-                        selectedIcon: Icon(_navItems[i].selectedIcon),
-                        label: labels[i],
+            body: _DemoAwareContent(
+              hideChrome: compactKnowledgeBuilder,
+              child: child,
+            ),
+            bottomNavigationBar: compactKnowledgeBuilder
+                ? null
+                : SizedBox(
+                    key: const Key('full-platform-mobile-navigation'),
+                    height: 80,
+                    child: SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: SizedBox(
+                        width: _navItems.length * 80,
+                        child: NavigationBar(
+                          selectedIndex: selectedIndex,
+                          labelBehavior: NavigationDestinationLabelBehavior
+                              .onlyShowSelected,
+                          onDestinationSelected: (i) =>
+                              context.go(_navItems[i].path),
+                          destinations: List.generate(
+                            _navItems.length,
+                            (i) => NavigationDestination(
+                              icon: Icon(_navItems[i].icon),
+                              selectedIcon: Icon(_navItems[i].selectedIcon),
+                              label: labels[i],
+                            ),
+                          ),
+                        ),
                       ),
                     ),
                   ),
-                ),
-              ),
-            ),
           );
         }
 
@@ -931,13 +963,14 @@ class _ShellTextButton extends StatelessWidget {
 /// while the competition demo runs; renders the plain content otherwise.
 class _DemoAwareContent extends StatelessWidget {
   final Widget child;
+  final bool hideChrome;
 
-  const _DemoAwareContent({required this.child});
+  const _DemoAwareContent({required this.child, this.hideChrome = false});
 
   @override
   Widget build(BuildContext context) {
     final demo = DemoModeController.of(context);
-    if (!demo.isActive) return child;
+    if (!demo.isActive || hideChrome) return child;
     return Column(
       children: [
         const _DemoBanner(),

@@ -2595,6 +2595,7 @@
   "kbGeminiInsightsTitle": "Gemini Insights",
   "kbGeminiInsightsBody": "Gemini ergänzt die deterministische Analyse mit dokumentgebundenen Vorschlägen. Die Analyse selbst bleibt unverändert.",
   "kbGeminiLoading": "Gemini erstellt dokumentgebundene Vorschläge …",
+  "kbGeminiUnavailable": "Die dokumentgebundenen Gemini-Vorschläge sind derzeit nicht verfügbar. Die deterministische Analyse ist vollständig und kann weiterhin geprüft und übernommen werden.",
   "kbGeminiSummary": "Kurze Zusammenfassung",
   "kbGeminiKeyStatements": "Wichtigste Aussagen",
   "kbGeminiRecommendedFaq": "Empfohlene FAQ",

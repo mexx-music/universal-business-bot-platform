@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:go_router/go_router.dart';
@@ -170,6 +172,51 @@ void main() {
     );
   });
 
+  testWidgets('long documents stay within the live Edge message limit', (
+    tester,
+  ) async {
+    final provider = ScriptedGeminiProvider(
+      responseText: '''
+          {
+            "summary": "Dokumentgebundene Zusammenfassung.",
+            "keyStatements": [],
+            "recommendedFaq": [],
+            "categories": [],
+            "missingInformation": [],
+            "possibleDuplicates": [],
+            "employeeQuestions": [],
+            "reviewSuggestions": []
+          }
+        ''',
+    );
+    await pumpScreen(
+      tester,
+      analyzer: const _FakeAnalyzer(_scripted),
+      aiController: controllerWithScriptedGemini(provider),
+      size: const Size(1000, 2400),
+    );
+
+    final longDocument = List.filled(
+      900,
+      'Bluetooth-Verbindung und Firmware-Update.',
+    ).join(' ');
+    await analyze(tester, longDocument);
+
+    expect(provider.calls, 1);
+    final request = provider.requests.single;
+    expect(request.maxTokens, 2048);
+    final userMessage = request.messages.last.content;
+    expect(userMessage.length, lessThanOrEqualTo(7800));
+    final documentData = jsonDecode(userMessage) as Map<String, dynamic>;
+    expect(documentData['languageCode'], 'de');
+    expect(documentData['knowledgeArea'], 'hb_cure_app');
+    expect(documentData['document'], isNotEmpty);
+    expect(documentData['deterministicDrafts'], isNotEmpty);
+    expect(find.byKey(const Key('kb-analysis-summary')), findsOneWidget);
+    expect(find.byKey(const Key('kb-gemini-insights')), findsOneWidget);
+    expect(tester.takeException(), isNull);
+  });
+
   testWidgets('Gemini failure preserves the deterministic Knowledge Builder', (
     tester,
   ) async {
@@ -190,6 +237,8 @@ void main() {
     expect(find.byKey(const Key('kb-draft-preview')), findsOneWidget);
     expect(find.byKey(const Key('kb-gemini-insights')), findsNothing);
     expect(find.byKey(const Key('kb-gemini-review-suggestions')), findsNothing);
+    expect(find.byKey(const Key('kb-gemini-insights-error')), findsOneWidget);
+    expect(find.text(l10n(tester).kbGeminiUnavailable), findsOneWidget);
     expect(tester.takeException(), isNull);
   });
 
@@ -248,6 +297,7 @@ void main() {
 
     expect(find.byKey(const Key('kb-analysis-summary')), findsOneWidget);
     expect(find.byKey(const Key('kb-gemini-insights')), findsNothing);
+    expect(find.byKey(const Key('kb-gemini-insights-error')), findsNothing);
     expect(find.textContaining('[mock:'), findsNothing);
   });
 

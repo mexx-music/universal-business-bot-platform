@@ -2410,6 +2410,7 @@
   "kbGeminiInsightsTitle": "Gemini Insights",
   "kbGeminiInsightsBody": "Gemini complements the deterministic analysis with document-bound proposals. The analysis itself remains unchanged.",
   "kbGeminiLoading": "Gemini is preparing document-bound proposals …",
+  "kbGeminiUnavailable": "Document-bound Gemini proposals are currently unavailable. The deterministic analysis is complete and can still be reviewed and accepted.",
   "kbGeminiSummary": "Short summary",
   "kbGeminiKeyStatements": "Key statements",
   "kbGeminiRecommendedFaq": "Recommended FAQ",

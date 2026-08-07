@@ -7250,6 +7250,10 @@ class AppLocalizationsEn extends AppLocalizations {
       'Gemini is preparing document-bound proposals …';
 
   @override
+  String get kbGeminiUnavailable =>
+      'Document-bound Gemini proposals are currently unavailable. The deterministic analysis is complete and can still be reviewed and accepted.';
+
+  @override
   String get kbGeminiSummary => 'Short summary';
 
   @override
