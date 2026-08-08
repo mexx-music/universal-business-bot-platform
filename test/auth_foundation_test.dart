@@ -112,6 +112,114 @@ void main() {
     expect(controller.errorMessage, 'Email address not authorized');
   });
 
+  test(
+    'redundant initial authStateChanges event confirming the restored '
+    'session does not notify again (no spurious router refresh)',
+    () async {
+      final service = _FakeAuthService(
+        restoredSession: _session,
+        tenantContext: const TenantContext(
+          tenantId: 'tenant-a',
+          userId: 'user-a',
+          role: 'owner',
+        ),
+      );
+      final controller = AuthController(service);
+      await controller.initialize();
+      expect(controller.status, AuthStatus.authenticated);
+
+      var notifications = 0;
+      controller.addListener(() => notifications++);
+
+      // Supabase replays the initial session after subscription — identical to
+      // what restoreSession() already applied before the first frame.
+      service.emit(_session);
+      await pumpEventQueue();
+
+      expect(
+        notifications,
+        0,
+        reason: 'an identical initial auth event must be a no-op',
+      );
+      expect(controller.status, AuthStatus.authenticated);
+    },
+  );
+
+  test('real login via authStateChanges still notifies', () async {
+    final service = _FakeAuthService(
+      restoredSession: null,
+      tenantContext: const TenantContext(
+        tenantId: 'tenant-a',
+        userId: 'user-a',
+        role: 'owner',
+      ),
+    );
+    final controller = AuthController(service);
+    await controller.initialize();
+    expect(controller.status, AuthStatus.unauthenticated);
+
+    var notifications = 0;
+    controller.addListener(() => notifications++);
+
+    service.emit(_session); // unauthenticated -> authenticated
+    await pumpEventQueue();
+
+    expect(notifications, greaterThanOrEqualTo(1));
+    expect(controller.status, AuthStatus.authenticated);
+  });
+
+  test('real logout via authStateChanges still notifies', () async {
+    final service = _FakeAuthService(
+      restoredSession: _session,
+      tenantContext: const TenantContext(
+        tenantId: 'tenant-a',
+        userId: 'user-a',
+        role: 'owner',
+      ),
+    );
+    final controller = AuthController(service);
+    await controller.initialize();
+    expect(controller.status, AuthStatus.authenticated);
+
+    var notifications = 0;
+    controller.addListener(() => notifications++);
+
+    service.emit(null); // authenticated -> unauthenticated
+    await pumpEventQueue();
+
+    expect(notifications, greaterThanOrEqualTo(1));
+    expect(controller.status, AuthStatus.unauthenticated);
+  });
+
+  test('a different tenant for the same user still notifies', () async {
+    final service = _FakeAuthService(
+      restoredSession: _session,
+      tenantContext: const TenantContext(
+        tenantId: 'tenant-a',
+        userId: 'user-a',
+        role: 'owner',
+      ),
+    );
+    final controller = AuthController(service);
+    await controller.initialize();
+    expect(controller.tenantContext!.tenantId, 'tenant-a');
+
+    var notifications = 0;
+    controller.addListener(() => notifications++);
+
+    // Same user, but the resolved tenant changes -> snapshot differs -> notify.
+    service.tenantContext = const TenantContext(
+      tenantId: 'tenant-b',
+      userId: 'user-a',
+      role: 'owner',
+    );
+    service.emit(_session);
+    await pumpEventQueue();
+
+    expect(notifications, greaterThanOrEqualTo(1));
+    expect(controller.tenantContext!.tenantId, 'tenant-b');
+  });
+
   test('Login validation accepts only email and six-character passwords', () {
     expect(AuthFormValidators.isValidEmail('person@example.com'), isTrue);
     expect(AuthFormValidators.isValidEmail('person'), isFalse);
@@ -322,9 +430,12 @@ class _FakeAuthService implements AuthService {
   final AuthSession? restoredSession;
   final AuthOperationResult? signInResult;
   final Object? signUpError;
-  final TenantContext? tenantContext;
+  TenantContext? tenantContext;
   final StreamController<AuthSession?> _controller =
       StreamController<AuthSession?>.broadcast();
+
+  /// Simulates Supabase pushing an `onAuthStateChange` event.
+  void emit(AuthSession? session) => _controller.add(session);
 
   @override
   bool get isLocal => false;

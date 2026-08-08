@@ -46,6 +46,14 @@ class AuthController extends ChangeNotifier {
   String? _errorMessage;
   int _authGeneration = 0;
 
+  /// Snapshot of the auth-relevant state last applied via [_applySession].
+  /// Guards against a redundant initial `authStateChanges` event — which merely
+  /// re-confirms the session already established by [AuthService.restoreSession]
+  /// before the first frame — triggering a spurious notifyListeners() and thus a
+  /// GoRouter.refresh() that can disrupt an in-progress public flow. Genuine
+  /// changes (login, logout, different user or tenant) still notify.
+  String? _lastAppliedSnapshot;
+
   AuthStatus get status => _status;
   AuthSession? get session => _session;
   AuthUser? get user => _user;
@@ -209,8 +217,20 @@ class AuthController extends ChangeNotifier {
     } else {
       await _resolveMembershipSelection(session.user, generation);
     }
-    if (notify) notifyListeners();
+    // No-op guard: only notify when the auth-relevant state actually changed
+    // versus what was last applied. The initial authStateChanges event that
+    // merely re-confirms the restored session becomes a true no-op.
+    final snapshot = _authSnapshot();
+    final changed = snapshot != _lastAppliedSnapshot;
+    _lastAppliedSnapshot = snapshot;
+    if (notify && changed) notifyListeners();
   }
+
+  /// Auth-relevant identity used for change detection: status + signed-in user
+  /// + active tenant. Two applications with the same snapshot are equivalent
+  /// for routing and UI, so re-applying it must not notify.
+  String _authSnapshot() =>
+      '${_status.name}|${_session?.user.id ?? ''}|${_tenantContext?.tenantId ?? ''}';
 
   Future<void> _resolveMembershipSelection(
     AuthUser user,
