@@ -82,10 +82,22 @@ String _buildGeminiProposalMessage({
 /// the existing live Gemini provider is available, clearly labelled proposals
 /// complement it. Nothing saves before explicit human confirmation.
 class KnowledgeBuilderScreen extends StatefulWidget {
-  const KnowledgeBuilderScreen({super.key, this.analyzer});
+  const KnowledgeBuilderScreen({
+    super.key,
+    this.analyzer,
+    this.embedded = false,
+  });
 
   /// Test seam; production uses the default deterministic analyzer.
   final KnowledgeImportAnalyzer? analyzer;
+
+  /// When the screen is hosted inside another scaffold (e.g. the guided demo
+  /// embeds it in a bounded `Expanded`), the analyze action is rendered inline
+  /// at the end of the scroll body instead of as a `bottomNavigationBar`. This
+  /// keeps the button, result, review and import inside the scroll flow so a
+  /// constrained desktop height can never overlap or hide the action. Standalone
+  /// routes keep the pinned bottom bar (default `false`).
+  final bool embedded;
 
   @override
   State<KnowledgeBuilderScreen> createState() => _KnowledgeBuilderScreenState();
@@ -452,13 +464,13 @@ class _KnowledgeBuilderScreenState extends State<KnowledgeBuilderScreen>
     final analysis = _analysis;
 
     return Scaffold(
-      bottomNavigationBar: analysis == null
-          ? _AnalyzeActionBar(
+      bottomNavigationBar: (widget.embedded || analysis != null)
+          ? null
+          : _AnalyzeActionBar(
               canAnalyze: _input.text.trim().isNotEmpty,
               characterCount: _input.text.length,
               onAnalyze: _analyze,
-            )
-          : null,
+            ),
       body: SafeArea(
         child: SingleChildScrollView(
           padding: const EdgeInsets.all(16),
@@ -523,6 +535,14 @@ class _KnowledgeBuilderScreenState extends State<KnowledgeBuilderScreen>
                       ),
                     ),
                     const SizedBox(height: 16),
+                    // Embedded hosts (e.g. guided demo) have no bottomNavigationBar,
+                    // so the analyze action lives inline at the end of the body.
+                    if (widget.embedded)
+                      _AnalyzeActionBar(
+                        canAnalyze: _input.text.trim().isNotEmpty,
+                        characterCount: _input.text.length,
+                        onAnalyze: _analyze,
+                      ),
                   ] else ...[
                     _AnalysisJourney(
                       presentation: _presentation!,

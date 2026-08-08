@@ -339,7 +339,7 @@ class _StepContent extends StatelessWidget {
       0 => _Welcome(onStart: onNext),
       1 => _Framed(
         narration: l.gdNarr2,
-        child: const Expanded(child: KnowledgeBuilderScreen()),
+        child: const Expanded(child: KnowledgeBuilderScreen(embedded: true)),
       ),
       2 => _Framed(
         narration: l.gdNarr3,

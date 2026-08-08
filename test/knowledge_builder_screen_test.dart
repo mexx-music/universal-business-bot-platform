@@ -118,6 +118,48 @@ Future<void> analyze(WidgetTester tester, String text) async {
   await tester.pumpAndSettle();
 }
 
+/// Hosts the screen the way the guided demo does: a full [Scaffold] with
+/// narration/controls chrome and the builder in a bounded [Expanded], at a
+/// short desktop height. This is the exact context that previously overflowed
+/// and swallowed the analyze tap.
+Future<void> pumpEmbedded(
+  WidgetTester tester, {
+  KnowledgeImportAnalyzer? analyzer,
+  AppState? state,
+  Size size = const Size(1200, 640),
+}) async {
+  await tester.binding.setSurfaceSize(size);
+  addTearDown(() => tester.binding.setSurfaceSize(null));
+  await tester.pumpWidget(
+    MaterialApp(
+      localizationsDelegates: AppLocalizations.localizationsDelegates,
+      supportedLocales: AppLocalizations.supportedLocales,
+      locale: const Locale('de'),
+      home: AppStateScope(
+        notifier: state ?? AppState(),
+        child: Scaffold(
+          body: SafeArea(
+            child: Column(
+              children: [
+                Container(height: 96, color: const Color(0xFFEFEFEF)),
+                Expanded(
+                  child: KnowledgeBuilderScreen(
+                    key: UniqueKey(),
+                    analyzer: analyzer,
+                    embedded: true,
+                  ),
+                ),
+                Container(height: 56, color: const Color(0xFFEFEFEF)),
+              ],
+            ),
+          ),
+        ),
+      ),
+    ),
+  );
+  await tester.pumpAndSettle();
+}
+
 void main() {
   testWidgets('shows document-bound Gemini insights and review suggestions', (
     tester,
@@ -879,5 +921,66 @@ void main() {
     );
     await analyze(tester, 'text');
     expect(tester.takeException(), isNull);
+  });
+
+  testWidgets(
+    'embedded builder analyzes and reaches import at constrained desktop height',
+    (tester) async {
+      await pumpEmbedded(tester, analyzer: const _FakeAnalyzer(_scripted));
+
+      // No overflow when embedded in a short, bounded host.
+      expect(tester.takeException(), isNull);
+
+      // Embedded hosts must not use the pinned bottom bar (root cause).
+      final scaffold = tester.widget<Scaffold>(
+        find.descendant(
+          of: find.byType(KnowledgeBuilderScreen),
+          matching: find.byType(Scaffold),
+        ),
+      );
+      expect(scaffold.bottomNavigationBar, isNull);
+
+      // Load a demo document, then analyze via the inline action.
+      final load = find.byKey(const Key('kb-load-demo-hb-cure-app'));
+      await tester.ensureVisible(load);
+      await tester.tap(load);
+      await tester.pumpAndSettle();
+
+      final analyzeBtn = find.byKey(const Key('kb-analyze-action'));
+      expect(analyzeBtn, findsOneWidget);
+      await tester.ensureVisible(analyzeBtn);
+      await tester.tap(analyzeBtn);
+      await tester.pumpAndSettle();
+
+      // The result renders (the bug was: nothing happened).
+      expect(find.byKey(const Key('kb-analysis-summary')), findsOneWidget);
+      expect(find.byKey(const Key('kb-draft-preview')), findsOneWidget);
+      // The inline analyze action is replaced by the result once analysis exists.
+      expect(analyzeBtn, findsNothing);
+      // The import action is present and reachable in the scroll flow.
+      final importBtn = find.byKey(const Key('kb-import-all'));
+      expect(importBtn, findsOneWidget);
+      await tester.ensureVisible(importBtn);
+      expect(tester.takeException(), isNull);
+    },
+  );
+
+  testWidgets('standalone keeps the pinned bottomNavigationBar analyze action', (
+    tester,
+  ) async {
+    await pumpScreen(tester, analyzer: const _FakeAnalyzer(_scripted));
+
+    final scaffold = tester.widget<Scaffold>(
+      find.descendant(
+        of: find.byType(KnowledgeBuilderScreen),
+        matching: find.byType(Scaffold),
+      ),
+    );
+    expect(scaffold.bottomNavigationBar, isNotNull);
+    expect(find.byKey(const Key('kb-analyze-action-bar')), findsOneWidget);
+
+    // The existing bottom-bar analyze path still produces the result.
+    await analyze(tester, 'text');
+    expect(find.byKey(const Key('kb-draft-preview')), findsOneWidget);
   });
 }
